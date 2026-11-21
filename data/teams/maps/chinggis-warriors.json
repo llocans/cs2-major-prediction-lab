@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "teamId": "chinggis-warriors",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 9,
+    "played": 21
+  },
+  "maps": {
+    "nuke": {
+      "won": 5,
+      "played": 7
+    },
+    "ancient": {
+      "won": 3,
+      "played": 5
+    },
+    "inferno": {
+      "won": 0,
+      "played": 4
+    },
+    "dust2": {
+      "won": 0,
+      "played": 3
+    },
+    "cache": {
+      "won": 1,
+      "played": 2
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/12646/chinggis-warriors?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}

@@ -31,6 +31,9 @@ Per team and map, an `offset` from the team rating, with its own `rd` and sample
 - `rd_map = newMapRd × sqrt(shrinkMaps / (n + shrinkMaps))`. A map with no data (Cache) has offset 0 and
   `rd_map = newMapRd` (80: roughly the spread of real map offsets, so missing data widens, but does not
   flatten, predictions).
+- A map with no games at all in a sample of at least `unplayedMinMaps` (15) maps is most likely the
+  team's permanent ban: offset `−unplayedPenalty` (−40) with `rd_map = newMapRd`. Smaller samples say
+  nothing, so those maps stay at 0.
 - Modifiers (`data/model/modifiers.json`) add `delta` to a team (or one map), clamped to
   ±`modifiers.maxAbs`, and only until `expires`.
 

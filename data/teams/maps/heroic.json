@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "teamId": "heroic",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 31,
+    "played": 54
+  },
+  "maps": {
+    "dust2": {
+      "won": 5,
+      "played": 12
+    },
+    "ancient": {
+      "won": 8,
+      "played": 11
+    },
+    "inferno": {
+      "won": 7,
+      "played": 10
+    },
+    "cache": {
+      "won": 4,
+      "played": 8
+    },
+    "mirage": {
+      "won": 3,
+      "played": 7
+    },
+    "nuke": {
+      "won": 4,
+      "played": 6
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/7175/heroic?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}

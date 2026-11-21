@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "teamId": "9z",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 10,
+    "played": 38
+  },
+  "maps": {
+    "nuke": {
+      "won": 2,
+      "played": 10
+    },
+    "mirage": {
+      "won": 3,
+      "played": 8
+    },
+    "dust2": {
+      "won": 3,
+      "played": 7
+    },
+    "inferno": {
+      "won": 2,
+      "played": 6
+    },
+    "cache": {
+      "won": 0,
+      "played": 5
+    },
+    "ancient": {
+      "won": 0,
+      "played": 2
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/9996/9z?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}

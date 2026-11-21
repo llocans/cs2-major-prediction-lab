@@ -5,7 +5,7 @@ VRS #38, 1391 points (2026-11-02) · Stage 1, seed 12 · Last updated 2026-11-21
 
 ## Lineup
 - Players in the latest VRS match (2026-11-01): Cxzi, fr3nd, HexT, nEMANHA, reck [VRS]
-- Coach, join dates, stand-ins: pending (Liquipedia API)
+- Event lineup and coach (splawik) confirmed on the HLTV event page [HLTV-E]; join dates pending (Liquipedia API)
 
 ## Roster changes
 - pending (Liquipedia API, news)
@@ -28,7 +28,14 @@ VRS #38, 1391 points (2026-11-02) · Stage 1, seed 12 · Last updated 2026-11-21
 - Placements: pending
 
 ## Map pool
-- pending (HLTV map stats, Browser pane). Until then all maps use the team rating.
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 15-13 over 28 maps [HLTV-M]
+  - Cache: 4-3 (57%), model offset +9
+  - Mirage: 4-3 (57%), model offset +9
+  - Inferno: 2-3 (40%), model offset -28
+  - Nuke: 3-1 (75%), model offset +38
+  - Dust II: 1-2 (33%), model offset -28
+  - Anubis: 1-1 (50%), model offset -4
+  - No maps in the window: Ancient (treated as a likely ban: offset -40, wide uncertainty)
 
 ## Key players
 - pending
@@ -50,4 +57,6 @@ VRS #38, 1391 points (2026-11-02) · Stage 1, seed 12 · Last updated 2026-11-21
 - none
 
 ## Sources
+- [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/12257/wildcard?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
+- [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0038--wildcard--cxzi-fr3nd-hext-nemanha-reck.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0038--wildcard--cxzi-fr3nd-hext-nemanha-reck.md (retrieved 2026-11-21)

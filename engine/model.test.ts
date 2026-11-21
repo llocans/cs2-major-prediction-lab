@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import type { VetoProcedure } from '../data/schemas/event-config.ts'
 import type { ModelParams, Ratings } from '../data/schemas/model.ts'
 import { buildMatchModel } from './match-model.ts'
-import { mapStrengthFromSample } from './ratings/map-strength.ts'
+import { mapStrengthFromSample, unplayedMapStrength } from './ratings/map-strength.ts'
 import { priorRating } from './ratings/prior.ts'
 import { winProbability } from './ratings/probability.ts'
 import { updateRatings } from './ratings/update.ts'
@@ -24,7 +24,7 @@ const params: ModelParams = {
     coldStartRd: 110,
     coldStartSeries: 8,
   },
-  maps: { shrinkMaps: 12, maxOffset: 120, newMapRd: 120 },
+  maps: { shrinkMaps: 12, maxOffset: 120, newMapRd: 120, unplayedPenalty: 40, unplayedMinMaps: 15 },
   update: { k: 24, formatWeight: { bo1: 0.75, bo3: 1, bo5: 1 }, roundDiffWeight: 0.5, minRd: 45 },
   veto: { temperature: 25 },
   sim: { runs: 12000, seed: 1 },
@@ -111,6 +111,11 @@ describe('ratings', () => {
       rd: 120,
       n: 0,
     })
+  })
+
+  it('treats a map never played in a large sample as a ban', () => {
+    expect(unplayedMapStrength(40, params)).toEqual({ offset: -40, rd: 120, n: 0 })
+    expect(unplayedMapStrength(6, params)).toBeUndefined()
   })
 
   it('moves the winner up and the loser down, Bo1 less than Bo3', () => {

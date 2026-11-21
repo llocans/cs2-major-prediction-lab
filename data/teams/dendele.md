@@ -5,7 +5,7 @@ VRS #29, 1466 points (2026-11-02) · Stage 1, seed 10 · Last updated 2026-11-21
 
 ## Lineup
 - Players in the latest VRS match (2026-11-01): doc, gafolo, koala, maxxkor, rdnzao [VRS]
-- Coach, join dates, stand-ins: pending (Liquipedia API)
+- Event lineup and coach (coachi) confirmed on the HLTV event page [HLTV-E]; join dates pending (Liquipedia API)
 
 ## Roster changes
 - pending (Liquipedia API, news)
@@ -28,7 +28,14 @@ VRS #29, 1466 points (2026-11-02) · Stage 1, seed 10 · Last updated 2026-11-21
 - Placements: pending
 
 ## Map pool
-- pending (HLTV map stats, Browser pane). Until then all maps use the team rating.
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 12-21 over 33 maps [HLTV-M]
+  - Mirage: 4-4 (50%), model offset +40
+  - Cache: 2-5 (29%), model offset -22
+  - Inferno: 4-2 (67%), model offset +73
+  - Ancient: 1-5 (17%), model offset -52
+  - Nuke: 1-3 (25%), model offset -22
+  - Anubis: 0-2 (0%), model offset -40
+  - No maps in the window: Dust II (treated as a likely ban: offset -40, wide uncertainty)
 
 ## Key players
 - pending
@@ -54,4 +61,6 @@ VRS #29, 1466 points (2026-11-02) · Stage 1, seed 10 · Last updated 2026-11-21
 - none
 
 ## Sources
+- [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/13926/dendele?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
+- [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0029--dendele--doc-gafolo-koala-maxxkor-rdnzao.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0029--dendele--doc-gafolo-koala-maxxkor-rdnzao.md (retrieved 2026-11-21)

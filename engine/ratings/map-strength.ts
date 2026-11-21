@@ -37,3 +37,15 @@ export function mapStrengthFromSample(
   const offset = Math.max(-maxOffset, Math.min(maxOffset, raw))
   return { offset: Math.round(offset * 10) / 10, rd: mapRd(map.played, params), n: map.played }
 }
+
+/**
+ * A map the team did not play once in a large enough sample is most likely its permanent ban:
+ * a negative offset with wide uncertainty. Returns undefined when the sample is too small to tell.
+ */
+export function unplayedMapStrength(
+  totalMaps: number,
+  params: ModelParams,
+): MapStrength | undefined {
+  if (totalMaps < params.maps.unplayedMinMaps) return undefined
+  return { offset: -params.maps.unplayedPenalty, rd: params.maps.newMapRd, n: 0 }
+}

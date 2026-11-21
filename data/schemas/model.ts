@@ -50,6 +50,9 @@ export const ModelParams = z.object({
     shrinkMaps: z.number().positive(),
     maxOffset: z.number().positive(),
     newMapRd: z.number().positive(),
+    /** A map a team did not play at all in at least `unplayedMinMaps` maps is treated as its ban. */
+    unplayedPenalty: z.number().nonnegative(),
+    unplayedMinMaps: z.number().int().positive(),
   }),
   update: z.object({
     /** Base step per map, scaled by format weight and round difference. */

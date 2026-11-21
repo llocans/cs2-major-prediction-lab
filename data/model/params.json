@@ -13,7 +13,9 @@
   "maps": {
     "shrinkMaps": 12,
     "maxOffset": 120,
-    "newMapRd": 80
+    "newMapRd": 80,
+    "unplayedPenalty": 40,
+    "unplayedMinMaps": 15
   },
   "update": {
     "k": 24,

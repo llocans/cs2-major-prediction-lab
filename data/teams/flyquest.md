@@ -5,7 +5,7 @@ VRS #48, 1318 points (2026-11-02) · Stage 1, seed 14 · Last updated 2026-11-21
 
 ## Lineup
 - Players in the latest VRS match (2026-10-31): aliStair, INS, jks, nettik, Vexite [VRS]
-- Coach, join dates, stand-ins: pending (Liquipedia API)
+- Event lineup and coach (AZR) confirmed on the HLTV event page [HLTV-E]; join dates pending (Liquipedia API)
 
 ## Roster changes
 - pending (Liquipedia API, news)
@@ -28,7 +28,7 @@ VRS #48, 1318 points (2026-11-02) · Stage 1, seed 14 · Last updated 2026-11-21
 - Placements: pending
 
 ## Map pool
-- pending (HLTV map stats, Browser pane). Until then all maps use the team rating.
+- No maps vs HLTV top-50 opponents from 2026-08-21 to 2026-11-21 [HLTV]. All maps use the team rating, with cold-start uncertainty.
 
 ## Key players
 - pending
@@ -46,4 +46,5 @@ VRS #48, 1318 points (2026-11-02) · Stage 1, seed 14 · Last updated 2026-11-21
 - none
 
 ## Sources
+- [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0048--flyquest--alistair-ins-jks-nettik-vexite.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0048--flyquest--alistair-ins-jks-nettik-vexite.md (retrieved 2026-11-21)

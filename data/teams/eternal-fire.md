@@ -5,7 +5,7 @@ VRS #22, 1513 points (2026-11-02) · Stage 1, seed 6 · Last updated 2026-11-21
 
 ## Lineup
 - Players in the latest VRS match (2026-10-30): jottAAA, Kvem, MisteM, regali, soulfly [VRS]
-- Coach, join dates, stand-ins: pending (Liquipedia API)
+- Event lineup and coach (Fabre) confirmed on the HLTV event page [HLTV-E]; join dates pending (Liquipedia API)
 
 ## Roster changes
 - pending (Liquipedia API, news)
@@ -28,7 +28,14 @@ VRS #22, 1513 points (2026-11-02) · Stage 1, seed 6 · Last updated 2026-11-21
 - Placements: pending
 
 ## Map pool
-- pending (HLTV map stats, Browser pane). Until then all maps use the team rating.
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 33-29 over 62 maps [HLTV-M]
+  - Ancient: 10-5 (67%), model offset +53
+  - Mirage: 6-6 (50%), model offset -11
+  - Cache: 5-5 (50%), model offset -10
+  - Dust II: 6-4 (60%), model offset +22
+  - Inferno: 3-5 (38%), model offset -44
+  - Anubis: 3-4 (43%), model offset -27
+  - No maps in the window: Nuke (treated as a likely ban: offset -40, wide uncertainty)
 
 ## Key players
 - pending
@@ -48,4 +55,6 @@ VRS #22, 1513 points (2026-11-02) · Stage 1, seed 6 · Last updated 2026-11-21
 - none
 
 ## Sources
+- [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/11251/eternal-fire?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
+- [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0022--eternal_fire--jottaaa-kvem-mistem-regali-soulfly.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0022--eternal_fire--jottaaa-kvem-mistem-regali-soulfly.md (retrieved 2026-11-21)

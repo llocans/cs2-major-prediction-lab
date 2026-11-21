@@ -6,6 +6,7 @@
  */
 import { existsSync } from 'node:fs'
 import {
+  EventConfig,
   EventTeams,
   ModelParams,
   type Ratings,
@@ -13,7 +14,7 @@ import {
   TeamMapStats,
   type TeamRating,
 } from '../data/schemas/index.ts'
-import { mapStrengthFromSample } from '../engine/ratings/map-strength.ts'
+import { mapStrengthFromSample, unplayedMapStrength } from '../engine/ratings/map-strength.ts'
 import { priorRating } from '../engine/ratings/prior.ts'
 import { readJson, repoPath } from './lib/files.ts'
 import { saveRatings } from './lib/ratings-store.ts'
@@ -26,6 +27,7 @@ if (!eventId) {
 
 const params = readJson(repoPath('data/model/params.json'), ModelParams)
 const eventTeams = readJson(repoPath('data/events', eventId, 'teams.json'), EventTeams)
+const config = readJson(repoPath('data/events', eventId, 'config.json'), EventConfig)
 const teams: Record<string, TeamRating> = {}
 
 for (const participant of eventTeams.participants) {
@@ -47,6 +49,11 @@ for (const participant of eventTeams.participants) {
         { won: stats.overall.won, played: stats.overall.played },
         params,
       )
+    }
+    for (const map of config.mapPool.map((m) => m.id)) {
+      if (maps[map]) continue
+      const unplayed = unplayedMapStrength(stats.overall.played, params)
+      if (unplayed) maps[map] = unplayed
     }
     sources.push(stats.source)
   }

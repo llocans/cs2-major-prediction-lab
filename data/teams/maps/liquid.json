@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "teamId": "liquid",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 23,
+    "played": 45
+  },
+  "maps": {
+    "mirage": {
+      "won": 6,
+      "played": 9
+    },
+    "inferno": {
+      "won": 6,
+      "played": 9
+    },
+    "cache": {
+      "won": 3,
+      "played": 8
+    },
+    "anubis": {
+      "won": 4,
+      "played": 7
+    },
+    "nuke": {
+      "won": 2,
+      "played": 5
+    },
+    "dust2": {
+      "won": 1,
+      "played": 4
+    },
+    "ancient": {
+      "won": 1,
+      "played": 3
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/5973/liquid?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}

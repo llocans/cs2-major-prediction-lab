@@ -5,7 +5,7 @@ VRS #21, 1528 points (2026-11-02) · Stage 1, seed 5 · Last updated 2026-11-21
 
 ## Lineup
 - Players in the latest VRS match (2026-10-28): EliGE, Jorko, JT, malbsMd, NAF [VRS]
-- Coach, join dates, stand-ins: pending (Liquipedia API)
+- Event lineup and coach (flashie) confirmed on the HLTV event page [HLTV-E]; join dates pending (Liquipedia API)
 
 ## Roster changes
 - pending (Liquipedia API, news)
@@ -28,7 +28,14 @@ VRS #21, 1528 points (2026-11-02) · Stage 1, seed 5 · Last updated 2026-11-21
 - Placements: pending
 
 ## Map pool
-- pending (HLTV map stats, Browser pane). Until then all maps use the team rating.
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 23-22 over 45 maps [HLTV-M]
+  - Mirage: 6-3 (67%), model offset +47
+  - Inferno: 6-3 (67%), model offset +47
+  - Cache: 3-5 (38%), model offset -38
+  - Anubis: 4-3 (57%), model offset +16
+  - Nuke: 2-3 (40%), model offset -23
+  - Dust II: 1-3 (25%), model offset -46
+  - Ancient: 1-2 (33%), model offset -25
 
 ## Key players
 - pending
@@ -49,4 +56,6 @@ VRS #21, 1528 points (2026-11-02) · Stage 1, seed 5 · Last updated 2026-11-21
 - none
 
 ## Sources
+- [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/5973/liquid?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
+- [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0021--liquid--elige-jorko-jt-malbsmd-naf.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0021--liquid--elige-jorko-jt-malbsmd-naf.md (retrieved 2026-11-21)
