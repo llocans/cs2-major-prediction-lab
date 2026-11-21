@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "betboom",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 6,
+    "points": 1786
+  },
+  "roster": [
+    "Boombl4",
+    "d1Ledez",
+    "Magnojez",
+    "S1ren",
+    "zorte"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 10,
+      "lost": 9
+    },
+    "vsTop30": {
+      "won": 16,
+      "lost": 16
+    },
+    "tier1Series": 39
+  },
+  "recent": [
+    {
+      "date": "2026-10-29",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-26",
+      "opponent": "Natus Vincere",
+      "opponentRank": 13,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-25",
+      "opponent": "Nemiga",
+      "opponentRank": 10,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-24",
+      "opponent": "Spirit",
+      "opponentRank": 5,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-18",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-17",
+      "opponent": "Falcons",
+      "opponentRank": 7,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-16",
+      "opponent": "Legacy",
+      "opponentRank": 9,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-15",
+      "opponent": "PARIVISION",
+      "opponentRank": 16,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-14",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-06",
+      "opponent": "9z",
+      "opponentRank": 24,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-05",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-04",
+      "opponent": "M80",
+      "opponentRank": 25,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-12",
+      "opponent": "G2",
+      "opponentRank": 11,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-10",
+      "opponent": "MIBR",
+      "opponentRank": 19,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-09",
+      "opponent": "Astralis",
+      "opponentRank": 14,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-08",
+      "opponent": "BIG",
+      "opponentRank": 32,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-14",
+      "opponent": "Ninjas in Pyjamas",
+      "opponentRank": 15,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-12",
+      "opponent": "FaZe",
+      "opponentRank": 20,
+      "result": "L"
+    },
+    {
+      "date": "2026-07-10",
+      "opponent": "FaZe",
+      "opponentRank": 20,
+      "result": "L"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0006--betboom--boombl4-d1ledez-magnojez-s1ren-zorte.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0006--betboom--boombl4-d1ledez-magnojez-s1ren-zorte.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

@@ -169,6 +169,62 @@
       "entryStage": "stage-2",
       "stageSeed": 8,
       "vrsPoints": 1546
+    },
+    {
+      "teamId": "mouz",
+      "displayName": "MOUZ",
+      "entryStage": "stage-3",
+      "stageSeed": 1,
+      "vrsPoints": 1960
+    },
+    {
+      "teamId": "vitality",
+      "displayName": "Vitality",
+      "entryStage": "stage-3",
+      "stageSeed": 2,
+      "vrsPoints": 1922
+    },
+    {
+      "teamId": "furia",
+      "displayName": "FURIA",
+      "entryStage": "stage-3",
+      "stageSeed": 3,
+      "vrsPoints": 1912
+    },
+    {
+      "teamId": "aurora",
+      "displayName": "Aurora",
+      "entryStage": "stage-3",
+      "stageSeed": 4,
+      "vrsPoints": 1860
+    },
+    {
+      "teamId": "spirit",
+      "displayName": "Spirit",
+      "entryStage": "stage-3",
+      "stageSeed": 5,
+      "vrsPoints": 1842
+    },
+    {
+      "teamId": "betboom",
+      "displayName": "BB Team",
+      "entryStage": "stage-3",
+      "stageSeed": 6,
+      "vrsPoints": 1786
+    },
+    {
+      "teamId": "falcons",
+      "displayName": "Falcons",
+      "entryStage": "stage-3",
+      "stageSeed": 7,
+      "vrsPoints": 1764
+    },
+    {
+      "teamId": "legacy",
+      "displayName": "Legacy",
+      "entryStage": "stage-3",
+      "stageSeed": 8,
+      "vrsPoints": 1662
     }
   ],
   "source": [
@@ -191,6 +247,12 @@
     {
       "name": "Liquipedia: PGL/2026/Singapore/Stage 2 (invited seeds 1-8, rev 3471275)",
       "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_2",
+      "retrievedAt": "2026-11-21",
+      "license": "CC-BY-SA 3.0"
+    },
+    {
+      "name": "Liquipedia: PGL/2026/Singapore/Stage 3 (invited seeds 1-8, rev 3471276)",
+      "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_3",
       "retrievedAt": "2026-11-21",
       "license": "CC-BY-SA 3.0"
     }

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "teamId": "mouz",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 51,
+    "played": 76
+  },
+  "maps": {
+    "mirage": {
+      "won": 18,
+      "played": 21
+    },
+    "nuke": {
+      "won": 9,
+      "played": 13
+    },
+    "cache": {
+      "won": 5,
+      "played": 11
+    },
+    "dust2": {
+      "won": 6,
+      "played": 11
+    },
+    "inferno": {
+      "won": 7,
+      "played": 10
+    },
+    "ancient": {
+      "won": 6,
+      "played": 10
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/4494/mouz?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "legacy",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 9,
+    "points": 1662
+  },
+  "roster": [
+    "arT",
+    "dumau",
+    "latto",
+    "n1ssim",
+    "try"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 14,
+      "lost": 12
+    },
+    "vsTop30": {
+      "won": 20,
+      "lost": 17
+    },
+    "tier1Series": 42
+  },
+  "recent": [
+    {
+      "date": "2026-10-27",
+      "opponent": "The MongolZ",
+      "opponentRank": 17,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-26",
+      "opponent": "Liquid",
+      "opponentRank": 21,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-25",
+      "opponent": "DENDELE",
+      "opponentRank": 29,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-24",
+      "opponent": "Nemiga",
+      "opponentRank": 10,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-16",
+      "opponent": "BETBOOM",
+      "opponentRank": 6,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-15",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-14",
+      "opponent": "PARIVISION",
+      "opponentRank": 16,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-06",
+      "opponent": "M80",
+      "opponentRank": 25,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-05",
+      "opponent": "1win",
+      "opponentRank": 12,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-04",
+      "opponent": "ShindeN",
+      "opponentRank": 83,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "PARIVISION",
+      "opponentRank": 16,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-13",
+      "opponent": "G2",
+      "opponentRank": 11,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-12",
+      "opponent": "MIBR",
+      "opponentRank": 19,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-10",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-09",
+      "opponent": "Alliance",
+      "opponentRank": 52,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-08",
+      "opponent": "magic",
+      "opponentRank": 41,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-30",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-29",
+      "opponent": "Falcons",
+      "opponentRank": 7,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-27",
+      "opponent": "FUT",
+      "opponentRank": 8,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-23",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0009--legacy--art-dumau-latto-n1ssim-try.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0009--legacy--art-dumau-latto-n1ssim-try.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "vitality",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 2,
+    "points": 1922
+  },
+  "roster": [
+    "flameZ",
+    "jL",
+    "mezii",
+    "ropz",
+    "ZywOo"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 21,
+      "lost": 8
+    },
+    "vsTop30": {
+      "won": 24,
+      "lost": 13
+    },
+    "tier1Series": 39
+  },
+  "recent": [
+    {
+      "date": "2026-10-31",
+      "opponent": "MOUZ",
+      "opponentRank": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-30",
+      "opponent": "Nemiga",
+      "opponentRank": 10,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-29",
+      "opponent": "Natus Vincere",
+      "opponentRank": 13,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-27",
+      "opponent": "Natus Vincere",
+      "opponentRank": 13,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-26",
+      "opponent": "FUT",
+      "opponentRank": 8,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-25",
+      "opponent": "The MongolZ",
+      "opponentRank": 17,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-24",
+      "opponent": "9z",
+      "opponentRank": 24,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-11",
+      "opponent": "MOUZ",
+      "opponentRank": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-10",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-09",
+      "opponent": "PARIVISION",
+      "opponentRank": 16,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-05",
+      "opponent": "Falcons",
+      "opponentRank": 7,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-04",
+      "opponent": "Natus Vincere",
+      "opponentRank": 13,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "1win",
+      "opponentRank": 12,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-20",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-20",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-19",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-18",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-17",
+      "opponent": "magic",
+      "opponentRank": 41,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-05",
+      "opponent": "MOUZ",
+      "opponentRank": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-04",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0002--vitality--flamez-jl-mezii-ropz-zywoo.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0002--vitality--flamez-jl-mezii-ropz-zywoo.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

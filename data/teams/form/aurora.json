@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "aurora",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 4,
+    "points": 1860
+  },
+  "roster": [
+    "Jimpphat",
+    "kyxsan",
+    "Wicadia",
+    "woxic",
+    "XANTARES"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 18,
+      "lost": 11
+    },
+    "vsTop30": {
+      "won": 22,
+      "lost": 15
+    },
+    "tier1Series": 44
+  },
+  "recent": [
+    {
+      "date": "2026-10-29",
+      "opponent": "MOUZ",
+      "opponentRank": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-27",
+      "opponent": "Liquid",
+      "opponentRank": 21,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-26",
+      "opponent": "Nemiga",
+      "opponentRank": 10,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-25",
+      "opponent": "G2",
+      "opponentRank": 11,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-24",
+      "opponent": "The MongolZ",
+      "opponentRank": 17,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-18",
+      "opponent": "Falcons",
+      "opponentRank": 7,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-17",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-16",
+      "opponent": "9z",
+      "opponentRank": 24,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-15",
+      "opponent": "Ninjas in Pyjamas",
+      "opponentRank": 15,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-14",
+      "opponent": "9z",
+      "opponentRank": 24,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-11",
+      "opponent": "Spirit",
+      "opponentRank": 5,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-10",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-09",
+      "opponent": "1win",
+      "opponentRank": 12,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-06",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-05",
+      "opponent": "BETBOOM",
+      "opponentRank": 6,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-04",
+      "opponent": "Falcons",
+      "opponentRank": 7,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "9z",
+      "opponentRank": 24,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-20",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-19",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-18",
+      "opponent": "NRG",
+      "opponentRank": 47,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0004--aurora--jimpphat-kyxsan-wicadia-woxic-xantares.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0004--aurora--jimpphat-kyxsan-wicadia-woxic-xantares.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

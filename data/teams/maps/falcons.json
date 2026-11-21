@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "teamId": "falcons",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 29,
+    "played": 57
+  },
+  "maps": {
+    "dust2": {
+      "won": 8,
+      "played": 15
+    },
+    "mirage": {
+      "won": 7,
+      "played": 14
+    },
+    "ancient": {
+      "won": 4,
+      "played": 10
+    },
+    "anubis": {
+      "won": 5,
+      "played": 9
+    },
+    "inferno": {
+      "won": 3,
+      "played": 5
+    },
+    "nuke": {
+      "won": 2,
+      "played": 4
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/11283/falcons?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}
