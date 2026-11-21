@@ -1,16 +1,13 @@
 /**
- * Saves the pre-round snapshot for the current round of a Swiss stage (once per round).
+ * Saves the pre-round snapshot for the current round of a Swiss stage (once per round) and refreshes
+ * data/events/<id>/status.md. Uses the same decision as the poller (scripts/lib/log-results.ts).
  * Usage: node scripts/snapshot.ts <event-id> <stage-id>
  */
-import { loadStageContext } from './lib/event-context.ts'
-import { toRepoRelative } from './lib/files.ts'
-import { saveRoundSnapshot } from './lib/snapshot.ts'
+import { ensureRoundSnapshot } from './lib/log-results.ts'
 
 const [eventId, stageId] = process.argv.slice(2)
 if (!eventId || !stageId) {
   console.error('Usage: node scripts/snapshot.ts <event-id> <stage-id>')
   process.exit(1)
 }
-const result = saveRoundSnapshot(loadStageContext(eventId, stageId))
-const where = result.path ? ` ${toRepoRelative(result.path)}` : ''
-console.log(`snapshot ${result.status}${where}`)
+console.log(`snapshot ${ensureRoundSnapshot(eventId, stageId)}`)
