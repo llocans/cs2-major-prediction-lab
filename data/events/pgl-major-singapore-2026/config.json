@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "id": "pgl-major-singapore-2026",
+  "name": "PGL Major Singapore 2026",
+  "organizer": "PGL",
+  "timezone": "Asia/Singapore",
+  "mapPool": [
+    { "id": "ancient", "name": "Ancient" },
+    { "id": "anubis", "name": "Anubis" },
+    { "id": "cache", "name": "Cache" },
+    { "id": "dust2", "name": "Dust II" },
+    { "id": "inferno", "name": "Inferno" },
+    { "id": "mirage", "name": "Mirage" },
+    { "id": "nuke", "name": "Nuke" }
+  ],
+  "mapPoolSource": [
+    { "name": "Liquipedia: PGL/2026/Singapore (map1..map7)", "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore", "retrievedAt": "2026-11-21", "license": "CC-BY-SA 3.0" },
+    { "name": "pley.gg event guide", "url": "https://pley.gg/cs2/pgl-major-singapore-2026/", "retrievedAt": "2026-11-21" }
+  ],
+  "veto": {
+    "bo1": {
+      "steps": [
+        { "team": "A", "action": "ban", "count": 2 },
+        { "team": "B", "action": "ban", "count": 3 },
+        { "team": "A", "action": "ban", "count": 1 }
+      ],
+      "source": { "name": "Valve Major Supplemental Rulebook: Best of 1 Pick-Ban Process", "url": "https://github.com/ValveSoftware/counter-strike_rules_and_regs/blob/main/major-supplemental-rulebook.md", "retrievedAt": "2026-11-21" }
+    },
+    "bo3": {
+      "steps": [
+        { "team": "A", "action": "ban", "count": 1 },
+        { "team": "B", "action": "ban", "count": 1 },
+        { "team": "A", "action": "pick", "count": 1 },
+        { "team": "B", "action": "pick", "count": 1 },
+        { "team": "B", "action": "ban", "count": 1 },
+        { "team": "A", "action": "ban", "count": 1 }
+      ],
+      "source": { "name": "Valve Major Supplemental Rulebook: Best of 3 Pick/Ban Process", "url": "https://github.com/ValveSoftware/counter-strike_rules_and_regs/blob/main/major-supplemental-rulebook.md", "retrievedAt": "2026-11-21" }
+    }
+  },
+  "stages": [
+    {
+      "id": "stage-1",
+      "name": "Stage 1",
+      "type": "swiss",
+      "start": "2026-11-24",
+      "end": "2026-11-27",
+      "teamCount": 16,
+      "winsToAdvance": 3,
+      "lossesToEliminate": 3,
+      "format": { "default": "bo1", "decider": "bo3" },
+      "initialPairing": [[1, 9], [2, 10], [3, 11], [4, 12], [5, 13], [6, 14], [7, 15], [8, 16]],
+      "pairingRules": "valve-major-2025",
+      "rounds": [
+        { "round": 1, "date": "2026-11-24" },
+        { "round": 2, "date": "2026-11-24" },
+        { "round": 3, "date": "2026-11-25" },
+        { "round": 4, "date": "2026-11-26" },
+        { "round": 5, "date": "2026-11-27" }
+      ],
+      "liquipediaPage": "PGL/2026/Singapore/Stage 1",
+      "advanceTo": "stage-2",
+      "source": [
+        { "name": "Valve Major Supplemental Rulebook: Swiss Bracket", "url": "https://github.com/ValveSoftware/counter-strike_rules_and_regs/blob/main/major-supplemental-rulebook.md", "retrievedAt": "2026-11-21" },
+        { "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3471273)", "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1", "retrievedAt": "2026-11-21", "license": "CC-BY-SA 3.0" }
+      ]
+    },
+    {
+      "id": "stage-2",
+      "name": "Stage 2",
+      "type": "swiss",
+      "start": "2026-11-28",
+      "end": "2026-12-01",
+      "teamCount": 16,
+      "winsToAdvance": 3,
+      "lossesToEliminate": 3,
+      "format": { "default": "bo1", "decider": "bo3" },
+      "initialPairing": [[1, 9], [2, 10], [3, 11], [4, 12], [5, 13], [6, 14], [7, 15], [8, 16]],
+      "pairingRules": "valve-major-2025",
+      "rounds": [],
+      "liquipediaPage": "PGL/2026/Singapore/Stage 2",
+      "advanceTo": "stage-3",
+      "source": [
+        { "name": "Liquipedia: PGL/2026/Singapore (Format)", "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore", "retrievedAt": "2026-11-21", "license": "CC-BY-SA 3.0" }
+      ]
+    },
+    {
+      "id": "stage-3",
+      "name": "Stage 3",
+      "type": "swiss",
+      "start": "2026-12-02",
+      "end": "2026-12-06",
+      "teamCount": 16,
+      "winsToAdvance": 3,
+      "lossesToEliminate": 3,
+      "format": { "default": "bo3", "decider": "bo3" },
+      "initialPairing": [[1, 9], [2, 10], [3, 11], [4, 12], [5, 13], [6, 14], [7, 15], [8, 16]],
+      "pairingRules": "valve-major-2025",
+      "rounds": [],
+      "liquipediaPage": "PGL/2026/Singapore/Stage 3",
+      "advanceTo": "playoffs",
+      "source": [
+        { "name": "Liquipedia: PGL/2026/Singapore (Format: Stage 3 all Bo3)", "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore", "retrievedAt": "2026-11-21", "license": "CC-BY-SA 3.0" },
+        { "name": "Strafe: format, teams, schedule", "url": "https://www.strafe.com/news/read/cs2-singapore-major-2026-format-teams-schedule-and-opening-matches/", "retrievedAt": "2026-11-21" }
+      ]
+    },
+    {
+      "id": "playoffs",
+      "name": "Playoffs",
+      "type": "single-elimination",
+      "start": "2026-12-10",
+      "end": "2026-12-13",
+      "bracket": [[1, 8], [4, 5], [2, 7], [3, 6]],
+      "format": { "default": "bo3", "final": "bo5", "thirdPlace": "bo3" },
+      "thirdPlaceDecider": true,
+      "source": [
+        { "name": "Valve Major Supplemental Rulebook: Single Elimination Bracket", "url": "https://github.com/ValveSoftware/counter-strike_rules_and_regs/blob/main/major-supplemental-rulebook.md", "retrievedAt": "2026-11-21" },
+        { "name": "Liquipedia: PGL/2026/Singapore (Bo5 grand final)", "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore", "retrievedAt": "2026-11-21", "license": "CC-BY-SA 3.0" },
+        { "name": "Dust2.us: PGL adds third-place decider", "url": "https://www.dust2.us/news/72698/pgl-adds-third-place-decider-match-to-singapore-major", "retrievedAt": "2026-11-21" },
+        { "name": "pley.gg bracket (third place Bo3)", "url": "https://pley.gg/cs2/pgl-major-singapore-2026/", "retrievedAt": "2026-11-21" }
+      ]
+    }
+  ]
+}

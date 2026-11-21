@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "teams": [
+    { "id": "nip", "name": "Ninjas in Pyjamas", "aliases": [{ "name": "NIP" }], "liquipedia": "nip", "vrsName": "Ninjas in Pyjamas", "roster": [] },
+    { "id": "parivision", "name": "PARIVISION", "aliases": [{ "name": "PVISION", "context": "pgl-major-singapore-2026" }], "liquipedia": "pvision", "vrsName": "PARIVISION", "roster": [] },
+    { "id": "heroic", "name": "HEROIC", "aliases": [], "liquipedia": "heroic", "vrsName": "HEROIC", "roster": [] },
+    { "id": "faze", "name": "FaZe Clan", "aliases": [{ "name": "FaZe" }], "liquipedia": "faze", "vrsName": "FaZe", "roster": [] },
+    { "id": "liquid", "name": "Team Liquid", "aliases": [{ "name": "Liquid" }], "liquipedia": "tl", "vrsName": "Liquid", "roster": [] },
+    { "id": "eternal-fire", "name": "Eternal Fire", "aliases": [{ "name": "EF" }], "liquipedia": "ef", "vrsName": "Eternal Fire", "roster": [] },
+    { "id": "100-thieves", "name": "100 Thieves", "aliases": [{ "name": "100T" }], "liquipedia": "100t", "vrsName": "100 Thieves", "roster": [] },
+    { "id": "9z", "name": "9z Team", "aliases": [{ "name": "9z" }], "liquipedia": "9z", "vrsName": "9z", "roster": [] },
+    { "id": "m80", "name": "M80", "aliases": [], "liquipedia": "m80", "vrsName": "M80", "roster": [] },
+    { "id": "dendele", "name": "DENDELE CS", "aliases": [{ "name": "DENDELE" }], "liquipedia": "dendele", "vrsName": "DENDELE", "roster": [] },
+    { "id": "imperial", "name": "Imperial Esports", "aliases": [{ "name": "Imperial" }], "liquipedia": "imp", "vrsName": "Imperial", "roster": [] },
+    { "id": "wildcard", "name": "Wildcard Gaming", "aliases": [{ "name": "Wildcard" }], "liquipedia": "wildcard", "vrsName": "Wildcard", "roster": [] },
+    { "id": "bc-game", "name": "BC.Game", "aliases": [{ "name": "GOSH", "context": "pgl-major-singapore-2026" }], "liquipedia": "gosh", "vrsName": "BC.Game", "roster": [] },
+    { "id": "flyquest", "name": "FlyQuest", "aliases": [], "liquipedia": "fq", "vrsName": "FlyQuest", "roster": [] },
+    { "id": "chinggis-warriors", "name": "Chinggis Warriors", "aliases": [], "liquipedia": "chinggis", "vrsName": "Chinggis Warriors", "roster": [] },
+    { "id": "lynn-vision", "name": "Lynn Vision Gaming", "aliases": [{ "name": "Lynn Vision" }, { "name": "LVG" }], "liquipedia": "lvg", "vrsName": "Lynn Vision", "roster": [] }
+  ]
+}

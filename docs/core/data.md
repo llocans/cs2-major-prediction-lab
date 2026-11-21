@@ -1,0 +1,59 @@
+# Data rules
+
+Protected file. Change it only on a `core/*` branch with a PR.
+
+## Files
+
+| Path                                | Schema         | Content                                                       |
+| ----------------------------------- | -------------- | ------------------------------------------------------------- |
+| `data/teams/registry.json`          | `TeamRegistry` | Stable IDs, names, aliases, dated rosters, external names     |
+| `data/teams/<team-id>.md`           | template below | Research notes, every fact dated and sourced                  |
+| `data/model/params.json`            | `ModelParams`  | Model weights and settings (changes via PR)                   |
+| `data/model/modifiers.json`         | `Modifiers`    | Logged, capped, expiring judgment calls                       |
+| `data/ratings/current.json`         | `Ratings`      | Current ratings; previous versions in `data/ratings/history/` |
+| `data/events/<id>/config.json`      | `EventConfig`  | Stages, formats, map pool, veto procedures                    |
+| `data/events/<id>/teams.json`       | `EventTeams`   | Participants, seeds, event display names, VRS points          |
+| `data/events/<id>/results.json`     | `EventResults` | Real results only. Single source of truth                     |
+| `data/events/<id>/benchmarks.json`  | `Benchmarks`   | Market implied probabilities (benchmark only)                 |
+| `data/events/<id>/snapshots/*.json` | `Snapshot`     | Predictions saved before each round. Never edited             |
+| `data/events/<id>/accuracy.md`      | -              | Scores and lessons per stage                                  |
+| `data/events/<id>/status.md`        | -              | Generated summary of the event state                          |
+
+## Rules
+
+- **Stable IDs.** A team ID never changes. Display names and event aliases are separate fields.
+  At PGL Singapore: BC.Game → GOSH, 1win → THE ONE, BetBoom → BB Team, PARIVISION → PVISION.
+- **Dated rosters.** Every roster entry has `from` (and `to` when it ended), so past predictions point
+  to the right lineup.
+- **Versioned files.** Every JSON file has `schemaVersion`. When a schema changes, bump the version and
+  keep a parser for the old one so old events keep loading.
+- **Derived numbers, not copies.** Store the numbers we derive (map win rates, ratings) with a `source`
+  and retrieval date. Never store whole copied stats tables.
+- **Sourced facts.** Facts in team files carry a date and a source. Facts older than 60 days, or
+  overtaken by news, are marked `(stale)`.
+- **Formats in config.** Tournament formats live in event config, never in code.
+- **Real results only.** `results.json` holds finished matches. Snapshots are written with an exclusive
+  create and are never edited (also enforced by a hook).
+- **UI overrides** live in memory or the URL. They never write to results or snapshots.
+- **Licensing.** Liquipedia content is CC-BY-SA 3.0: keep its source on every record, and credit
+  Liquipedia on the site when it goes public.
+- **Never invent stats.** If a source is unreachable, say so and use the next one.
+
+## Team file template (`data/teams/<team-id>.md`)
+
+```
+# <Name>  (id: <team-id>)
+Region · VRS rank/points (date) · Starting stage · Last updated <date>
+
+## Lineup            (player — since <date> — source); coach; stand-ins
+## Roster changes    (last 6 months, dated)
+## Recent form       (last 3-6 months: placements, notable wins/losses)
+## Map pool          (per map: W-L and win rate, sample size, window, source; usual picks/bans;
+                      weak maps; maps with little data)
+## Key players       (form and ratings with window and source)
+## Head-to-head      (vs teams at this event)
+## Context           (Major experience, travel/jet lag, Bo1 vs Bo3)
+## Strengths / weaknesses / storylines
+## Modifiers         (IDs of active entries in data/model/modifiers.json)
+## Sources           (name, URL, retrieved date)
+```

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "version": "0.1.0",
+  "scale": 400,
+  "prior": {
+    "base": 1500,
+    "vrsCenter": 1500,
+    "perVrsPoint": 0.6,
+    "rd": 60,
+    "coldStartRd": 110,
+    "coldStartMaps": 20
+  },
+  "maps": {
+    "shrinkMaps": 12,
+    "maxOffset": 120,
+    "newMapRd": 120
+  },
+  "update": {
+    "k": 24,
+    "formatWeight": { "bo1": 0.75, "bo3": 1, "bo5": 1 },
+    "roundDiffWeight": 0.5,
+    "minRd": 45
+  },
+  "veto": { "temperature": 25 },
+  "sim": { "runs": 12000, "seed": 20261124 },
+  "modifiers": { "maxAbs": 40 },
+  "retuneCapPerStage": 0.1
+}
