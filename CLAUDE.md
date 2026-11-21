@@ -31,6 +31,8 @@ future events too: formats live in config, never in code.
 - Scripts run as `node scripts/<name>.ts` (Node runs TypeScript natively; use `.ts` import extensions):
   - `research/vrs-form.ts <event> <YYYY_MM_DD>` → `data/teams/form/` (Valve VRS match tables)
   - `research/team-files.ts <event>` → lean `data/teams/<id>.md` (never overwrites)
+  - `research/liquipedia-rosters.ts <event>` → dated rosters in `registry.json` (Liquipedia API)
+  - `research/import-map-stats.ts <file> <from> <to> Top50` → `data/teams/maps/` (HLTV counts)
   - `build-ratings.ts <event>` → `data/ratings/current.json` (VRS prior + map stats)
   - `simulate.ts <event> <stage>` (prints odds) · `snapshot.ts <event> <stage>` (pre-round, once)
   - `log-result.ts ...` (manual) · `poll-liquipedia.ts <event>` (launchd; needs `LIQUIPEDIA_CONTACT`)

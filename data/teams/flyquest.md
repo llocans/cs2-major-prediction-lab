@@ -5,10 +5,13 @@ VRS #48, 1318 points (2026-11-02) · Stage 1, seed 14 · Last updated 2026-11-21
 
 ## Lineup
 - Players in the latest VRS match (2026-10-31): aliStair, INS, jks, nettik, Vexite [VRS]
-- Event lineup and coach (AZR) confirmed on the HLTV event page [HLTV-E]; join dates pending (Liquipedia API)
+- Event lineup and coach (AZR) confirmed on the HLTV event page [HLTV-E]
+- Liquipedia squad: INS (since 2024-03-28), Vexite (since 2024-03-28), nettik (since 2025-03-15), jks (since 2025-07-09), aliStair (since 2026-09-02); coach AZR (since 2025-10-26) [LP]
 
 ## Roster changes
-- pending (Liquipedia API, news)
+- 2026-09-02: aliStair joined [LP]
+- 2026-08-07: JTR left or benched (coach) [LP]
+- 2026-07-02: story left or benched [LP]
 
 ## Recent form
 - Last 90 days: 25-4 in series [VRS]
@@ -46,5 +49,6 @@ VRS #48, 1318 points (2026-11-02) · Stage 1, seed 14 · Last updated 2026-11-21
 - none
 
 ## Sources
+- [LP] Liquipedia: FlyQuest (rev 3451031), https://liquipedia.net/counterstrike/FlyQuest (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0048--flyquest--alistair-ins-jks-nettik-vexite.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0048--flyquest--alistair-ins-jks-nettik-vexite.md (retrieved 2026-11-21)

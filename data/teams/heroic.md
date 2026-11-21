@@ -5,10 +5,18 @@ VRS #18, 1548 points (2026-11-02) · Stage 1, seed 3 · Last updated 2026-11-21
 
 ## Lineup
 - Players in the latest VRS match (2026-10-21): Brollan, Chr1zN, MartinezSa, nilo, susp [VRS]
-- Event lineup and coach (Snappi) confirmed on the HLTV event page [HLTV-E]; join dates pending (Liquipedia API)
+- Event lineup and coach (Snappi) confirmed on the HLTV event page [HLTV-E]
+- Liquipedia squad: nilo (since 2025-01-10), Chr1zN (since 2025-11-28), susp (since 2026-01-07), Martinez (since 2026-07-07), Brollan (since 2026-07-07); coach Snappi (since 2026-10-01), killazoo (since 2026-07-15) [LP]
 
 ## Roster changes
-- pending (Liquipedia API, news)
+- 2026-10-01: Snappi joined as coach [LP]
+- 2026-10-01: doto left or benched (coach) [LP]
+- 2026-07-15: killazoo joined as coach [LP]
+- 2026-07-07: Martinez joined [LP]
+- 2026-07-07: Brollan joined [LP]
+- 2026-07-07: yxngstxr left or benched [LP]
+- 2026-07-07: xfl0ud left or benched [LP]
+- 2026-07-06: TOBIZ left or benched (coach) [LP]
 
 ## Recent form
 - Last 90 days: 25-7 in series [VRS]
@@ -57,6 +65,7 @@ VRS #18, 1548 points (2026-11-02) · Stage 1, seed 3 · Last updated 2026-11-21
 - none
 
 ## Sources
+- [LP] Liquipedia: HEROIC (rev 3460175), https://liquipedia.net/counterstrike/HEROIC (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/7175/heroic?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
 - [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0018--heroic--brollan-chr1zn-martinezsa-nilo-susp.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0018--heroic--brollan-chr1zn-martinezsa-nilo-susp.md (retrieved 2026-11-21)

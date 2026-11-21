@@ -5,10 +5,13 @@ VRS #20, 1539 points (2026-11-02) · Stage 1, seed 4 · Last updated 2026-11-21
 
 ## Lineup
 - Players in the latest VRS match (2026-10-29): frozen, JBOEN, jcobbb, Neityu, Twistzz [VRS]
-- Event lineup and coach (enkay J) confirmed on the HLTV event page [HLTV-E]; join dates pending (Liquipedia API)
+- Event lineup and coach (enkay J) confirmed on the HLTV event page [HLTV-E]
+- Liquipedia squad: frozen (since 2023-12-04), jcobbb (since 2025-08-22), Twistzz (since 2025-09-20), JBOEN (since 2026-06-25), Neityu (since 2026-08-11); coach enkay J (since 2026-04-16) [LP]
 
 ## Roster changes
-- pending (Liquipedia API, news)
+- 2026-08-11: Neityu joined [LP]
+- 2026-06-25: JBOEN joined [LP]
+- 2026-06-25: broky left or benched [LP]
 
 ## Recent form
 - Last 90 days: 12-8 in series [VRS]
@@ -54,6 +57,7 @@ VRS #20, 1539 points (2026-11-02) · Stage 1, seed 4 · Last updated 2026-11-21
 - none
 
 ## Sources
+- [LP] Liquipedia: FaZe Clan (rev 3438668), https://liquipedia.net/counterstrike/FaZe_Clan (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/6667/faze?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
 - [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0020--faze--frozen-jboen-jcobbb-neityu-twistzz.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0020--faze--frozen-jboen-jcobbb-neityu-twistzz.md (retrieved 2026-11-21)

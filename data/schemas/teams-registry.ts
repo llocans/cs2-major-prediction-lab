@@ -7,6 +7,8 @@ export const RosterEntry = z.object({
   role: z.enum(['player', 'coach', 'stand-in']),
   from: IsoDate,
   to: IsoDate.optional(),
+  /** True when the source gives only the month; the date is then the 1st of that month. */
+  approximate: z.boolean().optional(),
   source: Source,
 })
 export type RosterEntry = z.infer<typeof RosterEntry>
@@ -24,6 +26,8 @@ export const Team = z.object({
   aliases: z.array(TeamAlias).default([]),
   /** Short team name used in Liquipedia's TeamOpponent template (e.g. "tl" for Liquid). */
   liquipedia: z.string().optional(),
+  /** Title of the team's Liquipedia page (MediaWiki API), once resolved. */
+  liquipediaPage: z.string().optional(),
   /** Team name as written in Valve's VRS standings files. */
   vrsName: z.string().optional(),
   roster: z.array(RosterEntry).default([]),

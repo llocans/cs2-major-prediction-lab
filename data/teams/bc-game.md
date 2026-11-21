@@ -5,10 +5,16 @@ VRS #45, 1337 points (2026-11-02) · Stage 1, seed 13 · Last updated 2026-11-21
 
 ## Lineup
 - Players in the latest VRS match (2026-10-30): asap, Magisk, mzinho, s1mple, Senzu [VRS]
-- Event lineup and coach (TaZ) confirmed on the HLTV event page [HLTV-E]; join dates pending (Liquipedia API)
+- Event lineup and coach (TaZ) confirmed on the HLTV event page [HLTV-E]
+- Liquipedia squad: s1mple (since 2025-07-28), Senzu (since 2026-04-27), Magisk (since 2026-06-30), mzinho (since 2026-07-09), asap (since 2026-09-22); coach TaZ (since 2026-01-05), oskarish (since 2026-09-21) [LP]
 
 ## Roster changes
-- pending (Liquipedia API, news)
+- 2026-09-22: asap joined [LP]
+- 2026-09-22: electroNic left or benched [LP]
+- 2026-09-21: oskarish joined as coach [LP]
+- 2026-07-09: mzinho joined [LP]
+- 2026-06-30: Magisk joined [LP]
+- 2026-06-15: krazy left or benched [LP]
 
 ## Recent form
 - Last 90 days: 15-10 in series [VRS]
@@ -55,6 +61,7 @@ VRS #45, 1337 points (2026-11-02) · Stage 1, seed 13 · Last updated 2026-11-21
 - none
 
 ## Sources
+- [LP] Liquipedia: BC.Game Esports (rev 3461061), https://liquipedia.net/counterstrike/BC.Game_Esports (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/12878/bcgame?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
 - [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0045--bc_game--asap-magisk-mzinho-s1mple-senzu.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0045--bc_game--asap-magisk-mzinho-s1mple-senzu.md (retrieved 2026-11-21)

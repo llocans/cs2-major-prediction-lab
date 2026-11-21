@@ -5,10 +5,11 @@ VRS #56, 1267 points (2026-11-02) · Stage 1, seed 16 · Last updated 2026-11-21
 
 ## Lineup
 - Players in the latest VRS match (2026-10-24): C4LLM3SU3, EmiliaQAQ, Starry, Westmelon, z4KR [VRS]
-- Event lineup and coach (GUM) confirmed on the HLTV event page [HLTV-E]; join dates pending (Liquipedia API)
+- Event lineup and coach (GUM) confirmed on the HLTV event page [HLTV-E]
+- Liquipedia squad: westmelon (since 2017-05-24), z4kr (since 2019-08-09), EmiliaQAQ (since 2023-01-22), Starry (since 2024-12-26), C4LLM3SU3 (since 2025-02-21); coach GUM (since 2023-03 (month only)), XinKoiNg (since 2024-03-26) [LP]
 
 ## Roster changes
-- pending (Liquipedia API, news)
+- No changes since 2026-05-21 [LP]
 
 ## Recent form
 - Last 90 days: 14-7 in series [VRS]
@@ -54,6 +55,7 @@ VRS #56, 1267 points (2026-11-02) · Stage 1, seed 16 · Last updated 2026-11-21
 - none
 
 ## Sources
+- [LP] Liquipedia: Lynn Vision Gaming (rev 3438692), https://liquipedia.net/counterstrike/Lynn_Vision_Gaming (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/8840/lynn-vision?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
 - [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0056--lynn_vision--c4llm3su3-emiliaqaq-starry-westmelon-z4kr.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0056--lynn_vision--c4llm3su3-emiliaqaq-starry-westmelon-z4kr.md (retrieved 2026-11-21)

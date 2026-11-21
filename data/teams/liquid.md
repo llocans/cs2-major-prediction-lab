@@ -5,10 +5,14 @@ VRS #21, 1528 points (2026-11-02) · Stage 1, seed 5 · Last updated 2026-11-21
 
 ## Lineup
 - Players in the latest VRS match (2026-10-28): EliGE, Jorko, JT, malbsMd, NAF [VRS]
-- Event lineup and coach (flashie) confirmed on the HLTV event page [HLTV-E]; join dates pending (Liquipedia API)
+- Event lineup and coach (flashie) confirmed on the HLTV event page [HLTV-E]
+- Liquipedia squad: NAF (since 2018-02-05), EliGE (since 2025-09-25), malbsMd (since 2026-03-13), Jorko (since 2026-07-09), JT (since 2026-07-22); coach flashie (since 2025-07-09), 7Teen (since 2025-09-03) [LP]
 
 ## Roster changes
-- pending (Liquipedia API, news)
+- 2026-07-22: JT joined [LP]
+- 2026-07-21: siuhy left or benched [LP]
+- 2026-07-09: Jorko joined [LP]
+- 2026-07-09: ultimate left or benched [LP]
 
 ## Recent form
 - Last 90 days: 18-13 in series [VRS]
@@ -56,6 +60,7 @@ VRS #21, 1528 points (2026-11-02) · Stage 1, seed 5 · Last updated 2026-11-21
 - none
 
 ## Sources
+- [LP] Liquipedia: Team Liquid (rev 3459499), https://liquipedia.net/counterstrike/Team_Liquid (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/5973/liquid?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
 - [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0021--liquid--elige-jorko-jt-malbsmd-naf.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0021--liquid--elige-jorko-jt-malbsmd-naf.md (retrieved 2026-11-21)

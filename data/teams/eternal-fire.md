@@ -5,10 +5,17 @@ VRS #22, 1513 points (2026-11-02) · Stage 1, seed 6 · Last updated 2026-11-21
 
 ## Lineup
 - Players in the latest VRS match (2026-10-30): jottAAA, Kvem, MisteM, regali, soulfly [VRS]
-- Event lineup and coach (Fabre) confirmed on the HLTV event page [HLTV-E]; join dates pending (Liquipedia API)
+- Event lineup and coach (Fabre) confirmed on the HLTV event page [HLTV-E]
+- Liquipedia squad: jottAAA (since 2026-02-02), regali (since 2026-04-14), MisteM (since 2026-04-15), Kvem (since 2026-07-03), soulfly (since 2026-08-23); coach Fabre (since 2026-09-11), Crystalhand (since 2025-05-11) [LP]
 
 ## Roster changes
-- pending (Liquipedia API, news)
+- 2026-09-11: Fabre joined as coach [LP]
+- 2026-09-08: yT left or benched (coach) [LP]
+- 2026-08-23: soulfly joined [LP]
+- 2026-08-23: br0 left or benched [LP]
+- 2026-07-03: Kvem joined [LP]
+- 2026-07-01: rigoN left or benched [LP]
+- 2026-07-01: DemQQ left or benched [LP]
 
 ## Recent form
 - Last 90 days: 36-16 in series [VRS]
@@ -55,6 +62,7 @@ VRS #22, 1513 points (2026-11-02) · Stage 1, seed 6 · Last updated 2026-11-21
 - none
 
 ## Sources
+- [LP] Liquipedia: Eternal Fire (rev 3459397), https://liquipedia.net/counterstrike/Eternal_Fire (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/11251/eternal-fire?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
 - [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0022--eternal_fire--jottaaa-kvem-mistem-regali-soulfly.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0022--eternal_fire--jottaaa-kvem-mistem-regali-soulfly.md (retrieved 2026-11-21)

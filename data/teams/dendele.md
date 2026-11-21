@@ -5,10 +5,11 @@ VRS #29, 1466 points (2026-11-02) · Stage 1, seed 10 · Last updated 2026-11-21
 
 ## Lineup
 - Players in the latest VRS match (2026-11-01): doc, gafolo, koala, maxxkor, rdnzao [VRS]
-- Event lineup and coach (coachi) confirmed on the HLTV event page [HLTV-E]; join dates pending (Liquipedia API)
+- Event lineup and coach (coachi) confirmed on the HLTV event page [HLTV-E]
+- Liquipedia squad: gafolo (since 2023-01-16), rdnzao (since 2023-01-16), doc (since 2023-06-30), koala (since 2024-05-21), maxxkor (since 2025-08-26); coach coachi (since 2017-07-17), D10S (since 2025-11 (month only)) [LP]
 
 ## Roster changes
-- pending (Liquipedia API, news)
+- No changes since 2026-05-21 [LP]
 
 ## Recent form
 - Last 90 days: 16-12 in series [VRS]
@@ -61,6 +62,7 @@ VRS #29, 1466 points (2026-11-02) · Stage 1, seed 10 · Last updated 2026-11-21
 - none
 
 ## Sources
+- [LP] Liquipedia: DENDELE CS (rev 3418793), https://liquipedia.net/counterstrike/DENDELE_CS (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/13926/dendele?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
 - [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0029--dendele--doc-gafolo-koala-maxxkor-rdnzao.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0029--dendele--doc-gafolo-koala-maxxkor-rdnzao.md (retrieved 2026-11-21)

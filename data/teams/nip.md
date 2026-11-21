@@ -5,10 +5,15 @@ VRS #15, 1564 points (2026-11-02) · Stage 1, seed 1 · Last updated 2026-11-21
 
 ## Lineup
 - Players in the latest VRS match (2026-10-17): adamb, Krimbo, sjuush, stavn, xKacpersky [VRS]
-- Event lineup and coach (Xizt) confirmed on the HLTV event page [HLTV-E]; join dates pending (Liquipedia API)
+- Event lineup and coach (Xizt) confirmed on the HLTV event page [HLTV-E]
+- Liquipedia squad: sjuush (since 2025-01-15), xKacpersky (since 2025-07-10), stavn (since 2026-04-15), Krimbo (since 2026-09-02), adamb (since 2026-09-14); coach Xizt (since 2024-03-08), DuDe (since 2026-04-15) [LP]
 
 ## Roster changes
-- pending (Liquipedia API, news)
+- 2026-09-14: adamb joined [LP]
+- 2026-09-14: n0te left or benched [LP]
+- 2026-09-02: Krimbo joined [LP]
+- 2026-08-31: Snappi left or benched [LP]
+- 2026-06-13: cairne left or benched [LP]
 
 ## Recent form
 - Last 90 days: 22-14 in series [VRS]
@@ -55,6 +60,7 @@ VRS #15, 1564 points (2026-11-02) · Stage 1, seed 1 · Last updated 2026-11-21
 - none
 
 ## Sources
+- [LP] Liquipedia: Ninjas in Pyjamas (rev 3469252), https://liquipedia.net/counterstrike/Ninjas_in_Pyjamas (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/4411/ninjas-in-pyjamas?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
 - [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0015--ninjas_in_pyjamas--adamb-krimbo-sjuush-stavn-xkacpersky.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0015--ninjas_in_pyjamas--adamb-krimbo-sjuush-stavn-xkacpersky.md (retrieved 2026-11-21)

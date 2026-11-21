@@ -5,10 +5,16 @@ VRS #16, 1560 points (2026-11-02) · Stage 1, seed 2 · Last updated 2026-11-21
 
 ## Lineup
 - Players in the latest VRS match (2026-10-22): FL1T, HObbit, Jame, xiELO, zweih [VRS]
-- Event lineup and coach (dastan) confirmed on the HLTV event page [HLTV-E]; join dates pending (Liquipedia API)
+- Event lineup and coach (dastan) confirmed on the HLTV event page [HLTV-E]
+- Liquipedia squad: Jame (since 2025-01-13), xiELO (since 2025-06-04), zweih (since 2025-12-30), FL1T (since 2026-07-29), HObbit (since 2026-09-17); coach dastan (since 2024-11-08) [LP]
 
 ## Roster changes
-- pending (Liquipedia API, news)
+- 2026-09-17: HObbit joined [LP]
+- 2026-09-17: slaxejezzz left or benched [LP]
+- 2026-07-29: FL1T joined [LP]
+- 2026-07-29: HObbit left or benched [LP]
+- 2026-06-19: nota left or benched [LP]
+- 2026-06-17: BELCHONOKK left or benched [LP]
 
 ## Recent form
 - Last 90 days: 8-10 in series [VRS]
@@ -55,6 +61,7 @@ VRS #16, 1560 points (2026-11-02) · Stage 1, seed 2 · Last updated 2026-11-21
 - none
 
 ## Sources
+- [LP] Liquipedia: PARIVISION (rev 3466735), https://liquipedia.net/counterstrike/PARIVISION (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/12467/parivision?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
 - [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0016--parivision--fl1t-hobbit-jame-xielo-zweih.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0016--parivision--fl1t-hobbit-jame-xielo-zweih.md (retrieved 2026-11-21)
