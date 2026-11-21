@@ -1,6 +1,7 @@
 /**
- * Stop hook. If code changed since the last successful check, run `npm run check` (typecheck, lint,
- * tests) before Claude finishes. On failure it blocks once per attempt with the error tail; after
+ * Stop hook. If this session has code changes that are not pushed yet and not yet checked, run
+ * `npm run check` (typecheck, lint, tests) before Claude finishes. On failure it blocks once per
+ * attempt with the error tail; after
  * MAX_ATTEMPTS failed attempts in a row it stops blocking and reports instead, so it can never loop.
  * Data-only changes are left to the PostToolUse schema hook.
  */
@@ -65,6 +66,26 @@ const save = (next: State) => {
   mkdirSync(stateDir, { recursive: true })
   writeFileSync(stateFile, JSON.stringify(next))
 }
+
+/**
+ * True when there is code this session could have changed and not yet had checked: uncommitted or
+ * untracked code, or local commits touching code that are not on the upstream branch. A data-only
+ * session (cloud research, reviews, the poller) has none, so it never runs the full check.
+ */
+function hasUnpushedCodeChanges(): boolean {
+  if (git(['diff', 'HEAD', '--name-only', '--', ...CODE_PATHS]).trim() !== '') return true
+  if (git(['ls-files', '--others', '--exclude-standard', '--', ...CODE_PATHS]).trim() !== '') {
+    return true
+  }
+  try {
+    return git(['log', '--oneline', '@{upstream}..HEAD', '--', ...CODE_PATHS]).trim() !== ''
+  } catch {
+    // No upstream (new local branch): its commits count as unchecked code.
+    return git(['log', '--oneline', '-1', '--', ...CODE_PATHS]).trim() !== ''
+  }
+}
+
+if (!hasUnpushedCodeChanges()) process.exit(0)
 
 const fingerprint = codeFingerprint()
 if (fingerprint === state.checked) process.exit(0)
