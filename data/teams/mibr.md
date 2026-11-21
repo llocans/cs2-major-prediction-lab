@@ -32,7 +32,7 @@ VRS #19, 1546 points (2026-11-02) · Stage 2, seed 8 · Last updated 2026-11-21
 - Placements: not compiled yet
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 27-20 over 47 maps [HLTV-M] (stale)
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 27-20 over 47 maps [HLTV-M]
   - Mirage: 5-5 (50%), model offset -24
   - Ancient: 5-5 (50%), model offset -24
   - Inferno: 6-3 (67%), model offset +28
@@ -52,8 +52,8 @@ VRS #19, 1546 points (2026-11-02) · Stage 2, seed 8 · Last updated 2026-11-21
 - 2026-10-16 W vs Astralis [VRS]
 - 2026-10-15 W vs BC.Game [VRS]
 - 2026-10-15 L vs BC.Game [VRS]
-- 2026-09-09 W vs 9z [VRS] (stale)
-- 2026-09-08 W vs The MongolZ [VRS] (stale)
+- 2026-09-09 W vs 9z [VRS]
+- 2026-09-08 W vs The MongolZ [VRS]
 
 ## Context
 - Recent Majors: Austin 2025 stage 2 2-3; Cologne 2026 stage 1 3-1; Cologne 2026 stage 2 1-3 [FX]

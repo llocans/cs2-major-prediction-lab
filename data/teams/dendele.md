@@ -9,7 +9,7 @@ VRS #29, 1466 points (2026-11-02) · Stage 1, seed 10 · Last updated 2026-11-21
 - Liquipedia squad: gafolo (since 2023-01-16), rdnzao (since 2023-01-16), doc (since 2023-06-30), koala (since 2024-05-21), maxxkor (since 2025-08-26); coach coachi (since 2017-07-17), D10S (since 2025-11 (month only)) [LP]
 
 ## Roster changes
-- No changes since 2026-05-21 [LP] (stale)
+- No changes since 2026-05-21 [LP]
 
 ## Recent form
 - Last 90 days: 16-12 in series [VRS]
@@ -29,7 +29,7 @@ VRS #29, 1466 points (2026-11-02) · Stage 1, seed 10 · Last updated 2026-11-21
 - Placements: full list not compiled; recent event wins are under Storylines [IG]
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 12-21 over 33 maps [HLTV-M] (stale)
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 12-21 over 33 maps [HLTV-M]
   - Mirage: 4-4 (50%), model offset +40
   - Cache: 2-5 (29%), model offset -22
   - Inferno: 4-2 (67%), model offset +73
@@ -50,7 +50,7 @@ VRS #29, 1466 points (2026-11-02) · Stage 1, seed 10 · Last updated 2026-11-21
 - 2026-09-27 L vs M80 [VRS]
 - 2026-09-26 L vs Wildcard [VRS]
 - 2026-09-25 W vs M80 [VRS]
-- 2026-09-11 W vs Imperial [VRS] (stale)
+- 2026-09-11 W vs Imperial [VRS]
 
 ## Context
 - Recent Majors: none found in Austin 2025 or Cologne 2026 [FX]

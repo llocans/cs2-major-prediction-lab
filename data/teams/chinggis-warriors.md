@@ -35,7 +35,7 @@ VRS #55, 1272 points (2026-11-02) · Stage 1, seed 15 · Last updated 2026-11-21
 - Placements: full list not compiled; recent event wins are under Storylines [IG]
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 9-12 over 21 maps [HLTV-M] (stale)
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 9-12 over 21 maps [HLTV-M]
   - Nuke: 5-2 (71%), model offset +74
   - Ancient: 3-2 (60%), model offset +35
   - Inferno: 0-4 (0%), model offset -80

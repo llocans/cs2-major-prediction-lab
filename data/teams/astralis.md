@@ -36,7 +36,7 @@ VRS #14, 1572 points (2026-11-02) · Stage 2, seed 6 · Last updated 2026-11-21
 - Placements: not compiled yet
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 27-21 over 48 maps [HLTV-M] (stale)
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 27-21 over 48 maps [HLTV-M]
   - Ancient: 8-5 (62%), model offset +20
   - Cache: 8-4 (67%), model offset +37
   - Nuke: 3-3 (50%), model offset -15
@@ -54,7 +54,7 @@ VRS #14, 1572 points (2026-11-02) · Stage 2, seed 6 · Last updated 2026-11-21
 - 2026-10-04 W vs Nemiga [VRS]
 - 2026-10-02 W vs FaZe [VRS]
 - 2026-09-26 L vs 100 Thieves [VRS]
-- 2026-09-08 W vs G2 [VRS] (stale)
+- 2026-09-08 W vs G2 [VRS]
 
 ## Context
 - Recent Majors: Cologne 2026 stage 2 1-3 [FX]

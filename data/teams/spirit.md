@@ -29,7 +29,7 @@ VRS #5, 1842 points (2026-11-02) · Stage 3, seed 5 · Last updated 2026-11-21
 - Placements: not compiled yet
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 38-24 over 62 maps [HLTV-M] (stale)
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 38-24 over 62 maps [HLTV-M]
   - Mirage: 6-7 (46%), model offset -56
   - Ancient: 9-4 (69%), model offset +31
   - Dust II: 6-4 (60%), model offset -4
@@ -53,13 +53,13 @@ VRS #5, 1842 points (2026-11-02) · Stage 3, seed 5 · Last updated 2026-11-21
 - 2026-10-06 L vs 1win [VRS]
 - 2026-10-05 L vs MOUZ [VRS]
 - 2026-10-04 W vs PARIVISION [VRS]
-- 2026-09-06 W vs MOUZ [VRS] (stale)
-- 2026-09-05 W vs Falcons [VRS] (stale)
-- 2026-08-31 W vs FURIA [VRS] (stale)
-- 2026-08-28 W vs G2 [VRS] (stale)
-- 2026-08-26 W vs DENDELE [VRS] (stale)
-- 2026-08-23 W vs FUT [VRS] (stale)
-- 2026-08-22 W vs Legacy [VRS] (stale)
+- 2026-09-06 W vs MOUZ [VRS]
+- 2026-09-05 W vs Falcons [VRS]
+- 2026-08-31 W vs FURIA [VRS]
+- 2026-08-28 W vs G2 [VRS]
+- 2026-08-26 W vs DENDELE [VRS]
+- 2026-08-23 W vs FUT [VRS]
+- 2026-08-22 W vs Legacy [VRS]
 
 ## Context
 - Recent Majors: Austin 2025 Stage 3 3-0; Cologne 2026 Stage 2 3-0; Cologne 2026 Stage 3 3-0 [FX]
