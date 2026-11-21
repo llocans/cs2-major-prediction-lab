@@ -14,6 +14,7 @@
     <string>--env-file-if-exists=.env</string>
     <string>scripts/poll-liquipedia.ts</string>
     <string>{{EVENT_ID}}</string>
+    {{EXTRA_ARGS}}
   </array>
   <key>WorkingDirectory</key>
   <string>{{REPO}}</string>

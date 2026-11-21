@@ -7,6 +7,7 @@
 import { existsSync } from 'node:fs'
 import {
   EventConfig,
+  EventResults,
   EventTeams,
   ModelParams,
   type Ratings,
@@ -19,9 +20,20 @@ import { priorRating } from '../engine/ratings/prior.ts'
 import { readJson, repoPath } from './lib/files.ts'
 import { saveRatings } from './lib/ratings-store.ts'
 
-const eventId = process.argv[2]
+const [eventId, flag] = process.argv.slice(2)
 if (!eventId) {
-  console.error('Usage: node scripts/build-ratings.ts <event-id>')
+  console.error('Usage: node scripts/build-ratings.ts <event-id> [--force]')
+  process.exit(1)
+}
+
+// Rebuilding the prior mid-event would throw away every rating update from real results.
+const logged = readJson(repoPath('data/events', eventId, 'results.json'), EventResults).matches
+  .length
+if (logged > 0 && flag !== '--force') {
+  console.error(
+    `${eventId} already has ${logged} real result(s). Rebuilding the prior would discard their rating updates. ` +
+      'Use modifiers for new research, or pass --force if you really mean to restart from the prior.',
+  )
   process.exit(1)
 }
 
