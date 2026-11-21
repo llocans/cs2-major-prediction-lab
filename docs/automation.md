@@ -14,12 +14,21 @@ Three layers. Built in stages: the Stage 1 critical path first (poller), the res
   `node scripts/install-launchd.ts pgl-major-singapore-2026`, remove with `--uninstall`. Logs: `.cache/poller.log`.
 - The poller picks the Swiss stage whose dates (±1 day) contain today and exits quietly otherwise.
 - It needs `LIQUIPEDIA_CONTACT` in `.env`.
-- Commits: manual during Stage 1; the poller commits `data:` changes to main from Stage 2 on.
+- Commits: with `--commit` (installer: `node scripts/install-launchd.ts <event> --commit`) the poller
+  validates all data and commits only `data/` and `docs/changelog.md` to main, then pushes. It does
+  nothing on another branch, and a failed push is logged (the commit goes out with the next push).
+  It commits only when a result was logged or a snapshot saved.
 
 ## 2. Desktop scheduled tasks (Claude judgment)
 
-Planned for Stage 2: research updates, stage reviews, cleanup. Local, "Only on this computer", each with
-its own model and permission mode, and one "Run now" with the user to always-allow its tools.
+Local, "Only on this computer", each with its own model and permission mode, and one "Run now" with
+the user to always-allow its tools. Each prompt runs one skill:
+
+| Task | Skill | When | Model |
+|---|---|---|---|
+| research refresh | `research-team` (stage teams, news only, no HLTV) | daily during the event | Sonnet, medium |
+| stage review | `review-stage` | evening after each Swiss stage ends | Sonnet, high |
+| cleanup | `cleanup` | weekly | Sonnet, low |
 Every prompt includes late-run guardrails: one catch-up run happens after sleep, so skip work whose
 window has passed.
 
@@ -31,8 +40,8 @@ Note: a project-level `defaultMode: "auto"` is ignored by Claude Code; set the p
 | ----------------------- | ------------------------------------------------------------------------------------------------------ | ------- |
 | PreToolUse Edit\|Write  | `guard-edits.ts`: deny docs/core edits on main, deny edits to saved snapshots                          | active  |
 | PostToolUse Edit\|Write | `validate-data.ts`: validate edited data files against their schema                                    | active  |
-| Stop                    | run check only if code changed; honour `stop_hook_active`; report after 3 attempts (built-in cap is 8) | planned |
-| SessionStart            | print `data/events/<id>/status.md`                                                                     | planned |
+| Stop | `stop-check.ts`: `npm run check` only if code changed since the last pass; blocks on failure, reports after 3 attempts (built-in cap is 8) | active |
+| SessionStart | `session-start.ts`: print the newest `data/events/<id>/status.md` | active |
 
 ## Headless fallback
 

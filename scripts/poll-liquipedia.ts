@@ -1,16 +1,22 @@
 /**
  * Poller (launchd, no Claude usage): reads the current stage page from the Liquipedia API, logs new
  * results through the shared pipeline, and saves the pre-round snapshot as soon as a round can start.
- * Usage: node --env-file-if-exists=.env scripts/poll-liquipedia.ts <event-id> [stage-id]
+ * Usage: node --env-file-if-exists=.env scripts/poll-liquipedia.ts <event-id> [stage-id] [--commit]
  * Without a stage id it picks the Swiss stage whose dates (±1 day) contain today, or exits quietly.
+ * With --commit it validates all data and commits + pushes data changes to main when something new
+ * was logged or a snapshot was saved.
  */
 import { EventConfig, TeamRegistry } from '../data/schemas/index.ts'
 import { readJson, repoPath } from './lib/files.ts'
+import { commitData } from './lib/git.ts'
 import { getPage } from './lib/liquipedia.ts'
 import { readStagePage } from './lib/liquipedia-results.ts'
 import { ensureRoundSnapshot, logResults } from './lib/log-results.ts'
+import { validateAllData } from './lib/validate-data.ts'
 
-const [eventId, stageArg] = process.argv.slice(2)
+const args = process.argv.slice(2)
+const shouldCommit = args.includes('--commit')
+const [eventId, stageArg] = args.filter((arg) => !arg.startsWith('--'))
 if (!eventId) {
   console.error('Usage: node scripts/poll-liquipedia.ts <event-id> [stage-id]')
   process.exit(1)
@@ -71,3 +77,21 @@ const snapshot =
 log(
   `rev ${page.revid}: ${outcome.logged.length} new, ${outcome.skipped.length} known, snapshot ${snapshot}`,
 )
+
+if (shouldCommit && (outcome.logged.length > 0 || snapshot === 'saved')) {
+  const { problems } = validateAllData()
+  if (problems.length > 0) {
+    log(`NOT committing: validation failed\n${problems.join('\n')}`)
+    process.exit(1)
+  }
+  const commit = commitData(
+    `data: ${stageId} ${outcome.logged.length} result(s), snapshot ${snapshot} (poller)`,
+  )
+  if (commit.status === 'committed') {
+    log(
+      `committed ${commit.sha}${commit.pushed ? ' and pushed' : `; push failed: ${commit.pushError}`}`,
+    )
+  } else {
+    log(`commit ${commit.status}${commit.status === 'skipped' ? `: ${commit.reason}` : ''}`)
+  }
+}

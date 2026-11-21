@@ -1,7 +1,7 @@
 /**
  * Installs (or removes) the Liquipedia poller as a launchd agent for the current user.
  * Usage:
- *   node scripts/install-launchd.ts <event-id>       install and start
+ *   node scripts/install-launchd.ts <event-id> [--commit]   install and start (--commit: poller commits data)
  *   node scripts/install-launchd.ts --uninstall      stop and remove
  * Logs go to .cache/poller.log.
  */
@@ -54,6 +54,10 @@ const plist = readFileSync(repoPath('automation/launchd/poll.plist.template'), '
   .replaceAll('{{NODE}}', stableNodePath())
   .replaceAll('{{REPO}}', repoRoot)
   .replaceAll('{{EVENT_ID}}', arg)
+  .replaceAll(
+    '{{EXTRA_ARGS}}',
+    process.argv.includes('--commit') ? '<string>--commit</string>' : '',
+  )
 
 mkdirSync(repoPath('.cache'), { recursive: true })
 mkdirSync(join(homedir(), 'Library/LaunchAgents'), { recursive: true })

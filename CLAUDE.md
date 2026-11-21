@@ -33,7 +33,8 @@ future events too: formats live in config, never in code.
   - `research/team-files.ts <event>` → lean `data/teams/<id>.md` (never overwrites)
   - `research/liquipedia-rosters.ts <event>` → dated rosters in `registry.json` (Liquipedia API)
   - `research/import-map-stats.ts <file> <from> <to> Top50` → `data/teams/maps/` (HLTV counts)
-  - `build-ratings.ts <event>` → `data/ratings/current.json` (VRS prior + map stats)
+  - `build-ratings.ts <event>` → `data/ratings/current.json` (VRS prior + map stats; refuses once results exist)
+  - `score-stage.ts <event> <stage>` → score block in `data/events/<id>/accuracy.md`
   - `simulate.ts <event> <stage>` (prints odds) · `snapshot.ts <event> <stage>` (pre-round, once)
   - `log-result.ts ...` (manual) · `poll-liquipedia.ts <event>` (launchd; needs `LIQUIPEDIA_CONTACT`)
   - `install-launchd.ts <event>` / `--uninstall`
@@ -58,10 +59,14 @@ future events too: formats live in config, never in code.
 | Skill           | When                                                                                        |
 | --------------- | ------------------------------------------------------------------------------------------- |
 | `log-result`    | Record a real result, update ratings, re-simulate, snapshot (manual fallback to the poller) |
-| `research-team` | Research one team and update its file (planned)                                             |
-| `simulate`      | Re-run the simulation and refresh predictions (planned)                                     |
-| `review-stage`  | Score a finished stage, propose model changes (planned)                                     |
-| `cleanup`       | Tidy files, mark stale data, fix references (planned)                                       |
+| `research-team` | Research one team (or a stage) and update its data, notes and modifiers |
+| `simulate` | Re-run the simulation and report the odds (read-only) |
+| `review-stage` | Score a finished stage, write lessons, propose capped changes via PR |
+| `cleanup` | Remove expired modifiers, mark stale facts, check sources |
+
+## Subagents (`.claude/agents/`)
+`team-researcher` (Sonnet, medium; max 4 in parallel) · `reviewer` (Sonnet, high; read-only) ·
+`checker` (Haiku, low; read-only)
 
 ## Models
 
