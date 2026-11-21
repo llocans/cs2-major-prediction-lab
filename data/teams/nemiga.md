@@ -31,7 +31,7 @@ VRS #10, 1650 points (2026-11-02) · Stage 2, seed 2 · Last updated 2026-11-21
 - Placements: not compiled yet
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 49-22 over 71 maps [HLTV-M] (stale)
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 49-22 over 71 maps [HLTV-M]
   - Ancient: 13-3 (81%), model offset +61
   - Mirage: 11-4 (73%), model offset +20
   - Dust II: 9-3 (75%), model offset +25

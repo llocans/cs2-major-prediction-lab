@@ -29,7 +29,7 @@ VRS #6, 1786 points (2026-11-02) · Stage 3, seed 6 · Last updated 2026-11-21
 - Placements: not compiled yet
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 32-28 over 60 maps [HLTV-M] (stale)
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 32-28 over 60 maps [HLTV-M]
   - Mirage: 10-8 (56%), model offset +9
   - Ancient: 5-6 (45%), model offset -26
   - Anubis: 6-4 (60%), model offset +21
@@ -55,12 +55,12 @@ VRS #6, 1786 points (2026-11-02) · Stage 3, seed 6 · Last updated 2026-11-21
 - 2026-10-05 L vs Aurora [VRS]
 - 2026-10-04 W vs M80 [VRS]
 - 2026-10-03 L vs FURIA [VRS]
-- 2026-09-12 L vs G2 [VRS] (stale)
-- 2026-09-10 W vs MIBR [VRS] (stale)
-- 2026-09-09 W vs Astralis [VRS] (stale)
-- 2026-08-14 L vs Ninjas in Pyjamas [VRS] (stale)
-- 2026-08-12 L vs FaZe [VRS] (stale)
-- 2026-07-10 L vs FaZe [VRS] (stale)
+- 2026-09-12 L vs G2 [VRS]
+- 2026-09-10 W vs MIBR [VRS]
+- 2026-09-09 W vs Astralis [VRS]
+- 2026-08-14 L vs Ninjas in Pyjamas [VRS]
+- 2026-08-12 L vs FaZe [VRS]
+- 2026-07-10 L vs FaZe [VRS]
 
 ## Context
 - Recent Majors: Austin 2025 Stage 1 3-1; Austin 2025 Stage 2 0-3; Cologne 2026 Stage 1 3-0; Cologne 2026 Stage 2 3-1; Cologne 2026 Stage 3 3-2 [FX]

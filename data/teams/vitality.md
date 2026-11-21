@@ -10,7 +10,7 @@ VRS #2, 1922 points (2026-11-02) · Stage 3, seed 2 · Last updated 2026-11-21
 
 ## Roster changes
 - apEX returns for the Major; jL stood in for him at PGL Masters Bucharest [PLEY]
-- No changes since 2026-05-21 [LP] (stale)
+- No changes since 2026-05-21 [LP]
 
 ## Recent form
 - Last 90 days: 21-8 in series [VRS]
@@ -30,7 +30,7 @@ VRS #2, 1922 points (2026-11-02) · Stage 3, seed 2 · Last updated 2026-11-21
 - Placements: not compiled yet
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 44-25 over 69 maps [HLTV-M] (stale)
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 44-25 over 69 maps [HLTV-M]
   - Dust II: 13-4 (76%), model offset +59
   - Mirage: 9-5 (64%), model offset +2
   - Cache: 8-4 (67%), model offset +11
@@ -56,12 +56,12 @@ VRS #2, 1922 points (2026-11-02) · Stage 3, seed 2 · Last updated 2026-11-21
 - 2026-10-05 W vs Falcons [VRS]
 - 2026-10-04 W vs Natus Vincere [VRS]
 - 2026-10-03 W vs 1win [VRS]
-- 2026-09-20 W vs Aurora [VRS] (stale)
-- 2026-09-20 W vs FURIA [VRS] (stale)
-- 2026-09-19 L vs Aurora [VRS] (stale)
-- 2026-09-18 W vs FURIA [VRS] (stale)
-- 2026-09-05 L vs MOUZ [VRS] (stale)
-- 2026-09-04 W vs FURIA [VRS] (stale)
+- 2026-09-20 W vs Aurora [VRS]
+- 2026-09-20 W vs FURIA [VRS]
+- 2026-09-19 L vs Aurora [VRS]
+- 2026-09-18 W vs FURIA [VRS]
+- 2026-09-05 L vs MOUZ [VRS]
+- 2026-09-04 W vs FURIA [VRS]
 
 ## Context
 - Recent Majors: Austin 2025 Stage 3 3-1; Cologne 2026 Stage 3 3-1 [FX]

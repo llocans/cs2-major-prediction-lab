@@ -9,7 +9,7 @@ VRS #56, 1267 points (2026-11-02) · Stage 1, seed 16 · Last updated 2026-11-21
 - Liquipedia squad: westmelon (since 2017-05-24), z4kr (since 2019-08-09), EmiliaQAQ (since 2023-01-22), Starry (since 2024-12-26), C4LLM3SU3 (since 2025-02-21); coach GUM (since 2023-03 (month only)), XinKoiNg (since 2024-03-26) [LP]
 
 ## Roster changes
-- No changes since 2026-05-21 [LP] (stale)
+- No changes since 2026-05-21 [LP]
 
 ## Recent form
 - Last 90 days: 14-7 in series [VRS]
@@ -29,7 +29,7 @@ VRS #56, 1267 points (2026-11-02) · Stage 1, seed 16 · Last updated 2026-11-21
 - Placements: full list not compiled; recent event wins are under Storylines [IG]
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 2-4 over 6 maps [HLTV-M] (stale)
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 2-4 over 6 maps [HLTV-M]
   - Dust II: 1-1 (50%), model offset +18
   - Ancient: 1-1 (50%), model offset +18
   - Inferno: 0-1 (0%), model offset -20

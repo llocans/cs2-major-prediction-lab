@@ -29,8 +29,11 @@ Protected file. Change it only on a `core/*` branch with a PR.
   keep a parser for the old one so old events keep loading.
 - **Derived numbers, not copies.** Store the numbers we derive (map win rates, ratings) with a `source`
   and retrieval date. Never store whole copied stats tables.
-- **Sourced facts.** Facts in team files carry a date and a source. Facts older than 60 days, or
-  overtaken by news, are marked `(stale)`.
+- **Sourced facts.** Facts in team files carry a date and a source.
+- **Stale applies to current-state claims only.** A claim about how things are *now* (lineup, coach,
+  stand-ins, injuries, form or map-pool summaries) that is older than 60 days, or overtaken by news, is
+  marked `(stale)`. Dated records of past events (match results, "joined on", "benched on") are history:
+  they stay true and are never marked stale.
 - **Formats in config.** Tournament formats live in event config, never in code.
 - **Real results only.** `results.json` holds finished matches. Snapshots are written with an exclusive
   create and are never edited (also enforced by a hook).
