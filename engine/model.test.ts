@@ -118,6 +118,33 @@ describe('ratings', () => {
     expect(unplayedMapStrength(6, params)).toBeUndefined()
   })
 
+  it('judges a result against the prediction including modifiers', () => {
+    const before = ratingsFor({ x: 1500, y: 1500 })
+    const match = {
+      teamA: 'x',
+      teamB: 'y',
+      format: 'bo3' as const,
+      maps: [{ map: 'nuke', scoreA: 13, scoreB: 9 }],
+    }
+    const penalty = [
+      {
+        id: 'x-standin',
+        teamId: 'x',
+        delta: -30,
+        reason: 'stand-in for the test',
+        source,
+        createdAt: '2026-11-01',
+        expires: '2026-12-13',
+      },
+    ]
+    const plain = updateRatings(before, match, params, '2026-11-24T06:00:00Z', 't')
+    const withModifier = updateRatings(before, match, params, '2026-11-24T06:00:00Z', 't', penalty)
+    // x was predicted weaker, so its win is a bigger surprise and moves its rating more.
+    expect((withModifier.teams.x?.rating ?? 0) - 1500).toBeGreaterThan(
+      (plain.teams.x?.rating ?? 0) - 1500,
+    )
+  })
+
   it('moves the winner up and the loser down, Bo1 less than Bo3', () => {
     const before = ratingsFor({ x: 1500, y: 1500 })
     const map = { map: 'nuke', scoreA: 13, scoreB: 7 }

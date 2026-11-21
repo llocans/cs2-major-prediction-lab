@@ -7,12 +7,14 @@ import modifiersJson from '../../../data/model/modifiers.json'
 import paramsJson from '../../../data/model/params.json'
 import ratingsJson from '../../../data/ratings/current.json'
 import {
+  Benchmarks,
   EventConfig,
   EventResults,
   EventTeams,
   ModelParams,
   Modifiers,
   Ratings,
+  Snapshot,
   TeamForm,
   TeamRegistry,
 } from '../../../data/schemas/index.ts'
@@ -27,6 +29,14 @@ const teamsFiles = import.meta.glob('../../../data/events/*/teams.json', {
   import: 'default',
 })
 const resultsFiles = import.meta.glob('../../../data/events/*/results.json', {
+  eager: true,
+  import: 'default',
+})
+const snapshotFiles = import.meta.glob('../../../data/events/*/snapshots/*.json', {
+  eager: true,
+  import: 'default',
+})
+const benchmarkFiles = import.meta.glob('../../../data/events/*/benchmarks.json', {
   eager: true,
   import: 'default',
 })
@@ -51,6 +61,10 @@ export interface EventData {
   config: EventConfig
   teams: EventTeams
   results: EventResults
+  /** Predictions saved before each round (never edited). */
+  snapshots: Snapshot[]
+  /** Market implied probabilities, if any were logged. */
+  benchmarks: Benchmarks['entries']
 }
 
 const eventDir = (path: string) => path.split('/').at(-2) ?? ''
@@ -59,10 +73,15 @@ export const events: EventData[] = Object.entries(configs).map(([path, raw]) => 
   const id = eventDir(path)
   const find = (files: Record<string, unknown>) =>
     Object.entries(files).find(([p]) => eventDir(p) === id)?.[1]
+  const benchmarks = find(benchmarkFiles)
   return {
     config: EventConfig.parse(raw),
     teams: EventTeams.parse(find(teamsFiles)),
     results: EventResults.parse(find(resultsFiles)),
+    snapshots: Object.entries(snapshotFiles)
+      .filter(([p]) => p.split('/').at(-3) === id)
+      .map(([, value]) => Snapshot.parse(value)),
+    benchmarks: benchmarks ? Benchmarks.parse(benchmarks).entries : [],
   }
 })
 

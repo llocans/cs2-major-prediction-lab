@@ -1,5 +1,6 @@
 import type { MapId } from '../data/schemas/common.ts'
 import type { ModelParams, Modifier, Ratings } from '../data/schemas/model.ts'
+import { activeModifiers, modifierDelta } from './ratings/modifiers.ts'
 import { winProbability } from './ratings/probability.ts'
 
 /** Everything the simulation needs to know about how strong teams are. */
@@ -29,11 +30,7 @@ export function buildMatchModel(
   mapPool: readonly MapId[],
   today: string,
 ): MatchModel {
-  const active = modifiers.filter(
-    (modifier) => modifier.createdAt <= today && today <= modifier.expires,
-  )
-  const cap = params.modifiers.maxAbs
-  const clamp = (value: number) => Math.max(-cap, Math.min(cap, value))
+  const active = activeModifiers(modifiers, today)
 
   const strengthCache = new Map<string, { strength: number; variance: number }>()
   const lookup = (team: string, map: MapId) => {
@@ -43,11 +40,11 @@ export function buildMatchModel(
     const rating = ratings.teams[team]
     if (!rating) throw new Error(`No rating for team "${team}"`)
     const mapStrength = rating.maps[map] ?? { offset: 0, rd: params.maps.newMapRd, n: 0 }
-    const modifierTotal = active
-      .filter((m) => m.teamId === team && (m.map === undefined || m.map === map))
-      .reduce((sum, m) => sum + m.delta, 0)
     const value = {
-      strength: rating.rating + mapStrength.offset + clamp(modifierTotal),
+      strength:
+        rating.rating +
+        mapStrength.offset +
+        modifierDelta(active, team, map, params.modifiers.maxAbs),
       variance: rating.rd ** 2 + mapStrength.rd ** 2,
     }
     strengthCache.set(key, value)

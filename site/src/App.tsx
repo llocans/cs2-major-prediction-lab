@@ -4,6 +4,7 @@ import { type Route, useLocation } from './lib/router.ts'
 import { OverviewPage } from './pages/OverviewPage.tsx'
 import { PlaceholderPage } from './pages/PlaceholderPage.tsx'
 import { StagePage } from './pages/StagePage.tsx'
+import { TrackRecordPage } from './pages/TrackRecordPage.tsx'
 
 const nav: Array<{ label: string; href: string; active: (route: Route) => boolean }> = [
   { label: 'Overview', href: '#/', active: (r) => r.page === 'overview' },
@@ -90,12 +91,7 @@ function Page({ route, query }: { route: Route; query: URLSearchParams }) {
         />
       )
     case 'track-record':
-      return (
-        <PlaceholderPage
-          title="Track record"
-          description="Snapshots vs results: Brier score and calibration per stage."
-        />
-      )
+      return <TrackRecordPage event={event} />
     case 'odds':
       return (
         <PlaceholderPage

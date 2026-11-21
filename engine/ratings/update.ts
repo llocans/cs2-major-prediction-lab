@@ -1,6 +1,7 @@
 import type { MapId, MatchFormat } from '../../data/schemas/common.ts'
-import type { ModelParams, Ratings, TeamRating } from '../../data/schemas/model.ts'
+import type { ModelParams, Modifier, Ratings, TeamRating } from '../../data/schemas/model.ts'
 import { mapRd } from './map-strength.ts'
+import { modifierDelta } from './modifiers.ts'
 import { uncertaintyFactor, winProbability } from './probability.ts'
 
 export interface RatedMatch {
@@ -13,6 +14,8 @@ export interface RatedMatch {
 
 /**
  * Updates ratings after a real match, map by map (docs/model.md, "Rating updates").
+ * The expected result includes the modifiers active at the match, exactly as the prediction did,
+ * so a result is judged against what was actually predicted. Modifiers themselves never change.
  * Pure: returns a new Ratings object and leaves the input untouched.
  */
 export function updateRatings(
@@ -21,6 +24,7 @@ export function updateRatings(
   params: ModelParams,
   asOf: string,
   reason: string,
+  modifiers: readonly Modifier[] = [],
 ): Ratings {
   const teams: Record<string, TeamRating> = structuredClone(ratings.teams)
   const a = teams[match.teamA]
@@ -33,7 +37,12 @@ export function updateRatings(
   for (const played of match.maps) {
     const mapA = a.maps[played.map] ?? { offset: 0, rd: params.maps.newMapRd, n: 0 }
     const mapB = b.maps[played.map] ?? { offset: 0, rd: params.maps.newMapRd, n: 0 }
-    const gap = a.rating + mapA.offset - (b.rating + mapB.offset)
+    const cap = params.modifiers.maxAbs
+    const gap =
+      a.rating +
+      mapA.offset +
+      modifierDelta(modifiers, match.teamA, played.map, cap) -
+      (b.rating + mapB.offset + modifierDelta(modifiers, match.teamB, played.map, cap))
     const variance = a.rd ** 2 + b.rd ** 2 + mapA.rd ** 2 + mapB.rd ** 2
     const expected = winProbability(gap, variance, params.scale)
     const score = played.scoreA > played.scoreB ? 1 : 0
