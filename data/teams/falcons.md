@@ -9,7 +9,7 @@ VRS #7, 1764 points (2026-11-02) · Stage 3, seed 7 · Last updated 2026-11-21
 - Liquipedia squad: NiKo (since 2025-01-03), TeSeS (since 2025-01-04), m0NESY (since 2025-04-14), kyousuke (since 2025-06-23), karrigan (since 2026-04-20); coach zonic (since 2023-11-01), Aymeinstein (since 2026-01-10) [LP]
 
 ## Roster changes
-- No changes since 2026-05-21 [LP]
+- No changes since 2026-05-21 [LP] (stale)
 
 ## Recent form
 - Last 90 days: 11-7 in series [VRS]
@@ -25,11 +25,11 @@ VRS #7, 1764 points (2026-11-02) · Stage 3, seed 7 · Last updated 2026-11-21
   - 2026-10-05 L vs Vitality (#2)
   - 2026-10-04 W vs Aurora (#4)
   - 2026-10-03 W vs TYLOO (#59)
-  - 2026-09-05 L vs Spirit (#5)
+  - 2026-09-05 L vs Spirit (#5) (stale)
 - Placements: not compiled yet
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 29-28 over 57 maps [HLTV-M]
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 29-28 over 57 maps [HLTV-M] (stale)
   - Dust II: 8-7 (53%), model offset +10
   - Mirage: 7-7 (50%), model offset -3
   - Ancient: 4-6 (40%), model offset -34
@@ -50,16 +50,16 @@ VRS #7, 1764 points (2026-11-02) · Stage 3, seed 7 · Last updated 2026-11-21
 - 2026-10-06 W vs Natus Vincere [VRS]
 - 2026-10-05 L vs Vitality [VRS]
 - 2026-10-04 W vs Aurora [VRS]
-- 2026-09-05 L vs Spirit [VRS]
-- 2026-09-04 W vs G2 [VRS]
-- 2026-08-31 L vs MOUZ [VRS]
-- 2026-08-29 W vs Legacy [VRS]
-- 2026-08-27 W vs Lynn Vision [VRS]
-- 2026-08-21 L vs Legacy [VRS]
-- 2026-08-20 W vs The MongolZ [VRS]
-- 2026-08-13 W vs Astralis [VRS]
-- 2026-07-22 L vs 100 Thieves [VRS]
-- 2026-06-21 W vs FURIA [VRS]
+- 2026-09-05 L vs Spirit [VRS] (stale)
+- 2026-09-04 W vs G2 [VRS] (stale)
+- 2026-08-31 L vs MOUZ [VRS] (stale)
+- 2026-08-29 W vs Legacy [VRS] (stale)
+- 2026-08-27 W vs Lynn Vision [VRS] (stale)
+- 2026-08-21 L vs Legacy [VRS] (stale)
+- 2026-08-20 W vs The MongolZ [VRS] (stale)
+- 2026-08-13 W vs Astralis [VRS] (stale)
+- 2026-07-22 L vs 100 Thieves [VRS] (stale)
+- 2026-06-21 W vs FURIA [VRS] (stale)
 
 ## Context
 - Recent Majors: Austin 2025 Stage 2 1-3; Cologne 2026 Stage 3 3-1 [FX]

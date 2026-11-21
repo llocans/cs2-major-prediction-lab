@@ -36,7 +36,7 @@ VRS #18, 1548 points (2026-11-02) · Stage 1, seed 3 · Last updated 2026-11-21
 - Placements: full list not compiled; recent event wins are under Storylines [IG]
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 31-23 over 54 maps [HLTV-M]
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 31-23 over 54 maps [HLTV-M] (stale)
   - Dust II: 5-7 (42%), model offset -55
   - Ancient: 8-3 (73%), model offset +54
   - Inferno: 7-3 (70%), model offset +42

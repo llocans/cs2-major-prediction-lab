@@ -34,7 +34,7 @@ VRS #4, 1860 points (2026-11-02) · Stage 3, seed 4 · Last updated 2026-11-21
 - Placements: not compiled yet
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 38-29 over 67 maps [HLTV-M]
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 38-29 over 67 maps [HLTV-M] (stale)
   - Mirage: 8-6 (57%), model offset +2
   - Inferno: 5-8 (38%), model offset -66
   - Anubis: 8-4 (67%), model offset +36
@@ -64,8 +64,8 @@ VRS #4, 1860 points (2026-11-02) · Stage 3, seed 4 · Last updated 2026-11-21
 - 2026-10-05 W vs BETBOOM [VRS]
 - 2026-10-04 L vs Falcons [VRS]
 - 2026-10-03 W vs 9z [VRS]
-- 2026-09-20 L vs Vitality [VRS]
-- 2026-09-19 W vs Vitality [VRS]
+- 2026-09-20 L vs Vitality [VRS] (stale)
+- 2026-09-19 W vs Vitality [VRS] (stale)
 
 ## Context
 - Recent Majors: Austin 2025 Stage 3 1-3; Cologne 2026 Stage 3 3-1 [FX]

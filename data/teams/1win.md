@@ -34,13 +34,13 @@ VRS #12, 1598 points (2026-11-02) · Stage 2, seed 4 · Last updated 2026-11-21
   - 2026-10-05 W vs Legacy (#9)
   - 2026-10-04 W vs G2 (#11)
   - 2026-10-03 L vs Vitality (#2)
-  - 2026-09-12 L vs HEROIC (#18)
-  - 2026-09-12 L vs B8 (#28)
-  - 2026-09-11 W vs Ninjas in Pyjamas (#15)
+  - 2026-09-12 L vs HEROIC (#18) (stale)
+  - 2026-09-12 L vs B8 (#28) (stale)
+  - 2026-09-11 W vs Ninjas in Pyjamas (#15) (stale)
 - Placements: not compiled yet
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 19-19 over 38 maps [HLTV-M]
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 19-19 over 38 maps [HLTV-M] (stale)
   - Dust II: 7-7 (50%), model offset +0
   - Mirage: 5-2 (71%), model offset +55
   - Ancient: 1-5 (17%), model offset -78
@@ -54,10 +54,10 @@ VRS #12, 1598 points (2026-11-02) · Stage 2, seed 4 · Last updated 2026-11-21
 
 ## Head-to-head (this event, last 6 months)
 - 2026-10-04 W vs G2 [VRS]
-- 2026-09-12 L vs HEROIC [VRS]
-- 2026-09-11 W vs Ninjas in Pyjamas [VRS]
-- 2026-09-11 L vs Nemiga [VRS]
-- 2026-09-06 W vs HEROIC [VRS]
+- 2026-09-12 L vs HEROIC [VRS] (stale)
+- 2026-09-11 W vs Ninjas in Pyjamas [VRS] (stale)
+- 2026-09-11 L vs Nemiga [VRS] (stale)
+- 2026-09-06 W vs HEROIC [VRS] (stale)
 
 ## Context
 - Recent Majors: none found in Austin 2025 or Cologne 2026 [FX]

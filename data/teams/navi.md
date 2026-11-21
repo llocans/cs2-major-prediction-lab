@@ -29,7 +29,7 @@ VRS #13, 1589 points (2026-11-02) · Stage 2, seed 5 · Last updated 2026-11-21
 - Placements: not compiled yet
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 29-27 over 56 maps [HLTV-M]
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 29-27 over 56 maps [HLTV-M] (stale)
   - Mirage: 4-8 (33%), model offset -64
   - Inferno: 4-6 (40%), model offset -37
   - Cache: 5-3 (62%), model offset +30
@@ -46,9 +46,9 @@ VRS #13, 1589 points (2026-11-02) · Stage 2, seed 5 · Last updated 2026-11-21
 - 2026-10-07 L vs PARIVISION [VRS]
 - 2026-10-05 W vs 9z [VRS]
 - 2026-10-03 W vs G2 [VRS]
-- 2026-08-30 L vs G2 [VRS]
-- 2026-08-26 L vs M80 [VRS]
-- 2026-08-15 W vs The MongolZ [VRS]
+- 2026-08-30 L vs G2 [VRS] (stale)
+- 2026-08-26 L vs M80 [VRS] (stale)
+- 2026-08-15 W vs The MongolZ [VRS] (stale)
 
 ## Context
 - Recent Majors: Austin 2025 stage 3 3-1; Cologne 2026 stage 3 2-3 [FX]

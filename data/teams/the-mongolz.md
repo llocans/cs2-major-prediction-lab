@@ -32,7 +32,7 @@ VRS #17, 1554 points (2026-11-02) · Stage 2, seed 7 · Last updated 2026-11-21
 - Placements: not compiled yet
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 22-17 over 39 maps [HLTV-M]
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 22-17 over 39 maps [HLTV-M] (stale)
   - Inferno: 6-5 (55%), model offset -6
   - Mirage: 3-5 (38%), model offset -53
   - Dust II: 5-2 (71%), model offset +40
@@ -47,11 +47,11 @@ VRS #17, 1554 points (2026-11-02) · Stage 2, seed 7 · Last updated 2026-11-21
 ## Head-to-head (this event, last 6 months)
 - 2026-10-28 L vs Nemiga [VRS]
 - 2026-10-22 W vs PARIVISION [VRS]
-- 2026-09-08 L vs MIBR [VRS]
-- 2026-08-15 L vs Natus Vincere [VRS]
-- 2026-07-31 L vs FaZe [VRS]
-- 2026-07-26 W vs Wildcard [VRS]
-- 2026-07-24 W vs HEROIC [VRS]
+- 2026-09-08 L vs MIBR [VRS] (stale)
+- 2026-08-15 L vs Natus Vincere [VRS] (stale)
+- 2026-07-31 L vs FaZe [VRS] (stale)
+- 2026-07-26 W vs Wildcard [VRS] (stale)
+- 2026-07-24 W vs HEROIC [VRS] (stale)
 
 ## Context
 - Recent Majors: Austin 2025 stage 3 3-2; Cologne 2026 stage 3 2-3 [FX]

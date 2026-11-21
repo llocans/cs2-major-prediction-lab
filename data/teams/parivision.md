@@ -34,7 +34,7 @@ VRS #16, 1560 points (2026-11-02) · Stage 1, seed 2 · Last updated 2026-11-21
 - Placements: full list not compiled; recent event wins are under Storylines [IG]
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 23-30 over 53 maps [HLTV-M]
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 23-30 over 53 maps [HLTV-M] (stale)
   - Ancient: 10-6 (62%), model offset +76
   - Inferno: 6-6 (50%), model offset +23
   - Dust II: 1-7 (12%), model offset -92
@@ -47,9 +47,9 @@ VRS #16, 1560 points (2026-11-02) · Stage 1, seed 2 · Last updated 2026-11-21
 - HLTV Rating 3.0, 2026-08-21 to 2026-11-21, vs HLTV top 50 (rating/maps): xiELO 1.06/53, Jame 1.02/53, FL1T 0.97/53, zweih 0.95/53, HObbit 0.94/47 [HLTV-P]
 
 ## Head-to-head (this event, last 6 months)
-- 2026-08-14 W vs 100 Thieves [VRS]
-- 2026-07-12 L vs 9z [VRS]
-- 2026-07-11 W vs FaZe [VRS]
+- 2026-08-14 W vs 100 Thieves [VRS] (stale)
+- 2026-07-12 L vs 9z [VRS] (stale)
+- 2026-07-11 W vs FaZe [VRS] (stale)
 
 ## Context
 - Recent Majors: Cologne 2026: Stage 3, 0-3 [FX]

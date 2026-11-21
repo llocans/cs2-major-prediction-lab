@@ -29,7 +29,7 @@ VRS #3, 1912 points (2026-11-02) · Stage 3, seed 3 · Last updated 2026-11-21
 - Placements: not compiled yet
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 62-43 over 105 maps [HLTV-M]
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 62-43 over 105 maps [HLTV-M] (stale)
   - Dust II: 13-7 (65%), model offset +27
   - Mirage: 12-8 (60%), model offset +4
   - Cache: 11-7 (61%), model offset +9
@@ -59,8 +59,8 @@ VRS #3, 1912 points (2026-11-02) · Stage 3, seed 3 · Last updated 2026-11-21
 - 2026-10-05 W vs PARIVISION [VRS]
 - 2026-10-04 L vs MOUZ [VRS]
 - 2026-10-03 W vs BETBOOM [VRS]
-- 2026-09-20 L vs Vitality [VRS]
-- 2026-09-19 W vs MIBR [VRS]
+- 2026-09-20 L vs Vitality [VRS] (stale)
+- 2026-09-19 W vs MIBR [VRS] (stale)
 
 ## Context
 - Recent Majors: Austin 2025 Stage 2 3-1; Austin 2025 Stage 3 3-0; Cologne 2026 Stage 3 3-0 [FX]

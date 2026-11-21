@@ -32,7 +32,7 @@ VRS #21, 1528 points (2026-11-02) · Stage 1, seed 5 · Last updated 2026-11-21
 - Placements: full list not compiled; recent event wins are under Storylines [IG]
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 23-22 over 45 maps [HLTV-M]
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 23-22 over 45 maps [HLTV-M] (stale)
   - Mirage: 6-3 (67%), model offset +47
   - Inferno: 6-3 (67%), model offset +47
   - Cache: 3-5 (38%), model offset -38

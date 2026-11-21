@@ -24,16 +24,16 @@ VRS #8, 1721 points (2026-11-02) · Stage 2, seed 1 · Last updated 2026-11-21
   - 2026-10-26 W vs Vitality (#2)
   - 2026-10-25 W vs Liquid (#21)
   - 2026-10-24 W vs TYLOO (#59)
-  - 2026-08-31 L vs Vitality (#2)
-  - 2026-08-30 W vs Inner Circle (#30)
-  - 2026-08-29 W vs Lynn Vision (#56)
-  - 2026-08-27 L vs Legacy (#9)
-  - 2026-08-23 L vs Spirit (#5)
-  - 2026-08-22 W vs FURIA (#3)
+  - 2026-08-31 L vs Vitality (#2) (stale)
+  - 2026-08-30 W vs Inner Circle (#30) (stale)
+  - 2026-08-29 W vs Lynn Vision (#56) (stale)
+  - 2026-08-27 L vs Legacy (#9) (stale)
+  - 2026-08-23 L vs Spirit (#5) (stale)
+  - 2026-08-22 W vs FURIA (#3) (stale)
 - Placements: not compiled yet
 
 ## Map pool
-- 2026-08-21 to 2026-11-21, vs HLTV top 50: 17-16 over 33 maps [HLTV-M]
+- 2026-08-21 to 2026-11-21, vs HLTV top 50: 17-16 over 33 maps [HLTV-M] (stale)
   - Dust II: 4-4 (50%), model offset -4
   - Nuke: 3-4 (43%), model offset -22
   - Ancient: 4-3 (57%), model offset +14
@@ -48,8 +48,8 @@ VRS #8, 1721 points (2026-11-02) · Stage 2, seed 1 · Last updated 2026-11-21
 ## Head-to-head (this event, last 6 months)
 - 2026-10-29 L vs Nemiga [VRS]
 - 2026-10-25 W vs Liquid [VRS]
-- 2026-08-29 W vs Lynn Vision [VRS]
-- 2026-06-12 L vs G2 [VRS]
+- 2026-08-29 W vs Lynn Vision [VRS] (stale)
+- 2026-06-12 L vs G2 [VRS] (stale)
 
 ## Context
 - Recent Majors: Cologne 2026 stage 2 3-0; Cologne 2026 stage 3 2-3 [FX]
