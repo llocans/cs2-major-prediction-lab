@@ -37,13 +37,14 @@ export function predictStage(input: SwissSimInput, labels: Labels): StagePredict
   }))
 
   const records = buildRecords(input.seeds, input.played)
-  const ranked = [...input.seeds].sort(
-    (a, b) => model.strength(b, model.mapPool[0] ?? '') - model.strength(a, model.mapPool[0] ?? ''),
-  )
+  // Average strength over the map pool: rating + map offsets + active modifiers.
+  const average = (team: string) =>
+    model.mapPool.reduce((sum, map) => sum + model.strength(team, map), 0) / model.mapPool.length
+  const ranked = [...input.seeds].sort((a, b) => average(b) - average(a))
   const teams: TeamOutlook[] = sim.teams.map((odds) => {
     const record = records.get(odds.teamId)
     const next = matches.find((m) => m.teamA === odds.teamId || m.teamB === odds.teamId)
-    const parts = [`rating rank ${ranked.indexOf(odds.teamId) + 1} of ${input.seeds.length}`]
+    const parts = [`strength rank ${ranked.indexOf(odds.teamId) + 1} of ${input.seeds.length}`]
     if (next) {
       const isA = next.teamA === odds.teamId
       const opponent = isA ? next.teamB : next.teamA

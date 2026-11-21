@@ -2,10 +2,11 @@ import { useMemo } from 'react'
 import type { SwissStage } from '../../../data/schemas/event-config.ts'
 import { type KnownMatch, swissBracket } from '../../../engine/swiss/bracket.ts'
 import { stageSeeds } from '../../../engine/swiss/stage-seeds.ts'
+import { FreshnessBar } from '../components/FreshnessBar.tsx'
 import { OddsTable } from '../components/OddsTable.tsx'
 import { SwissBracket } from '../components/SwissBracket.tsx'
 import { TeamPanel } from '../components/TeamPanel.tsx'
-import { type EventData, modifiers, params, ratings, teamName } from '../lib/data.ts'
+import { type EventData, modifiers, params, ratings, syncStatus, teamName } from '../lib/data.ts'
 import { shortDate } from '../lib/format.ts'
 import { readWhatIf, toggleOverride, writeWhatIf } from '../lib/overrides.ts'
 import { setQuery } from '../lib/router.ts'
@@ -127,6 +128,7 @@ export function StagePage({ event, stage, query }: Props) {
           {sim.running && <span className="text-accent"> · simulating</span>}
           {sim.final && sim.ms !== undefined && <span className="text-ink-3"> · {sim.ms} ms</span>}
         </p>
+        <FreshnessBar sync={syncStatus} stage={stage} ratingsAsOf={ratings.asOf} />
         <Legend
           overrides={whatIf.overrides.length}
           onReset={() => setQuery(writeWhatIf(query, { overrides: [] }))}
