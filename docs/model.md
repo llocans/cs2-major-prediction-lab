@@ -15,8 +15,10 @@ standings repo, "rank delta of 400 points = 90% chance of victory").
 VRS points are a _series_-level Elo (Valve runs Glicko with a fixed RD of 75, i.e. Elo). For a Bo3, the
 series win probability `P = p²(3 − 2p)` has slope 1.5 at p = 0.5, so a map-level gap is about 1/1.5 ≈ 0.67
 of the series gap. We use `perVrsPoint = 0.6` (slightly flatter, because VRS also rewards factors that are
-not strength). `rd = prior.rd` (60). Teams with fewer than `coldStartMaps` tier-1 maps in the last
-6 months get `coldStartRd` (110): Chinggis Warriors, Lynn Vision and DENDELE are the expected cases.
+not strength). `rd = prior.rd` (60). Teams with fewer than `coldStartSeries` (8) series against VRS
+top-50 teams in the last 6 months (from Valve's VRS match tables) get `coldStartRd` (110). With the
+2026-11-02 VRS data that is Chinggis Warriors (0) and FlyQuest (7); DENDELE (30) and Lynn Vision (16) have
+enough tier-1 series.
 
 ### Map strength
 
@@ -27,7 +29,8 @@ Per team and map, an `offset` from the team rating, with its own `rd` and sample
   `w_m = (won_m + shrinkMaps·w) / (n + shrinkMaps)`
 - `offset = 400·log10(w_m/(1−w_m)) − 400·log10(w/(1−w))`, clamped to ±`maxOffset`.
 - `rd_map = newMapRd × sqrt(shrinkMaps / (n + shrinkMaps))`. A map with no data (Cache) has offset 0 and
-  `rd_map = newMapRd`.
+  `rd_map = newMapRd` (80: roughly the spread of real map offsets, so missing data widens, but does not
+  flatten, predictions).
 - Modifiers (`data/model/modifiers.json`) add `delta` to a team (or one map), clamped to
   ±`modifiers.maxAbs`, and only until `expires`.
 

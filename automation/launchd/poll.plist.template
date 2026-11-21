@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Liquipedia poller. Installed by scripts/install-launchd.ts, which fills in the {{...}} values.
+  Runs every 10 minutes; the script itself exits quietly outside stage dates.
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>{{LABEL}}</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>{{NODE}}</string>
+    <string>--env-file-if-exists=.env</string>
+    <string>scripts/poll-liquipedia.ts</string>
+    <string>{{EVENT_ID}}</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>{{REPO}}</string>
+  <key>StartInterval</key>
+  <integer>600</integer>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>StandardOutPath</key>
+  <string>{{REPO}}/.cache/poller.log</string>
+  <key>StandardErrorPath</key>
+  <string>{{REPO}}/.cache/poller.log</string>
+</dict>
+</plist>

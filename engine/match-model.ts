@@ -11,6 +11,8 @@ export interface MatchModel {
   strength(team: string, map: MapId): number
   /** Team-level uncertainty (rd). */
   rd(team: string): number
+  /** Number of maps behind a team's map offset (0 = no map data). */
+  mapSamples(team: string, map: MapId): number
   /** Active modifiers for a team, for explanations. */
   modifiersFor(team: string): readonly Modifier[]
   vetoTemperature: number
@@ -62,6 +64,7 @@ export function buildMatchModel(
       if (!rating) throw new Error(`No rating for team "${team}"`)
       return rating.rd
     },
+    mapSamples: (team, map) => ratings.teams[team]?.maps[map]?.n ?? 0,
     modifiersFor: (team) => active.filter((m) => m.teamId === team),
     mapWin(a, b, map) {
       const key = `${a}|${b}|${map}`

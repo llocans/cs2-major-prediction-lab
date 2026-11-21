@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-11-21T15:40:41.013Z",
+  "reason": "prior for pgl-major-singapore-2026 (VRS + cold-start rule + map stats where available)",
+  "teams": {
+    "nip": {
+      "rating": 1538.4,
+      "rd": 60,
+      "maps": {},
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0015--ninjas_in_pyjamas--adamb-krimbo-sjuush-stavn-xkacpersky.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0015--ninjas_in_pyjamas--adamb-krimbo-sjuush-stavn-xkacpersky.md",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "parivision": {
+      "rating": 1536,
+      "rd": 60,
+      "maps": {},
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0016--parivision--fl1t-hobbit-jame-xielo-zweih.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0016--parivision--fl1t-hobbit-jame-xielo-zweih.md",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "heroic": {
+      "rating": 1528.8,
+      "rd": 60,
+      "maps": {},
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0018--heroic--brollan-chr1zn-martinezsa-nilo-susp.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0018--heroic--brollan-chr1zn-martinezsa-nilo-susp.md",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "faze": {
+      "rating": 1523.4,
+      "rd": 60,
+      "maps": {},
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0020--faze--frozen-jboen-jcobbb-neityu-twistzz.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0020--faze--frozen-jboen-jcobbb-neityu-twistzz.md",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "liquid": {
+      "rating": 1516.8,
+      "rd": 60,
+      "maps": {},
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0021--liquid--elige-jorko-jt-malbsmd-naf.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0021--liquid--elige-jorko-jt-malbsmd-naf.md",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "eternal-fire": {
+      "rating": 1507.8,
+      "rd": 60,
+      "maps": {},
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0022--eternal_fire--jottaaa-kvem-mistem-regali-soulfly.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0022--eternal_fire--jottaaa-kvem-mistem-regali-soulfly.md",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "100-thieves": {
+      "rating": 1506.6,
+      "rd": 60,
+      "maps": {},
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0023--100_thieves--device-gizmy-poiii-rain-sirah.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0023--100_thieves--device-gizmy-poiii-rain-sirah.md",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "9z": {
+      "rating": 1494,
+      "rd": 60,
+      "maps": {},
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0024--9z--dgt-huasopeek-luchov-max-meyern.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0024--9z--dgt-huasopeek-luchov-max-meyern.md",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "m80": {
+      "rating": 1493.4,
+      "rd": 60,
+      "maps": {},
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0025--m80--jba-lake-s1n-slaxz--swisher.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0025--m80--jba-lake-s1n-slaxz--swisher.md",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "dendele": {
+      "rating": 1479.6,
+      "rd": 60,
+      "maps": {},
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0029--dendele--doc-gafolo-koala-maxxkor-rdnzao.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0029--dendele--doc-gafolo-koala-maxxkor-rdnzao.md",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "imperial": {
+      "rating": 1443.6,
+      "rd": 60,
+      "maps": {},
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0035--imperial--chelo-decenty-noway-saadzin-vini.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0035--imperial--chelo-decenty-noway-saadzin-vini.md",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "wildcard": {
+      "rating": 1434.6,
+      "rd": 60,
+      "maps": {},
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0038--wildcard--cxzi-fr3nd-hext-nemanha-reck.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0038--wildcard--cxzi-fr3nd-hext-nemanha-reck.md",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "bc-game": {
+      "rating": 1402.2,
+      "rd": 60,
+      "maps": {},
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0045--bc_game--asap-magisk-mzinho-s1mple-senzu.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0045--bc_game--asap-magisk-mzinho-s1mple-senzu.md",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "flyquest": {
+      "rating": 1390.8,
+      "rd": 110,
+      "maps": {},
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0048--flyquest--alistair-ins-jks-nettik-vexite.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0048--flyquest--alistair-ins-jks-nettik-vexite.md",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "chinggis-warriors": {
+      "rating": 1363.2,
+      "rd": 110,
+      "maps": {},
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0055--chinggis_warriors--cool4st-fury5k-roux-sk0r-tikuak.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0055--chinggis_warriors--cool4st-fury5k-roux-sk0r-tikuak.md",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "lynn-vision": {
+      "rating": 1360.2,
+      "rd": 60,
+      "maps": {},
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0056--lynn_vision--c4llm3su3-emiliaqaq-starry-westmelon-z4kr.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0056--lynn_vision--c4llm3su3-emiliaqaq-starry-westmelon-z4kr.md",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    }
+  }
+}

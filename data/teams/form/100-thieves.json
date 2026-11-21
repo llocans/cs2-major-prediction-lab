@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "teamId": "100-thieves",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 23,
+    "points": 1511
+  },
+  "roster": [
+    "device",
+    "Gizmy",
+    "poiii",
+    "rain",
+    "sirah"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 25,
+      "lost": 10
+    },
+    "vsTop30": {
+      "won": 5,
+      "lost": 10
+    },
+    "tier1Series": 28
+  },
+  "recent": [
+    {
+      "date": "2026-11-01",
+      "opponent": "Wildcard",
+      "opponentRank": 38,
+      "result": "W"
+    },
+    {
+      "date": "2026-11-01",
+      "opponent": "BESTIA",
+      "opponentRank": 49,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-31",
+      "opponent": "Isurus",
+      "opponentRank": 162,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-29",
+      "opponent": "Bounty Hunters",
+      "opponentRank": 94,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-29",
+      "opponent": "Arena Pro",
+      "result": "W"
+    },
+    {
+      "date": "2026-10-17",
+      "opponent": "HEROIC",
+      "opponentRank": 18,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-17",
+      "opponent": "MIBR",
+      "opponentRank": 19,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-16",
+      "opponent": "Sangal",
+      "opponentRank": 44,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-13",
+      "opponent": "Liquid",
+      "opponentRank": 21,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-13",
+      "opponent": "JiJieHao",
+      "opponentRank": 36,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "JiJieHao",
+      "opponentRank": 36,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "Voca",
+      "opponentRank": 79,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "SINNERS",
+      "opponentRank": 33,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "Eternal Fire",
+      "opponentRank": 22,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "Nordic Partners",
+      "opponentRank": 141,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "Lilmix",
+      "opponentRank": 197,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "Anteiku",
+      "result": "W"
+    },
+    {
+      "date": "2026-09-26",
+      "opponent": "HEROIC",
+      "opponentRank": 18,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-26",
+      "opponent": "Astralis",
+      "opponentRank": 14,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-25",
+      "opponent": "BBL",
+      "opponentRank": 42,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0023--100_thieves--device-gizmy-poiii-rain-sirah.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0023--100_thieves--device-gizmy-poiii-rain-sirah.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

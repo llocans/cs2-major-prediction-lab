@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "faze",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 20,
+    "points": 1539
+  },
+  "roster": [
+    "frozen",
+    "JBOEN",
+    "jcobbb",
+    "Neityu",
+    "Twistzz"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 12,
+      "lost": 8
+    },
+    "vsTop30": {
+      "won": 9,
+      "lost": 8
+    },
+    "tier1Series": 28
+  },
+  "recent": [
+    {
+      "date": "2026-10-29",
+      "opponent": "B8",
+      "opponentRank": 28,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-29",
+      "opponent": "GamerLegion",
+      "opponentRank": 37,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-27",
+      "opponent": "K27",
+      "opponentRank": 34,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-27",
+      "opponent": "Alliance",
+      "opponentRank": 52,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-22",
+      "opponent": "BC.Game",
+      "opponentRank": 45,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-21",
+      "opponent": "HEROIC",
+      "opponentRank": 18,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-21",
+      "opponent": "Envy",
+      "opponentRank": 43,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-21",
+      "opponent": "JiJieHao",
+      "opponentRank": 36,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-20",
+      "opponent": "ASTRAL",
+      "opponentRank": 99,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-10",
+      "opponent": "NAVI Junior",
+      "opponentRank": 80,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-10",
+      "opponent": "NAVI Junior",
+      "opponentRank": 80,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-09",
+      "opponent": "PURE",
+      "opponentRank": 66,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-08",
+      "opponent": "Sangal",
+      "opponentRank": 44,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "Astralis",
+      "opponentRank": 14,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-01",
+      "opponent": "Nemiga",
+      "opponentRank": 10,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-09",
+      "opponent": "magic",
+      "opponentRank": 41,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-08",
+      "opponent": "Alliance",
+      "opponentRank": 52,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-20",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-13",
+      "opponent": "Legacy",
+      "opponentRank": 9,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-12",
+      "opponent": "BETBOOM",
+      "opponentRank": 6,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0020--faze--frozen-jboen-jcobbb-neityu-twistzz.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0020--faze--frozen-jboen-jcobbb-neityu-twistzz.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

@@ -8,12 +8,12 @@
     "perVrsPoint": 0.6,
     "rd": 60,
     "coldStartRd": 110,
-    "coldStartMaps": 20
+    "coldStartSeries": 8
   },
   "maps": {
     "shrinkMaps": 12,
     "maxOffset": 120,
-    "newMapRd": 120
+    "newMapRd": 80
   },
   "update": {
     "k": 24,

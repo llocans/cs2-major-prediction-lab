@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "9z",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 24,
+    "points": 1490
+  },
+  "roster": [
+    "dgt",
+    "HUASOPEEK",
+    "luchov",
+    "max",
+    "meyern"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 5,
+      "lost": 14
+    },
+    "vsTop30": {
+      "won": 12,
+      "lost": 18
+    },
+    "tier1Series": 35
+  },
+  "recent": [
+    {
+      "date": "2026-10-26",
+      "opponent": "TYLOO",
+      "opponentRank": 59,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-25",
+      "opponent": "MOUZ",
+      "opponentRank": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-24",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-16",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-15",
+      "opponent": "Falcons",
+      "opponentRank": 7,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-14",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-07",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-06",
+      "opponent": "BETBOOM",
+      "opponentRank": 6,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-05",
+      "opponent": "Natus Vincere",
+      "opponentRank": 13,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-04",
+      "opponent": "TYLOO",
+      "opponentRank": 59,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-09",
+      "opponent": "G2",
+      "opponentRank": 11,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-09",
+      "opponent": "MIBR",
+      "opponentRank": 19,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-07",
+      "opponent": "5star",
+      "opponentRank": 68,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-29",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-27",
+      "opponent": "MOUZ",
+      "opponentRank": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-16",
+      "opponent": "magic",
+      "opponentRank": 41,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-15",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-12",
+      "opponent": "paiN",
+      "opponentRank": 53,
+      "result": "W"
+    },
+    {
+      "date": "2026-07-12",
+      "opponent": "PARIVISION",
+      "opponentRank": 16,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0024--9z--dgt-huasopeek-luchov-max-meyern.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0024--9z--dgt-huasopeek-luchov-max-meyern.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

@@ -42,8 +42,8 @@ export const ModelParams = z.object({
     perVrsPoint: z.number(),
     rd: z.number().positive(),
     coldStartRd: z.number().positive(),
-    /** Teams with fewer tier-1 maps than this in the window get coldStartRd. */
-    coldStartMaps: z.number().int().nonnegative(),
+    /** Teams with fewer series than this vs VRS top-50 teams in the last 6 months get coldStartRd. */
+    coldStartSeries: z.number().int().nonnegative(),
   }),
   maps: z.object({
     /** Pseudo-count of maps pulling a map offset toward 0 (the overall rating). */

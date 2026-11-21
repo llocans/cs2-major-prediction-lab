@@ -2,8 +2,8 @@ import type { ModelParams } from '../../data/schemas/model.ts'
 
 export interface PriorInput {
   vrsPoints: number
-  /** Tier-1 maps played in the research window. Below params.prior.coldStartMaps = cold start. */
-  tier1Maps: number
+  /** Series vs VRS top-50 teams in the last 6 months. Below params.prior.coldStartSeries = cold start. */
+  tier1Series: number
 }
 
 /** Rating prior from VRS points (see docs/model.md, "Prior"). */
@@ -11,9 +11,9 @@ export function priorRating(
   input: PriorInput,
   params: ModelParams,
 ): { rating: number; rd: number } {
-  const { base, vrsCenter, perVrsPoint, rd, coldStartRd, coldStartMaps } = params.prior
+  const { base, vrsCenter, perVrsPoint, rd, coldStartRd, coldStartSeries } = params.prior
   return {
     rating: base + perVrsPoint * (input.vrsPoints - vrsCenter),
-    rd: input.tier1Maps < coldStartMaps ? coldStartRd : rd,
+    rd: input.tier1Series < coldStartSeries ? coldStartRd : rd,
   }
 }

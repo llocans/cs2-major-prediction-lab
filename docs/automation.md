@@ -10,7 +10,10 @@ Three layers. Built in stages: the Stage 1 critical path first (poller), the res
 
 - launchd does not run while the Mac sleeps; a missed interval runs once on wake. Keep the Mac awake on
   match days (Stage 1 starts 05:00 CET, Nov 24-27).
-- Plists live in `automation/launchd/`; `scripts/install-launchd.ts` installs them.
+- The plist template lives in `automation/launchd/`. Install with
+  `node scripts/install-launchd.ts pgl-major-singapore-2026`, remove with `--uninstall`. Logs: `.cache/poller.log`.
+- The poller picks the Swiss stage whose dates (±1 day) contain today and exits quietly otherwise.
+- It needs `LIQUIPEDIA_CONTACT` in `.env`.
 - Commits: manual during Stage 1; the poller commits `data:` changes to main from Stage 2 on.
 
 ## 2. Desktop scheduled tasks (Claude judgment)

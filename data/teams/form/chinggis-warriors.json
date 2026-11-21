@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "teamId": "chinggis-warriors",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 55,
+    "points": 1272
+  },
+  "roster": [
+    "cool4st",
+    "fury5k",
+    "ROUX",
+    "sk0R",
+    "tikuak"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 22,
+      "lost": 8
+    },
+    "vsTop30": {
+      "won": 0,
+      "lost": 0
+    },
+    "tier1Series": 0
+  },
+  "recent": [
+    {
+      "date": "2026-10-29",
+      "opponent": "The Audacity",
+      "result": "W"
+    },
+    {
+      "date": "2026-10-28",
+      "opponent": "5star",
+      "opponentRank": 68,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-28",
+      "opponent": "The Audacity",
+      "result": "L"
+    },
+    {
+      "date": "2026-10-27",
+      "opponent": "the ONE",
+      "opponentRank": 318,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-24",
+      "opponent": "Lynn Vision",
+      "opponentRank": 56,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-23",
+      "opponent": "Rare Atom",
+      "opponentRank": 122,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-22",
+      "opponent": "Lynn Vision",
+      "opponentRank": 56,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-21",
+      "opponent": "NEXVOID",
+      "opponentRank": 71,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-20",
+      "opponent": "WXM",
+      "opponentRank": 338,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-12",
+      "opponent": "Alter Ego",
+      "opponentRank": 92,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-11",
+      "opponent": "Kaleido",
+      "opponentRank": 160,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-11",
+      "opponent": "5star",
+      "opponentRank": 68,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-11",
+      "opponent": "NEXVOID",
+      "opponentRank": 71,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-10",
+      "opponent": "THE UNIT",
+      "opponentRank": 235,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-10",
+      "opponent": "The Huns",
+      "opponentRank": 104,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-09",
+      "opponent": "BORING PLAYERS",
+      "result": "W"
+    },
+    {
+      "date": "2026-10-09",
+      "opponent": "the ONE",
+      "opponentRank": 318,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-08",
+      "opponent": "Lynn Vision",
+      "opponentRank": 56,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-08",
+      "opponent": "5star",
+      "opponentRank": 68,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-07",
+      "opponent": "Vitalem Aerem",
+      "opponentRank": 181,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0055--chinggis_warriors--cool4st-fury5k-roux-sk0r-tikuak.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0055--chinggis_warriors--cool4st-fury5k-roux-sk0r-tikuak.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

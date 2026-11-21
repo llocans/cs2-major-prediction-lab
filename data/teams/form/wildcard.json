@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "teamId": "wildcard",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 38,
+    "points": 1391
+  },
+  "roster": [
+    "Cxzi",
+    "fr3nd",
+    "HexT",
+    "nEMANHA",
+    "reck"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 14,
+      "lost": 10
+    },
+    "vsTop30": {
+      "won": 4,
+      "lost": 5
+    },
+    "tier1Series": 17
+  },
+  "recent": [
+    {
+      "date": "2026-11-01",
+      "opponent": "100 Thieves",
+      "opponentRank": 23,
+      "result": "L"
+    },
+    {
+      "date": "2026-11-01",
+      "opponent": "BARCA",
+      "opponentRank": 75,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-31",
+      "opponent": "NRG",
+      "opponentRank": 47,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-31",
+      "opponent": "Hacha",
+      "opponentRank": 344,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-30",
+      "opponent": "BESTIA",
+      "opponentRank": 49,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-30",
+      "opponent": "Hacha",
+      "opponentRank": 344,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-11",
+      "opponent": "DENDELE",
+      "opponentRank": 29,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-10",
+      "opponent": "DENDELE",
+      "opponentRank": 29,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-10",
+      "opponent": "NRG",
+      "opponentRank": 47,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-10",
+      "opponent": "Last Dance US",
+      "result": "W"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "INFINITE",
+      "opponentRank": 72,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "EAC",
+      "opponentRank": 123,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "NT",
+      "opponentRank": 89,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-27",
+      "opponent": "Liquid",
+      "opponentRank": 21,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-26",
+      "opponent": "DENDELE",
+      "opponentRank": 29,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-26",
+      "opponent": "NRG",
+      "opponentRank": 47,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-25",
+      "opponent": "Chicken Coop",
+      "opponentRank": 183,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-25",
+      "opponent": "NRG",
+      "opponentRank": 47,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-12",
+      "opponent": "BBL",
+      "opponentRank": 42,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-11",
+      "opponent": "Nemesis",
+      "opponentRank": 39,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0038--wildcard--cxzi-fr3nd-hext-nemanha-reck.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0038--wildcard--cxzi-fr3nd-hext-nemanha-reck.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

@@ -22,7 +22,7 @@ const params: ModelParams = {
     perVrsPoint: 0.6,
     rd: 60,
     coldStartRd: 110,
-    coldStartMaps: 20,
+    coldStartSeries: 8,
   },
   maps: { shrinkMaps: 12, maxOffset: 120, newMapRd: 120 },
   update: { k: 24, formatWeight: { bo1: 0.75, bo3: 1, bo5: 1 }, roundDiffWeight: 0.5, minRd: 45 },
@@ -94,11 +94,11 @@ describe('ratings', () => {
   })
 
   it('maps VRS points to the prior and widens rd on cold start', () => {
-    expect(priorRating({ vrsPoints: 1600, tier1Maps: 50 }, params)).toEqual({
+    expect(priorRating({ vrsPoints: 1600, tier1Series: 30 }, params)).toEqual({
       rating: 1560,
       rd: 60,
     })
-    expect(priorRating({ vrsPoints: 1400, tier1Maps: 5 }, params).rd).toBe(110)
+    expect(priorRating({ vrsPoints: 1400, tier1Series: 3 }, params).rd).toBe(110)
   })
 
   it('shrinks map offsets toward 0 for small samples', () => {

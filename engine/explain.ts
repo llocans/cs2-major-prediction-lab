@@ -44,10 +44,15 @@ export function matchReason(
   const favorite = overall >= 0 ? a : b
   parts.push(`${name(favorite)} +${Math.round(Math.abs(overall))} rating on average`)
 
-  const mapList = maps
-    .map((map) => `${mapName(map)} ${Math.round(model.mapWin(a, b, map) * 100)}%`)
-    .join(', ')
-  parts.push(`likely ${maps.length === 1 ? 'map' : 'maps'}: ${mapList} for ${name(a)}`)
+  const hasMapData = (team: string) => model.mapPool.some((map) => model.mapSamples(team, map) > 0)
+  if (hasMapData(a) && hasMapData(b)) {
+    const mapList = maps
+      .map((map) => `${mapName(map)} ${Math.round(model.mapWin(a, b, map) * 100)}%`)
+      .join(', ')
+    parts.push(`likely ${maps.length === 1 ? 'map' : 'maps'}: ${mapList} for ${name(a)}`)
+  } else {
+    parts.push('no map data yet, all maps rated equal')
+  }
 
   for (const team of [a, b]) {
     for (const modifier of model.modifiersFor(team)) {
