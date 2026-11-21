@@ -14,6 +14,9 @@ Three layers. Built in stages: the Stage 1 critical path first (poller), the res
   `node scripts/install-launchd.ts pgl-major-singapore-2026`, remove with `--uninstall`. Logs: `.cache/poller.log`.
 - The poller picks the Swiss stage whose dates (±1 day) contain today and exits quietly otherwise.
 - It needs `LIQUIPEDIA_CONTACT` in `.env`.
+- Every run writes `.cache/sync-status.json` (local only): when it checked, what it read, the last
+  change, or the error. The stage page's freshness bar shows it and turns red when a check failed or
+  no check happened for 25+ minutes during a stage (Mac asleep, poller stopped).
 - Commits: with `--commit` (installer: `node scripts/install-launchd.ts <event> --commit`) the poller
   validates all data and commits only `data/` and `docs/changelog.md` to main, then pushes. It does
   nothing on another branch, and a failed push is logged (the commit goes out with the next push).

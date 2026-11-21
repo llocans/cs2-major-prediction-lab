@@ -18,6 +18,7 @@ import {
   TeamForm,
   TeamRegistry,
 } from '../../../data/schemas/index.ts'
+import { SyncStatus } from '../../../data/schemas/sync.ts'
 import registryJson from '../../../data/teams/registry.json'
 
 const configs = import.meta.glob('../../../data/events/*/config.json', {
@@ -40,6 +41,11 @@ const benchmarkFiles = import.meta.glob('../../../data/events/*/benchmarks.json'
   eager: true,
   import: 'default',
 })
+// Written by the poller on every run; local only (gitignored), so it is absent in a static build.
+const syncFiles = import.meta.glob('../../../.cache/sync-status.json', {
+  eager: true,
+  import: 'default',
+})
 const formFiles = import.meta.glob('../../../data/teams/form/*.json', {
   eager: true,
   import: 'default',
@@ -49,6 +55,14 @@ export const params = ModelParams.parse(paramsJson)
 export const modifiers = Modifiers.parse(modifiersJson).modifiers
 export const ratings = Ratings.parse(ratingsJson)
 export const registry = TeamRegistry.parse(registryJson)
+
+/** Status of the automatic result fetching on this machine, if the poller has run here. */
+export const syncStatus = (() => {
+  const raw = Object.values(syncFiles)[0]
+  if (raw === undefined) return undefined
+  const parsed = SyncStatus.safeParse(raw)
+  return parsed.success ? parsed.data : undefined
+})()
 
 export const forms = new Map(
   Object.values(formFiles).map((raw) => {

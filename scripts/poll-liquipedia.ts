@@ -16,6 +16,7 @@ import { commitData } from './lib/git.ts'
 import { getPage } from './lib/liquipedia.ts'
 import { readStagePage } from './lib/liquipedia-results.ts'
 import { ensureRoundSnapshot, logResults } from './lib/log-results.ts'
+import { writeSyncStatus } from './lib/sync-status.ts'
 import { validateAllData } from './lib/validate-data.ts'
 
 const args = process.argv.slice(2)
@@ -61,14 +62,36 @@ for (const candidate of candidates) {
   break
 }
 
-if (stage?.liquipediaPage) {
-  await poll(stage, stage.liquipediaPage)
-} else {
-  log(`${eventId}: no unfinished Swiss stage to poll on ${today}, nothing to do`)
+let revid: number | undefined
+try {
+  if (stage?.liquipediaPage) {
+    revid = await poll(stage, stage.liquipediaPage)
+  } else {
+    log(`${eventId}: no unfinished Swiss stage to poll on ${today}, nothing to do`)
+  }
+  commitIfChanged()
+} catch (error) {
+  // Record the failure for the site's freshness bar, then fail loudly for launchd's log.
+  writeSyncStatus({
+    eventId,
+    outcome: 'error',
+    ...(stage ? { stageId: stage.id } : {}),
+    message: String(error).slice(0, 300),
+  })
+  throw error
 }
-commitIfChanged()
+writeSyncStatus(
+  {
+    eventId,
+    outcome: stage ? 'checked' : 'idle',
+    ...(stage ? { stageId: stage.id } : {}),
+    ...(revid !== undefined ? { liquipediaRevid: revid } : {}),
+  },
+  changes.length > 0 ? changes.join('; ') : undefined,
+)
 
-async function poll(current: SwissStage, pageTitle: string): Promise<void> {
+/** Reads one stage page and logs what is new. Returns the Liquipedia revision that was read. */
+async function poll(current: SwissStage, pageTitle: string): Promise<number> {
   const stageId = current.id
   const registry = readJson(repoPath('data/teams/registry.json'), TeamRegistry)
   const teamByLiquipedia = new Map(
@@ -115,6 +138,7 @@ async function poll(current: SwissStage, pageTitle: string): Promise<void> {
   if (outcome.logged.length > 0) changes.push(`${stageId} ${outcome.logged.length} result(s)`)
   if (snapshot === 'saved') changes.push(`${stageId} snapshot`)
   advanceIfFinished(stageId)
+  return page.revid
 }
 
 function commitIfChanged(): void {
