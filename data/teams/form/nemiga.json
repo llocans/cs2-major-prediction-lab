@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "nemiga",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 10,
+    "points": 1650
+  },
+  "roster": [
+    "KaiR0N-",
+    "khaN",
+    "robo",
+    "syph0",
+    "Xant3r"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 40,
+      "lost": 15
+    },
+    "vsTop30": {
+      "won": 11,
+      "lost": 9
+    },
+    "tier1Series": 31
+  },
+  "recent": [
+    {
+      "date": "2026-10-31",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-30",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-29",
+      "opponent": "FUT",
+      "opponentRank": 8,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-28",
+      "opponent": "The MongolZ",
+      "opponentRank": 17,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-27",
+      "opponent": "DENDELE",
+      "opponentRank": 29,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-26",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-25",
+      "opponent": "BETBOOM",
+      "opponentRank": 6,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-24",
+      "opponent": "Legacy",
+      "opponentRank": 9,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-10",
+      "opponent": "Iberian Soul",
+      "opponentRank": 54,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-09",
+      "opponent": "Gothic",
+      "opponentRank": 191,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-08",
+      "opponent": "Lavked",
+      "opponentRank": 127,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-04",
+      "opponent": "Astralis",
+      "opponentRank": 14,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "Luminosity",
+      "opponentRank": 40,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "Alliance",
+      "opponentRank": 52,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-01",
+      "opponent": "FaZe",
+      "opponentRank": 20,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-28",
+      "opponent": "BET-M",
+      "opponentRank": 98,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-28",
+      "opponent": "FOKUS",
+      "opponentRank": 51,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-27",
+      "opponent": "Color",
+      "opponentRank": 76,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-26",
+      "opponent": "Black Phoenix",
+      "opponentRank": 78,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-25",
+      "opponent": "ex-INOX",
+      "opponentRank": 90,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0010--nemiga--kair0n--khan-robo-syph0-xant3r.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0010--nemiga--kair0n--khan-robo-syph0-xant3r.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "mibr",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 19,
+    "points": 1546
+  },
+  "roster": [
+    "insani",
+    "LNZ",
+    "nqz",
+    "tomaszin",
+    "venomzera"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 14,
+      "lost": 12
+    },
+    "vsTop30": {
+      "won": 11,
+      "lost": 17
+    },
+    "tier1Series": 40
+  },
+  "recent": [
+    {
+      "date": "2026-10-30",
+      "opponent": "Eternal Fire",
+      "opponentRank": 22,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-29",
+      "opponent": "fnatic",
+      "opponentRank": 27,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-28",
+      "opponent": "Inner Circle",
+      "opponentRank": 30,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-27",
+      "opponent": "Eternal Fire",
+      "opponentRank": 22,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-17",
+      "opponent": "Ninjas in Pyjamas",
+      "opponentRank": 15,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-17",
+      "opponent": "100 Thieves",
+      "opponentRank": 23,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-16",
+      "opponent": "Astralis",
+      "opponentRank": 14,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-15",
+      "opponent": "BC.Game",
+      "opponentRank": 45,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-15",
+      "opponent": "Envy",
+      "opponentRank": 43,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-15",
+      "opponent": "BC.Game",
+      "opponentRank": 45,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-19",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-19",
+      "opponent": "NRG",
+      "opponentRank": 47,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-18",
+      "opponent": "magic",
+      "opponentRank": 41,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-17",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-12",
+      "opponent": "Legacy",
+      "opponentRank": 9,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-11",
+      "opponent": "Alliance",
+      "opponentRank": 52,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-10",
+      "opponent": "BETBOOM",
+      "opponentRank": 6,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-09",
+      "opponent": "9z",
+      "opponentRank": 24,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-08",
+      "opponent": "The MongolZ",
+      "opponentRank": 17,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-03",
+      "opponent": "K27",
+      "opponentRank": 34,
+      "result": "L"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0019--mibr--insani-lnz-nqz-tomaszin-venomzera.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0019--mibr--insani-lnz-nqz-tomaszin-venomzera.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "teamId": "nemiga",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 49,
+    "played": 71
+  },
+  "maps": {
+    "ancient": {
+      "won": 13,
+      "played": 16
+    },
+    "mirage": {
+      "won": 11,
+      "played": 15
+    },
+    "dust2": {
+      "won": 9,
+      "played": 12
+    },
+    "cache": {
+      "won": 7,
+      "played": 11
+    },
+    "nuke": {
+      "won": 4,
+      "played": 8
+    },
+    "anubis": {
+      "won": 4,
+      "played": 8
+    },
+    "inferno": {
+      "won": 1,
+      "played": 1
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/7969/nemiga?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}

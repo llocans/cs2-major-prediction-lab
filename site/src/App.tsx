@@ -1,3 +1,4 @@
+import { stageSeeds } from '../../engine/swiss/stage-seeds.ts'
 import { currentEvent } from './lib/data.ts'
 import { type Route, useLocation } from './lib/router.ts'
 import { OverviewPage } from './pages/OverviewPage.tsx'
@@ -56,7 +57,7 @@ function Page({ route, query }: { route: Route; query: URLSearchParams }) {
       const stage = event.config.stages.find((s) => s.id === route.stageId)
       if (stage?.type !== 'swiss')
         return <PlaceholderPage title="Unknown stage" description="No such stage." />
-      const seeded = event.teams.participants.filter((p) => p.entryStage === stage.id).length
+      const seeded = stageSeeds(event.teams.participants, stage.id).length
       if (seeded < stage.teamCount) {
         return (
           <PlaceholderPage

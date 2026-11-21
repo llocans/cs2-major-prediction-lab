@@ -1,0 +1,1223 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-11-21T16:41:42.682Z",
+  "reason": "prior for pgl-major-singapore-2026 (VRS + cold-start rule + map stats where available)",
+  "teams": {
+    "nip": {
+      "rating": 1538.4,
+      "rd": 60,
+      "maps": {
+        "cache": {
+          "offset": -13.9,
+          "rd": 55.42562584220407,
+          "n": 13
+        },
+        "mirage": {
+          "offset": 0,
+          "rd": 56.568542494923804,
+          "n": 12
+        },
+        "ancient": {
+          "offset": 15.1,
+          "rd": 57.78520948116921,
+          "n": 11
+        },
+        "dust2": {
+          "offset": -70.4,
+          "rd": 61.96773353931867,
+          "n": 8
+        },
+        "inferno": {
+          "offset": -18.3,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "nuke": {
+          "offset": 93.6,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "anubis": {
+          "offset": -40,
+          "rd": 80,
+          "n": 0
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0015--ninjas_in_pyjamas--adamb-krimbo-sjuush-stavn-xkacpersky.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0015--ninjas_in_pyjamas--adamb-krimbo-sjuush-stavn-xkacpersky.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/4411/ninjas-in-pyjamas?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "parivision": {
+      "rating": 1536,
+      "rd": 60,
+      "maps": {
+        "ancient": {
+          "offset": 76.2,
+          "rd": 52.37229365663816,
+          "n": 16
+        },
+        "inferno": {
+          "offset": 23.2,
+          "rd": 56.568542494923804,
+          "n": 12
+        },
+        "dust2": {
+          "offset": -92.5,
+          "rd": 61.96773353931867,
+          "n": 8
+        },
+        "mirage": {
+          "offset": -16.8,
+          "rd": 61.96773353931867,
+          "n": 8
+        },
+        "cache": {
+          "offset": -7.1,
+          "rd": 67.21344403334447,
+          "n": 5
+        },
+        "anubis": {
+          "offset": -33,
+          "rd": 69.28203230275508,
+          "n": 4
+        },
+        "nuke": {
+          "offset": -40,
+          "rd": 80,
+          "n": 0
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0016--parivision--fl1t-hobbit-jame-xielo-zweih.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0016--parivision--fl1t-hobbit-jame-xielo-zweih.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/12467/parivision?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "heroic": {
+      "rating": 1528.8,
+      "rd": 60,
+      "maps": {
+        "dust2": {
+          "offset": -55.1,
+          "rd": 56.568542494923804,
+          "n": 12
+        },
+        "ancient": {
+          "offset": 53.7,
+          "rd": 57.78520948116921,
+          "n": 11
+        },
+        "inferno": {
+          "offset": 41.6,
+          "rd": 59.08391567007971,
+          "n": 10
+        },
+        "cache": {
+          "offset": -20.9,
+          "rd": 61.96773353931867,
+          "n": 8
+        },
+        "mirage": {
+          "offset": -37.6,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "nuke": {
+          "offset": 22.2,
+          "rd": 65.31972647421809,
+          "n": 6
+        },
+        "anubis": {
+          "offset": -40,
+          "rd": 80,
+          "n": 0
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0018--heroic--brollan-chr1zn-martinezsa-nilo-susp.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0018--heroic--brollan-chr1zn-martinezsa-nilo-susp.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/7175/heroic?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "faze": {
+      "rating": 1523.4,
+      "rd": 60,
+      "maps": {
+        "ancient": {
+          "offset": -61.9,
+          "rd": 57.78520948116921,
+          "n": 11
+        },
+        "dust2": {
+          "offset": -21.9,
+          "rd": 61.96773353931867,
+          "n": 8
+        },
+        "mirage": {
+          "offset": 48.1,
+          "rd": 61.96773353931867,
+          "n": 8
+        },
+        "nuke": {
+          "offset": 67.3,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "cache": {
+          "offset": -36,
+          "rd": 69.28203230275508,
+          "n": 4
+        },
+        "anubis": {
+          "offset": 8.3,
+          "rd": 69.28203230275508,
+          "n": 4
+        },
+        "inferno": {
+          "offset": -40,
+          "rd": 80,
+          "n": 0
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0020--faze--frozen-jboen-jcobbb-neityu-twistzz.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0020--faze--frozen-jboen-jcobbb-neityu-twistzz.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/6667/faze?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "liquid": {
+      "rating": 1516.8,
+      "rd": 60,
+      "maps": {
+        "mirage": {
+          "offset": 46.8,
+          "rd": 60.474315681476355,
+          "n": 9
+        },
+        "inferno": {
+          "offset": 46.8,
+          "rd": 60.474315681476355,
+          "n": 9
+        },
+        "cache": {
+          "offset": -37.9,
+          "rd": 61.96773353931867,
+          "n": 8
+        },
+        "anubis": {
+          "offset": 15.5,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "nuke": {
+          "offset": -22.7,
+          "rd": 67.21344403334447,
+          "n": 5
+        },
+        "dust2": {
+          "offset": -45.5,
+          "rd": 69.28203230275508,
+          "n": 4
+        },
+        "ancient": {
+          "offset": -24.7,
+          "rd": 71.55417527999327,
+          "n": 3
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0021--liquid--elige-jorko-jt-malbsmd-naf.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0021--liquid--elige-jorko-jt-malbsmd-naf.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/5973/liquid?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "eternal-fire": {
+      "rating": 1507.8,
+      "rd": 60,
+      "maps": {
+        "ancient": {
+          "offset": 53,
+          "rd": 53.33333333333333,
+          "n": 15
+        },
+        "mirage": {
+          "offset": -11.2,
+          "rd": 56.568542494923804,
+          "n": 12
+        },
+        "cache": {
+          "offset": -10.2,
+          "rd": 59.08391567007971,
+          "n": 10
+        },
+        "dust2": {
+          "offset": 21.6,
+          "rd": 59.08391567007971,
+          "n": 10
+        },
+        "inferno": {
+          "offset": -43.8,
+          "rd": 61.96773353931867,
+          "n": 8
+        },
+        "anubis": {
+          "offset": -26.6,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "nuke": {
+          "offset": -40,
+          "rd": 80,
+          "n": 0
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0022--eternal_fire--jottaaa-kvem-mistem-regali-soulfly.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0022--eternal_fire--jottaaa-kvem-mistem-regali-soulfly.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/11251/eternal-fire?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "100-thieves": {
+      "rating": 1506.6,
+      "rd": 60,
+      "maps": {
+        "dust2": {
+          "offset": 120,
+          "rd": 56.568542494923804,
+          "n": 12
+        },
+        "inferno": {
+          "offset": -44.8,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "ancient": {
+          "offset": -62.7,
+          "rd": 65.31972647421809,
+          "n": 6
+        },
+        "cache": {
+          "offset": 0,
+          "rd": 67.21344403334447,
+          "n": 5
+        },
+        "mirage": {
+          "offset": -61.7,
+          "rd": 69.28203230275508,
+          "n": 4
+        },
+        "anubis": {
+          "offset": -17.9,
+          "rd": 69.28203230275508,
+          "n": 4
+        },
+        "nuke": {
+          "offset": -10.3,
+          "rd": 74.0656079818041,
+          "n": 2
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0023--100_thieves--device-gizmy-poiii-rain-sirah.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0023--100_thieves--device-gizmy-poiii-rain-sirah.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/8474/100-thieves?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "9z": {
+      "rating": 1494,
+      "rd": 60,
+      "maps": {
+        "nuke": {
+          "offset": -26.7,
+          "rd": 59.08391567007971,
+          "n": 10
+        },
+        "mirage": {
+          "offset": 38.2,
+          "rd": 61.96773353931867,
+          "n": 8
+        },
+        "dust2": {
+          "offset": 51.2,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "inferno": {
+          "offset": 20.4,
+          "rd": 65.31972647421809,
+          "n": 6
+        },
+        "cache": {
+          "offset": -77.9,
+          "rd": 67.21344403334447,
+          "n": 5
+        },
+        "ancient": {
+          "offset": -35.4,
+          "rd": 74.0656079818041,
+          "n": 2
+        },
+        "anubis": {
+          "offset": -40,
+          "rd": 80,
+          "n": 0
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0024--9z--dgt-huasopeek-luchov-max-meyern.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0024--9z--dgt-huasopeek-luchov-max-meyern.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/9996/9z?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "m80": {
+      "rating": 1493.4,
+      "rd": 60,
+      "maps": {
+        "cache": {
+          "offset": 23.9,
+          "rd": 60.474315681476355,
+          "n": 9
+        },
+        "mirage": {
+          "offset": -11.3,
+          "rd": 60.474315681476355,
+          "n": 9
+        },
+        "dust2": {
+          "offset": 16.4,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "inferno": {
+          "offset": -38.2,
+          "rd": 67.21344403334447,
+          "n": 5
+        },
+        "anubis": {
+          "offset": 6.9,
+          "rd": 67.21344403334447,
+          "n": 5
+        },
+        "ancient": {
+          "offset": -5.3,
+          "rd": 71.55417527999327,
+          "n": 3
+        },
+        "nuke": {
+          "offset": -40,
+          "rd": 80,
+          "n": 0
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0025--m80--jba-lake-s1n-slaxz--swisher.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0025--m80--jba-lake-s1n-slaxz--swisher.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/12376/m80?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "dendele": {
+      "rating": 1479.6,
+      "rd": 60,
+      "maps": {
+        "mirage": {
+          "offset": 39.8,
+          "rd": 61.96773353931867,
+          "n": 8
+        },
+        "cache": {
+          "offset": -22,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "inferno": {
+          "offset": 72.6,
+          "rd": 65.31972647421809,
+          "n": 6
+        },
+        "ancient": {
+          "offset": -51.6,
+          "rd": 65.31972647421809,
+          "n": 6
+        },
+        "nuke": {
+          "offset": -21.7,
+          "rd": 69.28203230275508,
+          "n": 4
+        },
+        "anubis": {
+          "offset": -40.4,
+          "rd": 74.0656079818041,
+          "n": 2
+        },
+        "dust2": {
+          "offset": -40,
+          "rd": 80,
+          "n": 0
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0029--dendele--doc-gafolo-koala-maxxkor-rdnzao.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0029--dendele--doc-gafolo-koala-maxxkor-rdnzao.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/13926/dendele?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "imperial": {
+      "rating": 1443.6,
+      "rd": 60,
+      "maps": {
+        "inferno": {
+          "offset": -48.3,
+          "rd": 65.31972647421809,
+          "n": 6
+        },
+        "cache": {
+          "offset": 12,
+          "rd": 67.21344403334447,
+          "n": 5
+        },
+        "mirage": {
+          "offset": 12,
+          "rd": 67.21344403334447,
+          "n": 5
+        },
+        "nuke": {
+          "offset": 17.6,
+          "rd": 71.55417527999327,
+          "n": 3
+        },
+        "anubis": {
+          "offset": 17.6,
+          "rd": 71.55417527999327,
+          "n": 3
+        },
+        "dust2": {
+          "offset": -4.2,
+          "rd": 74.0656079818041,
+          "n": 2
+        },
+        "ancient": {
+          "offset": -40,
+          "rd": 80,
+          "n": 0
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0035--imperial--chelo-decenty-noway-saadzin-vini.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0035--imperial--chelo-decenty-noway-saadzin-vini.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/9455/imperial?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "wildcard": {
+      "rating": 1434.6,
+      "rd": 60,
+      "maps": {
+        "cache": {
+          "offset": 9.2,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "mirage": {
+          "offset": 9.2,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "inferno": {
+          "offset": -27.8,
+          "rd": 67.21344403334447,
+          "n": 5
+        },
+        "nuke": {
+          "offset": 37.9,
+          "rd": 69.28203230275508,
+          "n": 4
+        },
+        "dust2": {
+          "offset": -28.2,
+          "rd": 71.55417527999327,
+          "n": 3
+        },
+        "anubis": {
+          "offset": -3.6,
+          "rd": 74.0656079818041,
+          "n": 2
+        },
+        "ancient": {
+          "offset": -40,
+          "rd": 80,
+          "n": 0
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0038--wildcard--cxzi-fr3nd-hext-nemanha-reck.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0038--wildcard--cxzi-fr3nd-hext-nemanha-reck.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/12257/wildcard?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "bc-game": {
+      "rating": 1402.2,
+      "rd": 60,
+      "maps": {
+        "nuke": {
+          "offset": 34,
+          "rd": 67.21344403334447,
+          "n": 5
+        },
+        "ancient": {
+          "offset": -50.1,
+          "rd": 67.21344403334447,
+          "n": 5
+        },
+        "cache": {
+          "offset": 11.5,
+          "rd": 69.28203230275508,
+          "n": 4
+        },
+        "mirage": {
+          "offset": 11.5,
+          "rd": 69.28203230275508,
+          "n": 4
+        },
+        "dust2": {
+          "offset": 32.5,
+          "rd": 71.55417527999327,
+          "n": 3
+        },
+        "inferno": {
+          "offset": -44.9,
+          "rd": 74.0656079818041,
+          "n": 2
+        },
+        "anubis": {
+          "offset": -40,
+          "rd": 80,
+          "n": 0
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0045--bc_game--asap-magisk-mzinho-s1mple-senzu.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0045--bc_game--asap-magisk-mzinho-s1mple-senzu.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/12878/bcgame?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "flyquest": {
+      "rating": 1390.8,
+      "rd": 110,
+      "maps": {},
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0048--flyquest--alistair-ins-jks-nettik-vexite.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0048--flyquest--alistair-ins-jks-nettik-vexite.md",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "chinggis-warriors": {
+      "rating": 1363.2,
+      "rd": 110,
+      "maps": {
+        "nuke": {
+          "offset": 73.5,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "ancient": {
+          "offset": 35.4,
+          "rd": 67.21344403334447,
+          "n": 5
+        },
+        "inferno": {
+          "offset": -79.8,
+          "rd": 69.28203230275508,
+          "n": 4
+        },
+        "dust2": {
+          "offset": -63,
+          "rd": 71.55417527999327,
+          "n": 3
+        },
+        "cache": {
+          "offset": 7.2,
+          "rd": 74.0656079818041,
+          "n": 2
+        },
+        "anubis": {
+          "offset": -40,
+          "rd": 80,
+          "n": 0
+        },
+        "mirage": {
+          "offset": -40,
+          "rd": 80,
+          "n": 0
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0055--chinggis_warriors--cool4st-fury5k-roux-sk0r-tikuak.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0055--chinggis_warriors--cool4st-fury5k-roux-sk0r-tikuak.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/12646/chinggis-warriors?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "lynn-vision": {
+      "rating": 1360.2,
+      "rd": 60,
+      "maps": {
+        "dust2": {
+          "offset": 18.3,
+          "rd": 74.0656079818041,
+          "n": 2
+        },
+        "ancient": {
+          "offset": 18.3,
+          "rd": 74.0656079818041,
+          "n": 2
+        },
+        "inferno": {
+          "offset": -20.5,
+          "rd": 76.86151382644182,
+          "n": 1
+        },
+        "anubis": {
+          "offset": -20.5,
+          "rd": 76.86151382644182,
+          "n": 1
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0056--lynn_vision--c4llm3su3-emiliaqaq-starry-westmelon-z4kr.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0056--lynn_vision--c4llm3su3-emiliaqaq-starry-westmelon-z4kr.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/8840/lynn-vision?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "fut": {
+      "rating": 1632.6,
+      "rd": 60,
+      "maps": {
+        "dust2": {
+          "offset": -4.2,
+          "rd": 61.96773353931867,
+          "n": 8
+        },
+        "nuke": {
+          "offset": -22.2,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "ancient": {
+          "offset": 14.4,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "cache": {
+          "offset": 41.2,
+          "rd": 69.28203230275508,
+          "n": 4
+        },
+        "anubis": {
+          "offset": -2.6,
+          "rd": 69.28203230275508,
+          "n": 4
+        },
+        "mirage": {
+          "offset": -25.3,
+          "rd": 71.55417527999327,
+          "n": 3
+        },
+        "inferno": {
+          "offset": -40,
+          "rd": 80,
+          "n": 0
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0008--fut--cmtry-dem0n-dziugss-krabeni-xfl0ud.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0008--fut--cmtry-dem0n-dziugss-krabeni-xfl0ud.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/13286/fut?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "nemiga": {
+      "rating": 1590,
+      "rd": 60,
+      "maps": {
+        "ancient": {
+          "offset": 61.2,
+          "rd": 52.37229365663816,
+          "n": 16
+        },
+        "mirage": {
+          "offset": 19.9,
+          "rd": 53.33333333333333,
+          "n": 15
+        },
+        "dust2": {
+          "offset": 25,
+          "rd": 56.568542494923804,
+          "n": 12
+        },
+        "cache": {
+          "offset": -20.4,
+          "rd": 57.78520948116921,
+          "n": 11
+        },
+        "nuke": {
+          "offset": -58.4,
+          "rd": 61.96773353931867,
+          "n": 8
+        },
+        "anubis": {
+          "offset": -58.4,
+          "rd": 61.96773353931867,
+          "n": 8
+        },
+        "inferno": {
+          "offset": 19.8,
+          "rd": 76.86151382644182,
+          "n": 1
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0010--nemiga--kair0n--khan-robo-syph0-xant3r.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0010--nemiga--kair0n--khan-robo-syph0-xant3r.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/7969/nemiga?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "g2": {
+      "rating": 1569.6,
+      "rd": 60,
+      "maps": {
+        "ancient": {
+          "offset": 73.5,
+          "rd": 55.42562584220407,
+          "n": 13
+        },
+        "inferno": {
+          "offset": 30.5,
+          "rd": 56.568542494923804,
+          "n": 12
+        },
+        "dust2": {
+          "offset": -37.9,
+          "rd": 59.08391567007971,
+          "n": 10
+        },
+        "mirage": {
+          "offset": 24.4,
+          "rd": 61.96773353931867,
+          "n": 8
+        },
+        "anubis": {
+          "offset": 20.4,
+          "rd": 65.31972647421809,
+          "n": 6
+        },
+        "nuke": {
+          "offset": -93.3,
+          "rd": 67.21344403334447,
+          "n": 5
+        },
+        "cache": {
+          "offset": -78.2,
+          "rd": 69.28203230275508,
+          "n": 4
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0011--g2--heavygod-hunter--matys-nertz-r1nkle.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0011--g2--heavygod-hunter--matys-nertz-r1nkle.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/5995/g2?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "1win": {
+      "rating": 1558.8,
+      "rd": 60,
+      "maps": {
+        "dust2": {
+          "offset": 0,
+          "rd": 54.3492976389406,
+          "n": 14
+        },
+        "mirage": {
+          "offset": 55.3,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "ancient": {
+          "offset": -78.5,
+          "rd": 65.31972647421809,
+          "n": 6
+        },
+        "anubis": {
+          "offset": 0,
+          "rd": 65.31972647421809,
+          "n": 6
+        },
+        "cache": {
+          "offset": -23.2,
+          "rd": 71.55417527999327,
+          "n": 3
+        },
+        "inferno": {
+          "offset": 50,
+          "rd": 74.0656079818041,
+          "n": 2
+        },
+        "nuke": {
+          "offset": -40,
+          "rd": 80,
+          "n": 0
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0012--1win--artfr0st-ax1le-belchonokk-fame-nafany.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0012--1win--artfr0st-ax1le-belchonokk-fame-nafany.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/10621/1win?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "navi": {
+      "rating": 1553.4,
+      "rd": 60,
+      "maps": {
+        "mirage": {
+          "offset": -64.5,
+          "rd": 56.568542494923804,
+          "n": 12
+        },
+        "inferno": {
+          "offset": -37.3,
+          "rd": 59.08391567007971,
+          "n": 10
+        },
+        "cache": {
+          "offset": 30,
+          "rd": 61.96773353931867,
+          "n": 8
+        },
+        "ancient": {
+          "offset": 65.8,
+          "rd": 61.96773353931867,
+          "n": 8
+        },
+        "dust2": {
+          "offset": -22.9,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "nuke": {
+          "offset": 13.8,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "anubis": {
+          "offset": 40.7,
+          "rd": 69.28203230275508,
+          "n": 4
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0013--natus_vincere--aleksib-b1t-im-makazze-w0nderful.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0013--natus_vincere--aleksib-b1t-im-makazze-w0nderful.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/4608/natus-vincere?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "astralis": {
+      "rating": 1543.2,
+      "rd": 60,
+      "maps": {
+        "ancient": {
+          "offset": 19.6,
+          "rd": 55.42562584220407,
+          "n": 13
+        },
+        "cache": {
+          "offset": 37.4,
+          "rd": 56.568542494923804,
+          "n": 12
+        },
+        "nuke": {
+          "offset": -14.6,
+          "rd": 65.31972647421809,
+          "n": 6
+        },
+        "dust2": {
+          "offset": 50.6,
+          "rd": 67.21344403334447,
+          "n": 5
+        },
+        "mirage": {
+          "offset": -33.4,
+          "rd": 67.21344403334447,
+          "n": 5
+        },
+        "inferno": {
+          "offset": -33.4,
+          "rd": 67.21344403334447,
+          "n": 5
+        },
+        "anubis": {
+          "offset": -56.1,
+          "rd": 74.0656079818041,
+          "n": 2
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0014--astralis--jabbi-phzy-ryu-siuhy-staehr.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0014--astralis--jabbi-phzy-ryu-siuhy-staehr.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/6665/astralis?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "the-mongolz": {
+      "rating": 1532.4,
+      "rd": 60,
+      "maps": {
+        "inferno": {
+          "offset": -6.3,
+          "rd": 57.78520948116921,
+          "n": 11
+        },
+        "mirage": {
+          "offset": -52.8,
+          "rd": 61.96773353931867,
+          "n": 8
+        },
+        "dust2": {
+          "offset": 39.8,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "cache": {
+          "offset": -53.7,
+          "rd": 65.31972647421809,
+          "n": 6
+        },
+        "ancient": {
+          "offset": 80.7,
+          "rd": 69.28203230275508,
+          "n": 4
+        },
+        "nuke": {
+          "offset": 14.6,
+          "rd": 71.55417527999327,
+          "n": 3
+        },
+        "anubis": {
+          "offset": -40,
+          "rd": 80,
+          "n": 0
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0017--the_mongolz--910-blitz-cobrazera-nin9-techno.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0017--the_mongolz--910-blitz-cobrazera-nin9-techno.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/6248/the-mongolz?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    },
+    "mibr": {
+      "rating": 1527.6,
+      "rd": 60,
+      "maps": {
+        "mirage": {
+          "offset": -23.8,
+          "rd": 59.08391567007971,
+          "n": 10
+        },
+        "ancient": {
+          "offset": -23.8,
+          "rd": 59.08391567007971,
+          "n": 10
+        },
+        "inferno": {
+          "offset": 28.5,
+          "rd": 60.474315681476355,
+          "n": 9
+        },
+        "nuke": {
+          "offset": -21,
+          "rd": 61.96773353931867,
+          "n": 8
+        },
+        "cache": {
+          "offset": 37.3,
+          "rd": 63.5775531391221,
+          "n": 7
+        },
+        "anubis": {
+          "offset": 13.2,
+          "rd": 71.55417527999327,
+          "n": 3
+        },
+        "dust2": {
+          "offset": -40,
+          "rd": 80,
+          "n": 0
+        }
+      },
+      "sources": [
+        {
+          "name": "Valve VRS 2026-11-02: details/2026_11_02/0019--mibr--insani-lnz-nqz-tomaszin-venomzera.md",
+          "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0019--mibr--insani-lnz-nqz-tomaszin-venomzera.md",
+          "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+          "url": "https://www.hltv.org/stats/teams/maps/9215/mibr?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+          "retrievedAt": "2026-11-21"
+        }
+      ]
+    }
+  }
+}

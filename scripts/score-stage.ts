@@ -12,6 +12,7 @@ import {
   Snapshot,
 } from '../data/schemas/index.ts'
 import { brierScore, calibration, hitRate, type Scored } from '../engine/scoring.ts'
+import { stageSeeds } from '../engine/swiss/stage-seeds.ts'
 import { swissStandings } from '../engine/swiss/standings.ts'
 import { readJson, repoPath, repoRoot } from './lib/files.ts'
 
@@ -71,10 +72,7 @@ for (const snapshot of snapshots) {
 }
 
 // Team outcomes from the pre-stage snapshot, once the stage is complete.
-const seeds = teams.participants
-  .filter((p) => p.entryStage === stageId)
-  .sort((a, b) => a.stageSeed - b.stageSeed)
-  .map((p) => p.teamId)
+const seeds = stageSeeds(teams.participants, stageId)
 const rules = {
   winsToAdvance: stage.winsToAdvance,
   lossesToEliminate: stage.lossesToEliminate,

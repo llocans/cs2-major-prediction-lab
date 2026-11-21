@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "1win",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 12,
+    "points": 1598
+  },
+  "roster": [
+    "ArtFr0st",
+    "Ax1Le",
+    "BELCHONOKK",
+    "fame",
+    "nafany"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 24,
+      "lost": 12
+    },
+    "vsTop30": {
+      "won": 13,
+      "lost": 8
+    },
+    "tier1Series": 29
+  },
+  "recent": [
+    {
+      "date": "2026-11-01",
+      "opponent": "HOTU",
+      "opponentRank": 26,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-31",
+      "opponent": "5star",
+      "opponentRank": 68,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-09",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-06",
+      "opponent": "Spirit",
+      "opponentRank": 5,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-05",
+      "opponent": "Legacy",
+      "opponentRank": 9,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-04",
+      "opponent": "G2",
+      "opponentRank": 11,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-12",
+      "opponent": "HEROIC",
+      "opponentRank": 18,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-12",
+      "opponent": "B8",
+      "opponentRank": 28,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-11",
+      "opponent": "Ninjas in Pyjamas",
+      "opponentRank": 15,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-11",
+      "opponent": "Nemiga",
+      "opponentRank": 10,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-10",
+      "opponent": "FOKUS",
+      "opponentRank": 51,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-10",
+      "opponent": "B8",
+      "opponentRank": 28,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-09",
+      "opponent": "INFINITE",
+      "opponentRank": 72,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-09",
+      "opponent": "Nuclear TigeRES",
+      "opponentRank": 58,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-06",
+      "opponent": "HEROIC",
+      "opponentRank": 18,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-06",
+      "opponent": "ASTRAL",
+      "opponentRank": 99,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-06",
+      "opponent": "GenOne",
+      "opponentRank": 102,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-04",
+      "opponent": "BRUTE",
+      "opponentRank": 67,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-04",
+      "opponent": "Bushido Wildcats",
+      "opponentRank": 133,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0012--1win--artfr0st-ax1le-belchonokk-fame-nafany.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0012--1win--artfr0st-ax1le-belchonokk-fame-nafany.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

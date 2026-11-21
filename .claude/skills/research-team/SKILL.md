@@ -28,8 +28,8 @@ Every fact gets a date and a source. Never invent stats; if a source is unreacha
 5. **Modifiers** (`data/model/modifiers.json`) only for things the numbers can't see yet (stand-in,
    illness, a new player with no maps). Each needs `delta` within ±40, a reason of 10+ characters, a
    source, `createdAt`, and an `expires` date no later than the event end. Remove ones that no longer apply.
-6. **Never** run `scripts/build-ratings.ts` once the event has results (it refuses without `--force`):
-   that would wipe the rating updates from real matches.
+6. Once the event has results, `scripts/build-ratings.ts` only adds teams that have no rating yet
+   (later-stage invites). Never pass `--force` mid-event: it would wipe the updates from real matches.
 7. `npm run validate`, then commit data straight to main:
    `git add data && git commit -m "data: research <team or stage>" && git push`.
 8. Reply in 3 lines or fewer: what changed and any modifier added or removed.

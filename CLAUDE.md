@@ -33,7 +33,9 @@ future events too: formats live in config, never in code.
   - `research/team-files.ts <event>` → lean `data/teams/<id>.md` (never overwrites)
   - `research/liquipedia-rosters.ts <event>` → dated rosters in `registry.json` (Liquipedia API)
   - `research/import-map-stats.ts <file> <from> <to> Top50` → `data/teams/maps/` (HLTV counts)
-  - `build-ratings.ts <event>` → `data/ratings/current.json` (VRS prior + map stats; refuses once results exist)
+  - `build-ratings.ts <event>` → `data/ratings/current.json` (VRS prior + map stats; once results exist it only adds missing teams)
+  - `advance` happens automatically: when a Swiss stage finishes, the poller seeds its 8 advancing teams
+    into the next stage (seeds 9-16) and saves that stage's round 1 snapshot
   - `score-stage.ts <event> <stage>` → score block in `data/events/<id>/accuracy.md`
   - `simulate.ts <event> <stage>` (prints odds) · `snapshot.ts <event> <stage>` (pre-round, once)
   - `log-result.ts ...` (manual) · `poll-liquipedia.ts <event>` (launchd; needs `LIQUIPEDIA_CONTACT`)

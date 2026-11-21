@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "astralis",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 14,
+    "points": 1572
+  },
+  "roster": [
+    "jabbi",
+    "phzy",
+    "ryu",
+    "siuhy",
+    "Staehr"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 15,
+      "lost": 9
+    },
+    "vsTop30": {
+      "won": 10,
+      "lost": 12
+    },
+    "tier1Series": 31
+  },
+  "recent": [
+    {
+      "date": "2026-10-29",
+      "opponent": "Eternal Fire",
+      "opponentRank": 22,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-29",
+      "opponent": "Inner Circle",
+      "opponentRank": 30,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-28",
+      "opponent": "magic",
+      "opponentRank": 41,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-27",
+      "opponent": "fnatic",
+      "opponentRank": 27,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-16",
+      "opponent": "MIBR",
+      "opponentRank": 19,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-14",
+      "opponent": "HOTU",
+      "opponentRank": 26,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-14",
+      "opponent": "Sashi",
+      "opponentRank": 105,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-04",
+      "opponent": "Nemiga",
+      "opponentRank": 10,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-04",
+      "opponent": "Luminosity",
+      "opponentRank": 40,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "fnatic",
+      "opponentRank": 27,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "BIG",
+      "opponentRank": 32,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "FaZe",
+      "opponentRank": 20,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-01",
+      "opponent": "Alliance",
+      "opponentRank": 52,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-26",
+      "opponent": "100 Thieves",
+      "opponentRank": 23,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-25",
+      "opponent": "Betclic",
+      "opponentRank": 50,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-21",
+      "opponent": "FOKUS",
+      "opponentRank": 51,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-21",
+      "opponent": "Sangal",
+      "opponentRank": 44,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-10",
+      "opponent": "5star",
+      "opponentRank": 68,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-09",
+      "opponent": "BETBOOM",
+      "opponentRank": 6,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-08",
+      "opponent": "G2",
+      "opponentRank": 11,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0014--astralis--jabbi-phzy-ryu-siuhy-staehr.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0014--astralis--jabbi-phzy-ryu-siuhy-staehr.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

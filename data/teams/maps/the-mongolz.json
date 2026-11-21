@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "teamId": "the-mongolz",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 22,
+    "played": 39
+  },
+  "maps": {
+    "inferno": {
+      "won": 6,
+      "played": 11
+    },
+    "mirage": {
+      "won": 3,
+      "played": 8
+    },
+    "dust2": {
+      "won": 5,
+      "played": 7
+    },
+    "cache": {
+      "won": 2,
+      "played": 6
+    },
+    "ancient": {
+      "won": 4,
+      "played": 4
+    },
+    "nuke": {
+      "won": 2,
+      "played": 3
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/6248/the-mongolz?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}

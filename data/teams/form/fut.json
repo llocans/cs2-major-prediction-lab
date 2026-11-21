@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "fut",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 8,
+    "points": 1721
+  },
+  "roster": [
+    "dem0n",
+    "dziugss",
+    "Krabeni",
+    "SunPayus",
+    "xfl0ud"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 10,
+      "lost": 4
+    },
+    "vsTop30": {
+      "won": 10,
+      "lost": 8
+    },
+    "tier1Series": 22
+  },
+  "recent": [
+    {
+      "date": "2026-10-29",
+      "opponent": "Nemiga",
+      "opponentRank": 10,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-26",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-25",
+      "opponent": "Liquid",
+      "opponentRank": 21,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-24",
+      "opponent": "TYLOO",
+      "opponentRank": 59,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-31",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-30",
+      "opponent": "Inner Circle",
+      "opponentRank": 30,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-29",
+      "opponent": "Lynn Vision",
+      "opponentRank": 56,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-27",
+      "opponent": "Legacy",
+      "opponentRank": 9,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-23",
+      "opponent": "Spirit",
+      "opponentRank": 5,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-22",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-21",
+      "opponent": "MOUZ",
+      "opponentRank": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-19",
+      "opponent": "magic",
+      "opponentRank": 41,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-14",
+      "opponent": "MOUZ",
+      "opponentRank": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-12",
+      "opponent": "TYLOO",
+      "opponentRank": 59,
+      "result": "W"
+    },
+    {
+      "date": "2026-07-26",
+      "opponent": "Envy",
+      "opponentRank": 43,
+      "result": "L"
+    },
+    {
+      "date": "2026-07-23",
+      "opponent": "SINNERS",
+      "opponentRank": 33,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-15",
+      "opponent": "BETBOOM",
+      "opponentRank": 6,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-14",
+      "opponent": "MOUZ",
+      "opponentRank": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-13",
+      "opponent": "B8",
+      "opponentRank": 28,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-12",
+      "opponent": "G2",
+      "opponentRank": 11,
+      "result": "L"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0008--fut--cmtry-dem0n-dziugss-krabeni-xfl0ud.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0008--fut--cmtry-dem0n-dziugss-krabeni-xfl0ud.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

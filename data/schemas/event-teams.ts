@@ -9,6 +9,11 @@ export const EventParticipant = z.object({
   entryStage: z.string(),
   /** Seed within the entry stage (1-16). */
   stageSeed: z.number().int().min(1).max(16),
+  /**
+   * Seeds in later stages the team reached by advancing, e.g. { "stage-2": 11 }. Written by
+   * scripts/lib/advance.ts from the previous stage's final standings (Valve mid-stage seeding).
+   */
+  advancedSeeds: z.record(z.string(), z.number().int().min(1).max(16)).optional(),
   /** VRS points at the invite cutoff, used as the rating prior. */
   vrsPoints: z.number().nonnegative().optional(),
 })
