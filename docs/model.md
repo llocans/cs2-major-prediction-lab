@@ -22,9 +22,10 @@ not strength). `rd = prior.rd` (60). Teams with fewer than `coldStartMaps` tier-
 
 Per team and map, an `offset` from the team rating, with its own `rd` and sample size `n`:
 
-- From research: map win rate `w_m` over `n` maps and overall map win rate `w` in the same window:
-  `raw = 400·log10(w_m/(1−w_m)) − 400·log10(w/(1−w))`
-- Shrunk toward 0: `offset = raw × n / (n + shrinkMaps)`, clamped to ±`maxOffset`.
+- From research: maps won `won_m` of `n` played on the map, and the overall map win rate `w` in the same
+  window. The map rate is shrunk toward `w` with `shrinkMaps` pseudo-maps:
+  `w_m = (won_m + shrinkMaps·w) / (n + shrinkMaps)`
+- `offset = 400·log10(w_m/(1−w_m)) − 400·log10(w/(1−w))`, clamped to ±`maxOffset`.
 - `rd_map = newMapRd × sqrt(shrinkMaps / (n + shrinkMaps))`. A map with no data (Cache) has offset 0 and
   `rd_map = newMapRd`.
 - Modifiers (`data/model/modifiers.json`) add `delta` to a team (or one map), clamped to
