@@ -233,7 +233,7 @@ describe('simulateSwiss', () => {
     expect(second).toEqual(first)
     expect(first.maxStandardError).toBeLessThan(0.005)
     expect(first.upcoming).toHaveLength(8)
-  })
+  }, 60_000) // 24,000 simulated stages: slower machines (cloud runners) need more than 5 s
 
   it('advances exactly 8 teams per run and favors stronger teams', () => {
     const result = simulateSwiss({ ...base, runs: 3000 })

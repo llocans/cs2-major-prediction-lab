@@ -1,8 +1,8 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { describe, expect, it } from 'vitest'
+import { beforeAll, describe, expect, it } from 'vitest'
 import { MatchResult } from '../../data/schemas/index.ts'
-import { readStagePage } from './liquipedia-results.ts'
+import { readStagePage, type StagePageData } from './liquipedia-results.ts'
 
 // Finished stage page cached by the fixture pull (gitignored). Skipped on a fresh clone.
 const cached = join(
@@ -22,7 +22,8 @@ const mapIds: Record<string, string> = {
   Train: 'train',
 }
 
-describe.skipIf(!existsSync(cached))('readStagePage (Cologne 2026 Stage 1)', () => {
+/** Reads the cached page. Only called inside tests, so a fresh clone without the cache just skips. */
+function loadCologne(): StagePageData {
   const response = JSON.parse(readFileSync(cached, 'utf8'))
   const text =
     Object.values(
@@ -31,8 +32,7 @@ describe.skipIf(!existsSync(cached))('readStagePage (Cologne 2026 Stage 1)', () 
         { revisions: Array<{ slots: { main: { '*': string } } }> }
       >,
     )[0]?.revisions[0]?.slots.main['*'] ?? ''
-
-  const page = readStagePage(text, {
+  return readStagePage(text, {
     stageId: 'stage-1',
     resolveTeam: (name) => name.replaceAll(' ', '-'),
     resolveMap: (name) => {
@@ -41,6 +41,13 @@ describe.skipIf(!existsSync(cached))('readStagePage (Cologne 2026 Stage 1)', () 
       return id
     },
     source,
+  })
+}
+
+describe.skipIf(!existsSync(cached))('readStagePage (Cologne 2026 Stage 1)', () => {
+  let page: StagePageData
+  beforeAll(() => {
+    page = loadCologne()
   })
 
   it('reads all 33 finished matches as valid results', () => {
