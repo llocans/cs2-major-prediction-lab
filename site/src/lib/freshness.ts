@@ -1,16 +1,21 @@
 import type { SyncStatus } from '../../../data/schemas/sync.ts'
 
-export const POLL_MINUTES = 10
-/** Two missed runs plus slack: beyond this during a stage, something is wrong. */
-export const STALE_MINUTES = 25
+/** The cloud poller runs every 15 minutes during match hours (.github/workflows/poll.yml). */
+export const POLL_MINUTES = 15
+/**
+ * Beyond this during a stage something is wrong: a 15-minute schedule, GitHub starting runs up to
+ * ~15 minutes late, and this Mac syncing every 10 minutes.
+ */
+export const STALE_MINUTES = 45
 
-export type FreshnessState = 'live' | 'stale' | 'idle' | 'error' | 'unknown'
+export type FreshnessState = 'live' | 'waiting' | 'problem'
 
 export interface Freshness {
   state: FreshnessState
-  /** Minutes since the poller last ran, if known. */
-  checkedAgo?: number
-  message: string
+  /** One word for the eye: Live, Waiting or Problem. */
+  label: string
+  /** One short sentence with the detail. */
+  detail: string
 }
 
 const DAY = 86_400_000
@@ -32,6 +37,9 @@ export function formatAgo(minutes: number): string {
   return `${Math.floor(hours / 24)} days ago`
 }
 
+const dayMonth = (ms: number) =>
+  new Date(ms).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' })
+
 /** Plain-language status of the automatic result fetching for one stage. */
 export function freshness(
   now: number,
@@ -39,46 +47,43 @@ export function freshness(
   stage: { start: string; end: string },
 ): Freshness {
   const live = inStageWindow(now, stage.start, stage.end)
-  if (!sync) {
+  const before = now < Date.parse(stage.start) - DAY
+
+  if (sync?.outcome === 'error') {
     return {
-      state: 'unknown',
-      message: 'No poller status on this machine (the poller has not run here yet).',
-    }
-  }
-  const checkedAgo = minutesAgo(now, sync.checkedAt)
-  if (sync.outcome === 'error') {
-    return {
-      state: 'error',
-      checkedAgo,
-      message: `Last Liquipedia check failed ${formatAgo(checkedAgo)}: ${sync.message ?? 'unknown error'}`,
-    }
-  }
-  if (live && checkedAgo > STALE_MINUTES) {
-    return {
-      state: 'stale',
-      checkedAgo,
-      message: `No Liquipedia check for ${formatAgo(checkedAgo).replace(' ago', '')}. Is the Mac awake and the poller running?`,
+      state: 'problem',
+      label: 'Problem',
+      detail: `The last automatic check failed ${formatAgo(minutesAgo(now, sync.checkedAt))}: ${sync.message ?? 'unknown error'}. Odds may be out of date.`,
     }
   }
   if (!live) {
-    const opens = new Date(Date.parse(stage.start) - DAY).toLocaleDateString('en-GB', {
-      day: 'numeric',
-      month: 'short',
-      timeZone: 'UTC',
-    })
     return {
-      state: 'idle',
-      checkedAgo,
-      message:
-        now < Date.parse(stage.start)
-          ? `Poller idle until ${opens}; last run ${formatAgo(checkedAgo)}.`
-          : `Stage over; poller last ran ${formatAgo(checkedAgo)}.`,
+      state: 'waiting',
+      label: 'Waiting',
+      detail: before
+        ? `Automatic result checks start ${dayMonth(Date.parse(stage.start) - DAY)}.`
+        : 'Stage finished. Results are final.',
     }
   }
-  const next = Math.max(0, POLL_MINUTES - checkedAgo)
+  if (!sync) {
+    return {
+      state: 'problem',
+      label: 'Problem',
+      detail: 'No automatic check has reached this computer yet. Odds may be out of date.',
+    }
+  }
+  const ago = minutesAgo(now, sync.checkedAt)
+  if (ago > STALE_MINUTES) {
+    return {
+      state: 'problem',
+      label: 'Problem',
+      detail: `No update for ${formatAgo(ago).replace(' ago', '')}. Odds may be out of date.`,
+    }
+  }
+  const next = Math.max(0, POLL_MINUTES - ago)
   return {
     state: 'live',
-    checkedAgo,
-    message: `Liquipedia checked ${formatAgo(checkedAgo)} · next check ${next === 0 ? 'any moment' : `in ~${next} min`}.`,
+    label: 'Live',
+    detail: `Results checked ${formatAgo(ago)}, next check ${next === 0 ? 'any moment' : `in about ${next} min`}.`,
   }
 }

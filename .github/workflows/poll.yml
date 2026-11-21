@@ -1,0 +1,77 @@
+# Liquipedia poller in GitHub's cloud, so results never depend on a laptop being on.
+# Logs results, updates ratings, re-simulates, saves round snapshots, advances stages, commits data
+# to main. Each run's status goes to the poll-status branch for the site's status bar (no main noise).
+name: poll
+
+on:
+  schedule:
+    # Every 15 min, 03:00-17:59 UTC (11:00-01:59 Singapore), Nov-Dec. The script exits quietly on
+    # days without a running stage. GitHub may start scheduled runs 5-15 min late.
+    - cron: "*/15 3-17 * 11,12 *"
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: "Stage id to poll (empty = pick by date)"
+        required: false
+        default: ""
+
+# One run at a time; a late run waits instead of racing the previous one.
+concurrency:
+  group: poll
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  EVENT_ID: pgl-major-singapore-2026
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "26"
+          cache: npm
+
+      - name: Install
+        run: npm ci --no-fund --no-audit
+
+      - name: Restore last status
+        run: |
+          mkdir -p .cache
+          if git fetch --quiet origin poll-status; then
+            git show FETCH_HEAD:sync-status.json > .cache/sync-status.json || rm -f .cache/sync-status.json
+          fi
+
+      - name: Poll Liquipedia
+        env:
+          LIQUIPEDIA_CONTACT: ${{ secrets.LIQUIPEDIA_CONTACT }}
+          STAGE: ${{ inputs.stage }}
+        run: |
+          git config user.name "cs2-lab poller"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .cache/run-started
+          touch .cache/run-started
+          node scripts/poll-liquipedia.ts "$EVENT_ID" $STAGE --commit
+
+      - name: Publish status
+        if: always()
+        run: |
+          # If the poller never wrote a status this run (setup failed), record the failure.
+          if [ ! -f .cache/run-started ] || [ ! .cache/sync-status.json -nt .cache/run-started ]; then
+            printf '{"schemaVersion":1,"eventId":"%s","checkedAt":"%s","outcome":"error","message":"%s"}\n' \
+              "$EVENT_ID" "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)" "GitHub run failed before the poller finished (see Actions log)" \
+              > .cache/sync-status.json
+          fi
+          blob=$(git hash-object -w .cache/sync-status.json)
+          tree=$(printf '100644 blob %s\tsync-status.json\n' "$blob" | git mktree)
+          commit=$(git commit-tree "$tree" -m "poll status")
+          git push --quiet --force origin "$commit:refs/heads/poll-status"

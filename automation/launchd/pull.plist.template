@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Optional local sync: keeps this Mac's checkout and the status bar up to date with what the cloud
+  poller (GitHub Actions) pushed. Installed by scripts/install-launchd.ts pull.
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>{{LABEL}}</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>{{NODE}}</string>
+    <string>scripts/pull-latest.ts</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>{{REPO}}</string>
+  <key>StartInterval</key>
+  <integer>600</integer>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>StandardOutPath</key>
+  <string>{{REPO}}/.cache/pull.log</string>
+  <key>StandardErrorPath</key>
+  <string>{{REPO}}/.cache/pull.log</string>
+</dict>
+</plist>

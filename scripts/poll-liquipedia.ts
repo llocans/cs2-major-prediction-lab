@@ -39,10 +39,11 @@ function advanceIfFinished(stageId: string): void {
   log(`${stageId} finished: ${outcome.teams.join(', ')} advance to ${outcome.nextStageId}`)
   const snapshot = ensureRoundSnapshot(eventId as string, outcome.nextStageId)
   log(`${outcome.nextStageId} round 1 snapshot ${snapshot}`)
-  changes.push(`${stageId} advanced to ${outcome.nextStageId}`)
+  changes.push(`${stageName(stageId)} finished, 8 teams moved to ${stageName(outcome.nextStageId)}`)
 }
 
 const config = readJson(repoPath('data/events', eventId, 'config.json'), EventConfig)
+const stageName = (id: string) => config.stages.find((s) => s.id === id)?.name ?? id
 const today = new Date().toISOString().slice(0, 10)
 
 // Late-run guardrail: launchd catches up after sleep, so only act inside a stage window (±1 day).
@@ -135,8 +136,9 @@ async function poll(current: SwissStage, pageTitle: string): Promise<number> {
   log(
     `${stageId} rev ${page.revid}: ${outcome.logged.length} new, ${outcome.skipped.length} known, snapshot ${snapshot}`,
   )
-  if (outcome.logged.length > 0) changes.push(`${stageId} ${outcome.logged.length} result(s)`)
-  if (snapshot === 'saved') changes.push(`${stageId} snapshot`)
+  const n = outcome.logged.length
+  if (n > 0) changes.push(`${n} new result${n === 1 ? '' : 's'} in ${current.name}`)
+  if (snapshot === 'saved') changes.push(`next-round prediction saved for ${current.name}`)
   advanceIfFinished(stageId)
   return page.revid
 }
@@ -153,6 +155,8 @@ function commitIfChanged(): void {
     log(
       `committed ${commit.sha}${commit.pushed ? ' and pushed' : `; push failed: ${commit.pushError}`}`,
     )
+    // In the cloud the runner is thrown away, so an unpushed commit is lost: fail the run loudly.
+    if (!commit.pushed) process.exitCode = 1
   } else {
     log(`commit ${commit.status}${commit.status === 'skipped' ? `: ${commit.reason}` : ''}`)
   }
