@@ -1,0 +1,259 @@
+{
+  "source": {
+    "name": "Liquipedia: BLAST/Major/2025/Austin/Stage 1 (rev 3147837, 2025-06-12T16:44:03Z)",
+    "url": "https://liquipedia.net/counterstrike/BLAST/Major/2025/Austin/Stage_1",
+    "retrievedAt": "2026-11-21",
+    "license": "CC-BY-SA 3.0"
+  },
+  "seeds": [
+    "col",
+    "heroic",
+    "b8",
+    "betboom",
+    "tyloo",
+    "lvg",
+    "wildcard",
+    "fq",
+    "og",
+    "chinggis warriors",
+    "imp",
+    "nemiga",
+    "nrg",
+    "legacy",
+    "metizport",
+    "fluxo"
+  ],
+  "matches": [
+    {
+      "round": 1,
+      "teamA": "col",
+      "teamB": "og",
+      "winner": "og",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "heroic",
+      "teamB": "chinggis warriors",
+      "winner": "heroic",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "b8",
+      "teamB": "imp",
+      "winner": "b8",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "betboom",
+      "teamB": "nemiga",
+      "winner": "betboom",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "tyloo",
+      "teamB": "nrg",
+      "winner": "nrg",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "lvg",
+      "teamB": "legacy",
+      "winner": "lvg",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "wildcard",
+      "teamB": "metizport",
+      "winner": "wildcard",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "fq",
+      "teamB": "fluxo",
+      "winner": "fq",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "heroic",
+      "teamB": "nrg",
+      "winner": "heroic",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "b8",
+      "teamB": "og",
+      "winner": "b8",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "betboom",
+      "teamB": "fq",
+      "winner": "fq",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "lvg",
+      "teamB": "wildcard",
+      "winner": "wildcard",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "col",
+      "teamB": "fluxo",
+      "winner": "col",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "chinggis warriors",
+      "teamB": "legacy",
+      "winner": "legacy",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "tyloo",
+      "teamB": "metizport",
+      "winner": "tyloo",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "imp",
+      "teamB": "nemiga",
+      "winner": "nemiga",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "heroic",
+      "teamB": "fq",
+      "winner": "heroic",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "b8",
+      "teamB": "wildcard",
+      "winner": "b8",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "betboom",
+      "teamB": "legacy",
+      "winner": "betboom",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "nrg",
+      "teamB": "col",
+      "winner": "nrg",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "lvg",
+      "teamB": "nemiga",
+      "winner": "nemiga",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "og",
+      "teamB": "tyloo",
+      "winner": "og",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "chinggis warriors",
+      "teamB": "fluxo",
+      "winner": "chinggis warriors",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "imp",
+      "teamB": "metizport",
+      "winner": "imp",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "og",
+      "teamB": "nrg",
+      "winner": "og",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "betboom",
+      "teamB": "wildcard",
+      "winner": "betboom",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "fq",
+      "teamB": "nemiga",
+      "winner": "nemiga",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "imp",
+      "teamB": "legacy",
+      "winner": "legacy",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "col",
+      "teamB": "tyloo",
+      "winner": "tyloo",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "lvg",
+      "teamB": "chinggis warriors",
+      "winner": "lvg",
+      "format": "bo3"
+    },
+    {
+      "round": 5,
+      "teamA": "nrg",
+      "teamB": "lvg",
+      "winner": "lvg",
+      "format": "bo3"
+    },
+    {
+      "round": 5,
+      "teamA": "wildcard",
+      "teamB": "legacy",
+      "winner": "legacy",
+      "format": "bo3"
+    },
+    {
+      "round": 5,
+      "teamA": "fq",
+      "teamB": "tyloo",
+      "winner": "tyloo",
+      "format": "bo3"
+    }
+  ]
+}

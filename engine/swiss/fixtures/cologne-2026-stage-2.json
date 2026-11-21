@@ -1,0 +1,259 @@
+{
+  "source": {
+    "name": "Liquipedia: Intel Extreme Masters/2026/Cologne/Stage 2 (rev 3413161, 2026-07-12T08:53:53Z)",
+    "url": "https://liquipedia.net/counterstrike/Intel_Extreme_Masters/2026/Cologne/Stage_2",
+    "retrievedAt": "2026-11-21",
+    "license": "CC-BY-SA 3.0"
+  },
+  "seeds": [
+    "fut",
+    "spirit",
+    "astralis",
+    "g2",
+    "legacy",
+    "pain",
+    "monte",
+    "9z",
+    "b8",
+    "betboom",
+    "gl",
+    "m80",
+    "mibr",
+    "tyloo",
+    "big",
+    "fq"
+  ],
+  "matches": [
+    {
+      "round": 1,
+      "teamA": "astralis",
+      "teamB": "gl",
+      "winner": "astralis",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "9z",
+      "teamB": "fq",
+      "winner": "9z",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "fut",
+      "teamB": "b8",
+      "winner": "fut",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "pain",
+      "teamB": "tyloo",
+      "winner": "tyloo",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "g2",
+      "teamB": "m80",
+      "winner": "g2",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "monte",
+      "teamB": "big",
+      "winner": "monte",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "spirit",
+      "teamB": "betboom",
+      "winner": "spirit",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "legacy",
+      "teamB": "mibr",
+      "winner": "mibr",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "fut",
+      "teamB": "tyloo",
+      "winner": "fut",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "astralis",
+      "teamB": "9z",
+      "winner": "9z",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "g2",
+      "teamB": "monte",
+      "winner": "g2",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "spirit",
+      "teamB": "mibr",
+      "winner": "spirit",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "pain",
+      "teamB": "big",
+      "winner": "big",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "legacy",
+      "teamB": "fq",
+      "winner": "legacy",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "betboom",
+      "teamB": "gl",
+      "winner": "betboom",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "b8",
+      "teamB": "m80",
+      "winner": "m80",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "spirit",
+      "teamB": "9z",
+      "winner": "spirit",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "g2",
+      "teamB": "fut",
+      "winner": "fut",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "monte",
+      "teamB": "legacy",
+      "winner": "monte",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "astralis",
+      "teamB": "tyloo",
+      "winner": "tyloo",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "mibr",
+      "teamB": "big",
+      "winner": "big",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "betboom",
+      "teamB": "m80",
+      "winner": "betboom",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "b8",
+      "teamB": "gl",
+      "winner": "b8",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "fq",
+      "teamB": "pain",
+      "winner": "pain",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "monte",
+      "teamB": "betboom",
+      "winner": "betboom",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "tyloo",
+      "teamB": "9z",
+      "winner": "9z",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "g2",
+      "teamB": "big",
+      "winner": "g2",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "mibr",
+      "teamB": "b8",
+      "winner": "b8",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "astralis",
+      "teamB": "pain",
+      "winner": "pain",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "m80",
+      "teamB": "legacy",
+      "winner": "legacy",
+      "format": "bo3"
+    },
+    {
+      "round": 5,
+      "teamA": "monte",
+      "teamB": "pain",
+      "winner": "monte",
+      "format": "bo3"
+    },
+    {
+      "round": 5,
+      "teamA": "tyloo",
+      "teamB": "legacy",
+      "winner": "legacy",
+      "format": "bo3"
+    },
+    {
+      "round": 5,
+      "teamA": "big",
+      "teamB": "b8",
+      "winner": "b8",
+      "format": "bo3"
+    }
+  ]
+}

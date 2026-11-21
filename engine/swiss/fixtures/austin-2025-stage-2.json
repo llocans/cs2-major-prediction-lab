@@ -1,0 +1,259 @@
+{
+  "source": {
+    "name": "Liquipedia: BLAST/Major/2025/Austin/Stage 2 (rev 3147516, 2025-06-12T06:07:39Z)",
+    "url": "https://liquipedia.net/counterstrike/BLAST/Major/2025/Austin/Stage_2",
+    "retrievedAt": "2026-11-21",
+    "license": "CC-BY-SA 3.0"
+  },
+  "seeds": [
+    "falcons",
+    "faze",
+    "3dmax",
+    "vp",
+    "pain",
+    "furia",
+    "mibr",
+    "m80",
+    "b8",
+    "heroic",
+    "betboom",
+    "og",
+    "nemiga",
+    "lvg",
+    "legacy",
+    "tyloo"
+  ],
+  "matches": [
+    {
+      "round": 1,
+      "teamA": "falcons",
+      "teamB": "b8",
+      "winner": "b8",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "faze",
+      "teamB": "heroic",
+      "winner": "faze",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "3dmax",
+      "teamB": "betboom",
+      "winner": "3dmax",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "vp",
+      "teamB": "og",
+      "winner": "vp",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "pain",
+      "teamB": "nemiga",
+      "winner": "pain",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "furia",
+      "teamB": "lvg",
+      "winner": "furia",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "mibr",
+      "teamB": "legacy",
+      "winner": "legacy",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "m80",
+      "teamB": "tyloo",
+      "winner": "tyloo",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "vp",
+      "teamB": "b8",
+      "winner": "vp",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "pain",
+      "teamB": "furia",
+      "winner": "pain",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "faze",
+      "teamB": "tyloo",
+      "winner": "faze",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "3dmax",
+      "teamB": "legacy",
+      "winner": "legacy",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "falcons",
+      "teamB": "lvg",
+      "winner": "lvg",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "heroic",
+      "teamB": "betboom",
+      "winner": "heroic",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "mibr",
+      "teamB": "nemiga",
+      "winner": "nemiga",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "m80",
+      "teamB": "og",
+      "winner": "m80",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "faze",
+      "teamB": "legacy",
+      "winner": "legacy",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "pain",
+      "teamB": "vp",
+      "winner": "vp",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "tyloo",
+      "teamB": "lvg",
+      "winner": "lvg",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "3dmax",
+      "teamB": "nemiga",
+      "winner": "3dmax",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "furia",
+      "teamB": "m80",
+      "winner": "furia",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "b8",
+      "teamB": "heroic",
+      "winner": "b8",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "mibr",
+      "teamB": "betboom",
+      "winner": "mibr",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "og",
+      "teamB": "falcons",
+      "winner": "falcons",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "pain",
+      "teamB": "lvg",
+      "winner": "pain",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "faze",
+      "teamB": "3dmax",
+      "winner": "3dmax",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "furia",
+      "teamB": "b8",
+      "winner": "furia",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "nemiga",
+      "teamB": "m80",
+      "winner": "nemiga",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "tyloo",
+      "teamB": "heroic",
+      "winner": "heroic",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "falcons",
+      "teamB": "mibr",
+      "winner": "mibr",
+      "format": "bo3"
+    },
+    {
+      "round": 5,
+      "teamA": "nemiga",
+      "teamB": "heroic",
+      "winner": "nemiga",
+      "format": "bo3"
+    },
+    {
+      "round": 5,
+      "teamA": "b8",
+      "teamB": "lvg",
+      "winner": "lvg",
+      "format": "bo3"
+    },
+    {
+      "round": 5,
+      "teamA": "faze",
+      "teamB": "mibr",
+      "winner": "faze",
+      "format": "bo3"
+    }
+  ]
+}
