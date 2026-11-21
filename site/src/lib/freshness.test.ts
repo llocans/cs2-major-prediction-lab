@@ -12,34 +12,32 @@ const sync = (checkedAt: string, outcome: SyncStatus['outcome'] = 'checked'): Sy
 })
 
 describe('freshness', () => {
-  it('is live with a next-check estimate during the stage', () => {
+  it('is Live with the next check during the stage', () => {
     const f = freshness(at('2026-11-24T06:04:00Z'), sync('2026-11-24T06:00:00Z'), stage)
-    expect(f.state).toBe('live')
-    expect(f.message).toContain('4 min ago')
-    expect(f.message).toContain('in ~6 min')
+    expect(f.label).toBe('Live')
+    expect(f.detail).toBe('Results checked 4 min ago, next check in about 11 min.')
   })
 
-  it('warns when the poller stopped during the stage', () => {
+  it('is a Problem when no update arrived for too long during the stage', () => {
     const f = freshness(at('2026-11-24T09:00:00Z'), sync('2026-11-24T06:00:00Z'), stage)
-    expect(f.state).toBe('stale')
-    expect(f.message).toContain('Is the Mac awake')
+    expect(f.label).toBe('Problem')
+    expect(f.detail).toContain('No update for 3 h 0 min')
   })
 
-  it('is idle before the stage window opens', () => {
-    const f = freshness(at('2026-11-21T20:00:00Z'), sync('2026-11-21T19:50:00Z', 'idle'), stage)
-    expect(f.state).toBe('idle')
-    expect(f.message).toContain('until 23 Nov')
+  it('is Waiting before the stage and after it', () => {
+    expect(freshness(at('2026-11-21T20:00:00Z'), undefined, stage)).toMatchObject({
+      label: 'Waiting',
+      detail: 'Automatic result checks start 23 Nov.',
+    })
+    expect(freshness(at('2026-12-01T12:00:00Z'), sync('2026-11-28T10:00:00Z'), stage).detail).toBe(
+      'Stage finished. Results are final.',
+    )
   })
 
-  it('reports errors and missing status', () => {
-    expect(
-      freshness(
-        at('2026-11-24T06:00:00Z'),
-        { ...sync('2026-11-24T05:59:00Z', 'error'), message: 'HTTP 503' },
-        stage,
-      ).message,
-    ).toContain('HTTP 503')
-    expect(freshness(at('2026-11-24T06:00:00Z'), undefined, stage).state).toBe('unknown')
+  it('is a Problem when the last check failed or none arrived during the stage', () => {
+    const failed = { ...sync('2026-11-24T05:59:00Z', 'error'), message: 'HTTP 503' }
+    expect(freshness(at('2026-11-24T06:00:00Z'), failed, stage).detail).toContain('HTTP 503')
+    expect(freshness(at('2026-11-24T06:00:00Z'), undefined, stage).label).toBe('Problem')
   })
 
   it('formats durations', () => {

@@ -38,8 +38,8 @@ future events too: formats live in config, never in code.
     into the next stage (seeds 9-16) and saves that stage's round 1 snapshot
   - `score-stage.ts <event> <stage>` → score block in `data/events/<id>/accuracy.md`
   - `simulate.ts <event> <stage>` (prints odds) · `snapshot.ts <event> <stage>` (pre-round, once)
-  - `log-result.ts ...` (manual) · `poll-liquipedia.ts <event>` (launchd; needs `LIQUIPEDIA_CONTACT`)
-  - `install-launchd.ts <event>` / `--uninstall`
+  - `log-result.ts ...` (manual) · `poll-liquipedia.ts <event>` (runs in GitHub Actions; needs `LIQUIPEDIA_CONTACT`)
+  - `install-launchd.ts pull` (Mac sync of cloud results) / `--uninstall <pull|poll>`
 
 ## Golden rules
 
