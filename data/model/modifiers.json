@@ -1,4 +1,18 @@
 {
   "schemaVersion": 1,
-  "modifiers": []
+  "modifiers": [
+    {
+      "id": "9z-standin-history-2026-11",
+      "teamId": "9z",
+      "delta": -20,
+      "reason": "Stand-in history replaces benched meyern for the Major; the 3-month map stats were played with meyern",
+      "source": {
+        "name": "HLTV: 9z bench meyern; add history as Major stand-in (2026-11-07)",
+        "url": "https://www.hltv.org/news/45940/9z-bench-meyern-add-history-as-major-stand-in",
+        "retrievedAt": "2026-11-21"
+      },
+      "createdAt": "2026-11-21",
+      "expires": "2026-12-13"
+    }
+  ]
 }

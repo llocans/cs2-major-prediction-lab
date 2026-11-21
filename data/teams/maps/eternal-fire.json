@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "teamId": "eternal-fire",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 33,
+    "played": 62
+  },
+  "maps": {
+    "ancient": {
+      "won": 10,
+      "played": 15
+    },
+    "mirage": {
+      "won": 6,
+      "played": 12
+    },
+    "cache": {
+      "won": 5,
+      "played": 10
+    },
+    "dust2": {
+      "won": 6,
+      "played": 10
+    },
+    "inferno": {
+      "won": 3,
+      "played": 8
+    },
+    "anubis": {
+      "won": 3,
+      "played": 7
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/11251/eternal-fire?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}

@@ -1,0 +1,259 @@
+{
+  "source": {
+    "name": "Liquipedia: Intel Extreme Masters/2026/Cologne/Stage 1 (rev 3413160, 2026-07-12T08:49:38Z)",
+    "url": "https://liquipedia.net/counterstrike/Intel_Extreme_Masters/2026/Cologne/Stage_1",
+    "retrievedAt": "2026-11-21",
+    "license": "CC-BY-SA 3.0"
+  },
+  "seeds": [
+    "gl",
+    "b8",
+    "heroic",
+    "betboom",
+    "big",
+    "m80",
+    "mibr",
+    "sinners",
+    "nrg",
+    "tyloo",
+    "sharks",
+    "gaimin",
+    "tl",
+    "lvg",
+    "thunderdownunder",
+    "fq"
+  ],
+  "matches": [
+    {
+      "round": 1,
+      "teamA": "m80",
+      "teamB": "lvg",
+      "winner": "m80",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "sinners",
+      "teamB": "fq",
+      "winner": "fq",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "b8",
+      "teamB": "tyloo",
+      "winner": "b8",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "mibr",
+      "teamB": "thunderdownunder",
+      "winner": "thunderdownunder",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "gl",
+      "teamB": "nrg",
+      "winner": "gl",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "heroic",
+      "teamB": "sharks",
+      "winner": "sharks",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "betboom",
+      "teamB": "gaimin",
+      "winner": "betboom",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "big",
+      "teamB": "tl",
+      "winner": "tl",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "b8",
+      "teamB": "thunderdownunder",
+      "winner": "b8",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "gl",
+      "teamB": "fq",
+      "winner": "gl",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "m80",
+      "teamB": "sharks",
+      "winner": "m80",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "betboom",
+      "teamB": "tl",
+      "winner": "betboom",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "heroic",
+      "teamB": "lvg",
+      "winner": "lvg",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "mibr",
+      "teamB": "tyloo",
+      "winner": "mibr",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "sinners",
+      "teamB": "nrg",
+      "winner": "nrg",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "big",
+      "teamB": "gaimin",
+      "winner": "big",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "gl",
+      "teamB": "betboom",
+      "winner": "betboom",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "m80",
+      "teamB": "b8",
+      "winner": "b8",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "nrg",
+      "teamB": "fq",
+      "winner": "nrg",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "sharks",
+      "teamB": "lvg",
+      "winner": "lvg",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "tl",
+      "teamB": "mibr",
+      "winner": "mibr",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "thunderdownunder",
+      "teamB": "big",
+      "winner": "big",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "tyloo",
+      "teamB": "sinners",
+      "winner": "tyloo",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "gaimin",
+      "teamB": "heroic",
+      "winner": "heroic",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "gl",
+      "teamB": "big",
+      "winner": "gl",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "lvg",
+      "teamB": "mibr",
+      "winner": "mibr",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "m80",
+      "teamB": "nrg",
+      "winner": "m80",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "thunderdownunder",
+      "teamB": "fq",
+      "winner": "fq",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "tyloo",
+      "teamB": "sharks",
+      "winner": "tyloo",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "tl",
+      "teamB": "heroic",
+      "winner": "tl",
+      "format": "bo3"
+    },
+    {
+      "round": 5,
+      "teamA": "tyloo",
+      "teamB": "lvg",
+      "winner": "tyloo",
+      "format": "bo3"
+    },
+    {
+      "round": 5,
+      "teamA": "tl",
+      "teamB": "fq",
+      "winner": "fq",
+      "format": "bo3"
+    },
+    {
+      "round": 5,
+      "teamA": "nrg",
+      "teamB": "big",
+      "winner": "big",
+      "format": "bo3"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "teamId": "imperial",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 13,
+    "played": 24
+  },
+  "maps": {
+    "inferno": {
+      "won": 2,
+      "played": 6
+    },
+    "cache": {
+      "won": 3,
+      "played": 5
+    },
+    "mirage": {
+      "won": 3,
+      "played": 5
+    },
+    "nuke": {
+      "won": 2,
+      "played": 3
+    },
+    "anubis": {
+      "won": 2,
+      "played": 3
+    },
+    "dust2": {
+      "won": 1,
+      "played": 2
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/9455/imperial?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}

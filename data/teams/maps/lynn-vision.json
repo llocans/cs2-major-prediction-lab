@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "teamId": "lynn-vision",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 2,
+    "played": 6
+  },
+  "maps": {
+    "dust2": {
+      "won": 1,
+      "played": 2
+    },
+    "ancient": {
+      "won": 1,
+      "played": 2
+    },
+    "inferno": {
+      "won": 0,
+      "played": 1
+    },
+    "anubis": {
+      "won": 0,
+      "played": 1
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/8840/lynn-vision?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}

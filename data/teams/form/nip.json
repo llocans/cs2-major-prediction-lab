@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "teamId": "nip",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 15,
+    "points": 1564
+  },
+  "roster": [
+    "adamb",
+    "Krimbo",
+    "sjuush",
+    "stavn",
+    "xKacpersky"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 22,
+      "lost": 14
+    },
+    "vsTop30": {
+      "won": 12,
+      "lost": 11
+    },
+    "tier1Series": 46
+  },
+  "recent": [
+    {
+      "date": "2026-10-17",
+      "opponent": "MIBR",
+      "opponentRank": 19,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-17",
+      "opponent": "HEROIC",
+      "opponentRank": 18,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-16",
+      "opponent": "Liquid",
+      "opponentRank": 21,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-15",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-14",
+      "opponent": "Falcons",
+      "opponentRank": 7,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-12",
+      "opponent": "Inner Circle",
+      "opponentRank": 30,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-12",
+      "opponent": "Betclic",
+      "opponentRank": 50,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "Eternal Fire",
+      "opponentRank": 22,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "BBL",
+      "opponentRank": 42,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "SINNERS",
+      "opponentRank": 33,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "Johnny Speeds",
+      "opponentRank": 115,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "BBL",
+      "opponentRank": 42,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "SportsBetExpert",
+      "opponentRank": 69,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "HAVU",
+      "opponentRank": 117,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "Sangal",
+      "opponentRank": 44,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "XEPT",
+      "result": "W"
+    },
+    {
+      "date": "2026-09-28",
+      "opponent": "GamerLegion",
+      "opponentRank": 37,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-27",
+      "opponent": "magic",
+      "opponentRank": 41,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-26",
+      "opponent": "SINNERS",
+      "opponentRank": 33,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-25",
+      "opponent": "Envy",
+      "opponentRank": 43,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0015--ninjas_in_pyjamas--adamb-krimbo-sjuush-stavn-xkacpersky.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0015--ninjas_in_pyjamas--adamb-krimbo-sjuush-stavn-xkacpersky.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

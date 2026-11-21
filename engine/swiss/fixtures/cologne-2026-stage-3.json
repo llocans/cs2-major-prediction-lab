@@ -1,0 +1,259 @@
+{
+  "source": {
+    "name": "Liquipedia: Intel Extreme Masters/2026/Cologne/Stage 3 (rev 3413157, 2026-07-12T08:35:49Z)",
+    "url": "https://liquipedia.net/counterstrike/Intel_Extreme_Masters/2026/Cologne/Stage_3",
+    "retrievedAt": "2026-11-21",
+    "license": "CC-BY-SA 3.0"
+  },
+  "seeds": [
+    "vit",
+    "navi",
+    "falcons",
+    "mongolz",
+    "parivision",
+    "aurora",
+    "furia",
+    "mouz",
+    "fut",
+    "spirit",
+    "g2",
+    "betboom",
+    "9z",
+    "monte",
+    "b8",
+    "legacy"
+  ],
+  "matches": [
+    {
+      "round": 1,
+      "teamA": "mongolz",
+      "teamB": "betboom",
+      "winner": "betboom",
+      "format": "bo3"
+    },
+    {
+      "round": 1,
+      "teamA": "parivision",
+      "teamB": "9z",
+      "winner": "9z",
+      "format": "bo3"
+    },
+    {
+      "round": 1,
+      "teamA": "vit",
+      "teamB": "fut",
+      "winner": "vit",
+      "format": "bo3"
+    },
+    {
+      "round": 1,
+      "teamA": "mouz",
+      "teamB": "legacy",
+      "winner": "mouz",
+      "format": "bo3"
+    },
+    {
+      "round": 1,
+      "teamA": "falcons",
+      "teamB": "g2",
+      "winner": "falcons",
+      "format": "bo3"
+    },
+    {
+      "round": 1,
+      "teamA": "furia",
+      "teamB": "b8",
+      "winner": "furia",
+      "format": "bo3"
+    },
+    {
+      "round": 1,
+      "teamA": "navi",
+      "teamB": "spirit",
+      "winner": "spirit",
+      "format": "bo3"
+    },
+    {
+      "round": 1,
+      "teamA": "aurora",
+      "teamB": "monte",
+      "winner": "aurora",
+      "format": "bo3"
+    },
+    {
+      "round": 2,
+      "teamA": "furia",
+      "teamB": "mouz",
+      "winner": "furia",
+      "format": "bo3"
+    },
+    {
+      "round": 2,
+      "teamA": "falcons",
+      "teamB": "betboom",
+      "winner": "betboom",
+      "format": "bo3"
+    },
+    {
+      "round": 2,
+      "teamA": "vit",
+      "teamB": "9z",
+      "winner": "9z",
+      "format": "bo3"
+    },
+    {
+      "round": 2,
+      "teamA": "aurora",
+      "teamB": "spirit",
+      "winner": "spirit",
+      "format": "bo3"
+    },
+    {
+      "round": 2,
+      "teamA": "mongolz",
+      "teamB": "b8",
+      "winner": "mongolz",
+      "format": "bo3"
+    },
+    {
+      "round": 2,
+      "teamA": "parivision",
+      "teamB": "monte",
+      "winner": "monte",
+      "format": "bo3"
+    },
+    {
+      "round": 2,
+      "teamA": "fut",
+      "teamB": "g2",
+      "winner": "g2",
+      "format": "bo3"
+    },
+    {
+      "round": 2,
+      "teamA": "navi",
+      "teamB": "legacy",
+      "winner": "navi",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "spirit",
+      "teamB": "9z",
+      "winner": "spirit",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "betboom",
+      "teamB": "furia",
+      "winner": "furia",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "navi",
+      "teamB": "mongolz",
+      "winner": "navi",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "falcons",
+      "teamB": "monte",
+      "winner": "falcons",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "aurora",
+      "teamB": "g2",
+      "winner": "aurora",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "vit",
+      "teamB": "mouz",
+      "winner": "vit",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "b8",
+      "teamB": "fut",
+      "winner": "fut",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "parivision",
+      "teamB": "legacy",
+      "winner": "legacy",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "betboom",
+      "teamB": "vit",
+      "winner": "vit",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "aurora",
+      "teamB": "9z",
+      "winner": "aurora",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "navi",
+      "teamB": "falcons",
+      "winner": "falcons",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "mouz",
+      "teamB": "fut",
+      "winner": "fut",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "mongolz",
+      "teamB": "monte",
+      "winner": "mongolz",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "g2",
+      "teamB": "legacy",
+      "winner": "g2",
+      "format": "bo3"
+    },
+    {
+      "round": 5,
+      "teamA": "9z",
+      "teamB": "mongolz",
+      "winner": "9z",
+      "format": "bo3"
+    },
+    {
+      "round": 5,
+      "teamA": "betboom",
+      "teamB": "fut",
+      "winner": "betboom",
+      "format": "bo3"
+    },
+    {
+      "round": 5,
+      "teamA": "navi",
+      "teamB": "g2",
+      "winner": "g2",
+      "format": "bo3"
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "m80",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 25,
+    "points": 1489
+  },
+  "roster": [
+    "JBa",
+    "Lake",
+    "s1n",
+    "slaxz-",
+    "Swisher"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 13,
+      "lost": 13
+    },
+    "vsTop30": {
+      "won": 6,
+      "lost": 19
+    },
+    "tier1Series": 32
+  },
+  "recent": [
+    {
+      "date": "2026-10-07",
+      "opponent": "Spirit",
+      "opponentRank": 5,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-06",
+      "opponent": "Legacy",
+      "opponentRank": 9,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-05",
+      "opponent": "TYLOO",
+      "opponentRank": 59,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-04",
+      "opponent": "BETBOOM",
+      "opponentRank": 6,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "MOUZ",
+      "opponentRank": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-27",
+      "opponent": "DENDELE",
+      "opponentRank": 29,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-26",
+      "opponent": "Liquid",
+      "opponentRank": 21,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-26",
+      "opponent": "Voca",
+      "opponentRank": 79,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-25",
+      "opponent": "DENDELE",
+      "opponentRank": 29,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-25",
+      "opponent": "BESTIA",
+      "opponentRank": 49,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-19",
+      "opponent": "Envy",
+      "opponentRank": 43,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-17",
+      "opponent": "B8",
+      "opponentRank": 28,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-17",
+      "opponent": "Luminosity",
+      "opponentRank": 40,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-17",
+      "opponent": "Metizport",
+      "opponentRank": 57,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-17",
+      "opponent": "GamerLegion",
+      "opponentRank": 37,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-17",
+      "opponent": "Ninjas in Pyjamas",
+      "opponentRank": 15,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-13",
+      "opponent": "Luminosity",
+      "opponentRank": 40,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-13",
+      "opponent": "Iberian Soul",
+      "opponentRank": 54,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-13",
+      "opponent": "Luminosity",
+      "opponentRank": 40,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-12",
+      "opponent": "Iberian Soul",
+      "opponentRank": 54,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0025--m80--jba-lake-s1n-slaxz--swisher.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0025--m80--jba-lake-s1n-slaxz--swisher.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

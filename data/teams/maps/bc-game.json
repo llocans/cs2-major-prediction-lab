@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "teamId": "bc-game",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 10,
+    "played": 23
+  },
+  "maps": {
+    "nuke": {
+      "won": 3,
+      "played": 5
+    },
+    "ancient": {
+      "won": 1,
+      "played": 5
+    },
+    "cache": {
+      "won": 2,
+      "played": 4
+    },
+    "mirage": {
+      "won": 2,
+      "played": 4
+    },
+    "dust2": {
+      "won": 2,
+      "played": 3
+    },
+    "inferno": {
+      "won": 0,
+      "played": 2
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/12878/bcgame?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "bc-game",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 45,
+    "points": 1337
+  },
+  "roster": [
+    "asap",
+    "Magisk",
+    "mzinho",
+    "s1mple",
+    "Senzu"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 15,
+      "lost": 10
+    },
+    "vsTop30": {
+      "won": 3,
+      "lost": 4
+    },
+    "tier1Series": 10
+  },
+  "recent": [
+    {
+      "date": "2026-10-30",
+      "opponent": "OG",
+      "opponentRank": 132,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-30",
+      "opponent": "Metizport",
+      "opponentRank": 57,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-30",
+      "opponent": "OG",
+      "opponentRank": 132,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-22",
+      "opponent": "JiJieHao",
+      "opponentRank": 36,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-22",
+      "opponent": "FaZe",
+      "opponentRank": 20,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-21",
+      "opponent": "Eternal Fire",
+      "opponentRank": 22,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-21",
+      "opponent": "Nexus",
+      "opponentRank": 65,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-20",
+      "opponent": "BBL",
+      "opponentRank": 42,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-19",
+      "opponent": "WBT",
+      "opponentRank": 70,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-19",
+      "opponent": "Drama",
+      "opponentRank": 188,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-15",
+      "opponent": "MIBR",
+      "opponentRank": 19,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-15",
+      "opponent": "HEROIC",
+      "opponentRank": 18,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-15",
+      "opponent": "MIBR",
+      "opponentRank": 19,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "BBL",
+      "opponentRank": 42,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "Sashi",
+      "opponentRank": 105,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "BASEMENT BOYS",
+      "opponentRank": 81,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "Voca",
+      "opponentRank": 79,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "Prestige",
+      "opponentRank": 170,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "Glitch",
+      "opponentRank": 229,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-04",
+      "opponent": "FOKUS",
+      "opponentRank": 51,
+      "result": "L"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0045--bc_game--asap-magisk-mzinho-s1mple-senzu.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0045--bc_game--asap-magisk-mzinho-s1mple-senzu.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

@@ -1,0 +1,259 @@
+{
+  "source": {
+    "name": "Liquipedia: BLAST/Major/2025/Austin/Stage 3 (rev 3151532, 2025-06-19T16:28:08Z)",
+    "url": "https://liquipedia.net/counterstrike/BLAST/Major/2025/Austin/Stage_3",
+    "retrievedAt": "2026-11-21",
+    "license": "CC-BY-SA 3.0"
+  },
+  "seeds": [
+    "vit",
+    "mouz",
+    "spirit",
+    "g2",
+    "mongolz",
+    "aurora",
+    "navi",
+    "tl",
+    "legacy",
+    "vp",
+    "pain",
+    "3dmax",
+    "furia",
+    "faze",
+    "nemiga",
+    "lvg"
+  ],
+  "matches": [
+    {
+      "round": 1,
+      "teamA": "vit",
+      "teamB": "legacy",
+      "winner": "legacy",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "mouz",
+      "teamB": "vp",
+      "winner": "vp",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "spirit",
+      "teamB": "pain",
+      "winner": "spirit",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "g2",
+      "teamB": "3dmax",
+      "winner": "3dmax",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "mongolz",
+      "teamB": "furia",
+      "winner": "furia",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "aurora",
+      "teamB": "faze",
+      "winner": "aurora",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "navi",
+      "teamB": "nemiga",
+      "winner": "navi",
+      "format": "bo1"
+    },
+    {
+      "round": 1,
+      "teamA": "tl",
+      "teamB": "lvg",
+      "winner": "lvg",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "aurora",
+      "teamB": "furia",
+      "winner": "furia",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "legacy",
+      "teamB": "vp",
+      "winner": "vp",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "spirit",
+      "teamB": "lvg",
+      "winner": "spirit",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "navi",
+      "teamB": "3dmax",
+      "winner": "navi",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "vit",
+      "teamB": "nemiga",
+      "winner": "vit",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "mouz",
+      "teamB": "faze",
+      "winner": "faze",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "g2",
+      "teamB": "pain",
+      "winner": "g2",
+      "format": "bo1"
+    },
+    {
+      "round": 2,
+      "teamA": "mongolz",
+      "teamB": "tl",
+      "winner": "mongolz",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "furia",
+      "teamB": "vp",
+      "winner": "furia",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "spirit",
+      "teamB": "navi",
+      "winner": "spirit",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "legacy",
+      "teamB": "faze",
+      "winner": "faze",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "3dmax",
+      "teamB": "vit",
+      "winner": "vit",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "aurora",
+      "teamB": "g2",
+      "winner": "g2",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "mongolz",
+      "teamB": "lvg",
+      "winner": "mongolz",
+      "format": "bo1"
+    },
+    {
+      "round": 3,
+      "teamA": "mouz",
+      "teamB": "tl",
+      "winner": "mouz",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "teamA": "pain",
+      "teamB": "nemiga",
+      "winner": "pain",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "mongolz",
+      "teamB": "faze",
+      "winner": "faze",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "vp",
+      "teamB": "vit",
+      "winner": "vit",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "navi",
+      "teamB": "g2",
+      "winner": "navi",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "legacy",
+      "teamB": "lvg",
+      "winner": "legacy",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "3dmax",
+      "teamB": "pain",
+      "winner": "pain",
+      "format": "bo3"
+    },
+    {
+      "round": 4,
+      "teamA": "aurora",
+      "teamB": "mouz",
+      "winner": "mouz",
+      "format": "bo3"
+    },
+    {
+      "round": 5,
+      "teamA": "legacy",
+      "teamB": "mouz",
+      "winner": "mouz",
+      "format": "bo3"
+    },
+    {
+      "round": 5,
+      "teamA": "mongolz",
+      "teamB": "g2",
+      "winner": "mongolz",
+      "format": "bo3"
+    },
+    {
+      "round": 5,
+      "teamA": "vp",
+      "teamB": "pain",
+      "winner": "pain",
+      "format": "bo3"
+    }
+  ]
+}

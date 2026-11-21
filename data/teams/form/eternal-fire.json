@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "teamId": "eternal-fire",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 22,
+    "points": 1513
+  },
+  "roster": [
+    "jottAAA",
+    "Kvem",
+    "MisteM",
+    "regali",
+    "soulfly"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 36,
+      "lost": 16
+    },
+    "vsTop30": {
+      "won": 7,
+      "lost": 6
+    },
+    "tier1Series": 30
+  },
+  "recent": [
+    {
+      "date": "2026-10-30",
+      "opponent": "fnatic",
+      "opponentRank": 27,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-30",
+      "opponent": "MIBR",
+      "opponentRank": 19,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-29",
+      "opponent": "Astralis",
+      "opponentRank": 14,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-29",
+      "opponent": "BIG",
+      "opponentRank": 32,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-28",
+      "opponent": "Nemesis",
+      "opponentRank": 39,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-27",
+      "opponent": "MIBR",
+      "opponentRank": 19,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-23",
+      "opponent": "SINNERS",
+      "opponentRank": 33,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-23",
+      "opponent": "JiJieHao",
+      "opponentRank": 36,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-22",
+      "opponent": "SINNERS",
+      "opponentRank": 33,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-21",
+      "opponent": "BC.Game",
+      "opponentRank": 45,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-21",
+      "opponent": "BASEMENT BOYS",
+      "opponentRank": 81,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-20",
+      "opponent": "INFINITE",
+      "opponentRank": 72,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-17",
+      "opponent": "Nuclear TigeRES",
+      "opponentRank": 58,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-16",
+      "opponent": "Betclic",
+      "opponentRank": 50,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "Ninjas in Pyjamas",
+      "opponentRank": 15,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "JiJieHao",
+      "opponentRank": 36,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "Sangal",
+      "opponentRank": 44,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "BASEMENT BOYS",
+      "opponentRank": 81,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "Anteiku",
+      "result": "W"
+    },
+    {
+      "date": "2026-10-02",
+      "opponent": "100 Thieves",
+      "opponentRank": 23,
+      "result": "L"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0022--eternal_fire--jottaaa-kvem-mistem-regali-soulfly.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0022--eternal_fire--jottaaa-kvem-mistem-regali-soulfly.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

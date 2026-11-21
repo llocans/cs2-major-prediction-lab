@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "teamId": "nip",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 29,
+    "played": 58
+  },
+  "maps": {
+    "cache": {
+      "won": 6,
+      "played": 13
+    },
+    "mirage": {
+      "won": 6,
+      "played": 12
+    },
+    "ancient": {
+      "won": 6,
+      "played": 11
+    },
+    "dust2": {
+      "won": 2,
+      "played": 8
+    },
+    "inferno": {
+      "won": 3,
+      "played": 7
+    },
+    "nuke": {
+      "won": 6,
+      "played": 7
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/4411/ninjas-in-pyjamas?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}

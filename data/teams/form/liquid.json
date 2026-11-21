@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "liquid",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 21,
+    "points": 1528
+  },
+  "roster": [
+    "EliGE",
+    "Jorko",
+    "JT",
+    "malbsMd",
+    "NAF"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 18,
+      "lost": 13
+    },
+    "vsTop30": {
+      "won": 8,
+      "lost": 13
+    },
+    "tier1Series": 36
+  },
+  "recent": [
+    {
+      "date": "2026-10-28",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-27",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-26",
+      "opponent": "Legacy",
+      "opponentRank": 9,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-25",
+      "opponent": "FUT",
+      "opponentRank": 8,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-24",
+      "opponent": "MOUZ",
+      "opponentRank": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-20",
+      "opponent": "magic",
+      "opponentRank": 41,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-19",
+      "opponent": "fnatic",
+      "opponentRank": 27,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-16",
+      "opponent": "Ninjas in Pyjamas",
+      "opponentRank": 15,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-13",
+      "opponent": "JiJieHao",
+      "opponentRank": 36,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-13",
+      "opponent": "100 Thieves",
+      "opponentRank": 23,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-13",
+      "opponent": "BBL",
+      "opponentRank": 42,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-27",
+      "opponent": "Wildcard",
+      "opponentRank": 38,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-26",
+      "opponent": "M80",
+      "opponentRank": 25,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-25",
+      "opponent": "NRG",
+      "opponentRank": 47,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-25",
+      "opponent": "Chicken Coop",
+      "opponentRank": 183,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-18",
+      "opponent": "BBL",
+      "opponentRank": 42,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-18",
+      "opponent": "Envy",
+      "opponentRank": 43,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-18",
+      "opponent": "EYEBALLERS",
+      "opponentRank": 63,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-18",
+      "opponent": "Inner Circle",
+      "opponentRank": 30,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-18",
+      "opponent": "INFINITE",
+      "opponentRank": 72,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0021--liquid--elige-jorko-jt-malbsmd-naf.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0021--liquid--elige-jorko-jt-malbsmd-naf.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

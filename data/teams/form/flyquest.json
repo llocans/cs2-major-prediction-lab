@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "teamId": "flyquest",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 48,
+    "points": 1318
+  },
+  "roster": [
+    "aliStair",
+    "INS",
+    "jks",
+    "nettik",
+    "Vexite"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 25,
+      "lost": 4
+    },
+    "vsTop30": {
+      "won": 1,
+      "lost": 2
+    },
+    "tier1Series": 7
+  },
+  "recent": [
+    {
+      "date": "2026-10-31",
+      "opponent": "Alter Ego",
+      "opponentRank": 92,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-30",
+      "opponent": "Alter Ego",
+      "opponentRank": 92,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-29",
+      "opponent": "NEXVOID",
+      "opponentRank": 71,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-27",
+      "opponent": "Rooster",
+      "opponentRank": 150,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-26",
+      "opponent": "Staqued",
+      "result": "W"
+    },
+    {
+      "date": "2026-10-18",
+      "opponent": "NEXVOID",
+      "opponentRank": 71,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-16",
+      "opponent": "NEXVOID",
+      "opponentRank": 71,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-16",
+      "opponent": "Rooster",
+      "opponentRank": 150,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-15",
+      "opponent": "Abyssal",
+      "opponentRank": 126,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-15",
+      "opponent": "Off Chops",
+      "opponentRank": 128,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-11",
+      "opponent": "Abyssal",
+      "opponentRank": 126,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-10",
+      "opponent": "Ground Zero",
+      "opponentRank": 138,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-10",
+      "opponent": "KZG",
+      "opponentRank": 187,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-10",
+      "opponent": "Abyssal",
+      "opponentRank": 126,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-09",
+      "opponent": "madlikewizards",
+      "opponentRank": 323,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-29",
+      "opponent": "Off Chops",
+      "opponentRank": 128,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-27",
+      "opponent": "Off Chops",
+      "opponentRank": 128,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-25",
+      "opponent": "Rooster",
+      "opponentRank": 150,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-23",
+      "opponent": "LFO 8",
+      "opponentRank": 280,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-13",
+      "opponent": "DEPO",
+      "opponentRank": 119,
+      "result": "L"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0048--flyquest--alistair-ins-jks-nettik-vexite.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0048--flyquest--alistair-ins-jks-nettik-vexite.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

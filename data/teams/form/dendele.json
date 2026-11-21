@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "dendele",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 29,
+    "points": 1466
+  },
+  "roster": [
+    "doc",
+    "gafolo",
+    "koala",
+    "maxxkor",
+    "rdnzao"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 16,
+      "lost": 12
+    },
+    "vsTop30": {
+      "won": 7,
+      "lost": 12
+    },
+    "tier1Series": 30
+  },
+  "recent": [
+    {
+      "date": "2026-11-01",
+      "opponent": "Imperial",
+      "opponentRank": 35,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-31",
+      "opponent": "NAOCOPULAS",
+      "opponentRank": 149,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-30",
+      "opponent": "Turma do Pagode",
+      "opponentRank": 112,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-29",
+      "opponent": "Low Cortisol BR",
+      "opponentRank": 143,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-27",
+      "opponent": "Nemiga",
+      "opponentRank": 10,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-26",
+      "opponent": "G2",
+      "opponentRank": 11,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-25",
+      "opponent": "Legacy",
+      "opponentRank": 9,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-24",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-11",
+      "opponent": "Wildcard",
+      "opponentRank": 38,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-11",
+      "opponent": "Imperial",
+      "opponentRank": 35,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-10",
+      "opponent": "Wildcard",
+      "opponentRank": 38,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-10",
+      "opponent": "Imperial",
+      "opponentRank": 35,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-10",
+      "opponent": "Marsborne",
+      "opponentRank": 125,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-27",
+      "opponent": "M80",
+      "opponentRank": 25,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-26",
+      "opponent": "Wildcard",
+      "opponentRank": 38,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-25",
+      "opponent": "M80",
+      "opponentRank": 25,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-25",
+      "opponent": "Voca",
+      "opponentRank": 79,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-12",
+      "opponent": "Fluxo",
+      "opponentRank": 60,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-11",
+      "opponent": "Imperial",
+      "opponentRank": 35,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-10",
+      "opponent": "Fluxo",
+      "opponentRank": 60,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0029--dendele--doc-gafolo-koala-maxxkor-rdnzao.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0029--dendele--doc-gafolo-koala-maxxkor-rdnzao.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

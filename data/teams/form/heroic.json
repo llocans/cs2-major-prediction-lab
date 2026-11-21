@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "heroic",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 18,
+    "points": 1548
+  },
+  "roster": [
+    "Brollan",
+    "Chr1zN",
+    "MartinezSa",
+    "nilo",
+    "susp"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 25,
+      "lost": 7
+    },
+    "vsTop30": {
+      "won": 10,
+      "lost": 13
+    },
+    "tier1Series": 37
+  },
+  "recent": [
+    {
+      "date": "2026-10-21",
+      "opponent": "FaZe",
+      "opponentRank": 20,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-21",
+      "opponent": "BBL",
+      "opponentRank": 42,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-21",
+      "opponent": "SINNERS",
+      "opponentRank": 33,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-20",
+      "opponent": "HYPERSPIRIT",
+      "opponentRank": 136,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-17",
+      "opponent": "100 Thieves",
+      "opponentRank": 23,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-17",
+      "opponent": "Ninjas in Pyjamas",
+      "opponentRank": 15,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-16",
+      "opponent": "fnatic",
+      "opponentRank": 27,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-15",
+      "opponent": "BC.Game",
+      "opponentRank": 45,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-15",
+      "opponent": "Envy",
+      "opponentRank": 43,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-26",
+      "opponent": "100 Thieves",
+      "opponentRank": 23,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-26",
+      "opponent": "Sangal",
+      "opponentRank": 44,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-25",
+      "opponent": "fnatic",
+      "opponentRank": 27,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-22",
+      "opponent": "BBL",
+      "opponentRank": 42,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-22",
+      "opponent": "Johnny Speeds",
+      "opponentRank": 115,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-13",
+      "opponent": "Virtus.pro",
+      "opponentRank": 31,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-12",
+      "opponent": "1win",
+      "opponentRank": 12,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-10",
+      "opponent": "K27",
+      "opponentRank": 34,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-09",
+      "opponent": "BESTIA",
+      "opponentRank": 49,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-06",
+      "opponent": "1win",
+      "opponentRank": 12,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-06",
+      "opponent": "Drama",
+      "opponentRank": 188,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0018--heroic--brollan-chr1zn-martinezsa-nilo-susp.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0018--heroic--brollan-chr1zn-martinezsa-nilo-susp.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

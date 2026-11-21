@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "teamId": "lynn-vision",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 56,
+    "points": 1267
+  },
+  "roster": [
+    "C4LLM3SU3",
+    "EmiliaQAQ",
+    "Starry",
+    "Westmelon",
+    "z4KR"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 14,
+      "lost": 7
+    },
+    "vsTop30": {
+      "won": 3,
+      "lost": 10
+    },
+    "tier1Series": 16
+  },
+  "recent": [
+    {
+      "date": "2026-10-24",
+      "opponent": "Chinggis Warriors",
+      "opponentRank": 55,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-22",
+      "opponent": "Chinggis Warriors",
+      "opponentRank": 55,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-21",
+      "opponent": "Rare Atom",
+      "opponentRank": 122,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-19",
+      "opponent": "Morningstar",
+      "opponentRank": 206,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-14",
+      "opponent": "Alter Ego",
+      "opponentRank": 92,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-12",
+      "opponent": "Just Swing",
+      "opponentRank": 168,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-10",
+      "opponent": "The KnockoutX",
+      "opponentRank": 279,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-08",
+      "opponent": "Chinggis Warriors",
+      "opponentRank": 55,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-29",
+      "opponent": "NEXVOID",
+      "opponentRank": 71,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-27",
+      "opponent": "NEXVOID",
+      "opponentRank": 71,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-25",
+      "opponent": "The Huns",
+      "opponentRank": 104,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-23",
+      "opponent": "Vitalem Aerem",
+      "opponentRank": 181,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-22",
+      "opponent": "UR",
+      "result": "W"
+    },
+    {
+      "date": "2026-09-03",
+      "opponent": "DEPO",
+      "opponentRank": 119,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-02",
+      "opponent": "NEXVOID",
+      "opponentRank": 71,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-02",
+      "opponent": "Rare Atom",
+      "opponentRank": 122,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-29",
+      "opponent": "FUT",
+      "opponentRank": 8,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-27",
+      "opponent": "Falcons",
+      "opponentRank": 7,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-16",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-14",
+      "opponent": "TYLOO",
+      "opponentRank": 59,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0056--lynn_vision--c4llm3su3-emiliaqaq-starry-westmelon-z4kr.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0056--lynn_vision--c4llm3su3-emiliaqaq-starry-westmelon-z4kr.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

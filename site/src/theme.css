@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+/*
+ * Only our tokens exist: Tailwind's default palette, fonts, radii and shadows are removed.
+ * Rules in docs/core/design.md.
+ */
+@theme inline {
+  --color-*: initial;
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-win: var(--win);
+  --color-loss: var(--loss);
+  --color-transparent: transparent;
+
+  --font-*: initial;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;
+
+  --radius-*: initial;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  --shadow-*: initial;
+  --inset-shadow-*: initial;
+  --drop-shadow-*: initial;
+}
+
+:root {
+  --paper: #f5f4ef;
+  --paper-2: #ebe9e2;
+  --ink: #15171b;
+  --ink-2: #474b54;
+  --ink-3: #868a93;
+  --rule: #d6d3ca;
+  --accent: #c2410c;
+  --accent-ink: #ffffff;
+  --accent-soft: #f3dccf;
+  --win: #2f6b4f;
+  --loss: #9b3a2e;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #121316;
+    --paper-2: #1a1c20;
+    --ink: #ebeae5;
+    --ink-2: #b2b4b9;
+    --ink-3: #7c8088;
+    --rule: #2b2e34;
+    --accent: #ff7a3d;
+    --accent-ink: #121316;
+    --accent-soft: #3a2419;
+    --win: #6fbf94;
+    --loss: #e0806f;
+  }
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}

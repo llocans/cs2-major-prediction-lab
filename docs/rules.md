@@ -68,8 +68,9 @@ has faced in this stage. Example from [V]: opponents at 2-0 and 1-1 give 3 − 1
 ### Engine choices where the rulebook is silent
 
 - If no pairing avoids a rematch in rounds 2-3, the engine backtracks to the most preferred pairing that
-  avoids rematches; only if none exists does it allow one. In later rounds with no clean table row, row 1 is
-  used. Neither case has occurred in the replayed Majors.
+  avoids rematches; only if none exists does it allow one. In later rounds with no clean table row, the
+  top-most row with the fewest rematches is used. Neither case occurs in the replayed Majors (Austin 2025
+  and Cologne 2026: all 30 rounds reproduce the real pairings).
 
 ## Stage seeding [V]
 

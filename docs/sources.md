@@ -4,7 +4,7 @@ Checked 2026-11-21 from this machine (Claude desktop app).
 
 | #   | Source                                                               | Use                                                     | Access                                                                       |
 | --- | -------------------------------------------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| 1   | HLTV.org                                                             | Results, map stats, player ratings, H2H, rankings, odds | **Interactive only**, Browser pane (web fetch: 403). Never in scheduled runs |
+| 1   | HLTV.org                                                             | Results, map stats, player ratings, H2H, rankings, odds | **Interactive only**. Stats pages: Claude in Chrome (the built-in Browser pane loops on Cloudflare's check). Web fetch: 403. Never in scheduled runs |
 | 2   | Liquipedia                                                           | Brackets, roster history, results                       | **MediaWiki API only** for automation (rules below)                          |
 | 3   | bo3.gg                                                               | Detailed match and map stats                            | **Interactive only**, Browser pane (fetch returns an empty JS shell)         |
 | 4   | Valve Regional Standings                                             | VRS points and rosters (rating prior)                   | `gh api repos/ValveSoftware/counter-strike_regional_standings`               |
@@ -29,3 +29,8 @@ Checked 2026-11-21 from this machine (Claude desktop app).
 - If a source is unreachable, say so and use the next one. Never invent stats.
 - Always verify current facts. Never rely on memory for rosters or results.
 - Market odds are a benchmark only, never a model input.
+
+## How map stats were collected (2026-11-21)
+In the user's Chrome (Claude in Chrome), the HLTV team map-stats pages with `rankingFilter=Top50` and a
+3-month window were read for each team (one request every 1.5 s), reduced to map W-L counts and imported
+with `scripts/research/import-map-stats.ts`. Only the derived counts are stored, each with its URL.

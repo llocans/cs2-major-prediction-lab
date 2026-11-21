@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "parivision",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 16,
+    "points": 1560
+  },
+  "roster": [
+    "FL1T",
+    "HObbit",
+    "Jame",
+    "xiELO",
+    "zweih"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 8,
+      "lost": 10
+    },
+    "vsTop30": {
+      "won": 8,
+      "lost": 17
+    },
+    "tier1Series": 30
+  },
+  "recent": [
+    {
+      "date": "2026-10-22",
+      "opponent": "The MongolZ",
+      "opponentRank": 17,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-21",
+      "opponent": "BIG",
+      "opponentRank": 32,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-20",
+      "opponent": "fnatic",
+      "opponentRank": 27,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-19",
+      "opponent": "magic",
+      "opponentRank": 41,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-15",
+      "opponent": "BETBOOM",
+      "opponentRank": 6,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-14",
+      "opponent": "Legacy",
+      "opponentRank": 9,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-09",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-07",
+      "opponent": "Natus Vincere",
+      "opponentRank": 13,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-06",
+      "opponent": "G2",
+      "opponentRank": 11,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-05",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-04",
+      "opponent": "Spirit",
+      "opponentRank": 5,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "Legacy",
+      "opponentRank": 9,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-10",
+      "opponent": "magic",
+      "opponentRank": 41,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-09",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-08",
+      "opponent": "TYLOO",
+      "opponentRank": 59,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-16",
+      "opponent": "MOUZ",
+      "opponentRank": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-14",
+      "opponent": "100 Thieves",
+      "opponentRank": 23,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-12",
+      "opponent": "B8",
+      "opponentRank": 28,
+      "result": "L"
+    },
+    {
+      "date": "2026-07-12",
+      "opponent": "9z",
+      "opponentRank": 24,
+      "result": "L"
+    },
+    {
+      "date": "2026-07-11",
+      "opponent": "FaZe",
+      "opponentRank": 20,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0016--parivision--fl1t-hobbit-jame-xielo-zweih.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0016--parivision--fl1t-hobbit-jame-xielo-zweih.md",
+    "retrievedAt": "2026-11-21"
+  }
+}
