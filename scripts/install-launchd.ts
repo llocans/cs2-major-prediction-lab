@@ -35,9 +35,23 @@ if (!arg) {
   process.exit(1)
 }
 
+/**
+ * The node on PATH (e.g. /opt/homebrew/bin/node), not process.execPath: the latter resolves to a
+ * versioned install path that breaks after a Node upgrade.
+ */
+function stableNodePath(): string {
+  try {
+    const found = execFileSync('/bin/sh', ['-lc', 'command -v node'], { encoding: 'utf8' }).trim()
+    if (found) return found
+  } catch {
+    // Fall through to the running binary.
+  }
+  return process.execPath
+}
+
 const plist = readFileSync(repoPath('automation/launchd/poll.plist.template'), 'utf8')
   .replaceAll('{{LABEL}}', LABEL)
-  .replaceAll('{{NODE}}', process.execPath)
+  .replaceAll('{{NODE}}', stableNodePath())
   .replaceAll('{{REPO}}', repoRoot)
   .replaceAll('{{EVENT_ID}}', arg)
 
