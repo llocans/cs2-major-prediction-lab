@@ -3,9 +3,10 @@
  * validate → append to results.json → update ratings → re-simulate → snapshot at round boundaries
  * → status.md → changelog line.
  */
-import { appendFileSync, readFileSync, writeFileSync } from 'node:fs'
-import { EventResults, type MatchResult, ModelParams } from '../../data/schemas/index.ts'
+import { appendFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { EventResults, type MatchResult, ModelParams, Modifiers } from '../../data/schemas/index.ts'
 import { predictStage } from '../../engine/predict.ts'
+import { activeModifiers } from '../../engine/ratings/modifiers.ts'
 import { updateRatings } from '../../engine/ratings/update.ts'
 import { currentRound } from '../../engine/simulate-swiss.ts'
 import type { Pairing } from '../../engine/swiss/types.ts'
@@ -61,8 +62,12 @@ export function logResults(
   writeJson(resultsPath, EventResults, { ...results, matches: [...results.matches, ...logged] })
 
   const params = readJson(repoPath('data/model/params.json'), ModelParams)
+  const modifiersPath = repoPath('data/model/modifiers.json')
+  const modifiers = existsSync(modifiersPath) ? readJson(modifiersPath, Modifiers).modifiers : []
   let ratings = loadRatings()
   for (const match of logged) {
+    // Judge the result against the prediction: use the modifiers active on the match day.
+    const matchDay = (match.playedAt ?? new Date().toISOString()).slice(0, 10)
     ratings = updateRatings(
       ratings,
       {
@@ -74,6 +79,7 @@ export function logResults(
       params,
       new Date().toISOString(),
       `log-result ${match.id}`,
+      activeModifiers(modifiers, matchDay),
     )
   }
   saveRatings(ratings)

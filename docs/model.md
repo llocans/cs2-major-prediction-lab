@@ -60,7 +60,9 @@ modeled. The remaining map is the decider.
 
 ## Rating updates (after each real match)
 
-Per map played, with `E` = expected map win probability and `s` = 1 or 0:
+Per map played, with `E` = expected map win probability and `s` = 1 or 0. `E` uses the same
+strengths as the prediction, including the modifiers active on the match day, so a result is judged
+against what was actually predicted (modifiers themselves are never changed by results):
 
 - Margin factor `mult = 1 + roundDiffWeight × (min(|roundDiff|, 13)/13 − 0.5)` (0.75..1.25 by default).
 - `K = k × formatWeight[format] × mult × (rd / prior.rd)²`; Bo1 maps count `0.75`, Bo3/Bo5 maps `1`.
@@ -84,6 +86,9 @@ Outputs per team: P(3-0), P(advance), P(0-3), P(eliminated); per known match: P(
   and uncertainty.
 
 ## Scoring and retuning
+- `engine/track-record.ts` compares each round's snapshot with the results: hit or miss, upsets (the
+  winner had under 40%), Brier per match and round, calibration, and pre-stage advance odds once the
+  stage is complete. The Track record page (`#/track-record`) and `scripts/score-stage.ts` both use it.
 
 - Per stage: Brier score of match predictions, calibration in 10-point bins, compared with "higher VRS
   wins", 50/50 and the market benchmark. Written to `data/events/<id>/accuracy.md`.
