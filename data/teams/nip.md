@@ -30,7 +30,7 @@ VRS #15, 1564 points (2026-11-02) · Stage 1, seed 1 · Last updated 2026-11-21
   - 2026-10-03 W vs Eternal Fire (#22)
   - 2026-10-03 W vs BBL (#42)
   - 2026-10-03 W vs SINNERS (#33)
-- Placements: pending
+- Placements: full list not compiled; recent event wins are under Storylines [IG]
 
 ## Map pool
 - 2026-08-21 to 2026-11-21, vs HLTV top 50: 29-29 over 58 maps [HLTV-M]
@@ -43,7 +43,7 @@ VRS #15, 1564 points (2026-11-02) · Stage 1, seed 1 · Last updated 2026-11-21
   - No maps in the window: Anubis (treated as a likely ban: offset -40, wide uncertainty)
 
 ## Key players
-- pending
+- HLTV Rating 3.0, 2026-08-21 to 2026-11-21, vs HLTV top 50 (rating/maps): adamb 1.06/44, Krimbo 1.04/58, stavn 1.02/58, xKacpersky 1.00/58, sjuush 0.98/58 [HLTV-P]
 
 ## Head-to-head (this event, last 6 months)
 - 2026-10-17 W vs HEROIC [VRS]
@@ -51,15 +51,23 @@ VRS #15, 1564 points (2026-11-02) · Stage 1, seed 1 · Last updated 2026-11-21
 - 2026-10-03 W vs Eternal Fire [VRS]
 
 ## Context
-- Major experience, travel/jet lag, Bo1 vs Bo3: pending
+- Recent Majors: none found in Austin 2025 or Cologne 2026 [FX]
+- VRS region Europe; Singapore (UTC+8) is about 7 hours ahead of CET
+- Bo1 vs Bo3 split: not collected yet
 
 ## Strengths / weaknesses / storylines
-- pending
+- Best map by model offset: Nuke (+94); weakest: Dust II (-70) [HLTV-M]
+- Series form: 22-14 in 90 days, 12-11 vs VRS top 30 [VRS]
+- Three recent LAN titles; beat MIBR, HEROIC and Liquid 2-1 on Oct 17 [IG]
+- Krimbo joined after Snappi stopped playing; little recent tape [IG]
 
 ## Modifiers
 - none
 
 ## Sources
+- [HLTV-P] HLTV team player stats, https://www.hltv.org/stats/teams/players/4411/ninjas-in-pyjamas?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
+- [IG] Insider Gaming, Stage 1 Pick'Em preview (2026-11-18), https://insider-gaming.com/pgl-singapore-major-2026-stage-1-pickems-preview/ (retrieved 2026-11-21)
+- [FX] Liquipedia Swiss stage pages of BLAST Austin Major 2025 and IEM Cologne Major 2026 (engine/swiss/fixtures, CC-BY-SA 3.0)
 - [LP] Liquipedia: Ninjas in Pyjamas (rev 3469252), https://liquipedia.net/counterstrike/Ninjas_in_Pyjamas (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/4411/ninjas-in-pyjamas?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
 - [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)

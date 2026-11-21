@@ -31,7 +31,7 @@ VRS #45, 1337 points (2026-11-02) · Stage 1, seed 13 · Last updated 2026-11-21
   - 2026-10-20 W vs BBL (#42)
   - 2026-10-19 W vs WBT (#70)
   - 2026-10-19 W vs Drama (#188)
-- Placements: pending
+- Placements: full list not compiled; recent event wins are under Storylines [IG]
 
 ## Map pool
 - 2026-08-21 to 2026-11-21, vs HLTV top 50: 10-13 over 23 maps [HLTV-M]
@@ -44,7 +44,7 @@ VRS #45, 1337 points (2026-11-02) · Stage 1, seed 13 · Last updated 2026-11-21
   - No maps in the window: Anubis (treated as a likely ban: offset -40, wide uncertainty)
 
 ## Key players
-- pending
+- HLTV Rating 3.0, 2026-08-21 to 2026-11-21, vs HLTV top 50 (rating/maps): Senzu 1.08/23, s1mple 1.07/23, mzinho 1.03/23, Magisk 0.96/23, asap 0.91/20 [HLTV-P]
 
 ## Head-to-head (this event, last 6 months)
 - 2026-10-22 W vs FaZe [VRS]
@@ -52,15 +52,23 @@ VRS #45, 1337 points (2026-11-02) · Stage 1, seed 13 · Last updated 2026-11-21
 - 2026-10-15 L vs HEROIC [VRS]
 
 ## Context
-- Major experience, travel/jet lag, Bo1 vs Bo3: pending
+- Recent Majors: none found in Austin 2025 or Cologne 2026 [FX]
+- VRS region Asia; time difference depends on the team's base (not verified)
+- Bo1 vs Bo3 split: not collected yet
 
 ## Strengths / weaknesses / storylines
-- pending
+- Best map by model offset: Nuke (+34); weakest: Ancient (-50) [HLTV-M]
+- Series form: 15-10 in 90 days, 3-4 vs VRS top 30 [VRS]
+- Plays as GOSH here; s1mple returns to a Major [IG]
+- Recent wins over FaZe and MIBR, losses to Metizport and OG [IG]
 
 ## Modifiers
 - none
 
 ## Sources
+- [HLTV-P] HLTV team player stats, https://www.hltv.org/stats/teams/players/12878/bcgame?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
+- [IG] Insider Gaming, Stage 1 Pick'Em preview (2026-11-18), https://insider-gaming.com/pgl-singapore-major-2026-stage-1-pickems-preview/ (retrieved 2026-11-21)
+- [FX] Liquipedia Swiss stage pages of BLAST Austin Major 2025 and IEM Cologne Major 2026 (engine/swiss/fixtures, CC-BY-SA 3.0)
 - [LP] Liquipedia: BC.Game Esports (rev 3461061), https://liquipedia.net/counterstrike/BC.Game_Esports (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/12878/bcgame?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
 - [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)

@@ -27,7 +27,7 @@ VRS #38, 1391 points (2026-11-02) · Stage 1, seed 12 · Last updated 2026-11-21
   - 2026-10-10 W vs DENDELE (#29)
   - 2026-10-10 W vs NRG (#47)
   - 2026-10-10 W vs Last Dance US
-- Placements: pending
+- Placements: full list not compiled; recent event wins are under Storylines [IG]
 
 ## Map pool
 - 2026-08-21 to 2026-11-21, vs HLTV top 50: 15-13 over 28 maps [HLTV-M]
@@ -40,7 +40,7 @@ VRS #38, 1391 points (2026-11-02) · Stage 1, seed 12 · Last updated 2026-11-21
   - No maps in the window: Ancient (treated as a likely ban: offset -40, wide uncertainty)
 
 ## Key players
-- pending
+- HLTV Rating 3.0, 2026-08-21 to 2026-11-21, vs HLTV top 50 (rating/maps): HexT 1.07/28, fr3nd 1.02/21, Cxzi 1.01/28, nEMANHA 0.98/28, reck 0.95/28 [HLTV-P]
 
 ## Head-to-head (this event, last 6 months)
 - 2026-11-01 L vs 100 Thieves [VRS]
@@ -50,15 +50,23 @@ VRS #38, 1391 points (2026-11-02) · Stage 1, seed 12 · Last updated 2026-11-21
 - 2026-09-26 W vs DENDELE [VRS]
 
 ## Context
-- Major experience, travel/jet lag, Bo1 vs Bo3: pending
+- Recent Majors: Austin 2025: Stage 1 2-3 (a previous roster, per [IG]) [FX]
+- VRS region Americas; Singapore is 11 to 13 hours ahead of the Americas
+- Bo1 vs Bo3 split: not collected yet
 
 ## Strengths / weaknesses / storylines
-- pending
+- Best map by model offset: Nuke (+38); weakest: Dust II (-28) [HLTV-M]
+- Series form: 14-10 in 90 days, 4-5 vs VRS top 30 [VRS]
+- Dominant in North America; three recent wins over DENDELE [IG]
+- Lose convincingly to EU teams; Opinion: unlikely to progress [IG]
 
 ## Modifiers
 - none
 
 ## Sources
+- [HLTV-P] HLTV team player stats, https://www.hltv.org/stats/teams/players/12257/wildcard?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
+- [IG] Insider Gaming, Stage 1 Pick'Em preview (2026-11-18), https://insider-gaming.com/pgl-singapore-major-2026-stage-1-pickems-preview/ (retrieved 2026-11-21)
+- [FX] Liquipedia Swiss stage pages of BLAST Austin Major 2025 and IEM Cologne Major 2026 (engine/swiss/fixtures, CC-BY-SA 3.0)
 - [LP] Liquipedia: Wildcard (rev 3465546), https://liquipedia.net/counterstrike/Wildcard (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/12257/wildcard?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
 - [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)

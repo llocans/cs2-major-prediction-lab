@@ -32,7 +32,7 @@ VRS #55, 1272 points (2026-11-02) · Stage 1, seed 15 · Last updated 2026-11-21
   - 2026-10-21 W vs NEXVOID (#71)
   - 2026-10-20 W vs WXM (#338)
   - 2026-10-12 L vs Alter Ego (#92)
-- Placements: pending
+- Placements: full list not compiled; recent event wins are under Storylines [IG]
 
 ## Map pool
 - 2026-08-21 to 2026-11-21, vs HLTV top 50: 9-12 over 21 maps [HLTV-M]
@@ -44,7 +44,7 @@ VRS #55, 1272 points (2026-11-02) · Stage 1, seed 15 · Last updated 2026-11-21
   - No maps in the window: Anubis, Mirage (treated as a likely ban: offset -40, wide uncertainty)
 
 ## Key players
-- pending
+- HLTV Rating 3.0, 2026-08-21 to 2026-11-21, vs HLTV top 50 (rating/maps): tikuak 1.05/21, ROUX 1.03/21, fury5k 1.02/21, sk0R 0.99/21, cool4st 0.96/21 [HLTV-P]
 
 ## Head-to-head (this event, last 6 months)
 - 2026-10-24 L vs Lynn Vision [VRS]
@@ -52,15 +52,23 @@ VRS #55, 1272 points (2026-11-02) · Stage 1, seed 15 · Last updated 2026-11-21
 - 2026-10-08 L vs Lynn Vision [VRS]
 
 ## Context
-- Major experience, travel/jet lag, Bo1 vs Bo3: pending
+- Recent Majors: Austin 2025: Stage 1 1-3; Budapest 2025 per [IG] (roster has changed since, see Roster changes) [FX]
+- VRS region Asia; time difference depends on the team's base (not verified)
+- Bo1 vs Bo3 split: not collected yet
 
 ## Strengths / weaknesses / storylines
-- pending
+- Best map by model offset: Nuke (+74); weakest: Inferno (-80) [HLTV-M]
+- Series form: 22-8 in 90 days, 0-0 vs VRS top 30 [VRS]
+- No wins over Major-qualified teams this season; lost to FlyQuest, TYLOO, Lynn Vision, JiJieHao [IG]
+- Four of five players joined since July 2026 [LP]
 
 ## Modifiers
 - none
 
 ## Sources
+- [HLTV-P] HLTV team player stats, https://www.hltv.org/stats/teams/players/12646/chinggis-warriors?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
+- [IG] Insider Gaming, Stage 1 Pick'Em preview (2026-11-18), https://insider-gaming.com/pgl-singapore-major-2026-stage-1-pickems-preview/ (retrieved 2026-11-21)
+- [FX] Liquipedia Swiss stage pages of BLAST Austin Major 2025 and IEM Cologne Major 2026 (engine/swiss/fixtures, CC-BY-SA 3.0)
 - [LP] Liquipedia: Chinggis Warriors (rev 3462133), https://liquipedia.net/counterstrike/Chinggis_Warriors (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/12646/chinggis-warriors?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
 - [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)

@@ -29,7 +29,7 @@ VRS #21, 1528 points (2026-11-02) · Stage 1, seed 5 · Last updated 2026-11-21
   - 2026-10-16 L vs Ninjas in Pyjamas (#15)
   - 2026-10-13 W vs JiJieHao (#36)
   - 2026-10-13 L vs 100 Thieves (#23)
-- Placements: pending
+- Placements: full list not compiled; recent event wins are under Storylines [IG]
 
 ## Map pool
 - 2026-08-21 to 2026-11-21, vs HLTV top 50: 23-22 over 45 maps [HLTV-M]
@@ -42,7 +42,7 @@ VRS #21, 1528 points (2026-11-02) · Stage 1, seed 5 · Last updated 2026-11-21
   - Ancient: 1-2 (33%), model offset -25
 
 ## Key players
-- pending
+- HLTV Rating 3.0, 2026-08-21 to 2026-11-21, vs HLTV top 50 (rating/maps): NAF 1.16/45, EliGE 1.10/45, malbsMd 1.06/42, Jorko 1.01/45, JT 0.89/45 [HLTV-P]
 
 ## Head-to-head (this event, last 6 months)
 - 2026-10-16 L vs Ninjas in Pyjamas [VRS]
@@ -51,15 +51,23 @@ VRS #21, 1528 points (2026-11-02) · Stage 1, seed 5 · Last updated 2026-11-21
 - 2026-09-26 W vs M80 [VRS]
 
 ## Context
-- Major experience, travel/jet lag, Bo1 vs Bo3: pending
+- Recent Majors: Austin 2025: Stage 3 0-3; Cologne 2026: Stage 1 2-3 [FX]
+- VRS region Americas; Singapore is 11 to 13 hours ahead of the Americas
+- Bo1 vs Bo3 split: not collected yet
 
 ## Strengths / weaknesses / storylines
-- pending
+- Best map by model offset: Mirage (+47); weakest: Dust II (-46) [HLTV-M]
+- Series form: 18-13 in 90 days, 8-13 vs VRS top 30 [VRS]
+- Recent wins over Aurora, Legacy and MOUZ; earlier over Vitality, MOUZ and Aurora [IG]
+- No true breakthrough event yet; Opinion: hard to read [IG]
 
 ## Modifiers
 - none
 
 ## Sources
+- [HLTV-P] HLTV team player stats, https://www.hltv.org/stats/teams/players/5973/liquid?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
+- [IG] Insider Gaming, Stage 1 Pick'Em preview (2026-11-18), https://insider-gaming.com/pgl-singapore-major-2026-stage-1-pickems-preview/ (retrieved 2026-11-21)
+- [FX] Liquipedia Swiss stage pages of BLAST Austin Major 2025 and IEM Cologne Major 2026 (engine/swiss/fixtures, CC-BY-SA 3.0)
 - [LP] Liquipedia: Team Liquid (rev 3459499), https://liquipedia.net/counterstrike/Team_Liquid (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/5973/liquid?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
 - [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)

@@ -31,7 +31,7 @@ VRS #16, 1560 points (2026-11-02) · Stage 1, seed 2 · Last updated 2026-11-21
   - 2026-10-07 W vs Natus Vincere (#13)
   - 2026-10-06 W vs G2 (#11)
   - 2026-10-05 L vs FURIA (#3)
-- Placements: pending
+- Placements: full list not compiled; recent event wins are under Storylines [IG]
 
 ## Map pool
 - 2026-08-21 to 2026-11-21, vs HLTV top 50: 23-30 over 53 maps [HLTV-M]
@@ -44,7 +44,7 @@ VRS #16, 1560 points (2026-11-02) · Stage 1, seed 2 · Last updated 2026-11-21
   - No maps in the window: Nuke (treated as a likely ban: offset -40, wide uncertainty)
 
 ## Key players
-- pending
+- HLTV Rating 3.0, 2026-08-21 to 2026-11-21, vs HLTV top 50 (rating/maps): xiELO 1.06/53, Jame 1.02/53, FL1T 0.97/53, zweih 0.95/53, HObbit 0.94/47 [HLTV-P]
 
 ## Head-to-head (this event, last 6 months)
 - 2026-08-14 W vs 100 Thieves [VRS]
@@ -52,15 +52,23 @@ VRS #16, 1560 points (2026-11-02) · Stage 1, seed 2 · Last updated 2026-11-21
 - 2026-07-11 W vs FaZe [VRS]
 
 ## Context
-- Major experience, travel/jet lag, Bo1 vs Bo3: pending
+- Recent Majors: Cologne 2026: Stage 3, 0-3 [FX]
+- VRS region Europe; Singapore (UTC+8) is about 7 hours ahead of CET
+- Bo1 vs Bo3 split: not collected yet
 
 ## Strengths / weaknesses / storylines
-- pending
+- Best map by model offset: Ancient (+76); weakest: Dust II (-92) [HLTV-M]
+- Series form: 8-10 in 90 days, 8-17 vs VRS top 30 [VRS]
+- Beat Liquid 2-0, G2 2-1 and Fnatic 2-1 since Oct 20, but lost to 100T and HEROIC in the PGL Cluj-Napoca qualifier [IG]
+- Opinion: the preview calls them extremely likely to progress [IG]
 
 ## Modifiers
 - none
 
 ## Sources
+- [HLTV-P] HLTV team player stats, https://www.hltv.org/stats/teams/players/12467/parivision?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
+- [IG] Insider Gaming, Stage 1 Pick'Em preview (2026-11-18), https://insider-gaming.com/pgl-singapore-major-2026-stage-1-pickems-preview/ (retrieved 2026-11-21)
+- [FX] Liquipedia Swiss stage pages of BLAST Austin Major 2025 and IEM Cologne Major 2026 (engine/swiss/fixtures, CC-BY-SA 3.0)
 - [LP] Liquipedia: PARIVISION (rev 3466735), https://liquipedia.net/counterstrike/PARIVISION (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/12467/parivision?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
 - [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)

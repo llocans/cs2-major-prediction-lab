@@ -32,7 +32,7 @@ VRS #22, 1513 points (2026-11-02) · Stage 1, seed 6 · Last updated 2026-11-21
   - 2026-10-23 W vs JiJieHao (#36)
   - 2026-10-22 L vs SINNERS (#33)
   - 2026-10-21 W vs BC.Game (#45)
-- Placements: pending
+- Placements: full list not compiled; recent event wins are under Storylines [IG]
 
 ## Map pool
 - 2026-08-21 to 2026-11-21, vs HLTV top 50: 33-29 over 62 maps [HLTV-M]
@@ -45,7 +45,7 @@ VRS #22, 1513 points (2026-11-02) · Stage 1, seed 6 · Last updated 2026-11-21
   - No maps in the window: Nuke (treated as a likely ban: offset -40, wide uncertainty)
 
 ## Key players
-- pending
+- HLTV Rating 3.0, 2026-08-21 to 2026-11-21, vs HLTV top 50 (rating/maps): jottAAA 1.10/62, Kvem 1.09/62, soulfly 1.07/62, regali 1.00/62, MisteM 0.93/62 [HLTV-P]
 
 ## Head-to-head (this event, last 6 months)
 - 2026-10-21 W vs BC.Game [VRS]
@@ -53,15 +53,23 @@ VRS #22, 1513 points (2026-11-02) · Stage 1, seed 6 · Last updated 2026-11-21
 - 2026-10-02 L vs 100 Thieves [VRS]
 
 ## Context
-- Major experience, travel/jet lag, Bo1 vs Bo3: pending
+- Recent Majors: none found in Austin 2025 or Cologne 2026 [FX]
+- VRS region Europe; Singapore (UTC+8) is about 7 hours ahead of CET
+- Bo1 vs Bo3 split: not collected yet
 
 ## Strengths / weaknesses / storylines
-- pending
+- Best map by model offset: Ancient (+53); weakest: Inferno (-44) [HLTV-M]
+- Series form: 36-16 in 90 days, 7-6 vs VRS top 30 [VRS]
+- Form team of EU tier 2; beat Fnatic, MIBR and Astralis in late October [IG]
+- Lost to 100T in the Cluj qualifier [IG]
 
 ## Modifiers
 - none
 
 ## Sources
+- [HLTV-P] HLTV team player stats, https://www.hltv.org/stats/teams/players/11251/eternal-fire?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
+- [IG] Insider Gaming, Stage 1 Pick'Em preview (2026-11-18), https://insider-gaming.com/pgl-singapore-major-2026-stage-1-pickems-preview/ (retrieved 2026-11-21)
+- [FX] Liquipedia Swiss stage pages of BLAST Austin Major 2025 and IEM Cologne Major 2026 (engine/swiss/fixtures, CC-BY-SA 3.0)
 - [LP] Liquipedia: Eternal Fire (rev 3459397), https://liquipedia.net/counterstrike/Eternal_Fire (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/11251/eternal-fire?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
 - [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)

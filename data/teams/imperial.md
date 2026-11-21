@@ -30,7 +30,7 @@ VRS #35, 1406 points (2026-11-02) · Stage 1, seed 11 · Last updated 2026-11-21
   - 2026-10-22 W vs ShindeN (#83)
   - 2026-10-22 L vs BESTIA (#49)
   - 2026-10-22 W vs Turma do Pagode (#112)
-- Placements: pending
+- Placements: full list not compiled; recent event wins are under Storylines [IG]
 
 ## Map pool
 - 2026-08-21 to 2026-11-21, vs HLTV top 50: 13-11 over 24 maps [HLTV-M]
@@ -43,7 +43,7 @@ VRS #35, 1406 points (2026-11-02) · Stage 1, seed 11 · Last updated 2026-11-21
   - No maps in the window: Ancient (treated as a likely ban: offset -40, wide uncertainty)
 
 ## Key players
-- pending
+- HLTV Rating 3.0, 2026-08-21 to 2026-11-21, vs HLTV top 50 (rating/maps): saadzin 1.17/24, VINI 1.12/24, decenty 1.06/24, noway 1.01/24, chelo 0.94/24 [HLTV-P]
 
 ## Head-to-head (this event, last 6 months)
 - 2026-11-01 L vs DENDELE [VRS]
@@ -51,15 +51,23 @@ VRS #35, 1406 points (2026-11-02) · Stage 1, seed 11 · Last updated 2026-11-21
 - 2026-10-10 L vs DENDELE [VRS]
 
 ## Context
-- Major experience, travel/jet lag, Bo1 vs Bo3: pending
+- Recent Majors: Austin 2025: Stage 1 1-3 [FX]
+- VRS region Americas; Singapore is 11 to 13 hours ahead of the Americas
+- Bo1 vs Bo3 split: not collected yet
 
 ## Strengths / weaknesses / storylines
-- pending
+- Best map by model offset: Nuke (+18); weakest: Inferno (-48) [HLTV-M]
+- Series form: 32-9 in 90 days, 0-4 vs VRS top 30 [VRS]
+- No wins over Major-qualified teams this season; lost to DENDELE four times [IG]
+- Opinion: a 0-3 candidate [IG]
 
 ## Modifiers
 - none
 
 ## Sources
+- [HLTV-P] HLTV team player stats, https://www.hltv.org/stats/teams/players/9455/imperial?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
+- [IG] Insider Gaming, Stage 1 Pick'Em preview (2026-11-18), https://insider-gaming.com/pgl-singapore-major-2026-stage-1-pickems-preview/ (retrieved 2026-11-21)
+- [FX] Liquipedia Swiss stage pages of BLAST Austin Major 2025 and IEM Cologne Major 2026 (engine/swiss/fixtures, CC-BY-SA 3.0)
 - [LP] Liquipedia: Imperial Esports (rev 3441473), https://liquipedia.net/counterstrike/Imperial_Esports (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [HLTV-M] HLTV team map stats (Top50, 2026-08-21 to 2026-11-21), https://www.hltv.org/stats/teams/maps/9455/imperial?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50 (retrieved 2026-11-21)
 - [HLTV-E] HLTV event page "PGL Major Singapore 2026 Stage 1", https://www.hltv.org/events/9303/pgl-major-singapore-2026-stage-1 (retrieved 2026-11-21)
