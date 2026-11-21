@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "teamId": "navi",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 29,
+    "played": 56
+  },
+  "maps": {
+    "mirage": {
+      "won": 4,
+      "played": 12
+    },
+    "inferno": {
+      "won": 4,
+      "played": 10
+    },
+    "cache": {
+      "won": 5,
+      "played": 8
+    },
+    "ancient": {
+      "won": 6,
+      "played": 8
+    },
+    "dust2": {
+      "won": 3,
+      "played": 7
+    },
+    "nuke": {
+      "won": 4,
+      "played": 7
+    },
+    "anubis": {
+      "won": 3,
+      "played": 4
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/4608/natus-vincere?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "teamId": "astralis",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 27,
+    "played": 48
+  },
+  "maps": {
+    "ancient": {
+      "won": 8,
+      "played": 13
+    },
+    "cache": {
+      "won": 8,
+      "played": 12
+    },
+    "nuke": {
+      "won": 3,
+      "played": 6
+    },
+    "dust2": {
+      "won": 4,
+      "played": 5
+    },
+    "mirage": {
+      "won": 2,
+      "played": 5
+    },
+    "inferno": {
+      "won": 2,
+      "played": 5
+    },
+    "anubis": {
+      "won": 0,
+      "played": 2
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/6665/astralis?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}

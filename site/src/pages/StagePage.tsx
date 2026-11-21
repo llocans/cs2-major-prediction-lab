@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import type { SwissStage } from '../../../data/schemas/event-config.ts'
 import { type KnownMatch, swissBracket } from '../../../engine/swiss/bracket.ts'
+import { stageSeeds } from '../../../engine/swiss/stage-seeds.ts'
 import { OddsTable } from '../components/OddsTable.tsx'
 import { SwissBracket } from '../components/SwissBracket.tsx'
 import { TeamPanel } from '../components/TeamPanel.tsx'
@@ -26,10 +27,7 @@ export function StagePage({ event, stage, query }: Props) {
   const canSwap = real.length === 0
 
   const seeds = useMemo(() => {
-    const ordered = event.teams.participants
-      .filter((p) => p.entryStage === stage.id)
-      .sort((a, b) => a.stageSeed - b.stageSeed)
-      .map((p) => p.teamId)
+    const ordered = stageSeeds(event.teams.participants, stage.id)
     const swap = canSwap ? whatIf.swap : undefined
     if (!swap) return ordered
     const [a, b] = swap
@@ -171,7 +169,7 @@ export function StagePage({ event, stage, query }: Props) {
         <div className="lg:sticky lg:top-6 lg:self-start">
           <TeamPanel
             teamId={selected}
-            participant={event.teams.participants.find((p) => p.teamId === selected)}
+            seed={seeds.indexOf(selected) + 1 || undefined}
             outlook={outlook}
             next={next}
             name={name}

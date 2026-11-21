@@ -45,6 +45,11 @@ Per team and map, an `offset` from the team rating, with its own `rd` and sample
 
 Uncertainty therefore pulls predictions toward 50% (cold-start teams, new maps).
 
+### Teams joining later stages
+Invited teams of Stages 2 and 3 get the same VRS prior. Once an event has results,
+`scripts/build-ratings.ts` only adds teams missing from `current.json` and keeps every existing rating
+(`--force` rebuilds everything from the prior).
+
 ## Veto model
 
 Follows the exact steps in event config (`veto.bo1`, `veto.bo3`). Each team values a map by its own

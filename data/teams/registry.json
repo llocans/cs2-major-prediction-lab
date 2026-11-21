@@ -2110,6 +2110,1045 @@
           }
         }
       ]
+    },
+    {
+      "id": "fut",
+      "name": "FUT Esports",
+      "aliases": [
+        {
+          "name": "FUT"
+        }
+      ],
+      "liquipedia": "fut",
+      "liquipediaPage": "FUT Esports",
+      "vrsName": "FUT",
+      "roster": [
+        {
+          "player": "dem0n",
+          "role": "player",
+          "from": "2025-08-01",
+          "source": {
+            "name": "Liquipedia: FUT Esports (rev 3471877)",
+            "url": "https://liquipedia.net/counterstrike/FUT_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "Krabeni",
+          "role": "player",
+          "from": "2025-08-01",
+          "source": {
+            "name": "Liquipedia: FUT Esports (rev 3471877)",
+            "url": "https://liquipedia.net/counterstrike/FUT_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "dziugss",
+          "role": "player",
+          "from": "2025-08-01",
+          "source": {
+            "name": "Liquipedia: FUT Esports (rev 3471877)",
+            "url": "https://liquipedia.net/counterstrike/FUT_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "xfl0ud",
+          "role": "player",
+          "from": "2026-07-07",
+          "source": {
+            "name": "Liquipedia: FUT Esports (rev 3471877)",
+            "url": "https://liquipedia.net/counterstrike/FUT_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "SunPayus",
+          "role": "player",
+          "from": "2026-10-01",
+          "source": {
+            "name": "Liquipedia: FUT Esports (rev 3471877)",
+            "url": "https://liquipedia.net/counterstrike/FUT_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "coolio",
+          "role": "coach",
+          "from": "2025-08-01",
+          "source": {
+            "name": "Liquipedia: FUT Esports (rev 3471877)",
+            "url": "https://liquipedia.net/counterstrike/FUT_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "lauNX",
+          "role": "player",
+          "from": "2025-08-22",
+          "to": "2026-07-07",
+          "source": {
+            "name": "Liquipedia: FUT Esports (rev 3471877)",
+            "url": "https://liquipedia.net/counterstrike/FUT_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "cmtry",
+          "role": "player",
+          "from": "2025-08-01",
+          "to": "2026-10-01",
+          "source": {
+            "name": "Liquipedia: FUT Esports (rev 3471877)",
+            "url": "https://liquipedia.net/counterstrike/FUT_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "trochu",
+          "role": "coach",
+          "from": "2026-02-13",
+          "source": {
+            "name": "Liquipedia: FUT Esports (rev 3471877)",
+            "url": "https://liquipedia.net/counterstrike/FUT_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "zander",
+          "role": "coach",
+          "from": "2025-09-01",
+          "to": "2026-01-09",
+          "approximate": true,
+          "source": {
+            "name": "Liquipedia: FUT Esports (rev 3471877)",
+            "url": "https://liquipedia.net/counterstrike/FUT_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "nemiga",
+      "name": "Nemiga Gaming",
+      "aliases": [
+        {
+          "name": "Nemiga"
+        }
+      ],
+      "liquipedia": "nemiga",
+      "liquipediaPage": "Nemiga Gaming",
+      "vrsName": "Nemiga",
+      "roster": [
+        {
+          "player": "khaN",
+          "role": "player",
+          "from": "2023-09-30",
+          "source": {
+            "name": "Liquipedia: Nemiga Gaming (rev 3452779)",
+            "url": "https://liquipedia.net/counterstrike/Nemiga_Gaming",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "SYPH0",
+          "role": "player",
+          "from": "2026-01-06",
+          "source": {
+            "name": "Liquipedia: Nemiga Gaming (rev 3452779)",
+            "url": "https://liquipedia.net/counterstrike/Nemiga_Gaming",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "KaiR0N-",
+          "role": "player",
+          "from": "2026-01-06",
+          "source": {
+            "name": "Liquipedia: Nemiga Gaming (rev 3452779)",
+            "url": "https://liquipedia.net/counterstrike/Nemiga_Gaming",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "Xant3r",
+          "role": "player",
+          "from": "2026-08-15",
+          "source": {
+            "name": "Liquipedia: Nemiga Gaming (rev 3452779)",
+            "url": "https://liquipedia.net/counterstrike/Nemiga_Gaming",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "boX",
+          "role": "coach",
+          "from": "2023-11-07",
+          "source": {
+            "name": "Liquipedia: Nemiga Gaming (rev 3452779)",
+            "url": "https://liquipedia.net/counterstrike/Nemiga_Gaming",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "Sowalio",
+          "role": "player",
+          "from": "2025-07-13",
+          "to": "2026-08-15",
+          "source": {
+            "name": "Liquipedia: Nemiga Gaming (rev 3452779)",
+            "url": "https://liquipedia.net/counterstrike/Nemiga_Gaming",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "1eeR",
+          "role": "player",
+          "from": "2022-08-05",
+          "to": "2026-07-17",
+          "source": {
+            "name": "Liquipedia: Nemiga Gaming (rev 3452779)",
+            "url": "https://liquipedia.net/counterstrike/Nemiga_Gaming",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "riskyb0b",
+          "role": "player",
+          "from": "2023-11-27",
+          "to": "2026-02-09",
+          "source": {
+            "name": "Liquipedia: Nemiga Gaming (rev 3452779)",
+            "url": "https://liquipedia.net/counterstrike/Nemiga_Gaming",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "Xant3r",
+          "role": "player",
+          "from": "2023-12-15",
+          "to": "2026-01-06",
+          "source": {
+            "name": "Liquipedia: Nemiga Gaming (rev 3452779)",
+            "url": "https://liquipedia.net/counterstrike/Nemiga_Gaming",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "shalfey",
+          "role": "player",
+          "from": "2026-02-09",
+          "to": "2026-02-19",
+          "source": {
+            "name": "Liquipedia: Nemiga Gaming (rev 3452779)",
+            "url": "https://liquipedia.net/counterstrike/Nemiga_Gaming",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "g2",
+      "name": "G2 Esports",
+      "aliases": [
+        {
+          "name": "G2"
+        }
+      ],
+      "liquipedia": "g2",
+      "liquipediaPage": "G2 Esports",
+      "vrsName": "G2",
+      "roster": [
+        {
+          "player": "huNter-",
+          "role": "player",
+          "from": "2019-09-30",
+          "source": {
+            "name": "Liquipedia: G2 Esports (rev 3454263)",
+            "url": "https://liquipedia.net/counterstrike/G2_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "HeavyGod",
+          "role": "player",
+          "from": "2025-01-11",
+          "source": {
+            "name": "Liquipedia: G2 Esports (rev 3454263)",
+            "url": "https://liquipedia.net/counterstrike/G2_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "matys",
+          "role": "player",
+          "from": "2025-07-18",
+          "source": {
+            "name": "Liquipedia: G2 Esports (rev 3454263)",
+            "url": "https://liquipedia.net/counterstrike/G2_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "NertZ",
+          "role": "player",
+          "from": "2026-03-13",
+          "source": {
+            "name": "Liquipedia: G2 Esports (rev 3454263)",
+            "url": "https://liquipedia.net/counterstrike/G2_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "r1nkle",
+          "role": "player",
+          "from": "2026-06-25",
+          "source": {
+            "name": "Liquipedia: G2 Esports (rev 3454263)",
+            "url": "https://liquipedia.net/counterstrike/G2_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "sAw",
+          "role": "coach",
+          "from": "2025-06-18",
+          "source": {
+            "name": "Liquipedia: G2 Esports (rev 3454263)",
+            "url": "https://liquipedia.net/counterstrike/G2_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "SunPayus",
+          "role": "player",
+          "from": "2025-06-18",
+          "to": "2026-06-25",
+          "source": {
+            "name": "Liquipedia: G2 Esports (rev 3454263)",
+            "url": "https://liquipedia.net/counterstrike/G2_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "malbsMd",
+          "role": "player",
+          "from": "2024-06-28",
+          "to": "2026-03-13",
+          "source": {
+            "name": "Liquipedia: G2 Esports (rev 3454263)",
+            "url": "https://liquipedia.net/counterstrike/G2_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "sheddaN",
+          "role": "coach",
+          "from": "2025-07-18",
+          "source": {
+            "name": "Liquipedia: G2 Esports (rev 3454263)",
+            "url": "https://liquipedia.net/counterstrike/G2_Esports",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "1win",
+      "name": "1win",
+      "aliases": [
+        {
+          "name": "THE ONE",
+          "context": "pgl-major-singapore-2026"
+        }
+      ],
+      "liquipedia": "1w",
+      "liquipediaPage": "1w Team",
+      "vrsName": "1win",
+      "roster": [
+        {
+          "player": "nafany",
+          "role": "player",
+          "from": "2026-08-01",
+          "source": {
+            "name": "Liquipedia: 1w Team (rev 3469762)",
+            "url": "https://liquipedia.net/counterstrike/1w_Team",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "Ax1Le",
+          "role": "player",
+          "from": "2026-08-01",
+          "source": {
+            "name": "Liquipedia: 1w Team (rev 3469762)",
+            "url": "https://liquipedia.net/counterstrike/1w_Team",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "ArtFr0st",
+          "role": "player",
+          "from": "2026-08-01",
+          "source": {
+            "name": "Liquipedia: 1w Team (rev 3469762)",
+            "url": "https://liquipedia.net/counterstrike/1w_Team",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "fame",
+          "role": "player",
+          "from": "2026-08-01",
+          "source": {
+            "name": "Liquipedia: 1w Team (rev 3469762)",
+            "url": "https://liquipedia.net/counterstrike/1w_Team",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "BELCHONOKK",
+          "role": "player",
+          "from": "2026-08-01",
+          "source": {
+            "name": "Liquipedia: 1w Team (rev 3469762)",
+            "url": "https://liquipedia.net/counterstrike/1w_Team",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "groove",
+          "role": "coach",
+          "from": "2026-08-01",
+          "source": {
+            "name": "Liquipedia: 1w Team (rev 3469762)",
+            "url": "https://liquipedia.net/counterstrike/1w_Team",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "cau",
+          "role": "coach",
+          "from": "2025-07-21",
+          "to": "2026-11-07",
+          "source": {
+            "name": "Liquipedia: 1w Team (rev 3469762)",
+            "url": "https://liquipedia.net/counterstrike/1w_Team",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "lattykk",
+          "role": "player",
+          "from": "2024-04-05",
+          "to": "2026-07-31",
+          "source": {
+            "name": "Liquipedia: 1w Team (rev 3469762)",
+            "url": "https://liquipedia.net/counterstrike/1w_Team",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "oz1k",
+          "role": "player",
+          "from": "2024-10-22",
+          "to": "2026-07-31",
+          "source": {
+            "name": "Liquipedia: 1w Team (rev 3469762)",
+            "url": "https://liquipedia.net/counterstrike/1w_Team",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "cronuss",
+          "role": "player",
+          "from": "2024-10-22",
+          "to": "2026-07-31",
+          "source": {
+            "name": "Liquipedia: 1w Team (rev 3469762)",
+            "url": "https://liquipedia.net/counterstrike/1w_Team",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "Qikert",
+          "role": "player",
+          "from": "2026-02-18",
+          "to": "2026-07-31",
+          "source": {
+            "name": "Liquipedia: 1w Team (rev 3469762)",
+            "url": "https://liquipedia.net/counterstrike/1w_Team",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "reyoz",
+          "role": "player",
+          "from": "2026-02-18",
+          "to": "2026-07-31",
+          "source": {
+            "name": "Liquipedia: 1w Team (rev 3469762)",
+            "url": "https://liquipedia.net/counterstrike/1w_Team",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "HObbit",
+          "role": "player",
+          "from": "2024-07-12",
+          "to": "2026-02-18",
+          "source": {
+            "name": "Liquipedia: 1w Team (rev 3469762)",
+            "url": "https://liquipedia.net/counterstrike/1w_Team",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "interz",
+          "role": "player",
+          "from": "2025-08-08",
+          "to": "2026-02-18",
+          "source": {
+            "name": "Liquipedia: 1w Team (rev 3469762)",
+            "url": "https://liquipedia.net/counterstrike/1w_Team",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "navi",
+      "name": "Natus Vincere",
+      "aliases": [
+        {
+          "name": "NAVI"
+        }
+      ],
+      "liquipedia": "navi",
+      "liquipediaPage": "Natus Vincere",
+      "vrsName": "Natus Vincere",
+      "roster": [
+        {
+          "player": "b1t",
+          "role": "player",
+          "from": "2020-12-20",
+          "source": {
+            "name": "Liquipedia: Natus Vincere (rev 3453160)",
+            "url": "https://liquipedia.net/counterstrike/Natus_Vincere",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "Aleksib",
+          "role": "player",
+          "from": "2023-06-30",
+          "source": {
+            "name": "Liquipedia: Natus Vincere (rev 3453160)",
+            "url": "https://liquipedia.net/counterstrike/Natus_Vincere",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "iM",
+          "role": "player",
+          "from": "2023-06-30",
+          "source": {
+            "name": "Liquipedia: Natus Vincere (rev 3453160)",
+            "url": "https://liquipedia.net/counterstrike/Natus_Vincere",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "w0nderful",
+          "role": "player",
+          "from": "2023-10-31",
+          "source": {
+            "name": "Liquipedia: Natus Vincere (rev 3453160)",
+            "url": "https://liquipedia.net/counterstrike/Natus_Vincere",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "makazze",
+          "role": "player",
+          "from": "2025-07-08",
+          "source": {
+            "name": "Liquipedia: Natus Vincere (rev 3453160)",
+            "url": "https://liquipedia.net/counterstrike/Natus_Vincere",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "B1ad3",
+          "role": "coach",
+          "from": "2019-09-20",
+          "source": {
+            "name": "Liquipedia: Natus Vincere (rev 3453160)",
+            "url": "https://liquipedia.net/counterstrike/Natus_Vincere",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "Xirreth",
+          "role": "coach",
+          "from": "2023-10-18",
+          "to": "2026-07-16",
+          "source": {
+            "name": "Liquipedia: Natus Vincere (rev 3453160)",
+            "url": "https://liquipedia.net/counterstrike/Natus_Vincere",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "astralis",
+      "name": "Astralis",
+      "aliases": [],
+      "liquipedia": "astralis",
+      "liquipediaPage": "Astralis",
+      "vrsName": "Astralis",
+      "roster": [
+        {
+          "player": "Staehr",
+          "role": "player",
+          "from": "2023-06-22",
+          "source": {
+            "name": "Liquipedia: Astralis (rev 3471876)",
+            "url": "https://liquipedia.net/counterstrike/Astralis",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "phzy",
+          "role": "player",
+          "from": "2026-01-08",
+          "source": {
+            "name": "Liquipedia: Astralis (rev 3471876)",
+            "url": "https://liquipedia.net/counterstrike/Astralis",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "ryu",
+          "role": "player",
+          "from": "2026-01-08",
+          "source": {
+            "name": "Liquipedia: Astralis (rev 3471876)",
+            "url": "https://liquipedia.net/counterstrike/Astralis",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "siuhy",
+          "role": "player",
+          "from": "2026-10-13",
+          "source": {
+            "name": "Liquipedia: Astralis (rev 3471876)",
+            "url": "https://liquipedia.net/counterstrike/Astralis",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "NEO",
+          "role": "coach",
+          "from": "2026-07-16",
+          "source": {
+            "name": "Liquipedia: Astralis (rev 3471876)",
+            "url": "https://liquipedia.net/counterstrike/Astralis",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "HooXi",
+          "role": "player",
+          "from": "2025-06-18",
+          "to": "2026-10-09",
+          "source": {
+            "name": "Liquipedia: Astralis (rev 3471876)",
+            "url": "https://liquipedia.net/counterstrike/Astralis",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "cmtry",
+          "role": "player",
+          "from": "2026-10-13",
+          "to": "2026-11-17",
+          "source": {
+            "name": "Liquipedia: Astralis (rev 3471876)",
+            "url": "https://liquipedia.net/counterstrike/Astralis",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "jabbi",
+          "role": "player",
+          "from": "2023-11-24",
+          "to": "2026-10-09",
+          "source": {
+            "name": "Liquipedia: Astralis (rev 3471876)",
+            "url": "https://liquipedia.net/counterstrike/Astralis",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "ruggah",
+          "role": "coach",
+          "from": "2024-03-01",
+          "to": "2026-06-15",
+          "source": {
+            "name": "Liquipedia: Astralis (rev 3471876)",
+            "url": "https://liquipedia.net/counterstrike/Astralis",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "MiGHTYMAX",
+          "role": "coach",
+          "from": "2026-03-25",
+          "source": {
+            "name": "Liquipedia: Astralis (rev 3471876)",
+            "url": "https://liquipedia.net/counterstrike/Astralis",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "Xirreth",
+          "role": "coach",
+          "from": "2026-07-16",
+          "source": {
+            "name": "Liquipedia: Astralis (rev 3471876)",
+            "url": "https://liquipedia.net/counterstrike/Astralis",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "the-mongolz",
+      "name": "The MongolZ",
+      "aliases": [
+        {
+          "name": "MongolZ"
+        }
+      ],
+      "liquipedia": "mongolz",
+      "liquipediaPage": "The MongolZ",
+      "vrsName": "The MongolZ",
+      "roster": [
+        {
+          "player": "bLitz",
+          "role": "player",
+          "from": "2023-04-03",
+          "source": {
+            "name": "Liquipedia: The MongolZ (rev 3456045)",
+            "url": "https://liquipedia.net/counterstrike/The_MongolZ",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "Techno4K",
+          "role": "player",
+          "from": "2023-04-03",
+          "source": {
+            "name": "Liquipedia: The MongolZ (rev 3456045)",
+            "url": "https://liquipedia.net/counterstrike/The_MongolZ",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "910",
+          "role": "player",
+          "from": "2023-05-31",
+          "source": {
+            "name": "Liquipedia: The MongolZ (rev 3456045)",
+            "url": "https://liquipedia.net/counterstrike/The_MongolZ",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "cobrazera",
+          "role": "player",
+          "from": "2025-12-31",
+          "source": {
+            "name": "Liquipedia: The MongolZ (rev 3456045)",
+            "url": "https://liquipedia.net/counterstrike/The_MongolZ",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "nin9",
+          "role": "player",
+          "from": "2026-10-05",
+          "source": {
+            "name": "Liquipedia: The MongolZ (rev 3456045)",
+            "url": "https://liquipedia.net/counterstrike/The_MongolZ",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "maaRaa",
+          "role": "coach",
+          "from": "2023-04-03",
+          "source": {
+            "name": "Liquipedia: The MongolZ (rev 3456045)",
+            "url": "https://liquipedia.net/counterstrike/The_MongolZ",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "DarkMeister",
+          "role": "player",
+          "from": "2026-07-12",
+          "to": "2026-09-15",
+          "source": {
+            "name": "Liquipedia: The MongolZ (rev 3456045)",
+            "url": "https://liquipedia.net/counterstrike/The_MongolZ",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "tikuak",
+          "role": "player",
+          "from": "2026-07-12",
+          "to": "2026-09-15",
+          "source": {
+            "name": "Liquipedia: The MongolZ (rev 3456045)",
+            "url": "https://liquipedia.net/counterstrike/The_MongolZ",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "mzinho",
+          "role": "player",
+          "from": "2023-05-31",
+          "to": "2026-07-09",
+          "source": {
+            "name": "Liquipedia: The MongolZ (rev 3456045)",
+            "url": "https://liquipedia.net/counterstrike/The_MongolZ",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mibr",
+      "name": "MIBR",
+      "aliases": [],
+      "liquipedia": "mibr",
+      "liquipediaPage": "MIBR",
+      "vrsName": "MIBR",
+      "roster": [
+        {
+          "player": "insani",
+          "role": "player",
+          "from": "2023-01-17",
+          "source": {
+            "name": "Liquipedia: MIBR (rev 3459269)",
+            "url": "https://liquipedia.net/counterstrike/MIBR",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "LNZ",
+          "role": "player",
+          "from": "2026-01-12",
+          "source": {
+            "name": "Liquipedia: MIBR (rev 3459269)",
+            "url": "https://liquipedia.net/counterstrike/MIBR",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "venomzera",
+          "role": "player",
+          "from": "2026-01-12",
+          "source": {
+            "name": "Liquipedia: MIBR (rev 3459269)",
+            "url": "https://liquipedia.net/counterstrike/MIBR",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "nqz",
+          "role": "player",
+          "from": "2026-06-26",
+          "source": {
+            "name": "Liquipedia: MIBR (rev 3459269)",
+            "url": "https://liquipedia.net/counterstrike/MIBR",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "tomaszin",
+          "role": "player",
+          "from": "2026-08-28",
+          "source": {
+            "name": "Liquipedia: MIBR (rev 3459269)",
+            "url": "https://liquipedia.net/counterstrike/MIBR",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "LETN1",
+          "role": "coach",
+          "from": "2026-01-21",
+          "source": {
+            "name": "Liquipedia: MIBR (rev 3459269)",
+            "url": "https://liquipedia.net/counterstrike/MIBR",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "brnz4n",
+          "role": "player",
+          "from": "2022-05-19",
+          "to": "2026-08-25",
+          "source": {
+            "name": "Liquipedia: MIBR (rev 3459269)",
+            "url": "https://liquipedia.net/counterstrike/MIBR",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "kl1m",
+          "role": "player",
+          "from": "2025-08-26",
+          "to": "2026-06-26",
+          "source": {
+            "name": "Liquipedia: MIBR (rev 3459269)",
+            "url": "https://liquipedia.net/counterstrike/MIBR",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "exit",
+          "role": "player",
+          "from": "2021-03-30",
+          "to": "2026-01-04",
+          "source": {
+            "name": "Liquipedia: MIBR (rev 3459269)",
+            "url": "https://liquipedia.net/counterstrike/MIBR",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "Qikert",
+          "role": "player",
+          "from": "2025-09-08",
+          "to": "2026-01-01",
+          "source": {
+            "name": "Liquipedia: MIBR (rev 3459269)",
+            "url": "https://liquipedia.net/counterstrike/MIBR",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "nak",
+          "role": "coach",
+          "from": "2025-01-08",
+          "source": {
+            "name": "Liquipedia: MIBR (rev 3459269)",
+            "url": "https://liquipedia.net/counterstrike/MIBR",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        },
+        {
+          "player": "righi",
+          "role": "coach",
+          "from": "2026-03-01",
+          "approximate": true,
+          "source": {
+            "name": "Liquipedia: MIBR (rev 3459269)",
+            "url": "https://liquipedia.net/counterstrike/MIBR",
+            "retrievedAt": "2026-11-21",
+            "license": "CC-BY-SA 3.0"
+          }
+        }
+      ]
     }
   ]
 }

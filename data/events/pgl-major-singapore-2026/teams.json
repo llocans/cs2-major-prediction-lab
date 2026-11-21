@@ -2,26 +2,197 @@
   "schemaVersion": 1,
   "eventId": "pgl-major-singapore-2026",
   "participants": [
-    { "teamId": "nip", "displayName": "Ninjas in Pyjamas", "entryStage": "stage-1", "stageSeed": 1, "vrsPoints": 1564 },
-    { "teamId": "parivision", "displayName": "PVISION", "entryStage": "stage-1", "stageSeed": 2, "vrsPoints": 1560 },
-    { "teamId": "heroic", "displayName": "HEROIC", "entryStage": "stage-1", "stageSeed": 3, "vrsPoints": 1548 },
-    { "teamId": "faze", "displayName": "FaZe", "entryStage": "stage-1", "stageSeed": 4, "vrsPoints": 1539 },
-    { "teamId": "liquid", "displayName": "Liquid", "entryStage": "stage-1", "stageSeed": 5, "vrsPoints": 1528 },
-    { "teamId": "eternal-fire", "displayName": "Eternal Fire", "entryStage": "stage-1", "stageSeed": 6, "vrsPoints": 1513 },
-    { "teamId": "100-thieves", "displayName": "100 Thieves", "entryStage": "stage-1", "stageSeed": 7, "vrsPoints": 1511 },
-    { "teamId": "9z", "displayName": "9z", "entryStage": "stage-1", "stageSeed": 8, "vrsPoints": 1490 },
-    { "teamId": "m80", "displayName": "M80", "entryStage": "stage-1", "stageSeed": 9, "vrsPoints": 1489 },
-    { "teamId": "dendele", "displayName": "DENDELE", "entryStage": "stage-1", "stageSeed": 10, "vrsPoints": 1466 },
-    { "teamId": "imperial", "displayName": "Imperial", "entryStage": "stage-1", "stageSeed": 11, "vrsPoints": 1406 },
-    { "teamId": "wildcard", "displayName": "Wildcard", "entryStage": "stage-1", "stageSeed": 12, "vrsPoints": 1391 },
-    { "teamId": "bc-game", "displayName": "GOSH", "entryStage": "stage-1", "stageSeed": 13, "vrsPoints": 1337 },
-    { "teamId": "flyquest", "displayName": "FlyQuest", "entryStage": "stage-1", "stageSeed": 14, "vrsPoints": 1318 },
-    { "teamId": "chinggis-warriors", "displayName": "Chinggis Warriors", "entryStage": "stage-1", "stageSeed": 15, "vrsPoints": 1272 },
-    { "teamId": "lynn-vision", "displayName": "Lynn Vision", "entryStage": "stage-1", "stageSeed": 16, "vrsPoints": 1267 }
+    {
+      "teamId": "nip",
+      "displayName": "Ninjas in Pyjamas",
+      "entryStage": "stage-1",
+      "stageSeed": 1,
+      "vrsPoints": 1564
+    },
+    {
+      "teamId": "parivision",
+      "displayName": "PVISION",
+      "entryStage": "stage-1",
+      "stageSeed": 2,
+      "vrsPoints": 1560
+    },
+    {
+      "teamId": "heroic",
+      "displayName": "HEROIC",
+      "entryStage": "stage-1",
+      "stageSeed": 3,
+      "vrsPoints": 1548
+    },
+    {
+      "teamId": "faze",
+      "displayName": "FaZe",
+      "entryStage": "stage-1",
+      "stageSeed": 4,
+      "vrsPoints": 1539
+    },
+    {
+      "teamId": "liquid",
+      "displayName": "Liquid",
+      "entryStage": "stage-1",
+      "stageSeed": 5,
+      "vrsPoints": 1528
+    },
+    {
+      "teamId": "eternal-fire",
+      "displayName": "Eternal Fire",
+      "entryStage": "stage-1",
+      "stageSeed": 6,
+      "vrsPoints": 1513
+    },
+    {
+      "teamId": "100-thieves",
+      "displayName": "100 Thieves",
+      "entryStage": "stage-1",
+      "stageSeed": 7,
+      "vrsPoints": 1511
+    },
+    {
+      "teamId": "9z",
+      "displayName": "9z",
+      "entryStage": "stage-1",
+      "stageSeed": 8,
+      "vrsPoints": 1490
+    },
+    {
+      "teamId": "m80",
+      "displayName": "M80",
+      "entryStage": "stage-1",
+      "stageSeed": 9,
+      "vrsPoints": 1489
+    },
+    {
+      "teamId": "dendele",
+      "displayName": "DENDELE",
+      "entryStage": "stage-1",
+      "stageSeed": 10,
+      "vrsPoints": 1466
+    },
+    {
+      "teamId": "imperial",
+      "displayName": "Imperial",
+      "entryStage": "stage-1",
+      "stageSeed": 11,
+      "vrsPoints": 1406
+    },
+    {
+      "teamId": "wildcard",
+      "displayName": "Wildcard",
+      "entryStage": "stage-1",
+      "stageSeed": 12,
+      "vrsPoints": 1391
+    },
+    {
+      "teamId": "bc-game",
+      "displayName": "GOSH",
+      "entryStage": "stage-1",
+      "stageSeed": 13,
+      "vrsPoints": 1337
+    },
+    {
+      "teamId": "flyquest",
+      "displayName": "FlyQuest",
+      "entryStage": "stage-1",
+      "stageSeed": 14,
+      "vrsPoints": 1318
+    },
+    {
+      "teamId": "chinggis-warriors",
+      "displayName": "Chinggis Warriors",
+      "entryStage": "stage-1",
+      "stageSeed": 15,
+      "vrsPoints": 1272
+    },
+    {
+      "teamId": "lynn-vision",
+      "displayName": "Lynn Vision",
+      "entryStage": "stage-1",
+      "stageSeed": 16,
+      "vrsPoints": 1267
+    },
+    {
+      "teamId": "fut",
+      "displayName": "FUT",
+      "entryStage": "stage-2",
+      "stageSeed": 1,
+      "vrsPoints": 1721
+    },
+    {
+      "teamId": "nemiga",
+      "displayName": "Nemiga",
+      "entryStage": "stage-2",
+      "stageSeed": 2,
+      "vrsPoints": 1650
+    },
+    {
+      "teamId": "g2",
+      "displayName": "G2",
+      "entryStage": "stage-2",
+      "stageSeed": 3,
+      "vrsPoints": 1616
+    },
+    {
+      "teamId": "1win",
+      "displayName": "THE ONE",
+      "entryStage": "stage-2",
+      "stageSeed": 4,
+      "vrsPoints": 1598
+    },
+    {
+      "teamId": "navi",
+      "displayName": "NAVI",
+      "entryStage": "stage-2",
+      "stageSeed": 5,
+      "vrsPoints": 1589
+    },
+    {
+      "teamId": "astralis",
+      "displayName": "Astralis",
+      "entryStage": "stage-2",
+      "stageSeed": 6,
+      "vrsPoints": 1572
+    },
+    {
+      "teamId": "the-mongolz",
+      "displayName": "The MongolZ",
+      "entryStage": "stage-2",
+      "stageSeed": 7,
+      "vrsPoints": 1554
+    },
+    {
+      "teamId": "mibr",
+      "displayName": "MIBR",
+      "entryStage": "stage-2",
+      "stageSeed": 8,
+      "vrsPoints": 1546
+    }
   ],
   "source": [
-    { "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (seed order, rev 3471273)", "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1", "retrievedAt": "2026-11-21", "license": "CC-BY-SA 3.0" },
-    { "name": "Strafe: Stage 1 seeds and opening matches", "url": "https://www.strafe.com/news/read/cs2-singapore-major-2026-format-teams-schedule-and-opening-matches/", "retrievedAt": "2026-11-21" },
-    { "name": "Valve VRS global standings 2026-11-02 (vrsPoints)", "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/standings_global_2026_11_02.md", "retrievedAt": "2026-11-21" }
+    {
+      "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (seed order, rev 3471273)",
+      "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+      "retrievedAt": "2026-11-21",
+      "license": "CC-BY-SA 3.0"
+    },
+    {
+      "name": "Strafe: Stage 1 seeds and opening matches",
+      "url": "https://www.strafe.com/news/read/cs2-singapore-major-2026-format-teams-schedule-and-opening-matches/",
+      "retrievedAt": "2026-11-21"
+    },
+    {
+      "name": "Valve VRS global standings 2026-11-02 (vrsPoints)",
+      "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/standings_global_2026_11_02.md",
+      "retrievedAt": "2026-11-21"
+    },
+    {
+      "name": "Liquipedia: PGL/2026/Singapore/Stage 2 (invited seeds 1-8, rev 3471275)",
+      "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_2",
+      "retrievedAt": "2026-11-21",
+      "license": "CC-BY-SA 3.0"
+    }
   ]
 }

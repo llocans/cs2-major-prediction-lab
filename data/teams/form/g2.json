@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "g2",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 11,
+    "points": 1616
+  },
+  "roster": [
+    "HeavyGod",
+    "huNter-",
+    "MATYS",
+    "NertZ",
+    "r1nkle"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 12,
+      "lost": 11
+    },
+    "vsTop30": {
+      "won": 14,
+      "lost": 19
+    },
+    "tier1Series": 38
+  },
+  "recent": [
+    {
+      "date": "2026-10-26",
+      "opponent": "DENDELE",
+      "opponentRank": 29,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-25",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-24",
+      "opponent": "Natus Vincere",
+      "opponentRank": 13,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-06",
+      "opponent": "PARIVISION",
+      "opponentRank": 16,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-05",
+      "opponent": "ShindeN",
+      "opponentRank": 83,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-04",
+      "opponent": "1win",
+      "opponentRank": 12,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "Natus Vincere",
+      "opponentRank": 13,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-13",
+      "opponent": "Legacy",
+      "opponentRank": 9,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-12",
+      "opponent": "BETBOOM",
+      "opponentRank": 6,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-11",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-10",
+      "opponent": "5star",
+      "opponentRank": 68,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-09",
+      "opponent": "9z",
+      "opponentRank": 24,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-09",
+      "opponent": "BIG",
+      "opponentRank": 32,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-08",
+      "opponent": "Astralis",
+      "opponentRank": 14,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-04",
+      "opponent": "Falcons",
+      "opponentRank": 7,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-31",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-30",
+      "opponent": "Natus Vincere",
+      "opponentRank": 13,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-28",
+      "opponent": "Spirit",
+      "opponentRank": 5,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-26",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-20",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "L"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0011--g2--heavygod-hunter--matys-nertz-r1nkle.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0011--g2--heavygod-hunter--matys-nertz-r1nkle.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

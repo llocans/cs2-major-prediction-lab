@@ -15,6 +15,7 @@ import {
 import { buildMatchModel } from '../../engine/match-model.ts'
 import type { Labels } from '../../engine/predict.ts'
 import type { SwissSimInput } from '../../engine/simulate-swiss.ts'
+import { stageSeeds } from '../../engine/swiss/stage-seeds.ts'
 import type { Pairing, SwissMatch } from '../../engine/swiss/types.ts'
 import { readJson, repoPath } from './files.ts'
 import { loadRatings } from './ratings-store.ts'
@@ -48,10 +49,7 @@ export function loadStageContext(
   const modifiers = existsSync(modifiersPath) ? readJson(modifiersPath, Modifiers).modifiers : []
   const ratings = loadRatings()
 
-  const seeds = teams.participants
-    .filter((p) => p.entryStage === stageId)
-    .sort((a, b) => a.stageSeed - b.stageSeed)
-    .map((p) => p.teamId)
+  const seeds = stageSeeds(teams.participants, stageId)
   if (seeds.length !== stage.teamCount) {
     throw new Error(`${stageId}: expected ${stage.teamCount} seeded teams, found ${seeds.length}`)
   }

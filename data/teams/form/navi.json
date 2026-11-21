@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "navi",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 13,
+    "points": 1589
+  },
+  "roster": [
+    "Aleksib",
+    "b1t",
+    "iM",
+    "makazze",
+    "w0nderful"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 9,
+      "lost": 12
+    },
+    "vsTop30": {
+      "won": 10,
+      "lost": 15
+    },
+    "tier1Series": 28
+  },
+  "recent": [
+    {
+      "date": "2026-10-30",
+      "opponent": "WBT Academy",
+      "opponentRank": 103,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-30",
+      "opponent": "Toobisie",
+      "opponentRank": 214,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-29",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-28",
+      "opponent": "Spirit",
+      "opponentRank": 5,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-27",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-26",
+      "opponent": "BETBOOM",
+      "opponentRank": 6,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-25",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-24",
+      "opponent": "G2",
+      "opponentRank": 11,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-07",
+      "opponent": "PARIVISION",
+      "opponentRank": 16,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-06",
+      "opponent": "Falcons",
+      "opponentRank": 7,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-05",
+      "opponent": "9z",
+      "opponentRank": 24,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-04",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "G2",
+      "opponentRank": 11,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-18",
+      "opponent": "MOUZ",
+      "opponentRank": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-17",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-30",
+      "opponent": "G2",
+      "opponentRank": 11,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-28",
+      "opponent": "paiN",
+      "opponentRank": 53,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-26",
+      "opponent": "M80",
+      "opponentRank": 25,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-20",
+      "opponent": "Legacy",
+      "opponentRank": 9,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-15",
+      "opponent": "The MongolZ",
+      "opponentRank": 17,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0013--natus_vincere--aleksib-b1t-im-makazze-w0nderful.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0013--natus_vincere--aleksib-b1t-im-makazze-w0nderful.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

@@ -1,11 +1,11 @@
-import type { EventParticipant } from '../../../data/schemas/event-teams.ts'
 import type { MatchPrediction, TeamOutlook } from '../../../data/schemas/snapshot.ts'
 import { forms, ratings } from '../lib/data.ts'
 import { pct, shortDate } from '../lib/format.ts'
 
 interface Props {
   teamId: string
-  participant?: EventParticipant
+  /** Seed in the stage being shown (entry or advanced seed). */
+  seed?: number
   outlook?: TeamOutlook
   next?: MatchPrediction
   name: (teamId: string) => string
@@ -16,8 +16,7 @@ interface Props {
 }
 
 export function TeamPanel(props: Props) {
-  const { teamId, participant, outlook, next, name, swapOptions, canSwap, swappedWith, onSwap } =
-    props
+  const { teamId, seed, outlook, next, name, swapOptions, canSwap, swappedWith, onSwap } = props
   const form = forms.get(teamId)
   const rating = ratings.teams[teamId]
   const opponent = next ? (next.teamA === teamId ? next.teamB : next.teamA) : undefined
@@ -27,7 +26,7 @@ export function TeamPanel(props: Props) {
     <aside className="flex flex-col gap-4" aria-label={`${name(teamId)} details`}>
       <header className="border-b border-ink pb-2">
         <div className="font-display text-xs font-semibold uppercase tracking-wider text-ink-3">
-          Seed {participant?.stageSeed ?? '–'}
+          Seed {seed ?? '–'}
           {form && ` · VRS #${form.vrs.rank} · ${form.vrs.points} pts`}
         </div>
         <h2 className="font-display text-3xl font-bold leading-tight">{name(teamId)}</h2>

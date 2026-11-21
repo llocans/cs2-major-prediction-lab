@@ -18,7 +18,7 @@ import {
 import { mapStrengthFromSample, unplayedMapStrength } from '../engine/ratings/map-strength.ts'
 import { priorRating } from '../engine/ratings/prior.ts'
 import { readJson, repoPath } from './lib/files.ts'
-import { saveRatings } from './lib/ratings-store.ts'
+import { loadRatings, saveRatings } from './lib/ratings-store.ts'
 
 const [eventId, flag] = process.argv.slice(2)
 if (!eventId) {
@@ -26,23 +26,27 @@ if (!eventId) {
   process.exit(1)
 }
 
-// Rebuilding the prior mid-event would throw away every rating update from real results.
+// Rebuilding the prior mid-event would throw away every rating update from real results. Once results
+// exist, only teams missing from current.json get a prior (e.g. later-stage invites); --force rebuilds all.
 const logged = readJson(repoPath('data/events', eventId, 'results.json'), EventResults).matches
   .length
-if (logged > 0 && flag !== '--force') {
-  console.error(
-    `${eventId} already has ${logged} real result(s). Rebuilding the prior would discard their rating updates. ` +
-      'Use modifiers for new research, or pass --force if you really mean to restart from the prior.',
-  )
-  process.exit(1)
-}
+const addMissingOnly = logged > 0 && flag !== '--force'
 
 const params = readJson(repoPath('data/model/params.json'), ModelParams)
 const eventTeams = readJson(repoPath('data/events', eventId, 'teams.json'), EventTeams)
 const config = readJson(repoPath('data/events', eventId, 'config.json'), EventConfig)
 const teams: Record<string, TeamRating> = {}
 
+const existing = addMissingOnly ? loadRatings() : undefined
+if (existing) {
+  console.log(
+    `${eventId} has ${logged} result(s): keeping current ratings, adding missing teams only`,
+  )
+  Object.assign(teams, existing.teams)
+}
+
 for (const participant of eventTeams.participants) {
+  if (existing?.teams[participant.teamId]) continue
   const formPath = repoPath('data/teams/form', `${participant.teamId}.json`)
   if (!existsSync(formPath))
     throw new Error(`Missing ${formPath}. Run scripts/research/vrs-form.ts`)
@@ -80,7 +84,9 @@ for (const participant of eventTeams.participants) {
 const ratings: Ratings = {
   schemaVersion: 1,
   asOf: new Date().toISOString(),
-  reason: `prior for ${eventId} (VRS + cold-start rule + map stats where available)`,
+  reason: existing
+    ? `added missing teams for ${eventId} (VRS prior); existing ratings kept`
+    : `prior for ${eventId} (VRS + cold-start rule + map stats where available)`,
   teams,
 }
 saveRatings(ratings)

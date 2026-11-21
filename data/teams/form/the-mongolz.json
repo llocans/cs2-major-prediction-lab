@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "the-mongolz",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 17,
+    "points": 1554
+  },
+  "roster": [
+    "910",
+    "bLitz",
+    "cobrazera",
+    "nin9",
+    "Techno"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 9,
+      "lost": 8
+    },
+    "vsTop30": {
+      "won": 8,
+      "lost": 15
+    },
+    "tier1Series": 31
+  },
+  "recent": [
+    {
+      "date": "2026-10-28",
+      "opponent": "Nemiga",
+      "opponentRank": 10,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-27",
+      "opponent": "Legacy",
+      "opponentRank": 9,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-26",
+      "opponent": "MOUZ",
+      "opponentRank": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-25",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-24",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-22",
+      "opponent": "PARIVISION",
+      "opponentRank": 16,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-22",
+      "opponent": "BIG",
+      "opponentRank": 32,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-21",
+      "opponent": "PRIVATE",
+      "opponentRank": 46,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-21",
+      "opponent": "magic",
+      "opponentRank": 41,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-20",
+      "opponent": "BIG",
+      "opponentRank": 32,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-19",
+      "opponent": "Alliance",
+      "opponentRank": 52,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-08",
+      "opponent": "5star",
+      "opponentRank": 68,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-08",
+      "opponent": "MIBR",
+      "opponentRank": 19,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-20",
+      "opponent": "Falcons",
+      "opponentRank": 7,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-16",
+      "opponent": "paiN",
+      "opponentRank": 53,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-15",
+      "opponent": "Natus Vincere",
+      "opponentRank": 13,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-12",
+      "opponent": "magic",
+      "opponentRank": 41,
+      "result": "W"
+    },
+    {
+      "date": "2026-07-31",
+      "opponent": "FaZe",
+      "opponentRank": 20,
+      "result": "L"
+    },
+    {
+      "date": "2026-07-26",
+      "opponent": "Wildcard",
+      "opponentRank": 38,
+      "result": "W"
+    },
+    {
+      "date": "2026-07-24",
+      "opponent": "HEROIC",
+      "opponentRank": 18,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0017--the_mongolz--910-blitz-cobrazera-nin9-techno.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0017--the_mongolz--910-blitz-cobrazera-nin9-techno.md",
+    "retrievedAt": "2026-11-21"
+  }
+}
