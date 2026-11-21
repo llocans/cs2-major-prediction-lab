@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "falcons",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 7,
+    "points": 1764
+  },
+  "roster": [
+    "karrigan",
+    "kyousuke",
+    "m0NESY",
+    "NiKo",
+    "TeSeS"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 11,
+      "lost": 7
+    },
+    "vsTop30": {
+      "won": 18,
+      "lost": 12
+    },
+    "tier1Series": 36
+  },
+  "recent": [
+    {
+      "date": "2026-10-18",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-17",
+      "opponent": "BETBOOM",
+      "opponentRank": 6,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-15",
+      "opponent": "9z",
+      "opponentRank": 24,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-14",
+      "opponent": "Ninjas in Pyjamas",
+      "opponentRank": 15,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-09",
+      "opponent": "Spirit",
+      "opponentRank": 5,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-06",
+      "opponent": "Natus Vincere",
+      "opponentRank": 13,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-05",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-04",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "TYLOO",
+      "opponentRank": 59,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-05",
+      "opponent": "Spirit",
+      "opponentRank": 5,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-04",
+      "opponent": "G2",
+      "opponentRank": 11,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-31",
+      "opponent": "MOUZ",
+      "opponentRank": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-29",
+      "opponent": "Legacy",
+      "opponentRank": 9,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-27",
+      "opponent": "Lynn Vision",
+      "opponentRank": 56,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-21",
+      "opponent": "Legacy",
+      "opponentRank": 9,
+      "result": "L"
+    },
+    {
+      "date": "2026-08-20",
+      "opponent": "The MongolZ",
+      "opponentRank": 17,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-13",
+      "opponent": "Astralis",
+      "opponentRank": 14,
+      "result": "W"
+    },
+    {
+      "date": "2026-08-12",
+      "opponent": "K27",
+      "opponentRank": 34,
+      "result": "W"
+    },
+    {
+      "date": "2026-07-22",
+      "opponent": "100 Thieves",
+      "opponentRank": 23,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-21",
+      "opponent": "FURIA",
+      "opponentRank": 3,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0007--falcons--karrigan-kyousuke-m0nesy-niko-teses.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0007--falcons--karrigan-kyousuke-m0nesy-niko-teses.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

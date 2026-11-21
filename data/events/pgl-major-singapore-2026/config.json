@@ -334,7 +334,28 @@
         ]
       ],
       "pairingRules": "valve-major-2025",
-      "rounds": [],
+      "rounds": [
+        {
+          "round": 1,
+          "date": "2026-12-02"
+        },
+        {
+          "round": 2,
+          "date": "2026-12-03"
+        },
+        {
+          "round": 3,
+          "date": "2026-12-04"
+        },
+        {
+          "round": 4,
+          "date": "2026-12-05"
+        },
+        {
+          "round": 5,
+          "date": "2026-12-06"
+        }
+      ],
       "liquipediaPage": "PGL/2026/Singapore/Stage 3",
       "advanceTo": "playoffs",
       "source": [
@@ -348,6 +369,12 @@
           "name": "Strafe: format, teams, schedule",
           "url": "https://www.strafe.com/news/read/cs2-singapore-major-2026-format-teams-schedule-and-opening-matches/",
           "retrievedAt": "2026-11-21"
+        },
+        {
+          "name": "Liquipedia: PGL/2026/Singapore/Stage 3 (round dates, rev 3471276)",
+          "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_3",
+          "retrievedAt": "2026-11-21",
+          "license": "CC-BY-SA 3.0"
         }
       ]
     },

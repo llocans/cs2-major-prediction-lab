@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "teamId": "spirit",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 38,
+    "played": 62
+  },
+  "maps": {
+    "mirage": {
+      "won": 6,
+      "played": 13
+    },
+    "ancient": {
+      "won": 9,
+      "played": 13
+    },
+    "dust2": {
+      "won": 6,
+      "played": 10
+    },
+    "nuke": {
+      "won": 6,
+      "played": 9
+    },
+    "anubis": {
+      "won": 6,
+      "played": 9
+    },
+    "cache": {
+      "won": 5,
+      "played": 8
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/7020/spirit?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}

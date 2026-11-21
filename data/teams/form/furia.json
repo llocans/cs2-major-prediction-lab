@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "teamId": "furia",
+  "asOf": "2026-11-02",
+  "vrs": {
+    "rank": 3,
+    "points": 1912
+  },
+  "roster": [
+    "FalleN",
+    "KSCERATO",
+    "molodoy",
+    "YEKINDAR",
+    "yuurih"
+  ],
+  "summary": {
+    "last90Days": {
+      "won": 24,
+      "lost": 13
+    },
+    "vsTop30": {
+      "won": 26,
+      "lost": 17
+    },
+    "tier1Series": 46
+  },
+  "recent": [
+    {
+      "date": "2026-10-31",
+      "opponent": "Nemiga",
+      "opponentRank": 10,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-30",
+      "opponent": "MOUZ",
+      "opponentRank": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-29",
+      "opponent": "BETBOOM",
+      "opponentRank": 6,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-28",
+      "opponent": "Liquid",
+      "opponentRank": 21,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-27",
+      "opponent": "TYLOO",
+      "opponentRank": 59,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-26",
+      "opponent": "Spirit",
+      "opponentRank": 5,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-25",
+      "opponent": "Natus Vincere",
+      "opponentRank": 13,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-24",
+      "opponent": "DENDELE",
+      "opponentRank": 29,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-18",
+      "opponent": "BETBOOM",
+      "opponentRank": 6,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-17",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-15",
+      "opponent": "Legacy",
+      "opponentRank": 9,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-14",
+      "opponent": "BETBOOM",
+      "opponentRank": 6,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-09",
+      "opponent": "MOUZ",
+      "opponentRank": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-07",
+      "opponent": "9z",
+      "opponentRank": 24,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-06",
+      "opponent": "Aurora",
+      "opponentRank": 4,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-05",
+      "opponent": "PARIVISION",
+      "opponentRank": 16,
+      "result": "W"
+    },
+    {
+      "date": "2026-10-04",
+      "opponent": "MOUZ",
+      "opponentRank": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-10-03",
+      "opponent": "BETBOOM",
+      "opponentRank": 6,
+      "result": "W"
+    },
+    {
+      "date": "2026-09-20",
+      "opponent": "Vitality",
+      "opponentRank": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-09-19",
+      "opponent": "MIBR",
+      "opponentRank": 19,
+      "result": "W"
+    }
+  ],
+  "source": {
+    "name": "Valve VRS 2026-11-02: details/2026_11_02/0003--furia--fallen-kscerato-molodoy-yekindar-yuurih.md",
+    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0003--furia--fallen-kscerato-molodoy-yekindar-yuurih.md",
+    "retrievedAt": "2026-11-21"
+  }
+}

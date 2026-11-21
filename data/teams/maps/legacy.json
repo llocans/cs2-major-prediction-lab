@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "teamId": "legacy",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 29,
+    "played": 62
+  },
+  "maps": {
+    "dust2": {
+      "won": 8,
+      "played": 18
+    },
+    "mirage": {
+      "won": 9,
+      "played": 16
+    },
+    "ancient": {
+      "won": 5,
+      "played": 13
+    },
+    "inferno": {
+      "won": 2,
+      "played": 7
+    },
+    "cache": {
+      "won": 3,
+      "played": 4
+    },
+    "nuke": {
+      "won": 2,
+      "played": 4
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/12468/legacy?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}

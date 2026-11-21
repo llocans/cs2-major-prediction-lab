@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "teamId": "aurora",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 38,
+    "played": 67
+  },
+  "maps": {
+    "mirage": {
+      "won": 8,
+      "played": 14
+    },
+    "inferno": {
+      "won": 5,
+      "played": 13
+    },
+    "anubis": {
+      "won": 8,
+      "played": 12
+    },
+    "cache": {
+      "won": 6,
+      "played": 10
+    },
+    "dust2": {
+      "won": 6,
+      "played": 10
+    },
+    "nuke": {
+      "won": 5,
+      "played": 8
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/11861/aurora?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}

@@ -26,6 +26,19 @@
       },
       "createdAt": "2026-11-21",
       "expires": "2026-12-13"
+    },
+    {
+      "id": "legacy-ksloks-2026-11",
+      "teamId": "legacy",
+      "delta": -10,
+      "reason": "ksloks replaces benched n1ssim (benched 2026-10-28); only 10 maps with the team, most map stats were played with n1ssim",
+      "source": {
+        "name": "HLTV event page PGL Major Singapore 2026 (lineups); pley.gg event guide (n1ssim benched 28 October)",
+        "url": "https://www.hltv.org/events/8302/pgl-major-singapore-2026",
+        "retrievedAt": "2026-11-21"
+      },
+      "createdAt": "2026-11-21",
+      "expires": "2026-12-13"
     }
   ]
 }

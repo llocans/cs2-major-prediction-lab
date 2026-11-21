@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "teamId": "furia",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "overall": {
+    "won": 62,
+    "played": 105
+  },
+  "maps": {
+    "dust2": {
+      "won": 13,
+      "played": 20
+    },
+    "mirage": {
+      "won": 12,
+      "played": 20
+    },
+    "cache": {
+      "won": 11,
+      "played": 18
+    },
+    "ancient": {
+      "won": 7,
+      "played": 18
+    },
+    "nuke": {
+      "won": 9,
+      "played": 15
+    },
+    "inferno": {
+      "won": 10,
+      "played": 13
+    },
+    "anubis": {
+      "won": 0,
+      "played": 1
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/8297/furia?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-21"
+  }
+}
