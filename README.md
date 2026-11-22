@@ -20,7 +20,8 @@ result.
    pick strong ones, with some randomness.
 4. **Simulation.** The rest of the stage is played out thousands of times with seeded randomness,
    following Valve's Swiss pairing rules. Outputs include advance, 3-0 and 0-3 odds per team and a win
-   probability per match.
+   probability per match. Each run then continues through the remaining stages and the playoffs, which
+   gives every team's odds of reaching the playoffs and winning the event.
 5. **Updates.** Every real result updates the ratings, and the stage is re-simulated from the actual
    standings.
 6. **Scoring.** Each round's saved snapshot is compared with what happened: Brier score, calibration,
@@ -102,7 +103,9 @@ are documented with sources in [`docs/rules.md`](docs/rules.md).
 
 ## Current limitations
 
-- Playoffs (single elimination, Bo5 final) are not modeled yet; Swiss stages are.
+- The playoffs are simulated for title odds, but the site has no playoffs page yet and the poller does
+  not read playoff results yet.
+- The Bo5 grand-final veto is assumed from earlier PGL events until PGL publishes the Singapore one.
 - No market odds are collected yet, so scoring compares only against a coin flip.
 - Ratings are tuned on reasoning, not yet on backtests of past Majors.
 

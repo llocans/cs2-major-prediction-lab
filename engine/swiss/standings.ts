@@ -35,3 +35,14 @@ export function swissStandings(
           : 'active',
   }))
 }
+
+/** The teams that advanced from a finished stage, in final mid-stage seed order (Valve). */
+export function advancingTeams(
+  seeds: readonly string[],
+  matches: readonly SwissMatch[],
+  rules: SwissRules,
+): string[] {
+  return swissStandings(seeds, matches, rules)
+    .filter((standing) => standing.status === 'advanced')
+    .map((standing) => standing.teamId)
+}

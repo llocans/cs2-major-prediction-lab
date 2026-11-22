@@ -12,8 +12,10 @@ import {
   type SwissStage,
   TeamRegistry,
 } from '../../data/schemas/index.ts'
+import { buildEventChain } from '../../engine/event-chain.ts'
 import { buildMatchModel } from '../../engine/match-model.ts'
 import type { Labels } from '../../engine/predict.ts'
+import type { EventChain } from '../../engine/simulate-event.ts'
 import type { SwissSimInput } from '../../engine/simulate-swiss.ts'
 import { stageSeeds } from '../../engine/swiss/stage-seeds.ts'
 import type { Pairing, SwissMatch } from '../../engine/swiss/types.ts'
@@ -27,6 +29,11 @@ export interface StageContext {
   results: EventResults
   params: ModelParams
   simInput: SwissSimInput
+  /**
+   * The rest of the event after this stage, for playoff and title odds. Undefined (with a warning)
+   * if the later stages are misconfigured, so results and stage odds never depend on them.
+   */
+  chain?: EventChain
   labels: Labels
   ratingsAsOf: string
 }
@@ -90,5 +97,35 @@ export function loadStageContext(
   }
   if (options.announced) simInput.announced = options.announced
 
-  return { eventId, config, stage, results, params, simInput, labels, ratingsAsOf: ratings.asOf }
+  const chain = laterStages(config, teams.participants, stageId, seeds)
+  return {
+    eventId,
+    config,
+    stage,
+    results,
+    params,
+    simInput,
+    ...(chain ? { chain } : {}),
+    labels,
+    ratingsAsOf: ratings.asOf,
+  }
+}
+
+/** The event chain after this stage, or undefined with a warning when it cannot be built. */
+function laterStages(
+  config: EventConfig,
+  participants: EventTeams['participants'],
+  stageId: string,
+  seeds: readonly string[],
+): EventChain | undefined {
+  try {
+    const chain = buildEventChain(config, participants, stageId)
+    const teams = [...seeds, ...chain.next.flatMap((stage) => stage.invited)]
+    const twice = teams.filter((team, index) => teams.indexOf(team) !== index)
+    if (twice.length > 0) throw new Error(`teams in more than one stage: ${twice.join(', ')}`)
+    return chain
+  } catch (error) {
+    console.warn(`${config.id}: no playoff/title odds (${String(error)})`)
+    return undefined
+  }
 }

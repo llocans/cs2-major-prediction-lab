@@ -1,6 +1,7 @@
 import { existsSync } from 'node:fs'
 import { Snapshot } from '../../data/schemas/index.ts'
-import { predictStage } from '../../engine/predict.ts'
+import { predictStage, type StagePrediction } from '../../engine/predict.ts'
+import { currentRound } from '../../engine/simulate-swiss.ts'
 import type { StageContext } from './event-context.ts'
 import { repoPath, writeJson } from './files.ts'
 
@@ -12,14 +13,19 @@ export function snapshotPath(eventId: string, stageId: string, round: number): s
  * Saves the pre-round snapshot for the stage's current round. One snapshot per round, never
  * overwritten: returns "exists" if it was already saved, "done" if the stage is over.
  */
-export function saveRoundSnapshot(context: StageContext): {
+export function saveRoundSnapshot(
+  context: StageContext,
+  /** A prediction already made from this exact context, to avoid simulating twice. */
+  existing?: StagePrediction,
+): {
   status: 'saved' | 'exists' | 'done'
   path?: string
 } {
-  const prediction = predictStage(context.simInput, context.labels)
-  const round = prediction.sim.currentRound
+  const { seeds, played, rules } = context.simInput
+  const round = currentRound(seeds, played, rules)
   if (round > 5) return { status: 'done' }
   const path = snapshotPath(context.eventId, context.stage.id, round)
+  // Checked before simulating: the whole-event simulation takes seconds and the poller asks often.
   if (existsSync(path)) return { status: 'exists', path }
 
   // A round that has started already is not "before the round" any more.
@@ -29,6 +35,11 @@ export function saveRoundSnapshot(context: StageContext): {
       `${context.stage.id} round ${round} already has results; a pre-round snapshot would be dishonest`,
     )
   }
+  const prediction = existing ?? predictStage(context.simInput, context.labels, context.chain)
+  const maxStandardError = Math.max(
+    prediction.sim.maxStandardError,
+    prediction.event?.maxStandardError ?? 0,
+  )
 
   writeJson(
     path,
@@ -42,7 +53,10 @@ export function saveRoundSnapshot(context: StageContext): {
       modelVersion: context.params.version,
       seed: context.simInput.seed,
       runs: context.simInput.runs,
-      maxStandardError: prediction.sim.maxStandardError,
+      maxStandardError,
+      ...(prediction.event?.unverifiedVeto.length
+        ? { unverifiedVeto: prediction.event.unverifiedVeto }
+        : {}),
       resultsCount: context.simInput.played.length,
       ratingsAsOf: context.ratingsAsOf,
       matches: prediction.matches,

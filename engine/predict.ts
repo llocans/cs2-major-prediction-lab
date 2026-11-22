@@ -1,5 +1,6 @@
 import type { MatchPrediction, TeamOutlook } from '../data/schemas/snapshot.ts'
 import { matchConfidence, matchReason, matchupSigma, teamConfidence } from './explain.ts'
+import { type EventChain, type EventSimResult, simulateEvent } from './simulate-event.ts'
 import { type SwissSimInput, type SwissSimResult, simulateSwiss } from './simulate-swiss.ts'
 import { buildRecords } from './swiss/records.ts'
 
@@ -7,6 +8,8 @@ export interface StagePrediction {
   sim: SwissSimResult
   matches: MatchPrediction[]
   teams: TeamOutlook[]
+  /** Playoff and title odds for the whole event, when the rest of the event was chained. */
+  event?: Omit<EventSimResult, 'stage'>
 }
 
 export interface Labels {
@@ -14,9 +17,19 @@ export interface Labels {
   map: (mapId: string) => string
 }
 
-/** Runs the stage simulation and adds confidence levels and short reasons. */
-export function predictStage(input: SwissSimInput, labels: Labels): StagePrediction {
-  const sim = simulateSwiss(input)
+/**
+ * Runs the stage simulation and adds confidence levels and short reasons. With `chain`, the rest of
+ * the event is simulated too and each team gets playoff and title odds; the stage odds are the same
+ * either way.
+ */
+export function predictStage(
+  input: SwissSimInput,
+  labels: Labels,
+  chain?: EventChain,
+): StagePrediction {
+  const chained = chain ? simulateEvent(input, chain) : undefined
+  const sim = chained?.stage ?? simulateSwiss(input)
+  const eventOdds = new Map(chained?.teams.map((t) => [t.teamId, t]))
   const { model, veto } = input
 
   const matches: MatchPrediction[] = sim.upcoming.map((match) => ({
@@ -61,10 +74,21 @@ export function predictStage(input: SwissSimInput, labels: Labels): StagePredict
       pAdvance: odds.pAdvance,
       p03: odds.p03,
       pEliminated: odds.pEliminated,
+      ...eventFields(eventOdds.get(odds.teamId)),
       confidence: teamConfidence(model.rd(odds.teamId), odds.pAdvance),
       reason: parts.join('; '),
     }
   })
 
-  return { sim, matches, teams }
+  if (!chained) return { sim, matches, teams }
+  const { stage: _stage, ...event } = chained
+  return { sim, matches, teams, event }
+}
+
+function eventFields(odds: EventSimResult['teams'][number] | undefined) {
+  if (!odds) return {}
+  return {
+    pPlayoffs: odds.pPlayoffs,
+    ...(odds.pTitle !== undefined ? { pTitle: odds.pTitle } : {}),
+  }
 }

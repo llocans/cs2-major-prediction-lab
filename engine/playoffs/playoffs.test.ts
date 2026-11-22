@@ -5,7 +5,7 @@ import type { MapId, MatchFormat } from '../../data/schemas/common.ts'
 import { EventConfig, type VetoProcedure } from '../../data/schemas/event-config.ts'
 import type { MatchModel } from '../match-model.ts'
 import type { VetoRules } from '../series.ts'
-import { swissStandings } from '../swiss/standings.ts'
+import { advancingTeams } from '../swiss/standings.ts'
 import type { SwissMatch } from '../swiss/types.ts'
 import { type PlayoffResult, type PlayoffRules, resolveBracket } from './bracket.ts'
 import { realBracket, simulatePlayoffs } from './simulate-playoffs.ts'
@@ -362,13 +362,12 @@ const majors = ['austin-2025', 'cologne-2026'].map((slug) => {
 
 describe.each(majors)('replay $slug playoffs', ({ fixture, stage3 }) => {
   // Playoff seeds: the 8 advanced teams in final Stage 3 mid-stage seed order.
-  const playoffSeeds = swissStandings(stage3.seeds, stage3.matches, {
+  // Checks advancingTeams (also used by the stage advance and the event chain) against real brackets.
+  const playoffSeeds = advancingTeams(stage3.seeds, stage3.matches, {
     winsToAdvance: 3,
     lossesToEliminate: 3,
     initialPairing: [],
   })
-    .filter((s) => s.status === 'advanced')
-    .map((s) => s.teamId)
   // The bracket under test is the one in our event config. Formats and the third-place match differ
   // between events, so they come from the fixture and are not asserted here.
   const majorRules: PlayoffRules = {

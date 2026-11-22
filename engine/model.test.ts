@@ -191,6 +191,31 @@ describe('veto', () => {
   })
 })
 
+describe('match model', () => {
+  it('gives the same map win probability whichever order a pair is first asked in', () => {
+    // Many rating gaps: the old cache only differed in the last bit for some of them.
+    const values = Object.fromEntries(
+      Array.from({ length: 40 }, (_, i) => [`t${i}`, 1400 + ((i * 37.3) % 300)]),
+    )
+    const ratings = ratingsFor(values, 71.7)
+    const ids = Object.keys(values)
+    const forward = buildMatchModel(ratings, [], params, pool, '2026-11-21')
+    const backward = buildMatchModel(ratings, [], params, pool, '2026-11-21')
+    for (const a of ids) {
+      for (const b of ids) {
+        if (a === b) continue
+        forward.mapWin(a, b, 'nuke')
+        backward.mapWin(b, a, 'nuke')
+      }
+    }
+    for (const a of ids) {
+      for (const b of ids) {
+        if (a !== b) expect(forward.mapWin(a, b, 'nuke')).toBe(backward.mapWin(a, b, 'nuke'))
+      }
+    }
+  })
+})
+
 describe('series', () => {
   it('Bo3 probability matches p²(3 − 2p) for equal maps', () => {
     expect(seriesWinProbability([0.6, 0.6, 0.6], 'bo3')).toBeCloseTo(0.36 * 1.8, 10)

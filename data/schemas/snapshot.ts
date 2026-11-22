@@ -22,6 +22,10 @@ export const TeamOutlook = z.object({
   pAdvance: z.number(),
   p03: z.number(),
   pEliminated: z.number(),
+  /** Reaches the playoffs (whole-event simulation). Absent in snapshots saved before 2026-11-22. */
+  pPlayoffs: z.number().optional(),
+  /** Wins the event (whole-event simulation). Absent when the playoffs could not be simulated. */
+  pTitle: z.number().optional(),
   confidence: Confidence,
   reason: z.string(),
 })
@@ -37,8 +41,13 @@ export const Snapshot = z.object({
   modelVersion: z.string(),
   seed: z.number().int(),
   runs: z.number().int().positive(),
-  /** Standard error of the least certain probability, in probability units. */
+  /**
+   * Standard error of the least certain probability, in probability units. Covers the stage odds
+   * and, in snapshots with pPlayoffs/pTitle (from 2026-11-22), the whole-event odds too.
+   */
   maxStandardError: z.number(),
+  /** Formats whose veto procedure was assumed, not verified, for the event odds (e.g. ["bo5"]). */
+  unverifiedVeto: z.array(MatchFormat).optional(),
   /** Number of real results the snapshot was built on. */
   resultsCount: z.number().int().nonnegative(),
   ratingsAsOf: IsoDateTime,

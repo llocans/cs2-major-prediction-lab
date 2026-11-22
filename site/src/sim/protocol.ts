@@ -1,6 +1,7 @@
 import type { VetoProcedure } from '../../../data/schemas/event-config.ts'
 import type { ModelParams, Modifier, Ratings } from '../../../data/schemas/model.ts'
 import type { StagePrediction } from '../../../engine/predict.ts'
+import type { EventChain } from '../../../engine/simulate-event.ts'
 import type { SwissFormat } from '../../../engine/swiss/format.ts'
 import type { SwissMatch, SwissRules } from '../../../engine/swiss/types.ts'
 
@@ -18,6 +19,8 @@ export interface SimRequest {
   rules: SwissRules
   format: SwissFormat
   played: SwissMatch[]
+  /** The rest of the event, for playoff and title odds (whole-event simulation). */
+  chain?: EventChain
   today: string
   teamNames: Record<string, string>
   mapNames: Record<string, string>

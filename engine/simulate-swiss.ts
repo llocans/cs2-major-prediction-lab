@@ -1,7 +1,7 @@
 import type { MatchFormat } from '../data/schemas/common.ts'
 import type { MatchModel } from './match-model.ts'
 import { createRng } from './rng.ts'
-import { chooseVetoRoles, playSeries, type VetoRules } from './series.ts'
+import { type PlayMatch, seriesPlayer, type VetoRules } from './series.ts'
 import { type SwissFormat, swissMatchFormat } from './swiss/format.ts'
 import { pairRound } from './swiss/pairing.ts'
 import { buildRecords, isActive } from './swiss/records.ts'
@@ -83,8 +83,49 @@ function pairingsFor(
   return pairRound(round, input.seeds, matches, input.rules)
 }
 
-/** Monte Carlo of the rest of a Swiss stage. Deterministic for a given input and seed. */
-export function simulateSwiss(input: SwissSimInput): SwissSimResult {
+/**
+ * Plays a Swiss stage once from `fromRound` to the end: real results where they exist (matched by
+ * round and pair), simulated series elsewhere. Returns every match of the stage, real and simulated.
+ */
+export function playSwissRounds(args: {
+  seeds: readonly string[]
+  rules: SwissRules
+  format: SwissFormat
+  /** Real results of this stage. */
+  played: readonly SwissMatch[]
+  fromRound: number
+  pairings: (round: number, matches: readonly SwissMatch[]) => Pairing[]
+  play: PlayMatch
+}): SwissMatch[] {
+  const { seeds, rules, format, play } = args
+  const real = new Map(args.played.map((m) => [`${m.round}|${pairKey(m.teamA, m.teamB)}`, m]))
+  const matches: SwissMatch[] = args.played.filter((m) => m.round < args.fromRound)
+  for (let round = args.fromRound; round <= ROUNDS; round++) {
+    const records = buildRecords(seeds, matches)
+    for (const { teamA, teamB } of args.pairings(round, matches)) {
+      const result = real.get(`${round}|${pairKey(teamA, teamB)}`)
+      if (result) {
+        matches.push(result)
+        continue
+      }
+      const a = records.get(teamA)
+      const b = records.get(teamB)
+      if (!a || !b) throw new Error(`Unknown team in pairing ${teamA} vs ${teamB}`)
+      const winner = play(teamA, teamB, swissMatchFormat(a, b, rules, format))
+      matches.push({ round, teamA, teamB, winner })
+    }
+  }
+  return matches
+}
+
+/**
+ * Monte Carlo of the rest of a Swiss stage. Deterministic for a given input and seed. `onRun`
+ * receives every run's full stage (used to chain later stages without touching this stage's draws).
+ */
+export function simulateSwiss(
+  input: SwissSimInput,
+  onRun?: (matches: readonly SwissMatch[]) => void,
+): SwissSimResult {
   const { seeds, rules, model, veto, runs } = input
   const rng = createRng(input.seed)
   const current = currentRound(seeds, input.played, rules)
@@ -102,17 +143,6 @@ export function simulateSwiss(input: SwissSimInput): SwissSimResult {
   }
   const realByKey = new Map(input.played.map((m) => [`${m.round}|${pairKey(m.teamA, m.teamB)}`, m]))
 
-  const roleCache = new Map<string, [string, string]>()
-  const roles = (a: string, b: string, format: MatchFormat) => {
-    const key = `${a}|${b}|${format}`
-    let value = roleCache.get(key)
-    if (!value) {
-      value = chooseVetoRoles(a, b, format, model, veto)
-      roleCache.set(key, value)
-    }
-    return value
-  }
-
   const counts = new Map(
     seeds.map((id) => [
       id,
@@ -120,37 +150,17 @@ export function simulateSwiss(input: SwissSimInput): SwissSimResult {
     ]),
   )
   const upcomingWins = new Map<string, number>()
+  const play = seriesPlayer(model, veto, rng)
+  const pairings = (round: number, matches: readonly SwissMatch[]) =>
+    round === current ? currentPairs : pairingsFor(round, input, matches, current)
 
   for (let run = 0; run < runs; run++) {
-    const matches: SwissMatch[] = input.played.filter((m) => m.round < current)
-    for (let round = current; round <= ROUNDS; round++) {
-      const pairs = round === current ? currentPairs : pairingsFor(round, input, matches, current)
-      const records = buildRecords(seeds, matches)
-      for (const { teamA, teamB } of pairs) {
-        const real = realByKey.get(`${round}|${pairKey(teamA, teamB)}`)
-        if (real) {
-          matches.push(real)
-          continue
-        }
-        const a = records.get(teamA)
-        const b = records.get(teamB)
-        if (!a || !b) throw new Error(`Unknown team in pairing ${teamA} vs ${teamB}`)
-        const format = swissMatchFormat(a, b, rules, input.format)
-        const series = playSeries(
-          teamA,
-          teamB,
-          format,
-          model,
-          veto,
-          rng,
-          roles(teamA, teamB, format),
-        )
-        matches.push({ round, teamA, teamB, winner: series.winner })
-        if (round === current && series.winner === teamA) {
-          const key = pairKey(teamA, teamB)
-          upcomingWins.set(key, (upcomingWins.get(key) ?? 0) + 1)
-        }
-      }
+    const matches = playSwissRounds({ ...input, fromRound: current, pairings, play })
+    for (const match of matches) {
+      if (match.round !== current || match.winner !== match.teamA) continue
+      const key = pairKey(match.teamA, match.teamB)
+      if (realByKey.has(`${current}|${key}`)) continue
+      upcomingWins.set(key, (upcomingWins.get(key) ?? 0) + 1)
     }
     for (const record of buildRecords(seeds, matches).values()) {
       const count = counts.get(record.teamId)
@@ -162,6 +172,7 @@ export function simulateSwiss(input: SwissSimInput): SwissSimResult {
       const label = `${record.wins}-${record.losses}`
       count.records.set(label, (count.records.get(label) ?? 0) + 1)
     }
+    onRun?.(matches)
   }
 
   const startRecords = buildRecords(

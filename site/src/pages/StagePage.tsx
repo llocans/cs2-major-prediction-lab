@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import type { SwissStage } from '../../../data/schemas/event-config.ts'
+import { buildEventChain } from '../../../engine/event-chain.ts'
 import { type KnownMatch, swissBracket } from '../../../engine/swiss/bracket.ts'
 import { stageSeeds } from '../../../engine/swiss/stage-seeds.ts'
 import { FreshnessBar } from '../components/FreshnessBar.tsx'
@@ -34,6 +35,11 @@ export function StagePage({ event, stage, query }: Props) {
     const [a, b] = swap
     return ordered.map((id) => (id === a ? b : id === b ? a : id))
   }, [event, stage.id, canSwap, whatIf.swap])
+
+  const chain = useMemo(
+    () => buildEventChain(event.config, event.teams.participants, stage.id),
+    [event, stage.id],
+  )
 
   const rules = {
     winsToAdvance: stage.winsToAdvance,
@@ -82,6 +88,7 @@ export function StagePage({ event, stage, query }: Props) {
     rules,
     format: stage.format,
     played: known.map(({ round, teamA, teamB, winner }) => ({ round, teamA, teamB, winner })),
+    chain,
     today: new Date().toISOString().slice(0, 10),
     teamNames: Object.fromEntries(event.teams.participants.map((p) => [p.teamId, p.displayName])),
     mapNames: Object.fromEntries(event.config.mapPool.map((m) => [m.id, m.name])),
@@ -162,6 +169,7 @@ export function StagePage({ event, stage, query }: Props) {
                 selected={selected}
                 name={name}
                 onSelect={select}
+                unverifiedVeto={prediction.event?.unverifiedVeto}
               />
             ) : (
               <p className="text-sm text-ink-3">Simulating…</p>

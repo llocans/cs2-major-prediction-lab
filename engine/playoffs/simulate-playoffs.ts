@@ -1,7 +1,7 @@
 import type { MatchFormat } from '../../data/schemas/common.ts'
 import type { MatchModel } from '../match-model.ts'
-import { createRng, type Rng } from '../rng.ts'
-import { chooseVetoRoles, playSeries, type VetoRules } from '../series.ts'
+import { createRng } from '../rng.ts'
+import { type PlayMatch, seriesPlayer, type VetoRules } from '../series.ts'
 import {
   type BracketMatch,
   type PlayoffResult,
@@ -107,7 +107,7 @@ export function playPlayoffsOnce(
   seeds: readonly string[],
   rules: PlayoffRules,
   real: ReadonlyMap<string, PlayoffResult>,
-  play: (higher: string, lower: string, format: MatchFormat) => string,
+  play: PlayMatch,
 ): BracketMatch[] {
   return resolveBracket(
     seeds,
@@ -115,24 +115,6 @@ export function playPlayoffsOnce(
     ({ teamA, teamB, format }) =>
       real.get(pairKey(teamA, teamB))?.winner ?? play(teamA, teamB, format),
   )
-}
-
-/** A series player for the Monte Carlo, with the veto-role choice cached per pairing and format. */
-export function seriesPlayer(
-  model: MatchModel,
-  veto: VetoRules,
-  rng: Rng,
-): (higher: string, lower: string, format: MatchFormat) => string {
-  const roles = new Map<string, [string, string]>()
-  return (higher, lower, format) => {
-    const key = `${higher}|${lower}|${format}`
-    let value = roles.get(key)
-    if (!value) {
-      value = chooseVetoRoles(higher, lower, format, model, veto)
-      roles.set(key, value)
-    }
-    return playSeries(higher, lower, format, model, veto, rng, value).winner
-  }
 }
 
 /** Monte Carlo of the rest of a single-elimination bracket. Deterministic for a given input and seed. */

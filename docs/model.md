@@ -78,6 +78,22 @@ match, runs the veto, and plays map by map.
 
 Outputs per team: P(3-0), P(advance), P(0-3), P(eliminated); per known match: P(team A wins).
 
+Map win probabilities are always computed in one fixed team order (alphabetical) and the other order
+is `1 − p`, so a simulation never depends on which pairing happened to be evaluated first.
+
+### Whole event (playoff and title odds)
+
+`engine/simulate-event.ts`, chain built from config by `engine/event-chain.ts`. In every run of the
+current stage, the stage's 8 advancing teams (final mid-stage seed order) become seeds 9-16 of the next
+stage (via `advanceTo`), behind its directly invited teams (seeds 1-8, pre-event seed order); that stage
+is played from round 1, and so on; the last Swiss stage's 8 advancing teams are the playoff seeds.
+Outputs per team in the event: P(playoffs), P(title). The later stages draw from a second random stream
+(`sim.seed` xor a constant), so the current stage's odds are exactly those of the stage-only simulation.
+Title odds are left out when a playoff format has no veto procedure in config. Formats whose veto is
+`unverified` are reported with the odds (UI note, `snapshot.unverifiedVeto`).
+
+Cost: about 7 s for 12,000 runs from Stage 1 (three Swiss stages and the playoffs per run), less later.
+
 ### Playoffs
 
 `engine/playoffs/`. Single elimination from the event config: round-1 pairs of seeds (`bracket`, in
