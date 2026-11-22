@@ -55,6 +55,9 @@ future events too: formats live in config, never in code.
    Tag a known-good state before each stage (`stage1-start`, ...).
 8. Conventional commits, small and focused. Log automatic changes in `docs/changelog.md`.
 9. Chat replies stay short; results belong in the UI.
+10. `README.md` is the public front page. Update it in the same PR when commands, layout, requirements,
+    automation, licences or "Current limitations" change (e.g. playoffs built, market odds collected,
+    backtests done). Never put live numbers, odds or stage status in it; link to `status.md` and `docs/`.
 
 ## Skills (`.claude/skills/`)
 
