@@ -1,0 +1,74 @@
+{
+  "source": {
+    "name": "Liquipedia: BLAST/Major/2025/Austin/Playoffs (rev 3153383)",
+    "url": "https://liquipedia.net/counterstrike/BLAST/Major/2025/Austin/Playoffs",
+    "retrievedAt": "2026-11-22",
+    "license": "CC-BY-SA 3.0"
+  },
+  "stage3Fixture": "austin-2025-stage-3",
+  "matches": [
+    {
+      "round": 1,
+      "index": 0,
+      "thirdPlace": false,
+      "teamA": "spirit",
+      "teamB": "mouz",
+      "winner": "mouz",
+      "format": "bo3"
+    },
+    {
+      "round": 1,
+      "index": 1,
+      "thirdPlace": false,
+      "teamA": "vit",
+      "teamB": "navi",
+      "winner": "vit",
+      "format": "bo3"
+    },
+    {
+      "round": 1,
+      "index": 2,
+      "thirdPlace": false,
+      "teamA": "faze",
+      "teamB": "mongolz",
+      "winner": "mongolz",
+      "format": "bo3"
+    },
+    {
+      "round": 1,
+      "index": 3,
+      "thirdPlace": false,
+      "teamA": "pain",
+      "teamB": "furia",
+      "winner": "pain",
+      "format": "bo3"
+    },
+    {
+      "round": 2,
+      "index": 0,
+      "thirdPlace": false,
+      "teamA": "mouz",
+      "teamB": "vit",
+      "winner": "vit",
+      "format": "bo3"
+    },
+    {
+      "round": 2,
+      "index": 1,
+      "thirdPlace": false,
+      "teamA": "mongolz",
+      "teamB": "pain",
+      "winner": "mongolz",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "index": 0,
+      "thirdPlace": false,
+      "teamA": "vit",
+      "teamB": "mongolz",
+      "winner": "vit",
+      "format": "bo3"
+    }
+  ]
+}

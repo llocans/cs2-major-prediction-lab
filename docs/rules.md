@@ -90,9 +90,13 @@ on the remaining map.
 **Bo3.** Higher seed chooses Team A or B. A bans, B bans, A picks map 1 (B picks side), B picks map 2
 (A picks side), B bans, A bans, the remaining map is the decider (B picks side).
 
-**Bo5 (grand final).** NOT YET VERIFIED. No public source found on 2026-11-21. Must be confirmed from PGL's
-event rulebook before Dec 10; until then `veto.bo5` is absent from config and the engine refuses to
-simulate a Bo5.
+**Bo5 (grand final).** UNVERIFIED for Singapore (`veto.bo5.unverified: true`). Valve's rulebook has no
+Bo5 procedure (it still says all playoff matches are Bo3; checked at commit `621b7d9`, 2026-11-22), and
+neither Liquipedia nor PGL publishes the Singapore Bo5 veto. Config uses PGL's own Bo5 grand-final
+practice: at PGL Cluj-Napoca 2026 (HLTV match 2389987, Feb 22, 2026) Team A removed 1, Team B removed 1,
+A picked map 1, B picked map 2, A picked map 3, B picked map 4, and the last map was map 5 (decider).
+We assume the higher seed chooses Team A or B, as in Bo1 and Bo3. Replace with PGL's Singapore rules
+when published and remove the flag.
 
 ## Map pool [V] [LP] [P]
 

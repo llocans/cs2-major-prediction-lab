@@ -78,6 +78,21 @@ match, runs the veto, and plays map by map.
 
 Outputs per team: P(3-0), P(advance), P(0-3), P(eliminated); per known match: P(team A wins).
 
+### Playoffs
+
+`engine/playoffs/`. Single elimination from the event config: round-1 pairs of seeds (`bracket`, in
+bracket order: winners of pairs 1 and 2 meet, then 3 and 4), `format.default` for every match except
+the final (`format.final`) and the third-place match (`format.thirdPlace`, when `thirdPlaceDecider`).
+Seeds are the final Stage 3 mid-stage seed order (Valve). In every match the higher seed is Team A
+for the veto-role choice, as in the Swiss stages; matches are played map by map through the same
+veto and series code. Real results are matched to bracket slots by pair (a pair meets at most once),
+and a result that fits no slot is an error. The Monte Carlo uses the same `sim.runs` and seed.
+
+Outputs per team: P(semifinal), P(final), P(title), P(third place, when there is a decider); per
+match with both teams known: P(higher seed wins).
+
+The Bo5 grand-final veto is unverified for PGL Singapore (`veto.bo5.unverified`; see `docs/rules.md`).
+
 ## Confidence and reasons
 
 - Match confidence from `σ` (combined rd) and `|p − 0.5|`: **high** if σ < 110 and |p − 0.5| ≥ 0.15;

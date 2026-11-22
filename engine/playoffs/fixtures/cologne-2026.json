@@ -1,0 +1,74 @@
+{
+  "source": {
+    "name": "Liquipedia: Intel Extreme Masters/2026/Cologne/Playoffs (rev 3390154)",
+    "url": "https://liquipedia.net/counterstrike/Intel_Extreme_Masters/2026/Cologne/Playoffs",
+    "retrievedAt": "2026-11-22",
+    "license": "CC-BY-SA 3.0"
+  },
+  "stage3Fixture": "cologne-2026-stage-3",
+  "matches": [
+    {
+      "round": 1,
+      "index": 0,
+      "thirdPlace": false,
+      "teamA": "spirit",
+      "teamB": "g2",
+      "winner": "spirit",
+      "format": "bo3"
+    },
+    {
+      "round": 1,
+      "index": 1,
+      "thirdPlace": false,
+      "teamA": "falcons",
+      "teamB": "vit",
+      "winner": "falcons",
+      "format": "bo3"
+    },
+    {
+      "round": 1,
+      "index": 2,
+      "thirdPlace": false,
+      "teamA": "aurora",
+      "teamB": "betboom",
+      "winner": "aurora",
+      "format": "bo3"
+    },
+    {
+      "round": 1,
+      "index": 3,
+      "thirdPlace": false,
+      "teamA": "9z",
+      "teamB": "furia",
+      "winner": "furia",
+      "format": "bo3"
+    },
+    {
+      "round": 2,
+      "index": 0,
+      "thirdPlace": false,
+      "teamA": "spirit",
+      "teamB": "falcons",
+      "winner": "falcons",
+      "format": "bo3"
+    },
+    {
+      "round": 2,
+      "index": 1,
+      "thirdPlace": false,
+      "teamA": "aurora",
+      "teamB": "furia",
+      "winner": "furia",
+      "format": "bo3"
+    },
+    {
+      "round": 3,
+      "index": 0,
+      "thirdPlace": false,
+      "teamA": "falcons",
+      "teamB": "furia",
+      "winner": "falcons",
+      "format": "bo5"
+    }
+  ]
+}
