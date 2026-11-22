@@ -106,10 +106,12 @@ export function ensureRoundSnapshot(
   const round = currentRound(plain.simInput.seeds, plain.simInput.played, plain.simInput.rules)
   const pairings = announced?.get(round)
   const context = pairings ? loadStageContext(eventId, stageId, { announced: pairings }) : plain
-  writeStatus(context, predictStage(context.simInput, context.labels))
+  // One simulation for both the status file and, when due, the snapshot (the chain takes seconds).
+  const prediction = predictStage(context.simInput, context.labels, context.chain)
+  writeStatus(context, prediction)
   if (round > 5) return 'done'
   if (context.simInput.played.some((m) => m.round === round)) return 'not-due'
-  return saveRoundSnapshot(context).status
+  return saveRoundSnapshot(context, prediction).status
 }
 
 /** Inserts a line right after the format line of docs/changelog.md (newest first). */

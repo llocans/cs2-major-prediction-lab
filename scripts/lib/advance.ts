@@ -5,7 +5,7 @@
 import { EventConfig, EventResults, EventTeams } from '../../data/schemas/index.ts'
 import { currentRound } from '../../engine/simulate-swiss.ts'
 import { stageSeeds } from '../../engine/swiss/stage-seeds.ts'
-import { swissStandings } from '../../engine/swiss/standings.ts'
+import { advancingTeams } from '../../engine/swiss/standings.ts'
 import { readJson, repoPath, writeJson } from './files.ts'
 
 export type AdvanceOutcome =
@@ -52,8 +52,7 @@ export function advanceStage(eventId: string, stageId: string): AdvanceOutcome {
 
   const results = readJson(repoPath('data/events', eventId, 'results.json'), EventResults)
   const played = results.matches.filter((m) => m.stageId === stageId)
-  const standings = swissStandings(stageSeeds(teams.participants, stageId), played, stage)
-  const advanced = standings.filter((s) => s.status === 'advanced').map((s) => s.teamId)
+  const advanced = advancingTeams(stageSeeds(teams.participants, stageId), played, stage)
   const invited = teams.participants.filter((p) => p.entryStage === nextStageId).length
 
   const participants = teams.participants.map((p) => {

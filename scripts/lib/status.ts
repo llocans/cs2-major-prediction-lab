@@ -40,6 +40,26 @@ export function writeStatus(context: StageContext, prediction: StagePrediction):
     '## Advance odds',
     ...top.map((t) => `- ${labels.team(t.teamId)} (${t.record}): ${pct(t.pAdvance)}`),
     '',
+    ...titleLines(prediction, labels.team),
   ]
   writeFileSync(repoPath('data/events', context.eventId, 'status.md'), lines.join('\n'))
+}
+
+/** Top title odds across the whole event, with a note when a veto procedure is assumed. */
+function titleLines(prediction: StagePrediction, name: (id: string) => string): string[] {
+  const teams = prediction.event?.teams.filter((t) => t.pTitle !== undefined) ?? []
+  if (teams.length === 0) return []
+  const top = [...teams].sort((a, b) => (b.pTitle ?? 0) - (a.pTitle ?? 0)).slice(0, 8)
+  const unverified = prediction.event?.unverifiedVeto ?? []
+  return [
+    '## Title odds (whole event, top 8)',
+    ...top.map(
+      (t) =>
+        `- ${name(t.teamId)}: ${((t.pTitle ?? 0) * 100).toFixed(1)}% (playoffs ${Math.round(t.pPlayoffs * 100)}%)`,
+    ),
+    ...(unverified.length > 0
+      ? ['', `Assumes an unverified ${unverified.join('/').toUpperCase()} veto (docs/rules.md).`]
+      : []),
+    '',
+  ]
 }

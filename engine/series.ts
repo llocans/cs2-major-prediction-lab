@@ -132,3 +132,23 @@ export function playSeries(
   }
   throw new Error(`Series ${higherSeed} vs ${lowerSeed} (${format}) ran out of maps`)
 }
+
+/** Plays a match between the higher and the lower seed and returns the winner. */
+export type PlayMatch = (higherSeed: string, lowerSeed: string, format: MatchFormat) => string
+
+/**
+ * A series player for Monte Carlo runs: plays map by map with a randomized veto drawn from `rng`,
+ * caching the deterministic veto-role choice per pairing and format.
+ */
+export function seriesPlayer(model: MatchModel, veto: VetoRules, rng: Rng): PlayMatch {
+  const roles = new Map<string, [string, string]>()
+  return (higherSeed, lowerSeed, format) => {
+    const key = `${higherSeed}|${lowerSeed}|${format}`
+    let value = roles.get(key)
+    if (!value) {
+      value = chooseVetoRoles(higherSeed, lowerSeed, format, model, veto)
+      roles.set(key, value)
+    }
+    return playSeries(higherSeed, lowerSeed, format, model, veto, rng, value).winner
+  }
+}

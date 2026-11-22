@@ -67,12 +67,16 @@ export function buildMatchModel(
       const key = `${a}|${b}|${map}`
       const cached = winCache.get(key)
       if (cached !== undefined) return cached
-      const x = lookup(a, map)
-      const y = lookup(b, map)
+      // Always compute in one team order and derive the other as 1 - p. Computing whichever order
+      // was asked first made the value depend on call history in the last bit, so the same input and
+      // seed could give different simulations depending on what ran before.
+      const [first, second] = a < b ? [a, b] : [b, a]
+      const x = lookup(first, map)
+      const y = lookup(second, map)
       const p = winProbability(x.strength - y.strength, x.variance + y.variance, params.scale)
-      winCache.set(key, p)
-      winCache.set(`${b}|${a}|${map}`, 1 - p)
-      return p
+      winCache.set(`${first}|${second}|${map}`, p)
+      winCache.set(`${second}|${first}|${map}`, 1 - p)
+      return a === first ? p : 1 - p
     },
   }
 }

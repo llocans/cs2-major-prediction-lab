@@ -39,7 +39,7 @@ scope.onmessage = (event: MessageEvent<SimRequest>) => {
       [request.runs, true],
     ] as const) {
       const started = performance.now()
-      const prediction = predictStage({ ...base, runs }, labels)
+      const prediction = predictStage({ ...base, runs }, labels, request.chain)
       const response: SimResponse = {
         id: request.id,
         ok: true,
