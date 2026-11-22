@@ -17,10 +17,13 @@ clock. It only starts a chain:
 - **Chain:** one run (`.github/poll-loop.sh`) polls at :02, :17, :32 and :47 for up to 5.5 hours, then
   starts its successor with `workflow_dispatch` (`chain=true`, which skips the gate). Long runs cost
   nothing because the repository is public.
-- **End:** when the poller reports `idle` (no stage running today), the run ends without a successor.
-  Starters pick it up again the day before the next stage. If a run dies, the next starter that fires
-  restarts the chain.
-- **Manual:** "Run workflow" (optional stage id) starts a chain only if none is running.
+- **Event window:** idle checks (no stage running today) keep the chain alive from 3 days before any
+  stage to 1 day after it (`scripts/event-window.ts`). For PGL Singapore that is Nov 21 - Dec 14
+  without a break, so stage changes never wait for a starter. After the window the run ends without a
+  successor. If a run dies, the next starter that fires restarts the chain.
+- **Manual:** "Run workflow" starts a chain only if none is running. An optional stage id applies to
+  that run only; once that stage has nothing left to poll, the run switches to the stage by date, and
+  successors never inherit it.
 
 Each check inside a run:
 
