@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 # Body of the poll workflow (.github/workflows/poll.yml). Polls Liquipedia every INTERVAL seconds for
 # up to MAX_SECONDS, then tells the workflow to start its successor (GITHUB_OUTPUT chain=true).
-# Ends without a successor when no stage is running (poller outcome "idle"); the workflow's schedule
-# starts a new chain later. Exits 1 if any poll failed, so GitHub emails the repo owner.
+# Idle checks (no stage running today) keep the chain alive while the event window is open (from 3
+# days before any stage to 1 day after it, scripts/event-window.ts), so stage changes never depend on
+# GitHub's schedule. After that it ends without a successor. A forced STAGE applies to this run only.
+# Exits 1 if any poll failed, so GitHub emails the repo owner.
 #
 # Env: EVENT_ID (required), STAGE (optional stage id), INTERVAL (default 900), MAX_SECONDS (default
-# 19800 = 5.5 h; the job limit is 6 h), GITHUB_OUTPUT (set by GitHub Actions).
+# 19800 = 5.5 h; the job limit is 6 h), BRANCH (default main; only for testing a branch),
+# GITHUB_OUTPUT (set by GitHub Actions).
 set -uo pipefail
 
 : "${EVENT_ID:?EVENT_ID is required}"
@@ -13,6 +16,7 @@ STAGE="${STAGE:-}"
 INTERVAL="${INTERVAL:-900}"
 MAX_SECONDS="${MAX_SECONDS:-19800}"
 OUTPUT="${GITHUB_OUTPUT:-/dev/null}"
+BRANCH="${BRANCH:-main}"
 STATUS=.cache/sync-status.json
 
 log() { echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) $*"; }
@@ -43,7 +47,7 @@ lock=$(sha256sum package-lock.json)
 
 while :; do
   # Pick up data pushed by cloud Claude tasks and code merged since the last poll.
-  git fetch --quiet origin main && git reset --quiet --hard origin/main || log "could not update main"
+  git fetch --quiet origin "$BRANCH" && git reset --quiet --hard "origin/$BRANCH" || log "could not update main"
   if [ "$(sha256sum package-lock.json)" != "$lock" ]; then
     log "package-lock.json changed, reinstalling"
     npm ci --no-fund --no-audit || failures=$((failures + 1))
@@ -61,9 +65,17 @@ while :; do
 
   outcome=$(node -p "JSON.parse(require('fs').readFileSync('$STATUS', 'utf8')).outcome" 2>/dev/null)
   if [ "$outcome" = "idle" ]; then
-    log "no stage running, ending the chain"
-    echo "chain=false" >> "$OUTPUT"
-    break
+    if [ -n "$STAGE" ]; then
+      # A forced stage that is finished: carry on picking the stage by date.
+      log "stage $STAGE has nothing left to poll, switching to the stage by date"
+      STAGE=""
+      continue
+    fi
+    if ! node scripts/event-window.ts "$EVENT_ID"; then
+      log "event window closed, ending the chain"
+      echo "chain=false" >> "$OUTPUT"
+      break
+    fi
   fi
 
   # Next poll at the next INTERVAL boundary + 2 min (:02, :17, :32, :47 for 15 min).

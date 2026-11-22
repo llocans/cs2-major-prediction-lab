@@ -3,8 +3,9 @@
 # to main. Each check's status goes to the poll-status branch for the site's status bar (no main noise).
 #
 # GitHub drops many scheduled runs, so the schedule only *starts* a chain: one run polls every 15 min
-# for ~5.5 h (.github/poll-loop.sh), then dispatches its successor. The chain ends by itself when no
-# stage is running. Long runs are free because the repository is public.
+# for ~5.5 h (.github/poll-loop.sh), then dispatches its successor. The chain runs from 3 days before
+# the event's first stage to 1 day after its last, then ends by itself. Long runs are free because
+# the repository is public.
 name: poll
 
 on:
@@ -86,10 +87,10 @@ jobs:
           cp .github/poll-loop.sh "$RUNNER_TEMP/poll-loop.sh"
           bash "$RUNNER_TEMP/poll-loop.sh"
 
-      # Runs even when a poll failed, so one bad check never stops the chain.
+      # Runs even when a poll failed, so one bad check never stops the chain. The successor picks the
+      # stage by date: a forced stage is for one run only.
       - name: Start the next run
         if: ${{ always() && steps.loop.outputs.chain == 'true' }}
         env:
           GH_TOKEN: ${{ github.token }}
-          STAGE: ${{ inputs.stage }}
-        run: gh workflow run poll.yml --repo "$GITHUB_REPOSITORY" --ref main -f chain=true -f stage="$STAGE"
+        run: gh workflow run poll.yml --repo "$GITHUB_REPOSITORY" --ref main -f chain=true
