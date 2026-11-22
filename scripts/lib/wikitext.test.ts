@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { readBracketPage } from './liquipedia-results.ts'
 import { matchWinner, parseBracketMatches } from './wikitext.ts'
 
 // Shape of a Liquipedia Bracket/4 template with a third-place match (trimmed).
@@ -45,5 +46,47 @@ describe('parseBracketMatches', () => {
     expect(second?.maps).toHaveLength(1)
     expect(second?.finished).toBe(false)
     expect(third?.mapSlots).toBe(3)
+  })
+})
+
+describe('readBracketPage', () => {
+  const source = { name: 'test', retrievedAt: '2026-12-10' }
+  const { results, skipped } = readBracketPage(text, {
+    stageId: 'playoffs',
+    resolveTeam: (name) => name,
+    resolveMap: (name) => name.toLowerCase().replace(' ', ''),
+    source,
+  })
+
+  it('returns finished matches only, with formats from the map slots', () => {
+    expect(results.map((r) => `${r.id} ${r.format} ${r.winner}`)).toEqual([
+      'playoffs-r1-navi-vit bo3 vit',
+    ])
+    expect(results[0]?.maps.map((m) => `${m.map} ${m.scoreA}-${m.scoreB}`)).toEqual([
+      'inferno 13-10',
+      'nuke 13-7',
+    ])
+    expect(skipped).toEqual([])
+  })
+
+  it('reports a match marked finished whose maps decide nothing, and ignores TBD opponents', () => {
+    const page = `{{Bracket|Bracket/4|id=y
+|R1M1={{Match|opponent1={{TeamOpponent|vit}}|opponent2={{TeamOpponent|navi}}|finished=true
+|map1={{Map|map=Inferno|finished=true|t1t=7|t1ct=6|t2t=5|t2ct=5}}
+|map2={{Map|map=}}|map3={{Map|map=}}
+}}
+|R1M2={{Match|opponent1={{TeamOpponent|TBD}}|opponent2={{TeamOpponent|spirit}}
+|map1={{Map|map=}}|map2={{Map|map=}}|map3={{Map|map=}}
+}}
+}}`
+    const read = readBracketPage(page, {
+      stageId: 'playoffs',
+      resolveTeam: (name) => name,
+      resolveMap: (name) => name.toLowerCase(),
+      source,
+    })
+    expect(read.results).toEqual([])
+    expect(read.skipped).toEqual(['vit v navi: marked finished but its maps decide no winner'])
+    expect(parseBracketMatches(page).map((m) => m.opponent1)).toEqual(['vit'])
   })
 })

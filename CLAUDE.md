@@ -35,10 +35,13 @@ future events too: formats live in config, never in code.
   - `research/import-map-stats.ts <file> <from> <to> Top50` → `data/teams/maps/` (HLTV counts)
   - `build-ratings.ts <event>` → `data/ratings/current.json` (VRS prior + map stats; once results exist it only adds missing teams)
   - `advance` happens automatically: when a Swiss stage finishes, the poller seeds its 8 advancing teams
-    into the next stage (seeds 9-16) and saves that stage's round 1 snapshot
+    into the next stage (seeds 9-16; playoffs: seeds 1-8) and saves that stage's round 1 snapshot
   - `score-stage.ts <event> <stage>` → score block in `data/events/<id>/accuracy.md`
   - `simulate.ts <event> <stage>` (prints odds) · `snapshot.ts <event> <stage>` (pre-round, once)
-  - `log-result.ts ...` (manual) · `poll-liquipedia.ts <event>` (runs in GitHub Actions; needs `LIQUIPEDIA_CONTACT`)
+  - `log-result.ts ...` (manual) · `poll-liquipedia.ts <event>` (runs in GitHub Actions; needs `LIQUIPEDIA_CONTACT`;
+    Swiss stages, then the playoff bracket once Stage 3 has advanced)
+  - `check-playoff-flow.ts` → end-to-end playoff pipeline on made-up data in a temp copy (also runs
+    in `npm run check`)
   - `install-launchd.ts pull` (Mac sync of cloud results) / `--uninstall <pull|poll>`
 
 ## Golden rules

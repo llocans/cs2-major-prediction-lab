@@ -1,8 +1,15 @@
 import { existsSync } from 'node:fs'
 import { Snapshot } from '../../data/schemas/index.ts'
+import { roundCount } from '../../engine/playoffs/bracket.ts'
+import { realBracket } from '../../engine/playoffs/simulate-playoffs.ts'
 import { predictStage, type StagePrediction } from '../../engine/predict.ts'
+import {
+  currentPlayoffRound,
+  type PlayoffPrediction,
+  predictPlayoffs,
+} from '../../engine/predict-playoffs.ts'
 import { currentRound } from '../../engine/simulate-swiss.ts'
-import type { StageContext } from './event-context.ts'
+import type { PlayoffContext, StageContext } from './event-context.ts'
 import { repoPath, writeJson } from './files.ts'
 
 export function snapshotPath(eventId: string, stageId: string, round: number): string {
@@ -61,6 +68,57 @@ export function saveRoundSnapshot(
       ratingsAsOf: context.ratingsAsOf,
       matches: prediction.matches,
       teams: prediction.teams,
+    },
+    { exclusive: true },
+  )
+  return { status: 'saved', path }
+}
+
+/**
+ * Saves the pre-round snapshot of a single-elimination stage for its current round (quarterfinals,
+ * semifinals, then the final together with the third-place match). Same rules as the Swiss one: once
+ * per round, never overwritten, never after the round has a result.
+ */
+export function savePlayoffSnapshot(
+  context: PlayoffContext,
+  existing?: PlayoffPrediction,
+): { status: 'saved' | 'exists' | 'done'; path?: string } {
+  const { seeds, rules, played } = context.simInput
+  const bracket = realBracket(seeds, rules, played)
+  const rounds = roundCount(rules)
+  const round = currentPlayoffRound(bracket, rounds)
+  if (round > rounds) return { status: 'done' }
+  const path = snapshotPath(context.eventId, context.stage.id, round)
+  if (existsSync(path)) return { status: 'exists', path }
+
+  const roundMatches = bracket.filter((m) => m.round === round)
+  if (roundMatches.some((m) => m.winner !== undefined)) {
+    throw new Error(
+      `${context.stage.id} round ${round} already has results; a pre-round snapshot would be dishonest`,
+    )
+  }
+  const prediction = existing ?? predictPlayoffs(context.simInput, context.labels)
+  writeJson(
+    path,
+    Snapshot,
+    {
+      schemaVersion: 1,
+      eventId: context.eventId,
+      stageId: context.stage.id,
+      beforeRound: round,
+      createdAt: new Date().toISOString(),
+      modelVersion: context.params.version,
+      seed: context.simInput.seed,
+      runs: context.simInput.runs,
+      maxStandardError: prediction.sim.maxStandardError,
+      ...(prediction.unverifiedVeto.length > 0
+        ? { unverifiedVeto: prediction.unverifiedVeto }
+        : {}),
+      resultsCount: played.length,
+      ratingsAsOf: context.ratingsAsOf,
+      matches: prediction.matches,
+      teams: [],
+      playoffTeams: prediction.teams,
     },
     { exclusive: true },
   )

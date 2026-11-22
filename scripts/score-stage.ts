@@ -26,7 +26,7 @@ if (!eventId || !stageId) {
 const dir = repoPath('data/events', eventId)
 const config = readJson(`${dir}/config.json`, EventConfig)
 const stage = config.stages.find((s) => s.id === stageId)
-if (stage?.type !== 'swiss') throw new Error(`${eventId}: no Swiss stage "${stageId}"`)
+if (!stage) throw new Error(`${eventId}: no stage "${stageId}"`)
 const results = readJson(`${dir}/results.json`, EventResults).matches
 const teams = readJson(`${dir}/teams.json`, EventTeams)
 const benchmarks = existsSync(`${dir}/benchmarks.json`)
@@ -37,12 +37,16 @@ const snapshots = globSync(`data/events/${eventId}/snapshots/${stageId}-r*.json`
 }).map((path) => readJson(repoPath(path), Snapshot))
 if (snapshots.length === 0) throw new Error(`No snapshots for ${stageId}`)
 
-const standings = swissStandings(
-  stageSeeds(teams.participants, stageId),
-  results.filter((m) => m.stageId === stageId),
-  stage,
-)
-const complete = standings.every((s) => s.status !== 'active')
+// Pre-stage advance odds are a Swiss measure; playoff stages are scored on their matches only.
+const standings =
+  stage.type === 'swiss'
+    ? swissStandings(
+        stageSeeds(teams.participants, stageId),
+        results.filter((m) => m.stageId === stageId),
+        stage,
+      )
+    : []
+const complete = standings.length > 0 && standings.every((s) => s.status !== 'active')
 const advanced = complete
   ? new Set(standings.filter((s) => s.status === 'advanced').map((s) => s.teamId))
   : undefined
@@ -65,7 +69,9 @@ const lines = [
     : '- Market benchmark: no entries in benchmarks.json',
   record.advance
     ? `- Brier (advance, pre-stage snapshot): ${f3(record.advance.brier)}`
-    : '- Advance odds: scored once the stage is complete',
+    : stage.type === 'swiss'
+      ? '- Advance odds: scored once the stage is complete'
+      : '- Advance odds: not applicable (single elimination)',
   '',
   'Per round:',
   '',

@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest'
 import type { MapId, MatchFormat } from '../../data/schemas/common.ts'
 import { EventConfig, type VetoProcedure } from '../../data/schemas/event-config.ts'
 import type { MatchModel } from '../match-model.ts'
+import { currentPlayoffRound, predictPlayoffs } from '../predict-playoffs.ts'
 import type { VetoRules } from '../series.ts'
 import { advancingTeams } from '../swiss/standings.ts'
 import type { SwissMatch } from '../swiss/types.ts'
@@ -395,5 +396,38 @@ describe.each(majors)('replay $slug playoffs', ({ fixture, stage3 }) => {
       expect(slot?.winner).toBe(real.winner)
     }
     expect(bracket.every((m) => m.winner !== undefined)).toBe(true)
+  })
+})
+
+describe('predictPlayoffs', () => {
+  const labels = { team: (id: string) => id.toUpperCase(), map: (id: string) => id }
+  const flagged: VetoRules = { bo3, bo5: { ...bo5, unverified: true } }
+  const input = { seeds, rules, veto: flagged, model: graded, runs: 800, seed: 5 }
+
+  it('predicts only the current round and names unverified veto formats', () => {
+    const prediction = predictPlayoffs({ ...input, played: [] }, labels)
+    expect(prediction.currentRound).toBe(1)
+    expect(prediction.matches).toHaveLength(4)
+    expect(prediction.matches.every((m) => m.reason.length > 0)).toBe(true)
+    expect(prediction.unverifiedVeto).toEqual(['bo5'])
+  })
+
+  it('moves on as rounds finish and marks eliminated teams', () => {
+    const played: PlayoffResult[] = [
+      { teamA: 's1', teamB: 's8', winner: 's8' },
+      { teamA: 's4', teamB: 's5', winner: 's4' },
+      { teamA: 's2', teamB: 's7', winner: 's2' },
+      { teamA: 's3', teamB: 's6', winner: 's3' },
+    ]
+    const prediction = predictPlayoffs({ ...input, played }, labels)
+    expect(prediction.currentRound).toBe(2)
+    expect(prediction.matches.map((m) => pair(m.teamA, m.teamB))).toEqual(['s4 v s8', 's2 v s3'])
+    expect(prediction.teams.find((t) => t.teamId === 's1')?.reason).toContain('eliminated')
+    expect(prediction.teams.find((t) => t.teamId === 's8')?.reason).toContain('vs S4 next')
+  })
+
+  it('reports a finished bracket as one round past the final', () => {
+    const bracket = resolveBracket(seeds, rules, (m) => m.teamA)
+    expect(currentPlayoffRound(bracket, 3)).toBe(4)
   })
 })
