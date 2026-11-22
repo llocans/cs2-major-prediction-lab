@@ -18,6 +18,7 @@ export function isEventWindowOpen(
   const now = Date.parse(today)
   return stages.some(
     (stage) =>
-      now >= Date.parse(stage.start) - LEAD_DAYS * DAY && now <= Date.parse(stage.end) + TRAIL_DAYS * DAY,
+      now >= Date.parse(stage.start) - LEAD_DAYS * DAY &&
+      now <= Date.parse(stage.end) + TRAIL_DAYS * DAY,
   )
 }
