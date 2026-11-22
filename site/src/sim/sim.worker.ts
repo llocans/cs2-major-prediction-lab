@@ -1,6 +1,7 @@
 import { buildMatchModel } from '../../../engine/match-model.ts'
 import { predictStage } from '../../../engine/predict.ts'
-import type { SimRequest, SimResponse } from './protocol.ts'
+import { predictPlayoffs } from '../../../engine/predict-playoffs.ts'
+import type { AnyPrediction, SimRequest, SimResponse } from './protocol.ts'
 
 /** The slice of the worker global scope we use (the DOM and webworker libs can't be combined). */
 const scope = self as unknown as {
@@ -25,21 +26,32 @@ scope.onmessage = (event: MessageEvent<SimRequest>) => {
       team: (id: string) => request.teamNames[id] ?? id,
       map: (id: string) => request.mapNames[id] ?? id,
     }
-    const base = {
-      seeds: request.seeds,
-      rules: request.rules,
-      format: request.format,
-      veto: request.veto,
-      model,
-      played: request.played,
-      seed: request.seed,
+    const predict = (runs: number): AnyPrediction => {
+      const common = { veto: request.veto, model, seed: request.seed, runs }
+      if (request.kind === 'playoffs') {
+        const input = {
+          ...common,
+          seeds: request.seeds,
+          rules: request.rules,
+          played: request.played,
+        }
+        return { kind: 'playoffs', value: predictPlayoffs(input, labels) }
+      }
+      const input = {
+        ...common,
+        seeds: request.seeds,
+        rules: request.rules,
+        format: request.format,
+        played: request.played,
+      }
+      return { kind: 'swiss', value: predictStage(input, labels, request.chain) }
     }
     for (const [runs, final] of [
       [Math.min(PREVIEW_RUNS, request.runs), false],
       [request.runs, true],
     ] as const) {
       const started = performance.now()
-      const prediction = predictStage({ ...base, runs }, labels, request.chain)
+      const prediction = predict(runs)
       const response: SimResponse = {
         id: request.id,
         ok: true,

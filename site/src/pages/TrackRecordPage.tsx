@@ -15,11 +15,11 @@ import { pct, shortDate } from '../lib/format.ts'
 export function TrackRecordPage({ event }: { event: EventData }) {
   const name = (id: string) => teamName(event, id)
   const stages = event.config.stages.flatMap((stage) => {
-    if (stage.type !== 'swiss') return []
     if (!event.snapshots.some((s) => s.stageId === stage.id)) return []
+    // Advance odds are a Swiss measure; playoff stages are scored on their matches only.
     const seeds = stageSeeds(event.teams.participants, stage.id)
     const standings =
-      seeds.length === stage.teamCount
+      stage.type === 'swiss' && seeds.length === stage.teamCount
         ? swissStandings(
             seeds,
             event.results.matches.filter((m) => m.stageId === stage.id),

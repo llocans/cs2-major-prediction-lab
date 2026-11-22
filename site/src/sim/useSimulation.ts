@@ -1,9 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
 import type { StagePrediction } from '../../../engine/predict.ts'
-import type { SimRequest, SimResponse } from './protocol.ts'
+import type { PlayoffPrediction } from '../../../engine/predict-playoffs.ts'
+import type {
+  AnyPrediction,
+  PlayoffSimRequest,
+  SimInput,
+  SimRequest,
+  SimResponse,
+  SwissSimRequest,
+} from './protocol.ts'
 
-export interface SimState {
-  prediction?: StagePrediction
+export interface SimState<P> {
+  prediction?: P
   /** True while the full run for the latest input is still going. */
   running: boolean
   final: boolean
@@ -11,12 +19,29 @@ export interface SimState {
   error?: string
 }
 
+/** A Swiss stage (optionally chained through the rest of the event). */
+export function useStageSimulation(
+  request: Omit<SwissSimRequest, 'id'> | undefined,
+): SimState<StagePrediction> {
+  return useSimulation(request, (p) => (p.kind === 'swiss' ? p.value : undefined))
+}
+
+/** A single-elimination stage. */
+export function usePlayoffSimulation(
+  request: Omit<PlayoffSimRequest, 'id'> | undefined,
+): SimState<PlayoffPrediction> {
+  return useSimulation(request, (p) => (p.kind === 'playoffs' ? p.value : undefined))
+}
+
 /**
  * Runs the simulation in a Web Worker. A new input terminates the previous worker, so the UI never
  * waits on stale work. The last prediction stays on screen while re-simulating.
  */
-export function useSimulation(request: Omit<SimRequest, 'id'> | undefined): SimState {
-  const [state, setState] = useState<SimState>({ running: false, final: false })
+function useSimulation<P>(
+  request: SimInput | undefined,
+  pick: (prediction: AnyPrediction) => P | undefined,
+): SimState<P> {
+  const [state, setState] = useState<SimState<P>>({ running: false, final: false })
   const counter = useRef(0)
   const key = request ? JSON.stringify(request) : ''
 
@@ -35,7 +60,7 @@ export function useSimulation(request: Omit<SimRequest, 'id'> | undefined): SimS
         return
       }
       setState({
-        prediction: response.prediction,
+        prediction: pick(response.prediction),
         running: !response.final,
         final: response.final,
         ms: response.ms,
@@ -45,7 +70,8 @@ export function useSimulation(request: Omit<SimRequest, 'id'> | undefined): SimS
     worker.onerror = (event) => {
       setState((previous) => ({ ...previous, running: false, error: event.message }))
     }
-    worker.postMessage({ ...request, id } satisfies SimRequest)
+    const message: SimRequest = { ...request, id }
+    worker.postMessage(message)
     return () => worker.terminate()
   }, [key])
 

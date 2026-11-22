@@ -7,11 +7,12 @@ import { FreshnessBar } from '../components/FreshnessBar.tsx'
 import { OddsTable } from '../components/OddsTable.tsx'
 import { SwissBracket } from '../components/SwissBracket.tsx'
 import { TeamPanel } from '../components/TeamPanel.tsx'
-import { type EventData, modifiers, params, ratings, syncStatus, teamName } from '../lib/data.ts'
+import { type EventData, params, ratings, syncStatus, teamName } from '../lib/data.ts'
 import { shortDate } from '../lib/format.ts'
 import { readWhatIf, toggleOverride, writeWhatIf } from '../lib/overrides.ts'
 import { setQuery } from '../lib/router.ts'
-import { useSimulation } from '../sim/useSimulation.ts'
+import { modelRequest } from '../sim/requests.ts'
+import { useStageSimulation } from '../sim/useSimulation.ts'
 
 const pairKey = (a: string, b: string) => (a < b ? `${a}|${b}` : `${b}|${a}`)
 
@@ -77,23 +78,15 @@ export function StagePage({ event, stage, query }: Props) {
 
   // useSimulation compares requests by value, so a new object per render is fine.
   const request = {
-    runs: params.sim.runs,
-    seed: params.sim.seed,
-    ratings,
-    modifiers,
-    params,
-    mapPool: event.config.mapPool.map((m) => m.id),
-    veto: event.config.veto,
+    ...modelRequest(event),
+    kind: 'swiss' as const,
     seeds,
     rules,
     format: stage.format,
     played: known.map(({ round, teamA, teamB, winner }) => ({ round, teamA, teamB, winner })),
     chain,
-    today: new Date().toISOString().slice(0, 10),
-    teamNames: Object.fromEntries(event.teams.participants.map((p) => [p.teamId, p.displayName])),
-    mapNames: Object.fromEntries(event.config.mapPool.map((m) => [m.id, m.name])),
   }
-  const sim = useSimulation(bracketError ? undefined : request)
+  const sim = useStageSimulation(bracketError ? undefined : request)
   const prediction = sim.prediction
 
   const pending = new Map((prediction?.matches ?? []).map((m) => [pairKey(m.teamA, m.teamB), m.pA]))

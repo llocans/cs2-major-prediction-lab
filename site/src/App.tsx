@@ -3,6 +3,7 @@ import { currentEvent } from './lib/data.ts'
 import { type Route, useLocation } from './lib/router.ts'
 import { OverviewPage } from './pages/OverviewPage.tsx'
 import { PlaceholderPage } from './pages/PlaceholderPage.tsx'
+import { PlayoffsPage } from './pages/PlayoffsPage.tsx'
 import { StagePage } from './pages/StagePage.tsx'
 import { TrackRecordPage } from './pages/TrackRecordPage.tsx'
 
@@ -69,13 +70,12 @@ function Page({ route, query }: { route: Route; query: URLSearchParams }) {
       }
       return <StagePage key={stage.id} event={event} stage={stage} query={query} />
     }
-    case 'playoffs':
-      return (
-        <PlaceholderPage
-          title="Playoffs"
-          description="Eight teams, Bo3, a Bo3 third-place decider and a Bo5 grand final."
-        />
-      )
+    case 'playoffs': {
+      const stage = event.config.stages.find((s) => s.type === 'single-elimination')
+      if (stage?.type !== 'single-elimination')
+        return <PlaceholderPage title="Playoffs" description="This event has no playoff stage." />
+      return <PlayoffsPage event={event} stage={stage} query={query} />
+    }
     case 'team':
       return (
         <PlaceholderPage
