@@ -1,10 +1,10 @@
 import type { SyncStatus } from '../../../data/schemas/sync.ts'
 
-/** The cloud poller runs every 15 minutes during match hours (.github/workflows/poll.yml). */
+/** The cloud poller checks every 15 minutes while a stage runs (.github/workflows/poll.yml). */
 export const POLL_MINUTES = 15
 /**
- * Beyond this during a stage something is wrong: a 15-minute schedule, GitHub starting runs up to
- * ~15 minutes late, and this Mac syncing every 10 minutes.
+ * Beyond this during a stage something is wrong: 15 minutes between checks, a minute or two when one
+ * run hands over to the next, and this Mac syncing every 10 minutes.
  */
 export const STALE_MINUTES = 45
 

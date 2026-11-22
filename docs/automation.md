@@ -7,19 +7,37 @@ research.
 ## 1. Results poller: GitHub Actions (no Claude usage)
 
 `.github/workflows/poll.yml` runs `scripts/poll-liquipedia.ts <event> --commit` every 15 minutes,
-03:00-17:59 UTC (11:00-01:59 Singapore) in November and December, plus a manual "Run workflow" button.
+around the clock, while a stage is running (its dates ±1 day).
 
-- Each run: fresh checkout of main, `npm ci`, read the current stage page from the Liquipedia API, log
-  new results, update ratings, re-simulate, save the next-round snapshot, move advancing teams on when a
-  stage ends, validate everything, commit only `data/` and `docs/changelog.md` to main, push.
+GitHub drops many scheduled runs (on 2026-11-22 it started 1 of ~34), so the schedule is not the
+clock. It only starts a chain:
+
+- **Starters:** the schedule fires at :07, :27 and :47 every hour in November and December. A `gate` job
+  checks for an active or queued poll run and, if there is one, ends in seconds.
+- **Chain:** one run (`.github/poll-loop.sh`) polls at :02, :17, :32 and :47 for up to 5.5 hours, then
+  starts its successor with `workflow_dispatch` (`chain=true`, which skips the gate). Long runs cost
+  nothing because the repository is public.
+- **End:** when the poller reports `idle` (no stage running today), the run ends without a successor.
+  Starters pick it up again the day before the next stage. If a run dies, the next starter that fires
+  restarts the chain.
+- **Manual:** "Run workflow" (optional stage id) starts a chain only if none is running.
+
+Each check inside a run:
+
+- Reset to the latest main (picks up cloud Claude pushes and merged code; reinstalls if
+  `package-lock.json` changed), read the current stage page from the Liquipedia API, log new results,
+  update ratings, re-simulate, save the next-round snapshot, move advancing teams on when a stage ends,
+  validate everything, commit only `data/` and `docs/changelog.md` to main, push.
+- A failed check is recorded in the status and the chain carries on; the run is marked failed at the
+  end, so GitHub emails the repo owner.
 - Pushes rebase onto newer commits (e.g. from a cloud Claude task) and retry up to 3 times; a rebase
   conflict is aborted and the run fails (GitHub emails the repo owner on failed runs).
 - One run at a time (`concurrency: poll`); a late run waits.
 - Secret: `LIQUIPEDIA_CONTACT` (repository secret, never in the repo).
 - Status: each run force-pushes one file, `sync-status.json`, to the `poll-status` branch (checked at,
   outcome, revision, last change or error). Main gets no "still alive" commits.
-- Cost: well under GitHub Free's 2,000 Actions minutes per month (unlimited once the repo is public).
-- GitHub may start scheduled runs 5-15 minutes late.
+- Cost: free (public repository). If the repository ever goes private again, the chain would use
+  about 720 Actions minutes a day, far over GitHub Free's 2,000 a month: switch back to short runs.
 
 ### Local sync on the Mac (optional)
 `node scripts/install-launchd.ts pull` installs a launchd job that every 10 minutes fast-forwards main
@@ -47,7 +65,8 @@ session. Each prompt runs one skill and pushes data straight to main (the cloud 
 | stage reviews | `review-stage` | 18:00 on Nov 27, Dec 1, Dec 6 | Sonnet, high |
 | cleanup | `cleanup` | Sundays 18:30 | Sonnet, low |
 
-All run outside the poller's 03:00-17:59 UTC window, so their pushes do not collide with results.
+All run in the evening UTC, after the day's matches, so their pushes rarely meet a poller commit. When
+they do, the poller rebases and retries (above), and its next check starts from the newer main.
 Each prompt keeps its guardrails (date window, "already done", stage complete).
 
 ## 3. Hooks (`.claude/settings.json`)

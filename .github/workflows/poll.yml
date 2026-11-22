@@ -1,35 +1,65 @@
 # Liquipedia poller in GitHub's cloud, so results never depend on a laptop being on.
 # Logs results, updates ratings, re-simulates, saves round snapshots, advances stages, commits data
-# to main. Each run's status goes to the poll-status branch for the site's status bar (no main noise).
+# to main. Each check's status goes to the poll-status branch for the site's status bar (no main noise).
+#
+# GitHub drops many scheduled runs, so the schedule only *starts* a chain: one run polls every 15 min
+# for ~5.5 h (.github/poll-loop.sh), then dispatches its successor. The chain ends by itself when no
+# stage is running. Long runs are free because the repository is public.
 name: poll
 
 on:
   schedule:
-    # Every 15 min, 03:00-17:59 UTC (11:00-01:59 Singapore), Nov-Dec. The script exits quietly on
-    # days without a running stage. GitHub may start scheduled runs 5-15 min late.
-    - cron: "*/15 3-17 * 11,12 *"
+    # Starters, Nov-Dec. Off the top of the hour, when GitHub drops the most runs. A starter exits in
+    # seconds when a chain is already running.
+    - cron: "7,27,47 * * 11,12 *"
   workflow_dispatch:
     inputs:
       stage:
         description: "Stage id to poll (empty = pick by date)"
         required: false
         default: ""
-
-# One run at a time; a late run waits instead of racing the previous one.
-concurrency:
-  group: poll
-  cancel-in-progress: false
+      chain:
+        description: "Internal: set by the previous run to continue the chain"
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
+  actions: write
 
 env:
   EVENT_ID: pgl-major-singapore-2026
 
 jobs:
-  poll:
+  # Skips this run if a chain is already running or queued. A successor (chain=true) skips the check,
+  # since its predecessor is still finishing.
+  gate:
+    if: ${{ !inputs.chain }}
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 2
+    outputs:
+      busy: ${{ steps.check.outputs.busy }}
+    steps:
+      - id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          busy=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow poll.yml --limit 30 \
+            --json databaseId,status \
+            --jq "[.[] | select(.status != \"completed\" and .databaseId != $GITHUB_RUN_ID)] | length")
+          echo "busy=$busy" >> "$GITHUB_OUTPUT"
+          echo "Other active poll runs: $busy"
+
+  poll:
+    needs: gate
+    if: ${{ always() && (inputs.chain || needs.gate.outputs.busy == '0') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    # Never two chains at once; a successor waits for its predecessor to finish.
+    concurrency:
+      group: poll
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
         with:
@@ -44,34 +74,22 @@ jobs:
       - name: Install
         run: npm ci --no-fund --no-audit
 
-      - name: Restore last status
-        run: |
-          mkdir -p .cache
-          if git fetch --quiet origin poll-status; then
-            git show FETCH_HEAD:sync-status.json > .cache/sync-status.json || rm -f .cache/sync-status.json
-          fi
-
-      - name: Poll Liquipedia
+      - name: Poll every 15 minutes
+        id: loop
         env:
           LIQUIPEDIA_CONTACT: ${{ secrets.LIQUIPEDIA_CONTACT }}
           STAGE: ${{ inputs.stage }}
         run: |
           git config user.name "cs2-lab poller"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          rm -f .cache/run-started
-          touch .cache/run-started
-          node scripts/poll-liquipedia.ts "$EVENT_ID" $STAGE --commit
+          # Run a copy: each poll resets the checkout to the latest main, which may change the script.
+          cp .github/poll-loop.sh "$RUNNER_TEMP/poll-loop.sh"
+          bash "$RUNNER_TEMP/poll-loop.sh"
 
-      - name: Publish status
-        if: always()
-        run: |
-          # If the poller never wrote a status this run (setup failed), record the failure.
-          if [ ! -f .cache/run-started ] || [ ! .cache/sync-status.json -nt .cache/run-started ]; then
-            printf '{"schemaVersion":1,"eventId":"%s","checkedAt":"%s","outcome":"error","message":"%s"}\n' \
-              "$EVENT_ID" "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)" "GitHub run failed before the poller finished (see Actions log)" \
-              > .cache/sync-status.json
-          fi
-          blob=$(git hash-object -w .cache/sync-status.json)
-          tree=$(printf '100644 blob %s\tsync-status.json\n' "$blob" | git mktree)
-          commit=$(git commit-tree "$tree" -m "poll status")
-          git push --quiet --force origin "$commit:refs/heads/poll-status"
+      # Runs even when a poll failed, so one bad check never stops the chain.
+      - name: Start the next run
+        if: ${{ always() && steps.loop.outputs.chain == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STAGE: ${{ inputs.stage }}
+        run: gh workflow run poll.yml --repo "$GITHUB_REPOSITORY" --ref main -f chain=true -f stage="$STAGE"
