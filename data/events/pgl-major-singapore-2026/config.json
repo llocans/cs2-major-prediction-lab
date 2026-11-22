@@ -110,6 +110,46 @@
         "url": "https://github.com/ValveSoftware/counter-strike_rules_and_regs/blob/main/major-supplemental-rulebook.md",
         "retrievedAt": "2026-11-21"
       }
+    },
+    "bo5": {
+      "steps": [
+        {
+          "team": "A",
+          "action": "ban",
+          "count": 1
+        },
+        {
+          "team": "B",
+          "action": "ban",
+          "count": 1
+        },
+        {
+          "team": "A",
+          "action": "pick",
+          "count": 1
+        },
+        {
+          "team": "B",
+          "action": "pick",
+          "count": 1
+        },
+        {
+          "team": "A",
+          "action": "pick",
+          "count": 1
+        },
+        {
+          "team": "B",
+          "action": "pick",
+          "count": 1
+        }
+      ],
+      "source": {
+        "name": "PGL Bo5 grand final practice, not the Singapore rulebook: HLTV match 2389987, PGL Cluj-Napoca 2026 grand final veto (A removes 1, B removes 1, A picks, B picks, A picks, B picks, last map decider)",
+        "url": "https://www.hltv.org/matches/2389987/vitality-vs-parivision-pgl-cluj-napoca-2026",
+        "retrievedAt": "2026-11-22"
+      },
+      "unverified": true
     }
   },
   "stages": [

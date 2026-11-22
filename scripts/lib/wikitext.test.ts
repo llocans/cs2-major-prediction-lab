@@ -1,0 +1,49 @@
+import { describe, expect, it } from 'vitest'
+import { matchWinner, parseBracketMatches } from './wikitext.ts'
+
+// Shape of a Liquipedia Bracket/4 template with a third-place match (trimmed).
+const text = `{{Bracket|Bracket/4|id=abc
+|R1M1={{Match
+	|opponent1={{TeamOpponent|vit}}|opponent2={{TeamOpponent|navi}}
+	|finished=true
+	|map1={{Map|map=Inferno|finished=true|t1t=7|t1ct=6|t2t=5|t2ct=5}}
+	|map2={{Map|map=Nuke|finished=true|t1t=6|t1ct=7|t2t=4|t2ct=3}}
+	|map3={{Map|map=Mirage|finished=skip}}
+	}}
+|R1M2={{Match
+	|opponent1={{TeamOpponent|mouz}}|opponent2={{TeamOpponent|spirit}}
+	|map1={{Map|map=Dust II|finished=true|t1t=3|t1ct=2|t2t=9|t2ct=4}}
+	|map2={{Map|map=Ancient}}
+	|map3={{Map|map=}}
+	}}
+|R2M1={{Match
+	|opponent1={{TeamOpponent|vit}}|opponent2={{TeamOpponent|}}
+	|map1={{Map|map=}}|map2={{Map|map=}}|map3={{Map|map=}}|map4={{Map|map=}}|map5={{Map|map=}}
+	}}
+|RxMTP={{Match
+	|opponent1={{TeamOpponent|navi}}|opponent2={{TeamOpponent|mouz}}
+	|map1={{Map|map=}}|map2={{Map|map=}}|map3={{Map|map=}}
+	}}
+}}`
+
+describe('parseBracketMatches', () => {
+  const matches = parseBracketMatches(text)
+
+  it('reads rounds, positions and the third-place match, skipping TBD slots', () => {
+    expect(
+      matches.map(
+        (m) => `${m.round}.${m.index}${m.thirdPlace ? 'tp' : ''} ${m.opponent1}-${m.opponent2}`,
+      ),
+    ).toEqual(['1.0 vit-navi', '1.1 mouz-spirit', '2.0tp navi-mouz'])
+  })
+
+  it('reads map slots and finished maps', () => {
+    const [first, second, third] = matches
+    expect(first?.mapSlots).toBe(3)
+    expect(first?.finished).toBe(true)
+    expect(first && matchWinner(first)).toBe(1)
+    expect(second?.maps).toHaveLength(1)
+    expect(second?.finished).toBe(false)
+    expect(third?.mapSlots).toBe(3)
+  })
+})

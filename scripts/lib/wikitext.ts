@@ -151,6 +151,38 @@ export function parseSwissMatches(text: string): WikiMatch[] {
   return matches
 }
 
+/** A match from a Bracket template: R<round>M<index> slots, plus the third-place match (RxMTP). */
+export interface WikiBracketMatch extends WikiMatch {
+  /** 0-based position within the round as drawn on the page, top to bottom (0 for third place). */
+  index: number
+  thirdPlace: boolean
+}
+
+/**
+ * Every Match inside Bracket templates. The third-place match gets the round of the final.
+ * Slots without two opponents yet (TBD) are skipped.
+ */
+export function parseBracketMatches(text: string): WikiBracketMatch[] {
+  const matches: WikiBracketMatch[] = []
+  for (const bracket of findTemplates(text, 'Bracket')) {
+    const slots = Object.keys(bracket.named)
+    const rounds = Math.max(0, ...slots.map((key) => Number(/^R(\d+)M\d+$/.exec(key)?.[1] ?? 0)))
+    for (const key of slots) {
+      const regular = /^R(\d+)M(\d+)$/.exec(key)
+      const thirdPlace = key === 'RxMTP'
+      if (!regular && !thirdPlace) continue
+      const template = findTemplates(bracket.named[key] ?? '', 'Match')[0]
+      if (!template) continue
+      const match = parseMatch(template, regular ? Number(regular[1]) : rounds)
+      if (!match.opponent1 || !match.opponent2) continue
+      matches.push({ ...match, index: regular ? Number(regular[2]) - 1 : 0, thirdPlace })
+    }
+  }
+  return matches.sort(
+    (a, b) => a.round - b.round || Number(a.thirdPlace) - Number(b.thirdPlace) || a.index - b.index,
+  )
+}
+
 function parseMatch(match: Template, round: number): WikiMatch {
   const slots = Object.keys(match.named).filter((key) => /^map\d+$/.test(key))
   const maps: WikiMap[] = []
