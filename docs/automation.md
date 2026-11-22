@@ -28,7 +28,8 @@ clock. It only starts a chain:
 Each check inside a run:
 
 - Reset to the latest main (picks up cloud Claude pushes and merged code; reinstalls if
-  `package-lock.json` changed), read the current stage page from the Liquipedia API, log new results,
+  `package-lock.json` changed), read the current stage page from the Liquipedia API (Swiss: Matchlists;
+  playoffs: the Bracket template, once Stage 3 has advanced its 8 teams), log new results,
   update ratings, re-simulate, save the next-round snapshot, move advancing teams on when a stage ends,
   validate everything, commit only `data/` and `docs/changelog.md` to main, push.
 - A failed check is recorded in the status and the chain carries on; the run is marked failed at the

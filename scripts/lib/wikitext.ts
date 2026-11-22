@@ -89,8 +89,9 @@ function splitTopLevel(body: string): string[] {
 export function opponentName(value: string | undefined): string {
   if (!value) return ''
   const template = findTemplates(value, 'TeamOpponent')[0]
-  const name = template?.positional[0] ?? template?.named.template ?? ''
-  return name.trim().toLowerCase()
+  const name = (template?.positional[0] ?? template?.named.template ?? '').trim().toLowerCase()
+  // Liquipedia sometimes writes a literal TBD before a slot is decided.
+  return name === 'tbd' ? '' : name
 }
 
 /**

@@ -9,11 +9,13 @@ import {
   EventTeams,
   ModelParams,
   Modifiers,
+  type PlayoffStage,
   type SwissStage,
   TeamRegistry,
 } from '../../data/schemas/index.ts'
 import { buildEventChain } from '../../engine/event-chain.ts'
-import { buildMatchModel } from '../../engine/match-model.ts'
+import { buildMatchModel, type MatchModel } from '../../engine/match-model.ts'
+import type { PlayoffSimInput } from '../../engine/playoffs/simulate-playoffs.ts'
 import type { Labels } from '../../engine/predict.ts'
 import type { EventChain } from '../../engine/simulate-event.ts'
 import type { SwissSimInput } from '../../engine/simulate-swiss.ts'
@@ -38,16 +40,21 @@ export interface StageContext {
   ratingsAsOf: string
 }
 
-export function loadStageContext(
-  eventId: string,
-  stageId: string,
-  options: { announced?: Pairing[]; today?: string } = {},
-): StageContext {
-  const dir = repoPath('data/events', eventId)
-  const config = readJson(repoPath('data/events', eventId, 'config.json'), EventConfig)
-  const stage = config.stages.find((s) => s.id === stageId)
-  if (stage?.type !== 'swiss') throw new Error(`${eventId}: no Swiss stage "${stageId}"`)
+/** Everything about an event that does not depend on the stage. */
+export interface EventData {
+  config: EventConfig
+  teams: EventTeams
+  results: EventResults
+  params: ModelParams
+  model: MatchModel
+  labels: Labels
+  ratingsAsOf: string
+}
 
+/** Loads and validates the event's config, teams, results, model parameters and ratings. */
+export function loadEventData(eventId: string, today?: string): EventData {
+  const dir = repoPath('data/events', eventId)
+  const config = readJson(`${dir}/config.json`, EventConfig)
   const teams = readJson(`${dir}/teams.json`, EventTeams)
   const registry = readJson(repoPath('data/teams/registry.json'), TeamRegistry)
   const results = readJson(`${dir}/results.json`, EventResults)
@@ -55,6 +62,31 @@ export function loadStageContext(
   const modifiersPath = repoPath('data/model/modifiers.json')
   const modifiers = existsSync(modifiersPath) ? readJson(modifiersPath, Modifiers).modifiers : []
   const ratings = loadRatings()
+  const model = buildMatchModel(
+    ratings,
+    modifiers,
+    params,
+    config.mapPool.map((map) => map.id),
+    today ?? new Date().toISOString().slice(0, 10),
+  )
+  const displayNames = new Map(teams.participants.map((p) => [p.teamId, p.displayName]))
+  const mapNames = new Map(config.mapPool.map((map) => [map.id, map.name]))
+  const labels: Labels = {
+    team: (id) => displayNames.get(id) ?? registry.teams.find((t) => t.id === id)?.name ?? id,
+    map: (id) => mapNames.get(id) ?? id,
+  }
+  return { config, teams, results, params, model, labels, ratingsAsOf: ratings.asOf }
+}
+
+export function loadStageContext(
+  eventId: string,
+  stageId: string,
+  options: { announced?: Pairing[]; today?: string } = {},
+): StageContext {
+  const event = loadEventData(eventId, options.today)
+  const { config, teams, results, params, model, labels } = event
+  const stage = config.stages.find((s) => s.id === stageId)
+  if (stage?.type !== 'swiss') throw new Error(`${eventId}: no Swiss stage "${stageId}"`)
 
   const seeds = stageSeeds(teams.participants, stageId)
   if (seeds.length !== stage.teamCount) {
@@ -64,22 +96,6 @@ export function loadStageContext(
   const played: SwissMatch[] = results.matches
     .filter((m) => m.stageId === stageId)
     .map((m) => ({ round: m.round, teamA: m.teamA, teamB: m.teamB, winner: m.winner }))
-
-  const today = options.today ?? new Date().toISOString().slice(0, 10)
-  const model = buildMatchModel(
-    ratings,
-    modifiers,
-    params,
-    config.mapPool.map((map) => map.id),
-    today,
-  )
-
-  const displayNames = new Map(teams.participants.map((p) => [p.teamId, p.displayName]))
-  const mapNames = new Map(config.mapPool.map((map) => [map.id, map.name]))
-  const labels: Labels = {
-    team: (id) => displayNames.get(id) ?? registry.teams.find((t) => t.id === id)?.name ?? id,
-    map: (id) => mapNames.get(id) ?? id,
-  }
 
   const simInput: SwissSimInput = {
     seeds,
@@ -107,7 +123,7 @@ export function loadStageContext(
     simInput,
     ...(chain ? { chain } : {}),
     labels,
-    ratingsAsOf: ratings.asOf,
+    ratingsAsOf: event.ratingsAsOf,
   }
 }
 
@@ -127,5 +143,60 @@ function laterStages(
   } catch (error) {
     console.warn(`${config.id}: no playoff/title odds (${String(error)})`)
     return undefined
+  }
+}
+
+export interface PlayoffContext {
+  eventId: string
+  config: EventConfig
+  stage: PlayoffStage
+  results: EventResults
+  params: ModelParams
+  simInput: PlayoffSimInput
+  labels: Labels
+  ratingsAsOf: string
+}
+
+/** True once the playoff stage has all its seeds (written by the stage advance). */
+export function isPlayoffStageSeeded(event: EventData, stage: PlayoffStage): boolean {
+  return stageSeeds(event.teams.participants, stage.id).length === stage.bracket.length * 2
+}
+
+/** Loads everything needed to simulate a single-elimination stage. Throws until it is seeded. */
+export function loadPlayoffContext(
+  eventId: string,
+  stageId: string,
+  options: { today?: string } = {},
+): PlayoffContext {
+  const event = loadEventData(eventId, options.today)
+  const { config, teams, results, params, model, labels } = event
+  const stage = config.stages.find((s) => s.id === stageId)
+  if (stage?.type !== 'single-elimination') {
+    throw new Error(`${eventId}: no single-elimination stage "${stageId}"`)
+  }
+  const seeds = stageSeeds(teams.participants, stageId)
+  if (!isPlayoffStageSeeded(event, stage)) {
+    throw new Error(`${stageId}: expected ${stage.bracket.length * 2} seeds, found ${seeds.length}`)
+  }
+  const played = results.matches
+    .filter((m) => m.stageId === stageId)
+    .map((m) => ({ teamA: m.teamA, teamB: m.teamB, winner: m.winner }))
+  return {
+    eventId,
+    config,
+    stage,
+    results,
+    params,
+    simInput: {
+      seeds,
+      rules: stage,
+      veto: config.veto,
+      model,
+      played,
+      runs: params.sim.runs,
+      seed: params.sim.seed,
+    },
+    labels,
+    ratingsAsOf: event.ratingsAsOf,
   }
 }

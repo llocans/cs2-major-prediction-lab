@@ -63,6 +63,8 @@ export const PlayoffStage = z.object({
     thirdPlace: MatchFormat.optional(),
   }),
   thirdPlaceDecider: z.boolean(),
+  /** Liquipedia page holding the bracket (MediaWiki API title). */
+  liquipediaPage: z.string().optional(),
   source: z.array(Source).min(1),
 })
 export type PlayoffStage = z.infer<typeof PlayoffStage>

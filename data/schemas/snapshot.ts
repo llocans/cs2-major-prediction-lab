@@ -31,7 +31,22 @@ export const TeamOutlook = z.object({
 })
 export type TeamOutlook = z.infer<typeof TeamOutlook>
 
-/** Saved before each round. Never edited after saving (enforced by a hook). */
+/** A team's outlook in a single-elimination stage. */
+export const PlayoffTeamOutlook = z.object({
+  teamId: TeamId,
+  pSemifinal: z.number(),
+  pFinal: z.number(),
+  pTitle: z.number(),
+  /** Absent when the event has no third-place match. */
+  pThird: z.number().optional(),
+  reason: z.string(),
+})
+export type PlayoffTeamOutlook = z.infer<typeof PlayoffTeamOutlook>
+
+/**
+ * Saved before each round. Never edited after saving (enforced by a hook). Swiss snapshots fill
+ * `teams`; playoff snapshots leave it empty and fill `playoffTeams`. `matches` works for both.
+ */
 export const Snapshot = z.object({
   schemaVersion: z.literal(1),
   eventId: z.string(),
@@ -53,6 +68,7 @@ export const Snapshot = z.object({
   ratingsAsOf: IsoDateTime,
   matches: z.array(MatchPrediction),
   teams: z.array(TeamOutlook),
+  playoffTeams: z.array(PlayoffTeamOutlook).optional(),
 })
 export type Snapshot = z.infer<typeof Snapshot>
 

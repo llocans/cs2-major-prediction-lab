@@ -1,6 +1,6 @@
 import type { MatchResult } from '../../data/schemas/index.ts'
 import type { Pairing } from '../../engine/swiss/types.ts'
-import { matchWinner, parseSwissMatches, type WikiMatch } from './wikitext.ts'
+import { matchWinner, parseBracketMatches, parseSwissMatches, type WikiMatch } from './wikitext.ts'
 
 export interface ConvertOptions {
   stageId: string
@@ -35,6 +35,33 @@ export function readStagePage(text: string, options: ConvertOptions): StagePageD
     }
   }
   return { results, announced }
+}
+
+/**
+ * Finished results of a single-elimination stage page (Bracket template), plus a note for each match
+ * marked finished whose maps decide no winner (skipped). Rounds and formats here come from the page;
+ * logResults replaces them with the bracket slot's round and format from config. Pure.
+ */
+export function readBracketPage(
+  text: string,
+  options: ConvertOptions,
+): { results: MatchResult[]; skipped: string[] } {
+  const results: MatchResult[] = []
+  const skipped: string[] = []
+  for (const match of parseBracketMatches(text)) {
+    const winner = matchWinner(match)
+    if (match.finished && !winner) {
+      skipped.push(
+        `${match.opponent1} v ${match.opponent2}: marked finished but its maps decide no winner`,
+      )
+    }
+    if (!match.finished || !winner) continue
+    const teamA = options.resolveTeam(match.opponent1)
+    const teamB = options.resolveTeam(match.opponent2)
+    const result = toResult(match, teamA, teamB, winner, options)
+    results.push(match.thirdPlace ? { ...result, id: `${result.id}-third` } : result)
+  }
+  return { results, skipped }
 }
 
 function toResult(
