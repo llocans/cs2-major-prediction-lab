@@ -1,5 +1,110 @@
 {
   "schemaVersion": 1,
   "eventId": "pgl-major-singapore-2026",
-  "entries": []
+  "entries": [
+    {
+      "stageId": "stage-1",
+      "round": 1,
+      "teamA": "9z",
+      "teamB": "lynn-vision",
+      "pA": 0.602,
+      "source": {
+        "name": "OddsPortal match-winner odds, mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/9z-team-counter-strike-zPuZ5pzS/lynn-vision-counter-strike-pExG9Zzq/#d2cXi8se",
+        "retrievedAt": "2026-11-23"
+      },
+      "observedAt": "2026-11-23T11:45:59Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 1,
+      "teamA": "heroic",
+      "teamB": "imperial",
+      "pA": 0.6309,
+      "source": {
+        "name": "OddsPortal match-winner odds, mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/heroic-counter-strike-lMy9cUDj/imperial-counter-strike-0EY6cK96/#p8ahuVck",
+        "retrievedAt": "2026-11-23"
+      },
+      "observedAt": "2026-11-23T11:45:59Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 1,
+      "teamA": "100-thieves",
+      "teamB": "chinggis-warriors",
+      "pA": 0.8093,
+      "source": {
+        "name": "OddsPortal match-winner odds, mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/100-thieves-counter-strike-bHEflqwM/chinggis-warriors-counter-strike-KApr18YQ/#lxfPgUCr",
+        "retrievedAt": "2026-11-23"
+      },
+      "observedAt": "2026-11-23T11:45:59Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 1,
+      "teamA": "nip",
+      "teamB": "m80",
+      "pA": 0.5578,
+      "source": {
+        "name": "OddsPortal match-winner odds, mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/m80-counter-strike-OWnlO3km/ninjas-in-pyjamas-counter-strike-2PeaAhoj/#8OZCaaq4",
+        "retrievedAt": "2026-11-23"
+      },
+      "observedAt": "2026-11-23T11:45:59Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 1,
+      "teamA": "liquid",
+      "teamB": "bc-game",
+      "pA": 0.5559,
+      "source": {
+        "name": "OddsPortal match-winner odds, mean of 9 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/bc-game-counter-strike-8YminnHF/team-liquid-counter-strike-Y3rGBulc/#Kven1CK8",
+        "retrievedAt": "2026-11-23"
+      },
+      "observedAt": "2026-11-23T11:45:59Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 1,
+      "teamA": "parivision",
+      "teamB": "dendele",
+      "pA": 0.5957,
+      "source": {
+        "name": "OddsPortal match-winner odds, mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/dendele-counter-strike-f3plkYiO/parivision-counter-strike-K8LXqm54/#ELxLcwEG",
+        "retrievedAt": "2026-11-23"
+      },
+      "observedAt": "2026-11-23T11:45:59Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 1,
+      "teamA": "eternal-fire",
+      "teamB": "flyquest",
+      "pA": 0.5597,
+      "source": {
+        "name": "OddsPortal match-winner odds, mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/eternal-fire-counter-strike-xh8WluTi/flyquest-counter-strike-nPdOb0vc/#hhgfajkL",
+        "retrievedAt": "2026-11-23"
+      },
+      "observedAt": "2026-11-23T11:45:59Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 1,
+      "teamA": "faze",
+      "teamB": "wildcard",
+      "pA": 0.6644,
+      "source": {
+        "name": "OddsPortal match-winner odds, mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/faze-clan-counter-strike-tIL8JUNs/wildcard-gaming-counter-strike-pCQVwrwN/#hY20w9S1",
+        "retrievedAt": "2026-11-23"
+      },
+      "observedAt": "2026-11-23T11:45:59Z"
+    }
+  ]
 }
