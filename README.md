@@ -103,7 +103,6 @@ are documented with sources in [`docs/rules.md`](docs/rules.md).
 
 ## Current limitations
 
-- The site has no playoffs page yet; playoff results, predictions and scores exist in the data.
 - The Bo5 grand-final veto is assumed from earlier PGL events until PGL publishes the Singapore one.
 - No market odds are collected yet, so scoring compares only against a coin flip.
 - Ratings are tuned on reasoning, not yet on backtests of past Majors.

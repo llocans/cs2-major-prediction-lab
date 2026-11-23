@@ -48,8 +48,9 @@ export function toggleOverride(
     o.round === round && [o.winner, o.loser].sort().join() === [winner, loser].sort().join()
   const existing = whatIf.overrides.find(same)
   const others = whatIf.overrides.filter((o) => !same(o))
-  // Later rounds may depend on this match, so drop overrides of later rounds.
-  const kept = others.filter((o) => o.round < round)
+  // Later rounds may depend on this match, so drop overrides of later rounds. Other matches of the
+  // same round are independent of it and stay.
+  const kept = others.filter((o) => o.round <= round)
   const overrides = existing?.winner === winner ? kept : [...kept, { round, winner, loser }]
   return { ...whatIf, overrides }
 }
