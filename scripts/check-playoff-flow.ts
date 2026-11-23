@@ -2,13 +2,11 @@
  * End-to-end check of the playoff pipeline on made-up data, in a throwaway copy of the repo:
  * a finished Stage 3 → advance into the playoffs → quarterfinal snapshot → bracket results fed round
  * by round through the real Liquipedia parser and logResults → snapshots → final → status.md.
- * Never touches this checkout: it copies the repo to a temp folder and re-runs itself there.
+ * Never touches this checkout (see lib/temp-copy.ts); the event is reset to before its first match.
  * Usage: node scripts/check-playoff-flow.ts [event-id]   (exit code 1 if any check fails)
  */
 import { spawnSync } from 'node:child_process'
-import { cpSync, mkdtempSync, readFileSync, realpathSync, rmSync, symlinkSync } from 'node:fs'
-import { tmpdir } from 'node:os'
-import { basename, join } from 'node:path'
+import { readFileSync } from 'node:fs'
 import {
   EventConfig,
   EventResults,
@@ -25,47 +23,16 @@ import { buildRecords } from '../engine/swiss/records.ts'
 import { stageSeeds } from '../engine/swiss/stage-seeds.ts'
 import type { SwissMatch } from '../engine/swiss/types.ts'
 import { advanceStage, isSwissStageFinished } from './lib/advance.ts'
-import { readJson, repoPath, repoRoot, writeJson } from './lib/files.ts'
+import { readJson, repoPath, writeJson } from './lib/files.ts'
 import { type ConvertOptions, readBracketPage } from './lib/liquipedia-results.ts'
 import { ensureRoundSnapshot, logResults } from './lib/log-results.ts'
+import { enterTempCopy, resetEventProgress } from './lib/temp-copy.ts'
 
-const IN_COPY = '--in-copy'
-/** Set by the parent to the copy's path; the child refuses to run anywhere else. */
-const COPY_ENV = 'CS2_PLAYOFF_FLOW_COPY'
-const COPY_PREFIX = 'cs2-playoff-flow-'
 const eventId =
   process.argv.slice(2).find((arg) => !arg.startsWith('--')) ?? 'pgl-major-singapore-2026'
-
-if (!process.argv.includes(IN_COPY)) {
-  const copy = mkdtempSync(join(tmpdir(), COPY_PREFIX))
-  cpSync(repoRoot, copy, {
-    recursive: true,
-    filter: (path) =>
-      // No secrets (.env) or local settings in the copy: it may outlive a killed run.
-      !/[\\/](node_modules|\.git|dist|\.cache|\.claude|\.env[^\\/]*)([\\/]|$)/.test(
-        path.slice(repoRoot.length),
-      ),
-  })
-  symlinkSync(join(repoRoot, 'node_modules'), join(copy, 'node_modules'))
-  const run = spawnSync(
-    process.execPath,
-    [join(copy, 'scripts/check-playoff-flow.ts'), eventId, IN_COPY],
-    { stdio: 'inherit', env: { ...process.env, [COPY_ENV]: realpathSync(copy) } },
-  )
-  rmSync(copy, { recursive: true, force: true })
-  process.exit(run.status ?? 1)
-}
-
-// Safety: only ever write inside the copy the parent made (path passed in the environment, under the
-// temp dir, with our prefix). Running with --in-copy by hand in a real checkout fails here.
-const root = realpathSync(repoRoot)
-if (
-  process.env[COPY_ENV] !== root ||
-  !root.startsWith(realpathSync(tmpdir())) ||
-  !basename(root).startsWith(COPY_PREFIX)
-) {
-  throw new Error(`Refusing to run outside the temp copy made by this script (repo root ${root})`)
-}
+enterTempCopy(import.meta.filename, [eventId], 'cs2-playoff-flow-')
+// Back to before the first match, so real advanced seeds and snapshots never get in the way.
+resetEventProgress(eventId)
 
 let failures = 0
 const check = (ok: boolean, what: string) => {

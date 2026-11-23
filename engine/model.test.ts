@@ -281,4 +281,65 @@ describe('simulateSwiss', () => {
     expect(result.teams.find((t) => t.teamId === 't1')?.p30).toBe(0)
     expect(result.teams.find((t) => t.teamId === 't9')?.p03).toBe(0)
   })
+
+  it('takes a live page: announced pairings for the unplayed rest of a part-played round', () => {
+    const round1 = rules.initialPairing.map(([a, b]) => ({
+      round: 1,
+      teamA: `t${a}`,
+      teamB: `t${b}`,
+      winner: `t${a}`,
+    }))
+    // Round 2 pairs that differ from the Valve rules (t1 v t8, t2 v t7 in the 1-0 group): two
+    // played, the rest announced.
+    const round2 = [
+      ['t1', 't7'],
+      ['t2', 't8'],
+      ['t3', 't6'],
+      ['t4', 't5'],
+      ['t9', 't16'],
+      ['t10', 't15'],
+      ['t11', 't14'],
+      ['t12', 't13'],
+    ].map(([teamA = '', teamB = '']) => ({ teamA, teamB }))
+    const played = [
+      ...round1,
+      ...round2.slice(0, 2).map((p) => ({ round: 2, ...p, winner: p.teamA })),
+    ]
+    const result = simulateSwiss({ ...base, runs: 500, played, announced: round2.slice(2) })
+    expect(result.currentRound).toBe(2)
+    expect(result.upcoming.map((m) => `${m.teamA}-${m.teamB}`)).toEqual(
+      round2.slice(2).map((p) => `${p.teamA}-${p.teamB}`),
+    )
+    // The same real results without the announcement differ from the Valve rules: a clear error.
+    expect(() => simulateSwiss({ ...base, runs: 500, played })).toThrow(/differs/)
+    // A half-edited page (one announced pair missing) falls back to the Valve rules.
+    expect(() => simulateSwiss({ ...base, runs: 500, played, announced: round2.slice(3) })).toThrow(
+      /differs/,
+    )
+    // A page that still lists a played match among the announced ones: counted once.
+    const listed = simulateSwiss({ ...base, runs: 500, played, announced: round2 })
+    expect(listed.upcoming).toHaveLength(6)
+    // A pair listed twice (and one missing): not a complete round, the Valve rules apply.
+    const twice = [...round2.slice(2, 7), round2[2] ?? { teamA: '', teamB: '' }]
+    expect(() => simulateSwiss({ ...base, runs: 500, played, announced: twice })).toThrow(/differs/)
+  })
+
+  it('ignores announced pairings that include a team not playing this round', () => {
+    const played = rules.initialPairing.map(([a, b]) => ({
+      round: 1,
+      teamA: `t${a}`,
+      teamB: `t${b}`,
+      winner: `t${a}`,
+    }))
+    const plain = simulateSwiss({ ...base, runs: 200, played })
+    const withStranger = simulateSwiss({
+      ...base,
+      runs: 200,
+      played,
+      announced: [...plain.upcoming.slice(1), { teamA: 't1', teamB: 't99' }],
+    })
+    expect(withStranger.upcoming.map((m) => `${m.teamA}-${m.teamB}`)).toEqual(
+      plain.upcoming.map((m) => `${m.teamA}-${m.teamB}`),
+    )
+  })
 })
