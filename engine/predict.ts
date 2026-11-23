@@ -3,6 +3,7 @@ import { matchConfidence, matchReason, matchupSigma, teamConfidence } from './ex
 import { type EventChain, type EventSimResult, simulateEvent } from './simulate-event.ts'
 import { type SwissSimInput, type SwissSimResult, simulateSwiss } from './simulate-swiss.ts'
 import { buildRecords } from './swiss/records.ts'
+import type { SwissMatch } from './swiss/types.ts'
 
 export interface StagePrediction {
   sim: SwissSimResult
@@ -26,9 +27,11 @@ export function predictStage(
   input: SwissSimInput,
   labels: Labels,
   chain?: EventChain,
+  /** Receives every run's full stage (e.g. to collect Pick'Em outcomes). */
+  onRun?: (matches: readonly SwissMatch[]) => void,
 ): StagePrediction {
-  const chained = chain ? simulateEvent(input, chain) : undefined
-  const sim = chained?.stage ?? simulateSwiss(input)
+  const chained = chain ? simulateEvent(input, chain, { onStageRun: onRun }) : undefined
+  const sim = chained?.stage ?? simulateSwiss(input, onRun)
   const eventOdds = new Map(chained?.teams.map((t) => [t.teamId, t]))
   const { model, veto } = input
 

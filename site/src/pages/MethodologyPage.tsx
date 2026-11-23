@@ -215,7 +215,24 @@ export function MethodologyPage({ event }: { event: EventData }) {
           removed, and the results are averaged. Closing odds are the market’s sharpest estimate and
           carry news up to the start, while our prediction for a round is saved when the previous
           round ends, so this comparison is tilted toward the market. The market is a yardstick,
-          never an input: the model does not look at it.
+          never an input: the model does not look at it. The market's numbers also appear in the
+          team panel next to the model's (and when you hover a match in the bracket): before the
+          match for Stage 1 round 1, after it (the closing line) for later rounds.
+        </p>
+      </Section>
+
+      <Section title="Pick'Em">
+        <p>
+          The Pick'Em page works like the in-game one. In a Swiss stage you pick teams that finish
+          3-0, teams that advance 3-1 or 3-2 (a 3-0 team does not count there) and teams that finish
+          0-3; in the playoffs, the winner of every match. The box sizes and the pass mark come from
+          the event config. Your picks stay in your browser.
+        </p>
+        <p>
+          The chance next to your picks counts how often they would pass across the simulated
+          stages, using the real results so far. The model's own picks are the set with the most
+          correct picks on average, so a strong team can land in 3-1 / 3-2 rather than 3-0 when it
+          adds more there.
         </p>
       </Section>
 

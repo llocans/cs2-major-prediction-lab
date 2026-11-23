@@ -490,5 +490,29 @@
       "url": "https://oddspapi.io/docs",
       "retrievedAt": "2026-11-23"
     }
+  },
+  "pickem": {
+    "swiss": {
+      "threeZero": 2,
+      "advance": 6,
+      "zeroThree": 2,
+      "toPass": 5
+    },
+    "source": [
+      {
+        "name": "games.gg: CS2 Major Pick'em guide (3-0, advance 3-1/3-2, 0-3 boxes; boxes do not overlap)",
+        "url": "https://games.gg/news/cs2-major-pick-em-guide/",
+        "retrievedAt": "2026-11-23"
+      },
+      {
+        "name": "csdb.gg Pick'Ems: 5 or more correct picks per stage",
+        "url": "https://csdb.gg/pickems",
+        "retrievedAt": "2026-11-23"
+      },
+      {
+        "name": "In-game Pick'Em screen for this event (user's screenshot): 3:0 x2, 3:1 3:2 x6, 0:3 x2",
+        "retrievedAt": "2026-11-23"
+      }
+    ]
   }
 }

@@ -9,13 +9,16 @@ interface Props {
   scores: Map<string, string>
   selected?: string
   name: (teamId: string) => string
+  /** The market's chance that `team` beats `opponent` in a round, if logged (shown on hover). */
+  market?: (round: number, team: string, opponent: string) => number | undefined
   onPick: (match: BracketMatch, winner: string) => void
   onSelect: (teamId: string) => void
 }
 
 const pairKey = (a: string, b: string) => (a < b ? `${a}|${b}` : `${b}|${a}`)
 
-export function SwissBracket({ rounds, pending, scores, selected, name, onPick, onSelect }: Props) {
+export function SwissBracket(props: Props) {
+  const { rounds, pending, scores, selected, name, market, onPick, onSelect } = props
   const slots = groupSlots(16, rounds.length, 3, 3)
   const { width, height } = bracketSize(slots)
 
@@ -68,6 +71,7 @@ export function SwissBracket({ rounds, pending, scores, selected, name, onPick, 
                         score={scores.get(`${match.round}|${pairKey(match.teamA, match.teamB)}`)}
                         selected={selected}
                         name={name}
+                        market={market}
                         onPick={onPick}
                         onSelect={onSelect}
                       />
@@ -95,10 +99,11 @@ function MatchRow(props: {
   score: string | undefined
   selected: string | undefined
   name: (teamId: string) => string
+  market?: (round: number, team: string, opponent: string) => number | undefined
   onPick: (match: BracketMatch, winner: string) => void
   onSelect: (teamId: string) => void
 }) {
-  const { match, pA, score, selected, name, onPick, onSelect } = props
+  const { match, pA, score, selected, name, market, onPick, onSelect } = props
   const sides = [
     { team: match.teamA, p: pA },
     { team: match.teamB, p: pA === undefined ? undefined : 1 - pA },
@@ -115,6 +120,9 @@ function MatchRow(props: {
         const won = match.winner === team
         const lost = done && !won
         const isSelected = selected === team
+        const opponent = team === match.teamA ? match.teamB : match.teamA
+        const pMarket = market?.(match.round, team, opponent)
+        const marketNote = pMarket === undefined ? '' : ` · market ${pct(pMarket)}`
         return (
           <div
             key={team}
@@ -137,7 +145,10 @@ function MatchRow(props: {
               {name(team)}
             </button>
             {match.kind === 'real' ? (
-              <span className={`num text-xs ${won ? 'font-semibold text-ink' : 'text-ink-3'}`}>
+              <span
+                className={`num text-xs ${won ? 'font-semibold text-ink' : 'text-ink-3'}`}
+                title={pMarket === undefined ? undefined : `Market ${pct(pMarket)}`}
+              >
                 {index === 0 ? scoreA : scoreB}
               </span>
             ) : (
@@ -153,7 +164,9 @@ function MatchRow(props: {
                     : 'text-accent hover:bg-accent-soft',
                 ].join(' ')}
                 title={
-                  match.kind === 'override' && won ? 'Clear override' : `Force ${name(team)} to win`
+                  match.kind === 'override' && won
+                    ? 'Clear override'
+                    : `Force ${name(team)} to win${marketNote}`
                 }
               >
                 {match.kind === 'override' ? (won ? 'W*' : 'L') : p === undefined ? '…' : pct(p)}

@@ -9,6 +9,7 @@ import { SwissBracket } from '../components/SwissBracket.tsx'
 import { TeamPanel } from '../components/TeamPanel.tsx'
 import { type EventData, params, ratings, syncStatus, teamName } from '../lib/data.ts'
 import { shortDate } from '../lib/format.ts'
+import { marketChance, teamStageMatches } from '../lib/market.ts'
 import { readWhatIf, toggleOverride, writeWhatIf } from '../lib/overrides.ts'
 import { setQuery } from '../lib/router.ts'
 import { modelRequest } from '../sim/requests.ts'
@@ -110,6 +111,11 @@ export function StagePage({ event, stage, query }: Props) {
   const outlook = prediction?.teams.find((t) => t.teamId === selected)
   const next = prediction?.matches.find((m) => m.teamA === selected || m.teamB === selected)
   const currentRound = prediction?.sim.currentRound
+  const nextOpponent = next ? (next.teamA === selected ? next.teamB : next.teamA) : undefined
+  const nextMarket =
+    nextOpponent && currentRound !== undefined
+      ? marketChance(event, stage.id, currentRound, selected, nextOpponent)
+      : undefined
 
   return (
     <div className="flex flex-col gap-8">
@@ -148,6 +154,7 @@ export function StagePage({ event, stage, query }: Props) {
             scores={scores}
             selected={selected}
             name={name}
+            market={(round, team, opponent) => marketChance(event, stage.id, round, team, opponent)}
             onSelect={select}
             onPick={(match, winner) => {
               const loser = winner === match.teamA ? match.teamB : match.teamA
@@ -175,6 +182,8 @@ export function StagePage({ event, stage, query }: Props) {
             seed={seeds.indexOf(selected) + 1 || undefined}
             outlook={outlook}
             next={next}
+            nextMarket={nextMarket}
+            matches={teamStageMatches(event, stage.id, selected)}
             name={name}
             swapOptions={seeds.filter((id) => id !== selected)}
             canSwap={canSwap}

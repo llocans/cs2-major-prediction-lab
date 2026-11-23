@@ -3,6 +3,7 @@ import { currentEvent } from './lib/data.ts'
 import { type Route, useLocation } from './lib/router.ts'
 import { MethodologyPage } from './pages/MethodologyPage.tsx'
 import { OverviewPage } from './pages/OverviewPage.tsx'
+import { PickemPage } from './pages/PickemPage.tsx'
 import { PlaceholderPage } from './pages/PlaceholderPage.tsx'
 import { PlayoffsPage } from './pages/PlayoffsPage.tsx'
 import { StagePage } from './pages/StagePage.tsx'
@@ -18,6 +19,7 @@ const nav: Array<{ label: string; href: string; active: (route: Route) => boolea
       active: (r: Route) => r.page === 'stage' && r.stageId === s.id,
     })),
   { label: 'Playoffs', href: '#/playoffs', active: (r) => r.page === 'playoffs' },
+  { label: "Pick'Em", href: '#/pickem', active: (r) => r.page === 'pickem' },
   { label: 'Track record', href: '#/track-record', active: (r) => r.page === 'track-record' },
   { label: 'Methodology', href: '#/methodology', active: (r) => r.page === 'methodology' },
 ]
@@ -102,6 +104,8 @@ function Page({ route, query }: { route: Route; query: URLSearchParams }) {
       )
     case 'methodology':
       return <MethodologyPage event={event} />
+    case 'pickem':
+      return <PickemPage event={event} stageId={route.stageId} />
     case 'not-found':
       return <PlaceholderPage title="Not found" description="This page does not exist." />
   }

@@ -12,7 +12,7 @@ import {
 import type { SwissFormat } from './swiss/format.ts'
 import { pairRound } from './swiss/pairing.ts'
 import { advancingTeams } from './swiss/standings.ts'
-import type { SwissRules } from './swiss/types.ts'
+import type { SwissMatch, SwissRules } from './swiss/types.ts'
 
 /** A Swiss stage after the current one. Its seeds are `invited` followed by the advancing teams. */
 export interface ChainSwissStage {
@@ -61,9 +61,14 @@ const CHAIN_SEED_SALT = 0x5bd1e995
 export function simulateEvent(
   input: SwissSimInput,
   chain: EventChain,
-  /** Called with each stage's seeds in every run (stage id, or "playoffs"). For tests. */
-  observe?: (stageId: string, seeds: readonly string[]) => void,
+  hooks: {
+    /** Called with each stage's seeds in every run (stage id, or "playoffs"). For tests. */
+    observe?: (stageId: string, seeds: readonly string[]) => void
+    /** Called with the current stage's full matches in every run (as simulateSwiss's onRun). */
+    onStageRun?: (matches: readonly SwissMatch[]) => void
+  } = {},
 ): EventSimResult {
+  const { observe, onStageRun } = hooks
   const { model, veto, runs } = input
   const rng = createRng((input.seed ^ CHAIN_SEED_SALT) >>> 0)
   const play = seriesPlayer(model, veto, rng)
@@ -76,6 +81,7 @@ export function simulateEvent(
   const finalRound = chain.playoffs ? roundCount(chain.playoffs.rules) : 0
 
   const stage = simulateSwiss(input, (matches) => {
+    onStageRun?.(matches)
     let advancing = advancingTeams(input.seeds, matches, input.rules)
     for (const next of chain.next) {
       const seeds = [...next.invited, ...advancing]

@@ -26,6 +26,13 @@ export function useStageSimulation(
   return useSimulation(request, (p) => (p.kind === 'swiss' ? p.value : undefined))
 }
 
+/** A Swiss stage with every run's Pick'Em outcomes (set `collectOutcomes` in the request). */
+export function useSwissOutcomeSimulation(
+  request: Omit<SwissSimRequest, 'id'> | undefined,
+): SimState<Extract<AnyPrediction, { kind: 'swiss' }>> {
+  return useSimulation(request, (p) => (p.kind === 'swiss' ? p : undefined))
+}
+
 /** A single-elimination stage. */
 export function usePlayoffSimulation(
   request: Omit<PlayoffSimRequest, 'id'> | undefined,

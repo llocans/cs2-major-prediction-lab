@@ -103,5 +103,21 @@ export const EventConfig = z.object({
       source: Source,
     })
     .optional(),
+  /**
+   * The in-game Pick'Em format, for the site's Pick'Em page. Swiss stages: how many teams go in the
+   * 3-0, advance (3-1 or 3-2) and 0-3 boxes, and how many correct picks pass. Playoffs: one pick per
+   * bracket match. Absent: the page shows no pass mark.
+   */
+  pickem: z
+    .object({
+      swiss: z.object({
+        threeZero: z.number().int().min(0),
+        advance: z.number().int().min(0),
+        zeroThree: z.number().int().min(0),
+        toPass: z.number().int().min(1),
+      }),
+      source: z.array(Source).min(1),
+    })
+    .optional(),
 })
 export type EventConfig = z.infer<typeof EventConfig>

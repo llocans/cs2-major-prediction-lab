@@ -10,6 +10,7 @@ export type Route =
   | { page: 'track-record' }
   | { page: 'odds' }
   | { page: 'methodology' }
+  | { page: 'pickem'; stageId?: string }
   | { page: 'not-found' }
 
 export interface Location {
@@ -27,6 +28,7 @@ export function parseHash(hash: string): Location {
     if (head === 'stage' && a) return { page: 'stage', stageId: a }
     if (head === 'team' && a) return { page: 'team', teamId: a }
     if (head === 'match' && a && b) return { page: 'match', teamA: a, teamB: b }
+    if (head === 'pickem') return a ? { page: 'pickem', stageId: a } : { page: 'pickem' }
     if (
       head === 'playoffs' ||
       head === 'track-record' ||
