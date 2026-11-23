@@ -107,7 +107,7 @@ are documented with sources in [`docs/rules.md`](docs/rules.md).
 - The Bo5 grand-final veto is assumed from earlier PGL events until PGL publishes the Singapore one.
 - No market odds are collected yet, so scoring compares only against a coin flip.
 - Ratings are tuned on reasoning, not yet on backtests of past Majors.
-- The team, matchup, odds-over-time and methodology pages are placeholders.
+- The team, matchup and odds-over-time pages are placeholders.
 - The site runs locally; it is not hosted anywhere yet.
 
 What is planned next is in [`docs/roadmap.md`](docs/roadmap.md).

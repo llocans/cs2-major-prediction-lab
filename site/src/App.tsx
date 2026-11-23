@@ -1,6 +1,7 @@
 import { stageSeeds } from '../../engine/swiss/stage-seeds.ts'
 import { currentEvent } from './lib/data.ts'
 import { type Route, useLocation } from './lib/router.ts'
+import { MethodologyPage } from './pages/MethodologyPage.tsx'
 import { OverviewPage } from './pages/OverviewPage.tsx'
 import { PlaceholderPage } from './pages/PlaceholderPage.tsx'
 import { PlayoffsPage } from './pages/PlayoffsPage.tsx'
@@ -100,12 +101,7 @@ function Page({ route, query }: { route: Route; query: URLSearchParams }) {
         />
       )
     case 'methodology':
-      return (
-        <PlaceholderPage
-          title="Methodology"
-          description="How ratings, veto and simulation work. See docs/model.md for now."
-        />
-      )
+      return <MethodologyPage event={event} />
     case 'not-found':
       return <PlaceholderPage title="Not found" description="This page does not exist." />
   }

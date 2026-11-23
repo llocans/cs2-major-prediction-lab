@@ -6,9 +6,12 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## During PGL Major Singapore 2026 (Nov 24 - Dec 13)
 
-- **Market odds.** `benchmarks.json` is empty, so scoring compares only against a coin flip. Odds can
-  only be collected before a round is played. There is no process yet; it would be a manual pass in
-  the Browser pane before each round.
+- **Market odds.** Collected by hand in the Browser pane before each round (Stage 1 round 1 done on
+  2026-11-23): OddsPortal match pages, every listed bookmaker's pair made margin-free, then averaged
+  (`docs/sources.md`). OddsPortal has no API and only renders odds after a click from the event page, so
+  it cannot run in the poller. Automation would need an odds API with CS2 match-winner odds and a free
+  key (candidates: OddsPapi, odds-api.io; check terms and the free tier first), called from the poller
+  once per round before its first match.
 - **Bo5 final veto.** `veto.bo5` copies PGL's Cluj-Napoca 2026 grand final and is marked `unverified`.
   If PGL publishes the Singapore procedure before Dec 13, replace it and drop the flag
   (`docs/rules.md`).
@@ -36,7 +39,7 @@ belong in `data/events/<id>/status.md`, not here.
 - **Backtests on past Majors.** Parameter changes are capped at 10% per stage until backtests exist.
   Bracket fixtures for Austin 2025 and Cologne 2026 are in `engine/playoffs/fixtures/`; full backtests
   need historical match data, ideally through Liquipedia's LPDB API (access has to be requested).
-- **Placeholder pages.** Team, matchup, odds over time and methodology (`docs/core/design.md`).
+- **Placeholder pages.** Team, matchup and odds over time (`docs/core/design.md`).
 - **Hosting.** The site is a static build and runs locally only. The repo is public, so GitHub Pages
   is an option.
 - **Next event.** A new folder under `data/events/` (see "Adding an event" in the README).
@@ -56,3 +59,5 @@ belong in `data/events/<id>/status.md`, not here.
 - 2026-11-23: Swiss flow check (`check-swiss-flow.ts`: Stage 1 → 2 → 3 → playoffs seeded on made-up
   pages through the poller's own code). It found that a part-played round stopped the poller (the
   played matches were missing from the announced pairings); fixed in the engine.
+- 2026-11-23: Methodology page (`#/methodology`): data sources, the poller, ratings, veto, what each
+  percentage means, scoring against the market, limits. Parameter values come from `params.json`.
