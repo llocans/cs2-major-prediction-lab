@@ -35,6 +35,7 @@ a match has started.
 ## Liquipedia API rules (automation)
 
 - Endpoint: `https://liquipedia.net/counterstrike/api.php`. No automated access to rendered HTML pages.
+- On a 429 or 503: one retry after `Retry-After` (10-90 s), then give up until the next check.
 - At most 1 request every 2 seconds; `action=parse` at most 1 every 30 seconds (we use
   `action=query&prop=revisions` instead, so parse is not needed).
 - User-Agent: `cs2-major-prediction-lab/<version> (<contact>)`, contact from `LIQUIPEDIA_CONTACT` in `.env`.

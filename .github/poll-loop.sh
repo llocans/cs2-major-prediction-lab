@@ -8,6 +8,7 @@
 #
 # Env: EVENT_ID (required), STAGE (optional stage id), INTERVAL (default 900), MAX_SECONDS (default
 # 19800 = 5.5 h; the job limit is 6 h), BRANCH (default main; only for testing a branch),
+# THROTTLE_LIMIT (default 2: Liquipedia 429 checks in a row before handing over to a fresh runner),
 # GITHUB_OUTPUT (set by GitHub Actions).
 set -uo pipefail
 
@@ -43,6 +44,11 @@ fi
 
 start=$(date +%s)
 failures=0
+# Checks in a row that Liquipedia refused with 429. Its rate limit is per IP and GitHub runners share
+# IPs, so a throttled runner can stay throttled: after THROTTLE_LIMIT such checks this run hands over
+# to a successor, which gets a fresh runner (and IP).
+throttled=0
+THROTTLE_LIMIT="${THROTTLE_LIMIT:-2}"
 lock=$(sha256sum package-lock.json)
 
 while :; do
@@ -64,6 +70,20 @@ while :; do
   publish_status
 
   outcome=$(node -p "JSON.parse(require('fs').readFileSync('$STATUS', 'utf8')).outcome" 2>/dev/null)
+  message=$(node -p "JSON.parse(require('fs').readFileSync('$STATUS', 'utf8')).message ?? ''" 2>/dev/null)
+  if [ "$outcome" = "error" ] && [[ "$message" == *"Liquipedia 429"* ]]; then
+    throttled=$((throttled + 1))
+    if [ "$throttled" -ge "$THROTTLE_LIMIT" ]; then
+      log "Liquipedia throttled $throttled checks in a row, handing over to a fresh runner"
+      # Not a failure of this run: no email every ~20 min while throttling lasts. The status file
+      # still says "error", so the site's bar shows Problem.
+      failures=$((failures - throttled))
+      echo "chain=true" >> "$OUTPUT"
+      break
+    fi
+  else
+    throttled=0
+  fi
   if [ "$outcome" = "idle" ]; then
     if [ -n "$STAGE" ]; then
       # A forced stage that is finished: carry on picking the stage by date.
