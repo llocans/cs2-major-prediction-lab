@@ -79,6 +79,7 @@ jobs:
         id: loop
         env:
           LIQUIPEDIA_CONTACT: ${{ secrets.LIQUIPEDIA_CONTACT }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
           STAGE: ${{ inputs.stage }}
         run: |
           git config user.name "cs2-lab poller"

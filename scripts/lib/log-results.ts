@@ -237,7 +237,7 @@ function ensurePlayoffSnapshot(eventId: string, stageId: string): LogOutcome['sn
 }
 
 /** Inserts a line right after the format line of docs/changelog.md (newest first). */
-function appendChangelog(line: string): void {
+export function appendChangelog(line: string): void {
   const path = repoPath('docs/changelog.md')
   const text = readFileSync(path, 'utf8')
   const marker = '\n- '
