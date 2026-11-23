@@ -6,9 +6,12 @@
 export function SimStatus({
   running,
   className = 'ml-3',
+  hint = 'you can keep clicking',
 }: {
   running: boolean
   className?: string
+  /** Says the grey numbers still work: clicks while simulating start a new run. */
+  hint?: string
 }) {
   if (!running) return null
   return (
@@ -20,6 +23,7 @@ export function SimStatus({
       <span className="font-semibold text-accent" data-keep-accent>
         Simulating changes…
       </span>
+      <span className="text-sm text-ink-2">{hint}</span>
     </span>
   )
 }

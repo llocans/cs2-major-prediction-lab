@@ -300,7 +300,7 @@ function SwissBoard(props: {
               So far: <Score statuses={yourStatus.values()} />
             </p>
           )}
-          <SimStatus running={sim.running} className="" />
+          <SimStatus running={sim.running} className="" hint="you can keep picking" />
           <Changed stored={stored} start={stage.start} />
           <div className="mt-1 flex gap-4 text-sm">
             <button
@@ -566,7 +566,7 @@ function PlayoffBoard(props: { event: EventData; stage: PlayoffStage; seeds: str
           )}
         </span>
         <Changed stored={stored} start={stage.start} />
-        <SimStatus running={sim.running} className="" />
+        <SimStatus running={sim.running} className="" hint="you can keep picking" />
       </section>
 
       <div
