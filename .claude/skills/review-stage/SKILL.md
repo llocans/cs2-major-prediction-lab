@@ -1,6 +1,6 @@
 ---
 name: review-stage
-description: Score a finished CS2 Swiss stage (Brier, calibration, market benchmark), write lessons in accuracy.md, and propose capped model changes through a pull request.
+description: Score a finished CS2 stage, Swiss or playoffs (Brier, calibration, market benchmark), write lessons in accuracy.md, and propose capped model changes through a pull request.
 model: sonnet
 effort: high
 disable-model-invocation: true
@@ -17,8 +17,9 @@ Input: event ID and stage ID. Run only when every match of the stage is in `resu
    `data/events/<id>/accuracy.md`.
 2. Read the block, the stage's snapshots and `docs/model.md`. Write 3-6 short **Lessons** under the
    block: where the model was over/under-confident, which inputs (map offsets, cold start, modifiers)
-   helped or hurt, and what to watch next stage. 33 matches is a small sample: say how confident each
-   lesson is.
+   helped or hurt, and what to watch next stage. A Swiss stage has 33 matches and the playoffs 8, both
+   small samples: say how confident each lesson is. After the playoffs, also look back over the whole
+   event (all stages' blocks) and say what to change before the next Major.
 3. Commit `accuracy.md` straight to main (`data: review <stage>`).
 4. **Parameter proposals** (optional): only if a lesson clearly points at a parameter.
    - Each weight may move at most `retuneCapPerStage` (10%) of its value per stage (docs/model.md).

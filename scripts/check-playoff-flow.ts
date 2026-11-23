@@ -146,6 +146,15 @@ check(
 )
 check(ensureRoundSnapshot(eventId, playoffs.id) === 'saved', 'first-round snapshot saved')
 check(ensureRoundSnapshot(eventId, playoffs.id) === 'exists', 'asked again: exists')
+const simulated = spawnSync(
+  process.execPath,
+  [repoPath('scripts/simulate.ts'), eventId, playoffs.id],
+  { encoding: 'utf8' },
+)
+check(
+  simulated.status === 0 && simulated.stdout.includes('Title') && simulated.stdout.includes('vs'),
+  'simulate.ts prints playoff odds and next matches',
+)
 const first = readJson(`${dir}/snapshots/${playoffs.id}-r1.json`, Snapshot)
 check(
   first.matches.length === 4 && first.playoffTeams?.length === 8,

@@ -14,12 +14,13 @@ future events too: formats live in config, never in code.
 | `docs/sources.md`    | Sources and access rules (Liquipedia API limits, HLTV interactive only)                           |
 | `docs/automation.md` | launchd jobs, scheduled tasks, hooks                                                              |
 | `docs/changelog.md`  | One line per automatic change                                                                     |
+| `docs/roadmap.md`    | What is done, what is open, and ideas for later                                                   |
 | `data/schemas/`      | Zod schemas; `index.ts` maps file paths to schemas                                                |
 | `data/teams/`        | `registry.json` (IDs, aliases, dated rosters) + `<team-id>.md` research notes                     |
 | `data/model/`        | `params.json` (weights), `modifiers.json` (logged judgment calls)                                 |
 | `data/ratings/`      | `current.json` + `history/`                                                                       |
 | `data/events/<id>/`  | config, teams, results (real only), benchmarks, snapshots (never edited), accuracy, status        |
-| `engine/`            | Pure TS: Swiss pairing, veto, ratings, simulation, scoring. No I/O                                |
+| `engine/`            | Pure TS: Swiss pairing, playoffs, veto, ratings, simulation, scoring. No I/O                      |
 | `scripts/`           | I/O: validate, fetch, log results, snapshot, simulate                                             |
 | `site/`              | React + Vite + Tailwind v4 static site                                                            |
 
@@ -37,7 +38,8 @@ future events too: formats live in config, never in code.
   - `advance` happens automatically: when a Swiss stage finishes, the poller seeds its 8 advancing teams
     into the next stage (seeds 9-16; playoffs: seeds 1-8) and saves that stage's round 1 snapshot
   - `score-stage.ts <event> <stage>` → score block in `data/events/<id>/accuracy.md`
-  - `simulate.ts <event> <stage>` (prints odds) · `snapshot.ts <event> <stage>` (pre-round, once)
+  - `simulate.ts <event> <stage>` (prints odds; Swiss or playoffs) · `snapshot.ts <event> <stage>`
+    (pre-round, once)
   - `log-result.ts ...` (manual) · `poll-liquipedia.ts <event>` (runs in GitHub Actions; needs `LIQUIPEDIA_CONTACT`;
     Swiss stages, then the playoff bracket once Stage 3 has advanced)
   - `check-playoff-flow.ts` → end-to-end playoff pipeline on made-up data in a temp copy (also runs
@@ -61,18 +63,26 @@ future events too: formats live in config, never in code.
 10. `README.md` is the public front page. Update it in the same PR when commands, layout, requirements,
     automation, licences or "Current limitations" change (e.g. playoffs built, market odds collected,
     backtests done). Never put live numbers, odds or stage status in it; link to `status.md` and `docs/`.
+11. `docs/roadmap.md` is the to-do list. When work finishes, move it to Done in the same PR; when an
+    open problem or idea comes up, add it there, not only in chat or memory.
+12. Docs follow the code. A PR that changes behaviour, commands, files or automation also updates
+    everything that describes it: README, this file, `docs/`, skills, agents and the routine prompts
+    listed in `docs/automation.md`. `npm run check` fails when a doc names a path that no longer
+    exists. The weekly `cleanup` routine checks the rest and writes `data/checkup.md`; the session
+    start prints its open findings: raise them and fix them through a PR.
 
 ## Skills (`.claude/skills/`)
 
 | Skill           | When                                                                                        |
 | --------------- | ------------------------------------------------------------------------------------------- |
 | `log-result`    | Record a real result, update ratings, re-simulate, snapshot (manual fallback to the poller) |
-| `research-team` | Research one team (or a stage) and update its data, notes and modifiers |
-| `simulate` | Re-run the simulation and report the odds (read-only) |
-| `review-stage` | Score a finished stage, write lessons, propose capped changes via PR |
-| `cleanup` | Remove expired modifiers, mark stale facts, check sources |
+| `research-team` | Research one team (or a stage) and update its data, notes and modifiers                     |
+| `simulate`      | Re-run the simulation and report the odds (read-only)                                       |
+| `review-stage`  | Score a finished stage, write lessons, propose capped changes via PR                        |
+| `cleanup`       | Remove expired modifiers, mark stale facts, check sources                                   |
 
 ## Subagents (`.claude/agents/`)
+
 `team-researcher` (Sonnet, medium; max 4 in parallel) · `reviewer` (Sonnet, high; read-only) ·
 `checker` (Haiku, low; read-only)
 
