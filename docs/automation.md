@@ -74,7 +74,13 @@ All run in the evening UTC, after the day's matches, so their pushes rarely meet
 they do, the poller rebases and retries (above), and its next check starts from the newer main.
 Each prompt keeps its guardrails (date window, "already done", stage complete).
 
-## 3. Hooks (`.claude/settings.json`)
+## 3. Pull request checks: GitHub Actions
+
+`.github/workflows/check.yml` runs `npm run check`, `npm run validate` and `npm run build` on every pull
+request to main (free: public repository). The poller's data commits go straight to main and are
+validated by the poller itself.
+
+## 4. Hooks (`.claude/settings.json`)
 
 | Hook                    | Script                                                                                                                                     | Status |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
