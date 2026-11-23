@@ -86,5 +86,22 @@ export const EventConfig = z.object({
     bo5: VetoProcedure.optional(),
   }),
   stages: z.array(Stage).min(1),
+  /**
+   * Automatic market odds, a benchmark only (never a model input). Closing lines from OddsPapi's free
+   * historical-odds endpoint once a match is settled. Absent: no automatic collection.
+   */
+  marketOdds: z
+    .object({
+      provider: z.literal('oddspapi'),
+      tournamentId: z.number().int().positive(),
+      /** Match-winner market id, and its outcome ids for participant1 and participant2 winning. */
+      marketId: z.string().min(1),
+      outcomes: z.tuple([z.string().min(1), z.string().min(1)]),
+      /** Bookmaker slugs to read (the endpoint takes at most 3). */
+      bookmakers: z.array(z.string().min(1)).min(1).max(3),
+      /** Where the ids above were confirmed (the setup script's API reads). */
+      source: Source,
+    })
+    .optional(),
 })
 export type EventConfig = z.infer<typeof EventConfig>

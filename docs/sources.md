@@ -12,8 +12,20 @@ Checked 2026-11-21 from this machine (Claude desktop app).
 | 6   | PGL (pglesports.com)                                                 | Official schedule, bracket, rules                       | Browser pane only (fetch: JS shell). pgl.gg: Cloudflare 525                  |
 | 7   | News: Dust2.us, Sheep Esports, Dexerto, Dot Esports, pley.gg, Strafe | Rosters, interviews                                     | Web fetch                                                                    |
 | 8   | OddsPortal                                                           | Market odds (benchmark only)                            | **Interactive only**, Browser pane: decline cookies, open each match by clicking it on the event page (direct match URLs render no odds) |
+| 9   | OddsPapi (oddspapi.io)                                               | Market odds, automatic (benchmark only)                 | REST API, free plan, key `ODDSPAPI_KEY`; poller only, at most every 2 h       |
 
 ### Market odds (benchmarks.json)
+
+**Automatic (from Stage 1 round 2):** the poller, at most every two hours and only when a result from
+the last two days has no benchmark, reads the event's settled fixtures from OddsPapi (1 request of the
+free plan's monthly allowance) and each new match's historical odds (free of quota). The closing line
+is each bookmaker's last price before the start (`trueStartTime`, else `startTime`); margin removed per
+bookmaker, then the mean. Only `pA` and the fixture id are stored, never the raw prices (the terms
+forbid redistributing their data "as a standalone product": [terms](https://oddspapi.io/legal/terms),
+read 2026-11-23). Setup per event: `scripts/research/oddspapi-setup.ts`
+prints the tournament id and market ids for `marketOdds` in `config.json`.
+
+**By hand (fallback, Stage 1 round 1):**
 
 Before a round, read every bookmaker listed on each match's OddsPortal page. Per bookmaker,
 `p = (1/oddsA) / (1/oddsA + 1/oddsB)` removes its margin; `pA` is the mean over bookmakers. The

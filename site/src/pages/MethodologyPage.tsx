@@ -68,8 +68,8 @@ export function MethodologyPage({ event }: { event: EventData }) {
             ],
             [
               'Bookmaker odds',
-              'Win chances for upcoming matches, with the bookmaker margin removed.',
-              'Collected before a round, a benchmark only, never a model input',
+              'Each match’s closing line: the last bookmaker prices before it starts, margin removed.',
+              'OddsPapi free API, read by the poller after each match; a benchmark only, never a model input',
             ],
           ]}
         />
@@ -210,9 +210,12 @@ export function MethodologyPage({ event }: { event: EventData }) {
           error of the probabilities: 0 is perfect, 0.250 is what always saying 50% scores).
         </p>
         <p>
-          The comparison includes the betting market. For each match, odds from about ten bookmakers
-          are converted to probabilities, each bookmaker’s margin is removed, and the results are
-          averaged. The market is a yardstick, never an input: the model does not look at it.
+          The comparison includes the betting market. For each match, the closing odds (the last
+          prices before it starts) are converted to probabilities, each bookmaker’s margin is
+          removed, and the results are averaged. Closing odds are the market’s sharpest estimate and
+          carry news up to the start, while our prediction for a round is saved when the previous
+          round ends, so this comparison is tilted toward the market. The market is a yardstick,
+          never an input: the model does not look at it.
         </p>
       </Section>
 

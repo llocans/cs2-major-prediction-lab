@@ -26,7 +26,13 @@ import { readJson, repoPath } from './lib/files.ts'
 import { commitData } from './lib/git.ts'
 import { getPage } from './lib/liquipedia.ts'
 import { readBracketPage } from './lib/liquipedia-results.ts'
-import { ensureRoundSnapshot, type LogOutcome, logResults } from './lib/log-results.ts'
+import {
+  appendChangelog,
+  ensureRoundSnapshot,
+  type LogOutcome,
+  logResults,
+} from './lib/log-results.ts'
+import { collectClosingOdds, isOddsWindow } from './lib/oddspapi.ts'
 import {
   type AdvanceStep,
   advanceAndSnapshot,
@@ -50,6 +56,8 @@ const shift = (date: string, days: number) =>
 const changes: string[] = []
 /** Results held back this run (e.g. a match whose maps don't fit its format yet), for the status. */
 const heldBack: string[] = []
+/** Market-odds notes this run (unmatched teams, a failed call), for the status. */
+const oddsNotes: string[] = []
 
 /** Reports a stage that just finished and moved its teams on (see advanceAndSnapshot). */
 function reportAdvance(stageId: string, step: AdvanceStep): void {
@@ -76,7 +84,9 @@ try {
   } else {
     log(`${eventId}: no unfinished stage to poll on ${today}, nothing to do`)
   }
-  commitIfChanged()
+  // Results first, in their own commit: the market-odds step can never delay or block them.
+  commitIfChanged(changes)
+  commitIfChanged(await collectMarketOdds())
 } catch (error) {
   // Record the failure for the site's freshness bar, then fail loudly for launchd's log.
   writeSyncStatus({
@@ -93,7 +103,7 @@ writeSyncStatus(
     outcome: stage ? 'checked' : 'idle',
     ...(stage ? { stageId: stage.id } : {}),
     ...(revid !== undefined ? { liquipediaRevid: revid } : {}),
-    ...(heldBack.length > 0 ? { message: `Held back: ${heldBack.join('; ')}`.slice(0, 300) } : {}),
+    ...statusMessage(),
   },
   changes.length > 0 ? changes.join('; ') : undefined,
 )
@@ -167,6 +177,38 @@ function report(
   if (snapshot === 'saved') changes.push(`next-round prediction saved for ${current.name}`)
 }
 
+function statusMessage(): { message?: string } {
+  const parts = [
+    ...(heldBack.length > 0 ? [`Held back: ${heldBack.join('; ')}`] : []),
+    ...oddsNotes,
+  ]
+  return parts.length > 0 ? { message: parts.join('; ').slice(0, 300) } : {}
+}
+
+/**
+ * Closing-line market odds for newly logged results (a benchmark only), every second hour. A failure
+ * here never fails the check: it is logged and shown in the status message, and the next window
+ * tries again.
+ */
+async function collectMarketOdds(): Promise<string[]> {
+  if (!isOddsWindow(new Date())) return []
+  try {
+    const odds = await collectClosingOdds(eventId as string, today)
+    for (const note of odds.notes) log(note)
+    oddsNotes.push(...odds.notes)
+    if (odds.added > 0) {
+      const what = `market odds for ${odds.added} match${odds.added === 1 ? '' : 'es'}`
+      const stamp = new Date().toISOString().slice(0, 16).replace('T', ' ')
+      appendChangelog(`- ${stamp} UTC · poll-liquipedia · ${what} (OddsPapi closing line)`)
+      return [what]
+    }
+  } catch (error) {
+    log(`market odds failed: ${String(error)}`)
+    oddsNotes.push(`market odds failed: ${String(error).slice(0, 120)}`)
+  }
+  return []
+}
+
 /** Seeded and the final not decided yet. */
 function isPlayoffStageOpen(id: string, playoffs: PlayoffStage): boolean {
   const event = loadEventData(id)
@@ -177,7 +219,7 @@ function isPlayoffStageOpen(id: string, playoffs: PlayoffStage): boolean {
   return currentPlayoffRound(bracket, roundCount(playoffs)) <= roundCount(playoffs)
 }
 
-function commitIfChanged(): void {
+function commitIfChanged(changes: readonly string[]): void {
   if (!shouldCommit || changes.length === 0) return
   const { problems } = validateAllData()
   if (problems.length > 0) {

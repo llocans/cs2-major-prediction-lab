@@ -6,12 +6,9 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## During PGL Major Singapore 2026 (Nov 24 - Dec 13)
 
-- **Market odds.** Collected by hand in the Browser pane before each round (Stage 1 round 1 done on
-  2026-11-23): OddsPortal match pages, every listed bookmaker's pair made margin-free, then averaged
-  (`docs/sources.md`). OddsPortal has no API and only renders odds after a click from the event page, so
-  it cannot run in the poller. Automation would need an odds API with CS2 match-winner odds and a free
-  key (candidates: OddsPapi, odds-api.io; check terms and the free tier first), called from the poller
-  once per round before its first match.
+- **Market odds: switch on.** The poller step is built (OddsPapi free plan, closing lines). It stays off
+  until `ODDSPAPI_KEY` is set (`.env` and the repository secret) and `marketOdds` is filled in the event
+  config from `scripts/research/oddspapi-setup.ts`. Stage 1 round 1 was collected by hand (OddsPortal).
 - **Bo5 final veto.** `veto.bo5` copies PGL's Cluj-Napoca 2026 grand final and is marked `unverified`.
   If PGL publishes the Singapore procedure before Dec 13, replace it and drop the flag
   (`docs/rules.md`).
@@ -61,3 +58,10 @@ belong in `data/events/<id>/status.md`, not here.
   played matches were missing from the announced pairings); fixed in the engine.
 - 2026-11-23: Methodology page (`#/methodology`): data sources, the poller, ratings, veto, what each
   percentage means, scoring against the market, limits. Parameter values come from `params.json`.
+- 2026-11-23: Automatic market odds (closing lines from OddsPapi's free plan) in the poller, off until
+  a key is set. Compared first, from each provider's own pages read on 2026-11-23:
+  [odds-api.io](https://odds-api.io/pricing) (new free keys paused, from £49/month),
+  [The Odds API](https://the-odds-api.com/sports-odds-data/sports-apis.html) (no CS2),
+  [PandaScore](https://www.pandascore.co/odds) (odds by sales contact, own model),
+  [esportsodds.gg](https://esportsodds.gg/) (current data $99/month), [cs2-api.org](https://cs2-api.org/)
+  and Polymarket (prediction-market prices; no per-match markets for this Major).
