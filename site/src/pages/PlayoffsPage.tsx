@@ -8,7 +8,7 @@ import { FreshnessBar } from '../components/FreshnessBar.tsx'
 import { type MatchKind, PlayoffBracket, pairKey } from '../components/PlayoffBracket.tsx'
 import { PlayoffOddsTable } from '../components/PlayoffOddsTable.tsx'
 import { SimStatus } from '../components/SimStatus.tsx'
-import { type EventData, params, ratings, syncStatus, teamName } from '../lib/data.ts'
+import { type EventData, ratings, syncStatus, teamName } from '../lib/data.ts'
 import { shortDate } from '../lib/format.ts'
 import { readWhatIf, toggleOverride, writeWhatIf } from '../lib/overrides.ts'
 import { setQuery } from '../lib/router.ts'
@@ -49,9 +49,7 @@ function Header(props: { stage: PlayoffStage; status: string; running: boolean }
     <header className="flex flex-col gap-1">
       <h1 className="font-display text-5xl font-bold leading-none tracking-tight">{stage.name}</h1>
       <p className="num text-sm text-ink-2">
-        Single elimination · {stage.bracket.length * 2} teams · {shortDate(stage.start)}–
-        {shortDate(stage.end)} · {formats.join(', ')} · {status} ·{' '}
-        {params.sim.runs.toLocaleString('en-GB')} runs
+        {shortDate(stage.start)}–{shortDate(stage.end)} · {formats.join(', ')} · {status}
         <SimStatus running={running} />
       </p>
       <FreshnessBar sync={syncStatus} stage={stage} ratingsAsOf={ratings.asOf} />

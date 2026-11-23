@@ -8,7 +8,7 @@ import { OddsTable } from '../components/OddsTable.tsx'
 import { SimStatus } from '../components/SimStatus.tsx'
 import { SwissBracket } from '../components/SwissBracket.tsx'
 import { TeamPanel } from '../components/TeamPanel.tsx'
-import { type EventData, params, ratings, syncStatus, teamName } from '../lib/data.ts'
+import { type EventData, ratings, syncStatus, teamName } from '../lib/data.ts'
 import { shortDate } from '../lib/format.ts'
 import { marketChance, teamStageMatches } from '../lib/market.ts'
 import { readWhatIf, toggleOverride, writeWhatIf } from '../lib/overrides.ts'
@@ -125,13 +125,7 @@ export function StagePage({ event, stage, query }: Props) {
           {stage.name}
         </h1>
         <p className="num text-sm text-ink-2">
-          Swiss · {stage.teamCount} teams · {shortDate(stage.start)}–{shortDate(stage.end)} ·{' '}
-          {currentRound === undefined
-            ? '…'
-            : currentRound > 5
-              ? 'finished'
-              : `round ${currentRound} next`}{' '}
-          · {params.sim.runs.toLocaleString('en-GB')} runs
+          {shortDate(stage.start)}–{shortDate(stage.end)} · {roundStatus(currentRound, real)}
           <SimStatus running={sim.running} />
         </p>
         <FreshnessBar sync={syncStatus} stage={stage} ratingsAsOf={ratings.asOf} />
@@ -205,6 +199,13 @@ export function StagePage({ event, stage, query }: Props) {
       </div>
     </div>
   )
+}
+
+/** "Round 2 next" before a round's first result, "Round 2 in progress" after it, then "Finished". */
+function roundStatus(round: number | undefined, real: ReadonlyArray<{ round: number }>): string {
+  if (round === undefined) return '…'
+  if (round > 5) return 'Finished'
+  return real.some((m) => m.round === round) ? `Round ${round} in progress` : `Round ${round} next`
 }
 
 function Legend({ overrides, onReset }: { overrides: number; onReset: () => void }) {
