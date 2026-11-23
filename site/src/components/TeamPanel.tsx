@@ -82,7 +82,7 @@ export function TeamPanel(props: Props) {
               >
                 Market
               </dt>
-              <dd className="num font-display text-2xl font-semibold text-accent" data-market>
+              <dd className="num font-display text-2xl font-semibold text-accent" data-keep-accent>
                 {nextMarket === undefined ? '–' : pct(nextMarket)}
               </dd>
             </div>
@@ -114,7 +114,7 @@ export function TeamPanel(props: Props) {
                   <td className="text-right font-semibold text-accent">
                     {m.model === undefined ? '–' : pct(m.model)}
                   </td>
-                  <td className="text-right font-semibold text-accent" data-market>
+                  <td className="text-right font-semibold text-accent" data-keep-accent>
                     {m.market === undefined ? '–' : pct(m.market)}
                   </td>
                   <td className={`text-right ${m.result === 'W' ? 'text-win' : 'text-loss'}`}>

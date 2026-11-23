@@ -24,6 +24,7 @@ import {
 import { type BracketMatch, resolveBracket, roundCount } from '../../../engine/playoffs/bracket.ts'
 import { buildRecords } from '../../../engine/swiss/records.ts'
 import { stageSeeds } from '../../../engine/swiss/stage-seeds.ts'
+import { SimStatus } from '../components/SimStatus.tsx'
 import { type EventData, teamName } from '../lib/data.ts'
 import { pct, shortDate } from '../lib/format.ts'
 import { type StoredPicks, useStoredPicks } from '../lib/pickem-store.ts'
@@ -88,14 +89,6 @@ function Changed({ stored, start }: { stored?: StoredPicks; start: string }) {
       Last changed {shortDate(stored.updatedAt)}{' '}
       {at.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
       {late && ' · changed after the stage began'}
-    </p>
-  )
-}
-
-function Rough() {
-  return (
-    <p className="text-xs text-ink-2" role="status">
-      <span className="font-semibold">Rough estimate</span> (grey), final odds in a few seconds
     </p>
   )
 }
@@ -307,7 +300,7 @@ function SwissBoard(props: {
               So far: <Score statuses={yourStatus.values()} />
             </p>
           )}
-          {sim.running && <Rough />}
+          <SimStatus running={sim.running} className="" />
           <Changed stored={stored} start={stage.start} />
           <div className="mt-1 flex gap-4 text-sm">
             <button
@@ -573,7 +566,7 @@ function PlayoffBoard(props: { event: EventData; stage: PlayoffStage; seeds: str
           )}
         </span>
         <Changed stored={stored} start={stage.start} />
-        {sim.running && <Rough />}
+        <SimStatus running={sim.running} className="" />
       </section>
 
       <div
