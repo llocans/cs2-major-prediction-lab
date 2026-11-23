@@ -10,6 +10,7 @@ import {
   normalizeTeamName,
   type OddsPapiFixture,
   OddsPapiHistorical,
+  parseFixtures,
   resultsWithoutBenchmark,
 } from './market-odds.ts'
 
@@ -184,5 +185,47 @@ describe('fixtures to results', () => {
       ],
     )
     expect(missing.map((r) => r.teamA)).toEqual(['9z'])
+  })
+})
+
+describe('review cases', () => {
+  it('has no closing price without a usable start time', () => {
+    expect(closingPrice([{ createdAt: '2026-11-24T05:00:00Z', price: 1.5 }], 'TBD')).toBeUndefined()
+  })
+
+  it('skips suspended entries and missing prices', () => {
+    const entries = [
+      { createdAt: '2026-11-24T05:59:00Z', price: null },
+      { createdAt: '2026-11-24T05:58:00Z', price: 1.4, active: false },
+      { createdAt: '2026-11-24T05:50:00Z', price: 1.55, active: true },
+    ]
+    expect(closingPrice(entries, '2026-11-24T06:00:00Z')?.price).toBe(1.55)
+    const parsed = OddsPapiHistorical.parse({
+      fixtureId: 'x',
+      bookmakers: { 'pinnacle+30': {}, other: { markets: { '171': {} } } },
+    })
+    expect(closingProbability(parsed, config, '2026-11-24T06:00:00Z')).toBeUndefined()
+  })
+
+  it('reads a bare or wrapped fixtures list and skips entries that do not fit', () => {
+    const good = fixture('Heroic', 'Imperial eSports', '2026-11-24T06:00:00.000Z')
+    const tbd = { ...good, fixtureId: 'tbd', participant2Name: null }
+    expect(parseFixtures([good, tbd])).toEqual([good])
+    expect(parseFixtures({ data: [good] })).toEqual([good])
+    expect(() => parseFixtures({ error: 'x' })).toThrow(/expected a list/)
+  })
+
+  it('never gives a result the odds of a rematch on a later day', () => {
+    const { matched, unmatched } = matchFixtures(
+      [result('imperial', 'heroic', '2026-11-27')],
+      [
+        fixture('Heroic', 'Imperial eSports', '2026-11-28T06:00:00.000Z'),
+        fixture('Heroic', 'Imperial eSports', '2026-11-26T23:30:00.000Z'),
+      ],
+      teams,
+    )
+    // Logged on the 27th: the match that began just before midnight, not the next day's rematch.
+    expect(matched[0]?.fixture.startTime).toBe('2026-11-26T23:30:00.000Z')
+    expect(unmatched).toEqual([])
   })
 })

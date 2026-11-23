@@ -21,7 +21,8 @@ the last two days has no benchmark, reads the event's settled fixtures from Odds
 free plan's monthly allowance) and each new match's historical odds (free of quota). The closing line
 is each bookmaker's last price before the start (`trueStartTime`, else `startTime`); margin removed per
 bookmaker, then the mean. Only `pA` and the fixture id are stored, never the raw prices (the terms
-forbid redistributing their data as a product). Setup per event: `scripts/research/oddspapi-setup.ts`
+forbid redistributing their data "as a standalone product": [terms](https://oddspapi.io/legal/terms),
+read 2026-11-23). Setup per event: `scripts/research/oddspapi-setup.ts`
 prints the tournament id and market ids for `marketOdds` in `config.json`.
 
 **By hand (fallback, Stage 1 round 1):**

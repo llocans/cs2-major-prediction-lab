@@ -23,7 +23,7 @@ console.log(JSON.stringify(found, null, 2).slice(0, 4000))
 
 const markets = await oddsPapiGet('markets', {})
 const winner = Array.isArray(markets)
-  ? markets.filter((m) => /\b(171|178077)\b|winner/i.test(JSON.stringify(m)))
+  ? markets.filter((m) => /winner|moneyline/i.test(JSON.stringify(m)))
   : markets
-console.log('\nWinner markets (ids 171 / 178077 or named "winner"):')
+console.log('\nMarkets named winner/moneyline (pick the series winner, not a map market):')
 console.log(JSON.stringify(winner, null, 2).slice(0, 6000))
