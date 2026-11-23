@@ -50,7 +50,7 @@ export function FreshnessBar({ sync, stage, ratingsAsOf }: Props) {
         {sync?.lastChangeAt
           ? `Last new data ${formatAgo(minutesAgo(now, sync.lastChangeAt))}${sync.lastChange ? ` (${sync.lastChange})` : ''} · `
           : ''}
-        Team ratings as of {when(ratingsAsOf)}
+        Team ratings last updated {when(ratingsAsOf)} · they update after each match
       </p>
     </div>
   )
