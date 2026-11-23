@@ -210,14 +210,17 @@ export function StagePage({ event, stage, query }: Props) {
 function Legend({ overrides, onReset }: { overrides: number; onReset: () => void }) {
   return (
     <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-ink-3">
+      <span className="font-semibold uppercase tracking-wider">How to read the bracket:</span>
       <span>
-        <span className="font-semibold text-ink">13-9</span> real result
+        black numbers <span className="font-semibold text-ink">(e.g. 13-9)</span> are the real score
       </span>
       <span>
-        <span className="text-accent">62%</span> prediction, click to force a winner
+        <span className="text-accent">orange %</span> is the model's chance to win (click it for a
+        what-if)
       </span>
       <span>
-        <span className="bg-accent-soft px-1 text-accent">W*</span> override (only in this URL)
+        <span className="bg-accent-soft px-1 text-accent">W*</span> is a what-if win, only in this
+        link
       </span>
       {overrides > 0 && (
         <button
