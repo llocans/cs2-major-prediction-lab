@@ -45,29 +45,29 @@ npm run dev        # site at http://localhost:5173
 
 Other commands:
 
-| Command                                   | What it does                                       |
-| ----------------------------------------- | -------------------------------------------------- |
-| `npm run check`                           | Typecheck, lint and tests                          |
-| `npm run validate`                        | Validate every data file against its schema        |
-| `npm run build`                           | Build the static site into `dist/`                 |
-| `node scripts/simulate.ts <event> <stage>` | Print the current odds for a stage                 |
+| Command                                    | What it does                                       |
+| ------------------------------------------ | -------------------------------------------------- |
+| `npm run check`                            | Typecheck, lint and tests                          |
+| `npm run validate`                         | Validate every data file against its schema        |
+| `npm run build`                            | Build the static site into `dist/`                 |
+| `node scripts/simulate.ts <event> <stage>` | Print the current odds for a stage or the playoffs |
 
 Scripts that fetch from Liquipedia need a contact address for the API User-Agent. Copy `.env.example`
 to `.env` and fill in `LIQUIPEDIA_CONTACT`. Viewing the site and running simulations need nothing.
 
 ## Repository layout
 
-| Path                | Contents                                                                          |
-| ------------------- | --------------------------------------------------------------------------------- |
-| `engine/`           | Pure TypeScript: Swiss pairing, veto, ratings, simulation, scoring. No I/O        |
-| `scripts/`          | Everything with side effects: fetching, logging results, snapshots, validation   |
-| `site/`             | React + Vite + Tailwind static site; runs the engine in a Web Worker              |
-| `data/schemas/`     | Zod schemas for every data file                                                   |
-| `data/teams/`       | Team registry (IDs, aliases, dated rosters) and one research note per team        |
-| `data/ratings/`     | Current ratings and their history                                                 |
-| `data/model/`       | Model parameters and judgment modifiers                                           |
-| `data/events/<id>/` | Event config, teams, real results, round snapshots, accuracy, generated status    |
-| `docs/`             | Rules, model spec, sources, automation, changelog                                 |
+| Path                | Contents                                                                       |
+| ------------------- | ------------------------------------------------------------------------------ |
+| `engine/`           | Pure TypeScript: Swiss pairing, playoffs, veto, ratings, simulation, scoring   |
+| `scripts/`          | Everything with side effects: fetching, logging results, snapshots, validation |
+| `site/`             | React + Vite + Tailwind static site; runs the engine in a Web Worker           |
+| `data/schemas/`     | Zod schemas for every data file                                                |
+| `data/teams/`       | Team registry (IDs, aliases, dated rosters) and one research note per team     |
+| `data/ratings/`     | Current ratings and their history                                              |
+| `data/model/`       | Model parameters and judgment modifiers                                        |
+| `data/events/<id>/` | Event config, teams, real results, round snapshots, accuracy, generated status |
+| `docs/`             | Rules, model spec, sources, automation, changelog, roadmap                     |
 
 The engine never touches files, the network or the UI; scripts and the site are the only places with
 side effects. Data is plain JSON and Markdown validated at every boundary, so the repository itself is
@@ -106,6 +106,10 @@ are documented with sources in [`docs/rules.md`](docs/rules.md).
 - The Bo5 grand-final veto is assumed from earlier PGL events until PGL publishes the Singapore one.
 - No market odds are collected yet, so scoring compares only against a coin flip.
 - Ratings are tuned on reasoning, not yet on backtests of past Majors.
+- The team, matchup, odds-over-time and methodology pages are placeholders.
+- The site runs locally; it is not hosted anywhere yet.
+
+What is planned next is in [`docs/roadmap.md`](docs/roadmap.md).
 
 ## Contributing
 

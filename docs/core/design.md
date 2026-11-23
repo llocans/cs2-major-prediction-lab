@@ -36,7 +36,9 @@ Hierarchy comes from type size, weight, spacing and alignment, not from boxes an
 - Works on desktop and mobile (375 px wide, no horizontal page scroll).
 - Data and results are shown in the UI; chat replies stay short.
 
-## Routes (v1 builds the first; the rest exist as placeholders)
+## Routes
 
 `#/` event overview · `#/stage/:id` stage (v1 view) · `#/playoffs` · `#/team/:id` ·
 `#/match/:a/:b` · `#/track-record` · `#/odds` (odds over time) · `#/methodology`
+
+Built: overview, stage, playoffs, track record. The others exist as placeholders (`docs/roadmap.md`).
