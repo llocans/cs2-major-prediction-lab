@@ -67,8 +67,8 @@ export type OddsPapiHistorical = z.infer<typeof OddsPapiHistorical>
 export type MarketOddsConfig = NonNullable<EventConfig['marketOdds']>
 type Entry = Benchmarks['entries'][number]
 
-const SUFFIXES = /\b(e-?sports?|gaming|team|clan|club|gg)\b/g
-/** "Imperial eSports" → "imperial", "9z Team" → "9z", "BC.Game" → "bcgame". */
+const SUFFIXES = /\b(e-?sports?|gaming|team|clan|club|gg|cs)\b/g
+/** "Imperial eSports" → "imperial", "9Z Team" → "9z", "Dendele CS" → "dendele", "BC.Game eSports" → "bcgame". */
 export function normalizeTeamName(name: string): string {
   return name
     .toLowerCase()

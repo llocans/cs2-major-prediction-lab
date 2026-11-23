@@ -6,9 +6,6 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## During PGL Major Singapore 2026 (Nov 24 - Dec 13)
 
-- **Market odds: switch on.** The poller step is built (OddsPapi free plan, closing lines). It stays off
-  until `ODDSPAPI_KEY` is set (`.env` and the repository secret) and `marketOdds` is filled in the event
-  config from `scripts/research/oddspapi-setup.ts`. Stage 1 round 1 was collected by hand (OddsPortal).
 - **Bo5 final veto.** `veto.bo5` copies PGL's Cluj-Napoca 2026 grand final and is marked `unverified`.
   If PGL publishes the Singapore procedure before Dec 13, replace it and drop the flag
   (`docs/rules.md`).
@@ -65,3 +62,6 @@ belong in `data/events/<id>/status.md`, not here.
   [PandaScore](https://www.pandascore.co/odds) (odds by sales contact, own model),
   [esportsodds.gg](https://esportsodds.gg/) (current data $99/month), [cs2-api.org](https://cs2-api.org/)
   and Polymarket (prediction-market prices; no per-match markets for this Major).
+- 2026-11-23: Market odds switched on for PGL Singapore: OddsPapi tournament 51216, market 171,
+  Pinnacle closing line (the only bookmaker the free historical endpoint returned in a test on PGL
+  Cluj-Napoca 2026). Stage 1 round 1 stays the hand-collected OddsPortal set.
