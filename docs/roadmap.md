@@ -28,6 +28,10 @@ belong in `data/events/<id>/status.md`, not here.
 - **Poller stage choice by date.** `pickStage` (which stage to poll today, Swiss → Swiss → playoffs) is
   only covered by the live poller; the flow checks call the stage handling directly.
 
+- **Stage page layout revisit.** The Stage 1 page feels complex: too much information at once, hard to
+  read at a glance. Simplify after core features are settled (user, 2026-11-23). Ideas parked until
+  then: per-match market % on the Track record rows (the data is already in `benchmarks.json`).
+
 ## After the event
 
 - **Backtests on past Majors.** Parameter changes are capped at 10% per stage until backtests exist.
