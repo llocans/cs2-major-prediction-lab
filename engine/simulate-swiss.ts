@@ -16,7 +16,10 @@ export interface SwissSimInput {
   model: MatchModel
   /** Real results so far in this stage. */
   played: readonly SwissMatch[]
-  /** Officially announced pairings for the current round (override the engine's pairing). */
+  /**
+   * Officially announced pairings for the current round (override the engine's pairing). May list
+   * only the matches not played yet, as a live stage page does.
+   */
   announced?: readonly Pairing[]
   runs: number
   seed: number
@@ -71,16 +74,37 @@ export function currentRound(
 
 const pairKey = (a: string, b: string) => (a < b ? `${a}|${b}` : `${b}|${a}`)
 
-/** Pairings for a round: announced ones for the current round if given, else the Valve rules. */
-function pairingsFor(
-  round: number,
-  input: SwissSimInput,
-  matches: readonly SwissMatch[],
-  current: number,
-): Pairing[] {
-  if (round === current && input.announced && input.announced.length > 0)
-    return [...input.announced]
-  return pairRound(round, input.seeds, matches, input.rules)
+/**
+ * Pairings of the current round. Announced pairings override the Valve rules, but a live stage page
+ * lists only the matches not played yet, so the round's real matches are added to them. They are used
+ * only when together they pair every active team exactly once; otherwise (a page half edited, an
+ * announcement for the wrong round) the Valve rules apply.
+ */
+function currentRoundPairs(input: SwissSimInput, current: number): Pairing[] {
+  const computed = pairRound(current, input.seeds, input.played, input.rules)
+  if (!input.announced || input.announced.length === 0) return computed
+  const playedNow: Pairing[] = input.played
+    .filter((m) => m.round === current)
+    .map(({ teamA, teamB }) => ({ teamA, teamB }))
+  const playedKeys = new Set(playedNow.map((p) => pairKey(p.teamA, p.teamB)))
+  const merged = [
+    ...playedNow,
+    ...input.announced.filter((p) => !playedKeys.has(pairKey(p.teamA, p.teamB))),
+  ]
+  const active = [
+    ...buildRecords(
+      input.seeds,
+      input.played.filter((m) => m.round < current),
+    ).values(),
+  ]
+    .filter((r) => isActive(r, input.rules))
+    .map((r) => r.teamId)
+  const teams = merged.flatMap((p) => [p.teamA, p.teamB])
+  const complete =
+    teams.length === active.length &&
+    new Set(teams).size === teams.length &&
+    active.every((id) => teams.includes(id))
+  return complete ? merged : computed
 }
 
 /**
@@ -131,7 +155,7 @@ export function simulateSwiss(
   const current = currentRound(seeds, input.played, rules)
 
   // Check: real results of the current round must match its pairings.
-  const currentPairs = current <= ROUNDS ? pairingsFor(current, input, input.played, current) : []
+  const currentPairs = current <= ROUNDS ? currentRoundPairs(input, current) : []
   const currentKeys = new Set(currentPairs.map((p) => pairKey(p.teamA, p.teamB)))
   for (const match of input.played.filter((m) => m.round === current)) {
     if (!currentKeys.has(pairKey(match.teamA, match.teamB))) {
@@ -152,7 +176,7 @@ export function simulateSwiss(
   const upcomingWins = new Map<string, number>()
   const play = seriesPlayer(model, veto, rng)
   const pairings = (round: number, matches: readonly SwissMatch[]) =>
-    round === current ? currentPairs : pairingsFor(round, input, matches, current)
+    round === current ? currentPairs : pairRound(round, input.seeds, matches, input.rules)
 
   for (let run = 0; run < runs; run++) {
     const matches = playSwissRounds({ ...input, fromRound: current, pairings, play })

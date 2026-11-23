@@ -21,6 +21,13 @@ belong in `data/events/<id>/status.md`, not here.
   stand-ins, visas). Either widen that routine to the next stage's previews or fill them in by hand
   with the `research-team` skill before Stage 2 (Nov 28) and Stage 3 (Dec 2).
 
+- **Site bracket when the real draw differs.** The stage page draws the current round with the engine's
+  pairing (`swissBracket` without announced pairings). If Valve's draw ever differs, the page shows the
+  wrong pairs until the round is finished; the poller and the odds already use the real draw. Fix: the
+  poller saves the announced pairings in the event data and the site reads them.
+- **Poller stage choice by date.** `pickStage` (which stage to poll today, Swiss → Swiss → playoffs) is
+  only covered by the live poller; the flow checks call the stage handling directly.
+
 ## After the event
 
 - **Backtests on past Majors.** Parameter changes are capped at 10% per stage until backtests exist.
@@ -43,3 +50,6 @@ belong in `data/events/<id>/status.md`, not here.
   bracket poller, advance and snapshots (#17), playoffs page (#18).
 - 2026-11-23: `simulate.ts` prints playoff odds; this roadmap; docs checks (a path test in
   `npm run check`, a weekly docs checkup in the cleanup routine, findings shown at session start).
+- 2026-11-23: Swiss flow check (`check-swiss-flow.ts`: Stage 1 → 2 → 3 → playoffs seeded on made-up
+  pages through the poller's own code). It found that a part-played round stopped the poller (the
+  played matches were missing from the announced pairings); fixed in the engine.

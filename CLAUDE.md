@@ -42,8 +42,9 @@ future events too: formats live in config, never in code.
     (pre-round, once)
   - `log-result.ts ...` (manual) · `poll-liquipedia.ts <event>` (runs in GitHub Actions; needs `LIQUIPEDIA_CONTACT`;
     Swiss stages, then the playoff bracket once Stage 3 has advanced)
-  - `check-playoff-flow.ts` → end-to-end playoff pipeline on made-up data in a temp copy (also runs
-    in `npm run check`)
+  - `check-swiss-flow.ts` / `check-playoff-flow.ts` → end-to-end Swiss (Stage 1 → playoffs seeded,
+    through the poller's own page handling) and playoff pipelines on made-up data in a temp copy (both
+    run in `npm run check`)
   - `install-launchd.ts pull` (Mac sync of cloud results) / `--uninstall <pull|poll>`
 
 ## Golden rules

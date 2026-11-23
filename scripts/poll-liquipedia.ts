@@ -20,13 +20,19 @@ import { roundCount } from '../engine/playoffs/bracket.ts'
 import { realBracket } from '../engine/playoffs/simulate-playoffs.ts'
 import { currentPlayoffRound } from '../engine/predict-playoffs.ts'
 import { stageSeeds } from '../engine/swiss/stage-seeds.ts'
-import { advanceStage, isSwissStageFinished, isSwissStageSeeded } from './lib/advance.ts'
+import { isSwissStageFinished, isSwissStageSeeded } from './lib/advance.ts'
 import { isPlayoffStageSeeded, loadEventData } from './lib/event-context.ts'
 import { readJson, repoPath } from './lib/files.ts'
 import { commitData } from './lib/git.ts'
 import { getPage } from './lib/liquipedia.ts'
-import { type ConvertOptions, readBracketPage, readStagePage } from './lib/liquipedia-results.ts'
+import { readBracketPage } from './lib/liquipedia-results.ts'
 import { ensureRoundSnapshot, type LogOutcome, logResults } from './lib/log-results.ts'
+import {
+  type AdvanceStep,
+  advanceAndSnapshot,
+  applySwissPage,
+  convertOptions,
+} from './lib/poll-stage.ts'
 import { writeSyncStatus } from './lib/sync-status.ts'
 import { validateAllData } from './lib/validate-data.ts'
 
@@ -45,14 +51,13 @@ const changes: string[] = []
 /** Results held back this run (e.g. a match whose maps don't fit its format yet), for the status. */
 const heldBack: string[] = []
 
-/** Seeds the next stage once a Swiss stage is finished, and snapshots its first round. */
-function advanceIfFinished(stageId: string): void {
-  const outcome = advanceStage(eventId as string, stageId)
-  if (outcome.status !== 'advanced') return
-  log(`${stageId} finished: ${outcome.teams.join(', ')} advance to ${outcome.nextStageId}`)
-  const snapshot = ensureRoundSnapshot(eventId as string, outcome.nextStageId)
-  log(`${outcome.nextStageId} round 1 snapshot ${snapshot}`)
-  changes.push(`${stageName(stageId)} finished, 8 teams moved to ${stageName(outcome.nextStageId)}`)
+/** Reports a stage that just finished and moved its teams on (see advanceAndSnapshot). */
+function reportAdvance(stageId: string, step: AdvanceStep): void {
+  if (step.advance.status !== 'advanced') return
+  const { teams, nextStageId } = step.advance
+  log(`${stageId} finished: ${teams.join(', ')} advance to ${nextStageId}`)
+  log(`${nextStageId} round 1 snapshot ${step.snapshot}`)
+  changes.push(`${stageName(stageId)} finished, 8 teams moved to ${stageName(nextStageId)}`)
 }
 
 const config = readJson(repoPath('data/events', eventId, 'config.json'), EventConfig)
@@ -103,7 +108,7 @@ function pickStage(): SwissStage | PlayoffStage | undefined {
   )
   for (const candidate of candidates) {
     if (isSwissStageFinished(id, candidate.id)) {
-      advanceIfFinished(candidate.id)
+      reportAdvance(candidate.id, advanceAndSnapshot(id, candidate.id))
       continue
     }
     if (!isSwissStageSeeded(id, candidate.id)) continue
@@ -122,32 +127,13 @@ function pickStage(): SwissStage | PlayoffStage | undefined {
 async function poll(current: SwissStage | PlayoffStage, pageTitle: string): Promise<number> {
   const stageId = current.id
   const registry = readJson(repoPath('data/teams/registry.json'), TeamRegistry)
-  const teamByLiquipedia = new Map(
-    registry.teams.filter((t) => t.liquipedia).map((t) => [t.liquipedia?.toLowerCase(), t.id]),
-  )
-  const mapByName = new Map(config.mapPool.map((map) => [map.name.toLowerCase(), map.id]))
-
   const page = await getPage(pageTitle)
-  const convert: ConvertOptions = {
-    stageId,
-    resolveTeam: (name) => {
-      const id = teamByLiquipedia.get(name)
-      if (!id)
-        throw new Error(`Liquipedia team "${name}" has no "liquipedia" entry in registry.json`)
-      return id
-    },
-    resolveMap: (name) => {
-      const id = mapByName.get(name.toLowerCase())
-      if (!id) throw new Error(`Liquipedia map "${name}" is not in the event map pool`)
-      return id
-    },
-    source: {
-      name: `Liquipedia: ${page.title} (rev ${page.revid})`,
-      url: `https://liquipedia.net/counterstrike/${page.title.replaceAll(' ', '_')}`,
-      retrievedAt: today,
-      license: 'CC-BY-SA 3.0',
-    },
-  }
+  const convert = convertOptions(config, registry, stageId, {
+    name: `Liquipedia: ${page.title} (rev ${page.revid})`,
+    url: `https://liquipedia.net/counterstrike/${page.title.replaceAll(' ', '_')}`,
+    retrievedAt: today,
+    license: 'CC-BY-SA 3.0',
+  })
 
   if (current.type === 'single-elimination') {
     const { results, skipped } = readBracketPage(page.text, convert)
@@ -159,20 +145,9 @@ async function poll(current: SwissStage | PlayoffStage, pageTitle: string): Prom
     return page.revid
   }
 
-  const data = readStagePage(page.text, convert)
-  const outcome = logResults(
-    eventId as string,
-    stageId,
-    data.results,
-    'poll-liquipedia',
-    data.announced,
-  )
-  const snapshot =
-    outcome.logged.length > 0
-      ? outcome.snapshot
-      : ensureRoundSnapshot(eventId as string, stageId, data.announced)
-  report(current, page.revid, outcome, snapshot)
-  advanceIfFinished(stageId)
+  const outcome = applySwissPage(eventId as string, stageId, page.text, convert, 'poll-liquipedia')
+  report(current, page.revid, outcome, outcome.snapshot)
+  reportAdvance(stageId, outcome.next)
   return page.revid
 }
 

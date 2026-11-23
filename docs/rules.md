@@ -71,6 +71,10 @@ has faced in this stage. Example from [V]: opponents at 2-0 and 1-1 give 3 − 1
   avoids rematches; only if none exists does it allow one. In later rounds with no clean table row, the
   top-most row with the fewest rematches is used. Neither case occurs in the replayed Majors (Austin 2025
   and Cologne 2026: all 30 rounds reproduce the real pairings).
+- The real draw wins over the engine's. When the Liquipedia stage page lists the current round's
+  pairings, the simulation uses them together with that round's matches already played (a live page
+  lists only the unplayed ones), as long as together they pair every active team once. A pre-round
+  snapshot saved before the draw is published keeps the engine's pairing.
 
 ## Stage seeding [V]
 
