@@ -41,4 +41,4 @@ Hierarchy comes from type size, weight, spacing and alignment, not from boxes an
 `#/` event overview · `#/stage/:id` stage (v1 view) · `#/playoffs` · `#/team/:id` ·
 `#/match/:a/:b` · `#/track-record` · `#/odds` (odds over time) · `#/methodology`
 
-Built: overview, stage, playoffs, track record. The others exist as placeholders (`docs/roadmap.md`).
+Built: overview, stage, playoffs, track record, methodology. The others exist as placeholders (`docs/roadmap.md`).

@@ -11,6 +11,14 @@ Checked 2026-11-21 from this machine (Claude desktop app).
 | 5   | Valve rules repo                                                     | Major rules                                             | `gh api repos/ValveSoftware/counter-strike_rules_and_regs`                   |
 | 6   | PGL (pglesports.com)                                                 | Official schedule, bracket, rules                       | Browser pane only (fetch: JS shell). pgl.gg: Cloudflare 525                  |
 | 7   | News: Dust2.us, Sheep Esports, Dexerto, Dot Esports, pley.gg, Strafe | Rosters, interviews                                     | Web fetch                                                                    |
+| 8   | OddsPortal                                                           | Market odds (benchmark only)                            | **Interactive only**, Browser pane: decline cookies, open each match by clicking it on the event page (direct match URLs render no odds) |
+
+### Market odds (benchmarks.json)
+
+Before a round, read every bookmaker listed on each match's OddsPortal page. Per bookmaker,
+`p = (1/oddsA) / (1/oddsA + 1/oddsB)` removes its margin; `pA` is the mean over bookmakers. The
+source names the bookmaker count and the match URL; `observedAt` is the time of reading. Never after
+a match has started.
 
 ## Liquipedia API rules (automation)
 
