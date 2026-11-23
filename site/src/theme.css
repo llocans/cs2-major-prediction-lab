@@ -72,3 +72,11 @@ html {
 .num {
   font-variant-numeric: tabular-nums;
 }
+
+/* While a simulation runs, predicted numbers on screen are a rough estimate: grey, not the accent.
+   Orange always means the final result for the data shown (SimStatus.tsx). Market odds are not
+   simulated, so they stay orange (data-market). */
+[data-rough] .num.text-accent:not([data-market]),
+[data-rough] .num .text-accent:not([data-market]) {
+  color: var(--ink-3);
+}

@@ -5,6 +5,7 @@ import { type KnownMatch, swissBracket } from '../../../engine/swiss/bracket.ts'
 import { stageSeeds } from '../../../engine/swiss/stage-seeds.ts'
 import { FreshnessBar } from '../components/FreshnessBar.tsx'
 import { OddsTable } from '../components/OddsTable.tsx'
+import { SimStatus } from '../components/SimStatus.tsx'
 import { SwissBracket } from '../components/SwissBracket.tsx'
 import { TeamPanel } from '../components/TeamPanel.tsx'
 import { type EventData, params, ratings, syncStatus, teamName } from '../lib/data.ts'
@@ -118,7 +119,7 @@ export function StagePage({ event, stage, query }: Props) {
       : undefined
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8" data-rough={sim.running || undefined}>
       <header className="flex flex-col gap-1">
         <h1 className="font-display text-5xl font-bold leading-none tracking-tight">
           {stage.name}
@@ -131,8 +132,7 @@ export function StagePage({ event, stage, query }: Props) {
               ? 'finished'
               : `round ${currentRound} next`}{' '}
           · {params.sim.runs.toLocaleString('en-GB')} runs
-          {sim.running && <span className="text-accent"> · simulating</span>}
-          {sim.final && sim.ms !== undefined && <span className="text-ink-3"> · {sim.ms} ms</span>}
+          <SimStatus running={sim.running} />
         </p>
         <FreshnessBar sync={syncStatus} stage={stage} ratingsAsOf={ratings.asOf} />
         <Legend

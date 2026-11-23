@@ -79,4 +79,6 @@ belong in `data/events/<id>/status.md`, not here.
 - 2026-11-23: Pick'Em page (`#/pickem/<stage>`): in-game style picks for each Swiss stage (3-0,
   3-1/3-2, 0-3) and the playoff bracket, the chance your picks pass from the simulation, the model's
   own picks, live right/wrong marks; saved in the browser. Market odds next to the model's in the
-  team panel and on hover in the bracket.
+  team panel and on hover in the bracket. The site keeps finished simulations in the browser (keyed by
+  their input and the engine's source), so unchanged pages show final odds at once; a quick first
+  pass shows in grey.

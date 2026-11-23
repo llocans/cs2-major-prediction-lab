@@ -92,6 +92,14 @@ function Changed({ stored, start }: { stored?: StoredPicks; start: string }) {
   )
 }
 
+function Rough() {
+  return (
+    <p className="text-xs text-ink-2" role="status">
+      <span className="font-semibold">Rough estimate</span> (grey), final odds in a few seconds
+    </p>
+  )
+}
+
 const statusClass: Record<PickStatus, string> = {
   correct: 'border-l-win',
   wrong: 'border-l-loss',
@@ -203,7 +211,10 @@ function SwissBoard(props: {
   }
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)]">
+    <div
+      className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)]"
+      data-rough={sim.running || undefined}
+    >
       <section aria-label="Teams" onDragOver={(e) => e.preventDefault()} onDrop={drop(undefined)}>
         <table className="w-full text-sm">
           <thead>
@@ -296,6 +307,7 @@ function SwissBoard(props: {
               So far: <Score statuses={yourStatus.values()} />
             </p>
           )}
+          {sim.running && <Rough />}
           <Changed stored={stored} start={stage.start} />
           <div className="mt-1 flex gap-4 text-sm">
             <button
@@ -424,8 +436,7 @@ function SwissBoard(props: {
               The model's picks get the most right on average: a team goes in the box where it adds
               the most, so a strong team can sit in 3-1 / 3-2 rather than 3-0. The chance counts how
               often a set of picks gets {format.toPass}+ right across{' '}
-              {outcomes?.runs.toLocaleString('en-GB') ?? '…'} simulated stages
-              {sim.running ? ' (updating)' : ''}.
+              {outcomes?.runs.toLocaleString('en-GB') ?? '…'} simulated stages .
             </p>
           </section>
         )}
@@ -512,7 +523,7 @@ function PlayoffBoard(props: { event: EventData; stage: PlayoffStage; seeds: str
   const made = Object.keys(picks).length
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6" data-rough={sim.running || undefined}>
       <section className="flex flex-wrap items-baseline gap-x-6 gap-y-1 border-b border-ink pb-3 text-sm">
         <span>
           Your picks{' '}
@@ -562,6 +573,7 @@ function PlayoffBoard(props: { event: EventData; stage: PlayoffStage; seeds: str
           )}
         </span>
         <Changed stored={stored} start={stage.start} />
+        {sim.running && <Rough />}
       </section>
 
       <div

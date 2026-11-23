@@ -162,6 +162,13 @@ export function MethodologyPage({ event }: { event: EventData }) {
           random seed, so the same data always gives the same numbers). The statistical noise is at
           most about {standardError.toFixed(2)} percentage points.
         </p>
+        <p>
+          The simulation runs in your browser. A page first shows a quick pass of 1,500 tournaments
+          in grey (a rough estimate, within a few points), then the full run in orange: orange
+          always means the final numbers for the data shown. Because the same data always gives the
+          same numbers, the browser keeps the last results and shows them at once; it simulates
+          again only when something changed (a new result, new ratings, a what-if, a new day).
+        </p>
         <Table
           head={['Column', 'Meaning']}
           rows={[
