@@ -105,6 +105,10 @@ describe('team names', () => {
     expect(normalizeTeamName('9z Team')).toBe('9z')
     expect(normalizeTeamName('BC.Game')).toBe('bcgame')
     expect(normalizeTeamName('Wildcard Gaming')).toBe('wildcard')
+    // Names as OddsPapi listed PGL Singapore round 1 on 2026-11-23.
+    expect(normalizeTeamName('Dendele CS')).toBe('dendele')
+    expect(normalizeTeamName('Lynn Vision Gaming')).toBe('lynnvision')
+    expect(normalizeTeamName('BC.Game eSports')).toBe('bcgame')
   })
   it('matches only one team, or none', () => {
     expect(matchTeam('Imperial eSports', teams)).toBe('imperial')

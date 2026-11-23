@@ -473,5 +473,22 @@
         }
       ]
     }
-  ]
+  ],
+  "marketOdds": {
+    "provider": "oddspapi",
+    "tournamentId": 51216,
+    "marketId": "171",
+    "outcomes": [
+      "171",
+      "172"
+    ],
+    "bookmakers": [
+      "pinnacle+30"
+    ],
+    "source": {
+      "name": "OddsPapi API: /v4/tournaments?sportId=17 (51216 \"PGL Major Singapore\", 8 round 1 fixtures), /v4/markets (CS2 171 \"Winner\", period result: outcome 171 = participant 1, 172 = participant 2); historical odds checked on settled PGL Cluj-Napoca 2026 fixtures (only pinnacle+30 returned)",
+      "url": "https://oddspapi.io/docs",
+      "retrievedAt": "2026-11-23"
+    }
+  }
 }
