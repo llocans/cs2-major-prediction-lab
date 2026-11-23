@@ -75,6 +75,9 @@ while :; do
     throttled=$((throttled + 1))
     if [ "$throttled" -ge "$THROTTLE_LIMIT" ]; then
       log "Liquipedia throttled $throttled checks in a row, handing over to a fresh runner"
+      # Not a failure of this run: no email every ~20 min while throttling lasts. The status file
+      # still says "error", so the site's bar shows Problem.
+      failures=$((failures - throttled))
       echo "chain=true" >> "$OUTPUT"
       break
     fi

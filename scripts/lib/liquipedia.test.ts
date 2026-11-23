@@ -18,11 +18,13 @@ describe('Liquipedia requests', () => {
   const reply = (status: number, body: unknown = {}, headers: Record<string, string> = {}) =>
     new Response(JSON.stringify(body), { status, headers })
 
-  // The client spaces requests from the last one it sent (module state), so each test moves the
-  // fake clock well past every wait.
+  // The client spaces requests from the last one it sent (module state), so every test starts its
+  // fake clock a day after the previous one: no spacing wait is left over.
+  let day = 0
   beforeEach(() => {
     vi.stubEnv('LIQUIPEDIA_CONTACT', 'test@example.com')
     vi.useFakeTimers()
+    vi.setSystemTime(new Date('2030-01-01T00:00:00Z').getTime() + ++day * 86_400_000)
   })
   afterEach(() => {
     vi.useRealTimers()
@@ -36,7 +38,20 @@ describe('Liquipedia requests', () => {
       .mockResolvedValueOnce(reply(429, {}, { 'Retry-After': '20' }))
       .mockResolvedValueOnce(reply(200, ok))
     const revid = latestRevid('X')
-    await vi.advanceTimersByTimeAsync(200_000)
+    await vi.advanceTimersByTimeAsync(19_000)
+    expect(fetch).toHaveBeenCalledTimes(1) // still waiting the 20 s Retry-After
+    await vi.advanceTimersByTimeAsync(5_000)
+    await expect(revid).resolves.toBe(42)
+    expect(fetch).toHaveBeenCalledTimes(2)
+  })
+
+  it('also retries once after a 503', async () => {
+    const fetch = vi
+      .spyOn(globalThis, 'fetch')
+      .mockResolvedValueOnce(reply(503))
+      .mockResolvedValueOnce(reply(200, ok))
+    const revid = latestRevid('X')
+    await vi.advanceTimersByTimeAsync(31_000)
     await expect(revid).resolves.toBe(42)
     expect(fetch).toHaveBeenCalledTimes(2)
   })
@@ -48,7 +63,7 @@ describe('Liquipedia requests', () => {
       .mockResolvedValueOnce(reply(429))
     const revid = latestRevid('X')
     const checked = expect(revid).rejects.toThrow('Liquipedia 429 for X')
-    await vi.advanceTimersByTimeAsync(200_000)
+    await vi.advanceTimersByTimeAsync(31_000)
     await checked
     expect(fetch).toHaveBeenCalledTimes(2)
   })
@@ -57,7 +72,7 @@ describe('Liquipedia requests', () => {
     const fetch = vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce(reply(404))
     const revid = latestRevid('X')
     const checked = expect(revid).rejects.toThrow('Liquipedia 404 for X')
-    await vi.advanceTimersByTimeAsync(200_000)
+    await vi.advanceTimersByTimeAsync(31_000)
     await checked
     expect(fetch).toHaveBeenCalledTimes(1)
   })

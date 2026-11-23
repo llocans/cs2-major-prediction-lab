@@ -42,7 +42,8 @@ Each check inside a run:
   throttled although we send one or two requests per check (seen on 2026-11-23: two 429s in a row on
   one runner while the same request from the Mac got 200). A 429 or 503 is retried once after the
   server's `Retry-After` (10-90 s); two throttled checks in a row end the run early and start its
-  successor, which runs on a fresh runner (`THROTTLE_LIMIT` in `.github/poll-loop.sh`).
+  successor, which runs on a fresh runner (`THROTTLE_LIMIT` in `.github/poll-loop.sh`). Such a
+  handover does not mark the run failed (no email every ~20 min); the status bar shows Problem.
 - Pushes rebase onto newer commits (e.g. from a cloud Claude task) and retry up to 3 times; a rebase
   conflict is aborted and the run fails (GitHub emails the repo owner on failed runs).
 - One run at a time (`concurrency: poll`); a late run waits.
