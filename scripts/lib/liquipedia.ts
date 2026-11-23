@@ -29,16 +29,36 @@ function userAgent(): string {
   return `cs2-major-prediction-lab/${VERSION} (${contact})`
 }
 
+/**
+ * How long to wait before the one retry after a 429 or 503: the server's Retry-After (seconds) if it
+ * sends one, else 30 s, kept between 10 and 90 s so a poll stays well inside its 10-minute limit.
+ */
+export function retryDelayMs(retryAfter: string | null): number {
+  const seconds = Number(retryAfter)
+  const wanted = retryAfter !== null && Number.isFinite(seconds) && seconds > 0 ? seconds : 30
+  return Math.min(90, Math.max(10, wanted)) * 1000
+}
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+
 async function throttledGet(params: Record<string, string>): Promise<unknown> {
-  const wait = lastRequestAt + MIN_INTERVAL_MS - Date.now()
-  if (wait > 0) await new Promise((resolve) => setTimeout(resolve, wait))
-  lastRequestAt = Date.now()
   const url = `${API}?${new URLSearchParams({ format: 'json', ...params })}`
-  const response = await fetch(url, {
-    headers: { 'User-Agent': userAgent(), 'Accept-Encoding': 'gzip' },
-  })
-  if (!response.ok) throw new Error(`Liquipedia ${response.status} for ${params.titles ?? url}`)
-  return response.json()
+  for (let attempt = 1; ; attempt++) {
+    const wait = lastRequestAt + MIN_INTERVAL_MS - Date.now()
+    if (wait > 0) await sleep(wait)
+    lastRequestAt = Date.now()
+    const response = await fetch(url, {
+      headers: { 'User-Agent': userAgent(), 'Accept-Encoding': 'gzip' },
+    })
+    if (response.ok) return response.json()
+    // Rate limited or briefly unavailable: wait as asked and try once more. The error text keeps
+    // "Liquipedia <status>", which the poll loop reads to switch to a fresh runner (poll-loop.sh).
+    if (attempt === 1 && (response.status === 429 || response.status === 503)) {
+      await sleep(retryDelayMs(response.headers.get('retry-after')))
+      continue
+    }
+    throw new Error(`Liquipedia ${response.status} for ${params.titles ?? url}`)
+  }
 }
 
 interface RevisionsResponse {
