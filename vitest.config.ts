@@ -7,6 +7,7 @@ export default defineConfig({
       'scripts/**/*.test.ts',
       'data/schemas/**/*.test.ts',
       'site/src/lib/**/*.test.ts',
+      'site/src/sim/**/*.test.ts',
     ],
     environment: 'node',
   },

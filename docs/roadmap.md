@@ -28,6 +28,13 @@ belong in `data/events/<id>/status.md`, not here.
 - **Poller stage choice by date.** `pickStage` (which stage to poll today, Swiss → Swiss → playoffs) is
   only covered by the live poller; the flow checks call the stage handling directly.
 
+- **Pick'Em history of experts (user, 2026-11-23; start Nov 24).** A tab with past Major Pick'Em
+  picks by content creators, casters and players, scored against the real results and against random
+  picks, to test the hunch that "by the book" picks do no better than chance. Needs dated, sourced
+  pick lists; the scoring can reuse `engine/pickem.ts`.
+- **Pick'Em picks on every device.** Picks live in one browser. When the site goes live, decide
+  whether to keep that or save them somewhere shared.
+
 - **Stage page layout revisit.** The Stage 1 page feels complex: too much information at once, hard to
   read at a glance. Simplify after core features are settled (user, 2026-11-23). Ideas parked until
   then: per-match market % on the Track record rows (the data is already in `benchmarks.json`).
@@ -69,3 +76,9 @@ belong in `data/events/<id>/status.md`, not here.
 - 2026-11-23: Market odds switched on for PGL Singapore: OddsPapi tournament 51216, market 171,
   Pinnacle closing line (the only bookmaker the free historical endpoint returned in a test on PGL
   Cluj-Napoca 2026). Stage 1 round 1 stays the hand-collected OddsPortal set.
+- 2026-11-23: Pick'Em page (`#/pickem/<stage>`): in-game style picks for each Swiss stage (3-0,
+  3-1/3-2, 0-3) and the playoff bracket, the chance your picks pass from the simulation, the model's
+  own picks, live right/wrong marks; saved in the browser. Market odds next to the model's in the
+  team panel and on hover in the bracket. The site keeps finished simulations in the browser (keyed by
+  their input and the engine's source), so unchanged pages show final odds at once; a quick first
+  pass shows in grey.

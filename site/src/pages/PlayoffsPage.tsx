@@ -7,7 +7,8 @@ import { stageSeeds } from '../../../engine/swiss/stage-seeds.ts'
 import { FreshnessBar } from '../components/FreshnessBar.tsx'
 import { type MatchKind, PlayoffBracket, pairKey } from '../components/PlayoffBracket.tsx'
 import { PlayoffOddsTable } from '../components/PlayoffOddsTable.tsx'
-import { type EventData, params, ratings, syncStatus, teamName } from '../lib/data.ts'
+import { SimStatus } from '../components/SimStatus.tsx'
+import { type EventData, ratings, syncStatus, teamName } from '../lib/data.ts'
 import { shortDate } from '../lib/format.ts'
 import { readWhatIf, toggleOverride, writeWhatIf } from '../lib/overrides.ts'
 import { setQuery } from '../lib/router.ts'
@@ -35,14 +36,8 @@ export function PlayoffsPage({ event, stage, query }: Props) {
   )
 }
 
-function Header(props: {
-  stage: PlayoffStage
-  status: string
-  running: boolean
-  ms?: number
-  final: boolean
-}) {
-  const { stage, status, running, ms, final } = props
+function Header(props: { stage: PlayoffStage; status: string; running: boolean }) {
+  const { stage, status, running } = props
   const formats = [
     `${stage.format.default.toUpperCase()}`,
     `${stage.format.final.toUpperCase()} final`,
@@ -54,11 +49,8 @@ function Header(props: {
     <header className="flex flex-col gap-1">
       <h1 className="font-display text-5xl font-bold leading-none tracking-tight">{stage.name}</h1>
       <p className="num text-sm text-ink-2">
-        Single elimination · {stage.bracket.length * 2} teams · {shortDate(stage.start)}–
-        {shortDate(stage.end)} · {formats.join(', ')} · {status} ·{' '}
-        {params.sim.runs.toLocaleString('en-GB')} runs
-        {running && <span className="text-accent"> · simulating</span>}
-        {final && ms !== undefined && <span className="text-ink-3"> · {ms} ms</span>}
+        {shortDate(stage.start)}–{shortDate(stage.end)} · {formats.join(', ')} · {status}
+        <SimStatus running={running} />
       </p>
       <FreshnessBar sync={syncStatus} stage={stage} ratingsAsOf={ratings.asOf} />
     </header>
@@ -136,8 +128,8 @@ function SeededPlayoffs(props: EventProps & { seeds: string[]; query: URLSearchP
   const finalUnverified = prediction?.unverifiedVeto.includes(stage.format.final) ?? false
 
   return (
-    <div className="flex flex-col gap-8">
-      <Header stage={stage} status={status} running={sim.running} ms={sim.ms} final={sim.final} />
+    <div className="flex flex-col gap-8" data-rough={sim.running || undefined}>
+      <Header stage={stage} status={status} running={sim.running} />
       {forced > 0 && (
         <p className="text-sm text-ink-2">
           <span className="text-[11px] uppercase tracking-wider text-accent">override</span>{' '}
@@ -269,14 +261,8 @@ function ProjectedPlayoffs({ event, stage }: EventProps) {
   }
 
   return (
-    <div className="flex flex-col gap-8">
-      <Header
-        stage={stage}
-        status="seeds not set yet"
-        running={sim.running}
-        ms={sim.ms}
-        final={sim.final}
-      />
+    <div className="flex flex-col gap-8" data-rough={sim.running || undefined}>
+      <Header stage={stage} status="seeds not set yet" running={sim.running} />
       <p className="max-w-2xl text-sm text-ink-2">
         The playoff seeds are set when {lastSwiss?.name ?? 'the last Swiss stage'} ends
         {lastSwiss ? ` (${shortDate(lastSwiss.end)})` : ''}: its top 8 in final standings order.

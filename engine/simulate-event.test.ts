@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import type { VetoProcedure } from '../data/schemas/event-config.ts'
 import type { ModelParams, Ratings } from '../data/schemas/model.ts'
 import { buildMatchModel } from './match-model.ts'
+import { Outcome, outcomeCollector } from './pickem.ts'
 import type { PlayoffRules } from './playoffs/bracket.ts'
 import { type EventChain, simulateEvent } from './simulate-event.ts'
 import { simulateSwiss } from './simulate-swiss.ts'
@@ -149,7 +150,9 @@ describe('simulateEvent', () => {
     const seen: Array<{ stageId: string; seeds: readonly string[] }> = []
     const stage1Runs: Array<readonly SwissMatch[]> = []
     simulateSwiss({ ...input, runs: 1 }, (matches) => stage1Runs.push(matches))
-    simulateEvent({ ...input, runs: 1 }, chain, (stageId, seeds) => seen.push({ stageId, seeds }))
+    simulateEvent({ ...input, runs: 1 }, chain, {
+      observe: (stageId, seeds) => seen.push({ stageId, seeds }),
+    })
     const [stage2, stage3, playoffs] = seen
     expect(seen.map((s) => s.stageId)).toEqual(['stage-2', 'stage-3', 'playoffs'])
     const fromStage1 = advancingTeams(stage1, stage1Runs[0] ?? [], swissRules)
@@ -188,5 +191,29 @@ describe('simulateEvent', () => {
       ],
     }
     expect(() => simulateEvent({ ...input, runs: 10 }, twice)).toThrow(/more than one stage/)
+  })
+})
+
+describe("Pick'Em outcomes from the simulation", () => {
+  it('see every run of the current stage, real results included, without changing the odds', () => {
+    // Round 1 seed pairing is 1 v 9 (a1 v a9); a9 wins it for real.
+    const played = [{ round: 1, teamA: 'a1', teamB: 'a9', winner: 'a9' }]
+    const withResult = { ...input, played, runs: 400 }
+    const collect = outcomeCollector(stage1, swissRules, 400)
+    const event = simulateEvent(withResult, chain, { onStageRun: collect.add })
+    expect(event).toEqual(simulateEvent(withResult, chain))
+    const outcomes = collect.result()
+    expect(outcomes.runs).toBe(400)
+    const a1 = stage1.indexOf('a1')
+    const a9 = stage1.indexOf('a9')
+    for (let run = 0; run < outcomes.runs; run++) {
+      expect(outcomes.codes[run * stage1.length + a1]).not.toBe(Outcome.ThreeZero)
+      expect(outcomes.codes[run * stage1.length + a9]).not.toBe(Outcome.ZeroThree)
+    }
+    // 3-0 teams per run: exactly two in a 16-team Swiss stage.
+    for (let run = 0; run < outcomes.runs; run++) {
+      const row = outcomes.codes.subarray(run * stage1.length, (run + 1) * stage1.length)
+      expect(row.filter((c) => c === Outcome.ThreeZero)).toHaveLength(2)
+    }
   })
 })

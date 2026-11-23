@@ -1,5 +1,6 @@
 import type { VetoProcedure } from '../../../data/schemas/event-config.ts'
 import type { ModelParams, Modifier, Ratings } from '../../../data/schemas/model.ts'
+import type { SwissOutcomes } from '../../../engine/pickem.ts'
 import type { PlayoffResult, PlayoffRules } from '../../../engine/playoffs/bracket.ts'
 import type { StagePrediction } from '../../../engine/predict.ts'
 import type { PlayoffPrediction } from '../../../engine/predict-playoffs.ts'
@@ -30,6 +31,8 @@ export interface SwissSimRequest extends ModelRequest {
   played: SwissMatch[]
   /** The rest of the event, for playoff and title odds (whole-event simulation). */
   chain?: EventChain
+  /** Also return every run's Pick'Em outcomes (for the chance that picks pass). */
+  collectOutcomes?: boolean
 }
 
 export interface PlayoffSimRequest extends ModelRequest {
@@ -49,7 +52,7 @@ export type SimInput = SimRequest extends infer R
   : never
 
 export type AnyPrediction =
-  | { kind: 'swiss'; value: StagePrediction }
+  | { kind: 'swiss'; value: StagePrediction; outcomes?: SwissOutcomes }
   | { kind: 'playoffs'; value: PlayoffPrediction }
 
 export type SimResponse =

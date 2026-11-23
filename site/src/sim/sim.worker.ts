@@ -1,4 +1,5 @@
 import { buildMatchModel } from '../../../engine/match-model.ts'
+import { outcomeCollector } from '../../../engine/pickem.ts'
 import { predictStage } from '../../../engine/predict.ts'
 import { predictPlayoffs } from '../../../engine/predict-playoffs.ts'
 import type { AnyPrediction, SimRequest, SimResponse } from './protocol.ts'
@@ -44,7 +45,12 @@ scope.onmessage = (event: MessageEvent<SimRequest>) => {
         format: request.format,
         played: request.played,
       }
-      return { kind: 'swiss', value: predictStage(input, labels, request.chain) }
+      if (!request.collectOutcomes) {
+        return { kind: 'swiss', value: predictStage(input, labels, request.chain) }
+      }
+      const collect = outcomeCollector(request.seeds, request.rules, runs)
+      const value = predictStage(input, labels, request.chain, collect.add)
+      return { kind: 'swiss', value, outcomes: collect.result() }
     }
     for (const [runs, final] of [
       [Math.min(PREVIEW_RUNS, request.runs), false],

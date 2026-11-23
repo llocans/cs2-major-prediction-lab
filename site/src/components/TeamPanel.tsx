@@ -1,6 +1,7 @@
 import type { MatchPrediction, TeamOutlook } from '../../../data/schemas/snapshot.ts'
 import { forms, ratings } from '../lib/data.ts'
 import { pct, shortDate } from '../lib/format.ts'
+import type { TeamMatchRow } from '../lib/market.ts'
 
 interface Props {
   teamId: string
@@ -8,6 +9,10 @@ interface Props {
   seed?: number
   outlook?: TeamOutlook
   next?: MatchPrediction
+  /** The market's chance for this team in its next match, if logged. */
+  nextMarket?: number
+  /** This team's matches in the stage so far. */
+  matches?: TeamMatchRow[]
   name: (teamId: string) => string
   swapOptions: string[]
   canSwap: boolean
@@ -16,7 +21,9 @@ interface Props {
 }
 
 export function TeamPanel(props: Props) {
-  const { teamId, seed, outlook, next, name, swapOptions, canSwap, swappedWith, onSwap } = props
+  const { teamId, seed, outlook, next, nextMarket, matches = [], name } = props
+  const { swapOptions, canSwap, swappedWith, onSwap } = props
+  const played = matches.filter((m) => m.result !== undefined)
   const form = forms.get(teamId)
   const rating = ratings.teams[teamId]
   const opponent = next ? (next.teamA === teamId ? next.teamB : next.teamA) : undefined
@@ -61,10 +68,65 @@ export function TeamPanel(props: Props) {
             Next
           </h3>
           <p className="text-sm">
-            <span className="num font-semibold text-accent">{pct(pNext)}</span> vs {name(opponent)}{' '}
-            · {next.format.toUpperCase()} · {next.confidence} confidence
+            vs {name(opponent)} · {next.format.toUpperCase()} · {next.confidence} confidence
           </p>
+          <dl className="mt-1 grid grid-cols-3 gap-2">
+            <div>
+              <dt className="font-display text-xs uppercase tracking-wider text-ink-3">Model</dt>
+              <dd className="num font-display text-2xl font-semibold text-accent">{pct(pNext)}</dd>
+            </div>
+            <div>
+              <dt
+                className="font-display text-xs uppercase tracking-wider text-ink-3"
+                title="Betting odds without the bookmaker margin"
+              >
+                Market
+              </dt>
+              <dd className="num font-display text-2xl font-semibold text-accent" data-keep-accent>
+                {nextMarket === undefined ? '–' : pct(nextMarket)}
+              </dd>
+            </div>
+          </dl>
           <p className="mt-1 text-sm text-ink-2">{next.reason}</p>
+        </section>
+      )}
+
+      {played.length > 0 && (
+        <section>
+          <h3 className="font-display text-xs font-semibold uppercase tracking-wider text-ink-3">
+            This stage
+          </h3>
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="text-xs text-ink-3">
+                <th className="text-left font-normal">Round</th>
+                <th className="text-right font-normal">Model</th>
+                <th className="text-right font-normal">Market</th>
+                <th className="w-6 text-right font-normal" />
+              </tr>
+            </thead>
+            <tbody>
+              {played.map((m) => (
+                <tr key={m.round} className="num">
+                  <td className="truncate text-ink-2">
+                    R{m.round} vs {name(m.opponent)}
+                  </td>
+                  <td className="text-right font-semibold text-accent">
+                    {m.model === undefined ? '–' : pct(m.model)}
+                  </td>
+                  <td className="text-right font-semibold text-accent" data-keep-accent>
+                    {m.market === undefined ? '–' : pct(m.market)}
+                  </td>
+                  <td className={`text-right ${m.result === 'W' ? 'text-win' : 'text-loss'}`}>
+                    {m.result}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="mt-1 text-xs text-ink-3">
+            Model: our chance before the round. Market: betting odds without the bookmaker margin.
+          </p>
         </section>
       )}
 

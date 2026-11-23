@@ -5,10 +5,12 @@ import { type KnownMatch, swissBracket } from '../../../engine/swiss/bracket.ts'
 import { stageSeeds } from '../../../engine/swiss/stage-seeds.ts'
 import { FreshnessBar } from '../components/FreshnessBar.tsx'
 import { OddsTable } from '../components/OddsTable.tsx'
+import { SimStatus } from '../components/SimStatus.tsx'
 import { SwissBracket } from '../components/SwissBracket.tsx'
 import { TeamPanel } from '../components/TeamPanel.tsx'
-import { type EventData, params, ratings, syncStatus, teamName } from '../lib/data.ts'
+import { type EventData, ratings, syncStatus, teamName } from '../lib/data.ts'
 import { shortDate } from '../lib/format.ts'
+import { marketChance, teamStageMatches } from '../lib/market.ts'
 import { readWhatIf, toggleOverride, writeWhatIf } from '../lib/overrides.ts'
 import { setQuery } from '../lib/router.ts'
 import { modelRequest } from '../sim/requests.ts'
@@ -110,23 +112,21 @@ export function StagePage({ event, stage, query }: Props) {
   const outlook = prediction?.teams.find((t) => t.teamId === selected)
   const next = prediction?.matches.find((m) => m.teamA === selected || m.teamB === selected)
   const currentRound = prediction?.sim.currentRound
+  const nextOpponent = next ? (next.teamA === selected ? next.teamB : next.teamA) : undefined
+  const nextMarket =
+    nextOpponent && currentRound !== undefined
+      ? marketChance(event, stage.id, currentRound, selected, nextOpponent)
+      : undefined
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8" data-rough={sim.running || undefined}>
       <header className="flex flex-col gap-1">
         <h1 className="font-display text-5xl font-bold leading-none tracking-tight">
           {stage.name}
         </h1>
         <p className="num text-sm text-ink-2">
-          Swiss · {stage.teamCount} teams · {shortDate(stage.start)}–{shortDate(stage.end)} ·{' '}
-          {currentRound === undefined
-            ? '…'
-            : currentRound > 5
-              ? 'finished'
-              : `round ${currentRound} next`}{' '}
-          · {params.sim.runs.toLocaleString('en-GB')} runs
-          {sim.running && <span className="text-accent"> · simulating</span>}
-          {sim.final && sim.ms !== undefined && <span className="text-ink-3"> · {sim.ms} ms</span>}
+          {shortDate(stage.start)}–{shortDate(stage.end)} · {roundStatus(currentRound, real)}
+          <SimStatus running={sim.running} />
         </p>
         <FreshnessBar sync={syncStatus} stage={stage} ratingsAsOf={ratings.asOf} />
         <Legend
@@ -148,6 +148,7 @@ export function StagePage({ event, stage, query }: Props) {
             scores={scores}
             selected={selected}
             name={name}
+            market={(round, team, opponent) => marketChance(event, stage.id, round, team, opponent)}
             onSelect={select}
             onPick={(match, winner) => {
               const loser = winner === match.teamA ? match.teamB : match.teamA
@@ -175,6 +176,8 @@ export function StagePage({ event, stage, query }: Props) {
             seed={seeds.indexOf(selected) + 1 || undefined}
             outlook={outlook}
             next={next}
+            nextMarket={nextMarket}
+            matches={teamStageMatches(event, stage.id, selected)}
             name={name}
             swapOptions={seeds.filter((id) => id !== selected)}
             canSwap={canSwap}
@@ -198,17 +201,27 @@ export function StagePage({ event, stage, query }: Props) {
   )
 }
 
+/** "Round 2 next" before a round's first result, "Round 2 in progress" after it, then "Finished". */
+function roundStatus(round: number | undefined, real: ReadonlyArray<{ round: number }>): string {
+  if (round === undefined) return '…'
+  if (round > 5) return 'Finished'
+  return real.some((m) => m.round === round) ? `Round ${round} in progress` : `Round ${round} next`
+}
+
 function Legend({ overrides, onReset }: { overrides: number; onReset: () => void }) {
   return (
     <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-ink-3">
+      <span className="font-semibold uppercase tracking-wider">How to read the bracket:</span>
       <span>
-        <span className="font-semibold text-ink">13-9</span> real result
+        black numbers <span className="font-semibold text-ink">(e.g. 13-9)</span> are the real score
       </span>
       <span>
-        <span className="text-accent">62%</span> prediction, click to force a winner
+        <span className="text-accent">orange %</span> is the model's chance to win (click it for a
+        what-if)
       </span>
       <span>
-        <span className="bg-accent-soft px-1 text-accent">W*</span> override (only in this URL)
+        <span className="bg-accent-soft px-1 text-accent">W*</span> is a what-if win, only in this
+        link
       </span>
       {overrides > 0 && (
         <button

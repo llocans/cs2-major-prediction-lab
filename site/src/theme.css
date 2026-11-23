@@ -72,3 +72,30 @@ html {
 .num {
   font-variant-numeric: tabular-nums;
 }
+
+/* While a simulation runs, predicted numbers on screen are a rough estimate: grey, not the accent.
+   Orange always means the final result for the data shown (SimStatus.tsx). Market odds (not
+   simulated) and the badge itself stay orange (data-keep-accent). */
+[data-rough] .num.text-accent:not([data-keep-accent]),
+[data-rough] .num .text-accent:not([data-keep-accent]) {
+  color: var(--ink-3);
+}
+
+/* The dot of the "Simulating…" badge (SimStatus.tsx). */
+@keyframes sim-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+.sim-pulse {
+  animation: sim-pulse 1.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sim-pulse {
+    animation: none;
+  }
+}
