@@ -21,10 +21,13 @@ belong in `data/events/<id>/status.md`, not here.
   stand-ins, visas). Either widen that routine to the next stage's previews or fill them in by hand
   with the `research-team` skill before Stage 2 (Nov 28) and Stage 3 (Dec 2).
 
-- **Site bracket when the real draw differs.** The stage page draws the current round with the engine's
-  pairing (`swissBracket` without announced pairings). If Valve's draw ever differs, the page shows the
-  wrong pairs until the round is finished; the poller and the odds already use the real draw. Fix: the
-  poller saves the announced pairings in the event data and the site reads them.
+- **Site and `simulate.ts` when the real draw differs.** The stage page's bracket (`swissBracket`),
+  its in-browser simulation (`sim.worker.ts`) and `simulate.ts` use the engine's pairing for the
+  current round. If Valve's draw ever differs, the bracket shows the wrong pairs and the live odds show
+  an error until the round is finished; the poller, snapshots and `status.md` already use the real draw.
+  Fix: the poller saves the announced pairings in the event data and the others read them.
+- **Partial draw at snapshot time.** If a round finishes while the page lists only part of the next
+  draw, that round's snapshot is saved with the engine's pairing (no warning). Rare; could wait a poll.
 - **Poller stage choice by date.** `pickStage` (which stage to poll today, Swiss → Swiss → playoffs) is
   only covered by the live poller; the flow checks call the stage handling directly.
 

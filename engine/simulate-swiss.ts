@@ -81,8 +81,8 @@ const pairKey = (a: string, b: string) => (a < b ? `${a}|${b}` : `${b}|${a}`)
  * announcement for the wrong round) the Valve rules apply.
  */
 function currentRoundPairs(input: SwissSimInput, current: number): Pairing[] {
-  const computed = pairRound(current, input.seeds, input.played, input.rules)
-  if (!input.announced || input.announced.length === 0) return computed
+  const computed = () => pairRound(current, input.seeds, input.played, input.rules)
+  if (!input.announced || input.announced.length === 0) return computed()
   const playedNow: Pairing[] = input.played
     .filter((m) => m.round === current)
     .map(({ teamA, teamB }) => ({ teamA, teamB }))
@@ -104,7 +104,7 @@ function currentRoundPairs(input: SwissSimInput, current: number): Pairing[] {
     teams.length === active.length &&
     new Set(teams).size === teams.length &&
     active.every((id) => teams.includes(id))
-  return complete ? merged : computed
+  return complete ? merged : computed()
 }
 
 /**
