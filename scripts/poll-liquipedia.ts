@@ -84,8 +84,9 @@ try {
   } else {
     log(`${eventId}: no unfinished stage to poll on ${today}, nothing to do`)
   }
-  await collectMarketOdds()
-  commitIfChanged()
+  // Results first, in their own commit: the market-odds step can never delay or block them.
+  commitIfChanged(changes)
+  commitIfChanged(await collectMarketOdds())
 } catch (error) {
   // Record the failure for the site's freshness bar, then fail loudly for launchd's log.
   writeSyncStatus({
@@ -189,22 +190,23 @@ function statusMessage(): { message?: string } {
  * here never fails the check: it is logged and shown in the status message, and the next window
  * tries again.
  */
-async function collectMarketOdds(): Promise<void> {
-  if (!isOddsWindow(new Date())) return
+async function collectMarketOdds(): Promise<string[]> {
+  if (!isOddsWindow(new Date())) return []
   try {
     const odds = await collectClosingOdds(eventId as string, today)
     for (const note of odds.notes) log(note)
     oddsNotes.push(...odds.notes)
     if (odds.added > 0) {
       const what = `market odds for ${odds.added} match${odds.added === 1 ? '' : 'es'}`
-      changes.push(what)
       const stamp = new Date().toISOString().slice(0, 16).replace('T', ' ')
       appendChangelog(`- ${stamp} UTC · poll-liquipedia · ${what} (OddsPapi closing line)`)
+      return [what]
     }
   } catch (error) {
     log(`market odds failed: ${String(error)}`)
     oddsNotes.push(`market odds failed: ${String(error).slice(0, 120)}`)
   }
+  return []
 }
 
 /** Seeded and the final not decided yet. */
@@ -217,7 +219,7 @@ function isPlayoffStageOpen(id: string, playoffs: PlayoffStage): boolean {
   return currentPlayoffRound(bracket, roundCount(playoffs)) <= roundCount(playoffs)
 }
 
-function commitIfChanged(): void {
+function commitIfChanged(changes: readonly string[]): void {
   if (!shouldCommit || changes.length === 0) return
   const { problems } = validateAllData()
   if (problems.length > 0) {

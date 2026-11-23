@@ -59,6 +59,9 @@ belong in `data/events/<id>/status.md`, not here.
 - 2026-11-23: Methodology page (`#/methodology`): data sources, the poller, ratings, veto, what each
   percentage means, scoring against the market, limits. Parameter values come from `params.json`.
 - 2026-11-23: Automatic market odds (closing lines from OddsPapi's free plan) in the poller, off until
-  a key is set. Compared first: odds-api.io (no new free keys, from £49/month), The Odds API (no CS2),
-  PandaScore (odds by sales contact, own model), esportsodds.gg (current data $99/month), cs2-api.org
+  a key is set. Compared first, from each provider's own pages read on 2026-11-23:
+  [odds-api.io](https://odds-api.io/pricing) (new free keys paused, from £49/month),
+  [The Odds API](https://the-odds-api.com/sports-odds-data/sports-apis.html) (no CS2),
+  [PandaScore](https://www.pandascore.co/odds) (odds by sales contact, own model),
+  [esportsodds.gg](https://esportsodds.gg/) (current data $99/month), [cs2-api.org](https://cs2-api.org/)
   and Polymarket (prediction-market prices; no per-match markets for this Major).

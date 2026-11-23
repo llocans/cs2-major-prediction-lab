@@ -53,7 +53,10 @@ Other commands:
 | `node scripts/simulate.ts <event> <stage>` | Print the current odds for a stage or the playoffs |
 
 Scripts that fetch from Liquipedia need a contact address for the API User-Agent. Copy `.env.example`
-to `.env` and fill in `LIQUIPEDIA_CONTACT`. Viewing the site and running simulations need nothing.
+to `.env` and fill in `LIQUIPEDIA_CONTACT`. Market odds (a benchmark, never a model input) are optional:
+with a free OddsPapi key in `ODDSPAPI_KEY` and the ids from `scripts/research/oddspapi-setup.ts` in the
+event config, the poller adds each match's closing line. Viewing the site and running simulations need
+nothing.
 
 ## Repository layout
 
@@ -105,7 +108,7 @@ are documented with sources in [`docs/rules.md`](docs/rules.md).
 ## Current limitations
 
 - The Bo5 grand-final veto is assumed from earlier PGL events until PGL publishes the Singapore one.
-- No market odds are collected yet, so scoring compares only against a coin flip.
+- Market odds start with the first matches; until the OddsPapi key is set they are collected by hand.
 - Ratings are tuned on reasoning, not yet on backtests of past Majors.
 - The team, matchup and odds-over-time pages are placeholders.
 - The site runs locally; it is not hosted anywhere yet.

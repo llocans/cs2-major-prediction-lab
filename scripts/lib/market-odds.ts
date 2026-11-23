@@ -16,22 +16,49 @@ export const OddsPapiFixture = z.object({
 })
 export type OddsPapiFixture = z.infer<typeof OddsPapiFixture>
 
-const PriceEntry = z.object({ createdAt: z.string(), price: z.number() })
+/**
+ * The fixtures response, element by element: a bare array or one wrapped in `data`; entries that do
+ * not fit (e.g. a slot whose teams are not known yet) are skipped instead of failing the list.
+ */
+export function parseFixtures(json: unknown): OddsPapiFixture[] {
+  const wrapped = z.object({ data: z.array(z.unknown()) }).safeParse(json)
+  const list = Array.isArray(json) ? json : wrapped.success ? wrapped.data.data : undefined
+  if (!list) throw new Error('OddsPapi fixtures: expected a list')
+  return list.flatMap((item) => {
+    const parsed = OddsPapiFixture.safeParse(item)
+    return parsed.success ? [parsed.data] : []
+  })
+}
+
+/** A price change; null prices (suspended outcomes) are kept and ignored by closingPrice. */
+const PriceEntry = z.object({
+  createdAt: z.string(),
+  price: z.number().nullable(),
+  active: z.boolean().nullable().optional(),
+})
 /** GET /v4/historical-odds: bookmaker → market → outcome → player ("0") → price changes. */
 export const OddsPapiHistorical = z.object({
   fixtureId: z.string(),
   bookmakers: z.record(
     z.string(),
     z.object({
-      markets: z.record(
-        z.string(),
-        z.object({
-          outcomes: z.record(
-            z.string(),
-            z.object({ players: z.record(z.string(), z.array(PriceEntry)) }),
-          ),
-        }),
-      ),
+      markets: z
+        .record(
+          z.string(),
+          z.object({
+            outcomes: z
+              .record(
+                z.string(),
+                z.object({
+                  players: z.record(z.string(), z.array(PriceEntry)).optional().default({}),
+                }),
+              )
+              .optional()
+              .default({}),
+          }),
+        )
+        .optional()
+        .default({}),
     }),
   ),
 })
@@ -62,15 +89,20 @@ export function matchTeam(name: string, teams: readonly TeamNames[]): string | u
   return hits.length === 1 ? hits[0]?.id : undefined
 }
 
-/** The last price recorded before `start` (ISO), with its time. */
+/**
+ * The last offered price recorded before `start` (ISO), with its time. Suspended entries
+ * (`active: false`) and missing prices are not offers, so they are skipped. No start, no price.
+ */
 export function closingPrice(
-  entries: readonly { createdAt: string; price: number }[],
+  entries: readonly { createdAt: string; price: number | null; active?: boolean | null }[],
   start: string,
 ): { price: number; at: string } | undefined {
   const limit = Date.parse(start)
+  if (!Number.isFinite(limit)) return undefined
   let best: { price: number; at: string; t: number } | undefined
   for (const entry of entries) {
     const t = Date.parse(entry.createdAt)
+    if (entry.price === null || entry.active === false) continue
     if (!Number.isFinite(t) || t >= limit || entry.price <= 1) continue
     if (!best || t > best.t) best = { price: entry.price, at: entry.createdAt, t }
   }
@@ -122,8 +154,8 @@ const DAY = 86_400_000
 
 /**
  * Pairs results with settled provider fixtures by teams. Two teams can meet again in a later stage,
- * so a fixture counts only if it started within a day of the day the result was logged
- * (`source.retrievedAt`); of several, the latest.
+ * so a fixture counts only if it started on the day the result was logged (`source.retrievedAt`) or
+ * the day before (a match over midnight); of several, the latest. A rematch is always on a later day.
  */
 export function matchFixtures(
   results: readonly MatchResult[],
@@ -150,7 +182,7 @@ export function matchFixtures(
     const pick = candidates
       .filter((c) => {
         const start = Date.parse(c.fixture.startTime)
-        return start >= loggedDay - DAY && start < loggedDay + 2 * DAY
+        return start >= loggedDay - DAY && start < loggedDay + DAY
       })
       .sort((a, b) => Date.parse(b.fixture.startTime) - Date.parse(a.fixture.startTime))[0]
     if (!pick) {
