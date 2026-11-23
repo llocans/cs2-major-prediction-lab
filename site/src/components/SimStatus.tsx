@@ -13,14 +13,13 @@ export function SimStatus({
   if (!running) return null
   return (
     <span
-      className={`${className} inline-flex items-baseline gap-1.5 whitespace-nowrap text-sm`}
+      className={`${className} inline-flex items-baseline gap-1.5 whitespace-nowrap text-base`}
       role="status"
     >
-      <span className="sim-pulse inline-block size-2 self-center rounded-full bg-accent" />
+      <span className="sim-pulse inline-block size-2.5 self-center rounded-full bg-accent" />
       <span className="font-semibold text-accent" data-keep-accent>
-        Simulating…
+        Simulating changes…
       </span>
-      <span className="text-xs text-ink-3">grey = rough</span>
     </span>
   )
 }
