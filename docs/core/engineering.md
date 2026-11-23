@@ -27,7 +27,9 @@ Protected file. Change it only on a `core/*` branch with a PR.
 - Conventional commits: `feat:`, `fix:`, `data:`, `refactor:`, `docs:`, `chore:`, `test:`. Small and focused.
 - Data scripts run all checks and commit straight to `main`. Code, docs and model parameter changes go to
   a branch with a PR. `docs/core/` changes only via a `core/*` branch (enforced by a hook).
-- `npm run check` (typecheck + lint + tests) must pass before any commit of code.
+- `npm run check` (typecheck + lint + tests) must pass before any commit of code. GitHub runs it again on
+  every pull request (`.github/workflows/check.yml`, with data validation and the site build); a PR
+  merges only with that check green.
 - No secrets in the repo. `.env` is gitignored; `.env.example` lists the variables.
 
 ## Runtime
