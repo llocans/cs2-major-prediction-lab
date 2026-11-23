@@ -41,4 +41,5 @@ belong in `data/events/<id>/status.md`, not here.
   whole event window (PRs #13, #14).
 - 2026-11-22/23: Playoffs: engine with Bo5 final and third place (#15), whole-event title odds (#16),
   bracket poller, advance and snapshots (#17), playoffs page (#18).
-- 2026-11-23: `simulate.ts` prints playoff odds; this roadmap.
+- 2026-11-23: `simulate.ts` prints playoff odds; this roadmap; docs checks (a path test in
+  `npm run check`, a weekly docs checkup in the cleanup routine, findings shown at session start).

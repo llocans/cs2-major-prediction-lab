@@ -33,7 +33,7 @@ Protected file. Change it only on a `core/*` branch with a PR.
 ## Runtime
 
 - Node 24+ runs `.ts` files directly (native type stripping). Scripts and hooks run as
-  `node scripts/x.ts`, so code uses only erasable TypeScript syntax (`erasableSyntaxOnly`: no enums,
+  `node scripts/<name>.ts`, so code uses only erasable TypeScript syntax (`erasableSyntaxOnly`: no enums,
   no parameter properties, no namespaces) and imports with explicit `.ts` extensions.
 
 ## Dependencies

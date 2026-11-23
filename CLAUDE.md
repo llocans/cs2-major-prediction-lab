@@ -65,6 +65,11 @@ future events too: formats live in config, never in code.
     backtests done). Never put live numbers, odds or stage status in it; link to `status.md` and `docs/`.
 11. `docs/roadmap.md` is the to-do list. When work finishes, move it to Done in the same PR; when an
     open problem or idea comes up, add it there, not only in chat or memory.
+12. Docs follow the code. A PR that changes behaviour, commands, files or automation also updates
+    everything that describes it: README, this file, `docs/`, skills, agents and the routine prompts
+    listed in `docs/automation.md`. `npm run check` fails when a doc names a path that no longer
+    exists. The weekly `cleanup` routine checks the rest and writes `data/checkup.md`; the session
+    start prints its open findings: raise them and fix them through a PR.
 
 ## Skills (`.claude/skills/`)
 

@@ -44,15 +44,16 @@ Each check inside a run:
   about 720 Actions minutes a day, far over GitHub Free's 2,000 a month: switch back to short runs.
 
 ### Local sync on the Mac (optional)
+
 `node scripts/install-launchd.ts pull` installs a launchd job that every 10 minutes fast-forwards main
 (only if the checkout is on main with no local changes) and mirrors `poll-status` into
 `.cache/sync-status.json`. The stage page's status bar reads it:
 
-| Word | Meaning |
-|---|---|
-| **Waiting** | No stage running yet (checks start the day before) or the stage is finished |
-| **Live** | A check reached this computer within 45 minutes; shows when, and the next check |
-| **Problem** | The last check failed, or no update for 45+ minutes during a stage |
+| Word        | Meaning                                                                         |
+| ----------- | ------------------------------------------------------------------------------- |
+| **Waiting** | No stage running yet (checks start the day before) or the stage is finished     |
+| **Live**    | A check reached this computer within 45 minutes; shows when, and the next check |
+| **Problem** | The last check failed, or no update for 45+ minutes during a stage              |
 
 The local poller (`install-launchd.ts poll <event> [--commit]`) is a fallback only. Never run it with
 `--commit` next to the cloud poller.
@@ -63,11 +64,11 @@ Run on Anthropic's machines from a fresh clone of the repo; they use subscriptio
 session. Each prompt runs one skill and pushes data straight to main (the cloud default would be a
 `claude/` branch, which the poller would never see).
 
-| Task | Skill | When (UTC) | Model |
-|---|---|---|---|
-| research refresh | `research-team` (teams still in the event, news only, no HLTV) | daily 21:00, Nov 22 - Dec 12 | Sonnet, medium |
-| stage reviews | `review-stage` | 18:00 on Nov 27, Dec 1, Dec 6 | Sonnet, high |
-| cleanup | `cleanup` | Sundays 18:30 | Sonnet, low |
+| Task             | Skill                                                                   | When (UTC)                    | Model          |
+| ---------------- | ----------------------------------------------------------------------- | ----------------------------- | -------------- |
+| research refresh | `research-team` (teams still in the event, news only, no HLTV)          | daily 21:00, Nov 22 - Dec 12  | Sonnet, medium |
+| stage reviews    | `review-stage`                                                          | 18:00 on Nov 27, Dec 1, Dec 6 | Sonnet, high   |
+| cleanup          | `cleanup` (data tidy, plus a docs checkup written to `data/checkup.md`) | Sundays 18:30                 | Sonnet, low    |
 
 All run in the evening UTC, after the day's matches, so their pushes rarely meet a poller commit. When
 they do, the poller rebases and retries (above), and its next check starts from the newer main.
@@ -75,12 +76,12 @@ Each prompt keeps its guardrails (date window, "already done", stage complete).
 
 ## 3. Hooks (`.claude/settings.json`)
 
-| Hook                    | Script                                                                                                 | Status  |
-| ----------------------- | ------------------------------------------------------------------------------------------------------ | ------- |
-| PreToolUse Edit\|Write  | `guard-edits.ts`: deny docs/core edits on main, deny edits to saved snapshots                          | active  |
-| PostToolUse Edit\|Write | `validate-data.ts`: validate edited data files against their schema                                    | active  |
-| Stop | `stop-check.ts`: `npm run check` only if code changed since the last pass; blocks on failure, reports after 3 attempts (built-in cap is 8) | active |
-| SessionStart | `session-start.ts`: print the newest `data/events/<id>/status.md` | active |
+| Hook                    | Script                                                                                                                                     | Status |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
+| PreToolUse Edit\|Write  | `guard-edits.ts`: deny docs/core edits on main, deny edits to saved snapshots                                                              | active |
+| PostToolUse Edit\|Write | `validate-data.ts`: validate edited data files against their schema                                                                        | active |
+| Stop                    | `stop-check.ts`: `npm run check` only if code changed since the last pass; blocks on failure, reports after 3 attempts (built-in cap is 8) | active |
+| SessionStart            | `session-start.ts`: print the newest `data/events/<id>/status.md` and open findings in `data/checkup.md`                                   | active |
 
 ## Headless fallback
 

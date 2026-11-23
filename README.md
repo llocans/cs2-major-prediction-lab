@@ -85,7 +85,8 @@ the database and its history is the audit log.
 While a stage is running, a GitHub Actions workflow (`.github/workflows/poll.yml`) checks Liquipedia
 every 15 minutes, around the clock. New results are logged, ratings updated, the stage re-simulated, the next round's snapshot
 saved, and advancing teams seeded into the next stage. Each run commits only data and a changelog line
-to `main`. Research refreshes and stage reviews run as scheduled Claude Code tasks.
+to `main`. Research refreshes, stage reviews and a weekly data and docs checkup run as scheduled Claude Code
+tasks.
 
 Details, schedules and the local fallback are in [`docs/automation.md`](docs/automation.md); every
 automatic change is logged in [`docs/changelog.md`](docs/changelog.md).

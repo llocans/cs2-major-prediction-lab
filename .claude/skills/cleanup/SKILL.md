@@ -1,10 +1,10 @@
 ---
 name: cleanup
-description: Tidy the CS2 lab data - remove expired modifiers, mark stale facts, check sources and references. Commits data fixes to main and reports anything that needs code changes.
+description: Tidy the CS2 lab data (expired modifiers, stale facts, sources) and check that the docs, roadmap and routines still match the repo. Commits data fixes to main; writes doc and code problems to data/checkup.md.
 model: sonnet
 effort: low
 disable-model-invocation: true
-allowed-tools: Read, Edit, Grep, Glob, Agent, Bash(npm run validate), Bash(git add:*), Bash(git commit:*), Bash(git push:*), Bash(git status:*)
+allowed-tools: Read, Edit, Grep, Glob, Agent, Bash(npm run validate), Bash(npm run check), Bash(git log:*), Bash(git add:*), Bash(git commit:*), Bash(git push:*), Bash(git status:*)
 ---
 
 # cleanup
@@ -18,6 +18,20 @@ allowed-tools: Read, Edit, Grep, Glob, Agent, Bash(npm run validate), Bash(git a
    never delete sourced history.
 4. In `data/model/modifiers.json`, remove modifiers whose `expires` is in the past, and note each
    removal in the team file's Modifiers section.
-5. Leave snapshots, `results.json` and code alone. Code problems go into your reply, not a commit.
-6. `npm run validate`, then commit to main: `data: cleanup <date>`.
-7. Reply in 3 lines or fewer.
+5. **Docs checkup (report only).** Docs and code change only through a PR, so never edit them here.
+   - `npm run check`: it includes a test that every path the docs mention still exists.
+   - `docs/roadmap.md`: items that look done (compare with `git log` since the last checkup), items
+     whose date has passed, and problems you met that are not on it.
+   - README "Current limitations", `docs/automation.md` (routines and their dates) and the skills:
+     anything that no longer matches the repo or what the scripts print.
+6. Overwrite `data/checkup.md` (generated; never edit it by hand):
+   ```
+   # Checkup
+   Generated <YYYY-MM-DD> by the cleanup skill. Do not edit by hand.
+
+   - <file>: <what is out of date or broken, and the fix> (one line each)
+   ```
+   With nothing to report, the list is the single line `- No findings.`
+7. Leave snapshots, `results.json` and code alone.
+8. `npm run validate`, then commit to main: `data: cleanup <date>` (data fixes and `data/checkup.md`).
+9. Reply in 3 lines or fewer.
