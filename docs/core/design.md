@@ -32,13 +32,16 @@ Hierarchy comes from type size, weight, spacing and alignment, not from boxes an
 
 ## Behaviour
 
-- The simulation never blocks the UI (Web Worker). Show the last result while re-simulating.
+- The simulation never blocks the UI (Web Worker). While it runs, predicted numbers on screen turn
+  grey (`ink-3`) and an orange "Simulating changes…" badge shows; orange numbers always mean final.
+  Finished results are cached in the browser, so an unchanged page shows final odds at once.
 - Works on desktop and mobile (375 px wide, no horizontal page scroll).
 - Data and results are shown in the UI; chat replies stay short.
 
 ## Routes
 
 `#/` event overview · `#/stage/:id` stage (v1 view) · `#/playoffs` · `#/team/:id` ·
-`#/match/:a/:b` · `#/track-record` · `#/odds` (odds over time) · `#/methodology`
+`#/match/:a/:b` · `#/pickem/:stage` · `#/track-record` · `#/odds` (odds over time) ·
+`#/methodology`
 
-Built: overview, stage, playoffs, track record, methodology. The others exist as placeholders (`docs/roadmap.md`).
+Built: overview, stage, playoffs, Pick'Em, track record, methodology. The others exist as placeholders (`docs/roadmap.md`).
