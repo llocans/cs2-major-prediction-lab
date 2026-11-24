@@ -302,7 +302,7 @@ function Table({ head, rows }: { head: string[]; rows: string[][] }) {
         <thead>
           <tr className="border-b border-ink">
             {head.map((cell) => (
-              <th key={cell} className="py-1.5 pr-4 align-bottom font-semibold">
+              <th key={cell} className="py-1.5 pr-3 align-bottom font-semibold sm:pr-4">
                 {cell}
               </th>
             ))}
@@ -314,7 +314,7 @@ function Table({ head, rows }: { head: string[]; rows: string[][] }) {
               {row.map((cell, index) => (
                 <td
                   key={cell}
-                  className={`py-1.5 pr-4 ${index === 0 ? 'font-semibold whitespace-nowrap' : 'text-ink-2'}`}
+                  className={`py-1.5 pr-3 sm:pr-4 ${index === 0 ? 'font-semibold sm:whitespace-nowrap' : 'text-ink-2'}`}
                 >
                   {cell}
                 </td>

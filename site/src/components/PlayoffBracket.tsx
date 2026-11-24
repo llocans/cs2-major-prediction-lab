@@ -72,7 +72,7 @@ export function PlayoffBracket(props: Props) {
     })
 
   return (
-    <section className="overflow-x-auto pb-2" aria-label="Playoff bracket">
+    <section className="overflow-x-auto pb-2" aria-label="Playoff bracket" data-scrolls>
       <div className="relative" style={{ width, height }}>
         <svg className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
           {lines.map((line) => (

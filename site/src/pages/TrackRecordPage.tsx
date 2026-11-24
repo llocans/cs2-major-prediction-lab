@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import type { MatchPrediction } from '../../../data/schemas/snapshot.ts'
 import { stageSeeds } from '../../../engine/swiss/stage-seeds.ts'
 import { swissStandings } from '../../../engine/swiss/standings.ts'
@@ -9,12 +10,18 @@ import {
   UPSET_BELOW,
 } from '../../../engine/track-record.ts'
 import { TeamLogo } from '../components/TeamLogo.tsx'
-import { type EventData, teamName } from '../lib/data.ts'
+import { type EventData, teamName, teamShortName } from '../lib/data.ts'
 import { pct, shortDate } from '../lib/format.ts'
 
 /** Predictions saved before each round vs what happened. Same scoring as scripts/score-stage.ts. */
 export function TrackRecordPage({ event }: { event: EventData }) {
-  const name = (id: string) => teamName(event, id)
+  // Short names on narrow screens (design.md: short names in tight spots).
+  const name = (id: string): ReactNode => (
+    <>
+      <span className="sm:hidden">{teamShortName(event, id)}</span>
+      <span className="hidden sm:inline">{teamName(event, id)}</span>
+    </>
+  )
   const stages = event.config.stages.flatMap((stage) => {
     if (!event.snapshots.some((s) => s.stageId === stage.id)) return []
     // Advance odds are a Swiss measure; playoff stages are scored on their matches only.
@@ -69,7 +76,7 @@ export function TrackRecordPage({ event }: { event: EventData }) {
 function StageSection(props: {
   title: string
   record: StageTrackRecord
-  name: (id: string) => string
+  name: (id: string) => ReactNode
 }) {
   const { title, record, name } = props
   const scored = record.rounds.reduce((sum, r) => sum + r.matches.length, 0)
@@ -179,7 +186,7 @@ function Stat({ label, value, note }: { label: string; value: string; note?: str
   )
 }
 
-function RoundTable({ round, name }: { round: RoundRecord; name: (id: string) => string }) {
+function RoundTable({ round, name }: { round: RoundRecord; name: (id: string) => ReactNode }) {
   return (
     <div>
       <h3 className="mb-1 flex items-baseline gap-3 font-display text-lg font-bold">
@@ -191,14 +198,14 @@ function RoundTable({ round, name }: { round: RoundRecord; name: (id: string) =>
         </span>
       </h3>
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[520px] text-sm">
+        <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-ink text-left font-display text-xs uppercase tracking-wider text-ink-2">
               <th className="py-1 pr-2 font-semibold">Match</th>
               <th className="py-1 pr-2 text-right font-semibold">We said</th>
               <th className="py-1 pr-2 font-semibold">Winner</th>
               <th className="py-1 pr-2 font-semibold">Verdict</th>
-              <th className="py-1 text-right font-semibold">Brier</th>
+              <th className="hidden py-1 text-right font-semibold sm:table-cell">Brier</th>
             </tr>
           </thead>
           <tbody>
@@ -218,41 +225,47 @@ function RoundTable({ round, name }: { round: RoundRecord; name: (id: string) =>
 /** "Team 63%": the side we favoured and its probability. */
 function favourite(
   match: { teamA: string; teamB: string; pA: number },
-  name: (id: string) => string,
+  name: (id: string) => ReactNode,
 ) {
   const aFavoured = match.pA >= 0.5
-  return `${name(aFavoured ? match.teamA : match.teamB)} ${pct(aFavoured ? match.pA : 1 - match.pA)}`
+  return (
+    <>
+      {name(aFavoured ? match.teamA : match.teamB)} {pct(aFavoured ? match.pA : 1 - match.pA)}
+    </>
+  )
 }
 
-function PlayedRow({ match, name }: { match: TrackedMatch; name: (id: string) => string }) {
+function PlayedRow({ match, name }: { match: TrackedMatch; name: (id: string) => ReactNode }) {
   const verdict = match.upset ? 'Upset' : match.hit ? 'Hit' : 'Miss'
   return (
     <tr className="border-b border-rule" title={match.reason}>
       <td className="py-1.5 pr-2">
         {name(match.teamA)} <span className="text-ink-3">v</span> {name(match.teamB)}{' '}
-        <span className="text-xs uppercase text-ink-3">{match.format}</span>
+        <span className="hidden text-xs uppercase text-ink-3 sm:inline">{match.format}</span>
       </td>
       <td className="num py-1.5 pr-2 text-right text-accent">{favourite(match, name)}</td>
       <td className="py-1.5 pr-2 font-semibold">{name(match.winner)}</td>
       <td className={`py-1.5 pr-2 ${match.hit ? 'text-win' : 'text-loss'}`}>
         {verdict}
         {match.upset && (
-          <span className="num ml-1 text-xs text-ink-3">
+          <span className="num ml-1 hidden text-xs text-ink-3 sm:inline">
             winner had {pct(match.pWinner)} (under {pct(UPSET_BELOW)})
           </span>
         )}
       </td>
-      <td className="num py-1.5 text-right text-ink-2">{match.brier.toFixed(3)}</td>
+      <td className="num hidden py-1.5 text-right text-ink-2 sm:table-cell">
+        {match.brier.toFixed(3)}
+      </td>
     </tr>
   )
 }
 
-function PendingRow({ match, name }: { match: MatchPrediction; name: (id: string) => string }) {
+function PendingRow({ match, name }: { match: MatchPrediction; name: (id: string) => ReactNode }) {
   return (
     <tr className="border-b border-rule text-ink-2" title={match.reason}>
       <td className="py-1.5 pr-2">
         {name(match.teamA)} <span className="text-ink-3">v</span> {name(match.teamB)}{' '}
-        <span className="text-xs uppercase text-ink-3">{match.format}</span>
+        <span className="hidden text-xs uppercase text-ink-3 sm:inline">{match.format}</span>
       </td>
       <td className="num py-1.5 pr-2 text-right text-accent">{favourite(match, name)}</td>
       <td className="py-1.5 pr-2 text-ink-3" colSpan={3}>

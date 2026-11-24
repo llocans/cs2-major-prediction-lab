@@ -41,7 +41,7 @@ export function SwissBracket(props: Props) {
   const finals = finalRecords(rounds, props.winsToAdvance, props.lossesToEliminate)
 
   return (
-    <section className="overflow-x-auto pb-2" aria-label="Swiss bracket">
+    <section className="overflow-x-auto pb-2" aria-label="Swiss bracket" data-scrolls>
       <div className="relative" style={{ width, height }}>
         <Connectors slots={slots} rounds={rounds} />
         {rounds.map((round) => (

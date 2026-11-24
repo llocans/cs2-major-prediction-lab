@@ -28,6 +28,9 @@ future events too: formats live in config, never in code.
 
 - `npm run check`: typecheck + lint + tests (run before committing code)
 - `npm run validate`: validate all data files
+- `npm run ui-audit`: build the site and measure every page in Chromium (desktop + 375 px, light +
+  dark): console errors, page scroll, cut-off text, overlaps, contrast. Report and screenshots in
+  `.ui-audit/`. First time: `npx playwright install chromium`
 - `npm run dev` / `npm run build`: site
 - Scripts run as `node scripts/<name>.ts` (Node runs TypeScript natively; use `.ts` import extensions):
   - `research/vrs-form.ts <event> <YYYY_MM_DD>` → `data/teams/form/` (Valve VRS match tables)
@@ -87,6 +90,11 @@ future events too: formats live in config, never in code.
     Never switch branches, stash, reset or commit in a folder another chat is using, and commit only
     your own files by path (never `git add -A`). The session start warns when the folder already has
     uncommitted changes.
+14. UI changes are checked by measurement, never only by eye. Every change to `site/` passes
+    `npm run ui-audit` (free; the Stop hook runs it when site code changed, CI on every PR). Layout
+    changes, new components and new pages also get the `ui-reviewer` agent once (fresh eyes, about
+    100k tokens), scoped to the changed pages; wording, colours and small fixes do not. The
+    `ui-review` skill picks the tier.
 
 ## Skills (`.claude/skills/`)
 
@@ -98,12 +106,12 @@ future events too: formats live in config, never in code.
 | `simulate`      | Re-run the simulation and report the odds (read-only)                                       |
 | `review-stage`  | Score a finished stage, write lessons, propose capped changes via PR                        |
 | `cleanup`       | Remove expired modifiers, mark stale facts, check sources                                   |
-| `ui-review`     | Check a site page in the Browser pane (desktop + mobile) and list readability fixes         |
+| `ui-review`     | After a UI change: audit always; `ui-reviewer` agent only for layout/new components        |
 
 ## Subagents (`.claude/agents/`)
 
 `team-researcher` (Sonnet, medium; max 4 in parallel) · `reviewer` (Sonnet, high; read-only) ·
-`checker` (Haiku, low; read-only)
+`ui-reviewer` (Sonnet, high; read-only, Browser pane) · `checker` (Haiku, low; read-only)
 
 ## Models
 

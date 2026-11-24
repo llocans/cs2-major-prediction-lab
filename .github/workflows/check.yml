@@ -1,5 +1,6 @@
 # Runs the same checks as `npm run check` (typecheck, lint, tests including the end-to-end flow
-# checks), data validation and the site build on every pull request, so nothing merges unchecked.
+# checks), data validation, the site build and the measured UI audit on every pull request, so
+# nothing merges unchecked.
 name: check
 
 on:
@@ -29,6 +30,10 @@ jobs:
       - name: Install
         run: npm ci --no-fund --no-audit
 
+      # Chromium for the UI audit and its tests (scripts/lib/ui-measure.test.ts).
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
       - name: Typecheck, lint, tests
         run: npm run check
 
@@ -37,3 +42,14 @@ jobs:
 
       - name: Build site
         run: npm run build
+
+      - name: UI audit (every page, desktop + mobile, light + dark)
+        run: npm run ui-audit -- --no-build
+
+      - name: Upload UI audit report and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-audit
+          path: .ui-audit/
+          if-no-files-found: ignore
