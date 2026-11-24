@@ -4,7 +4,15 @@
  */
 
 export interface Issue {
-  kind: 'page-scroll' | 'cut-off' | 'sticks-out' | 'overlap' | 'contrast' | 'tap-target' | string
+  kind:
+    | 'page-scroll'
+    | 'cut-off'
+    | 'scroll-box'
+    | 'sticks-out'
+    | 'overlap'
+    | 'contrast'
+    | 'tap-target'
+    | string
   detail: string
 }
 
@@ -59,6 +67,19 @@ export function measure(mobile: boolean): Measured {
       failures.push({
         kind: 'cut-off',
         detail: `${describe(el)} needs ${el.scrollWidth}px, has ${el.clientWidth}px`,
+      })
+  }
+
+  // Content hidden in a sideways scroll box. Only boxes marked `data-scrolls` (the brackets) may
+  // scroll; a table that needs one should be made to fit instead.
+  for (const el of document.querySelectorAll('body *')) {
+    const overflow = getComputedStyle(el).overflowX
+    if (overflow !== 'auto' && overflow !== 'scroll') continue
+    if (!visible(el) || el.hasAttribute('data-scrolls')) continue
+    if (el.scrollWidth > el.clientWidth + 1)
+      failures.push({
+        kind: 'scroll-box',
+        detail: `${describe(el)} hides ${el.scrollWidth - el.clientWidth}px behind a sideways scroll`,
       })
   }
 

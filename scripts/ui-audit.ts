@@ -8,6 +8,7 @@
  *  - console errors and uncaught page errors
  *  - horizontal page scroll
  *  - cut-off text (an ellipsis is showing)
+ *  - content hidden in a sideways scroll box (only boxes marked `data-scrolls`, the brackets, may scroll)
  *  - content that sticks out of the page column without a scroll box of its own
  *  - text drawn over other text
  *  - text contrast under WCAG AA (4.5:1, or 3:1 for large text)

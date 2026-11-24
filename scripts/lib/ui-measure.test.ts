@@ -52,9 +52,16 @@ describe.skipIf(!hasChromium)('measure', () => {
     expect(kinds(result)).toEqual(expect.arrayContaining(['sticks-out', 'page-scroll']))
   })
 
-  it('accepts wide content inside its own scroll box', async () => {
+  it('catches content hidden in an unmarked scroll box', async () => {
     const result = await run(
       '<div style="overflow-x:auto"><table style="width:420px"><tr><td>wide</td></tr></table></div>',
+    )
+    expect(kinds(result)).toEqual(['scroll-box'])
+  })
+
+  it('accepts a scroll box marked data-scrolls (the brackets)', async () => {
+    const result = await run(
+      '<div data-scrolls style="overflow-x:auto"><table style="width:420px"><tr><td>wide</td></tr></table></div>',
     )
     expect(result.failures).toEqual([])
   })
