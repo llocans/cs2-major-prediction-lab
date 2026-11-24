@@ -82,6 +82,11 @@ future events too: formats live in config, never in code.
     listed in `docs/automation.md`. `npm run check` fails when a doc names a path that no longer
     exists. The weekly `cleanup` routine checks the rest and writes `data/checkup.md`; the session
     start prints its open findings: raise them and fix them through a PR.
+13. One folder, one chat. Parallel chats each work in their own git worktree (in the desktop app,
+    start the session with a worktree; by hand, `git worktree add <dir> -b <branch> origin/main`).
+    Never switch branches, stash, reset or commit in a folder another chat is using, and commit only
+    your own files by path (never `git add -A`). The session start warns when the folder already has
+    uncommitted changes.
 
 ## Skills (`.claude/skills/`)
 

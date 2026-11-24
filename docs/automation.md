@@ -99,7 +99,7 @@ validated by the poller itself.
 | PreToolUse Edit\|Write  | `guard-edits.ts`: deny docs/core edits on main, deny edits to saved snapshots                                                              | active |
 | PostToolUse Edit\|Write | `validate-data.ts`: validate edited data files against their schema                                                                        | active |
 | Stop                    | `stop-check.ts`: `npm run check` only if code changed since the last pass; blocks on failure, reports after 3 attempts (built-in cap is 8) | active |
-| SessionStart            | `session-start.ts`: print the newest `data/events/<id>/status.md` and open findings in `data/checkup.md`                                   | active |
+| SessionStart            | `session-start.ts`: print the newest `data/events/<id>/status.md`, open findings in `data/checkup.md`, and the git state (warns when the folder has uncommitted changes)                                   | active |
 
 ## Headless fallback
 
