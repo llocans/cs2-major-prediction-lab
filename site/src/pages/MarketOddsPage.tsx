@@ -7,6 +7,7 @@ import {
   stageMarketPicks,
   type Tally,
 } from '../../../engine/market-picks.ts'
+import { TeamLogo } from '../components/TeamLogo.tsx'
 import { type EventData, teamName, teamShortName } from '../lib/data.ts'
 import { pct, shortDate } from '../lib/format.ts'
 
@@ -167,6 +168,7 @@ function MatchRows({ match, name }: { match: MarketMatch; name: (id: string) => 
       {sides.map((side, i) => (
         <tr key={side.team}>
           <td className={`pr-2 ${i === 0 ? 'pt-1.5' : 'pb-1.5'}`}>
+            <TeamLogo teamId={side.team} className="mr-2 align-[-3px]" />
             <span className={match.result?.winner === side.team ? 'font-semibold' : ''}>
               {name(side.team)}
             </span>
