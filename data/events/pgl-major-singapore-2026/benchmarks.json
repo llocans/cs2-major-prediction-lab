@@ -105,6 +105,110 @@
         "retrievedAt": "2026-11-23"
       },
       "observedAt": "2026-11-23T11:45:59Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 2,
+      "teamA": "heroic",
+      "teamB": "chinggis-warriors",
+      "pA": 0.817,
+      "source": {
+        "name": "OddsPortal match-winner final listed odds (read after the match), mean of 7 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/chinggis-warriors-counter-strike-KApr18YQ/heroic-counter-strike-lMy9cUDj/#8xTDeemo",
+        "retrievedAt": "2026-11-24"
+      },
+      "observedAt": "2026-11-24T14:00:14Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 2,
+      "teamA": "nip",
+      "teamB": "lynn-vision",
+      "pA": 0.668,
+      "source": {
+        "name": "OddsPortal match-winner final listed odds (read after the match), mean of 7 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/lynn-vision-counter-strike-pExG9Zzq/ninjas-in-pyjamas-counter-strike-2PeaAhoj/#YFKaJbuh",
+        "retrievedAt": "2026-11-24"
+      },
+      "observedAt": "2026-11-24T14:00:14Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 2,
+      "teamA": "9z",
+      "teamB": "m80",
+      "pA": 0.49,
+      "source": {
+        "name": "OddsPortal match-winner final listed odds (read after the match), mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/9z-team-counter-strike-zPuZ5pzS/m80-counter-strike-OWnlO3km/#6TI7HxA4",
+        "retrievedAt": "2026-11-24"
+      },
+      "observedAt": "2026-11-24T14:00:14Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 2,
+      "teamA": "100-thieves",
+      "teamB": "imperial",
+      "pA": 0.627,
+      "source": {
+        "name": "OddsPortal match-winner final listed odds (read after the match), mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/100-thieves-counter-strike-bHEflqwM/imperial-counter-strike-0EY6cK96/#EgMFFGvH",
+        "retrievedAt": "2026-11-24"
+      },
+      "observedAt": "2026-11-24T14:00:14Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 2,
+      "teamA": "eternal-fire",
+      "teamB": "dendele",
+      "pA": 0.534,
+      "source": {
+        "name": "OddsPortal match-winner final listed odds (read after the match), mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/dendele-counter-strike-f3plkYiO/eternal-fire-counter-strike-xh8WluTi/#Khlmc8Ok",
+        "retrievedAt": "2026-11-24"
+      },
+      "observedAt": "2026-11-24T14:00:14Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 2,
+      "teamA": "parivision",
+      "teamB": "flyquest",
+      "pA": 0.668,
+      "source": {
+        "name": "OddsPortal match-winner final listed odds (read after the match), mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/flyquest-counter-strike-nPdOb0vc/parivision-counter-strike-K8LXqm54/#h6neeng2",
+        "retrievedAt": "2026-11-24"
+      },
+      "observedAt": "2026-11-24T14:00:14Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 2,
+      "teamA": "liquid",
+      "teamB": "wildcard",
+      "pA": 0.687,
+      "source": {
+        "name": "OddsPortal match-winner final listed odds (read after the match), mean of 9 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/team-liquid-counter-strike-Y3rGBulc/wildcard-gaming-counter-strike-pCQVwrwN/#pEltJko9",
+        "retrievedAt": "2026-11-24"
+      },
+      "observedAt": "2026-11-24T14:00:14Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 2,
+      "teamA": "faze",
+      "teamB": "bc-game",
+      "pA": 0.578,
+      "source": {
+        "name": "OddsPortal match-winner final listed odds (read after the match), mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/bc-game-counter-strike-8YminnHF/faze-clan-counter-strike-tIL8JUNs/#hvhlHTFL",
+        "retrievedAt": "2026-11-24"
+      },
+      "observedAt": "2026-11-24T14:00:14Z"
     }
   ]
 }
