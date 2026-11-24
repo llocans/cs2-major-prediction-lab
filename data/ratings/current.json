@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-24T06:47:03.810Z",
-  "reason": "log-result stage-1-r1-bc-game-liquid",
+  "asOf": "2026-11-24T07:17:04.572Z",
+  "reason": "log-result stage-1-r1-dendele-parivision",
   "teams": {
     "nip": {
       "rating": 1545,
@@ -57,13 +57,13 @@
       ]
     },
     "parivision": {
-      "rating": 1536,
-      "rd": 60,
+      "rating": 1541.5,
+      "rd": 59.3,
       "maps": {
         "ancient": {
-          "offset": 76.2,
-          "rd": 52.37229365663816,
-          "n": 16
+          "offset": 77.4,
+          "rd": 51.5,
+          "n": 17
         },
         "inferno": {
           "offset": 23.2,
@@ -481,8 +481,8 @@
       ]
     },
     "dendele": {
-      "rating": 1479.6,
-      "rd": 60,
+      "rating": 1474.1,
+      "rd": 59.3,
       "maps": {
         "mirage": {
           "offset": 39.8,
@@ -500,9 +500,9 @@
           "n": 6
         },
         "ancient": {
-          "offset": -51.6,
-          "rd": 65.31972647421809,
-          "n": 6
+          "offset": -53.4,
+          "rd": 63.6,
+          "n": 7
         },
         "nuke": {
           "offset": -21.7,
