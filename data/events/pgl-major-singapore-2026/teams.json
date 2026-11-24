@@ -89,6 +89,7 @@
     {
       "teamId": "bc-game",
       "displayName": "GOSH",
+      "shortName": "GOSH",
       "entryStage": "stage-1",
       "stageSeed": 13,
       "vrsPoints": 1337
@@ -138,6 +139,7 @@
     {
       "teamId": "1win",
       "displayName": "THE ONE",
+      "shortName": "THE ONE",
       "entryStage": "stage-2",
       "stageSeed": 4,
       "vrsPoints": 1598

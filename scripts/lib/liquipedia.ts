@@ -9,8 +9,11 @@ import { repoPath } from './files.ts'
 
 const API = 'https://liquipedia.net/counterstrike/api.php'
 const MIN_INTERVAL_MS = 2100
+/** Liquipedia's limit for parse-type requests (action=parse, action=expandtemplates). */
+const PARSE_INTERVAL_MS = 30_500
 const VERSION = '0.1.0'
 let lastRequestAt = 0
+let lastParseAt = 0
 
 export interface WikiPage {
   title: string
@@ -140,4 +143,20 @@ export async function getPage(
   mkdirSync(repoPath('.cache/liquipedia/pages'), { recursive: true })
   writeFileSync(file, JSON.stringify(result))
   return result
+}
+
+/**
+ * Expands wikitext templates (action=expandtemplates, a parse-type request: at most 1 every 30 s).
+ * Batch everything into one call; used by research scripts only, never by the poller.
+ */
+export async function expandTemplates(text: string): Promise<string> {
+  const wait = lastParseAt + PARSE_INTERVAL_MS - Date.now()
+  if (wait > 0) await sleep(wait)
+  lastParseAt = Date.now()
+  const data = (await throttledGet({ action: 'expandtemplates', prop: 'wikitext', text })) as {
+    expandtemplates?: { wikitext?: string }
+  }
+  const wikitext = data.expandtemplates?.wikitext
+  if (wikitext === undefined) throw new Error('Liquipedia expandtemplates returned no wikitext')
+  return wikitext
 }

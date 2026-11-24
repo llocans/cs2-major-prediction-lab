@@ -24,6 +24,8 @@ export const Team = z.object({
   name: z.string(),
   region: z.enum(['europe', 'americas', 'asia']).optional(),
   aliases: z.array(TeamAlias).default([]),
+  /** Short name (e.g. "NIP"), from Liquipedia's TeamShort team template. Used where space is tight. */
+  shortName: z.object({ name: z.string().min(1), source: Source }).optional(),
   /** Short team name used in Liquipedia's TeamOpponent template (e.g. "tl" for Liquid). */
   liquipedia: z.string().optional(),
   /** Title of the team's Liquipedia page (MediaWiki API), once resolved. */
