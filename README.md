@@ -50,6 +50,7 @@ Other commands:
 | `npm run check`                            | Typecheck, lint and tests                          |
 | `npm run validate`                         | Validate every data file against its schema        |
 | `npm run build`                            | Build the static site into `dist/`                 |
+| `npm run ui-audit`                         | Measure every page in Chromium (desktop + mobile, light + dark); needs `npx playwright install chromium` once |
 | `node scripts/simulate.ts <event> <stage>` | Print the current odds for a stage or the playoffs |
 | `node scripts/log-odds.ts <event> <stage> <round> ...` | Log a round's bookmaker odds (margin removed) for the Market odds page |
 

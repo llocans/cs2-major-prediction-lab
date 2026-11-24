@@ -28,6 +28,9 @@ future events too: formats live in config, never in code.
 
 - `npm run check`: typecheck + lint + tests (run before committing code)
 - `npm run validate`: validate all data files
+- `npm run ui-audit`: build the site and measure every page in Chromium (desktop + 375 px, light +
+  dark): console errors, page scroll, cut-off text, overlaps, contrast. Report and screenshots in
+  `.ui-audit/`. First time: `npx playwright install chromium`
 - `npm run dev` / `npm run build`: site
 - Scripts run as `node scripts/<name>.ts` (Node runs TypeScript natively; use `.ts` import extensions):
   - `research/vrs-form.ts <event> <YYYY_MM_DD>` → `data/teams/form/` (Valve VRS match tables)
@@ -87,6 +90,10 @@ future events too: formats live in config, never in code.
     Never switch branches, stash, reset or commit in a folder another chat is using, and commit only
     your own files by path (never `git add -A`). The session start warns when the folder already has
     uncommitted changes.
+14. UI changes are checked by measurement and by fresh eyes, never only by the builder: before a PR
+    that changes `site/`, run the `ui-review` skill (`npm run ui-audit` at 0 failures, then the
+    `ui-reviewer` agent) and go through every finding. The Stop hook reminds once per code state;
+    CI runs the audit on every PR.
 
 ## Skills (`.claude/skills/`)
 
@@ -98,12 +105,12 @@ future events too: formats live in config, never in code.
 | `simulate`      | Re-run the simulation and report the odds (read-only)                                       |
 | `review-stage`  | Score a finished stage, write lessons, propose capped changes via PR                        |
 | `cleanup`       | Remove expired modifiers, mark stale facts, check sources                                   |
-| `ui-review`     | Check a site page in the Browser pane (desktop + mobile) and list readability fixes         |
+| `ui-review`     | After a UI change: `npm run ui-audit`, then the `ui-reviewer` agent, then fix every finding |
 
 ## Subagents (`.claude/agents/`)
 
 `team-researcher` (Sonnet, medium; max 4 in parallel) · `reviewer` (Sonnet, high; read-only) ·
-`checker` (Haiku, low; read-only)
+`ui-reviewer` (Sonnet, high; read-only, Browser pane) · `checker` (Haiku, low; read-only)
 
 ## Models
 

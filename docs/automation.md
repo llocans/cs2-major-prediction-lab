@@ -88,8 +88,10 @@ Each prompt keeps its guardrails (date window, "already done", stage complete).
 
 ## 3. Pull request checks: GitHub Actions
 
-`.github/workflows/check.yml` runs `npm run check`, `npm run validate` and `npm run build` on every pull
-request to main (free: public repository). The poller's data commits go straight to main and are
+`.github/workflows/check.yml` runs `npm run check`, `npm run validate`, `npm run build` and the UI audit
+(`npm run ui-audit`: every page in Chromium at desktop and 375 px, light and dark; report and
+screenshots uploaded as the `ui-audit` artifact) on every pull request to main (free: public
+repository). The poller's data commits go straight to main and are
 validated by the poller itself.
 
 ## 4. Hooks (`.claude/settings.json`)
@@ -99,6 +101,7 @@ validated by the poller itself.
 | PreToolUse Edit\|Write  | `guard-edits.ts`: deny docs/core edits on main, deny edits to saved snapshots                                                              | active |
 | PostToolUse Edit\|Write | `validate-data.ts`: validate edited data files against their schema                                                                        | active |
 | Stop                    | `stop-check.ts`: `npm run check` only if code changed since the last pass; blocks on failure, reports after 3 attempts (built-in cap is 8) | active |
+| Stop                    | `ui-reminder.ts`: when site code changed and `npm run ui-audit` has not passed for it, blocks once per code state with a reminder to run the audit and the `ui-review` skill | active |
 | SessionStart            | `session-start.ts`: print the newest `data/events/<id>/status.md`, open findings in `data/checkup.md`, and the git state (warns when the folder has uncommitted changes)                                   | active |
 
 ## Headless fallback

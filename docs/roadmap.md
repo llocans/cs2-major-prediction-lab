@@ -71,6 +71,9 @@ belong in `data/events/<id>/status.md`, not here.
   read at a glance. Simplify after core features are settled (user, 2026-11-23). Ideas parked until
   then: per-match market % on the Track record rows (the data is already in `benchmarks.json`).
   First and second passes done 2026-11-24 (see Done); the `ui-review` skill checks the rest.
+- **Visual regression screenshots.** CI could compare each page's screenshots with the last approved
+  set and flag any change for a look. Needs fixed test data first (live data changes every round),
+  e.g. a frozen copy of one finished event.
 - **Nemiga's logo is marked temporary.** Liquipedia's team template uses
   `Nemiga Gaming 2020 temporary.png`. Re-run `research/team-logos.ts` before each event; it picks up
   a new file once Liquipedia changes the template.
@@ -142,6 +145,11 @@ belong in `data/events/<id>/status.md`, not here.
   "Record", change since round 1 on 3-0 and 0-3, the Bo5 note on hover; team panel "Match history"
   (90-day W-L in colour), a little-data note only when a team really has little tier-1 data; Market
   odds sorted by confidence with its own column.
+- 2026-11-24: UI checks by measurement and fresh eyes: `npm run ui-audit` (Playwright: every page at
+  desktop and 375 px, light and dark; console errors, page scroll, cut-off text, overlaps, WCAG AA
+  contrast) in CI with screenshots as an artifact, its own tests on planted problems, the
+  `ui-reviewer` agent, a stricter `ui-review` skill, golden rule 14 and a Stop-hook reminder. Light
+  `ink-3` and `accent` and dark `ink-3` darkened/lightened slightly to pass AA contrast.
 - 2026-11-24: Parallel chats: golden rule 13 (one folder, one chat; others in their own worktree)
   and a session-start warning when the folder already has uncommitted changes. Round 3's HEROIC vs
   M80 odds checked (veto, not a bug); underdog bias and round markets added as open items.

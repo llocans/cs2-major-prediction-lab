@@ -1,33 +1,27 @@
 ---
 name: ui-review
-description: Look at a page of the prediction site in the Browser pane (desktop and 375 px mobile) and list readability fixes against docs/core/design.md. Use when asked to review, check or tidy the UI, or after a UI change before opening the PR. Read-only; proposes options, changes nothing.
+description: Check site pages after a UI change, or when asked to review, check or tidy the UI. Runs the measured UI audit (npm run ui-audit), then has the independent ui-reviewer agent look at the pages in the Browser pane (desktop + 375 px, light + dark), and goes through every finding. Required before opening a PR that changes site/ (the Stop hook reminds).
 ---
 
 # ui-review
 
-Argument: a route (`stage/stage-1`, `playoffs`, `pickem/stage-1`, `track-record`, `methodology`, `/`)
-or nothing for the stage page of the current stage (`data/events/*/status.md`).
+Argument: routes to check (`stage/stage-1`, `market/stage-1`, `/`, ...) or nothing for every page
+the branch changed (`git diff origin/main...HEAD -- site engine`).
 
-1. Read `docs/core/design.md` (the rules) and the page's component in `site/src/pages/`.
-2. Start the site (`preview_start` with name `site`) and open `http://localhost:5173/#/<route>`.
-   Select a team with a finished match (`?team=<id>`) so the team panel shows played rows.
-3. Look at it as a first-time reader, in this order, with `screenshot` and `zoom`:
-   desktop, then `resize_window` preset `mobile` (reset to `desktop` when done). Also check
-   `read_console_messages` for errors.
-4. Check each point and note only real problems, with where they are:
-   - **Hierarchy:** one clear title; section headings smaller; the eye lands on the main number first.
-   - **Spacing:** 4 px grid; related things close, separate sections clearly apart; no text touching
-     borders; consistent gaps between the same kind of item.
-   - **Text:** short labels; no sentence where a word does; no explanation the layout already makes
-     obvious; team short names (`teamShortName`) in running text and tight spots, full names in the
-     bracket and tables.
-   - **Truncation:** no cut-off names or numbers (check with `javascript_tool`: elements whose
-     `scrollWidth > clientWidth`).
-   - **Colour:** accent only for predictions and the selected item; `win`/`loss` only for W/L and the
-     model's pick marks; real results in ink. Both themes readable (`colorScheme` light and dark).
-   - **Numbers:** tabular, right-aligned in tables, the same precision for the same quantity.
-   - **Mobile:** no horizontal page scroll (the bracket may scroll inside its own box); tap targets
-     not crowded.
-5. Reply with at most 8 findings, most important first, each one line: where, what is wrong, the fix.
-   For any change to layout or wording, give 2-3 options and ask before editing
-   (see memory "UI options first"). Fixes go through a branch + PR like any code change.
+Small things get missed when the builder checks their own work, so this skill measures first and then
+uses a reviewer that did not build the change. Nothing is waved through as "fine".
+
+1. **Measure.** Run `npm run ui-audit` (builds the site; Chromium comes from `npx playwright install
+   chromium` the first time). Fix every failure until it reports 0 failures: those are bugs
+   (console errors, page scroll, cut-off text, content sticking out, text over text, contrast under
+   WCAG AA). It also stamps the code state, which clears the Stop hook's reminder.
+2. **Fresh eyes.** Start the site (`preview_start` name `site`; use the port it reports), then run
+   the `ui-reviewer` agent with the URL, the routes and a one-line summary of what changed. Never
+   review your own change yourself instead.
+3. **Go through every finding.** Fix bugs, clear improvements and nits that stay within the agreed
+   design. For findings marked "(needs the user's choice)" (layout or wording), give the user 2-3
+   options and ask (memory "UI options first"). A finding you skip needs a one-line reason.
+4. **Re-check.** After the fixes run `npm run ui-audit` again; for larger fixes run the reviewer
+   again on the affected pages.
+5. **Report** to the user in a few lines: what was fixed, what waits for their choice, what was
+   skipped and why. Fixes go through the branch + PR like any code change.
