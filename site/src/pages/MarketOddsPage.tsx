@@ -1,0 +1,238 @@
+import type { ReactNode } from 'react'
+import {
+  type MarketMatch,
+  type MarketRound,
+  MIN_EDGE,
+  type SkipReason,
+  stageMarketPicks,
+  type Tally,
+} from '../../../engine/market-picks.ts'
+import { type EventData, teamName, teamShortName } from '../lib/data.ts'
+import { pct, shortDate } from '../lib/format.ts'
+
+const SKIP_LABEL: Record<SkipReason, string> = {
+  'no-odds': 'no odds',
+  'small-edge': 'small edge',
+  'little-data': 'little tier-1 data',
+}
+
+/** "+8 pp": a probability difference in percentage points. */
+const points = (value: number) => `+${Math.round(value * 100)} pp`
+
+/** The model's picks against one bookmaker's margin-free prices, stage by stage, round by round. */
+export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?: string }) {
+  const stages = event.config.stages
+  const records = stages.map((s) =>
+    stageMarketPicks(s.id, event.snapshots, event.bookmakerOdds, event.results.matches),
+  )
+  const latestWithOdds = [...records].reverse().find((r) => r.rounds.length > 0)
+  const record = records.find((r) => r.stageId === stageId) ?? latestWithOdds ?? records[0]
+  // Short names on narrow screens (design.md: short names in tight spots).
+  const name = (id: string) => (
+    <>
+      <span className="sm:hidden">{teamShortName(event, id)}</span>
+      <span className="hidden sm:inline">{teamName(event, id)}</span>
+    </>
+  )
+  const sources = [
+    ...new Map(event.bookmakerOdds.map((o) => [o.source.name, o.source.url] as const)).entries(),
+  ]
+
+  return (
+    <div className="flex flex-col gap-6">
+      <header className="flex max-w-prose flex-col gap-2">
+        <h1 className="font-display text-5xl font-bold leading-none tracking-tight">Market odds</h1>
+        <p className="text-sm text-ink-2">
+          The model against a bookmaker. Market % is the bookmaker's chance for each team with its
+          margin removed, so the two add up to 100%. The model picks a team when it gives it at
+          least {Math.round(MIN_EDGE * 100)} percentage points more than the market does, and skips
+          matches where it has little tier-1 data on a team. The model never uses these numbers.
+        </p>
+      </header>
+
+      <nav className="flex flex-wrap gap-x-5 gap-y-1 border-b border-rule pb-2">
+        {stages.map((s) => (
+          <a
+            key={s.id}
+            href={`#/market/${s.id}`}
+            className={`font-display text-lg font-semibold ${s.id === record?.stageId ? 'text-ink underline decoration-accent decoration-2 underline-offset-4' : 'text-ink-3 hover:text-ink'}`}
+          >
+            {s.name}
+          </a>
+        ))}
+      </nav>
+
+      {!record || record.rounds.length === 0 ? (
+        <p className="text-sm text-ink-3">No odds logged for this stage yet.</p>
+      ) : (
+        <>
+          <dl className="num flex flex-wrap gap-x-6 gap-y-1 text-sm">
+            <Stat label="Picks" value={record.picks} />
+            <Stat label="Won" value={record.won} />
+            <Stat label="Lost" value={record.lost} />
+            <Stat label="To play" value={record.pending} />
+          </dl>
+          <div className="flex flex-col gap-3">
+            {[...record.rounds].reverse().map((round, i) => (
+              <RoundSection key={round.round} round={round} open={i === 0} name={name} />
+            ))}
+          </div>
+        </>
+      )}
+
+      {sources.length > 0 && (
+        <p className="max-w-prose text-xs text-ink-3">
+          Source:{' '}
+          {sources.map(([label, url], i) => (
+            <span key={label}>
+              {i > 0 && '; '}
+              {url ? (
+                <a href={url} className="underline">
+                  {label}
+                </a>
+              ) : (
+                label
+              )}
+            </span>
+          ))}
+          . Read by hand before each round; only the percentages are stored. Model % is from the
+          prediction saved before the round and never changes afterwards.
+        </p>
+      )}
+    </div>
+  )
+}
+
+function Stat({ label, value }: { label: string; value: number }) {
+  return (
+    <div className="flex items-baseline gap-1.5">
+      <dt className="font-display text-xs uppercase tracking-wider text-ink-3">{label}</dt>
+      <dd className="font-semibold">{value}</dd>
+    </div>
+  )
+}
+
+function tallyText(t: Tally): string {
+  if (t.picks === 0) return 'no picks'
+  const parts = [`${t.picks} ${t.picks === 1 ? 'pick' : 'picks'}`]
+  if (t.won + t.lost > 0) parts.push(`${t.won} won`, `${t.lost} lost`)
+  if (t.pending > 0 && t.won + t.lost > 0) parts.push(`${t.pending} to play`)
+  return parts.join(' · ')
+}
+
+function RoundSection(props: {
+  round: MarketRound
+  open: boolean
+  name: (id: string) => ReactNode
+}) {
+  const { round, open, name } = props
+  return (
+    <details open={open} className="border-b border-rule pb-2">
+      <summary className="cursor-pointer py-1">
+        <span className="font-display text-lg font-bold">Round {round.round}</span>
+        <span className="num ml-3 text-xs text-ink-3">
+          {tallyText(round)}
+          {round.readOn && ` · odds read ${shortDate(round.readOn)}`}
+        </span>
+      </summary>
+      <table className="mt-2 w-full text-sm">
+        <thead>
+          <tr className="border-b border-ink text-left font-display text-xs uppercase tracking-wider text-ink-2">
+            <th className="py-1 pr-2 font-semibold">Match</th>
+            <th className="py-1 pr-2 text-right font-semibold">Model</th>
+            <th className="py-1 pr-2 text-right font-semibold">Market</th>
+            <th className="py-1 pr-2 font-semibold">Pick</th>
+            <th className="py-1 text-right font-semibold">Result</th>
+          </tr>
+        </thead>
+        {round.matches.map((match) => (
+          <MatchRows key={`${match.teamA}-${match.teamB}`} match={match} name={name} />
+        ))}
+      </table>
+    </details>
+  )
+}
+
+function MatchRows({ match, name }: { match: MarketMatch; name: (id: string) => ReactNode }) {
+  const sides = [
+    { team: match.teamA, model: match.modelA, market: match.marketA },
+    {
+      team: match.teamB,
+      model: 1 - match.modelA,
+      market: match.marketA === undefined ? undefined : 1 - match.marketA,
+    },
+  ]
+  return (
+    <tbody className="border-b border-rule" title={match.reason}>
+      {sides.map((side, i) => (
+        <tr key={side.team}>
+          <td className={`pr-2 ${i === 0 ? 'pt-1.5' : 'pb-1.5'}`}>
+            <span className={match.result?.winner === side.team ? 'font-semibold' : ''}>
+              {name(side.team)}
+            </span>
+            {i === 0 && (
+              <span className="ml-1.5 text-xs uppercase text-ink-3">
+                {match.format}
+                <span className="hidden sm:inline"> · {match.confidence}</span>
+              </span>
+            )}
+          </td>
+          <td className={`num pr-2 text-right text-accent ${i === 0 ? 'pt-1.5' : 'pb-1.5'}`}>
+            {pct(side.model)}
+          </td>
+          <td className={`num pr-2 text-right text-ink-2 ${i === 0 ? 'pt-1.5' : 'pb-1.5'}`}>
+            {side.market === undefined ? '–' : pct(side.market)}
+          </td>
+          {i === 0 && (
+            <>
+              <td rowSpan={2} className="py-1.5 pr-2 align-middle">
+                <PickCell match={match} name={name} />
+              </td>
+              <td rowSpan={2} className="num whitespace-nowrap py-1.5 text-right align-middle">
+                {match.result ? (
+                  match.result.score
+                ) : (
+                  <span className="whitespace-nowrap text-ink-3">to play</span>
+                )}
+              </td>
+            </>
+          )}
+        </tr>
+      ))}
+    </tbody>
+  )
+}
+
+function PickCell({ match, name }: { match: MarketMatch; name: (id: string) => ReactNode }) {
+  if (match.pick === undefined) {
+    return (
+      <span className="text-xs text-ink-3">
+        skip · {SKIP_LABEL[match.skip ?? 'no-odds']}
+        {match.skip === 'small-edge' && match.edge && (
+          <span className="whitespace-nowrap"> {points(match.edge.value)}</span>
+        )}
+      </span>
+    )
+  }
+  const edge = match.edge ? (
+    <span className="num ml-1 whitespace-nowrap text-xs text-ink-3">
+      {points(match.edge.value)}
+    </span>
+  ) : null
+  if (match.pickWon === undefined) {
+    return (
+      <span>
+        <span className="text-accent">{name(match.pick)}</span>
+        {edge}
+      </span>
+    )
+  }
+  return (
+    <span>
+      <span className={match.pickWon ? 'text-win' : 'text-loss line-through'}>
+        {name(match.pick)} {match.pickWon ? '✓' : '✗'}
+      </span>
+      {edge}
+    </span>
+  )
+}

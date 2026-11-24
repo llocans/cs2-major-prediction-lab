@@ -8,6 +8,7 @@ import paramsJson from '../../../data/model/params.json'
 import ratingsJson from '../../../data/ratings/current.json'
 import {
   Benchmarks,
+  BookmakerOdds,
   EventConfig,
   EventResults,
   EventTeams,
@@ -38,6 +39,10 @@ const snapshotFiles = import.meta.glob('../../../data/events/*/snapshots/*.json'
   import: 'default',
 })
 const benchmarkFiles = import.meta.glob('../../../data/events/*/benchmarks.json', {
+  eager: true,
+  import: 'default',
+})
+const bookmakerFiles = import.meta.glob('../../../data/events/*/bookmaker-odds.json', {
   eager: true,
   import: 'default',
 })
@@ -79,6 +84,8 @@ export interface EventData {
   snapshots: Snapshot[]
   /** Market implied probabilities, if any were logged. */
   benchmarks: Benchmarks['entries']
+  /** One bookmaker's margin-free prices per round, for the Market odds page. */
+  bookmakerOdds: BookmakerOdds['entries']
 }
 
 const eventDir = (path: string) => path.split('/').at(-2) ?? ''
@@ -88,6 +95,7 @@ export const events: EventData[] = Object.entries(configs).map(([path, raw]) => 
   const find = (files: Record<string, unknown>) =>
     Object.entries(files).find(([p]) => eventDir(p) === id)?.[1]
   const benchmarks = find(benchmarkFiles)
+  const bookmakerOdds = find(bookmakerFiles)
   return {
     config: EventConfig.parse(raw),
     teams: EventTeams.parse(find(teamsFiles)),
@@ -96,6 +104,7 @@ export const events: EventData[] = Object.entries(configs).map(([path, raw]) => 
       .filter(([p]) => p.split('/').at(-3) === id)
       .map(([, value]) => Snapshot.parse(value)),
     benchmarks: benchmarks ? Benchmarks.parse(benchmarks).entries : [],
+    bookmakerOdds: bookmakerOdds ? BookmakerOdds.parse(bookmakerOdds).entries : [],
   }
 })
 
