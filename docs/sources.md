@@ -16,7 +16,7 @@ Checked 2026-11-21 from this machine (Claude desktop app).
 
 ### Market odds (benchmarks.json)
 
-**Automatic (from Stage 1 round 2):** the poller, at most every two hours and only when a result from
+**Automatic:** the poller, at most every two hours and only when a result from
 the last two days has no benchmark, reads the event's settled fixtures from OddsPapi (1 request of the
 free plan's monthly allowance) and each new match's historical odds (free of quota). The closing line
 is each bookmaker's last price before the start (`trueStartTime`, else `startTime`); margin removed per
@@ -24,13 +24,16 @@ bookmaker, then the mean. Only `pA` and the fixture id are stored, never the raw
 forbid redistributing their data "as a standalone product": [terms](https://oddspapi.io/legal/terms),
 read 2026-11-23). Setup per event: `scripts/research/oddspapi-setup.ts`
 prints the tournament id and market ids for `marketOdds` in `config.json`.
+For PGL Singapore it finds nothing: OddsPapi marks its 8 round 1 fixtures as cancelled with no odds
+and lists none after them (checked 2026-11-24), so this event's odds are read by hand.
 
-**By hand (fallback, Stage 1 round 1):**
+**By hand (Stage 1 round 1 on; Browser pane only):**
 
-Before a round, read every bookmaker listed on each match's OddsPortal page. Per bookmaker,
+Before a round, or after a match from OddsPortal's final listed odds (its last prices before the
+start), read every bookmaker listed on each match's OddsPortal page. Per bookmaker,
 `p = (1/oddsA) / (1/oddsA + 1/oddsB)` removes its margin; `pA` is the mean over bookmakers. The
-source names the bookmaker count and the match URL; `observedAt` is the time of reading. Never after
-a match has started.
+source names the bookmaker count, the match URL and which of the two it was; `observedAt` is the
+time of reading. Never in-play odds.
 
 ## Liquipedia API rules (automation)
 

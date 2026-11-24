@@ -14,6 +14,10 @@ belong in `data/events/<id>/status.md`, not here.
   none. Schedule one for Dec 14 or run the `review-stage` skill by hand after the final.
 - **Playoff stage by date.** The poller picks the playoff stage by its dates (Dec 9-14). This has only
   been tested with a forced stage id; check the first poll after Stage 3 advances.
+- **Market odds by hand.** OddsPapi lists no PGL Singapore fixtures after round 1 (its round 1 ones
+  are marked cancelled, checked 2026-11-24), so the poller adds nothing. Each round's odds are read
+  from OddsPortal in the Browser pane after the round (`docs/sources.md`). Options: a session after
+  each round, or another free source the poller can read.
 - **Stage 2 and 3 storylines.** The Stage 2 and 3 team notes say storylines will be "added from
   previews (nightly research task)", but the nightly research refresh only looks for news (rosters,
   stand-ins, visas). Either widen that routine to the next stage's previews or fill them in by hand

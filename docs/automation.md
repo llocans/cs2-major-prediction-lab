@@ -32,7 +32,8 @@ Each check inside a run:
   playoffs: the Bracket template, once Stage 3 has advanced its 8 teams), log new results,
   update ratings, re-simulate, save the next-round snapshot, move advancing teams on when a stage ends,
   validate everything, commit only `data/` and `docs/changelog.md` to main, push.
-- Market odds (benchmark only): on the first check of every even UTC hour, closing lines for results
+- Market odds (benchmark only; PGL Singapore: by hand, OddsPapi has no fixtures for it, `docs/sources.md`):
+  on the first check of every even UTC hour, closing lines for results
   of the last two days that have none (OddsPapi, `docs/sources.md`). Needs the `ODDSPAPI_KEY` secret
   and `marketOdds` in the event config; otherwise skipped. A failure goes to the status message and
   never fails the check.

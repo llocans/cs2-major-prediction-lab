@@ -110,7 +110,8 @@ are documented with sources in [`docs/rules.md`](docs/rules.md).
 ## Current limitations
 
 - The Bo5 grand-final veto is assumed from earlier PGL events until PGL publishes the Singapore one.
-- Market odds start with the first matches; until the OddsPapi key is set they are collected by hand.
+- Market odds for the current Major are read by hand from OddsPortal: OddsPapi does not cover it past
+  its first round.
 - Ratings are tuned on reasoning, not yet on backtests of past Majors.
 - The team, matchup and odds-over-time pages are placeholders.
 - The site runs locally; it is not hosted anywhere yet.
