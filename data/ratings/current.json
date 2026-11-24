@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-24T10:47:04.092Z",
-  "reason": "log-result stage-1-r2-9z-m80",
+  "asOf": "2026-11-24T11:32:04.665Z",
+  "reason": "log-result stage-1-r2-100-thieves-imperial",
   "teams": {
     "nip": {
       "rating": 1549.3,
@@ -322,8 +322,8 @@
       ]
     },
     "100-thieves": {
-      "rating": 1509.5,
-      "rd": 59.6,
+      "rating": 1501.6,
+      "rd": 58.8,
       "maps": {
         "dust2": {
           "offset": 120,
@@ -356,9 +356,9 @@
           "n": 4
         },
         "nuke": {
-          "offset": -10.3,
-          "rd": 74.0656079818041,
-          "n": 2
+          "offset": -13.7,
+          "rd": 71.6,
+          "n": 3
         }
       },
       "sources": [
@@ -534,8 +534,8 @@
       ]
     },
     "imperial": {
-      "rating": 1453.6,
-      "rd": 59.2,
+      "rating": 1461.4,
+      "rd": 58.4,
       "maps": {
         "inferno": {
           "offset": -48.3,
@@ -553,9 +553,9 @@
           "n": 6
         },
         "nuke": {
-          "offset": 17.6,
-          "rd": 71.55417527999327,
-          "n": 3
+          "offset": 20.7,
+          "rd": 69.3,
+          "n": 4
         },
         "anubis": {
           "offset": 17.6,

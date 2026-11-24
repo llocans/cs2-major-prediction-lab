@@ -243,6 +243,28 @@
         "retrievedAt": "2026-11-24",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r2-100-thieves-imperial",
+      "stageId": "stage-1",
+      "round": 2,
+      "teamA": "100-thieves",
+      "teamB": "imperial",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "nuke",
+          "scoreA": 11,
+          "scoreB": 13
+        }
+      ],
+      "winner": "imperial",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3473845)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-24",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
