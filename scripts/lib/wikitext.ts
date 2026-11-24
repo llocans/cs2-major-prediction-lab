@@ -259,7 +259,7 @@ export function parseTeamShortLines(
   for (const line of wikitext.split('\n')) {
     const id = /^([a-z0-9-]+)=/.exec(line)?.[1]
     const links = [...line.matchAll(/\[\[([^\]|]+)\|([^\]]+)\]\]/g)].filter(
-      (m) => !m[1]?.startsWith('File:'),
+      (m) => !/^(file|image):/i.test(m[1] ?? ''),
     )
     const last = links.at(-1)
     if (!id || !last?.[1] || !last[2]) continue
