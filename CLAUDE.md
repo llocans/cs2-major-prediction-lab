@@ -35,6 +35,9 @@ future events too: formats live in config, never in code.
   - `research/liquipedia-rosters.ts <event>` → dated rosters in `registry.json` (Liquipedia API)
   - `research/short-names.ts <event>` → team short names (NIP, LVG) in `registry.json` (one Liquipedia
     API call); teams renamed for the event get `shortName` in its `teams.json`
+  - `research/team-logos.ts <event>` → team logos (Liquipedia team template, scaled to 120x80) in
+    `site/public/logos/` + `logo` in `registry.json`; a team renamed for the event (GOSH) gets its
+    event logo in `logos/<event>/` + `logo` in its `teams.json`. Downloads only new or changed logos
   - `research/import-map-stats.ts <file> <from> <to> Top50` → `data/teams/maps/` (HLTV counts)
   - `research/oddspapi-setup.ts [pattern]` → prints OddsPapi ids for `marketOdds` in event config
     (market odds are then collected by the poller; benchmark only)
