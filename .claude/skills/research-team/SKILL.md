@@ -17,6 +17,9 @@ Every fact gets a date and a source. Never invent stats; if a source is unreacha
    - VRS form: `node scripts/research/vrs-form.ts <event> <YYYY_MM_DD>` (latest standings date in the
      Valve repo `live/<year>/`).
    - Rosters: `node --env-file-if-exists=.env scripts/research/liquipedia-rosters.ts <event>`.
+   - New event only, never in scheduled runs (one template expansion each): short names
+     `node --env-file-if-exists=.env scripts/research/short-names.ts <event>` and team logos
+     `node --env-file-if-exists=.env scripts/research/team-logos.ts <event>`. Then `npm run validate`.
 2. **HLTV map stats** (interactive only, never in scheduled runs): in Claude in Chrome, read
    `hltv.org/stats/teams/maps/<id>/<slug>?startDate=<3 months ago>&endDate=<today>&rankingFilter=Top50`
    (the built-in Browser pane loops on Cloudflare). Write `<team-id> <id/slug> map:W/L ...` lines to a
