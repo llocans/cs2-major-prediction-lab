@@ -287,6 +287,28 @@
         "retrievedAt": "2026-11-24",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r2-flyquest-parivision",
+      "stageId": "stage-1",
+      "round": 2,
+      "teamA": "parivision",
+      "teamB": "flyquest",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "dust2",
+          "scoreA": 9,
+          "scoreB": 13
+        }
+      ],
+      "winner": "flyquest",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3473871)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-24",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
