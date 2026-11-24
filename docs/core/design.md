@@ -50,7 +50,7 @@ Hierarchy comes from type size, weight, spacing and alignment, not from boxes an
 ## Routes
 
 `#/` event overview · `#/stage/:id` stage (v1 view) · `#/playoffs` · `#/team/:id` ·
-`#/match/:a/:b` · `#/pickem/:stage` · `#/track-record` · `#/odds` (odds over time) ·
-`#/methodology`
+`#/match/:a/:b` · `#/pickem/:stage` · `#/market/:stage` (model vs a bookmaker) · `#/track-record` ·
+`#/odds` (odds over time) · `#/methodology`
 
-Built: overview, stage, playoffs, Pick'Em, track record, methodology. The others exist as placeholders (`docs/roadmap.md`).
+Built: overview, stage, playoffs, Pick'Em, market odds, track record, methodology. The others exist as placeholders (`docs/roadmap.md`).
