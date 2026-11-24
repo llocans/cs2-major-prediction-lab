@@ -17,7 +17,7 @@ import {
   teamShortName,
 } from '../lib/data.ts'
 import { shortDate } from '../lib/format.ts'
-import { marketChance, teamStageMatches } from '../lib/market.ts'
+import { marketQuote, teamStageMatches } from '../lib/market.ts'
 import { readWhatIf, toggleOverride, writeWhatIf } from '../lib/overrides.ts'
 import { setQuery } from '../lib/router.ts'
 import { stagePicks } from '../lib/verdict.ts'
@@ -135,7 +135,7 @@ export function StagePage({ event, stage, query }: Props) {
   const nextOpponent = next ? (next.teamA === selected ? next.teamB : next.teamA) : undefined
   const nextMarket =
     nextOpponent && currentRound !== undefined
-      ? marketChance(event, stage.id, currentRound, selected, nextOpponent)
+      ? marketQuote(event, stage.id, currentRound, selected, nextOpponent)
       : undefined
 
   return (
@@ -173,7 +173,7 @@ export function StagePage({ event, stage, query }: Props) {
         short={short}
         winsToAdvance={stage.winsToAdvance}
         lossesToEliminate={stage.lossesToEliminate}
-        market={(round, team, opponent) => marketChance(event, stage.id, round, team, opponent)}
+        market={(round, team, opponent) => marketQuote(event, stage.id, round, team, opponent)}
         onSelect={select}
         onPick={(match, winner) => {
           const loser = winner === match.teamA ? match.teamB : match.teamA
