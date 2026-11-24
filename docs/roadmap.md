@@ -16,8 +16,16 @@ belong in `data/events/<id>/status.md`, not here.
   been tested with a forced stage id; check the first poll after Stage 3 advances.
 - **Market odds by hand.** OddsPapi lists no PGL Singapore fixtures after round 1 (its round 1 ones
   are marked cancelled, checked 2026-11-24), so the poller adds nothing. Each round's odds are read
-  from OddsPortal in the Browser pane after the round (`docs/sources.md`). Options: a session after
-  each round, or another free source the poller can read.
+  from OddsPortal in the Browser pane after the round (`docs/sources.md`), in a session after each
+  round. Free automatic sources checked on 2026-11-24, none usable:
+  [Kalshi](https://kalshi-public-docs.s3.amazonaws.com/Kalshi-Developer-Agreement.pdf) has a market
+  for every game of this Major and a public API, but its Developer Agreement (v1.1, §3) limits the
+  API to a member's own trading and forbids storing, sharing or benchmarking with its data;
+  [OddiWire](https://oddiwire.com/docs.html) (free 100 calls/day) is one odds supplier's prices, drops
+  a match once it finishes, and its terms do not say whether the prices may be shown; the
+  [mwasoft CS2 API](https://www.producthunt.com/products/cs2-real-time-odds-api-by-mwasoft) gives its
+  own model's odds, not a market. CSGOEmpire (the Market odds page) cannot be automated either:
+  its terms forbid bots and scripts.
 - **Stage 2 and 3 storylines.** The Stage 2 and 3 team notes say storylines will be "added from
   previews (nightly research task)", but the nightly research refresh only looks for news (rosters,
   stand-ins, visas). Either widen that routine to the next stage's previews or fill them in by hand
@@ -102,6 +110,10 @@ belong in `data/events/<id>/status.md`, not here.
   (`research/short-names.ts`), a cleaner team panel (no "Why", no seed swap), each team's change since
   round 1 in the Probabilities table, a shorter bracket legend, `ui-review` skill, a light/dark
   switch in the nav (follows the system until the viewer picks; saved in the browser).
+- 2026-11-24: Market odds page (`#/market/<stage>`): the model against CSGOEmpire's margin-free odds,
+  one tab per stage and a folding section per round; picks follow a fixed rule (an edge of 5 points
+  or more, none with little tier-1 data). `scripts/log-odds.ts`, `log-odds` skill,
+  `bookmaker-odds.json` backfilled for Stage 1 rounds 1-3.
 - 2026-11-24: Team logos next to team names in tables, brackets, Pick'Em and the team panel, light
   and dark versions (`research/team-logos.ts`, Liquipedia team templates); GOSH and THE ONE show
   their Major logos.

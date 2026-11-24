@@ -51,6 +51,7 @@ Other commands:
 | `npm run validate`                         | Validate every data file against its schema        |
 | `npm run build`                            | Build the static site into `dist/`                 |
 | `node scripts/simulate.ts <event> <stage>` | Print the current odds for a stage or the playoffs |
+| `node scripts/log-odds.ts <event> <stage> <round> ...` | Log a round's bookmaker odds (margin removed) for the Market odds page |
 
 Scripts that fetch from Liquipedia need a contact address for the API User-Agent. Copy `.env.example`
 to `.env` and fill in `LIQUIPEDIA_CONTACT`. Market odds (a benchmark, never a model input) are optional:
@@ -69,7 +70,7 @@ nothing.
 | `data/teams/`       | Team registry (IDs, aliases, dated rosters) and one research note per team     |
 | `data/ratings/`     | Current ratings and their history                                              |
 | `data/model/`       | Model parameters and judgment modifiers                                        |
-| `data/events/<id>/` | Event config, teams, real results, round snapshots, accuracy, generated status |
+| `data/events/<id>/` | Event config, teams, real results, round snapshots, market and bookmaker odds, accuracy, generated status |
 | `docs/`             | Rules, model spec, sources, automation, changelog, roadmap                     |
 
 The engine never touches files, the network or the UI; scripts and the site are the only places with
@@ -82,6 +83,9 @@ the database and its history is the audit log.
 - **Real results only** in `results.json`. Snapshots are never edited after they are saved.
 - **What-if results** set in the site (forced winners) live only in the page URL, so they
   can be shared as a link and never write to the data.
+- **Bookmaker odds** on the Market odds page are stored as margin-free percentages only, never as the
+  bookmaker's own odds. The model never reads them; its picks there follow a fixed rule (an edge of at
+  least 5 percentage points over the market).
 - **Pick'Em picks** made on the site's Pick'Em page stay in the viewer's browser (local storage) and
   never write to the data.
 
@@ -110,8 +114,9 @@ are documented with sources in [`docs/rules.md`](docs/rules.md).
 ## Current limitations
 
 - The Bo5 grand-final veto is assumed from earlier PGL events until PGL publishes the Singapore one.
-- Market odds for the current Major are read by hand from OddsPortal: OddsPapi does not cover it past
-  its first round.
+- Market odds for the current Major are read by hand: OddsPortal for the track record, CSGOEmpire for
+  the Market odds page. OddsPapi does not cover this Major past its first round, and CSGOEmpire's
+  terms forbid automated reading.
 - Ratings are tuned on reasoning, not yet on backtests of past Majors.
 - The team, matchup and odds-over-time pages are placeholders.
 - The site runs locally; it is not hosted anywhere yet.

@@ -47,6 +47,9 @@ future events too: formats live in config, never in code.
   - `score-stage.ts <event> <stage>` → score block in `data/events/<id>/accuracy.md`
   - `simulate.ts <event> <stage>` (prints odds; Swiss or playoffs) · `snapshot.ts <event> <stage>`
     (pre-round, once)
+  - `log-odds.ts <event> <stage> <round> <teamA> <oddsA> <teamB> <oddsB> ... --source "<name>|<url>"`
+    → margin-free bookmaker odds in `data/events/<id>/bookmaker-odds.json` for the Market odds page
+    (CSGOEmpire, read in Claude in Chrome on request; `log-odds` skill)
   - `log-result.ts ...` (manual) · `poll-liquipedia.ts <event>` (runs in GitHub Actions; needs `LIQUIPEDIA_CONTACT`;
     Swiss stages, then the playoff bracket once Stage 3 has advanced)
   - `check-swiss-flow.ts` / `check-playoff-flow.ts` → end-to-end Swiss (Stage 1 → playoffs seeded,
@@ -62,7 +65,8 @@ future events too: formats live in config, never in code.
    never rely on memory for rosters or results.
 4. `results.json` holds real results only. Snapshots are never edited. UI overrides never write files.
 5. Judgment enters the model only through `data/model/modifiers.json` (capped, sourced, expiring).
-6. HLTV and bo3.gg: interactive only (Browser pane), never in scheduled runs. Liquipedia: MediaWiki API
+6. HLTV, bo3.gg and CSGOEmpire: interactive only, never in scheduled runs (CSGOEmpire's terms forbid
+   bots; read it in Claude in Chrome, read-only). Liquipedia: MediaWiki API
    only, 1 request / 2 s, cached, User-Agent from `.env`.
 7. Data scripts commit to main after checks. Code, docs and `params.json` changes go via a branch + PR.
    Tag a known-good state before each stage (`stage1-start`, ...).
@@ -84,6 +88,7 @@ future events too: formats live in config, never in code.
 | Skill           | When                                                                                        |
 | --------------- | ------------------------------------------------------------------------------------------- |
 | `log-result`    | Record a real result, update ratings, re-simulate, snapshot (manual fallback to the poller) |
+| `log-odds`      | Read a round's bookmaker odds (CSGOEmpire, Chrome) and log them for the Market odds page    |
 | `research-team` | Research one team (or a stage) and update its data, notes and modifiers                     |
 | `simulate`      | Re-run the simulation and report the odds (read-only)                                       |
 | `review-stage`  | Score a finished stage, write lessons, propose capped changes via PR                        |

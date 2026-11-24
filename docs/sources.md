@@ -13,6 +13,7 @@ Checked 2026-11-21 from this machine (Claude desktop app).
 | 7   | News: Dust2.us, Sheep Esports, Dexerto, Dot Esports, pley.gg, Strafe | Rosters, interviews                                     | Web fetch                                                                    |
 | 8   | OddsPortal                                                           | Market odds (benchmark only)                            | **Interactive only**, Browser pane: decline cookies, open each match by clicking it on the event page (direct match URLs render no odds) |
 | 9   | OddsPapi (oddspapi.io)                                               | Market odds, automatic (benchmark only)                 | REST API, free plan, key `ODDSPAPI_KEY`; poller only, at most every 2 h       |
+| 10  | CSGOEmpire (csgoempire.com/match-betting)                            | One bookmaker's odds for the Market odds page           | **Interactive only**, Claude in Chrome, read-only, no sign-in needed. Never automated |
 
 ### Market odds (benchmarks.json)
 
@@ -34,6 +35,20 @@ start), read every bookmaker listed on each match's OddsPortal page. Per bookmak
 `p = (1/oddsA) / (1/oddsA + 1/oddsB)` removes its margin; `pA` is the mean over bookmakers. The
 source names the bookmaker count, the match URL and which of the two it was; `observedAt` is the
 time of reading. Never in-play odds.
+
+### Bookmaker odds (bookmaker-odds.json)
+
+The Market odds page compares the model with one bookmaker, CSGOEmpire. Before a round, its
+match-winner odds are read in Claude in Chrome (the built-in Browser pane cannot open the site) and
+logged with `scripts/log-odds.ts`, or from a screenshot or numbers the user sends (`--date`).
+`pA = (1/oddsA) / (1/oddsA + 1/oddsB)`; only `pA` is stored, never the odds, because the
+[terms](https://csgoempire.com/tos) forbid publishing or redistributing the site's content (read
+2026-11-24).
+
+Not automated: the odds come from the site's sportsbook provider (Betby, `sptpub.com`) through an
+undocumented API, the site runs bot detection (SEON), and the terms forbid "bots, scripts or automated
+systems" and reverse engineering (checked 2026-11-24). So no poller, scheduled task or cloud routine
+reads it.
 
 ## Liquipedia API rules (automation)
 
