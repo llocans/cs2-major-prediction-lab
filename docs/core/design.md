@@ -9,17 +9,18 @@ Hierarchy comes from type size, weight, spacing and alignment, not from boxes an
 
 ## Hard rules
 
-- No gradients, no glow, no emoji, no decorative shadows. Radius is small (2-4 px).
+- No gradients, no glow, no emoji (plain text marks like ✓ ✗ are fine), no decorative shadows. Radius is small (2-4 px).
 - Only our theme tokens exist: Tailwind's default color palette is removed (`--color-*: initial`).
 - One accent color. It marks predictions and the selected item. Real results use ink, never the accent.
 - Numbers are tabular (`font-variant-numeric: tabular-nums`) and right-aligned in tables.
-- Light and dark themes follow the system setting. Both use the same tokens.
+- Light and dark themes follow the system setting until the viewer picks one with the switch in the
+  nav (saved in the browser). Both use the same tokens.
 - Bracket lines and connectors are SVG using the same tokens.
 
 ## Tokens (defined in `site/src/theme.css`)
 
 - Colors: `paper`, `paper-2` (subtle fill), `ink`, `ink-2` (secondary), `ink-3` (muted), `rule` (lines),
-  `accent`, `accent-ink` (text on accent), `win`, `loss` (muted, used sparingly for W/L marks).
+  `accent`, `accent-ink` (text on accent), `win`, `loss` (muted, used sparingly for W/L marks and the model's pick marks).
 - Fonts: a condensed sans for headings and numbers, a neutral sans for text, both self-hosted or
   system fallbacks.
 - Spacing on a 4 px grid. Radius: `sm` 2 px, `md` 4 px.
@@ -29,6 +30,14 @@ Hierarchy comes from type size, weight, spacing and alignment, not from boxes an
 - Real result: solid ink, bold winner, score shown.
 - Predicted: accent color, the probability shown as a percentage, a dashed connector in the bracket.
 - User override: marked "override" in small caps and reflected in the URL.
+- Model's pick on a finished match: the favourite's pre-match % stays on its row, `win` with ✓ if it
+  won, `loss` crossed out with ✗ if it lost, `ink-3` with no mark under 55% (a coin flip). The colour
+  sits only on the pick, never on the whole match, so a losing team is never green.
+
+## Team names
+
+- The event's team names in headings, the bracket and tables; short names (Liquipedia's `TeamShort`,
+  e.g. NIP, LVG) in running text and tight spots. Never a third, longer variant.
 
 ## Behaviour
 
