@@ -2,6 +2,7 @@ import { stageSeeds } from '../../engine/swiss/stage-seeds.ts'
 import { ThemeToggle } from './components/ThemeToggle.tsx'
 import { currentEvent } from './lib/data.ts'
 import { type Route, useLocation } from './lib/router.ts'
+import { MarketOddsPage } from './pages/MarketOddsPage.tsx'
 import { MethodologyPage } from './pages/MethodologyPage.tsx'
 import { OverviewPage } from './pages/OverviewPage.tsx'
 import { PickemPage } from './pages/PickemPage.tsx'
@@ -21,6 +22,7 @@ const nav: Array<{ label: string; href: string; active: (route: Route) => boolea
     })),
   { label: 'Playoffs', href: '#/playoffs', active: (r) => r.page === 'playoffs' },
   { label: "Pick'Em", href: '#/pickem', active: (r) => r.page === 'pickem' },
+  { label: 'Market odds', href: '#/market', active: (r) => r.page === 'market' },
   { label: 'Track record', href: '#/track-record', active: (r) => r.page === 'track-record' },
   { label: 'Methodology', href: '#/methodology', active: (r) => r.page === 'methodology' },
 ]
@@ -108,6 +110,8 @@ function Page({ route, query }: { route: Route; query: URLSearchParams }) {
       return <MethodologyPage event={event} />
     case 'pickem':
       return <PickemPage event={event} stageId={route.stageId} />
+    case 'market':
+      return <MarketOddsPage event={event} stageId={route.stageId} />
     case 'not-found':
       return <PlaceholderPage title="Not found" description="This page does not exist." />
   }
