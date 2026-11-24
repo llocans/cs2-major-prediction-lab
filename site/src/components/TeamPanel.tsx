@@ -51,9 +51,7 @@ export function TeamPanel(props: Props) {
         {rating && (
           <div className="num text-sm text-ink-2">
             Rating {Math.round(rating.rating)} ± {Math.round(rating.rd)}
-            {rating.rd >= LITTLE_DATA_RD && (
-              <span className="text-ink-3"> · little tier-1 data</span>
-            )}
+            {rating.rd >= LITTLE_DATA_RD && <span className="text-ink-3"> · little data</span>}
           </div>
         )}
       </header>
@@ -108,7 +106,8 @@ export function TeamPanel(props: Props) {
           </dl>
           {unsure.length > 0 && (
             <p className="mt-1 text-xs text-ink-3">
-              Little tier-1 data on {unsure.map(short).join(' and ')}, so these odds are rough.
+              Little data on {unsure.map(short).join(' and ')} (few tier-1 matches), so these odds
+              are rough.
             </p>
           )}
         </Section>
@@ -216,13 +215,24 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 function ModelChance({ p, won }: { p: number | undefined; won: boolean }) {
   if (p === undefined) return <span className="text-ink-3">–</span>
   const verdict = chanceVerdict(p, won)
+  // The mark sits in a fixed slot, so the digits line up whether or not a row has one.
+  const mark = (text: string) => <span className="inline-block w-4 text-right">{text}</span>
   if (verdict === undefined || verdict === 'coin-flip')
-    return <span className="text-ink-2">{pct(p)}</span>
+    return (
+      <span className="text-ink-2">
+        {pct(p)}
+        {mark('')}
+      </span>
+    )
   return verdict === 'hit' ? (
-    <span className="font-semibold text-win">{pct(p)} ✓</span>
+    <span className="font-semibold text-win">
+      {pct(p)}
+      {mark('✓')}
+    </span>
   ) : (
     <span className="font-semibold text-loss">
-      <span className="line-through">{pct(p)}</span> ✗
+      <span className="line-through">{pct(p)}</span>
+      {mark('✗')}
     </span>
   )
 }

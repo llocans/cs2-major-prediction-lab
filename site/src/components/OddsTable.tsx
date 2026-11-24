@@ -86,7 +86,7 @@ export function OddsTable(props: Props) {
             onClick={() => onSelect(team.teamId)}
           >
             <td className="whitespace-nowrap py-2 pr-2">
-              <TeamLogo teamId={team.teamId} className="mr-2 align-[-3px]" />
+              <TeamLogo teamId={team.teamId} className="mr-2 align-middle" />
               <span className={selected === team.teamId ? 'font-semibold' : ''}>
                 <span className="sm:hidden">{short(team.teamId)}</span>
                 <span className="hidden sm:inline">{name(team.teamId)}</span>

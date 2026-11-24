@@ -121,8 +121,13 @@ export function StagePage({ event, stage, query }: Props) {
     next.set('team', teamId)
     setQuery(next)
     // On narrow screens the panel is not beside the bracket or table, so bring it into view.
+    // After the hash change has rendered, or the navigation cancels the scroll.
     if (window.matchMedia('(max-width: 1023px)').matches)
-      document.getElementById('team-panel')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      window.setTimeout(() => {
+        document
+          .getElementById('team-panel')
+          ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 50)
   }
   const outlook = prediction?.teams.find((t) => t.teamId === selected)
   const next = prediction?.matches.find((m) => m.teamA === selected || m.teamB === selected)
@@ -222,17 +227,18 @@ function roundStatus(round: number, real: ReadonlyArray<{ round: number }>): str
 
 function Legend({ overrides, onReset }: { overrides: number; onReset: () => void }) {
   return (
-    <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-ink-3">
+    <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs leading-6 text-ink-3">
       <span className="font-semibold uppercase tracking-wider">The bracket:</span>
       <span>
-        <span className="rounded-sm bg-accent-soft px-1 py-0.5 text-accent">62%</span> model's
-        chance to win; click it to force a what-if win (
-        <span className="rounded-sm bg-accent-soft px-1 py-0.5 text-accent">W*</span>)
+        <span className="font-semibold text-accent">62%</span> model's chance to win; click it to
+        force a what-if win{' '}
+        <span className="whitespace-nowrap">
+          (<span className="rounded-sm bg-accent-soft px-1 py-0.5 text-accent">W*</span>)
+        </span>
       </span>
       <span>
         <span className="font-semibold text-win">✓</span> /{' '}
-        <span className="font-semibold text-loss">✗</span> model's pick won / lost (grey: too close
-        to call)
+        <span className="font-semibold text-loss">✗</span> model's pick won / lost (grey: coin flip)
       </span>
       <span>
         <span className="font-semibold text-win">→</span> winners,{' '}

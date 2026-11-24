@@ -165,8 +165,8 @@ function RoundSection(props: {
           <thead>
             <tr className="border-b border-ink text-left font-display text-xs uppercase tracking-wider text-ink-2">
               <th className="py-1 pr-1.5 font-semibold sm:pr-2">Match</th>
-              <th className="py-1 pr-1.5 text-right font-semibold sm:pr-2">Model</th>
-              <th className="py-1 pr-1.5 text-right font-semibold sm:pr-2">Market</th>
+              <th className="py-1 pr-2.5 text-right font-semibold sm:pr-2">Model</th>
+              <th className="py-1 pr-2.5 text-right font-semibold sm:pr-2">Market</th>
               <th
                 className="py-1 pr-1.5 pl-2 font-semibold sm:pr-2 sm:pl-6"
                 title="How sure the model is: high needs solid data on both teams and a clear favourite"
@@ -200,8 +200,8 @@ function MatchRows({ match, name }: { match: MarketMatch; name: (id: string) => 
     <tbody className="border-b border-rule" title={match.reason}>
       {sides.map((side, i) => (
         <tr key={side.team}>
-          <td className={`whitespace-nowrap pr-1.5 sm:pr-2 ${i === 0 ? 'pt-1.5' : 'pb-1.5'}`}>
-            <TeamLogo teamId={side.team} className="mr-2 align-[-3px]" />
+          <td className={`whitespace-nowrap pr-2.5 sm:pr-2 ${i === 0 ? 'pt-1.5' : 'pb-1.5'}`}>
+            <TeamLogo teamId={side.team} className="mr-2 align-middle" />
             <span className={match.result?.winner === side.team ? 'font-semibold' : ''}>
               {name(side.team)}
             </span>
@@ -212,12 +212,12 @@ function MatchRows({ match, name }: { match: MarketMatch; name: (id: string) => 
             )}
           </td>
           <td
-            className={`num pr-1.5 text-right text-accent sm:pr-2 ${i === 0 ? 'pt-1.5' : 'pb-1.5'}`}
+            className={`num pr-2.5 text-right text-accent sm:pr-2 ${i === 0 ? 'pt-1.5' : 'pb-1.5'}`}
           >
             {pct(side.model)}
           </td>
           <td
-            className={`num pr-1.5 text-right text-ink-2 sm:pr-2 ${i === 0 ? 'pt-1.5' : 'pb-1.5'}`}
+            className={`num pr-2.5 text-right text-ink-2 sm:pr-2 ${i === 0 ? 'pt-1.5' : 'pb-1.5'}`}
           >
             {side.market === undefined ? '–' : pct(side.market)}
           </td>

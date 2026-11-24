@@ -44,7 +44,7 @@ export function PlayoffOddsTable({ columns, rows, tagLabel, name, note }: Props)
           {rows.map((row) => (
             <tr key={row.teamId} className="border-b border-rule" title={row.reason}>
               <td className="py-1.5 pr-2">
-                <TeamLogo teamId={row.teamId} className="mr-2 align-[-3px]" />
+                <TeamLogo teamId={row.teamId} className="mr-2 align-middle" />
                 {name(row.teamId)}
               </td>
               <td className="num px-2 py-1.5 text-right text-ink-2">{row.tag}</td>
