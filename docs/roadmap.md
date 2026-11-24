@@ -48,6 +48,15 @@ belong in `data/events/<id>/status.md`, not here.
   leaves it in and it often ends up as the guess, while real teams ban it. Options: show per-map
   chances from the simulation, score map guesses on the Track record page, treat an unplayed map as
   a likely ban at smaller samples (changes predictions: ask first).
+  Related, found 2026-11-24: in Bo1 the reason "HEROIC +32 rating on average" (round 3 vs M80) sat
+  next to a 49% chance. Not a bug: HEROIC's edge is on Ancient, Inferno and Nuke (62-64%), M80 bans
+  those, HEROIC bans its weak maps, and the expected decider Mirage is 50/50. The average over all
+  seven maps misleads in a Bo1; the reason could name the likely map's chance first. The bans rest
+  on small samples (e.g. HEROIC 3-4 on Mirage, M80 1-4 on Inferno).
+- **Underdogs above the market.** In Stage 1 rounds 1-3 the model gave the underdog more than the
+  bookmaker in most matches (Market odds page). Either the market is wrong or the model pulls toward
+  50% too much (rating uncertainty, the flat VRS prior). Check after Stage 1 on the Track record
+  calibration table and the Market odds record; any change goes through `review-stage` (capped).
 - **Fix the Pick'Em page (user, 2026-11-24).** It works oddly: picks don't lock, and the flow doesn't
   make sense. Go through it with the user first to list what should lock when (e.g. after a stage
   starts) and what feels wrong, then fix.
@@ -78,6 +87,9 @@ belong in `data/events/<id>/status.md`, not here.
 - **Hosting.** The site is a static build and runs locally only. The repo is public, so GitHub Pages
   is an option.
 - **Next event.** A new folder under `data/events/` (see "Adding an event" in the README).
+- **Round markets (idea, 2026-11-24).** Price round handicaps and total rounds: turn a map chance
+  into a per-round win rate and simulate MR12 with overtime. Rough (ignores pistol rounds, economy and
+  CT/T sides), so it needs real round scores to check before it is shown.
 - **Small chores.** Bo1 vs Bo3 splits in the team notes are "not collected yet"; `biome.json` uses
   the deprecated `recommended` field (`npx biome migrate`).
 
@@ -124,3 +136,6 @@ belong in `data/events/<id>/status.md`, not here.
 - 2026-11-24: Team logos next to team names in tables, brackets, Pick'Em and the team panel, light
   and dark versions (`research/team-logos.ts`, Liquipedia team templates); GOSH and THE ONE show
   their Major logos.
+- 2026-11-24: Parallel chats: golden rule 13 (one folder, one chat; others in their own worktree)
+  and a session-start warning when the folder already has uncommitted changes. Round 3's HEROIC vs
+  M80 odds checked (veto, not a bug); underdog bias and round markets added as open items.
