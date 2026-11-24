@@ -1,5 +1,11 @@
-import { globSync } from 'node:fs'
-import { EventTeams, schemaForPath, TeamRegistry } from '../../data/schemas/index.ts'
+import { existsSync, globSync } from 'node:fs'
+import {
+  EventTeams,
+  LOGO_DIR,
+  schemaForPath,
+  TeamRegistry,
+  teamLogoPaths,
+} from '../../data/schemas/index.ts'
 import { DataError, readJson, repoPath, repoRoot } from './files.ts'
 
 /** Validates every data file and cross-file references. Returns the problems found (empty = valid). */
@@ -25,6 +31,7 @@ export function validateAllData(): { checked: number; problems: string[] } {
   try {
     const registry = readJson(repoPath('data/teams/registry.json'), TeamRegistry)
     const known = new Set(registry.teams.map((team) => team.id))
+    problems.push(...checkLogoFiles(registry))
     for (const teamsFile of globSync('data/events/*/teams.json', { cwd: repoRoot })) {
       for (const participant of readJson(repoPath(teamsFile), EventTeams).participants) {
         if (!known.has(participant.teamId)) {
@@ -38,4 +45,36 @@ export function validateAllData(): { checked: number; problems: string[] } {
   }
 
   return { checked, problems }
+}
+
+/**
+ * Each logo in the registry and in events' teams.json has its files in site/public/, and every file
+ * there belongs to one of them.
+ */
+function checkLogoFiles(registry: TeamRegistry): string[] {
+  const problems: string[] = []
+  const expected = new Set<string>()
+  const expect = (where: string, teamId: string, paths: Record<string, string> | undefined) => {
+    for (const path of Object.values(paths ?? {})) {
+      expected.add(path)
+      if (!existsSync(repoPath('site/public', path))) {
+        problems.push(`${where}: ${teamId} logo file site/public/${path} is missing`)
+      }
+    }
+  }
+  for (const team of registry.teams) {
+    expect('data/teams/registry.json', team.id, teamLogoPaths(team.id, team.logo))
+  }
+  for (const teamsFile of globSync('data/events/*/teams.json', { cwd: repoRoot })) {
+    const teams = readJson(repoPath(teamsFile), EventTeams)
+    for (const p of teams.participants) {
+      expect(teamsFile, p.teamId, teamLogoPaths(p.teamId, p.logo, teams.eventId))
+    }
+  }
+  for (const path of globSync(`${LOGO_DIR}/**/*.png`, { cwd: repoPath('site/public') })) {
+    if (!expected.has(path)) {
+      problems.push(`site/public/${path}: no team or event uses this logo`)
+    }
+  }
+  return problems
 }

@@ -252,6 +252,33 @@ export function matchWinner(match: WikiMatch): 1 | 2 | undefined {
  * Reads the output of `id={{TeamShort|key}}` lines expanded by Liquipedia: each line ends in
  * `[[Team page|SHORT]]`. Returns id → { page, short } for the lines that resolved.
  */
+/**
+ * Logo file names from `<key>={{TeamShort|...}}` lines expanded by Liquipedia (a key is anything
+ * without spaces or "="). A team with separate
+ * versions wraps them in `team-template-lightmode` / `team-template-darkmode` spans; a team with one
+ * logo for both themes ("allmode") has a single file. `dark` is set only when it differs from `light`.
+ */
+export function parseTeamLogoLines(
+  wikitext: string,
+): Map<string, { light: string; dark?: string }> {
+  const result = new Map<string, { light: string; dark?: string }>()
+  const file = (mode: string, line: string) =>
+    new RegExp(`team-template-${mode}[^\\[]*\\[\\[(?:File|Image):([^|\\]]+)`, 'i')
+      .exec(line)?.[1]
+      ?.trim()
+  for (const line of wikitext.split('\n')) {
+    const id = /^([^=\s]+)=/.exec(line)?.[1]
+    if (!id) continue
+    const files = [...line.matchAll(/\[\[(?:File|Image):([^|\]]+)/gi)].map((m) => m[1]?.trim())
+    const only = files.length === 1 ? files[0] : undefined
+    const light = file('lightmode', line) ?? only
+    const dark = file('darkmode', line) ?? only
+    if (!light) continue
+    result.set(id, dark && dark !== light ? { light, dark } : { light })
+  }
+  return result
+}
+
 export function parseTeamShortLines(
   wikitext: string,
 ): Map<string, { page: string; short: string }> {

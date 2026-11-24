@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { latestRevid, retryDelayMs } from './liquipedia.ts'
+import { downloadFile, imageThumbUrls, latestRevid, retryDelayMs } from './liquipedia.ts'
 
 describe('retryDelayMs', () => {
   it('follows Retry-After within 10-90 s, else waits 30 s', () => {
@@ -66,6 +66,49 @@ describe('Liquipedia requests', () => {
     await vi.advanceTimersByTimeAsync(31_000)
     await checked
     expect(fetch).toHaveBeenCalledTimes(2)
+  })
+
+  it('maps image links back to the file names asked, preferring the scaled copy', async () => {
+    const fetch = vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce(
+      reply(200, {
+        query: {
+          normalized: [{ from: 'File:A logo.png', to: 'File:A logo.png' }],
+          pages: {
+            '1': {
+              title: 'File:A logo.png',
+              imageinfo: [
+                {
+                  url: 'https://liquipedia.net/a.png',
+                  thumburl: 'https://liquipedia.net/thumb/a.png',
+                },
+              ],
+            },
+            '2': {
+              title: 'File:B.png',
+              imageinfo: [{ url: 'https://liquipedia.net/b.png' }],
+            },
+            '-1': { title: 'File:Missing.png' },
+          },
+        },
+      }),
+    )
+    const urls = await imageThumbUrls(['A logo.png', 'B.png', 'Missing.png'], {
+      width: 120,
+      height: 80,
+    })
+    expect(urls).toEqual(
+      new Map([
+        ['A logo.png', 'https://liquipedia.net/thumb/a.png'],
+        ['B.png', 'https://liquipedia.net/b.png'],
+      ]),
+    )
+    const asked = new URL(String(fetch.mock.calls[0]?.[0]))
+    expect(asked.searchParams.get('iiurlwidth')).toBe('120')
+    expect(asked.searchParams.get('titles')).toBe('File:A logo.png|File:B.png|File:Missing.png')
+  })
+
+  it('downloads files from Liquipedia only', async () => {
+    await expect(downloadFile('https://example.com/a.png')).rejects.toThrow('Not a Liquipedia file')
   })
 
   it('does not retry other errors', async () => {

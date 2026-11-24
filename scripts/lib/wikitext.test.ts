@@ -91,6 +91,28 @@ describe('readBracketPage', () => {
   })
 })
 
+describe('parseTeamLogoLines', () => {
+  it('reads light and dark logo files, or one file for both themes', async () => {
+    const { parseTeamLogoLines } = await import('./wikitext.ts')
+    const text = [
+      'nip=<span class="team-template-team-short"><span class="team-template-image-icon team-template-lightmode">[[File:Ninjas in Pyjamas 2021 lightmode.png|100x50px|link=Ninjas in Pyjamas|Ninjas in Pyjamas]]</span><span class="team-template-image-icon team-template-darkmode">[[File:Ninjas in Pyjamas 2021 darkmode.png|100x50px|link=Ninjas in Pyjamas|Ninjas in Pyjamas]]</span> <span class="team-template-text">[[Ninjas in Pyjamas|NIP]]</span></span>',
+      'parivision=<span class="team-template-team-short"><span class="team-template-image-icon">[[File:PARIVISION allmode.png|100x50px|link=PARIVISION|PARIVISION]]</span> <span class="team-template-text">[[PARIVISION|PV]]</span></span>',
+      'same=<span class="team-template-image-icon team-template-lightmode">[[File:X.png|100x50px]]</span><span class="team-template-image-icon team-template-darkmode">[[File:X.png|100x50px]]</span>',
+      'broken=<span class="error">unknown team</span>',
+    ].join('\n')
+    const result = parseTeamLogoLines(text)
+    expect(result.get('nip')).toEqual({
+      light: 'Ninjas in Pyjamas 2021 lightmode.png',
+      dark: 'Ninjas in Pyjamas 2021 darkmode.png',
+    })
+    expect(result.get('parivision')).toEqual({
+      light: 'PARIVISION allmode.png',
+    })
+    expect(result.get('same')).toEqual({ light: 'X.png' })
+    expect(result.has('broken')).toBe(false)
+  })
+})
+
 describe('parseTeamShortLines', () => {
   it('reads the short name from the last non-file link of each line', async () => {
     const { parseTeamShortLines } = await import('./wikitext.ts')
