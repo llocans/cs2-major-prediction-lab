@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-24T10:32:04.490Z",
-  "reason": "log-result stage-1-r2-chinggis-warriors-heroic",
+  "asOf": "2026-11-24T10:47:04.092Z",
+  "reason": "log-result stage-1-r2-9z-m80",
   "teams": {
     "nip": {
       "rating": 1549.3,
@@ -375,8 +375,8 @@
       ]
     },
     "9z": {
-      "rating": 1483.7,
-      "rd": 59.3,
+      "rating": 1474.8,
+      "rd": 58.5,
       "maps": {
         "nuke": {
           "offset": -26.7,
@@ -384,9 +384,9 @@
           "n": 10
         },
         "mirage": {
-          "offset": 38.2,
-          "rd": 61.96773353931867,
-          "n": 8
+          "offset": 35.5,
+          "rd": 60.5,
+          "n": 9
         },
         "dust2": {
           "offset": 51.2,
@@ -428,8 +428,8 @@
       ]
     },
     "m80": {
-      "rating": 1486.8,
-      "rd": 59.2,
+      "rating": 1495.7,
+      "rd": 58.4,
       "maps": {
         "cache": {
           "offset": 23.9,
@@ -437,9 +437,9 @@
           "n": 9
         },
         "mirage": {
-          "offset": -13.2,
-          "rd": 59.1,
-          "n": 10
+          "offset": -10.8,
+          "rd": 57.8,
+          "n": 11
         },
         "dust2": {
           "offset": 16.4,
