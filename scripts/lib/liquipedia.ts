@@ -48,6 +48,11 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 async function throttledGet(params: Record<string, string>, minRetryMs = 0): Promise<unknown> {
   const url = `${API}?${new URLSearchParams({ format: 'json', ...params })}`
+  return (await throttledFetch(url, params.titles ?? url, minRetryMs)).json()
+}
+
+/** One request at Liquipedia's pace, with the one retry after a 429 or 503. */
+async function throttledFetch(url: string, label: string, minRetryMs = 0): Promise<Response> {
   for (let attempt = 1; ; attempt++) {
     const wait = lastRequestAt + MIN_INTERVAL_MS - Date.now()
     if (wait > 0) await sleep(wait)
@@ -55,15 +60,59 @@ async function throttledGet(params: Record<string, string>, minRetryMs = 0): Pro
     const response = await fetch(url, {
       headers: { 'User-Agent': userAgent(), 'Accept-Encoding': 'gzip' },
     })
-    if (response.ok) return response.json()
+    if (response.ok) return response
     // Rate limited or briefly unavailable: wait as asked and try once more. The error text keeps
     // "Liquipedia <status>", which the poll loop reads to switch to a fresh runner (poll-loop.sh).
     if (attempt === 1 && (response.status === 429 || response.status === 503)) {
       await sleep(Math.max(minRetryMs, retryDelayMs(response.headers.get('retry-after'))))
       continue
     }
-    throw new Error(`Liquipedia ${response.status} for ${params.titles ?? url}`)
+    throw new Error(`Liquipedia ${response.status} for ${label}`)
   }
+}
+
+interface ImageInfoResponse {
+  query?: {
+    normalized?: Array<{ from: string; to: string }>
+    pages?: Record<string, { title: string; imageinfo?: Array<{ thumburl?: string; url: string }> }>
+  }
+}
+
+/**
+ * Download links for Liquipedia files, scaled by Liquipedia to fit a `width` x `height` box (the
+ * original when it is already smaller). Keys are the file names as given, without "File:". One
+ * action=query request per 50 files.
+ */
+export async function imageThumbUrls(
+  files: string[],
+  box: { width: number; height: number },
+): Promise<Map<string, string>> {
+  const result = new Map<string, string>()
+  for (let i = 0; i < files.length; i += 50) {
+    const batch = files.slice(i, i + 50)
+    const data = (await throttledGet({
+      action: 'query',
+      prop: 'imageinfo',
+      iiprop: 'url',
+      iiurlwidth: String(box.width),
+      iiurlheight: String(box.height),
+      titles: batch.map((file) => `File:${file}`).join('|'),
+    })) as ImageInfoResponse
+    const asked = new Map((data.query?.normalized ?? []).map((n) => [n.to, n.from]))
+    for (const page of Object.values(data.query?.pages ?? {})) {
+      const info = page.imageinfo?.[0]
+      if (!info) continue
+      const name = (asked.get(page.title) ?? page.title).replace(/^File:/, '')
+      result.set(name, info.thumburl ?? info.url)
+    }
+  }
+  return result
+}
+
+/** Downloads one Liquipedia file (an image link from `imageThumbUrls`), at the API's pace. */
+export async function downloadFile(url: string): Promise<Uint8Array> {
+  if (new URL(url).hostname !== 'liquipedia.net') throw new Error(`Not a Liquipedia file: ${url}`)
+  return new Uint8Array(await (await throttledFetch(url, url)).arrayBuffer())
 }
 
 interface RevisionsResponse {

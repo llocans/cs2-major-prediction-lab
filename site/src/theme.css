@@ -84,6 +84,25 @@
   color-scheme: light;
 }
 
+/* Team logos with a separate dark version (TeamLogo.tsx): show the one for the theme on screen. */
+.logo-dark {
+  display: none;
+}
+:root[data-theme="dark"] .logo-light {
+  display: none;
+}
+:root[data-theme="dark"] .logo-dark {
+  display: block;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .logo-light {
+    display: none;
+  }
+  :root:not([data-theme="light"]) .logo-dark {
+    display: block;
+  }
+}
+
 html {
   background: var(--paper);
   color: var(--ink);

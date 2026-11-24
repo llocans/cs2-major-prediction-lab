@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { Source, TeamId } from './common.ts'
+import { LogoFiles } from './teams-registry.ts'
 
 export const EventParticipant = z.object({
   teamId: TeamId,
@@ -11,6 +12,12 @@ export const EventParticipant = z.object({
    * `displayName`, by the file's `source` list.
    */
   shortName: z.string().optional(),
+  /**
+   * Logo at this event, only for a team renamed for it (`shortName` set) whose Liquipedia team
+   * template, dated to its first stage, gives another file (e.g. GOSH for BC.Game). Written by
+   * scripts/research/team-logos.ts.
+   */
+  logo: LogoFiles.optional(),
   /** Stage the team enters in. */
   entryStage: z.string(),
   /** Seed within the entry stage (1-16). */

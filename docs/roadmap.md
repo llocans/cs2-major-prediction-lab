@@ -55,6 +55,12 @@ belong in `data/events/<id>/status.md`, not here.
   read at a glance. Simplify after core features are settled (user, 2026-11-23). Ideas parked until
   then: per-match market % on the Track record rows (the data is already in `benchmarks.json`).
   First pass done 2026-11-24 (see Done); the `ui-review` skill checks the rest.
+- **Nemiga's logo is marked temporary.** Liquipedia's team template uses
+  `Nemiga Gaming 2020 temporary.png`. Re-run `research/team-logos.ts` before each event; it picks up
+  a new file once Liquipedia changes the template.
+- **Short names by date.** `research/short-names.ts` reads the undated team template, so GOSH and
+  THE ONE got their `shortName` by hand. Dating the template for renamed teams (as `team-logos.ts`
+  does) would set it automatically.
 
 ## After the event
 
@@ -108,3 +114,6 @@ belong in `data/events/<id>/status.md`, not here.
   one tab per stage and a folding section per round; picks follow a fixed rule (an edge of 5 points
   or more, none with little tier-1 data). `scripts/log-odds.ts`, `log-odds` skill,
   `bookmaker-odds.json` backfilled for Stage 1 rounds 1-3.
+- 2026-11-24: Team logos next to team names in tables, brackets, Pick'Em and the team panel, light
+  and dark versions (`research/team-logos.ts`, Liquipedia team templates); GOSH and THE ONE show
+  their Major logos.

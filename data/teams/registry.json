@@ -18,6 +18,16 @@
           "license": "CC-BY-SA 3.0"
         }
       },
+      "logo": {
+        "light": "Ninjas in Pyjamas 2021 lightmode.png",
+        "dark": "Ninjas in Pyjamas 2021 darkmode.png",
+        "source": {
+          "name": "Liquipedia file Ninjas in Pyjamas 2021 lightmode.png / Ninjas in Pyjamas 2021 darkmode.png (TeamShort|nip)",
+          "url": "https://liquipedia.net/commons/File:Ninjas_in_Pyjamas_2021_lightmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "liquipedia": "nip",
       "liquipediaPage": "Ninjas in Pyjamas",
       "vrsName": "Ninjas in Pyjamas",
@@ -179,6 +189,15 @@
           "license": "CC-BY-SA 3.0"
         }
       },
+      "logo": {
+        "light": "PARIVISION allmode.png",
+        "source": {
+          "name": "Liquipedia file PARIVISION allmode.png (TeamShort|pvision)",
+          "url": "https://liquipedia.net/commons/File:PARIVISION_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "liquipedia": "pvision",
       "liquipediaPage": "PARIVISION",
       "vrsName": "PARIVISION",
@@ -310,6 +329,15 @@
           "url": "https://liquipedia.net/counterstrike/HEROIC",
           "retrievedAt": "2026-11-24",
           "license": "CC-BY-SA 3.0"
+        }
+      },
+      "logo": {
+        "light": "HEROIC 2024 allmode.png",
+        "source": {
+          "name": "Liquipedia file HEROIC 2024 allmode.png (TeamShort|heroic)",
+          "url": "https://liquipedia.net/commons/File:HEROIC_2024_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
         }
       },
       "liquipedia": "heroic",
@@ -472,6 +500,16 @@
           "license": "CC-BY-SA 3.0"
         }
       },
+      "logo": {
+        "light": "FaZe Esports 2026 lightmode.png",
+        "dark": "FaZe Esports 2026 darkmode.png",
+        "source": {
+          "name": "Liquipedia file FaZe Esports 2026 lightmode.png / FaZe Esports 2026 darkmode.png (TeamShort|faze)",
+          "url": "https://liquipedia.net/commons/File:FaZe_Esports_2026_lightmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "liquipedia": "faze",
       "liquipediaPage": "FaZe Clan",
       "vrsName": "FaZe",
@@ -609,6 +647,16 @@
           "license": "CC-BY-SA 3.0"
         }
       },
+      "logo": {
+        "light": "Team Liquid 2024 lightmode.png",
+        "dark": "Team Liquid 2024 darkmode.png",
+        "source": {
+          "name": "Liquipedia file Team Liquid 2024 lightmode.png / Team Liquid 2024 darkmode.png (TeamShort|tl)",
+          "url": "https://liquipedia.net/commons/File:Team_Liquid_2024_lightmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "liquipedia": "tl",
       "liquipediaPage": "Team Liquid",
       "vrsName": "Liquid",
@@ -743,6 +791,15 @@
           "url": "https://liquipedia.net/counterstrike/Eternal_Fire",
           "retrievedAt": "2026-11-24",
           "license": "CC-BY-SA 3.0"
+        }
+      },
+      "logo": {
+        "light": "Eternal Fire 2023 allmode.png",
+        "source": {
+          "name": "Liquipedia file Eternal Fire 2023 allmode.png (TeamShort|ef)",
+          "url": "https://liquipedia.net/commons/File:Eternal_Fire_2023_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
         }
       },
       "liquipedia": "ef",
@@ -977,6 +1034,16 @@
           "license": "CC-BY-SA 3.0"
         }
       },
+      "logo": {
+        "light": "100 Thieves lightmode.png",
+        "dark": "100 Thieves darkmode.png",
+        "source": {
+          "name": "Liquipedia file 100 Thieves lightmode.png / 100 Thieves darkmode.png (TeamShort|100t)",
+          "url": "https://liquipedia.net/commons/File:100_Thieves_lightmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "liquipedia": "100t",
       "liquipediaPage": "100 Thieves",
       "vrsName": "100 Thieves",
@@ -1101,6 +1168,16 @@
           "license": "CC-BY-SA 3.0"
         }
       },
+      "logo": {
+        "light": "9z Team 2026 lightmode.png",
+        "dark": "9z Team 2026 darkmode.png",
+        "source": {
+          "name": "Liquipedia file 9z Team 2026 lightmode.png / 9z Team 2026 darkmode.png (TeamShort|9z)",
+          "url": "https://liquipedia.net/commons/File:9z_Team_2026_lightmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "liquipedia": "9z",
       "liquipediaPage": "9z Team",
       "vrsName": "9z",
@@ -1210,6 +1287,15 @@
           "license": "CC-BY-SA 3.0"
         }
       },
+      "logo": {
+        "light": "M80 2023 allmode.png",
+        "source": {
+          "name": "Liquipedia file M80 2023 allmode.png (TeamShort|m80)",
+          "url": "https://liquipedia.net/commons/File:M80_2023_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "liquipedia": "m80",
       "liquipediaPage": "M80",
       "vrsName": "M80",
@@ -1308,6 +1394,15 @@
           "url": "https://liquipedia.net/counterstrike/DENDELE_CS",
           "retrievedAt": "2026-11-24",
           "license": "CC-BY-SA 3.0"
+        }
+      },
+      "logo": {
+        "light": "DENDELE CS allmode.png",
+        "source": {
+          "name": "Liquipedia file DENDELE CS allmode.png (TeamShort|dendele)",
+          "url": "https://liquipedia.net/commons/File:DENDELE_CS_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
         }
       },
       "liquipedia": "dendele",
@@ -1409,6 +1504,15 @@
           "url": "https://liquipedia.net/counterstrike/Imperial_Esports",
           "retrievedAt": "2026-11-24",
           "license": "CC-BY-SA 3.0"
+        }
+      },
+      "logo": {
+        "light": "Imperial Esports 2025 allmode.png",
+        "source": {
+          "name": "Liquipedia file Imperial Esports 2025 allmode.png (TeamShort|imp)",
+          "url": "https://liquipedia.net/commons/File:Imperial_Esports_2025_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
         }
       },
       "liquipedia": "imp",
@@ -1558,6 +1662,16 @@
           "url": "https://liquipedia.net/counterstrike/Wildcard",
           "retrievedAt": "2026-11-24",
           "license": "CC-BY-SA 3.0"
+        }
+      },
+      "logo": {
+        "light": "Wildcard 2024 lightmode.png",
+        "dark": "Wildcard 2024 darkmode.png",
+        "source": {
+          "name": "Liquipedia file Wildcard 2024 lightmode.png / Wildcard 2024 darkmode.png (TeamShort|wildcard)",
+          "url": "https://liquipedia.net/commons/File:Wildcard_2024_lightmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
         }
       },
       "liquipedia": "wildcard",
@@ -1722,6 +1836,15 @@
           "license": "CC-BY-SA 3.0"
         }
       },
+      "logo": {
+        "light": "BC.Game 2025 allmode.png",
+        "source": {
+          "name": "Liquipedia file BC.Game 2025 allmode.png (TeamShort|gosh)",
+          "url": "https://liquipedia.net/commons/File:BC.Game_2025_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "liquipedia": "gosh",
       "liquipediaPage": "BC.Game Esports",
       "vrsName": "BC.Game",
@@ -1878,6 +2001,15 @@
           "license": "CC-BY-SA 3.0"
         }
       },
+      "logo": {
+        "light": "FlyQuest 2021 allmode.png",
+        "source": {
+          "name": "Liquipedia file FlyQuest 2021 allmode.png (TeamShort|fq)",
+          "url": "https://liquipedia.net/commons/File:FlyQuest_2021_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "liquipedia": "fq",
       "liquipediaPage": "FlyQuest",
       "vrsName": "FlyQuest",
@@ -1997,6 +2129,15 @@
           "url": "https://liquipedia.net/counterstrike/Chinggis_Warriors",
           "retrievedAt": "2026-11-24",
           "license": "CC-BY-SA 3.0"
+        }
+      },
+      "logo": {
+        "light": "CW allmode.png",
+        "source": {
+          "name": "Liquipedia file CW allmode.png (TeamShort|chinggis)",
+          "url": "https://liquipedia.net/commons/File:CW_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
         }
       },
       "liquipedia": "chinggis",
@@ -2171,6 +2312,15 @@
           "license": "CC-BY-SA 3.0"
         }
       },
+      "logo": {
+        "light": "Lynn Vision Gaming 2024 allmode.png",
+        "source": {
+          "name": "Liquipedia file Lynn Vision Gaming 2024 allmode.png (TeamShort|lvg)",
+          "url": "https://liquipedia.net/commons/File:Lynn_Vision_Gaming_2024_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "liquipedia": "lvg",
       "liquipediaPage": "Lynn Vision Gaming",
       "vrsName": "Lynn Vision",
@@ -2270,6 +2420,16 @@
           "url": "https://liquipedia.net/counterstrike/FUT_Esports",
           "retrievedAt": "2026-11-24",
           "license": "CC-BY-SA 3.0"
+        }
+      },
+      "logo": {
+        "light": "Futbolist 2021 lightmode.png",
+        "dark": "Futbolist 2021 darkmode.png",
+        "source": {
+          "name": "Liquipedia file Futbolist 2021 lightmode.png / Futbolist 2021 darkmode.png (TeamShort|fut)",
+          "url": "https://liquipedia.net/commons/File:Futbolist_2021_lightmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
         }
       },
       "liquipedia": "fut",
@@ -2407,6 +2567,15 @@
           "url": "https://liquipedia.net/counterstrike/Nemiga_Gaming",
           "retrievedAt": "2026-11-24",
           "license": "CC-BY-SA 3.0"
+        }
+      },
+      "logo": {
+        "light": "Nemiga Gaming 2020 temporary.png",
+        "source": {
+          "name": "Liquipedia file Nemiga Gaming 2020 temporary.png (TeamShort|nemiga)",
+          "url": "https://liquipedia.net/commons/File:Nemiga_Gaming_2020_temporary.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
         }
       },
       "liquipedia": "nemiga",
@@ -2547,6 +2716,16 @@
           "license": "CC-BY-SA 3.0"
         }
       },
+      "logo": {
+        "light": "G2 Esports 2020 lightmode.png",
+        "dark": "G2 Esports 2019 darkmode.png",
+        "source": {
+          "name": "Liquipedia file G2 Esports 2020 lightmode.png / G2 Esports 2019 darkmode.png (TeamShort|g2)",
+          "url": "https://liquipedia.net/commons/File:G2_Esports_2020_lightmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "liquipedia": "g2",
       "liquipediaPage": "G2 Esports",
       "vrsName": "G2",
@@ -2670,6 +2849,15 @@
           "url": "https://liquipedia.net/counterstrike/1w_Team",
           "retrievedAt": "2026-11-24",
           "license": "CC-BY-SA 3.0"
+        }
+      },
+      "logo": {
+        "light": "1win Team 2024 allmode.png",
+        "source": {
+          "name": "Liquipedia file 1win Team 2024 allmode.png (TeamShort|1w)",
+          "url": "https://liquipedia.net/commons/File:1win_Team_2024_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
         }
       },
       "liquipedia": "1w",
@@ -2857,6 +3045,16 @@
           "license": "CC-BY-SA 3.0"
         }
       },
+      "logo": {
+        "light": "Natus Vincere 2021 lightmode.png",
+        "dark": "Natus Vincere 2021 allmode.png",
+        "source": {
+          "name": "Liquipedia file Natus Vincere 2021 lightmode.png / Natus Vincere 2021 allmode.png (TeamShort|navi)",
+          "url": "https://liquipedia.net/commons/File:Natus_Vincere_2021_lightmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "liquipedia": "navi",
       "liquipediaPage": "Natus Vincere",
       "vrsName": "Natus Vincere",
@@ -2952,6 +3150,15 @@
           "url": "https://liquipedia.net/counterstrike/Astralis",
           "retrievedAt": "2026-11-24",
           "license": "CC-BY-SA 3.0"
+        }
+      },
+      "logo": {
+        "light": "Astralis 2020 allmode.png",
+        "source": {
+          "name": "Liquipedia file Astralis 2020 allmode.png (TeamShort|astralis)",
+          "url": "https://liquipedia.net/commons/File:Astralis_2020_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
         }
       },
       "liquipedia": "astralis",
@@ -3102,6 +3309,15 @@
           "license": "CC-BY-SA 3.0"
         }
       },
+      "logo": {
+        "light": "The MongolZ 2024 03 allmode.png",
+        "source": {
+          "name": "Liquipedia file The MongolZ 2024 03 allmode.png (TeamShort|mongolz)",
+          "url": "https://liquipedia.net/commons/File:The_MongolZ_2024_03_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "liquipedia": "mongolz",
       "liquipediaPage": "The MongolZ",
       "vrsName": "The MongolZ",
@@ -3221,6 +3437,16 @@
           "url": "https://liquipedia.net/counterstrike/MIBR",
           "retrievedAt": "2026-11-24",
           "license": "CC-BY-SA 3.0"
+        }
+      },
+      "logo": {
+        "light": "MIBR 2018 lightmode.png",
+        "dark": "MIBR 2018 darkmode.png",
+        "source": {
+          "name": "Liquipedia file MIBR 2018 lightmode.png / MIBR 2018 darkmode.png (TeamShort|mibr)",
+          "url": "https://liquipedia.net/commons/File:MIBR_2018_lightmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
         }
       },
       "liquipedia": "mibr",
@@ -3379,6 +3605,15 @@
           "license": "CC-BY-SA 3.0"
         }
       },
+      "logo": {
+        "light": "MOUZ allmode.png",
+        "source": {
+          "name": "Liquipedia file MOUZ allmode.png (TeamShort|mouz)",
+          "url": "https://liquipedia.net/commons/File:MOUZ_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "liquipedia": "mouz",
       "liquipediaPage": "MOUZ",
       "vrsName": "MOUZ",
@@ -3515,6 +3750,16 @@
           "license": "CC-BY-SA 3.0"
         }
       },
+      "logo": {
+        "light": "Team Vitality 2023 lightmode.png",
+        "dark": "Team Vitality 2023 darkmode.png",
+        "source": {
+          "name": "Liquipedia file Team Vitality 2023 lightmode.png / Team Vitality 2023 darkmode.png (TeamShort|vit)",
+          "url": "https://liquipedia.net/commons/File:Team_Vitality_2023_lightmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "liquipedia": "vit",
       "liquipediaPage": "Team Vitality",
       "vrsName": "Vitality",
@@ -3613,6 +3858,15 @@
           "url": "https://liquipedia.net/counterstrike/FURIA",
           "retrievedAt": "2026-11-24",
           "license": "CC-BY-SA 3.0"
+        }
+      },
+      "logo": {
+        "light": "FURIA Esports allmode.png",
+        "source": {
+          "name": "Liquipedia file FURIA Esports allmode.png (TeamShort|furia)",
+          "url": "https://liquipedia.net/commons/File:FURIA_Esports_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
         }
       },
       "liquipedia": "furia",
@@ -3725,6 +3979,15 @@
           "url": "https://liquipedia.net/counterstrike/Aurora_Gaming",
           "retrievedAt": "2026-11-24",
           "license": "CC-BY-SA 3.0"
+        }
+      },
+      "logo": {
+        "light": "Aurora Gaming 2025 allmode.png",
+        "source": {
+          "name": "Liquipedia file Aurora Gaming 2025 allmode.png (TeamShort|aurora)",
+          "url": "https://liquipedia.net/commons/File:Aurora_Gaming_2025_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
         }
       },
       "liquipedia": "aurora",
@@ -3852,6 +4115,16 @@
           "license": "CC-BY-SA 3.0"
         }
       },
+      "logo": {
+        "light": "Team Spirit 2022 lightmode.png",
+        "dark": "Team Spirit 2022 darkmode.png",
+        "source": {
+          "name": "Liquipedia file Team Spirit 2022 lightmode.png / Team Spirit 2022 darkmode.png (TeamShort|spirit)",
+          "url": "https://liquipedia.net/commons/File:Team_Spirit_2022_lightmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "liquipedia": "spirit",
       "liquipediaPage": "Team Spirit",
       "vrsName": "Spirit",
@@ -3954,6 +4227,15 @@
           "url": "https://liquipedia.net/counterstrike/BetBoom_Team",
           "retrievedAt": "2026-11-24",
           "license": "CC-BY-SA 3.0"
+        }
+      },
+      "logo": {
+        "light": "BetBoom Team 2024 allmode.png",
+        "source": {
+          "name": "Liquipedia file BetBoom Team 2024 allmode.png (TeamShort|bb team)",
+          "url": "https://liquipedia.net/commons/File:BetBoom_Team_2024_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
         }
       },
       "liquipedia": "bb team",
@@ -4081,6 +4363,15 @@
           "license": "CC-BY-SA 3.0"
         }
       },
+      "logo": {
+        "light": "Team Falcons 2022 allmode.png",
+        "source": {
+          "name": "Liquipedia file Team Falcons 2022 allmode.png (TeamShort|falcons)",
+          "url": "https://liquipedia.net/commons/File:Team_Falcons_2022_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "liquipedia": "falcons",
       "liquipediaPage": "Team Falcons",
       "vrsName": "Falcons",
@@ -4199,6 +4490,15 @@
           "url": "https://liquipedia.net/counterstrike/Legacy",
           "retrievedAt": "2026-11-24",
           "license": "CC-BY-SA 3.0"
+        }
+      },
+      "logo": {
+        "light": "Legacy allmode.png",
+        "source": {
+          "name": "Liquipedia file Legacy allmode.png (TeamShort|legacy)",
+          "url": "https://liquipedia.net/commons/File:Legacy_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
         }
       },
       "liquipedia": "legacy",

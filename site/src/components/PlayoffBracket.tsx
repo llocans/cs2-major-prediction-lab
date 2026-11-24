@@ -1,6 +1,7 @@
 import type { MatchFormat } from '../../../data/schemas/common.ts'
 import type { BracketMatch } from '../../../engine/playoffs/bracket.ts'
 import { pct } from '../lib/format.ts'
+import { TeamLogo } from './TeamLogo.tsx'
 
 /** How a decided match was decided. */
 export type MatchKind = 'real' | 'override'
@@ -182,6 +183,7 @@ function MatchBox(props: Props & { match: BracketMatch }) {
             ].join(' ')}
           >
             <span className="num w-3 text-right text-[11px] text-ink-3">{seed ?? ''}</span>
+            {team !== undefined && <TeamLogo teamId={team} />}
             <span
               className={[
                 'min-w-0 flex-1 truncate',

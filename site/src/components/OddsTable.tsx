@@ -1,5 +1,6 @@
 import type { TeamOutlook } from '../../../data/schemas/snapshot.ts'
 import { pct } from '../lib/format.ts'
+import { TeamLogo } from './TeamLogo.tsx'
 
 interface Props {
   teams: TeamOutlook[]
@@ -62,6 +63,7 @@ export function OddsTable({ teams, selected, name, start, onSelect, unverifiedVe
               onClick={() => onSelect(team.teamId)}
             >
               <td className="py-1.5 pr-2">
+                <TeamLogo teamId={team.teamId} className="mr-2 align-[-3px]" />
                 <span className={selected === team.teamId ? 'font-semibold' : ''}>
                   {name(team.teamId)}
                 </span>

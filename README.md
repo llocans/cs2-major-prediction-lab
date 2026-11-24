@@ -142,3 +142,7 @@ Not affiliated with Valve, PGL, Liquipedia or any team.
 Code is released under the [MIT licence](LICENSE). The data in `data/` is released under
 [CC BY-SA 4.0](data/LICENSE.md), as required by the share-alike terms of the Liquipedia content it
 adapts.
+
+Team logos in `site/public/logos/` are trademarks of their teams, taken from Liquipedia's team
+templates (`scripts/research/team-logos.ts`) and shown only to identify the teams. Neither licence
+above covers them.

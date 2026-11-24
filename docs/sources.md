@@ -58,10 +58,14 @@ reads it.
   `action=query&prop=revisions` instead, so parse is not needed). One exception, never automated:
   `research/short-names.ts` makes a single `action=expandtemplates` call for all teams' `TeamShort`
   templates (Liquipedia keeps team short names in an extension that `query` cannot read).
+  `research/team-logos.ts` does the same for logo file names, then one `prop=imageinfo` query per
+  50 files (Liquipedia scales each logo to 120x80 px) and one download per new or changed logo, at
+  the same pace. Logos are kept in `site/public/logos/`, never fetched by the site.
 - User-Agent: `cs2-major-prediction-lab/<version> (<contact>)`, contact from `LIQUIPEDIA_CONTACT` in `.env`.
 - gzip enabled (`Accept-Encoding: gzip`). Responses cached in `.cache/liquipedia/` keyed by title and revid;
   the poller skips the content fetch when the revid is unchanged.
 - Content is CC-BY-SA 3.0: keep the source on every record; credit Liquipedia on the public site.
+  Team logos are not: they are the teams' trademarks, shown only next to the team's name (README).
 - LPDB API (structured data) needs approval and a key. Not applied for yet; reconsider when building
   backtests on past Majors.
 

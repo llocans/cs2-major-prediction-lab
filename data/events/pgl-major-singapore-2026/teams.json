@@ -90,6 +90,15 @@
       "teamId": "bc-game",
       "displayName": "GOSH",
       "shortName": "GOSH",
+      "logo": {
+        "light": "GOSH allmode.png",
+        "source": {
+          "name": "Liquipedia file GOSH allmode.png (TeamShort|gosh dated to pgl-major-singapore-2026)",
+          "url": "https://liquipedia.net/commons/File:GOSH_allmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "entryStage": "stage-1",
       "stageSeed": 13,
       "vrsPoints": 1337
@@ -140,6 +149,16 @@
       "teamId": "1win",
       "displayName": "THE ONE",
       "shortName": "THE ONE",
+      "logo": {
+        "light": "TheOne lightmode.png",
+        "dark": "TheOne darkmode.png",
+        "source": {
+          "name": "Liquipedia file TheOne lightmode.png / TheOne darkmode.png (TeamShort|1w dated to pgl-major-singapore-2026)",
+          "url": "https://liquipedia.net/commons/File:TheOne_lightmode.png",
+          "retrievedAt": "2026-11-24",
+          "license": "Team trademark; not CC BY-SA (shown only to identify the team)"
+        }
+      },
       "entryStage": "stage-2",
       "stageSeed": 4,
       "vrsPoints": 1598
