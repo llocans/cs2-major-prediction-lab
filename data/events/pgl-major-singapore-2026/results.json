@@ -67,6 +67,28 @@
         "retrievedAt": "2026-11-24",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r1-100-thieves-chinggis-warriors",
+      "stageId": "stage-1",
+      "round": 1,
+      "teamA": "100-thieves",
+      "teamB": "chinggis-warriors",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "dust2",
+          "scoreA": 13,
+          "scoreB": 6
+        }
+      ],
+      "winner": "100-thieves",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3473753)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-24",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }

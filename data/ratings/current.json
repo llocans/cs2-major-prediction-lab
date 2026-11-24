@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-24T06:02:03.950Z",
-  "reason": "log-result stage-1-r1-m80-nip",
+  "asOf": "2026-11-24T06:17:04.472Z",
+  "reason": "log-result stage-1-r1-100-thieves-chinggis-warriors",
   "teams": {
     "nip": {
       "rating": 1545,
@@ -322,13 +322,13 @@
       ]
     },
     "100-thieves": {
-      "rating": 1506.6,
-      "rd": 60,
+      "rating": 1509.5,
+      "rd": 59.6,
       "maps": {
         "dust2": {
           "offset": 120,
-          "rd": 56.568542494923804,
-          "n": 12
+          "rd": 55.4,
+          "n": 13
         },
         "inferno": {
           "offset": -44.8,
@@ -705,8 +705,8 @@
       ]
     },
     "chinggis-warriors": {
-      "rating": 1363.2,
-      "rd": 110,
+      "rating": 1353.6,
+      "rd": 107.3,
       "maps": {
         "nuke": {
           "offset": 73.5,
@@ -724,9 +724,9 @@
           "n": 4
         },
         "dust2": {
-          "offset": -63,
-          "rd": 71.55417527999327,
-          "n": 3
+          "offset": -66.9,
+          "rd": 69.3,
+          "n": 4
         },
         "cache": {
           "offset": 7.2,
