@@ -60,7 +60,10 @@ function titleLines(prediction: StagePrediction, name: (id: string) => string): 
         `- ${name(t.teamId)}: ${((t.pTitle ?? 0) * 100).toFixed(1)}% (playoffs ${Math.round(t.pPlayoffs * 100)}%)`,
     ),
     ...(unverified.length > 0
-      ? ['', `Assumes an unverified ${unverified.join('/').toUpperCase()} veto (docs/rules.md).`]
+      ? [
+          '',
+          `The final is ${unverified.join('/').toUpperCase()} (confirmed); title odds assume its ban/pick order, not published yet (docs/rules.md).`,
+        ]
       : []),
     '',
   ]
@@ -113,7 +116,7 @@ export function writePlayoffStatus(context: PlayoffContext, prediction: PlayoffP
     ...(prediction.unverifiedVeto.length > 0
       ? [
           '',
-          `Assumes an unverified ${prediction.unverifiedVeto.join('/').toUpperCase()} veto (docs/rules.md).`,
+          `The final is ${prediction.unverifiedVeto.join('/').toUpperCase()} (confirmed); title odds assume its ban/pick order, not published yet (docs/rules.md).`,
         ]
       : []),
     '',

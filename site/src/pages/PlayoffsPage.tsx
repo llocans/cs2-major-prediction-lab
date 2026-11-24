@@ -23,7 +23,7 @@ interface Props {
 
 const unverifiedNote = (formats: readonly string[]) =>
   formats.length > 0
-    ? `Title odds use a ${formats.join('/').toUpperCase()} veto procedure that is not yet confirmed for this event (see docs/rules.md).`
+    ? `The final is ${formats.join('/').toUpperCase()} (confirmed). Its map ban/pick order is not published yet, so title odds use an assumed order.`
     : undefined
 
 export function PlayoffsPage({ event, stage, query }: Props) {
@@ -159,7 +159,7 @@ function SeededPlayoffs(props: EventProps & { seeds: string[]; query: URLSearchP
         seedOf={(team) => seeds.indexOf(team) + 1 || undefined}
         onPick={onPick}
         {...(finalUnverified
-          ? { finalNote: `${stage.format.final.toUpperCase()} veto not yet confirmed` }
+          ? { finalNote: `${stage.format.final.toUpperCase()}: ban/pick order assumed` }
           : {})}
       />
       <section className="flex max-w-2xl flex-col gap-3">

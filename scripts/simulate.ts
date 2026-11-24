@@ -29,7 +29,7 @@ else printSwiss()
 function printUnverified(formats: readonly string[]) {
   if (formats.length > 0) {
     console.log(
-      `\nPlayoff/title odds assume an unverified ${formats.join('/')} veto (docs/rules.md).`,
+      `\nThe final is ${formats.join('/').toUpperCase()} (confirmed); title odds assume its ban/pick order, not published yet (docs/rules.md).`,
     )
   }
 }
