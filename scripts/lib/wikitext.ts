@@ -247,3 +247,23 @@ export function matchWinner(match: WikiMatch): 1 | 2 | undefined {
   if (won2 >= needed) return 2
   return undefined
 }
+
+/**
+ * Reads the output of `id={{TeamShort|key}}` lines expanded by Liquipedia: each line ends in
+ * `[[Team page|SHORT]]`. Returns id → { page, short } for the lines that resolved.
+ */
+export function parseTeamShortLines(
+  wikitext: string,
+): Map<string, { page: string; short: string }> {
+  const result = new Map<string, { page: string; short: string }>()
+  for (const line of wikitext.split('\n')) {
+    const id = /^([a-z0-9-]+)=/.exec(line)?.[1]
+    const links = [...line.matchAll(/\[\[([^\]|]+)\|([^\]]+)\]\]/g)].filter(
+      (m) => !m[1]?.startsWith('File:'),
+    )
+    const last = links.at(-1)
+    if (!id || !last?.[1] || !last[2]) continue
+    result.set(id, { page: last[1].trim(), short: last[2].trim() })
+  }
+  return result
+}

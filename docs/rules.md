@@ -10,6 +10,9 @@ Sources:
 - **[S]** Strafe, _PGL Singapore Major 2026: Format, Teams, Schedule and Opening Matches_ (retrieved 2026-11-21)
 - **[D2]** Dust2.us, _PGL adds third-place decider match to Singapore Major_ (retrieved 2026-11-21)
 - **[P]** pley.gg, _PGL Major Singapore 2026_ (retrieved 2026-11-21)
+- **[VA]** Valve, official Counter-Strike account on X, 4 Nov 2025: CS2 Majors now have Bo5 grand finals,
+  starting with the StarLadder Budapest Major 2025. Quoted in Dot Esports, _CS2 Majors to feature
+  long-requested grand final format_ (retrieved 2026-11-24)
 
 ## Event structure (PGL Major Singapore 2026)
 
@@ -18,7 +21,7 @@ Sources:
 | Stage 1  | Nov 24-27                           | 16                      | Swiss, elim/adv Bo3, rest Bo1                                                | [V] [LP]      |
 | Stage 2  | Nov 28-Dec 1                        | 8 survivors + 8 invites | Swiss, elim/adv Bo3, rest Bo1                                                | [V] [LP]      |
 | Stage 3  | Dec 2-6                             | 8 survivors + 8 invites | Swiss, **all Bo3**                                                           | [LP] [S]      |
-| Playoffs | Dec 10-13, Singapore Indoor Stadium | 8                       | Single elim, Bo3, **Bo5 grand final**, **Bo3 third-place decider** on Dec 13 | [LP] [D2] [P] |
+| Playoffs | Dec 10-13, Singapore Indoor Stadium | 8                       | Single elim, Bo3, **Bo5 grand final**, **Bo3 third-place decider** on Dec 13 | [VA] [LP] [D2] |
 
 Stage 1 match times: round 1 starts 12:00 SGT (05:00 CET) on Nov 24; rounds 1 and 2 are both on Nov 24,
 round 3 on Nov 25, round 4 on Nov 26, round 5 on Nov 27 [LP].
@@ -85,7 +88,7 @@ has faced in this stage. Example from [V]: opponents at 2-0 and 1-1 give 3 − 1
 
 ## Playoffs [V] [LP]
 
-- Bracket A: 1v8, 4v5. Bracket B: 2v7, 3v6. Bo3; grand final Bo5 (PGL). Third-place decider Bo3 (PGL).
+- Bracket A: 1v8, 4v5. Bracket B: 2v7, 3v6. Bo3; grand final Bo5 (Valve, all Majors since Budapest 2025 [VA]). Third-place decider Bo3 (PGL).
 
 ## Map veto [V]
 
@@ -95,9 +98,10 @@ on the remaining map.
 **Bo3.** Higher seed chooses Team A or B. A bans, B bans, A picks map 1 (B picks side), B picks map 2
 (A picks side), B bans, A bans, the remaining map is the decider (B picks side).
 
-**Bo5 (grand final).** UNVERIFIED for Singapore (`veto.bo5.unverified: true`). Valve's rulebook has no
-Bo5 procedure (it still says all playoff matches are Bo3; checked at commit `621b7d9`, 2026-11-22), and
-neither Liquipedia nor PGL publishes the Singapore Bo5 veto. Config uses PGL's own Bo5 grand-final
+**Bo5 (grand final).** The Bo5 final itself is Valve's rule for every Major [VA]. Its map veto is
+UNVERIFIED (`veto.bo5.unverified: true`): Valve's rulebook still describes only Bo1 and Bo3 vetoes and
+still says all playoff matches are Bo3 (checked at commit `621b7d9`, 2026-11-24), and neither Liquipedia
+nor PGL publishes the Singapore Bo5 veto. Config uses PGL's own Bo5 grand-final
 practice: at PGL Cluj-Napoca 2026 (HLTV match 2389987, Feb 22, 2026) Team A removed 1, Team B removed 1,
 A picked map 1, B picked map 2, A picked map 3, B picked map 4, and the last map was map 5 (decider).
 We assume the higher seed chooses Team A or B, as in Bo1 and Bo3. Replace with PGL's Singapore rules

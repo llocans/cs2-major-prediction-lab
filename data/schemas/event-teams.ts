@@ -5,6 +5,11 @@ export const EventParticipant = z.object({
   teamId: TeamId,
   /** Name used by the organizer at this event (e.g. "GOSH" for BC.Game). */
   displayName: z.string(),
+  /**
+   * Short name at this event, only when the team plays under another name than its usual one
+   * (e.g. "GOSH" for BC.Game). Otherwise the registry's short name is used.
+   */
+  shortName: z.string().optional(),
   /** Stage the team enters in. */
   entryStage: z.string(),
   /** Seed within the entry stage (1-16). */

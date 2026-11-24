@@ -90,3 +90,18 @@ describe('readBracketPage', () => {
     expect(parseBracketMatches(page).map((m) => m.opponent1)).toEqual(['vit'])
   })
 })
+
+describe('parseTeamShortLines', () => {
+  it('reads the short name from the last non-file link of each line', async () => {
+    const { parseTeamShortLines } = await import('./wikitext.ts')
+    const text = [
+      'nip=[[File:NiP lightmode.png|100x50px|link=Ninjas in Pyjamas|Ninjas in Pyjamas]][[File:NiP darkmode.png|link=Ninjas in Pyjamas|Ninjas in Pyjamas]] [[Ninjas in Pyjamas|NIP]]',
+      'lynn-vision=<span>[[File:LVG allmode.png|100x50px|link=Lynn Vision Gaming|Lynn Vision Gaming]] [[Lynn Vision Gaming|LVG]]</span>',
+      'broken=<span class="error">unknown team</span>',
+    ].join('\n')
+    const result = parseTeamShortLines(text)
+    expect(result.get('nip')).toEqual({ page: 'Ninjas in Pyjamas', short: 'NIP' })
+    expect(result.get('lynn-vision')).toEqual({ page: 'Lynn Vision Gaming', short: 'LVG' })
+    expect(result.has('broken')).toBe(false)
+  })
+})

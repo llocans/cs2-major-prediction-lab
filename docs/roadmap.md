@@ -6,7 +6,8 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## During PGL Major Singapore 2026 (Nov 24 - Dec 13)
 
-- **Bo5 final veto.** `veto.bo5` copies PGL's Cluj-Napoca 2026 grand final and is marked `unverified`.
+- **Bo5 final veto.** The Bo5 final is Valve's rule for all Majors; its veto order is not published.
+  `veto.bo5` copies PGL's Cluj-Napoca 2026 grand final and is marked `unverified`.
   If PGL publishes the Singapore procedure before Dec 13, replace it and drop the flag
   (`docs/rules.md`).
 - **Playoffs review.** The Stage 1-3 reviews are scheduled (`docs/automation.md`); the playoffs have
@@ -38,6 +39,7 @@ belong in `data/events/<id>/status.md`, not here.
 - **Stage page layout revisit.** The Stage 1 page feels complex: too much information at once, hard to
   read at a glance. Simplify after core features are settled (user, 2026-11-23). Ideas parked until
   then: per-match market % on the Track record rows (the data is already in `benchmarks.json`).
+  First pass done 2026-11-24 (see Done); the `ui-review` skill checks the rest.
 
 ## After the event
 
@@ -82,3 +84,8 @@ belong in `data/events/<id>/status.md`, not here.
   team panel and on hover in the bracket. The site keeps finished simulations in the browser (keyed by
   their input and the engine's source), so unchanged pages show final odds at once; a quick first
   pass shows in grey.
+- 2026-11-24: Stage page readability: model's pick marked on finished matches (green ✓ won, red
+  crossed out lost, grey under 55%), team short names from Liquipedia in the team panel
+  (`research/short-names.ts`), a cleaner team panel (no "Why", no seed swap), each team's change since
+  round 1 in the Probabilities table, a shorter bracket legend, `ui-review` skill, a light/dark
+  switch in the nav (follows the system until the viewer picks; saved in the browser).

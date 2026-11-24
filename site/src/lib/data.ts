@@ -116,3 +116,13 @@ export function teamName(event: EventData, teamId: string): string {
     teamId
   )
 }
+
+/** Short name for tight spots and running text (e.g. "NIP"): the event's own, else Liquipedia's. */
+export function teamShortName(event: EventData, teamId: string): string {
+  const participant = event.teams.participants.find((p) => p.teamId === teamId)
+  return (
+    participant?.shortName ??
+    registry.teams.find((t) => t.id === teamId)?.shortName?.name ??
+    teamName(event, teamId)
+  )
+}

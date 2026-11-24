@@ -5,6 +5,8 @@ interface Props {
   teams: TeamOutlook[]
   selected?: string
   name: (teamId: string) => string
+  /** Each team's chance to advance before the stage's first round (from its snapshot). */
+  start?: Map<string, number>
   onSelect: (teamId: string) => void
   /** Formats whose veto is assumed, not verified, in the playoff and title odds (e.g. ["bo5"]). */
   unverifiedVeto?: readonly string[]
@@ -21,7 +23,7 @@ const columns: Array<{ key: 'p30' | 'pAdvance' | 'p03'; label: string; title: st
   { key: 'p03', label: '0-3', title: 'Eliminated without a win' },
 ]
 
-export function OddsTable({ teams, selected, name, onSelect, unverifiedVeto = [] }: Props) {
+export function OddsTable({ teams, selected, name, start, onSelect, unverifiedVeto = [] }: Props) {
   const sorted = [...teams].sort((a, b) => b.pAdvance - a.pAdvance || b.p30 - a.p30)
   const assumed = unverifiedVeto.length > 0
   return (
@@ -72,7 +74,11 @@ export function OddsTable({ teams, selected, name, onSelect, unverifiedVeto = []
               <td className="num px-2 py-1.5 text-right text-ink-2">{team.record}</td>
               {columns.map((column) => (
                 <td key={column.key} className="num px-2 py-1.5 text-right">
-                  <Probability value={team[column.key]} strong={column.key === 'pAdvance'} />
+                  {column.key === 'pAdvance' ? (
+                    <Advance value={team.pAdvance} start={start?.get(team.teamId)} />
+                  ) : (
+                    <span className="text-accent">{pct(team[column.key])}</span>
+                  )}
                 </td>
               ))}
               {eventColumns.map((column, index) => {
@@ -92,23 +98,28 @@ export function OddsTable({ teams, selected, name, onSelect, unverifiedVeto = []
       </table>
       {assumed && (
         <p className="hidden text-xs text-ink-3 sm:block">
-          * Title odds use a {unverifiedVeto.join('/').toUpperCase()} veto procedure that is not yet
-          confirmed for this event (see docs/rules.md).
+          * The final is {unverifiedVeto.join('/').toUpperCase()} (confirmed). Its map ban/pick
+          order is not published yet, so title odds use an assumed order.
         </p>
       )}
     </div>
   )
 }
 
-function Probability({ value, strong }: { value: number; strong: boolean }) {
+/** Chance to advance and how many points it moved since round 1 (shown from 1 point up). */
+function Advance({ value, start }: { value: number; start: number | undefined }) {
+  const delta = start === undefined ? 0 : Math.round((value - start) * 100)
+  const title = start === undefined ? undefined : `Before round 1: ${pct(start)}, now ${pct(value)}`
   return (
-    <span className="inline-flex items-center justify-end gap-1.5">
-      {strong && (
-        <span className="hidden h-1 w-12 bg-paper-2 sm:inline-block" aria-hidden="true">
-          <span className="block h-1 bg-accent" style={{ width: `${Math.round(value * 100)}%` }} />
+    <span className="inline-flex items-center justify-end gap-1.5" title={title}>
+      <span className="font-semibold text-accent">{pct(value)}</span>
+      {start !== undefined && (
+        <span
+          className={`hidden w-7 text-left text-xs sm:inline-block ${delta > 0 ? 'text-win' : delta < 0 ? 'text-loss' : 'text-ink-3'}`}
+        >
+          {delta === 0 ? '' : `${delta > 0 ? '+' : '−'}${Math.abs(delta)}`}
         </span>
       )}
-      <span className={strong ? 'font-semibold text-accent' : 'text-accent'}>{pct(value)}</span>
     </span>
   )
 }

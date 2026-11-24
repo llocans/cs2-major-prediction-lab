@@ -256,7 +256,7 @@ export function MethodologyPage({ event }: { event: EventData }) {
             'Parameters are set by reasoning, not yet fitted on past Majors.',
             'Map statistics cover three months and top-50 opponents only.',
             'CT and T sides, player form within the event and travel are not modeled.',
-            'The Bo5 final’s veto copies the previous PGL Major until the organizer confirms it.',
+            'The final is Bo5 at every Major (Valve’s rule), but its veto order is not published; it copies PGL’s last Bo5 final until it is.',
           ]}
         />
       </Section>

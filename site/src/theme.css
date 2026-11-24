@@ -46,8 +46,26 @@
   --loss: #9b3a2e;
 }
 
+/* Dark tokens: used when the viewer picks dark (ThemeToggle.tsx), or when the system is dark and the
+   viewer has not picked a theme. Keep both blocks the same. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #121316;
+  --paper-2: #1a1c20;
+  --ink: #ebeae5;
+  --ink-2: #b2b4b9;
+  --ink-3: #7c8088;
+  --rule: #2b2e34;
+  --accent: #ff7a3d;
+  --accent-ink: #121316;
+  --accent-soft: #3a2419;
+  --win: #6fbf94;
+  --loss: #e0806f;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
     --paper: #121316;
     --paper-2: #1a1c20;
     --ink: #ebeae5;
@@ -60,6 +78,10 @@
     --win: #6fbf94;
     --loss: #e0806f;
   }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
 }
 
 html {

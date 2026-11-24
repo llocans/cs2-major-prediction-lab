@@ -1,4 +1,5 @@
 import { stageSeeds } from '../../engine/swiss/stage-seeds.ts'
+import { ThemeToggle } from './components/ThemeToggle.tsx'
 import { currentEvent } from './lib/data.ts'
 import { type Route, useLocation } from './lib/router.ts'
 import { MethodologyPage } from './pages/MethodologyPage.tsx'
@@ -41,6 +42,7 @@ export function App() {
             {item.label}
           </a>
         ))}
+        <ThemeToggle />
       </nav>
       <main className="flex-1">
         <Page route={route} query={query} />

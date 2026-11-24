@@ -33,6 +33,8 @@ future events too: formats live in config, never in code.
   - `research/vrs-form.ts <event> <YYYY_MM_DD>` → `data/teams/form/` (Valve VRS match tables)
   - `research/team-files.ts <event>` → lean `data/teams/<id>.md` (never overwrites)
   - `research/liquipedia-rosters.ts <event>` → dated rosters in `registry.json` (Liquipedia API)
+  - `research/short-names.ts <event>` → team short names (NIP, LVG) in `registry.json` (one Liquipedia
+    API call); teams renamed for the event get `shortName` in its `teams.json`
   - `research/import-map-stats.ts <file> <from> <to> Top50` → `data/teams/maps/` (HLTV counts)
   - `research/oddspapi-setup.ts [pattern]` → prints OddsPapi ids for `marketOdds` in event config
     (market odds are then collected by the poller; benchmark only)
@@ -83,6 +85,7 @@ future events too: formats live in config, never in code.
 | `simulate`      | Re-run the simulation and report the odds (read-only)                                       |
 | `review-stage`  | Score a finished stage, write lessons, propose capped changes via PR                        |
 | `cleanup`       | Remove expired modifiers, mark stale facts, check sources                                   |
+| `ui-review`     | Check a site page in the Browser pane (desktop + mobile) and list readability fixes         |
 
 ## Subagents (`.claude/agents/`)
 

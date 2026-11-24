@@ -9,6 +9,15 @@
           "name": "NIP"
         }
       ],
+      "shortName": {
+        "name": "NIP",
+        "source": {
+          "name": "Liquipedia team template TeamShort|nip",
+          "url": "https://liquipedia.net/counterstrike/Ninjas_in_Pyjamas",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "nip",
       "liquipediaPage": "Ninjas in Pyjamas",
       "vrsName": "Ninjas in Pyjamas",
@@ -161,6 +170,15 @@
           "context": "pgl-major-singapore-2026"
         }
       ],
+      "shortName": {
+        "name": "PV",
+        "source": {
+          "name": "Liquipedia team template TeamShort|pvision",
+          "url": "https://liquipedia.net/counterstrike/PARIVISION",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "pvision",
       "liquipediaPage": "PARIVISION",
       "vrsName": "PARIVISION",
@@ -285,6 +303,15 @@
       "id": "heroic",
       "name": "HEROIC",
       "aliases": [],
+      "shortName": {
+        "name": "HEROIC",
+        "source": {
+          "name": "Liquipedia team template TeamShort|heroic",
+          "url": "https://liquipedia.net/counterstrike/HEROIC",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "heroic",
       "liquipediaPage": "HEROIC",
       "vrsName": "HEROIC",
@@ -436,6 +463,15 @@
           "name": "FaZe"
         }
       ],
+      "shortName": {
+        "name": "FaZe",
+        "source": {
+          "name": "Liquipedia team template TeamShort|faze",
+          "url": "https://liquipedia.net/counterstrike/FaZe_Clan",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "faze",
       "liquipediaPage": "FaZe Clan",
       "vrsName": "FaZe",
@@ -564,6 +600,15 @@
           "name": "Liquid"
         }
       ],
+      "shortName": {
+        "name": "Liquid",
+        "source": {
+          "name": "Liquipedia team template TeamShort|tl",
+          "url": "https://liquipedia.net/counterstrike/Team_Liquid",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "tl",
       "liquipediaPage": "Team Liquid",
       "vrsName": "Liquid",
@@ -691,6 +736,15 @@
           "name": "EF"
         }
       ],
+      "shortName": {
+        "name": "EF",
+        "source": {
+          "name": "Liquipedia team template TeamShort|ef",
+          "url": "https://liquipedia.net/counterstrike/Eternal_Fire",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "ef",
       "liquipediaPage": "Eternal Fire",
       "vrsName": "Eternal Fire",
@@ -914,6 +968,15 @@
           "name": "100T"
         }
       ],
+      "shortName": {
+        "name": "100T",
+        "source": {
+          "name": "Liquipedia team template TeamShort|100t",
+          "url": "https://liquipedia.net/counterstrike/100_Thieves",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "100t",
       "liquipediaPage": "100 Thieves",
       "vrsName": "100 Thieves",
@@ -1029,6 +1092,15 @@
           "name": "9z"
         }
       ],
+      "shortName": {
+        "name": "9z",
+        "source": {
+          "name": "Liquipedia team template TeamShort|9z",
+          "url": "https://liquipedia.net/counterstrike/9z_Team",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "9z",
       "liquipediaPage": "9z Team",
       "vrsName": "9z",
@@ -1129,6 +1201,15 @@
       "id": "m80",
       "name": "M80",
       "aliases": [],
+      "shortName": {
+        "name": "M80",
+        "source": {
+          "name": "Liquipedia team template TeamShort|m80",
+          "url": "https://liquipedia.net/counterstrike/M80",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "m80",
       "liquipediaPage": "M80",
       "vrsName": "M80",
@@ -1220,6 +1301,15 @@
           "name": "DENDELE"
         }
       ],
+      "shortName": {
+        "name": "DENDELE",
+        "source": {
+          "name": "Liquipedia team template TeamShort|dendele",
+          "url": "https://liquipedia.net/counterstrike/DENDELE_CS",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "dendele",
       "liquipediaPage": "DENDELE CS",
       "vrsName": "DENDELE",
@@ -1312,6 +1402,15 @@
           "name": "Imperial"
         }
       ],
+      "shortName": {
+        "name": "Imperial",
+        "source": {
+          "name": "Liquipedia team template TeamShort|imp",
+          "url": "https://liquipedia.net/counterstrike/Imperial_Esports",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "imp",
       "liquipediaPage": "Imperial Esports",
       "vrsName": "Imperial",
@@ -1452,6 +1551,15 @@
           "name": "Wildcard"
         }
       ],
+      "shortName": {
+        "name": "Wildcard",
+        "source": {
+          "name": "Liquipedia team template TeamShort|wildcard",
+          "url": "https://liquipedia.net/counterstrike/Wildcard",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "wildcard",
       "liquipediaPage": "Wildcard",
       "vrsName": "Wildcard",
@@ -1605,6 +1713,15 @@
           "context": "pgl-major-singapore-2026"
         }
       ],
+      "shortName": {
+        "name": "BC.Game",
+        "source": {
+          "name": "Liquipedia team template TeamShort|gosh",
+          "url": "https://liquipedia.net/counterstrike/BC.Game_Esports",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "gosh",
       "liquipediaPage": "BC.Game Esports",
       "vrsName": "BC.Game",
@@ -1752,6 +1869,15 @@
       "id": "flyquest",
       "name": "FlyQuest",
       "aliases": [],
+      "shortName": {
+        "name": "FLY",
+        "source": {
+          "name": "Liquipedia team template TeamShort|fq",
+          "url": "https://liquipedia.net/counterstrike/FlyQuest",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "fq",
       "liquipediaPage": "FlyQuest",
       "vrsName": "FlyQuest",
@@ -1864,6 +1990,15 @@
       "id": "chinggis-warriors",
       "name": "Chinggis Warriors",
       "aliases": [],
+      "shortName": {
+        "name": "CW",
+        "source": {
+          "name": "Liquipedia team template TeamShort|chinggis",
+          "url": "https://liquipedia.net/counterstrike/Chinggis_Warriors",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "chinggis",
       "liquipediaPage": "Chinggis Warriors",
       "vrsName": "Chinggis Warriors",
@@ -2027,6 +2162,15 @@
           "name": "LVG"
         }
       ],
+      "shortName": {
+        "name": "LVG",
+        "source": {
+          "name": "Liquipedia team template TeamShort|lvg",
+          "url": "https://liquipedia.net/counterstrike/Lynn_Vision_Gaming",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "lvg",
       "liquipediaPage": "Lynn Vision Gaming",
       "vrsName": "Lynn Vision",
@@ -2119,6 +2263,15 @@
           "name": "FUT"
         }
       ],
+      "shortName": {
+        "name": "FUT",
+        "source": {
+          "name": "Liquipedia team template TeamShort|fut",
+          "url": "https://liquipedia.net/counterstrike/FUT_Esports",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "fut",
       "liquipediaPage": "FUT Esports",
       "vrsName": "FUT",
@@ -2247,6 +2400,15 @@
           "name": "Nemiga"
         }
       ],
+      "shortName": {
+        "name": "Nemiga",
+        "source": {
+          "name": "Liquipedia team template TeamShort|nemiga",
+          "url": "https://liquipedia.net/counterstrike/Nemiga_Gaming",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "nemiga",
       "liquipediaPage": "Nemiga Gaming",
       "vrsName": "Nemiga",
@@ -2376,6 +2538,15 @@
           "name": "G2"
         }
       ],
+      "shortName": {
+        "name": "G2",
+        "source": {
+          "name": "Liquipedia team template TeamShort|g2",
+          "url": "https://liquipedia.net/counterstrike/G2_Esports",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "g2",
       "liquipediaPage": "G2 Esports",
       "vrsName": "G2",
@@ -2492,6 +2663,15 @@
           "context": "pgl-major-singapore-2026"
         }
       ],
+      "shortName": {
+        "name": "1w",
+        "source": {
+          "name": "Liquipedia team template TeamShort|1w",
+          "url": "https://liquipedia.net/counterstrike/1w_Team",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "1w",
       "liquipediaPage": "1w Team",
       "vrsName": "1win",
@@ -2668,6 +2848,15 @@
           "name": "NAVI"
         }
       ],
+      "shortName": {
+        "name": "NAVI",
+        "source": {
+          "name": "Liquipedia team template TeamShort|navi",
+          "url": "https://liquipedia.net/counterstrike/Natus_Vincere",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "navi",
       "liquipediaPage": "Natus Vincere",
       "vrsName": "Natus Vincere",
@@ -2756,6 +2945,15 @@
       "id": "astralis",
       "name": "Astralis",
       "aliases": [],
+      "shortName": {
+        "name": "Astralis",
+        "source": {
+          "name": "Liquipedia team template TeamShort|astralis",
+          "url": "https://liquipedia.net/counterstrike/Astralis",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "astralis",
       "liquipediaPage": "Astralis",
       "vrsName": "Astralis",
@@ -2895,6 +3093,15 @@
           "name": "MongolZ"
         }
       ],
+      "shortName": {
+        "name": "MongolZ",
+        "source": {
+          "name": "Liquipedia team template TeamShort|mongolz",
+          "url": "https://liquipedia.net/counterstrike/The_MongolZ",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "mongolz",
       "liquipediaPage": "The MongolZ",
       "vrsName": "The MongolZ",
@@ -3007,6 +3214,15 @@
       "id": "mibr",
       "name": "MIBR",
       "aliases": [],
+      "shortName": {
+        "name": "MIBR",
+        "source": {
+          "name": "Liquipedia team template TeamShort|mibr",
+          "url": "https://liquipedia.net/counterstrike/MIBR",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "mibr",
       "liquipediaPage": "MIBR",
       "vrsName": "MIBR",
@@ -3154,6 +3370,15 @@
       "id": "mouz",
       "name": "MOUZ",
       "aliases": [],
+      "shortName": {
+        "name": "MOUZ",
+        "source": {
+          "name": "Liquipedia team template TeamShort|mouz",
+          "url": "https://liquipedia.net/counterstrike/MOUZ",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "mouz",
       "liquipediaPage": "MOUZ",
       "vrsName": "MOUZ",
@@ -3281,6 +3506,15 @@
           "name": "Vitality"
         }
       ],
+      "shortName": {
+        "name": "Vitality",
+        "source": {
+          "name": "Liquipedia team template TeamShort|vit",
+          "url": "https://liquipedia.net/counterstrike/Team_Vitality",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "vit",
       "liquipediaPage": "Team Vitality",
       "vrsName": "Vitality",
@@ -3372,6 +3606,15 @@
           "name": "FURIA"
         }
       ],
+      "shortName": {
+        "name": "FURIA",
+        "source": {
+          "name": "Liquipedia team template TeamShort|furia",
+          "url": "https://liquipedia.net/counterstrike/FURIA",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "furia",
       "liquipediaPage": "FURIA",
       "vrsName": "FURIA",
@@ -3475,6 +3718,15 @@
           "name": "Aurora"
         }
       ],
+      "shortName": {
+        "name": "Aurora",
+        "source": {
+          "name": "Liquipedia team template TeamShort|aurora",
+          "url": "https://liquipedia.net/counterstrike/Aurora_Gaming",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "aurora",
       "liquipediaPage": "Aurora Gaming",
       "vrsName": "Aurora",
@@ -3591,6 +3843,15 @@
           "name": "Spirit"
         }
       ],
+      "shortName": {
+        "name": "Spirit",
+        "source": {
+          "name": "Liquipedia team template TeamShort|spirit",
+          "url": "https://liquipedia.net/counterstrike/Team_Spirit",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "spirit",
       "liquipediaPage": "Team Spirit",
       "vrsName": "Spirit",
@@ -3686,6 +3947,15 @@
           "name": "BETBOOM"
         }
       ],
+      "shortName": {
+        "name": "BB",
+        "source": {
+          "name": "Liquipedia team template TeamShort|bb team",
+          "url": "https://liquipedia.net/counterstrike/BetBoom_Team",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "bb team",
       "liquipediaPage": "BetBoom Team",
       "vrsName": "BETBOOM",
@@ -3802,6 +4072,15 @@
           "name": "Falcons"
         }
       ],
+      "shortName": {
+        "name": "Falcons",
+        "source": {
+          "name": "Liquipedia team template TeamShort|falcons",
+          "url": "https://liquipedia.net/counterstrike/Team_Falcons",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "falcons",
       "liquipediaPage": "Team Falcons",
       "vrsName": "Falcons",
@@ -3913,6 +4192,15 @@
       "id": "legacy",
       "name": "Legacy",
       "aliases": [],
+      "shortName": {
+        "name": "Legacy",
+        "source": {
+          "name": "Liquipedia team template TeamShort|legacy",
+          "url": "https://liquipedia.net/counterstrike/Legacy",
+          "retrievedAt": "2026-11-24",
+          "license": "CC-BY-SA 3.0"
+        }
+      },
       "liquipedia": "legacy",
       "liquipediaPage": "Legacy",
       "vrsName": "Legacy",
