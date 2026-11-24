@@ -137,7 +137,9 @@ export function TeamPanel(props: Props) {
           <ol className="mt-2 flex flex-col gap-0.5 text-sm">
             {form.recent.slice(0, 6).map((series) => (
               <li key={`${series.date}-${series.opponent}`} className="num flex gap-3 text-ink-2">
-                <span className="w-12 shrink-0 text-ink-3">{shortDate(series.date)}</span>
+                <span className="w-14 shrink-0 whitespace-nowrap text-ink-3">
+                  {shortDate(series.date)}
+                </span>
                 <span
                   className={`w-3 shrink-0 font-semibold ${series.result === 'W' ? 'text-win' : 'text-loss'}`}
                 >
