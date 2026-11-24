@@ -3,6 +3,9 @@ import type { Confidence } from '../data/schemas/snapshot.ts'
 import type { MatchModel } from './match-model.ts'
 import { expectedSeries, type VetoRules } from './series.ts'
 
+/** Added to a match reason when a team has few tier-1 series (rd >= 100). Read by market-picks.ts. */
+export const LITTLE_DATA_NOTE = 'little tier-1 data'
+
 /** Match confidence from combined uncertainty and how far the probability is from 50% (docs/model.md). */
 export function matchConfidence(pA: number, sigma: number): Confidence {
   const edge = Math.abs(pA - 0.5)
@@ -63,7 +66,7 @@ export function matchReason(
   }
   if (model.rd(a) >= 100 || model.rd(b) >= 100) {
     const unsure = [a, b].filter((team) => model.rd(team) >= 100).map(name)
-    parts.push(`little tier-1 data for ${unsure.join(' and ')}`)
+    parts.push(`${LITTLE_DATA_NOTE} for ${unsure.join(' and ')}`)
   }
   return parts.join('; ')
 }

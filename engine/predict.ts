@@ -1,5 +1,11 @@
 import type { MatchPrediction, TeamOutlook } from '../data/schemas/snapshot.ts'
-import { matchConfidence, matchReason, matchupSigma, teamConfidence } from './explain.ts'
+import {
+  LITTLE_DATA_NOTE,
+  matchConfidence,
+  matchReason,
+  matchupSigma,
+  teamConfidence,
+} from './explain.ts'
 import { type EventChain, type EventSimResult, simulateEvent } from './simulate-event.ts'
 import { type SwissSimInput, type SwissSimResult, simulateSwiss } from './simulate-swiss.ts'
 import { buildRecords } from './swiss/records.ts'
@@ -69,7 +75,7 @@ export function predictStage(
         `${Math.round(p * 100)}% vs ${labels.team(opponent)} next (${next.format.toUpperCase()})`,
       )
     }
-    if (model.rd(odds.teamId) >= 100) parts.push('little tier-1 data')
+    if (model.rd(odds.teamId) >= 100) parts.push(LITTLE_DATA_NOTE)
     return {
       teamId: odds.teamId,
       record: record ? `${record.wins}-${record.losses}` : '0-0',
