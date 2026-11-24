@@ -7,7 +7,8 @@ export const EventParticipant = z.object({
   displayName: z.string(),
   /**
    * Short name at this event, only when the team plays under another name than its usual one
-   * (e.g. "GOSH" for BC.Game). Otherwise the registry's short name is used.
+   * (e.g. "GOSH" for BC.Game). Otherwise the registry's short name is used. Sourced, like
+   * `displayName`, by the file's `source` list.
    */
   shortName: z.string().optional(),
   /** Stage the team enters in. */
