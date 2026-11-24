@@ -65,6 +65,20 @@ belong in `data/events/<id>/status.md`, not here.
   predicted and actual results (Chinggis, FlyQuest; DENDELE and Lynn Vision as a check). If they
   clearly underperformed, add a capped rating penalty for cold-start teams via a PR before Stage 2,
   where new invited teams arrive. Don't change it mid-stage (it would mix two models in the record).
+- **Market pick rule review (Stage 1 review, before Stage 2; user, 2026-11-24).** Stage 1 is the test
+  run of the rule in `engine/market-picks.ts` (pick at +5 pp or more, skip little data). Check:
+  - **Picks on coin-flip matches.** Confidence isn't part of the rule, so a Low match where the model
+    says ~50% still gets a pick when the market leans one way. These are bets on the model's flatness
+    (R3: 5 of 6 picks were Low, e.g. HEROIC-M80 49% vs 43%). Compare the record of High/Medium picks
+    with Low ones; if Low picks clearly do worse, skip matches the model calls within 5 points of 50%.
+  - **The +5 pp threshold (user idea).** Replay Stage 1 at 3, 5, 8 and 10 pp (picks, won, lost) and
+    see where the record holds up. Also consider a larger gap for Bo1 than for Bo3 (one map is more
+    random). Stage 1 has ~40 matches, so prefer a simple rule over the best-fitting number.
+  - **Per-confidence split on the Market odds page**, so the record shows which kinds of picks work.
+  - **Keep old records honest.** The rule is applied to every saved round when the page is built, so
+    changing it would silently rewrite Stage 1's record. Before any change, store the rule per stage
+    (e.g. `marketRule` in the event config, with Stage 1 frozen at today's rule) and set a new stage's
+    rule before its first odds are logged.
 - **Fix the Pick'Em page (user, 2026-11-24).** It works oddly: picks don't lock, and the flow doesn't
   make sense. Go through it with the user first to list what should lock when (e.g. after a stage
   starts) and what feels wrong, then fix.
