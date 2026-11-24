@@ -16,8 +16,15 @@ belong in `data/events/<id>/status.md`, not here.
   been tested with a forced stage id; check the first poll after Stage 3 advances.
 - **Market odds by hand.** OddsPapi lists no PGL Singapore fixtures after round 1 (its round 1 ones
   are marked cancelled, checked 2026-11-24), so the poller adds nothing. Each round's odds are read
-  from OddsPortal in the Browser pane after the round (`docs/sources.md`). Options: a session after
-  each round, or another free source the poller can read.
+  from OddsPortal in the Browser pane after the round (`docs/sources.md`), in a session after each
+  round. Free automatic sources checked on 2026-11-24, none usable:
+  [Kalshi](https://kalshi-public-docs.s3.amazonaws.com/Kalshi-Developer-Agreement.pdf) has a market
+  for every game of this Major and a public API, but its Developer Agreement (v1.1, §3) limits the
+  API to a member's own trading and forbids storing, sharing or benchmarking with its data;
+  [OddiWire](https://oddiwire.com/docs.html) (free 100 calls/day) is one odds supplier's prices, drops
+  a match once it finishes, and its terms do not say whether the prices may be shown; the
+  [mwasoft CS2 API](https://www.producthunt.com/products/cs2-real-time-odds-api-by-mwasoft) gives its
+  own model's odds, not a market.
 - **Stage 2 and 3 storylines.** The Stage 2 and 3 team notes say storylines will be "added from
   previews (nightly research task)", but the nightly research refresh only looks for news (rosters,
   stand-ins, visas). Either widen that routine to the next stage's previews or fill them in by hand
