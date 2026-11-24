@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { pickFor } from './verdict.ts'
+import { pickFor, stagePicks } from './verdict.ts'
 
 describe('pickFor', () => {
   it('marks a won favourite as a hit', () => {
@@ -15,5 +15,21 @@ describe('pickFor', () => {
   it('gives no verdict under 55%', () => {
     expect(pickFor('a', 'b', 0.544, 'b').verdict).toBe('coin-flip')
     expect(pickFor('a', 'b', 0.55, 'b').verdict).toBe('miss')
+  })
+})
+
+describe('stagePicks', () => {
+  const snapshots = [
+    { stageId: 'stage-1', beforeRound: 1, matches: [{ teamA: '9z', teamB: 'lvg', pA: 0.63 }] },
+    { stageId: 'stage-2', beforeRound: 1, matches: [{ teamA: '9z', teamB: 'lvg', pA: 0.2 }] },
+  ]
+  it('reads the snapshot of the same stage and round, whichever side the result lists first', () => {
+    const results = [{ stageId: 'stage-1', round: 1, teamA: 'lvg', teamB: '9z', winner: 'lvg' }]
+    const picks = stagePicks(snapshots, results, 'stage-1')
+    expect(picks.get('1|9z|lvg')).toEqual({ team: '9z', p: 0.63, verdict: 'miss' })
+  })
+  it('never uses another stage or round', () => {
+    const results = [{ stageId: 'stage-1', round: 2, teamA: '9z', teamB: 'lvg', winner: '9z' }]
+    expect(stagePicks(snapshots, results, 'stage-1').size).toBe(0)
   })
 })

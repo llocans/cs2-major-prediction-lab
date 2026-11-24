@@ -1,9 +1,11 @@
 /**
  * Liquipedia MediaWiki API client following Liquipedia's API terms (docs/sources.md):
- * - action=query only (no parse), at most 1 request every 2 seconds (we wait 2.1 s)
+ * - action=query, at most 1 request every 2 seconds (we wait 2.1 s); the one parse-type call,
+ *   expandTemplates (research only, never the poller), at most 1 every 30 seconds (docs/sources.md)
  * - gzip, a User-Agent with the project name and a contact from LIQUIPEDIA_CONTACT
  * - responses cached in .cache/liquipedia/pages/, keyed by title; revid checks avoid refetching content
  */
+import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { repoPath } from './files.ts'
 
@@ -44,7 +46,7 @@ export function retryDelayMs(retryAfter: string | null): number {
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
-async function throttledGet(params: Record<string, string>): Promise<unknown> {
+async function throttledGet(params: Record<string, string>, minRetryMs = 0): Promise<unknown> {
   const url = `${API}?${new URLSearchParams({ format: 'json', ...params })}`
   for (let attempt = 1; ; attempt++) {
     const wait = lastRequestAt + MIN_INTERVAL_MS - Date.now()
@@ -57,7 +59,7 @@ async function throttledGet(params: Record<string, string>): Promise<unknown> {
     // Rate limited or briefly unavailable: wait as asked and try once more. The error text keeps
     // "Liquipedia <status>", which the poll loop reads to switch to a fresh runner (poll-loop.sh).
     if (attempt === 1 && (response.status === 429 || response.status === 503)) {
-      await sleep(retryDelayMs(response.headers.get('retry-after')))
+      await sleep(Math.max(minRetryMs, retryDelayMs(response.headers.get('retry-after'))))
       continue
     }
     throw new Error(`Liquipedia ${response.status} for ${params.titles ?? url}`)
@@ -146,17 +148,26 @@ export async function getPage(
 }
 
 /**
- * Expands wikitext templates (action=expandtemplates, a parse-type request: at most 1 every 30 s).
- * Batch everything into one call; used by research scripts only, never by the poller.
+ * Expands wikitext templates (action=expandtemplates, a parse-type request: at most 1 every 30 s,
+ * also on the retry). Batch everything into one call; used by research scripts only, never by the
+ * poller. Cached for a day in .cache/liquipedia/expand/, keyed by the text.
  */
 export async function expandTemplates(text: string): Promise<string> {
+  const key = createHash('sha256').update(text).digest('hex').slice(0, 16)
+  const file = repoPath('.cache/liquipedia/expand', `${key}.json`)
+  if (existsSync(file) && Date.now() - statSync(file).mtimeMs < 24 * 3600 * 1000) {
+    return (JSON.parse(readFileSync(file, 'utf8')) as { wikitext: string }).wikitext
+  }
   const wait = lastParseAt + PARSE_INTERVAL_MS - Date.now()
   if (wait > 0) await sleep(wait)
   lastParseAt = Date.now()
-  const data = (await throttledGet({ action: 'expandtemplates', prop: 'wikitext', text })) as {
-    expandtemplates?: { wikitext?: string }
-  }
+  const data = (await throttledGet(
+    { action: 'expandtemplates', prop: 'wikitext', text },
+    PARSE_INTERVAL_MS,
+  )) as { expandtemplates?: { wikitext?: string } }
   const wikitext = data.expandtemplates?.wikitext
   if (wikitext === undefined) throw new Error('Liquipedia expandtemplates returned no wikitext')
+  mkdirSync(repoPath('.cache/liquipedia/expand'), { recursive: true })
+  writeFileSync(file, JSON.stringify({ wikitext }))
   return wikitext
 }

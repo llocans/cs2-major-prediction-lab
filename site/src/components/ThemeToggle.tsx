@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 
 type Theme = 'light' | 'dark'
 
+/** localStorage key; also read by the inline script in site/index.html. */
+const KEY = 'cs2lab-theme'
+
 const systemDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches
 
 /** The theme on screen: the viewer's saved choice (set on <html> by index.html), else the system's. */
@@ -19,15 +22,29 @@ export function ThemeToggle() {
   useEffect(() => {
     const media = window.matchMedia('(prefers-color-scheme: dark)')
     const onChange = () => setTheme(currentTheme())
+    // A choice made in another tab of the site applies here too.
+    const onStorage = (event: StorageEvent) => {
+      if (event.key !== KEY) return
+      if (event.newValue === 'light' || event.newValue === 'dark') {
+        document.documentElement.dataset.theme = event.newValue
+      } else {
+        delete document.documentElement.dataset.theme
+      }
+      onChange()
+    }
     media.addEventListener('change', onChange)
-    return () => media.removeEventListener('change', onChange)
+    window.addEventListener('storage', onStorage)
+    return () => {
+      media.removeEventListener('change', onChange)
+      window.removeEventListener('storage', onStorage)
+    }
   }, [])
 
   const next: Theme = theme === 'dark' ? 'light' : 'dark'
   const toggle = () => {
     document.documentElement.dataset.theme = next
     try {
-      localStorage.setItem('theme', next)
+      localStorage.setItem(KEY, next)
     } catch {
       // Private mode or storage off: the switch still works for this visit.
     }

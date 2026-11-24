@@ -29,6 +29,9 @@ belong in `data/events/<id>/status.md`, not here.
 - **Poller stage choice by date.** `pickStage` (which stage to poll today, Swiss → Swiss → playoffs) is
   only covered by the live poller; the flow checks call the stage handling directly.
 
+- **Fix the Pick'Em page (user, 2026-11-24).** It works oddly: picks don't lock, and the flow doesn't
+  make sense. Go through it with the user first to list what should lock when (e.g. after a stage
+  starts) and what feels wrong, then fix.
 - **Pick'Em history of experts (user, 2026-11-23; start Nov 24).** A tab with past Major Pick'Em
   picks by content creators, casters and players, scored against the real results and against random
   picks, to test the hunch that "by the book" picks do no better than chance. Needs dated, sourced

@@ -3,7 +3,7 @@ import type { MatchPrediction, TeamOutlook } from '../../../data/schemas/snapsho
 import { forms, ratings } from '../lib/data.ts'
 import { pct, shortDate } from '../lib/format.ts'
 import type { TeamMatchRow } from '../lib/market.ts'
-import { COIN_FLIP } from '../lib/verdict.ts'
+import { chanceVerdict } from '../lib/verdict.ts'
 
 interface Props {
   teamId: string
@@ -176,8 +176,10 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
  */
 function ModelChance({ p, won }: { p: number | undefined; won: boolean }) {
   if (p === undefined) return <span className="text-ink-3">–</span>
-  if (p < COIN_FLIP) return <span className="text-ink-2">{pct(p)}</span>
-  return won ? (
+  const verdict = chanceVerdict(p, won)
+  if (verdict === undefined || verdict === 'coin-flip')
+    return <span className="text-ink-2">{pct(p)}</span>
+  return verdict === 'hit' ? (
     <span className="font-semibold text-win">{pct(p)} ✓</span>
   ) : (
     <span className="font-semibold text-loss">
