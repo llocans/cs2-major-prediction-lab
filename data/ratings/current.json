@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-24T12:02:04.508Z",
-  "reason": "log-result stage-1-r2-flyquest-parivision",
+  "asOf": "2026-11-24T12:47:04.448Z",
+  "reason": "log-result stage-1-r2-bc-game-faze",
   "teams": {
     "nip": {
       "rating": 1549.3,
@@ -163,8 +163,8 @@
       ]
     },
     "faze": {
-      "rating": 1512.8,
-      "rd": 59.2,
+      "rating": 1518.8,
+      "rd": 58.5,
       "maps": {
         "ancient": {
           "offset": -61.9,
@@ -177,9 +177,9 @@
           "n": 8
         },
         "mirage": {
-          "offset": 48.1,
-          "rd": 61.96773353931867,
-          "n": 8
+          "offset": 49.9,
+          "rd": 60.5,
+          "n": 9
         },
         "nuke": {
           "offset": 63.9,
@@ -216,13 +216,13 @@
       ]
     },
     "liquid": {
-      "rating": 1526,
-      "rd": 59.2,
+      "rating": 1531.7,
+      "rd": 58.5,
       "maps": {
         "mirage": {
-          "offset": 46.8,
-          "rd": 60.474315681476355,
-          "n": 9
+          "offset": 48.4,
+          "rd": 59.1,
+          "n": 10
         },
         "inferno": {
           "offset": 46.8,
@@ -587,8 +587,8 @@
       ]
     },
     "wildcard": {
-      "rating": 1445.2,
-      "rd": 59.2,
+      "rating": 1439.5,
+      "rd": 58.5,
       "maps": {
         "cache": {
           "offset": 9.2,
@@ -596,9 +596,9 @@
           "n": 7
         },
         "mirage": {
-          "offset": 9.2,
-          "rd": 63.5775531391221,
-          "n": 7
+          "offset": 7.4,
+          "rd": 62,
+          "n": 8
         },
         "inferno": {
           "offset": -27.8,
@@ -640,8 +640,8 @@
       ]
     },
     "bc-game": {
-      "rating": 1393,
-      "rd": 59.2,
+      "rating": 1387,
+      "rd": 58.5,
       "maps": {
         "nuke": {
           "offset": 30.7,
@@ -659,9 +659,9 @@
           "n": 4
         },
         "mirage": {
-          "offset": 11.5,
-          "rd": 69.28203230275508,
-          "n": 4
+          "offset": 9.2,
+          "rd": 67.2,
+          "n": 5
         },
         "dust2": {
           "offset": 32.5,
