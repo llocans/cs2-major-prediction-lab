@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-24T06:17:04.472Z",
-  "reason": "log-result stage-1-r1-100-thieves-chinggis-warriors",
+  "asOf": "2026-11-24T06:47:03.810Z",
+  "reason": "log-result stage-1-r1-bc-game-liquid",
   "teams": {
     "nip": {
       "rating": 1545,
@@ -216,8 +216,8 @@
       ]
     },
     "liquid": {
-      "rating": 1516.8,
-      "rd": 60,
+      "rating": 1526,
+      "rd": 59.2,
       "maps": {
         "mirage": {
           "offset": 46.8,
@@ -240,9 +240,9 @@
           "n": 7
         },
         "nuke": {
-          "offset": -22.7,
-          "rd": 67.21344403334447,
-          "n": 5
+          "offset": -19.4,
+          "rd": 65.3,
+          "n": 6
         },
         "dust2": {
           "offset": -45.5,
@@ -640,13 +640,13 @@
       ]
     },
     "bc-game": {
-      "rating": 1402.2,
-      "rd": 60,
+      "rating": 1393,
+      "rd": 59.2,
       "maps": {
         "nuke": {
-          "offset": 34,
-          "rd": 67.21344403334447,
-          "n": 5
+          "offset": 30.7,
+          "rd": 65.3,
+          "n": 6
         },
         "ancient": {
           "offset": -50.1,

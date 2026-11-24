@@ -89,6 +89,28 @@
         "retrievedAt": "2026-11-24",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r1-bc-game-liquid",
+      "stageId": "stage-1",
+      "round": 1,
+      "teamA": "liquid",
+      "teamB": "bc-game",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "nuke",
+          "scoreA": 13,
+          "scoreB": 1
+        }
+      ],
+      "winner": "liquid",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3473764)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-24",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
