@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-24T05:02:04.076Z",
-  "reason": "log-result stage-1-r1-heroic-imperial",
+  "asOf": "2026-11-24T05:17:03.905Z",
+  "reason": "log-result stage-1-r1-9z-lynn-vision",
   "teams": {
     "nip": {
       "rating": 1538.4,
@@ -375,8 +375,8 @@
       ]
     },
     "9z": {
-      "rating": 1494,
-      "rd": 60,
+      "rating": 1483.7,
+      "rd": 59.3,
       "maps": {
         "nuke": {
           "offset": -26.7,
@@ -394,9 +394,9 @@
           "n": 7
         },
         "inferno": {
-          "offset": 20.4,
-          "rd": 65.31972647421809,
-          "n": 6
+          "offset": 17,
+          "rd": 63.6,
+          "n": 7
         },
         "cache": {
           "offset": -77.9,
@@ -758,8 +758,8 @@
       ]
     },
     "lynn-vision": {
-      "rating": 1360.2,
-      "rd": 60,
+      "rating": 1370.5,
+      "rd": 59.3,
       "maps": {
         "dust2": {
           "offset": 18.3,
@@ -772,9 +772,9 @@
           "n": 2
         },
         "inferno": {
-          "offset": -20.5,
-          "rd": 76.86151382644182,
-          "n": 1
+          "offset": -15.7,
+          "rd": 74.1,
+          "n": 2
         },
         "anubis": {
           "offset": -20.5,

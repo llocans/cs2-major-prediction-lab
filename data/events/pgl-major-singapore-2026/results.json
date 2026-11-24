@@ -23,6 +23,28 @@
         "retrievedAt": "2026-11-24",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r1-9z-lynn-vision",
+      "stageId": "stage-1",
+      "round": 1,
+      "teamA": "9z",
+      "teamB": "lynn-vision",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "inferno",
+          "scoreA": 11,
+          "scoreB": 13
+        }
+      ],
+      "winner": "lynn-vision",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3473735)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-24",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
