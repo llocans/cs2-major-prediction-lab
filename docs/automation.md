@@ -101,7 +101,7 @@ validated by the poller itself.
 | PreToolUse Edit\|Write  | `guard-edits.ts`: deny docs/core edits on main, deny edits to saved snapshots                                                              | active |
 | PostToolUse Edit\|Write | `validate-data.ts`: validate edited data files against their schema                                                                        | active |
 | Stop                    | `stop-check.ts`: `npm run check` only if code changed since the last pass; blocks on failure, reports after 3 attempts (built-in cap is 8) | active |
-| Stop                    | `ui-reminder.ts`: when site code changed and `npm run ui-audit` has not passed for it, blocks once per code state with a reminder to run the audit and the `ui-review` skill | active |
+| Stop                    | `ui-audit-check.ts`: when site code changed and the audit has not passed for that code, runs `npm run ui-audit` itself (about 20 s, no agent tokens); silent on a pass, blocks with the failures, reports after 3 attempts; skipped without Chromium | active |
 | SessionStart            | `session-start.ts`: print the newest `data/events/<id>/status.md`, open findings in `data/checkup.md`, and the git state (warns when the folder has uncommitted changes)                                   | active |
 
 ## Headless fallback

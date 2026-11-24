@@ -90,10 +90,11 @@ future events too: formats live in config, never in code.
     Never switch branches, stash, reset or commit in a folder another chat is using, and commit only
     your own files by path (never `git add -A`). The session start warns when the folder already has
     uncommitted changes.
-14. UI changes are checked by measurement and by fresh eyes, never only by the builder: before a PR
-    that changes `site/`, run the `ui-review` skill (`npm run ui-audit` at 0 failures, then the
-    `ui-reviewer` agent) and go through every finding. The Stop hook reminds once per code state;
-    CI runs the audit on every PR.
+14. UI changes are checked by measurement, never only by eye. Every change to `site/` passes
+    `npm run ui-audit` (free; the Stop hook runs it when site code changed, CI on every PR). Layout
+    changes, new components and new pages also get the `ui-reviewer` agent once (fresh eyes, about
+    100k tokens), scoped to the changed pages; wording, colours and small fixes do not. The
+    `ui-review` skill picks the tier.
 
 ## Skills (`.claude/skills/`)
 
@@ -105,7 +106,7 @@ future events too: formats live in config, never in code.
 | `simulate`      | Re-run the simulation and report the odds (read-only)                                       |
 | `review-stage`  | Score a finished stage, write lessons, propose capped changes via PR                        |
 | `cleanup`       | Remove expired modifiers, mark stale facts, check sources                                   |
-| `ui-review`     | After a UI change: `npm run ui-audit`, then the `ui-reviewer` agent, then fix every finding |
+| `ui-review`     | After a UI change: audit always; `ui-reviewer` agent only for layout/new components        |
 
 ## Subagents (`.claude/agents/`)
 

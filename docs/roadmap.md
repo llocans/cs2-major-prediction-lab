@@ -154,7 +154,8 @@ belong in `data/events/<id>/status.md`, not here.
 - 2026-11-24: UI checks by measurement and fresh eyes: `npm run ui-audit` (Playwright: every page at
   desktop and 375 px, light and dark; console errors, page scroll, cut-off text, overlaps, WCAG AA
   contrast) in CI with screenshots as an artifact, its own tests on planted problems, the
-  `ui-reviewer` agent, a stricter `ui-review` skill, golden rule 14 and a Stop-hook reminder. Light
+  `ui-reviewer` agent for layout changes only (the `ui-review` skill picks light or full), golden
+  rule 14, and a Stop hook that runs the audit itself when site code changed. Light
   `ink-3` and `accent` and dark `ink-3` darkened/lightened slightly to pass AA contrast. The first
   fresh-eyes review found 27 issues on the Stage and Market pages; 22 fixed (stale match-history
   row, header alignment, impossible outcomes as "–", phone fit and tap targets, legend), and the

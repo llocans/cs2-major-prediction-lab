@@ -48,8 +48,8 @@
           },
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/ui-reminder.ts\"",
-            "timeout": 20
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/ui-audit-check.ts\"",
+            "timeout": 180
           }
         ]
       }
