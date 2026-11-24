@@ -152,7 +152,6 @@ export function TeamPanel(props: Props) {
               </li>
             ))}
           </ol>
-          <p className="mt-2 text-xs text-ink-3">Lineup: {form.roster.join(', ')}</p>
         </Section>
       )}
     </aside>
