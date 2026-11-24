@@ -113,6 +113,8 @@ describe('stageMarketPicks', () => {
       'no-odds',
     ])
     expect(stage.picks).toBe(0)
+    // An older snapshot said medium; a little-data match is always shown as low.
+    expect(stage.rounds[0]?.matches.map((m) => m.confidence)).toEqual(['medium', 'low', 'medium'])
   })
 
   it('scores a series by maps from the winner side and leaves rounds without odds out', () => {

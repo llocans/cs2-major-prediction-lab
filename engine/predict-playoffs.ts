@@ -1,6 +1,6 @@
 import type { MatchFormat } from '../data/schemas/common.ts'
 import type { MatchPrediction, PlayoffTeamOutlook } from '../data/schemas/snapshot.ts'
-import { matchConfidence, matchReason, matchupSigma } from './explain.ts'
+import { matchReason, matchupConfidence } from './explain.ts'
 import { type BracketMatch, roundCount } from './playoffs/bracket.ts'
 import {
   type PlayoffSimInput,
@@ -40,7 +40,7 @@ export function predictPlayoffs(input: PlayoffSimInput, labels: Labels): Playoff
       teamB: m.teamB,
       format: m.format,
       pA: m.pA,
-      confidence: matchConfidence(m.pA, matchupSigma(model, m.teamA, m.teamB)),
+      confidence: matchupConfidence(model, m.teamA, m.teamB, m.pA),
       reason: matchReason(m.teamA, m.teamB, m.format, model, veto, labels.team, labels.map),
     }))
 

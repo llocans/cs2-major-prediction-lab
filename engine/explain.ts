@@ -9,10 +9,13 @@ export const LITTLE_DATA_RD = 100
 /** Added to a match reason when a team has few tier-1 series (rd >= 100). Read by market-picks.ts. */
 export const LITTLE_DATA_NOTE = 'little tier-1 data'
 
-/** Match confidence from combined uncertainty and how far the probability is from 50% (docs/model.md). */
-export function matchConfidence(pA: number, sigma: number): Confidence {
+/**
+ * Match confidence from combined uncertainty and how far the probability is from 50% (docs/model.md).
+ * Always low when either team has little tier-1 data: the other team's solid data must not hide it.
+ */
+export function matchConfidence(pA: number, sigma: number, littleData = false): Confidence {
   const edge = Math.abs(pA - 0.5)
-  if (sigma >= 150 || edge < 0.05) return 'low'
+  if (littleData || sigma >= 150 || edge < 0.05) return 'low'
   if (sigma < 110 && edge >= 0.15) return 'high'
   return 'medium'
 }
@@ -24,8 +27,23 @@ export function teamConfidence(rd: number, pAdvance: number): Confidence {
 }
 
 /** Combined team-level uncertainty of a matchup. */
-export function matchupSigma(model: MatchModel, a: string, b: string): number {
+export function matchupSigma(model: Pick<MatchModel, 'rd'>, a: string, b: string): number {
   return Math.sqrt(model.rd(a) ** 2 + model.rd(b) ** 2)
+}
+
+/** True when either team has little tier-1 data (rd >= LITTLE_DATA_RD). */
+export function hasLittleData(model: Pick<MatchModel, 'rd'>, a: string, b: string): boolean {
+  return model.rd(a) >= LITTLE_DATA_RD || model.rd(b) >= LITTLE_DATA_RD
+}
+
+/** Confidence of one matchup, from the model's uncertainty about both teams. */
+export function matchupConfidence(
+  model: Pick<MatchModel, 'rd'>,
+  a: string,
+  b: string,
+  pA: number,
+): Confidence {
+  return matchConfidence(pA, matchupSigma(model, a, b), hasLittleData(model, a, b))
 }
 
 /**
@@ -67,7 +85,7 @@ export function matchReason(
       )
     }
   }
-  if (model.rd(a) >= LITTLE_DATA_RD || model.rd(b) >= LITTLE_DATA_RD) {
+  if (hasLittleData(model, a, b)) {
     const unsure = [a, b].filter((team) => model.rd(team) >= LITTLE_DATA_RD).map(name)
     parts.push(`${LITTLE_DATA_NOTE} for ${unsure.join(' and ')}`)
   }

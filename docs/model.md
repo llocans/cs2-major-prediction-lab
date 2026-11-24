@@ -112,7 +112,9 @@ The Bo5 grand-final veto is unverified for PGL Singapore (`veto.bo5.unverified`;
 ## Confidence and reasons
 
 - Match confidence from `σ` (combined rd) and `|p − 0.5|`: **high** if σ < 110 and |p − 0.5| ≥ 0.15;
-  **low** if σ ≥ 150 or |p − 0.5| < 0.05; otherwise **medium**.
+  **low** if σ ≥ 150 or |p − 0.5| < 0.05, or if either team has little tier-1 data (rd ≥ 100: one
+  team's solid data must not hide the other's lack of it); otherwise **medium**. The Market odds page
+  reads older snapshots with the same rule.
 - Reasons name the largest contributors: rating gap, the expected maps from the veto, active modifiers,
   and uncertainty.
 
