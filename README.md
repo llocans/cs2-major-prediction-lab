@@ -115,9 +115,11 @@ are documented with sources in [`docs/rules.md`](docs/rules.md).
 ## Current limitations
 
 - The Bo5 grand-final veto is assumed from earlier PGL events until PGL publishes the Singapore one.
-- Market odds for the current Major are read by hand: OddsPortal for the track record, CSGOEmpire for
-  the Market odds page. OddsPapi does not cover this Major past its first round, and CSGOEmpire's
-  terms forbid automated reading.
+- Market odds for the current Major are read by hand: CSGOEmpire before a round when someone has
+  time, OddsPortal's closing line (about 10 bookmakers averaged) after it. The site shows CSGOEmpire
+  where logged, otherwise OddsPortal, and names the source; the track record uses OddsPortal.
+  OddsPapi does not cover this Major past its first round, and CSGOEmpire's terms forbid automated
+  reading.
 - Ratings are tuned on reasoning, not yet on backtests of past Majors.
 - The team, matchup and odds-over-time pages are placeholders.
 - The site runs locally; it is not hosted anywhere yet.

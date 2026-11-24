@@ -26,8 +26,12 @@ interface Props {
   short: (teamId: string) => string
   winsToAdvance: number
   lossesToEliminate: number
-  /** The market's chance that `team` beats `opponent` in a round, if logged (shown on hover). */
-  market?: (round: number, team: string, opponent: string) => number | undefined
+  /** The market's chance that `team` beats `opponent` in a round and its source, if logged (hover). */
+  market?: (
+    round: number,
+    team: string,
+    opponent: string,
+  ) => { p: number; source?: string } | undefined
   onPick: (match: BracketMatch, winner: string) => void
   onSelect: (teamId: string) => void
 }
@@ -148,7 +152,11 @@ function MatchRow(props: {
   pick: Pick | undefined
   selected: string | undefined
   name: (teamId: string) => string
-  market?: (round: number, team: string, opponent: string) => number | undefined
+  market?: (
+    round: number,
+    team: string,
+    opponent: string,
+  ) => { p: number; source?: string } | undefined
   onPick: (match: BracketMatch, winner: string) => void
   onSelect: (teamId: string) => void
 }) {
@@ -170,8 +178,13 @@ function MatchRow(props: {
         const lost = done && !won
         const isSelected = selected === team
         const opponent = team === match.teamA ? match.teamB : match.teamA
-        const pMarket = market?.(match.round, team, opponent)
-        const marketNote = pMarket === undefined ? '' : ` · market ${pct(pMarket)}`
+        const quote = market?.(match.round, team, opponent)
+        const marketText = quote
+          ? `Market ${pct(quote.p)}${quote.source ? ` (${quote.source})` : ''}`
+          : undefined
+        const marketNote = quote
+          ? ` · market ${pct(quote.p)}${quote.source ? ` (${quote.source})` : ''}`
+          : ''
         return (
           <div
             key={team}
@@ -198,7 +211,7 @@ function MatchRow(props: {
             {match.kind === 'real' ? (
               <span
                 className={`num min-w-4 text-right text-sm ${won ? 'font-semibold text-ink' : 'text-ink-3'}`}
-                title={pMarket === undefined ? undefined : `Market ${pct(pMarket)}`}
+                title={marketText}
               >
                 {index === 0 ? scoreA : scoreB}
               </span>

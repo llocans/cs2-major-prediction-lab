@@ -10,6 +10,7 @@ import {
 import { TeamLogo } from '../components/TeamLogo.tsx'
 import { type EventData, teamName, teamShortName } from '../lib/data.ts'
 import { pct, shortDate } from '../lib/format.ts'
+import { displayOdds, sourceLabel } from '../lib/market.ts'
 
 const SKIP_LABEL: Record<SkipReason, string> = {
   'no-odds': 'no odds',
@@ -38,8 +39,10 @@ const points = (value: number) => `+${Math.round(value * 100)} pp`
 /** The model's picks against one bookmaker's margin-free prices, stage by stage, round by round. */
 export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?: string }) {
   const stages = event.config.stages
+  // CSGOEmpire where it was read before the round, OddsPortal's closing line for the rest.
+  const odds = displayOdds(event.bookmakerOdds, event.benchmarks)
   const records = stages.map((s) =>
-    stageMarketPicks(s.id, event.snapshots, event.bookmakerOdds, event.results.matches),
+    stageMarketPicks(s.id, event.snapshots, odds, event.results.matches),
   )
   const latestWithOdds = [...records].reverse().find((r) => r.rounds.length > 0)
   const record = records.find((r) => r.stageId === stageId) ?? latestWithOdds ?? records[0]
@@ -50,9 +53,7 @@ export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?:
       <span className="hidden sm:inline">{teamName(event, id)}</span>
     </>
   )
-  const sources = [
-    ...new Map(event.bookmakerOdds.map((o) => [o.source.name, o.source.url] as const)).entries(),
-  ]
+  const sources = [...new Map(odds.map((o) => [o.source.name, o.source.url] as const)).entries()]
 
   return (
     <div className="flex flex-col gap-6">
@@ -106,8 +107,9 @@ export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?:
               )}
             </span>
           ))}
-          . Read by hand before each round; only the percentages are stored. Model % is from the
-          prediction saved before the round and never changes afterwards.
+          . Read by hand: CSGOEmpire before a round when possible, otherwise OddsPortal's closing
+          line (an average of about 10 bookmakers) after it. Only the percentages are stored. Model
+          % is from the prediction saved before the round and never changes afterwards.
         </p>
       )}
     </div>
@@ -143,7 +145,8 @@ function RoundSection(props: {
         <span className="font-display text-lg font-bold">Round {round.round}</span>
         <span className="num ml-3 text-xs text-ink-3">
           {tallyText(round)}
-          {round.readOn && ` · odds read ${shortDate(round.readOn)}`}
+          {round.sources.length > 0 && ` · ${round.sources.map(sourceLabel).join(' + ')}`}
+          {round.readOn && `, read ${shortDate(round.readOn)}`}
         </span>
       </summary>
       <div className="mt-2 overflow-x-auto">

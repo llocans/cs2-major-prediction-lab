@@ -13,8 +13,8 @@ interface Props {
   seed?: number
   outlook?: TeamOutlook
   next?: MatchPrediction
-  /** The market's chance for this team in its next match, if logged. */
-  nextMarket?: number
+  /** The market's chance for this team in its next match and its source, if logged. */
+  nextMarket?: { p: number; source?: string }
   /** This team's matches in the stage so far. */
   matches?: TeamMatchRow[]
   /** The team's name at this event, for the heading. */
@@ -93,14 +93,22 @@ export function TeamPanel(props: Props) {
                 Market
               </dt>
               {nextMarket === undefined ? (
-                <dd className="num font-display text-2xl font-semibold text-ink-3">–</dd>
-              ) : (
                 <dd
-                  className="num font-display text-2xl font-semibold text-accent"
-                  data-keep-accent
+                  className="num font-display text-2xl font-semibold text-ink-3"
+                  title="No odds logged for this match yet"
                 >
-                  {pct(nextMarket)}
+                  –
                 </dd>
+              ) : (
+                <>
+                  <dd
+                    className="num font-display text-2xl font-semibold text-accent"
+                    data-keep-accent
+                  >
+                    {pct(nextMarket.p)}
+                  </dd>
+                  {nextMarket.source && <dd className="text-xs text-ink-3">{nextMarket.source}</dd>}
+                </>
               )}
             </div>
           </dl>
@@ -144,7 +152,9 @@ export function TeamPanel(props: Props) {
                     <ModelChance p={m.model} won={m.result === 'W'} />
                   </td>
                   <td className="py-0.5 text-right text-ink-2">
-                    {m.market === undefined ? '–' : pct(m.market)}
+                    <span title={m.marketSource}>
+                      {m.market === undefined ? '–' : pct(m.market)}
+                    </span>
                   </td>
                 </tr>
               ))}

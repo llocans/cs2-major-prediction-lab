@@ -1,15 +1,27 @@
 /**
- * Market odds next to the model's, for display only (a benchmark, never a model input). Round 1 has
- * odds from before the matches; later rounds get closing lines once a match is settled.
+ * Market odds next to the model's, for display only (a benchmark, never a model input).
+ *
+ * Two sources, both read by hand: one bookmaker's odds read before a round (CSGOEmpire,
+ * `bookmaker-odds.json`, when someone had time) and the closing line averaged over about 10
+ * bookmakers (OddsPortal, `benchmarks.json`, filled after the round). The site shows one price per
+ * match: the pre-round odds if logged, otherwise the closing line, and always names its source.
  */
 interface Pair {
   teamA: string
   teamB: string
 }
 
+interface OddsLike extends Pair {
+  stageId: string
+  round?: number
+  pA: number
+  source?: { name: string }
+}
+
 /** The parts of an event's data this needs (EventData fits). */
 export interface MarketData {
-  benchmarks: ReadonlyArray<Pair & { stageId: string; round?: number; pA: number }>
+  benchmarks: ReadonlyArray<OddsLike>
+  bookmakerOdds?: ReadonlyArray<OddsLike>
   snapshots: ReadonlyArray<{
     stageId: string
     beforeRound: number
@@ -19,6 +31,45 @@ export interface MarketData {
 }
 
 const pairKey = (a: string, b: string) => (a < b ? `${a}|${b}` : `${b}|${a}`)
+const matchKey = (o: OddsLike) => `${o.stageId}|${o.round}|${pairKey(o.teamA, o.teamB)}`
+
+/**
+ * One price per match: every entry of `preferred` (odds read before the round), plus the
+ * `fallback` entries (closing lines) for matches `preferred` does not have.
+ */
+export function displayOdds<T extends OddsLike>(
+  preferred: readonly T[],
+  fallback: readonly T[],
+): T[] {
+  const have = new Set(preferred.map(matchKey))
+  return [...preferred, ...fallback.filter((o) => o.round !== undefined && !have.has(matchKey(o)))]
+}
+
+/** Short name of an odds source for labels: "CSGOEmpire", "OddsPortal avg", or the name itself. */
+export function sourceLabel(name: string | undefined): string | undefined {
+  if (!name) return undefined
+  if (name.startsWith('OddsPortal')) return 'OddsPortal avg'
+  return name.split(' ')[0]
+}
+
+/** The market's chance that `team` beats `opponent` in this round and where it comes from. */
+export function marketQuote(
+  event: MarketData,
+  stageId: string,
+  round: number,
+  team: string,
+  opponent: string,
+): { p: number; source?: string } | undefined {
+  const entry = displayOdds(event.bookmakerOdds ?? [], event.benchmarks).find(
+    (b) =>
+      b.stageId === stageId &&
+      b.round === round &&
+      pairKey(b.teamA, b.teamB) === pairKey(team, opponent),
+  )
+  if (!entry) return undefined
+  const label = sourceLabel(entry.source?.name)
+  return { p: entry.teamA === team ? entry.pA : 1 - entry.pA, ...(label ? { source: label } : {}) }
+}
 
 /** The market's chance that `team` beats `opponent` in this stage round, if one was logged. */
 export function marketChance(
@@ -28,14 +79,7 @@ export function marketChance(
   team: string,
   opponent: string,
 ): number | undefined {
-  const entry = event.benchmarks.find(
-    (b) =>
-      b.stageId === stageId &&
-      b.round === round &&
-      pairKey(b.teamA, b.teamB) === pairKey(team, opponent),
-  )
-  if (!entry) return undefined
-  return entry.teamA === team ? entry.pA : 1 - entry.pA
+  return marketQuote(event, stageId, round, team, opponent)?.p
 }
 
 export interface TeamMatchRow {
@@ -44,6 +88,8 @@ export interface TeamMatchRow {
   /** The model's chance before the round (from that round's snapshot). */
   model?: number
   market?: number
+  /** Where the market chance comes from ("CSGOEmpire", "OddsPortal avg"). */
+  marketSource?: string
   result?: 'W' | 'L'
 }
 
@@ -78,6 +124,10 @@ export function teamStageMatches(event: MarketData, stageId: string, team: strin
     }
     r.result = match.winner === team ? 'W' : 'L'
   }
-  for (const r of rows.values()) r.market = marketChance(event, stageId, r.round, team, r.opponent)
+  for (const r of rows.values()) {
+    const quote = marketQuote(event, stageId, r.round, team, r.opponent)
+    r.market = quote?.p
+    if (quote?.source) r.marketSource = quote.source
+  }
   return [...rows.values()].sort((a, b) => a.round - b.round)
 }
