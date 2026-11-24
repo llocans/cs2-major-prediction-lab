@@ -23,7 +23,7 @@ Hierarchy comes from type size, weight, spacing and alignment, not from boxes an
 
 - Colors: `paper`, `paper-2` (subtle fill), `ink`, `ink-2` (secondary), `ink-3` (muted), `rule` (lines),
   `accent`, `accent-ink` (text on accent), `win`, `loss` (muted, used sparingly for W/L marks, the model's pick marks, the Swiss bracket's winner/loser
-  connectors and its Advanced/Eliminated boxes).
+  connectors and its Advanced/Eliminated boxes, and the up/down change of a chance since round 1).
 - Fonts: a condensed sans for headings and numbers, a neutral sans for text, both self-hosted or
   system fallbacks.
 - Spacing on a 4 px grid. Radius: `sm` 2 px, `md` 4 px.
