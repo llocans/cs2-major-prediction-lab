@@ -177,6 +177,50 @@
         "retrievedAt": "2026-11-24",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r2-lynn-vision-nip",
+      "stageId": "stage-1",
+      "round": 2,
+      "teamA": "nip",
+      "teamB": "lynn-vision",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "ancient",
+          "scoreA": 13,
+          "scoreB": 10
+        }
+      ],
+      "winner": "nip",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3473817)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-24",
+        "license": "CC-BY-SA 3.0"
+      }
+    },
+    {
+      "id": "stage-1-r2-chinggis-warriors-heroic",
+      "stageId": "stage-1",
+      "round": 2,
+      "teamA": "heroic",
+      "teamB": "chinggis-warriors",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "nuke",
+          "scoreA": 13,
+          "scoreB": 3
+        }
+      ],
+      "winner": "heroic",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3473817)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-24",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }

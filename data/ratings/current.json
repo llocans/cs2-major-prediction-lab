@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-24T08:17:03.969Z",
-  "reason": "log-result stage-1-r1-eternal-fire-flyquest",
+  "asOf": "2026-11-24T10:32:04.490Z",
+  "reason": "log-result stage-1-r2-chinggis-warriors-heroic",
   "teams": {
     "nip": {
-      "rating": 1545,
-      "rd": 59.2,
+      "rating": 1549.3,
+      "rd": 58.5,
       "maps": {
         "cache": {
           "offset": -13.9,
@@ -18,9 +18,9 @@
           "n": 13
         },
         "ancient": {
-          "offset": 15.1,
-          "rd": 57.78520948116921,
-          "n": 11
+          "offset": 16.2,
+          "rd": 56.6,
+          "n": 12
         },
         "dust2": {
           "offset": -70.4,
@@ -110,8 +110,8 @@
       ]
     },
     "heroic": {
-      "rating": 1518.8,
-      "rd": 59.2,
+      "rating": 1525.9,
+      "rd": 58.5,
       "maps": {
         "dust2": {
           "offset": -55.1,
@@ -139,9 +139,9 @@
           "n": 8
         },
         "nuke": {
-          "offset": 22.2,
-          "rd": 65.31972647421809,
-          "n": 6
+          "offset": 24.6,
+          "rd": 63.6,
+          "n": 7
         },
         "anubis": {
           "offset": -40,
@@ -711,13 +711,13 @@
       ]
     },
     "chinggis-warriors": {
-      "rating": 1353.6,
-      "rd": 107.3,
+      "rating": 1330.3,
+      "rd": 103,
       "maps": {
         "nuke": {
-          "offset": 73.5,
-          "rd": 63.5775531391221,
-          "n": 7
+          "offset": 66.1,
+          "rd": 62,
+          "n": 8
         },
         "ancient": {
           "offset": 35.4,
@@ -764,8 +764,8 @@
       ]
     },
     "lynn-vision": {
-      "rating": 1370.5,
-      "rd": 59.3,
+      "rating": 1366.2,
+      "rd": 58.6,
       "maps": {
         "dust2": {
           "offset": 18.3,
@@ -773,9 +773,9 @@
           "n": 2
         },
         "ancient": {
-          "offset": 18.3,
-          "rd": 74.0656079818041,
-          "n": 2
+          "offset": 16.4,
+          "rd": 71.6,
+          "n": 3
         },
         "inferno": {
           "offset": -15.7,
