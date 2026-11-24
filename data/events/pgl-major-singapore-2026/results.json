@@ -133,6 +133,28 @@
         "retrievedAt": "2026-11-24",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r1-faze-wildcard",
+      "stageId": "stage-1",
+      "round": 1,
+      "teamA": "faze",
+      "teamB": "wildcard",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "nuke",
+          "scoreA": 9,
+          "scoreB": 13
+        }
+      ],
+      "winner": "wildcard",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3473795)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-24",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
