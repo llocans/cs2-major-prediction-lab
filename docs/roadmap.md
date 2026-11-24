@@ -41,6 +41,13 @@ belong in `data/events/<id>/status.md`, not here.
 - **Poller stage choice by date.** `pickStage` (which stage to poll today, Swiss → Swiss → playoffs) is
   only covered by the live poller; the flow checks call the stage handling directly.
 
+- **Map guesses (user, 2026-11-24).** The veto in `engine/veto.ts` picks the likely map for every
+  match, but the site does not show it since the team panel's "Why" was removed, and nothing scores
+  it. Stage 1 rounds 1-2 by hand: right map in 2 of 10 matches (chance about 1 in 7). Known cause: a
+  map a team never played (Cache) gets offset 0 unless the team has 15+ maps, so the simulated veto
+  leaves it in and it often ends up as the guess, while real teams ban it. Options: show per-map
+  chances from the simulation, score map guesses on the Track record page, treat an unplayed map as
+  a likely ban at smaller samples (changes predictions: ask first).
 - **Fix the Pick'Em page (user, 2026-11-24).** It works oddly: picks don't lock, and the flow doesn't
   make sense. Go through it with the user first to list what should lock when (e.g. after a stage
   starts) and what feels wrong, then fix.
