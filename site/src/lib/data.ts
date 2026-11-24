@@ -17,6 +17,7 @@ import {
   Snapshot,
   TeamForm,
   TeamRegistry,
+  teamLogoPaths,
 } from '../../../data/schemas/index.ts'
 import { SyncStatus } from '../../../data/schemas/sync.ts'
 import registryJson from '../../../data/teams/registry.json'
@@ -125,4 +126,17 @@ export function teamShortName(event: EventData, teamId: string): string {
     registry.teams.find((t) => t.id === teamId)?.shortName?.name ??
     teamName(event, teamId)
   )
+}
+
+/**
+ * The team's logo files (served from site/public/): the event's own logo for a team renamed for it
+ * (e.g. GOSH for BC.Game), else the team's own logo from the registry.
+ */
+export function teamLogo(
+  teamId: string,
+  event: EventData = currentEvent,
+): { light: string; dark?: string } | undefined {
+  const atEvent = event.teams.participants.find((p) => p.teamId === teamId)?.logo
+  if (atEvent) return teamLogoPaths(teamId, atEvent, event.teams.eventId)
+  return teamLogoPaths(teamId, registry.teams.find((t) => t.id === teamId)?.logo)
 }

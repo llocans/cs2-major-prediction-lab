@@ -2,6 +2,7 @@ import type { BracketMatch, BracketRound } from '../../../engine/swiss/bracket.t
 import { pct } from '../lib/format.ts'
 import type { Pick } from '../lib/verdict.ts'
 import { bracketSize, type GroupSlot, groupSlots, LAYOUT } from './bracket-layout.ts'
+import { TeamLogo } from './TeamLogo.tsx'
 
 interface Props {
   rounds: BracketRound[]
@@ -137,6 +138,7 @@ function MatchRow(props: {
               won && match.kind === 'override' ? 'bg-accent-soft' : '',
             ].join(' ')}
           >
+            <TeamLogo teamId={team} />
             <button
               type="button"
               className={[

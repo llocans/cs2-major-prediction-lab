@@ -4,6 +4,7 @@ import { forms, ratings } from '../lib/data.ts'
 import { pct, shortDate } from '../lib/format.ts'
 import type { TeamMatchRow } from '../lib/market.ts'
 import { chanceVerdict } from '../lib/verdict.ts'
+import { TeamLogo } from './TeamLogo.tsx'
 
 interface Props {
   teamId: string
@@ -38,7 +39,10 @@ export function TeamPanel(props: Props) {
           Seed {seed ?? '–'}
           {form && ` · VRS #${form.vrs.rank}`}
         </div>
-        <h2 className="font-display text-3xl font-bold leading-tight">{name}</h2>
+        <h2 className="flex items-center gap-3 font-display text-3xl font-bold leading-tight">
+          <TeamLogo teamId={teamId} size="lg" />
+          {name}
+        </h2>
         {rating && (
           <div className="num text-sm text-ink-2">
             Rating {Math.round(rating.rating)} ± {Math.round(rating.rd)}

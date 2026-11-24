@@ -25,6 +25,7 @@ import { type BracketMatch, resolveBracket, roundCount } from '../../../engine/p
 import { buildRecords } from '../../../engine/swiss/records.ts'
 import { stageSeeds } from '../../../engine/swiss/stage-seeds.ts'
 import { SimStatus } from '../components/SimStatus.tsx'
+import { TeamLogo } from '../components/TeamLogo.tsx'
 import { type EventData, teamName } from '../lib/data.ts'
 import { pct, shortDate } from '../lib/format.ts'
 import { type StoredPicks, useStoredPicks } from '../lib/pickem-store.ts'
@@ -233,7 +234,10 @@ function SwissBoard(props: {
                   onDragStart={drag(team)}
                   className="cursor-grab border-b border-rule"
                 >
-                  <td className="truncate py-1.5 pr-2">{name(team)}</td>
+                  <td className="truncate py-1.5 pr-2">
+                    <TeamLogo teamId={team} className="mr-2 align-[-3px]" />
+                    {name(team)}
+                  </td>
                   <td className="num py-1.5 text-right text-ink-2">
                     {record ? `${record.wins}-${record.losses}` : '0-0'}
                   </td>
@@ -364,6 +368,7 @@ function SwissBoard(props: {
                     onDragStart={drag(team)}
                     className={`flex h-8 cursor-grab items-center gap-1 rounded-sm border border-l-4 border-rule bg-paper-2 px-2 text-sm ${statusClass[status ?? 'pending']}`}
                   >
+                    <TeamLogo teamId={team} />
                     <button
                       type="button"
                       className={`min-w-0 flex-1 truncate text-left ${status === 'wrong' ? 'text-ink-3 line-through' : ''}`}
@@ -600,6 +605,7 @@ function PlayoffBoard(props: { event: EventData; stage: PlayoffStage; seeds: str
                         onClick={() => setPick(key, team)}
                         className={`flex items-center gap-2 border-b border-rule px-2 py-1.5 text-left text-sm last:border-b-0 ${on ? 'bg-accent font-semibold text-accent-ink' : 'hover:bg-accent-soft'}`}
                       >
+                        <TeamLogo teamId={team} />
                         <span className="min-w-0 flex-1 truncate">{name(team)}</span>
                         {on && <StatusMark status={status === 'pending' ? undefined : status} />}
                         <span className={`num text-xs ${on ? '' : 'text-accent'}`}>

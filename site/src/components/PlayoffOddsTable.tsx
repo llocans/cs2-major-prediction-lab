@@ -1,4 +1,5 @@
 import { pct } from '../lib/format.ts'
+import { TeamLogo } from './TeamLogo.tsx'
 
 export interface PlayoffOddsRow {
   teamId: string
@@ -42,7 +43,10 @@ export function PlayoffOddsTable({ columns, rows, tagLabel, name, note }: Props)
         <tbody>
           {rows.map((row) => (
             <tr key={row.teamId} className="border-b border-rule" title={row.reason}>
-              <td className="py-1.5 pr-2">{name(row.teamId)}</td>
+              <td className="py-1.5 pr-2">
+                <TeamLogo teamId={row.teamId} className="mr-2 align-[-3px]" />
+                {name(row.teamId)}
+              </td>
               <td className="num px-2 py-1.5 text-right text-ink-2">{row.tag}</td>
               {row.values.map((value, index) => {
                 const column = columns[index]

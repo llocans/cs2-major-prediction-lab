@@ -8,6 +8,7 @@ import {
   type TrackedMatch,
   UPSET_BELOW,
 } from '../../../engine/track-record.ts'
+import { TeamLogo } from '../components/TeamLogo.tsx'
 import { type EventData, teamName } from '../lib/data.ts'
 import { pct, shortDate } from '../lib/format.ts'
 
@@ -147,7 +148,10 @@ function StageSection(props: {
           <ul className="num grid gap-x-6 text-sm sm:grid-cols-2">
             {record.advance.teams.map((team) => (
               <li key={team.teamId} className="flex justify-between border-b border-rule py-1">
-                <span>{name(team.teamId)}</span>
+                <span className="flex items-center gap-2">
+                  <TeamLogo teamId={team.teamId} />
+                  {name(team.teamId)}
+                </span>
                 <span>
                   <span className="text-accent">{pct(team.p)}</span>{' '}
                   <span className={team.advanced ? 'text-win' : 'text-loss'}>
