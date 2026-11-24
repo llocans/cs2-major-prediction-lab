@@ -20,7 +20,7 @@ import { shortDate } from '../lib/format.ts'
 import { marketChance, teamStageMatches } from '../lib/market.ts'
 import { readWhatIf, toggleOverride, writeWhatIf } from '../lib/overrides.ts'
 import { setQuery } from '../lib/router.ts'
-import { type Pick, pickFor } from '../lib/verdict.ts'
+import { stagePicks } from '../lib/verdict.ts'
 import { modelRequest } from '../sim/requests.ts'
 import { useStageSimulation } from '../sim/useSimulation.ts'
 
@@ -109,21 +109,7 @@ export function StagePage({ event, stage, query }: Props) {
   )
 
   // The model's pick before each finished match, from that round's snapshot (never edited).
-  const picks = new Map<string, Pick>()
-  for (const m of real) {
-    const snapshot = event.snapshots.find(
-      (s) => s.stageId === stage.id && s.beforeRound === m.round,
-    )
-    const saved = snapshot?.matches.find(
-      (s) => pairKey(s.teamA, s.teamB) === pairKey(m.teamA, m.teamB),
-    )
-    if (saved) {
-      picks.set(
-        `${m.round}|${pairKey(m.teamA, m.teamB)}`,
-        pickFor(saved.teamA, saved.teamB, saved.pA, m.winner),
-      )
-    }
-  }
+  const picks = stagePicks(event.snapshots, event.results.matches, stage.id)
 
   // Each team's chance to advance before round 1, to show how far it has moved since.
   const firstSnapshot = event.snapshots.find((s) => s.stageId === stage.id && s.beforeRound === 1)

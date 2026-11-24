@@ -108,7 +108,7 @@ export function OddsTable({ teams, selected, name, start, onSelect, unverifiedVe
 
 /** Chance to advance and how many points it moved since round 1 (shown from 1 point up). */
 function Advance({ value, start }: { value: number; start: number | undefined }) {
-  const delta = start === undefined ? 0 : Math.round((value - start) * 100)
+  const delta = start === undefined ? 0 : Math.round(value * 100) - Math.round(start * 100)
   const title = start === undefined ? undefined : `Before round 1: ${pct(start)}, now ${pct(value)}`
   return (
     <span className="inline-flex items-center justify-end gap-1.5" title={title}>
