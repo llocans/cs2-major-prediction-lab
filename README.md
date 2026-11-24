@@ -80,7 +80,7 @@ the database and its history is the audit log.
 
 - **No invented numbers.** Every fact and derived number carries a source and a date.
 - **Real results only** in `results.json`. Snapshots are never edited after they are saved.
-- **What-if results** set in the site (forced winners, seed swaps) live only in the page URL, so they
+- **What-if results** set in the site (forced winners) live only in the page URL, so they
   can be shared as a link and never write to the data.
 - **Pick'Em picks** made on the site's Pick'Em page stay in the viewer's browser (local storage) and
   never write to the data.

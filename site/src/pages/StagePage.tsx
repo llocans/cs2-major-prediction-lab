@@ -8,11 +8,19 @@ import { OddsTable } from '../components/OddsTable.tsx'
 import { SimStatus } from '../components/SimStatus.tsx'
 import { SwissBracket } from '../components/SwissBracket.tsx'
 import { TeamPanel } from '../components/TeamPanel.tsx'
-import { type EventData, ratings, syncStatus, teamName } from '../lib/data.ts'
+import {
+  type EventData,
+  ratings,
+  registry,
+  syncStatus,
+  teamName,
+  teamShortName,
+} from '../lib/data.ts'
 import { shortDate } from '../lib/format.ts'
 import { marketChance, teamStageMatches } from '../lib/market.ts'
 import { readWhatIf, toggleOverride, writeWhatIf } from '../lib/overrides.ts'
 import { setQuery } from '../lib/router.ts'
+import { type Pick, pickFor } from '../lib/verdict.ts'
 import { modelRequest } from '../sim/requests.ts'
 import { useStageSimulation } from '../sim/useSimulation.ts'
 
@@ -27,17 +35,14 @@ interface Props {
 export function StagePage({ event, stage, query }: Props) {
   const whatIf = readWhatIf(query)
   const name = (id: string) => teamName(event, id)
+  const short = (id: string) => teamShortName(event, id)
 
   const real = event.results.matches.filter((m) => m.stageId === stage.id)
-  const canSwap = real.length === 0
 
-  const seeds = useMemo(() => {
-    const ordered = stageSeeds(event.teams.participants, stage.id)
-    const swap = canSwap ? whatIf.swap : undefined
-    if (!swap) return ordered
-    const [a, b] = swap
-    return ordered.map((id) => (id === a ? b : id === b ? a : id))
-  }, [event, stage.id, canSwap, whatIf.swap])
+  const seeds = useMemo(
+    () => stageSeeds(event.teams.participants, stage.id),
+    [event.teams.participants, stage.id],
+  )
 
   const chain = useMemo(
     () => buildEventChain(event.config, event.teams.participants, stage.id),
@@ -103,6 +108,27 @@ export function StagePage({ event, stage, query }: Props) {
     }),
   )
 
+  // The model's pick before each finished match, from that round's snapshot (never edited).
+  const picks = new Map<string, Pick>()
+  for (const m of real) {
+    const snapshot = event.snapshots.find(
+      (s) => s.stageId === stage.id && s.beforeRound === m.round,
+    )
+    const saved = snapshot?.matches.find(
+      (s) => pairKey(s.teamA, s.teamB) === pairKey(m.teamA, m.teamB),
+    )
+    if (saved) {
+      picks.set(
+        `${m.round}|${pairKey(m.teamA, m.teamB)}`,
+        pickFor(saved.teamA, saved.teamB, saved.pA, m.winner),
+      )
+    }
+  }
+
+  // Each team's chance to advance before round 1, to show how far it has moved since.
+  const firstSnapshot = event.snapshots.find((s) => s.stageId === stage.id && s.beforeRound === 1)
+  const startAdvance = new Map((firstSnapshot?.teams ?? []).map((t) => [t.teamId, t.pAdvance]))
+
   const selected = query.get('team') ?? seeds[0] ?? ''
   const select = (teamId: string) => {
     const next = new URLSearchParams(query)
@@ -120,14 +146,17 @@ export function StagePage({ event, stage, query }: Props) {
 
   return (
     <div className="flex flex-col gap-8" data-rough={sim.running || undefined}>
-      <header className="flex flex-col gap-1">
-        <h1 className="font-display text-5xl font-bold leading-none tracking-tight">
-          {stage.name}
-        </h1>
-        <p className="num text-sm text-ink-2">
-          {shortDate(stage.start)}–{shortDate(stage.end)} · {roundStatus(currentRound, real)}
-          <SimStatus running={sim.running} />
-        </p>
+      <header className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
+          <h1 className="font-display text-5xl font-bold leading-none tracking-tight">
+            {stage.name}
+          </h1>
+          <p className="num text-sm text-ink-2">
+            {shortDate(stage.start)}–{shortDate(stage.end)}
+            {currentRound !== undefined && <> · {roundStatus(currentRound, real)}</>}
+            <SimStatus running={sim.running} />
+          </p>
+        </div>
         <FreshnessBar sync={syncStatus} stage={stage} ratingsAsOf={ratings.asOf} />
         <Legend
           overrides={whatIf.overrides.length}
@@ -146,6 +175,7 @@ export function StagePage({ event, stage, query }: Props) {
             rounds={bracket}
             pending={pending}
             scores={scores}
+            picks={picks}
             selected={selected}
             name={name}
             market={(round, team, opponent) => marketChance(event, stage.id, round, team, opponent)}
@@ -162,6 +192,7 @@ export function StagePage({ event, stage, query }: Props) {
                 teams={prediction.teams}
                 selected={selected}
                 name={name}
+                start={startAdvance}
                 onSelect={select}
                 unverifiedVeto={prediction.event?.unverifiedVeto}
               />
@@ -178,22 +209,9 @@ export function StagePage({ event, stage, query }: Props) {
             next={next}
             nextMarket={nextMarket}
             matches={teamStageMatches(event, stage.id, selected)}
-            name={name}
-            swapOptions={seeds.filter((id) => id !== selected)}
-            canSwap={canSwap}
-            swappedWith={
-              whatIf.swap?.includes(selected)
-                ? whatIf.swap.find((id) => id !== selected)
-                : undefined
-            }
-            onSwap={(other) =>
-              setQuery(
-                writeWhatIf(
-                  query,
-                  other ? { ...whatIf, overrides: [], swap: [selected, other] } : { overrides: [] },
-                ),
-              )
-            }
+            name={name(selected)}
+            short={short}
+            shortFromVrs={(vrsName) => shortFromVrs(event, vrsName)}
           />
         </div>
       </div>
@@ -202,8 +220,7 @@ export function StagePage({ event, stage, query }: Props) {
 }
 
 /** "Round 2 next" before a round's first result, "Round 2 in progress" after it, then "Finished". */
-function roundStatus(round: number | undefined, real: ReadonlyArray<{ round: number }>): string {
-  if (round === undefined) return '…'
+function roundStatus(round: number, real: ReadonlyArray<{ round: number }>): string {
   if (round > 5) return 'Finished'
   return real.some((m) => m.round === round) ? `Round ${round} in progress` : `Round ${round} next`
 }
@@ -211,17 +228,14 @@ function roundStatus(round: number | undefined, real: ReadonlyArray<{ round: num
 function Legend({ overrides, onReset }: { overrides: number; onReset: () => void }) {
   return (
     <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-ink-3">
-      <span className="font-semibold uppercase tracking-wider">How to read the bracket:</span>
+      <span className="font-semibold uppercase tracking-wider">The bracket:</span>
       <span>
-        black numbers <span className="font-semibold text-ink">(e.g. 13-9)</span> are the real score
+        <span className="rounded-sm bg-accent-soft px-1 text-accent">62%</span> model's chance to
+        win
       </span>
       <span>
-        <span className="text-accent">orange %</span> is the model's chance to win (click it for a
-        what-if)
-      </span>
-      <span>
-        <span className="bg-accent-soft px-1 text-accent">W*</span> is a what-if win, only in this
-        link
+        <span className="rounded-sm bg-accent-soft px-1 text-accent">W*</span> click to select
+        what-if win
       </span>
       {overrides > 0 && (
         <button
@@ -234,4 +248,12 @@ function Legend({ overrides, onReset }: { overrides: number; onReset: () => void
       )}
     </p>
   )
+}
+
+/** Short name for a team as Valve's VRS tables write it, falling back to that name. */
+function shortFromVrs(event: EventData, vrsName: string): string {
+  const team = registry.teams.find(
+    (t) => t.vrsName === vrsName || t.name === vrsName || t.aliases.some((a) => a.name === vrsName),
+  )
+  return team ? teamShortName(event, team.id) : vrsName
 }

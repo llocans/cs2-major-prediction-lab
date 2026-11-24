@@ -1,5 +1,6 @@
 import type { BracketMatch, BracketRound } from '../../../engine/swiss/bracket.ts'
 import { pct } from '../lib/format.ts'
+import type { Pick } from '../lib/verdict.ts'
 import { bracketSize, type GroupSlot, groupSlots, LAYOUT } from './bracket-layout.ts'
 
 interface Props {
@@ -7,6 +8,8 @@ interface Props {
   /** Probability that teamA wins, for pending matches, keyed "a|b". */
   pending: Map<string, number>
   scores: Map<string, string>
+  /** The model's saved pick for finished matches, keyed "round|a|b". */
+  picks: Map<string, Pick>
   selected?: string
   name: (teamId: string) => string
   /** The market's chance that `team` beats `opponent` in a round, if logged (shown on hover). */
@@ -18,7 +21,7 @@ interface Props {
 const pairKey = (a: string, b: string) => (a < b ? `${a}|${b}` : `${b}|${a}`)
 
 export function SwissBracket(props: Props) {
-  const { rounds, pending, scores, selected, name, market, onPick, onSelect } = props
+  const { rounds, pending, scores, picks, selected, name, market, onPick, onSelect } = props
   const slots = groupSlots(16, rounds.length, 3, 3)
   const { width, height } = bracketSize(slots)
 
@@ -69,6 +72,7 @@ export function SwissBracket(props: Props) {
                         match={match}
                         pA={pending.get(pairKey(match.teamA, match.teamB))}
                         score={scores.get(`${match.round}|${pairKey(match.teamA, match.teamB)}`)}
+                        pick={picks.get(`${match.round}|${pairKey(match.teamA, match.teamB)}`)}
                         selected={selected}
                         name={name}
                         market={market}
@@ -97,13 +101,14 @@ function MatchRow(props: {
   match: BracketMatch
   pA: number | undefined
   score: string | undefined
+  pick: Pick | undefined
   selected: string | undefined
   name: (teamId: string) => string
   market?: (round: number, team: string, opponent: string) => number | undefined
   onPick: (match: BracketMatch, winner: string) => void
   onSelect: (teamId: string) => void
 }) {
-  const { match, pA, score, selected, name, market, onPick, onSelect } = props
+  const { match, pA, score, pick, selected, name, market, onPick, onSelect } = props
   const sides = [
     { team: match.teamA, p: pA },
     { team: match.teamB, p: pA === undefined ? undefined : 1 - pA },
@@ -144,6 +149,7 @@ function MatchRow(props: {
             >
               {name(team)}
             </button>
+            {match.kind === 'real' && pick?.team === team && <PickMark pick={pick} />}
             {match.kind === 'real' ? (
               <span
                 className={`num text-xs ${won ? 'font-semibold text-ink' : 'text-ink-3'}`}
@@ -176,6 +182,30 @@ function MatchRow(props: {
         )
       })}
     </div>
+  )
+}
+
+/** The model's pre-match pick on a finished match: green ✓ if it won, red and crossed out if not. */
+function PickMark({ pick }: { pick: Pick }) {
+  const label =
+    pick.verdict === 'coin-flip'
+      ? `Coin flip: the model gave ${pct(pick.p)} before the match`
+      : `Model's pick before the match: ${pct(pick.p)}, ${pick.verdict === 'hit' ? 'won' : 'lost'}`
+  return (
+    <span
+      className={[
+        'num shrink-0 text-xs font-semibold',
+        pick.verdict === 'hit' ? 'text-win' : pick.verdict === 'miss' ? 'text-loss' : 'text-ink-3',
+      ].join(' ')}
+      title={label}
+    >
+      <span className="sr-only">{label}</span>
+      <span aria-hidden="true">
+        <span className={pick.verdict === 'miss' ? 'line-through' : ''}>{pct(pick.p)}</span>
+        {pick.verdict === 'hit' && ' ✓'}
+        {pick.verdict === 'miss' && ' ✗'}
+      </span>
+    </span>
   )
 }
 

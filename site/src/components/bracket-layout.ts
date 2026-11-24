@@ -3,7 +3,7 @@
  * final height before pairings are known and the layout never jumps as rounds fill in.
  */
 export const LAYOUT = {
-  columnWidth: 176,
+  columnWidth: 204,
   columnGap: 28,
   headerHeight: 22,
   matchHeight: 46,

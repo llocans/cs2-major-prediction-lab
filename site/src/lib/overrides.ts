@@ -1,6 +1,6 @@
 /**
- * What-if state kept only in the URL: forced match winners and seed swaps.
- * Format: ?w=<round>.<winner>.<loser>,...&swap=<teamA>.<teamB>
+ * What-if state kept only in the URL: forced match winners.
+ * Format: ?w=<round>.<winner>.<loser>,...
  * Never written to data files.
  */
 export interface Override {
@@ -11,7 +11,6 @@ export interface Override {
 
 export interface WhatIf {
   overrides: Override[]
-  swap?: [string, string]
 }
 
 export function readWhatIf(query: URLSearchParams): WhatIf {
@@ -23,8 +22,7 @@ export function readWhatIf(query: URLSearchParams): WhatIf {
       const n = Number(round)
       return Number.isInteger(n) && winner && loser ? [{ round: n, winner, loser }] : []
     })
-  const [a, b] = (query.get('swap') ?? '').split('.')
-  return a && b ? { overrides, swap: [a, b] } : { overrides }
+  return { overrides }
 }
 
 export function writeWhatIf(query: URLSearchParams, whatIf: WhatIf): URLSearchParams {
@@ -32,8 +30,8 @@ export function writeWhatIf(query: URLSearchParams, whatIf: WhatIf): URLSearchPa
   const w = whatIf.overrides.map((o) => `${o.round}.${o.winner}.${o.loser}`).join(',')
   if (w) next.set('w', w)
   else next.delete('w')
-  if (whatIf.swap) next.set('swap', whatIf.swap.join('.'))
-  else next.delete('swap')
+  // Links from before seed swaps were removed may still carry ?swap=; drop it.
+  next.delete('swap')
   return next
 }
 
