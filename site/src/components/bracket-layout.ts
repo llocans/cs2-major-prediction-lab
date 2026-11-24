@@ -141,7 +141,8 @@ export function bracketSlots(
     const sorted = [...items].sort((a, b) => a.order - b.order)
     const total = sorted.reduce((sum, item) => sum + item.slot.height, 0)
     const gap = sorted.length > 1 ? (inner - total) / (sorted.length - 1) : 0
-    let y = LAYOUT.top + (sorted.length === 1 ? (inner - total) / 2 : 0)
+    // A column with one item (round 1) starts at the top, right under its "Round" label.
+    let y = LAYOUT.top
     const x = index * (LAYOUT.columnWidth + LAYOUT.columnGap)
     return sorted.map((item) => {
       const slot = { ...item.slot, x, y } as Slot

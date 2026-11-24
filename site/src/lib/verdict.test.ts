@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { pickFor, stagePicks } from './verdict.ts'
+import { chanceVerdict, pickFor, stagePicks } from './verdict.ts'
 
 describe('pickFor', () => {
   it('marks a won favourite as a hit', () => {
@@ -12,6 +12,11 @@ describe('pickFor', () => {
       verdict: 'miss',
     })
   })
+  it('judges the percent as shown: 54.6% reads 55% and counts', () => {
+    expect(chanceVerdict(0.546, true)).toBe('hit')
+    expect(chanceVerdict(0.544, true)).toBe('coin-flip')
+  })
+
   it('gives no verdict under 55%', () => {
     expect(pickFor('a', 'b', 0.544, 'b').verdict).toBe('coin-flip')
     expect(pickFor('a', 'b', 0.55, 'b').verdict).toBe('miss')

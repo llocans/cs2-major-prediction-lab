@@ -14,7 +14,7 @@ import { pct, shortDate } from '../lib/format.ts'
 const SKIP_LABEL: Record<SkipReason, string> = {
   'no-odds': 'no odds',
   'small-edge': 'small edge',
-  'little-data': 'little tier-1 data',
+  'little-data': 'little data',
 }
 
 const CONFIDENCE_ORDER: Record<MarketMatch['confidence'], number> = { high: 0, medium: 1, low: 2 }
@@ -88,7 +88,7 @@ export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?:
             <Stat label="Lost" value={record.lost} />
             <Stat label="To play" value={record.pending} />
           </dl>
-          <div className="flex flex-col gap-3">
+          <div className="flex max-w-4xl flex-col gap-3">
             {[...record.rounds].reverse().map((round, i) => (
               <RoundSection key={round.round} round={round} open={i === 0} name={name} />
             ))}
@@ -152,20 +152,29 @@ function RoundSection(props: {
         </span>
       </summary>
       <div className="mt-2 overflow-x-auto">
-        <table className="w-full text-sm">
+        {/* Fixed column widths on wider screens, so the columns line up from round to round. */}
+        <table className="w-full text-sm sm:table-fixed">
+          <colgroup>
+            <col className="sm:w-[31%]" />
+            <col className="sm:w-[10%]" />
+            <col className="sm:w-[10%]" />
+            <col className="sm:w-[15%]" />
+            <col className="sm:w-[24%]" />
+            <col className="sm:w-[10%]" />
+          </colgroup>
           <thead>
             <tr className="border-b border-ink text-left font-display text-xs uppercase tracking-wider text-ink-2">
-              <th className="py-1 pr-2 font-semibold">Match</th>
-              <th className="py-1 pr-2 text-right font-semibold">Model</th>
-              <th className="py-1 pr-2 text-right font-semibold">Market</th>
+              <th className="py-1 pr-1.5 font-semibold sm:pr-2">Match</th>
+              <th className="py-1 pr-1.5 text-right font-semibold sm:pr-2">Model</th>
+              <th className="py-1 pr-1.5 text-right font-semibold sm:pr-2">Market</th>
               <th
-                className="py-1 pr-2 font-semibold"
+                className="py-1 pr-1.5 pl-2 font-semibold sm:pr-2 sm:pl-6"
                 title="How sure the model is: high needs solid data on both teams and a clear favourite"
               >
                 <span className="sm:hidden">Conf.</span>
                 <span className="hidden sm:inline">Confidence</span>
               </th>
-              <th className="py-1 pr-2 font-semibold">Pick</th>
+              <th className="py-1 pr-1.5 font-semibold sm:pr-2">Pick</th>
               <th className="py-1 text-right font-semibold">Result</th>
             </tr>
           </thead>
@@ -191,7 +200,7 @@ function MatchRows({ match, name }: { match: MarketMatch; name: (id: string) => 
     <tbody className="border-b border-rule" title={match.reason}>
       {sides.map((side, i) => (
         <tr key={side.team}>
-          <td className={`whitespace-nowrap pr-2 ${i === 0 ? 'pt-1.5' : 'pb-1.5'}`}>
+          <td className={`whitespace-nowrap pr-1.5 sm:pr-2 ${i === 0 ? 'pt-1.5' : 'pb-1.5'}`}>
             <TeamLogo teamId={side.team} className="mr-2 align-[-3px]" />
             <span className={match.result?.winner === side.team ? 'font-semibold' : ''}>
               {name(side.team)}
@@ -202,18 +211,22 @@ function MatchRows({ match, name }: { match: MarketMatch; name: (id: string) => 
               </span>
             )}
           </td>
-          <td className={`num pr-2 text-right text-accent ${i === 0 ? 'pt-1.5' : 'pb-1.5'}`}>
+          <td
+            className={`num pr-1.5 text-right text-accent sm:pr-2 ${i === 0 ? 'pt-1.5' : 'pb-1.5'}`}
+          >
             {pct(side.model)}
           </td>
-          <td className={`num pr-2 text-right text-ink-2 ${i === 0 ? 'pt-1.5' : 'pb-1.5'}`}>
+          <td
+            className={`num pr-1.5 text-right text-ink-2 sm:pr-2 ${i === 0 ? 'pt-1.5' : 'pb-1.5'}`}
+          >
             {side.market === undefined ? '–' : pct(side.market)}
           </td>
           {i === 0 && (
             <>
-              <td rowSpan={2} className="py-1.5 pr-2 align-middle">
+              <td rowSpan={2} className="py-1.5 pr-1.5 pl-2 align-middle sm:pr-2 sm:pl-6">
                 <ConfidenceCell confidence={match.confidence} />
               </td>
-              <td rowSpan={2} className="py-1.5 pr-2 align-middle">
+              <td rowSpan={2} className="py-1.5 pr-1.5 align-middle sm:pr-2">
                 <PickCell match={match} name={name} />
               </td>
               <td rowSpan={2} className="num whitespace-nowrap py-1.5 text-right align-middle">
@@ -245,10 +258,12 @@ function PickCell({ match, name }: { match: MarketMatch; name: (id: string) => R
       </span>
     )
   }
+  // The space lets a narrow column put the edge on its own line.
   const edge = match.edge ? (
-    <span className="num ml-1 whitespace-nowrap text-xs text-ink-3">
-      {points(match.edge.value)}
-    </span>
+    <>
+      {' '}
+      <span className="num whitespace-nowrap text-xs text-ink-3">{points(match.edge.value)}</span>
+    </>
   ) : null
   if (match.pickWon === undefined) {
     return (

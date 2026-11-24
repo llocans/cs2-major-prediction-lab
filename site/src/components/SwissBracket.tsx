@@ -123,7 +123,7 @@ function Group(props: {
         style={{ height: LAYOUT.headerHeight }}
       >
         <span className="num">{record}</span>
-        <span className="text-[11px] font-medium uppercase tracking-wider text-ink-3">{tag}</span>
+        <span className="text-xs uppercase tracking-wider text-ink-3">{tag}</span>
       </header>
       <div className="flex flex-col" style={{ gap: LAYOUT.matchGap }}>
         {group
@@ -185,7 +185,7 @@ function MatchRow(props: {
             <button
               type="button"
               className={[
-                'min-w-0 flex-1 truncate text-left',
+                'min-w-0 flex-1 self-stretch truncate text-left',
                 won ? 'font-semibold text-ink' : lost ? 'text-ink-3' : 'text-ink',
                 isSelected ? 'underline decoration-accent decoration-2 underline-offset-2' : '',
               ].join(' ')}
@@ -207,7 +207,7 @@ function MatchRow(props: {
                 type="button"
                 onClick={() => onPick(match, team)}
                 className={[
-                  'num rounded-sm px-1 text-xs',
+                  'num -mr-1 self-stretch rounded-sm px-1 text-xs',
                   match.kind === 'override'
                     ? won
                       ? 'font-semibold text-accent'

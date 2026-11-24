@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import type { MatchPrediction, TeamOutlook } from '../../../data/schemas/snapshot.ts'
 import { LITTLE_DATA_RD } from '../../../engine/explain.ts'
 import { forms, ratings } from '../lib/data.ts'
-import { pct, shortDate } from '../lib/format.ts'
+import { outcomeOpen, pct, shortDate } from '../lib/format.ts'
 import type { TeamMatchRow } from '../lib/market.ts'
 import { chanceVerdict } from '../lib/verdict.ts'
 import { TeamLogo } from './TeamLogo.tsx'
@@ -66,12 +66,20 @@ export function TeamPanel(props: Props) {
               ['Advance', outlook.pAdvance],
               ['0-3', outlook.p03],
             ] as const
-          ).map(([label, value]) => (
-            <div key={label}>
-              <dt className="font-display text-xs uppercase tracking-wider text-ink-3">{label}</dt>
-              <dd className="num font-display text-2xl font-semibold text-accent">{pct(value)}</dd>
-            </div>
-          ))}
+          ).map(([label, value]) => {
+            const open = label === 'Advance' || outcomeOpen(outlook.record, label)
+            return (
+              <div key={label}>
+                <dt className={LABEL}>{label}</dt>
+                <dd
+                  className={`num font-display text-2xl font-semibold ${open ? 'text-accent' : 'text-ink-3'}`}
+                  title={open ? undefined : `No longer possible at ${outlook.record}`}
+                >
+                  {open ? pct(value) : '–'}
+                </dd>
+              </div>
+            )
+          })}
         </dl>
       )}
 
@@ -79,16 +87,23 @@ export function TeamPanel(props: Props) {
         <Section title={`Next · vs ${short(opponent)} · ${next.format.toUpperCase()}`}>
           <dl className="grid grid-cols-3 gap-2">
             <div>
-              <dt className="text-xs text-ink-3">Model</dt>
+              <dt className={LABEL}>Model</dt>
               <dd className="num font-display text-2xl font-semibold text-accent">{pct(pNext)}</dd>
             </div>
             <div>
-              <dt className="text-xs text-ink-3" title="Betting odds without the bookmaker margin">
+              <dt className={LABEL} title="Betting odds without the bookmaker margin">
                 Market
               </dt>
-              <dd className="num font-display text-2xl font-semibold text-accent" data-keep-accent>
-                {nextMarket === undefined ? '–' : pct(nextMarket)}
-              </dd>
+              {nextMarket === undefined ? (
+                <dd className="num font-display text-2xl font-semibold text-ink-3">–</dd>
+              ) : (
+                <dd
+                  className="num font-display text-2xl font-semibold text-accent"
+                  data-keep-accent
+                >
+                  {pct(nextMarket)}
+                </dd>
+              )}
             </div>
           </dl>
           {unsure.length > 0 && (
@@ -103,7 +118,7 @@ export function TeamPanel(props: Props) {
         <Section title="This stage">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-xs text-ink-3">
+              <tr className={LABEL}>
                 <th className="w-8 pb-1 text-left font-normal">Rd</th>
                 <th className="w-6 pb-1 text-left font-normal" />
                 <th className="pb-1 text-left font-normal">Opponent</th>
@@ -151,8 +166,12 @@ export function TeamPanel(props: Props) {
             <span className="font-semibold text-loss">{form.summary.last90Days.lost} L</span>
           </p>
           <ol className="mt-2 flex flex-col gap-0.5 text-sm">
-            {form.recent.slice(0, 6).map((series) => (
-              <li key={`${series.date}-${series.opponent}`} className="num flex gap-3 text-ink-2">
+            {form.recent.slice(0, 6).map((series, i) => (
+              <li
+                // biome-ignore lint/suspicious/noArrayIndexKey: the same opponent can appear twice on one day; the list never reorders.
+                key={`${i}-${series.date}-${series.opponent}`}
+                className="num flex gap-3 text-ink-2"
+              >
                 <span className="w-14 shrink-0 whitespace-nowrap text-ink-3">
                   {shortDate(series.date)}
                 </span>
@@ -175,6 +194,9 @@ export function TeamPanel(props: Props) {
     </aside>
   )
 }
+
+/** One style for every small label in the panel (outlook, next match, table headers). */
+const LABEL = 'font-display text-xs uppercase tracking-wider text-ink-3'
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (

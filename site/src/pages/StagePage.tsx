@@ -120,6 +120,9 @@ export function StagePage({ event, stage, query }: Props) {
     const next = new URLSearchParams(query)
     next.set('team', teamId)
     setQuery(next)
+    // On narrow screens the panel is not beside the bracket or table, so bring it into view.
+    if (window.matchMedia('(max-width: 1023px)').matches)
+      document.getElementById('team-panel')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
   const outlook = prediction?.teams.find((t) => t.teamId === selected)
   const next = prediction?.matches.find((m) => m.teamA === selected || m.teamB === selected)
@@ -190,7 +193,10 @@ export function StagePage({ event, stage, query }: Props) {
             <p className="text-sm text-ink-3">Simulating…</p>
           )}
         </section>
-        <div className="lg:sticky lg:top-6 lg:self-start">
+        <div
+          id="team-panel"
+          className="order-first scroll-mt-4 lg:order-none lg:sticky lg:top-6 lg:self-start"
+        >
           <TeamPanel
             teamId={selected}
             seed={seeds.indexOf(selected) + 1 || undefined}
@@ -219,12 +225,18 @@ function Legend({ overrides, onReset }: { overrides: number; onReset: () => void
     <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-ink-3">
       <span className="font-semibold uppercase tracking-wider">The bracket:</span>
       <span>
-        <span className="rounded-sm bg-accent-soft px-1 text-accent">62%</span> model's chance to
-        win
+        <span className="rounded-sm bg-accent-soft px-1 py-0.5 text-accent">62%</span> model's
+        chance to win; click it to force a what-if win (
+        <span className="rounded-sm bg-accent-soft px-1 py-0.5 text-accent">W*</span>)
       </span>
       <span>
-        <span className="rounded-sm bg-accent-soft px-1 text-accent">W*</span> click to select
-        what-if win
+        <span className="font-semibold text-win">✓</span> /{' '}
+        <span className="font-semibold text-loss">✗</span> model's pick won / lost (grey: too close
+        to call)
+      </span>
+      <span>
+        <span className="font-semibold text-win">→</span> winners,{' '}
+        <span className="font-semibold text-loss">→</span> losers (dashed: not played yet)
       </span>
       {overrides > 0 && (
         <button

@@ -1,5 +1,5 @@
 import type { TeamOutlook } from '../../../data/schemas/snapshot.ts'
-import { pct } from '../lib/format.ts'
+import { outcomeOpen, pct } from '../lib/format.ts'
 import { TeamLogo } from './TeamLogo.tsx'
 
 type StageKey = 'p30' | 'pAdvance' | 'p03'
@@ -53,7 +53,9 @@ export function OddsTable(props: Props) {
           {columns.map((column) => (
             <th
               key={column.key}
-              className={`px-2 py-1.5 text-right font-semibold ${numberWidth}`}
+              // On wide screens the right padding skips the change column, so the label sits over
+              // the percentage (change: w-7 + gap-1.5 = 34 px).
+              className={`px-2 py-1.5 text-right font-semibold sm:pr-[42px] ${numberWidth}`}
               title={`${column.title}. The small number is the change since round 1.`}
             >
               {column.label}
@@ -62,11 +64,16 @@ export function OddsTable(props: Props) {
           {eventColumns.map((column, index) => (
             <th
               key={column.key}
-              className={`hidden py-1.5 text-right font-semibold sm:table-cell ${numberWidth} ${index === eventColumns.length - 1 ? 'pl-2' : 'px-2'}`}
+              className={`relative hidden py-1.5 text-right font-semibold sm:table-cell ${numberWidth} ${index === eventColumns.length - 1 ? 'pl-2' : 'px-2'}`}
               title={column.key === 'pTitle' ? `${column.title}${titleNote}` : column.title}
             >
               {column.label}
-              {column.key === 'pTitle' && assumed && <span aria-hidden="true">*</span>}
+              {/* Hangs outside the cell, so "Title" lines up with the numbers below. */}
+              {column.key === 'pTitle' && assumed && (
+                <span className="absolute" aria-hidden="true">
+                  *
+                </span>
+              )}
             </th>
           ))}
         </tr>
@@ -75,7 +82,7 @@ export function OddsTable(props: Props) {
         {sorted.map((team) => (
           <tr
             key={team.teamId}
-            className={`cursor-pointer border-b border-rule ${selected === team.teamId ? 'bg-paper-2' : 'hover:bg-paper-2'}`}
+            className={`cursor-pointer border-b border-rule leading-5 ${selected === team.teamId ? 'bg-paper-2' : 'hover:bg-paper-2'}`}
             onClick={() => onSelect(team.teamId)}
           >
             <td className="whitespace-nowrap py-2 pr-2">
@@ -86,21 +93,31 @@ export function OddsTable(props: Props) {
               </span>
               {team.confidence === 'low' && (
                 <span
-                  className="ml-1.5 whitespace-nowrap text-[11px] uppercase tracking-wider text-ink-3"
-                  title="Little tier-1 data on this team, so its odds are rough"
+                  className="ml-1.5 whitespace-nowrap text-xs text-ink-3"
+                  title="Few tier-1 matches for this team, so its odds are rough"
                 >
-                  low conf.
+                  little data
                 </span>
               )}
             </td>
             <td className="num px-2 py-2 text-right text-ink-2">{team.record}</td>
             {columns.map((column) => (
               <td key={column.key} className="num px-2 py-2 text-right">
-                <Odds
-                  value={team[column.key]}
-                  start={start?.get(team.teamId)?.[column.key]}
-                  strong={column.key === 'pAdvance'}
-                />
+                {column.key === 'pAdvance' ||
+                outcomeOpen(team.record, column.label as '3-0' | '0-3') ? (
+                  <Odds
+                    value={team[column.key]}
+                    start={start?.get(team.teamId)?.[column.key]}
+                    strong={column.key === 'pAdvance'}
+                  />
+                ) : (
+                  <span
+                    className="text-ink-3 sm:mr-[34px]"
+                    title={`No longer possible at ${team.record}`}
+                  >
+                    –
+                  </span>
+                )}
               </td>
             ))}
             {eventColumns.map((column, index) => {
