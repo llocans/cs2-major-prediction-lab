@@ -265,6 +265,28 @@
         "retrievedAt": "2026-11-24",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r2-dendele-eternal-fire",
+      "stageId": "stage-1",
+      "round": 2,
+      "teamA": "eternal-fire",
+      "teamB": "dendele",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "anubis",
+          "scoreA": 13,
+          "scoreB": 8
+        }
+      ],
+      "winner": "eternal-fire",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3473855)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-24",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
