@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-24T05:17:03.905Z",
-  "reason": "log-result stage-1-r1-9z-lynn-vision",
+  "asOf": "2026-11-24T06:02:03.950Z",
+  "reason": "log-result stage-1-r1-m80-nip",
   "teams": {
     "nip": {
-      "rating": 1538.4,
-      "rd": 60,
+      "rating": 1545,
+      "rd": 59.2,
       "maps": {
         "cache": {
           "offset": -13.9,
@@ -13,9 +13,9 @@
           "n": 13
         },
         "mirage": {
-          "offset": 0,
-          "rd": 56.568542494923804,
-          "n": 12
+          "offset": 1.7,
+          "rd": 55.4,
+          "n": 13
         },
         "ancient": {
           "offset": 15.1,
@@ -428,8 +428,8 @@
       ]
     },
     "m80": {
-      "rating": 1493.4,
-      "rd": 60,
+      "rating": 1486.8,
+      "rd": 59.2,
       "maps": {
         "cache": {
           "offset": 23.9,
@@ -437,9 +437,9 @@
           "n": 9
         },
         "mirage": {
-          "offset": -11.3,
-          "rd": 60.474315681476355,
-          "n": 9
+          "offset": -13.2,
+          "rd": 59.1,
+          "n": 10
         },
         "dust2": {
           "offset": 16.4,

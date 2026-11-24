@@ -45,6 +45,28 @@
         "retrievedAt": "2026-11-24",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r1-m80-nip",
+      "stageId": "stage-1",
+      "round": 1,
+      "teamA": "nip",
+      "teamB": "m80",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "mirage",
+          "scoreA": 13,
+          "scoreB": 10
+        }
+      ],
+      "winner": "nip",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3473746)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-24",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
