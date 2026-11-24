@@ -38,7 +38,7 @@ export function FreshnessBar({ sync, stage, ratingsAsOf }: Props) {
     >
       <p className="flex items-baseline gap-2 text-sm">
         <span
-          className={`inline-block h-2 w-2 shrink-0 self-center rounded-sm ${style.mark}`}
+          className={`mt-2 inline-block h-2 w-2 shrink-0 self-start rounded-sm ${style.mark}`}
           aria-hidden="true"
         />
         <span className={`font-display text-base font-bold uppercase tracking-wider ${style.word}`}>

@@ -20,7 +20,8 @@ export interface Pick {
  */
 export function chanceVerdict(p: number, won: boolean): Verdict | undefined {
   if (p < 0.5) return undefined
-  if (p < COIN_FLIP) return 'coin-flip'
+  // Judged on the whole percent shown, so a "55%" on screen is never called a coin flip.
+  if (Math.round(p * 100) < Math.round(COIN_FLIP * 100)) return 'coin-flip'
   return won ? 'hit' : 'miss'
 }
 

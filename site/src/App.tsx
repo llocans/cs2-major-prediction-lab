@@ -31,7 +31,7 @@ export function App() {
   const { route, query } = useLocation()
   return (
     <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col gap-8 px-4 py-6 sm:px-8">
-      <nav className="flex flex-wrap items-baseline gap-x-5 gap-y-1 border-b border-rule pb-3">
+      <nav className="flex flex-wrap items-baseline gap-x-5 border-b border-rule pb-2">
         <a href="#/" className="mr-4 font-display text-sm font-bold uppercase tracking-wider">
           CS2 Prediction Lab
         </a>
@@ -39,7 +39,7 @@ export function App() {
           <a
             key={item.href}
             href={item.href}
-            className={`text-sm ${item.active(route) ? 'font-semibold text-ink underline decoration-accent decoration-2 underline-offset-4' : 'text-ink-2 hover:text-ink'}`}
+            className={`py-1 text-sm ${item.active(route) ? 'font-semibold text-ink underline decoration-accent decoration-2 underline-offset-4' : 'text-ink-2 hover:text-ink'}`}
           >
             {item.label}
           </a>
@@ -49,7 +49,7 @@ export function App() {
       <main className="flex-1">
         <Page route={route} query={query} />
       </main>
-      <footer className="border-t border-rule pt-3 text-xs text-ink-3">
+      <footer className="mt-12 border-t border-rule pt-3 text-xs text-ink-3">
         Data: Valve Regional Standings, Liquipedia (CC-BY-SA 3.0). Team logos are trademarks of
         their teams. Predictions are model output, not advice.
       </footer>

@@ -235,7 +235,7 @@ function SwissBoard(props: {
                   className="cursor-grab border-b border-rule"
                 >
                   <td className="truncate py-1.5 pr-2">
-                    <TeamLogo teamId={team} className="mr-2 align-[-3px]" />
+                    <TeamLogo teamId={team} className="mr-2 align-middle" />
                     {name(team)}
                   </td>
                   <td className="num py-1.5 text-right text-ink-2">

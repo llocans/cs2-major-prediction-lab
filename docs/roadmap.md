@@ -70,7 +70,7 @@ belong in `data/events/<id>/status.md`, not here.
 - **Stage page layout revisit.** The Stage 1 page feels complex: too much information at once, hard to
   read at a glance. Simplify after core features are settled (user, 2026-11-23). Ideas parked until
   then: per-match market % on the Track record rows (the data is already in `benchmarks.json`).
-  First pass done 2026-11-24 (see Done); the `ui-review` skill checks the rest.
+  First and second passes done 2026-11-24 (see Done); the `ui-review` skill checks the rest.
 - **Nemiga's logo is marked temporary.** Liquipedia's team template uses
   `Nemiga Gaming 2020 temporary.png`. Re-run `research/team-logos.ts` before each event; it picks up
   a new file once Liquipedia changes the template.
@@ -136,6 +136,12 @@ belong in `data/events/<id>/status.md`, not here.
 - 2026-11-24: Team logos next to team names in tables, brackets, Pick'Em and the team panel, light
   and dark versions (`research/team-logos.ts`, Liquipedia team templates); GOSH and THE ONE show
   their Major logos.
+- 2026-11-24: Stage page second pass: the bracket takes the full width (Probabilities and the team
+  panel side by side below it), roomier match cards, green winner / red loser arrows (dashed until
+  a group is played), advanced and eliminated boxes in rounds 4-5; Probabilities table with
+  "Record", change since round 1 on 3-0 and 0-3, the Bo5 note on hover; team panel "Match history"
+  (90-day W-L in colour), a little-data note only when a team really has little tier-1 data; Market
+  odds sorted by confidence with its own column.
 - 2026-11-24: Parallel chats: golden rule 13 (one folder, one chat; others in their own worktree)
   and a session-start warning when the folder already has uncommitted changes. Round 3's HEROIC vs
   M80 odds checked (veto, not a bug); underdog bias and round markets added as open items.

@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
 import type { MatchPrediction, TeamOutlook } from '../../../data/schemas/snapshot.ts'
+import { LITTLE_DATA_RD } from '../../../engine/explain.ts'
 import { forms, ratings } from '../lib/data.ts'
-import { pct, shortDate } from '../lib/format.ts'
+import { outcomeOpen, pct, shortDate } from '../lib/format.ts'
 import type { TeamMatchRow } from '../lib/market.ts'
 import { chanceVerdict } from '../lib/verdict.ts'
 import { TeamLogo } from './TeamLogo.tsx'
@@ -31,6 +32,10 @@ export function TeamPanel(props: Props) {
   const rating = ratings.teams[teamId]
   const opponent = next ? (next.teamA === teamId ? next.teamB : next.teamA) : undefined
   const pNext = next ? (next.teamA === teamId ? next.pA : 1 - next.pA) : undefined
+  // Teams in the next match with few tier-1 series (the same check as the model's reasons).
+  const unsure = next
+    ? [next.teamA, next.teamB].filter((t) => (ratings.teams[t]?.rd ?? 0) >= LITTLE_DATA_RD)
+    : []
 
   return (
     <aside className="flex flex-col gap-6" aria-label={`${name} details`}>
@@ -46,7 +51,7 @@ export function TeamPanel(props: Props) {
         {rating && (
           <div className="num text-sm text-ink-2">
             Rating {Math.round(rating.rating)} ± {Math.round(rating.rd)}
-            {rating.rd >= 100 && <span className="text-ink-3"> · little tier-1 data</span>}
+            {rating.rd >= LITTLE_DATA_RD && <span className="text-ink-3"> · little data</span>}
           </div>
         )}
       </header>
@@ -59,12 +64,20 @@ export function TeamPanel(props: Props) {
               ['Advance', outlook.pAdvance],
               ['0-3', outlook.p03],
             ] as const
-          ).map(([label, value]) => (
-            <div key={label}>
-              <dt className="font-display text-xs uppercase tracking-wider text-ink-3">{label}</dt>
-              <dd className="num font-display text-2xl font-semibold text-accent">{pct(value)}</dd>
-            </div>
-          ))}
+          ).map(([label, value]) => {
+            const open = label === 'Advance' || outcomeOpen(outlook.record, label)
+            return (
+              <div key={label}>
+                <dt className={LABEL}>{label}</dt>
+                <dd
+                  className={`num font-display text-2xl font-semibold ${open ? 'text-accent' : 'text-ink-3'}`}
+                  title={open ? undefined : `No longer possible at ${outlook.record}`}
+                >
+                  {open ? pct(value) : '–'}
+                </dd>
+              </div>
+            )
+          })}
         </dl>
       )}
 
@@ -72,20 +85,30 @@ export function TeamPanel(props: Props) {
         <Section title={`Next · vs ${short(opponent)} · ${next.format.toUpperCase()}`}>
           <dl className="grid grid-cols-3 gap-2">
             <div>
-              <dt className="text-xs text-ink-3">Model</dt>
+              <dt className={LABEL}>Model</dt>
               <dd className="num font-display text-2xl font-semibold text-accent">{pct(pNext)}</dd>
             </div>
             <div>
-              <dt className="text-xs text-ink-3" title="Betting odds without the bookmaker margin">
+              <dt className={LABEL} title="Betting odds without the bookmaker margin">
                 Market
               </dt>
-              <dd className="num font-display text-2xl font-semibold text-accent" data-keep-accent>
-                {nextMarket === undefined ? '–' : pct(nextMarket)}
-              </dd>
+              {nextMarket === undefined ? (
+                <dd className="num font-display text-2xl font-semibold text-ink-3">–</dd>
+              ) : (
+                <dd
+                  className="num font-display text-2xl font-semibold text-accent"
+                  data-keep-accent
+                >
+                  {pct(nextMarket)}
+                </dd>
+              )}
             </div>
           </dl>
-          {next.confidence === 'low' && (
-            <p className="mt-1 text-xs text-ink-3">Low confidence: little recent data</p>
+          {unsure.length > 0 && (
+            <p className="mt-1 text-xs text-ink-3">
+              Little data on {unsure.map(short).join(' and ')} (few tier-1 matches), so these odds
+              are rough.
+            </p>
           )}
         </Section>
       )}
@@ -94,7 +117,7 @@ export function TeamPanel(props: Props) {
         <Section title="This stage">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-xs text-ink-3">
+              <tr className={LABEL}>
                 <th className="w-8 pb-1 text-left font-normal">Rd</th>
                 <th className="w-6 pb-1 text-left font-normal" />
                 <th className="pb-1 text-left font-normal">Opponent</th>
@@ -127,20 +150,27 @@ export function TeamPanel(props: Props) {
               ))}
             </tbody>
           </table>
-          <p className="mt-1.5 text-xs text-ink-3">Chances before the match.</p>
+          <p className="mt-1.5 text-xs text-ink-3">Odds before match start.</p>
         </Section>
       )}
 
       {form && (
-        <Section title={`Form · VRS to ${shortDate(form.asOf)}`}>
-          <p className="num text-sm">
-            90 days {form.summary.last90Days.won}-{form.summary.last90Days.lost}
-            <span className="text-ink-3"> · </span>
-            vs top 30 {form.summary.vsTop30.won}-{form.summary.vsTop30.lost}
+        <Section title={`Match history · 90 days to ${shortDate(form.asOf)}`}>
+          <p
+            className="num text-sm"
+            title="Series won and lost in the 90 days before this date, from Valve's ranking tables"
+          >
+            <span className="font-semibold text-win">{form.summary.last90Days.won} W</span>
+            <span className="text-ink-3"> – </span>
+            <span className="font-semibold text-loss">{form.summary.last90Days.lost} L</span>
           </p>
           <ol className="mt-2 flex flex-col gap-0.5 text-sm">
-            {form.recent.slice(0, 6).map((series) => (
-              <li key={`${series.date}-${series.opponent}`} className="num flex gap-3 text-ink-2">
+            {form.recent.slice(0, 6).map((series, i) => (
+              <li
+                // biome-ignore lint/suspicious/noArrayIndexKey: the same opponent can appear twice on one day; the list never reorders.
+                key={`${i}-${series.date}-${series.opponent}`}
+                className="num flex gap-3 text-ink-2"
+              >
                 <span className="w-14 shrink-0 whitespace-nowrap text-ink-3">
                   {shortDate(series.date)}
                 </span>
@@ -164,6 +194,9 @@ export function TeamPanel(props: Props) {
   )
 }
 
+/** One style for every small label in the panel (outlook, next match, table headers). */
+const LABEL = 'font-display text-xs uppercase tracking-wider text-ink-3'
+
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section>
@@ -182,13 +215,24 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 function ModelChance({ p, won }: { p: number | undefined; won: boolean }) {
   if (p === undefined) return <span className="text-ink-3">–</span>
   const verdict = chanceVerdict(p, won)
+  // The mark sits in a fixed slot, so the digits line up whether or not a row has one.
+  const mark = (text: string) => <span className="inline-block w-4 text-right">{text}</span>
   if (verdict === undefined || verdict === 'coin-flip')
-    return <span className="text-ink-2">{pct(p)}</span>
+    return (
+      <span className="text-ink-2">
+        {pct(p)}
+        {mark('')}
+      </span>
+    )
   return verdict === 'hit' ? (
-    <span className="font-semibold text-win">{pct(p)} ✓</span>
+    <span className="font-semibold text-win">
+      {pct(p)}
+      {mark('✓')}
+    </span>
   ) : (
     <span className="font-semibold text-loss">
-      <span className="line-through">{pct(p)}</span> ✗
+      <span className="line-through">{pct(p)}</span>
+      {mark('✗')}
     </span>
   )
 }

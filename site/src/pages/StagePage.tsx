@@ -111,15 +111,23 @@ export function StagePage({ event, stage, query }: Props) {
   // The model's pick before each finished match, from that round's snapshot (never edited).
   const picks = stagePicks(event.snapshots, event.results.matches, stage.id)
 
-  // Each team's chance to advance before round 1, to show how far it has moved since.
+  // Each team's odds before round 1, to show how far they have moved since.
   const firstSnapshot = event.snapshots.find((s) => s.stageId === stage.id && s.beforeRound === 1)
-  const startAdvance = new Map((firstSnapshot?.teams ?? []).map((t) => [t.teamId, t.pAdvance]))
+  const start = new Map((firstSnapshot?.teams ?? []).map((t) => [t.teamId, t]))
 
   const selected = query.get('team') ?? seeds[0] ?? ''
   const select = (teamId: string) => {
     const next = new URLSearchParams(query)
     next.set('team', teamId)
     setQuery(next)
+    // On narrow screens the panel is not beside the bracket or table, so bring it into view.
+    // After the hash change has rendered, or the navigation cancels the scroll.
+    if (window.matchMedia('(max-width: 1023px)').matches)
+      window.setTimeout(() => {
+        document
+          .getElementById('team-panel')
+          ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 50)
   }
   const outlook = prediction?.teams.find((t) => t.teamId === selected)
   const next = prediction?.matches.find((m) => m.teamA === selected || m.teamB === selected)
@@ -131,7 +139,7 @@ export function StagePage({ event, stage, query }: Props) {
       : undefined
 
   return (
-    <div className="flex flex-col gap-8" data-rough={sim.running || undefined}>
+    <div className="flex flex-col gap-10" data-rough={sim.running || undefined}>
       <header className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
           <h1 className="font-display text-5xl font-bold leading-none tracking-tight">
@@ -155,39 +163,45 @@ export function StagePage({ event, stage, query }: Props) {
         )}
       </header>
 
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_300px]">
-        <div className="flex min-w-0 flex-col gap-8">
-          <SwissBracket
-            rounds={bracket}
-            pending={pending}
-            scores={scores}
-            picks={picks}
-            selected={selected}
-            name={name}
-            market={(round, team, opponent) => marketChance(event, stage.id, round, team, opponent)}
-            onSelect={select}
-            onPick={(match, winner) => {
-              const loser = winner === match.teamA ? match.teamB : match.teamA
-              setQuery(writeWhatIf(query, toggleOverride(whatIf, match.round, winner, loser)))
-            }}
-          />
-          <section>
-            <h2 className="mb-2 font-display text-xl font-bold">Probabilities</h2>
-            {prediction ? (
-              <OddsTable
-                teams={prediction.teams}
-                selected={selected}
-                name={name}
-                start={startAdvance}
-                onSelect={select}
-                unverifiedVeto={prediction.event?.unverifiedVeto}
-              />
-            ) : (
-              <p className="text-sm text-ink-3">Simulating…</p>
-            )}
-          </section>
-        </div>
-        <div className="lg:sticky lg:top-6 lg:self-start">
+      <SwissBracket
+        rounds={bracket}
+        pending={pending}
+        scores={scores}
+        picks={picks}
+        selected={selected}
+        name={name}
+        short={short}
+        winsToAdvance={stage.winsToAdvance}
+        lossesToEliminate={stage.lossesToEliminate}
+        market={(round, team, opponent) => marketChance(event, stage.id, round, team, opponent)}
+        onSelect={select}
+        onPick={(match, winner) => {
+          const loser = winner === match.teamA ? match.teamB : match.teamA
+          setQuery(writeWhatIf(query, toggleOverride(whatIf, match.round, winner, loser)))
+        }}
+      />
+
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px]">
+        <section className="min-w-0">
+          <h2 className="mb-2 font-display text-xl font-bold">Probabilities</h2>
+          {prediction ? (
+            <OddsTable
+              teams={prediction.teams}
+              selected={selected}
+              name={name}
+              short={short}
+              start={start}
+              onSelect={select}
+              unverifiedVeto={prediction.event?.unverifiedVeto}
+            />
+          ) : (
+            <p className="text-sm text-ink-3">Simulating…</p>
+          )}
+        </section>
+        <div
+          id="team-panel"
+          className="order-first scroll-mt-4 lg:order-none lg:sticky lg:top-6 lg:self-start"
+        >
           <TeamPanel
             teamId={selected}
             seed={seeds.indexOf(selected) + 1 || undefined}
@@ -213,15 +227,22 @@ function roundStatus(round: number, real: ReadonlyArray<{ round: number }>): str
 
 function Legend({ overrides, onReset }: { overrides: number; onReset: () => void }) {
   return (
-    <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-ink-3">
+    <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs leading-6 text-ink-3">
       <span className="font-semibold uppercase tracking-wider">The bracket:</span>
       <span>
-        <span className="rounded-sm bg-accent-soft px-1 text-accent">62%</span> model's chance to
-        win
+        <span className="font-semibold text-accent">62%</span> model's chance to win; click it to
+        force a what-if win{' '}
+        <span className="whitespace-nowrap">
+          (<span className="rounded-sm bg-accent-soft px-1 py-0.5 text-accent">W*</span>)
+        </span>
       </span>
       <span>
-        <span className="rounded-sm bg-accent-soft px-1 text-accent">W*</span> click to select
-        what-if win
+        <span className="font-semibold text-win">✓</span> /{' '}
+        <span className="font-semibold text-loss">✗</span> model's pick won / lost (grey: coin flip)
+      </span>
+      <span>
+        <span className="font-semibold text-win">→</span> winners,{' '}
+        <span className="font-semibold text-loss">→</span> losers (dashed: not played yet)
       </span>
       {overrides > 0 && (
         <button

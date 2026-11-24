@@ -3,6 +3,9 @@ import type { Confidence } from '../data/schemas/snapshot.ts'
 import type { MatchModel } from './match-model.ts'
 import { expectedSeries, type VetoRules } from './series.ts'
 
+/** Rating deviation from which a team counts as having little tier-1 data. */
+export const LITTLE_DATA_RD = 100
+
 /** Added to a match reason when a team has few tier-1 series (rd >= 100). Read by market-picks.ts. */
 export const LITTLE_DATA_NOTE = 'little tier-1 data'
 
@@ -15,7 +18,7 @@ export function matchConfidence(pA: number, sigma: number): Confidence {
 }
 
 export function teamConfidence(rd: number, pAdvance: number): Confidence {
-  if (rd >= 100) return 'low'
+  if (rd >= LITTLE_DATA_RD) return 'low'
   if (rd < 70 && Math.abs(pAdvance - 0.5) >= 0.25) return 'high'
   return 'medium'
 }
@@ -64,8 +67,8 @@ export function matchReason(
       )
     }
   }
-  if (model.rd(a) >= 100 || model.rd(b) >= 100) {
-    const unsure = [a, b].filter((team) => model.rd(team) >= 100).map(name)
+  if (model.rd(a) >= LITTLE_DATA_RD || model.rd(b) >= LITTLE_DATA_RD) {
+    const unsure = [a, b].filter((team) => model.rd(team) >= LITTLE_DATA_RD).map(name)
     parts.push(`${LITTLE_DATA_NOTE} for ${unsure.join(' and ')}`)
   }
   return parts.join('; ')
