@@ -38,6 +38,9 @@ Hierarchy comes from type size, weight, spacing and alignment, not from boxes an
 
 - The event's team names in headings, the bracket and tables; short names (Liquipedia's `TeamShort`,
   e.g. NIP, LVG) in running text and tight spots. Never a third, longer variant.
+- Team logos (from Liquipedia, light and dark versions) sit before the name in tables, brackets,
+  Pick'Em and the team panel heading, in a fixed box so names line up. Never in running text, never
+  instead of the name, never recoloured or dimmed.
 
 ## Behaviour
 
