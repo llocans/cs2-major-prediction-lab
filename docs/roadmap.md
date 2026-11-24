@@ -75,8 +75,6 @@ belong in `data/events/<id>/status.md`, not here.
   `benchmarks.json` (OddsPortal, average of about 10 bookmakers); the Market odds page reads
   `bookmaker-odds.json` (CSGOEmpire). The numbers differ by a point or two and the Stage page shows
   "–" where only CSGOEmpire has odds. Pick one source or label both (user's choice).
-- **Shorter Market odds intro.** 62 words push the table below the first screen on a phone; cut to
-  two sentences and move the pick rule to Methodology or a hover (user's choice).
 - **Visual regression screenshots.** CI could compare each page's screenshots with the last approved
   set and flag any change for a look. Needs fixed test data first (live data changes every round),
   e.g. a frozen copy of one finished event.
@@ -160,6 +158,8 @@ belong in `data/events/<id>/status.md`, not here.
   fresh-eyes review found 27 issues on the Stage and Market pages; 22 fixed (stale match-history
   row, header alignment, impossible outcomes as "–", phone fit and tap targets, legend), and the
   audit's scroll-box check fixed the Track record and Methodology tables on phones.
+- 2026-11-24: Market odds intro cut to one line ("The model against a bookmaker."); the pick rule
+  and what Market % means moved to hovers on the Pick and Market headers.
 - 2026-11-24: Parallel chats: golden rule 13 (one folder, one chat; others in their own worktree)
   and a session-start warning when the folder already has uncommitted changes. Round 3's HEROIC vs
   M80 odds checked (veto, not a bug); underdog bias and round markets added as open items.

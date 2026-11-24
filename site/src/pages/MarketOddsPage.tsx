@@ -58,12 +58,7 @@ export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?:
     <div className="flex flex-col gap-6">
       <header className="flex max-w-prose flex-col gap-2">
         <h1 className="font-display text-5xl font-bold leading-none tracking-tight">Market odds</h1>
-        <p className="text-sm text-ink-2">
-          The model against a bookmaker. Market % is the bookmaker's chance for each team with its
-          margin removed, so the two add up to 100%. The model picks a team when it gives it at
-          least {Math.round(MIN_EDGE * 100)} percentage points more than the market does, and skips
-          matches where it has little tier-1 data on a team. The model never uses these numbers.
-        </p>
+        <p className="text-sm text-ink-2">The model against a bookmaker.</p>
       </header>
 
       <nav className="flex flex-wrap gap-x-5 gap-y-1 border-b border-rule pb-2">
@@ -166,7 +161,12 @@ function RoundSection(props: {
             <tr className="border-b border-ink text-left font-display text-xs uppercase tracking-wider text-ink-2">
               <th className="py-1 pr-1.5 font-semibold sm:pr-2">Match</th>
               <th className="py-1 pr-2.5 text-right font-semibold sm:pr-2">Model</th>
-              <th className="py-1 pr-2.5 text-right font-semibold sm:pr-2">Market</th>
+              <th
+                className="py-1 pr-2.5 text-right font-semibold sm:pr-2"
+                title="The bookmaker's chance for each team with its margin removed (the two add up to 100%). The model never uses it."
+              >
+                Market
+              </th>
               <th
                 className="py-1 pr-1.5 pl-2 font-semibold sm:pr-2 sm:pl-6"
                 title="How sure the model is: high needs solid data on both teams and a clear favourite"
@@ -174,7 +174,12 @@ function RoundSection(props: {
                 <span className="sm:hidden">Conf.</span>
                 <span className="hidden sm:inline">Confidence</span>
               </th>
-              <th className="py-1 pr-1.5 font-semibold sm:pr-2">Pick</th>
+              <th
+                className="py-1 pr-1.5 font-semibold sm:pr-2"
+                title={`The model picks a team when it gives it at least ${Math.round(MIN_EDGE * 100)} points more than the market, and skips matches with little tier-1 data on a team`}
+              >
+                Pick
+              </th>
               <th className="py-1 text-right font-semibold">Result</th>
             </tr>
           </thead>
