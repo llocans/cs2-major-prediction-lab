@@ -15,12 +15,15 @@ Hierarchy comes from type size, weight, spacing and alignment, not from boxes an
 - Numbers are tabular (`font-variant-numeric: tabular-nums`) and right-aligned in tables.
 - Light and dark themes follow the system setting until the viewer picks one with the switch in the
   nav (saved in the browser). Both use the same tokens.
-- Bracket lines and connectors are SVG using the same tokens.
+- Bracket lines and connectors are SVG using the same tokens. In the Swiss bracket, the line to where
+  a group's winners go is `win` and the line to where its losers go is `loss`, each ending in an
+  arrow: solid once the group is played, dashed while it is still predicted.
 
 ## Tokens (defined in `site/src/theme.css`)
 
 - Colors: `paper`, `paper-2` (subtle fill), `ink`, `ink-2` (secondary), `ink-3` (muted), `rule` (lines),
-  `accent`, `accent-ink` (text on accent), `win`, `loss` (muted, used sparingly for W/L marks and the model's pick marks).
+  `accent`, `accent-ink` (text on accent), `win`, `loss` (muted, used sparingly for W/L marks, the model's pick marks, the Swiss bracket's winner/loser
+  connectors and its Advanced/Eliminated boxes, and the up/down change of a chance since round 1).
 - Fonts: a condensed sans for headings and numbers, a neutral sans for text, both self-hosted or
   system fallbacks.
 - Spacing on a 4 px grid. Radius: `sm` 2 px, `md` 4 px.
