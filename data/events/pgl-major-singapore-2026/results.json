@@ -1,5 +1,28 @@
 {
   "schemaVersion": 1,
   "eventId": "pgl-major-singapore-2026",
-  "matches": []
+  "matches": [
+    {
+      "id": "stage-1-r1-heroic-imperial",
+      "stageId": "stage-1",
+      "round": 1,
+      "teamA": "heroic",
+      "teamB": "imperial",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "mirage",
+          "scoreA": 6,
+          "scoreB": 13
+        }
+      ],
+      "winner": "imperial",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3473730)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-24",
+        "license": "CC-BY-SA 3.0"
+      }
+    }
+  ]
 }

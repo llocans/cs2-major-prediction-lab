@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-21T16:50:41.105Z",
-  "reason": "prior for pgl-major-singapore-2026 (VRS + cold-start rule + map stats where available)",
+  "asOf": "2026-11-24T05:02:04.076Z",
+  "reason": "log-result stage-1-r1-heroic-imperial",
   "teams": {
     "nip": {
       "rating": 1538.4,
@@ -110,8 +110,8 @@
       ]
     },
     "heroic": {
-      "rating": 1528.8,
-      "rd": 60,
+      "rating": 1518.8,
+      "rd": 59.2,
       "maps": {
         "dust2": {
           "offset": -55.1,
@@ -134,9 +134,9 @@
           "n": 8
         },
         "mirage": {
-          "offset": -37.6,
-          "rd": 63.5775531391221,
-          "n": 7
+          "offset": -40.8,
+          "rd": 62,
+          "n": 8
         },
         "nuke": {
           "offset": 22.2,
@@ -534,8 +534,8 @@
       ]
     },
     "imperial": {
-      "rating": 1443.6,
-      "rd": 60,
+      "rating": 1453.6,
+      "rd": 59.2,
       "maps": {
         "inferno": {
           "offset": -48.3,
@@ -548,9 +548,9 @@
           "n": 5
         },
         "mirage": {
-          "offset": 12,
-          "rd": 67.21344403334447,
-          "n": 5
+          "offset": 15.5,
+          "rd": 65.3,
+          "n": 6
         },
         "nuke": {
           "offset": 17.6,
