@@ -69,7 +69,7 @@ export function MethodologyPage({ event }: { event: EventData }) {
             [
               'Bookmaker odds',
               'Each match’s closing line: the last bookmaker prices before it starts, margin removed.',
-              'OddsPapi free API, read by the poller after each match; a benchmark only, never a model input',
+              'OddsPortal, read by hand after each round (the OddsPapi free API where it covers the event); a benchmark only, never a model input',
             ],
           ]}
         />
