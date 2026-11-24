@@ -112,11 +112,14 @@ export function stageMarketPicks(
         const result = results.find(
           (r) => r.stageId === stageId && r.round === round && pairKey(r.teamA, r.teamB) === key,
         )
+        const littleData = prediction.reason.includes(LITTLE_DATA_NOTE)
         const match: MarketMatch = {
           teamA: prediction.teamA,
           teamB: prediction.teamB,
           format: prediction.format,
-          confidence: prediction.confidence,
+          // Snapshots saved before 2026-11-24 could say medium for a little-data match; read them
+          // with today's rule (explain.ts) so the page never shows a skipped match as confident.
+          confidence: littleData ? 'low' : prediction.confidence,
           reason: prediction.reason,
           modelA: prediction.pA,
           ...(result ? { result: { winner: result.winner, score: seriesScore(result) } } : {}),
@@ -131,7 +134,7 @@ export function stageMarketPicks(
         const priced = { ...match, marketA, edge }
         // A small tolerance so an edge that prints as 5.0 pp counts as 5 pp.
         if (edge.value < MIN_EDGE - 1e-9) return { ...priced, skip: 'small-edge' }
-        if (prediction.reason.includes(LITTLE_DATA_NOTE)) return { ...priced, skip: 'little-data' }
+        if (littleData) return { ...priced, skip: 'little-data' }
         return {
           ...priced,
           pick: edge.team,

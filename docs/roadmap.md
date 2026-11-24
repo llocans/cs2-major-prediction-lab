@@ -57,6 +57,14 @@ belong in `data/events/<id>/status.md`, not here.
   bookmaker in most matches (Market odds page). Either the market is wrong or the model pulls toward
   50% too much (rating uncertainty, the flat VRS prior). Check after Stage 1 on the Track record
   calibration table and the Market odds record; any change goes through `review-stage` (capped).
+- **Cold-start penalty (Stage 1 review, before Stage 2).** Little tier-1 data only widens a team's
+  uncertainty; it never lowers its rating. In practice such teams are usually weaker than their VRS
+  points say (points won against weak regional teams, no wins against top teams, first Major), and
+  the market prices that in: GOSH vs Chinggis Warriors (R3) was 62% model vs 82% market. Evidence so
+  far points both ways (Chinggis 0-2, FlyQuest 2-0). After Stage 1 compare the little-data teams'
+  predicted and actual results (Chinggis, FlyQuest; DENDELE and Lynn Vision as a check). If they
+  clearly underperformed, add a capped rating penalty for cold-start teams via a PR before Stage 2,
+  where new invited teams arrive. Don't change it mid-stage (it would mix two models in the record).
 - **Fix the Pick'Em page (user, 2026-11-24).** It works oddly: picks don't lock, and the flow doesn't
   make sense. Go through it with the user first to list what should lock when (e.g. after a stage
   starts) and what feels wrong, then fix.
@@ -98,6 +106,8 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## Done
 
+- 2026-11-24: Match confidence is low whenever a team has little tier-1 data (GOSH vs Chinggis said
+  medium while the Market odds page skipped it for little data).
 - 2026-11-21: Stage 1 ready: Swiss engine with Valve pairing, ratings from VRS and map stats, 32 team
   notes, round 1 snapshot, site v1, hooks, skills and cloud routines.
 - 2026-11-22: Repo public, README and licences; self-chaining GitHub Actions poller kept alive for the
