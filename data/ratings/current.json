@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-24T08:02:04.490Z",
-  "reason": "log-result stage-1-r1-faze-wildcard",
+  "asOf": "2026-11-24T08:17:03.969Z",
+  "reason": "log-result stage-1-r1-eternal-fire-flyquest",
   "teams": {
     "nip": {
       "rating": 1545,
@@ -269,8 +269,8 @@
       ]
     },
     "eternal-fire": {
-      "rating": 1507.8,
-      "rd": 60,
+      "rating": 1496,
+      "rd": 59.3,
       "maps": {
         "ancient": {
           "offset": 53,
@@ -288,9 +288,9 @@
           "n": 10
         },
         "dust2": {
-          "offset": 21.6,
-          "rd": 59.08391567007971,
-          "n": 10
+          "offset": 18.4,
+          "rd": 57.8,
+          "n": 11
         },
         "inferno": {
           "offset": -43.8,
@@ -693,9 +693,15 @@
       ]
     },
     "flyquest": {
-      "rating": 1390.8,
-      "rd": 110,
-      "maps": {},
+      "rating": 1430.6,
+      "rd": 105.6,
+      "maps": {
+        "dust2": {
+          "offset": 19.9,
+          "rd": 76.9,
+          "n": 1
+        }
+      },
       "sources": [
         {
           "name": "Valve VRS 2026-11-02: details/2026_11_02/0048--flyquest--alistair-ins-jks-nettik-vexite.md",

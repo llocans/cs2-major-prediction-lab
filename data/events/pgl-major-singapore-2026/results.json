@@ -155,6 +155,28 @@
         "retrievedAt": "2026-11-24",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r1-eternal-fire-flyquest",
+      "stageId": "stage-1",
+      "round": 1,
+      "teamA": "eternal-fire",
+      "teamB": "flyquest",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "dust2",
+          "scoreA": 7,
+          "scoreB": 13
+        }
+      ],
+      "winner": "flyquest",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3473805)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-24",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
