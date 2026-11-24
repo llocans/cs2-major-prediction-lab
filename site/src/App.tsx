@@ -49,7 +49,7 @@ export function App() {
       <main className="flex-1">
         <Page route={route} query={query} />
       </main>
-      <footer className="border-t border-rule pt-3 text-xs text-ink-3">
+      <footer className="mt-12 border-t border-rule pt-3 text-xs text-ink-3">
         Data: Valve Regional Standings, Liquipedia (CC-BY-SA 3.0). Team logos are trademarks of
         their teams. Predictions are model output, not advice.
       </footer>

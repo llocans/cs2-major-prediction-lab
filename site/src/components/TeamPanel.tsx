@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import type { MatchPrediction, TeamOutlook } from '../../../data/schemas/snapshot.ts'
+import { LITTLE_DATA_RD } from '../../../engine/explain.ts'
 import { forms, ratings } from '../lib/data.ts'
 import { pct, shortDate } from '../lib/format.ts'
 import type { TeamMatchRow } from '../lib/market.ts'
@@ -31,6 +32,10 @@ export function TeamPanel(props: Props) {
   const rating = ratings.teams[teamId]
   const opponent = next ? (next.teamA === teamId ? next.teamB : next.teamA) : undefined
   const pNext = next ? (next.teamA === teamId ? next.pA : 1 - next.pA) : undefined
+  // Teams in the next match with few tier-1 series (the same check as the model's reasons).
+  const unsure = next
+    ? [next.teamA, next.teamB].filter((t) => (ratings.teams[t]?.rd ?? 0) >= LITTLE_DATA_RD)
+    : []
 
   return (
     <aside className="flex flex-col gap-6" aria-label={`${name} details`}>
@@ -46,7 +51,9 @@ export function TeamPanel(props: Props) {
         {rating && (
           <div className="num text-sm text-ink-2">
             Rating {Math.round(rating.rating)} ± {Math.round(rating.rd)}
-            {rating.rd >= 100 && <span className="text-ink-3"> · little tier-1 data</span>}
+            {rating.rd >= LITTLE_DATA_RD && (
+              <span className="text-ink-3"> · little tier-1 data</span>
+            )}
           </div>
         )}
       </header>
@@ -84,8 +91,10 @@ export function TeamPanel(props: Props) {
               </dd>
             </div>
           </dl>
-          {next.confidence === 'low' && (
-            <p className="mt-1 text-xs text-ink-3">Low confidence: little recent data</p>
+          {unsure.length > 0 && (
+            <p className="mt-1 text-xs text-ink-3">
+              Little tier-1 data on {unsure.map(short).join(' and ')}, so these odds are rough.
+            </p>
           )}
         </Section>
       )}
@@ -127,16 +136,19 @@ export function TeamPanel(props: Props) {
               ))}
             </tbody>
           </table>
-          <p className="mt-1.5 text-xs text-ink-3">Chances before the match.</p>
+          <p className="mt-1.5 text-xs text-ink-3">Odds before match start.</p>
         </Section>
       )}
 
       {form && (
-        <Section title={`Form · VRS to ${shortDate(form.asOf)}`}>
-          <p className="num text-sm">
-            90 days {form.summary.last90Days.won}-{form.summary.last90Days.lost}
-            <span className="text-ink-3"> · </span>
-            vs top 30 {form.summary.vsTop30.won}-{form.summary.vsTop30.lost}
+        <Section title={`Match history · 90 days to ${shortDate(form.asOf)}`}>
+          <p
+            className="num text-sm"
+            title="Series won and lost in the 90 days before this date, from Valve's ranking tables"
+          >
+            <span className="font-semibold text-win">{form.summary.last90Days.won} W</span>
+            <span className="text-ink-3"> – </span>
+            <span className="font-semibold text-loss">{form.summary.last90Days.lost} L</span>
           </p>
           <ol className="mt-2 flex flex-col gap-0.5 text-sm">
             {form.recent.slice(0, 6).map((series) => (
