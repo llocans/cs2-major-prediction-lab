@@ -209,6 +209,58 @@
         "retrievedAt": "2026-11-24"
       },
       "observedAt": "2026-11-24T14:00:14Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 3,
+      "teamA": "eternal-fire",
+      "teamB": "100-thieves",
+      "pA": 0.409,
+      "source": {
+        "name": "OddsPortal match-winner final listed odds (read after the match), mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/100-thieves-counter-strike-bHEflqwM/eternal-fire-counter-strike-xh8WluTi/#0p5X8vKO",
+        "retrievedAt": "2026-11-25"
+      },
+      "observedAt": "2026-11-25T08:56:23Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 3,
+      "teamA": "heroic",
+      "teamB": "m80",
+      "pA": 0.601,
+      "source": {
+        "name": "OddsPortal match-winner final listed odds (read after the match), mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/heroic-counter-strike-lMy9cUDj/m80-counter-strike-OWnlO3km/#j9psTs5t",
+        "retrievedAt": "2026-11-25"
+      },
+      "observedAt": "2026-11-25T08:56:23Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 3,
+      "teamA": "wildcard",
+      "teamB": "lynn-vision",
+      "pA": 0.509,
+      "source": {
+        "name": "OddsPortal match-winner final listed odds (read after the match), mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/lynn-vision-counter-strike-pExG9Zzq/wildcard-gaming-counter-strike-pCQVwrwN/#OMrkRLZh",
+        "retrievedAt": "2026-11-25"
+      },
+      "observedAt": "2026-11-25T08:56:23Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 3,
+      "teamA": "parivision",
+      "teamB": "faze",
+      "pA": 0.55,
+      "source": {
+        "name": "OddsPortal match-winner final listed odds (read after the match), mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/faze-clan-counter-strike-tIL8JUNs/parivision-counter-strike-K8LXqm54/#AwscPa45",
+        "retrievedAt": "2026-11-25"
+      },
+      "observedAt": "2026-11-25T08:56:23Z"
     }
   ]
 }
