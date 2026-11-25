@@ -26,10 +26,14 @@ belong in `data/events/<id>/status.md`, not here.
   [mwasoft CS2 API](https://www.producthunt.com/products/cs2-real-time-odds-api-by-mwasoft) gives its
   own model's odds, not a market. CSGOEmpire (the Market odds page) cannot be automated either:
   its terms forbid bots and scripts.
-- **Stage 2 and 3 storylines.** The Stage 2 and 3 team notes say storylines will be "added from
-  previews (nightly research task)", but the nightly research refresh only looks for news (rosters,
-  stand-ins, visas). Either widen that routine to the next stage's previews or fill them in by hand
-  with the `research-team` skill before Stage 2 (Nov 28) and Stage 3 (Dec 2).
+- **Check the new research refresh (Nov 26).** Read the first run of the reworked prompt
+  (2026-11-25 21:00 UTC): it should list every team (22 after round 3: 14 left in Stage 1 plus 8
+  Stage 2 invites) with about 24 searches. If it skips teams or runs far longer, tighten the prompt.
+  On Nov 27 it also fills Stage 2 storylines; check those too.
+- **`status.md` lags after a model change.** The poller rewrites `status.md` on every poll but only
+  commits it with new results, so a merged change to predictions (e.g. the little-data confidence fix
+  on 2026-11-24) or a reordered draw shows up there only after the next result. Commit it on its own
+  when the match lines or confidence change (not on simulation noise), or regenerate it in the PR.
 
 - **Site and `simulate.ts` when the real draw differs.** The stage page's bracket (`swissBracket`),
   its in-browser simulation (`sim.worker.ts`) and `simulate.ts` use the engine's pairing for the
@@ -115,11 +119,18 @@ belong in `data/events/<id>/status.md`, not here.
 - **Round markets (idea, 2026-11-24).** Price round handicaps and total rounds: turn a map chance
   into a per-round win rate and simulate MR12 with overtime. Rough (ignores pistol rounds, economy and
   CT/T sides), so it needs real round scores to check before it is shown.
-- **Small chores.** Bo1 vs Bo3 splits in the team notes are "not collected yet"; `biome.json` uses
-  the deprecated `recommended` field (`npx biome migrate`).
+- **Small chores.** Bo1 vs Bo3 splits in the team notes are "not collected yet".
+- **GitHub Actions versions.** The poll and check workflows use `actions/checkout@v4`,
+  `setup-node@v4` and `upload-artifact@v4`, which GitHub already forces from Node 20 onto Node 24
+  (warning in every run). v7 is out; upgrade after the event, not mid-event (the poller pushes with
+  the checkout's credentials).
 
 ## Done
 
+- 2026-11-25: Nightly research refresh reworked: it ran 2 searches in 25 s and still reported "all 16
+  teams checked". Now one search per team still in the event or entering the next stage, follow-up
+  only on leads, an honest "N of N" count, and storylines from previews the night before Stage 2
+  and Stage 3. `biome.json` migrated (`preset`); the setup prompt is marked as historical.
 - 2026-11-24: Match confidence is low whenever a team has little tier-1 data (GOSH vs Chinggis said
   medium while the Market odds page skipped it for little data).
 - 2026-11-21: Stage 1 ready: Swiss engine with Valve pairing, ratings from VRS and map stats, 32 team

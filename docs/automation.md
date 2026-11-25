@@ -78,7 +78,7 @@ session. Each prompt runs one skill and pushes data straight to main (the cloud 
 
 | Task             | Skill                                                                   | When (UTC)                    | Model          |
 | ---------------- | ----------------------------------------------------------------------- | ----------------------------- | -------------- |
-| research refresh | `research-team` (teams still in the event, news only, no HLTV)          | daily 21:00, Nov 22 - Dec 12  | Sonnet, medium |
+| research refresh | `research-team`: one news search per team still in the event or entering the next stage, follow-up only on leads; the night before a Swiss stage, storylines from its previews (no HLTV) | daily 21:00, Nov 22 - Dec 12  | Sonnet, medium |
 | stage reviews    | `review-stage`                                                          | 18:00 on Nov 27, Dec 1, Dec 6 | Sonnet, high   |
 | cleanup          | `cleanup` (data tidy, plus a docs checkup written to `data/checkup.md`) | Sundays 18:30                 | Sonnet, low    |
 
