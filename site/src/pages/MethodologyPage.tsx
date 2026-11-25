@@ -161,17 +161,19 @@ export function MethodologyPage({ event }: { event: EventData }) {
 
       <Section title="What the percentages mean">
         <p>
-          All odds are shares of {sim.runs.toLocaleString('en-US')} simulated tournaments (a fixed
-          random seed, so the same data always gives the same numbers). The statistical noise is at
-          most about {standardError.toFixed(2)} percentage points.
+          Stage, playoff and title odds are shares of {sim.runs.toLocaleString('en-US')} simulated
+          tournaments (a fixed random seed, so the same data always gives the same numbers). The
+          statistical noise is at most about {standardError.toFixed(2)} percentage points. Match
+          odds are exact: every possible map veto is worked through with its chance, so they carry
+          no noise and are the same on every page.
         </p>
         <p>
           The simulation runs in your browser. A page first shows a quick pass of 1,500 tournaments
-          with its numbers pulsing (a rough estimate, within a few points), then the full run in
-          steady orange: steady orange always means the final numbers for the data shown. Because
-          the same data always gives the same numbers, the browser keeps the last results and shows
-          them at once; it simulates again only when something changed (a new result, new ratings, a
-          what-if, a new day).
+          with its numbers pulsing (a rough estimate of the stage odds, within a few points), then
+          the full run in steady orange: steady orange always means the final numbers for the data
+          shown. Because the same data always gives the same numbers, the browser keeps the last
+          results and shows them at once; it simulates again only when something changed (a new
+          result, new ratings, a what-if, a new day).
         </p>
         <Table
           head={['Column', 'Meaning']}

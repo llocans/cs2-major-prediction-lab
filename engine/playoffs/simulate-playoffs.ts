@@ -1,7 +1,7 @@
 import type { MatchFormat } from '../../data/schemas/common.ts'
 import type { MatchModel } from '../match-model.ts'
 import { createRng } from '../rng.ts'
-import { type PlayMatch, seriesPlayer, type VetoRules } from '../series.ts'
+import { type PlayMatch, seriesPlayer, seriesWinChance, type VetoRules } from '../series.ts'
 import {
   type BracketMatch,
   type PlayoffResult,
@@ -132,15 +132,11 @@ export function simulatePlayoffs(input: PlayoffSimInput): PlayoffSimResult {
     (m): m is BracketMatch & { teamA: string; teamB: string } =>
       m.teamA !== undefined && m.teamB !== undefined && m.winner === undefined,
   )
-  const upcomingWins = new Map(open.map((m) => [pairKey(m.teamA, m.teamB), 0]))
   const counts = new Map(seeds.map((id) => [id, { semi: 0, final: 0, title: 0, third: 0 }]))
   const count = (team: string | undefined) => (team === undefined ? undefined : counts.get(team))
 
   for (let run = 0; run < runs; run++) {
     for (const match of playPlayoffsOnce(seeds, rules, real, play)) {
-      const key = match.teamA && match.teamB ? pairKey(match.teamA, match.teamB) : ''
-      const wins = upcomingWins.get(key)
-      if (wins !== undefined && match.winner === match.teamA) upcomingWins.set(key, wins + 1)
       if (match.thirdPlace) {
         const c = count(match.winner)
         if (c) c.third++
@@ -183,13 +179,11 @@ export function simulatePlayoffs(input: PlayoffSimInput): PlayoffSimResult {
     format: m.format,
     teamA: m.teamA,
     teamB: m.teamB,
-    pA: (upcomingWins.get(pairKey(m.teamA, m.teamB)) ?? 0) / runs,
+    pA: seriesWinChance(m.teamA, m.teamB, m.format, input.model, input.veto),
   }))
 
-  const probabilities = [
-    ...teams.flatMap((t) => [t.pSemifinal, t.pFinal, t.pTitle, t.pThird ?? 0]),
-    ...upcoming.map((m) => m.pA),
-  ]
+  // Match odds are exact, so only the simulated team odds carry a standard error.
+  const probabilities = teams.flatMap((t) => [t.pSemifinal, t.pFinal, t.pTitle, t.pThird ?? 0])
   const maxStandardError = Math.max(0, ...probabilities.map((p) => Math.sqrt((p * (1 - p)) / runs)))
   return { bracket, upcoming, teams, runs, maxStandardError }
 }
