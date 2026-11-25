@@ -13,6 +13,8 @@ interface Props {
   seed?: number
   outlook?: TeamOutlook
   next?: MatchPrediction
+  /** The round `next` is played in. */
+  nextRound?: number
   /** The market's chance for this team in its next match and its source, if logged. */
   nextMarket?: { p: number; source?: string }
   /** This team's matches in the stage so far. */
@@ -28,7 +30,18 @@ interface Props {
 }
 
 export function TeamPanel(props: Props) {
-  const { teamId, seed, outlook, next, nextMarket, matches = [], name, short, onClose } = props
+  const {
+    teamId,
+    seed,
+    outlook,
+    next,
+    nextRound,
+    nextMarket,
+    matches = [],
+    name,
+    short,
+    onClose,
+  } = props
   const played = matches.filter((m) => m.result !== undefined)
   const form = forms.get(teamId)
   const rating = ratings.teams[teamId]
@@ -38,6 +51,11 @@ export function TeamPanel(props: Props) {
   const unsure = next
     ? [next.teamA, next.teamB].filter((t) => (ratings.teams[t]?.rd ?? 0) >= LITTLE_DATA_RD)
     : []
+  // The coming match, as the last row of "This stage" (so the panel keeps one shape for every team).
+  const upcoming =
+    next && opponent && pNext !== undefined && nextRound !== undefined
+      ? { round: nextRound, opponent, format: next.format, p: pNext }
+      : undefined
 
   return (
     <aside className="flex flex-col gap-6" aria-label={`${name} details`}>
@@ -92,57 +110,18 @@ export function TeamPanel(props: Props) {
         </dl>
       )}
 
-      {next && opponent && pNext !== undefined && (
-        <Section title={`Next · vs ${short(opponent)} · ${next.format.toUpperCase()}`}>
-          <dl className="grid grid-cols-3 gap-2">
-            <div>
-              <dt className={LABEL}>Model</dt>
-              <dd className="num font-display text-2xl font-semibold text-accent">{pct(pNext)}</dd>
-            </div>
-            <div>
-              <dt className={LABEL} title="Betting odds without the bookmaker margin">
-                Market
-              </dt>
-              {nextMarket === undefined ? (
-                <dd
-                  className="num font-display text-2xl font-semibold text-ink-3"
-                  title="No odds logged for this match yet"
-                >
-                  –
-                </dd>
-              ) : (
-                <>
-                  <dd
-                    className="num font-display text-2xl font-semibold text-accent"
-                    data-keep-accent
-                  >
-                    {pct(nextMarket.p)}
-                  </dd>
-                  {nextMarket.source && <dd className="text-xs text-ink-3">{nextMarket.source}</dd>}
-                </>
-              )}
-            </div>
-          </dl>
-          {unsure.length > 0 && (
-            <p className="mt-1 text-xs text-ink-3">
-              Little data on {unsure.map(short).join(' and ')} (few tier-1 matches), so these odds
-              are rough.
-            </p>
-          )}
-        </Section>
-      )}
-
-      {played.length > 0 && (
+      {(played.length > 0 || upcoming) && (
         <Section title="This stage">
-          <table className="w-full text-sm">
+          {/* Fixed columns, so switching teams never moves them. */}
+          <table className="w-full table-fixed text-sm">
             <thead>
               <tr className={LABEL}>
                 <th className="w-8 pb-1 text-left font-normal">Rd</th>
-                <th className="w-6 pb-1 text-left font-normal" />
+                <th className="w-11 pb-1 text-left font-normal" />
                 <th className="pb-1 text-left font-normal">Opponent</th>
-                <th className="pb-1 text-right font-normal">Model</th>
+                <th className="w-16 pb-1 pr-4 text-right font-normal">Model</th>
                 <th
-                  className="pb-1 text-right font-normal"
+                  className="w-14 pb-1 text-right font-normal"
                   title="Betting odds without the bookmaker margin"
                 >
                   Market
@@ -169,9 +148,44 @@ export function TeamPanel(props: Props) {
                   </td>
                 </tr>
               ))}
+              {upcoming && (
+                <tr className="num">
+                  <td className="py-0.5 text-ink-3">R{upcoming.round}</td>
+                  <td className="py-0.5 font-display text-xs font-semibold uppercase tracking-wider text-accent">
+                    Next
+                  </td>
+                  <td className="truncate py-0.5">
+                    {short(upcoming.opponent)}{' '}
+                    <span className="text-xs text-ink-3">{upcoming.format.toUpperCase()}</span>
+                  </td>
+                  <td className="py-0.5 text-right">
+                    <span className="font-semibold text-accent">{pct(upcoming.p)}</span>
+                    <span className="inline-block w-4" />
+                  </td>
+                  <td className="py-0.5 text-right text-ink-2">
+                    <span
+                      title={
+                        nextMarket === undefined
+                          ? 'No odds logged for this match yet'
+                          : nextMarket.source
+                      }
+                    >
+                      {nextMarket === undefined ? '–' : pct(nextMarket.p)}
+                    </span>
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
-          <p className="mt-1.5 text-xs text-ink-3">Odds before match start.</p>
+          <p className="mt-1.5 text-xs text-ink-3">
+            Odds before match start{upcoming ? '; NEXT is not played yet' : ''}.
+          </p>
+          {unsure.length > 0 && (
+            <p className="mt-1 text-xs text-ink-3">
+              Little data on {unsure.map(short).join(' and ')} (few tier-1 matches), so the next
+              match's odds are rough.
+            </p>
+          )}
         </Section>
       )}
 
@@ -215,12 +229,13 @@ export function TeamPanel(props: Props) {
   )
 }
 
-/** One style for every small label in the panel (outlook, next match, table headers). */
+/** One style for every small label in the panel (outlook, table headers). */
 const LABEL = 'font-display text-xs uppercase tracking-wider text-ink-3'
 
+/** A titled part of the panel, set off from the one above by a thin line. */
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section>
+    <section className="border-t border-rule pt-4">
       <h3 className="mb-1.5 font-display text-xs font-semibold uppercase tracking-wider text-ink-3">
         {title}
       </h3>

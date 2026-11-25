@@ -132,6 +132,9 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## Done
 
+- 2026-11-25: Team panel keeps one shape for every team: the next match is the last row of "This
+  stage" (marked NEXT, with its format) instead of a separate block, and thin lines separate the
+  sections.
 - 2026-11-25: While a simulation runs, predicted numbers stay orange and pulse instead of turning
   grey (grey with reduced motion); the snake border around the bracket is gone (user: too much).
 - 2026-11-25: Stage page loading indicator: while a simulation runs, an orange segment circles the

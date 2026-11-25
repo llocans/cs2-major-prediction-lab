@@ -226,6 +226,7 @@ export function StagePage({ event, stage, query }: Props) {
               seed={seeds.indexOf(selected) + 1 || undefined}
               outlook={outlook}
               next={next}
+              nextRound={currentRound}
               nextMarket={nextMarket}
               matches={teamStageMatches(event, stage.id, selected)}
               name={name(selected)}
