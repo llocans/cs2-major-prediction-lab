@@ -1,5 +1,8 @@
 # Project: CS2 Major Prediction Lab
 
+> The original setup prompt (2026-11-21), kept for history and not kept up to date. Since then the
+> repository went public and many decisions changed; `CLAUDE.md`, `README.md` and `docs/` are current.
+
 ## Purpose
 
 A long-running local project where you (Claude Code) research CS2 teams in depth,

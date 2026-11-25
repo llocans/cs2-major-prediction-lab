@@ -133,6 +133,7 @@ async function waitForSimulation(p: Page): Promise<boolean> {
       () =>
         document.querySelector('main') !== null &&
         document.querySelector('[data-rough]') === null &&
+        // biome-ignore lint/performance/useDomNodeTextContent: only text the viewer can see counts here
         !document.body.innerText.includes('Simulating'),
       undefined,
       { timeout: 90_000, polling: 250 },
