@@ -130,7 +130,7 @@ function Group(props: {
       aria-label={`${record} group`}
     >
       <header
-        className="flex shrink-0 items-center gap-2 border-b border-rule px-2.5 font-display"
+        className="flex shrink-0 items-center gap-2 border-b border-rule px-2 font-display"
         style={{ height: LAYOUT.headerHeight }}
       >
         <span className="num text-base font-bold text-ink">{record}</span>
@@ -155,7 +155,7 @@ function Group(props: {
                     key={row}
                     className={`flex items-center px-2 ${row === 0 ? 'border-b border-rule' : ''}`}
                   >
-                    <span className="h-4 w-4 rounded-full border border-rule" />
+                    <span className="h-5 w-5 rounded-full border border-rule" />
                   </div>
                 ))}
               </div>
@@ -366,7 +366,7 @@ function ResultBox(props: {
         {advanced ? 'Advanced' : 'Eliminated'}
       </div>
       <div
-        className="grid gap-x-1.5"
+        className="grid gap-x-1"
         style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
       >
         {cells.map((cell, i) => (
@@ -430,7 +430,19 @@ function target(slots: readonly Slot[], from: GroupSlot, wins: number, losses: n
 }
 
 /** The short arrows after each group: how far they reach and how steeply they climb or drop. */
-const ARROW = { inset: 7, rise: 14, spread: 5, vertical: 18, edge: 4 }
+const ARROW = { inset: 7, rise: 14, spread: 5, vertical: 18, edge: 4, margin: 12 }
+
+/**
+ * Where an arrow starts: as close to `wanted` as possible while inside its own group's range and the
+ * range that puts its tip beside the target. If the two don't overlap, the end of the group's
+ * range nearest the target.
+ */
+function slide(wanted: number, own: [number, number], aim: [number, number]): number {
+  const lo = Math.max(own[0], aim[0])
+  const hi = Math.min(own[1], aim[1])
+  if (lo <= hi) return Math.min(Math.max(wanted, lo), hi)
+  return aim[1] < own[0] ? own[0] : own[1]
+}
 
 /**
  * The same pair of short arrows after every group: winners up-right (green), losers down-right
@@ -446,7 +458,8 @@ function Connectors({ slots, rounds }: { slots: Slot[]; rounds: BracketRound[] }
     const group = rounds
       .find((r) => r.round === from.round)
       ?.groups.find((g) => g.record === `${from.wins}-${from.losses}`)
-    const done = group?.matches.every((m) => m.kind !== 'pending') ?? false
+    // What-if overrides are still predictions: only real results make the arrows solid.
+    const done = group?.matches.every((m) => m.kind === 'real') ?? false
     const body = from.y + LAYOUT.headerHeight + (from.height - LAYOUT.headerHeight) / 2
     for (const win of [true, false]) {
       const to = target(slots, from, from.wins + (win ? 1 : 0), from.losses + (win ? 0 : 1))
@@ -461,7 +474,14 @@ function Connectors({ slots, rounds }: { slots: Slot[]; rounds: BracketRound[] }
       const x1 = from.x + LAYOUT.columnWidth + ARROW.inset
       const x2 = from.x + LAYOUT.columnWidth + LAYOUT.columnGap - ARROW.inset
       const s = win ? -1 : 1
-      const y1 = body + s * ARROW.spread
+      // Same length and angle everywhere; only the start slides along the group's edge, so the tip
+      // lands beside its target and never next to another box.
+      const own: [number, number] = [from.y + ARROW.margin, from.y + from.height - ARROW.margin]
+      const aim: [number, number] = [
+        to.y + ARROW.margin - s * ARROW.rise,
+        to.y + to.height - ARROW.margin - s * ARROW.rise,
+      ]
+      const y1 = slide(body + s * ARROW.spread, own, aim)
       lines.push({ d: `M${x1},${y1} L${x2},${y1 + s * ARROW.rise}`, win, done })
     }
   }

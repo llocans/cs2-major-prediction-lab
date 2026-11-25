@@ -15,9 +15,9 @@ export const LAYOUT = {
   /** A group panel's header strip: record, format and tag. */
   headerHeight: 28,
   /** Space between a panel's edge and its match cards. */
-  panelPadding: 6,
+  panelPadding: 8,
   matchHeight: 54,
-  matchGap: 6,
+  matchGap: 8,
   /** Smallest gap between two items in a column. */
   groupGap: 28,
   /** Space for the "Round 1" labels. */
