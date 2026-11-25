@@ -5,6 +5,7 @@ import { type BracketMatch, resolveBracket, roundCount } from '../../../engine/p
 import { currentRound } from '../../../engine/simulate-swiss.ts'
 import { stageSeeds } from '../../../engine/swiss/stage-seeds.ts'
 import { FreshnessBar } from '../components/FreshnessBar.tsx'
+import { Page, PageHeader } from '../components/Page.tsx'
 import { type MatchKind, PlayoffBracket, pairKey } from '../components/PlayoffBracket.tsx'
 import { PlayoffOddsTable } from '../components/PlayoffOddsTable.tsx'
 import { SimStatus } from '../components/SimStatus.tsx'
@@ -36,7 +37,7 @@ export function PlayoffsPage({ event, stage, query }: Props) {
   )
 }
 
-/** `status` follows the dates; without one (seeds not known yet) a "Soon" line shows instead. */
+/** `status` (e.g. "2 of 7 played") follows the dates once the seeds are known. */
 function Header(props: { stage: PlayoffStage; status?: string; running: boolean }) {
   const { stage, status, running } = props
   const formats = [
@@ -47,16 +48,18 @@ function Header(props: { stage: PlayoffStage; status?: string; running: boolean 
       : []),
   ]
   return (
-    <header className="flex flex-col gap-1">
-      <h1 className="font-display text-5xl font-bold leading-none tracking-tight">{stage.name}</h1>
-      <p className="num text-sm text-ink-2">
-        {shortDate(stage.start)}–{shortDate(stage.end)} · {formats.join(', ')}
-        {status && ` · ${status}`}
-        <SimStatus running={running} />
-      </p>
-      {!status && <p className="text-xs uppercase tracking-wider text-ink-3">Soon</p>}
+    <PageHeader
+      title={stage.name}
+      subtitle={
+        <>
+          {shortDate(stage.start)}–{shortDate(stage.end)} · {formats.join(', ')}
+          {status && ` · ${status}`}
+          <SimStatus running={running} />
+        </>
+      }
+    >
       <FreshnessBar sync={syncStatus} stage={stage} ratingsAsOf={ratings.asOf} />
-    </header>
+    </PageHeader>
   )
 }
 
@@ -131,7 +134,7 @@ function SeededPlayoffs(props: EventProps & { seeds: string[]; query: URLSearchP
   const finalUnverified = prediction?.unverifiedVeto.includes(stage.format.final) ?? false
 
   return (
-    <div className="flex flex-col gap-8" data-rough={sim.running || undefined}>
+    <Page rough={sim.running}>
       <Header stage={stage} status={status} running={sim.running} />
       {forced > 0 && (
         <p className="text-sm text-ink-2">
@@ -200,7 +203,7 @@ function SeededPlayoffs(props: EventProps & { seeds: string[]; query: URLSearchP
           <p className="text-sm text-ink-3">Simulating…</p>
         )}
       </section>
-    </div>
+    </Page>
   )
 }
 
@@ -263,7 +266,7 @@ function ProjectedPlayoffs({ event, stage }: EventProps) {
   }
 
   return (
-    <div className="flex flex-col gap-8" data-rough={sim.running || undefined}>
+    <Page rough={sim.running}>
       <Header stage={stage} running={sim.running} />
       {(bracketError ?? sim.error) && (
         <p className="text-sm text-loss" role="alert">
@@ -305,6 +308,6 @@ function ProjectedPlayoffs({ event, stage }: EventProps) {
           <p className="text-sm text-ink-3">Simulating…</p>
         )}
       </section>
-    </div>
+    </Page>
   )
 }

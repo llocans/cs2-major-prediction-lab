@@ -9,6 +9,7 @@ import {
   type TrackedMatch,
   UPSET_BELOW,
 } from '../../../engine/track-record.ts'
+import { Page, PageHeader } from '../components/Page.tsx'
 import { TeamLogo } from '../components/TeamLogo.tsx'
 import { type EventData, teamName, teamShortName } from '../lib/data.ts'
 import { pct, shortDate } from '../lib/format.ts'
@@ -53,23 +54,23 @@ export function TrackRecordPage({ event }: { event: EventData }) {
   })
 
   return (
-    <div className="flex flex-col gap-10">
-      <header className="flex max-w-prose flex-col gap-2">
-        <h1 className="font-display text-5xl font-bold leading-none tracking-tight">
-          Track record
-        </h1>
-        <p className="text-sm text-ink-2">
-          Every prediction is saved before its round starts and never edited. Here it is next to
-          what happened. The Brier score is the average squared error of our probabilities: 0 is
-          perfect, 0.250 is what always saying 50% would score, so lower than 0.250 means the model
-          added something.
-        </p>
-      </header>
+    <Page>
+      <PageHeader
+        title="Track record"
+        subtitle={
+          <>
+            Every prediction is saved before its round starts and never edited. Here it is next to
+            what happened. The Brier score is the average squared error of our probabilities: 0 is
+            perfect, 0.250 is what always saying 50% would score, so lower than 0.250 means the
+            model added something.
+          </>
+        }
+      />
       {stages.length === 0 && <p className="text-sm text-ink-3">No predictions saved yet.</p>}
       {stages.map(({ stage, record }) => (
         <StageSection key={stage.id} title={stage.name} record={record} name={name} />
       ))}
-    </div>
+    </Page>
   )
 }
 

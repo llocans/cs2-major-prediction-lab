@@ -130,6 +130,10 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## Done
 
+- 2026-11-25: One page frame for every page (`components/Page.tsx`): the same title block, gaps
+  and subtitle width everywhere (Playoffs and Pick'Em had tighter headers, root gaps ranged
+  24-40 px). A test fails if a page writes its own `<h1>` again. The page no longer jumps sideways
+  between short and long pages (`scrollbar-gutter: stable`). Playoffs: no "Soon" line.
 - 2026-11-25: Stages that have not started (Stage 2, Stage 3) show their dates and "Soon" instead
   of a seeding note and "Planned". The playoffs page shows "Soon" under its dates and no longer
   has the "playoff seeds are set when…" paragraph.

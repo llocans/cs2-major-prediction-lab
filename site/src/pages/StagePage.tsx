@@ -6,6 +6,7 @@ import { swissMatchFormat } from '../../../engine/swiss/format.ts'
 import { stageSeeds } from '../../../engine/swiss/stage-seeds.ts'
 import { FreshnessBar } from '../components/FreshnessBar.tsx'
 import { OddsTable } from '../components/OddsTable.tsx'
+import { Page, PageHeader } from '../components/Page.tsx'
 import { SimStatus } from '../components/SimStatus.tsx'
 import { SwissBracket } from '../components/SwissBracket.tsx'
 import { TeamPanel } from '../components/TeamPanel.tsx'
@@ -150,18 +151,17 @@ export function StagePage({ event, stage, query }: Props) {
       : undefined
 
   return (
-    <div className="flex flex-col gap-10" data-rough={sim.running || undefined}>
-      <header className="flex flex-col gap-4">
-        <div className="flex flex-col gap-2">
-          <h1 className="font-display text-5xl font-bold leading-none tracking-tight">
-            {stage.name}
-          </h1>
-          <p className="num text-sm text-ink-2">
+    <Page rough={sim.running}>
+      <PageHeader
+        title={stage.name}
+        subtitle={
+          <>
             {shortDate(stage.start)}–{shortDate(stage.end)}
             {currentRound !== undefined && <> · {roundStatus(currentRound, real)}</>}
             <SimStatus running={sim.running} />
-          </p>
-        </div>
+          </>
+        }
+      >
         <FreshnessBar sync={syncStatus} stage={stage} ratingsAsOf={ratings.asOf} />
         <Legend
           overrides={whatIf.overrides.length}
@@ -172,7 +172,7 @@ export function StagePage({ event, stage, query }: Props) {
             {bracketError ?? sim.error}
           </p>
         )}
-      </header>
+      </PageHeader>
 
       <SwissBracket
         rounds={bracket}
@@ -236,7 +236,7 @@ export function StagePage({ event, stage, query }: Props) {
           )}
         </div>
       </div>
-    </div>
+    </Page>
   )
 }
 

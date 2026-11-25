@@ -7,6 +7,7 @@ import {
   stageMarketPicks,
   type Tally,
 } from '../../../engine/market-picks.ts'
+import { Page, PageHeader } from '../components/Page.tsx'
 import { TeamLogo } from '../components/TeamLogo.tsx'
 import { type EventData, teamName, teamShortName } from '../lib/data.ts'
 import { pct, shortDate } from '../lib/format.ts'
@@ -56,11 +57,8 @@ export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?:
   const sources = [...new Map(odds.map((o) => [o.source.name, o.source.url] as const)).entries()]
 
   return (
-    <div className="flex flex-col gap-6">
-      <header className="flex max-w-prose flex-col gap-2">
-        <h1 className="font-display text-5xl font-bold leading-none tracking-tight">Market odds</h1>
-        <p className="text-sm text-ink-2">The model against a bookmaker.</p>
-      </header>
+    <Page>
+      <PageHeader title="Market odds" subtitle="The model against a bookmaker." />
 
       <nav className="flex flex-wrap gap-x-5 gap-y-1 border-b border-rule pb-2">
         {stages.map((s) => (
@@ -112,7 +110,7 @@ export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?:
           % is from the prediction saved before the round and never changes afterwards.
         </p>
       )}
-    </div>
+    </Page>
   )
 }
 

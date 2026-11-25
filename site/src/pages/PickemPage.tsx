@@ -24,6 +24,7 @@ import {
 import { type BracketMatch, resolveBracket, roundCount } from '../../../engine/playoffs/bracket.ts'
 import { buildRecords } from '../../../engine/swiss/records.ts'
 import { stageSeeds } from '../../../engine/swiss/stage-seeds.ts'
+import { Page, PageHeader } from '../components/Page.tsx'
 import { SimStatus } from '../components/SimStatus.tsx'
 import { TeamLogo } from '../components/TeamLogo.tsx'
 import { type EventData, teamName } from '../lib/data.ts'
@@ -49,14 +50,11 @@ export function PickemPage({ event, stageId }: { event: EventData; stageId?: str
   const stages = event.config.stages
   const stage = stages.find((s) => s.id === stageId) ?? stages[0]
   return (
-    <div className="flex flex-col gap-6">
-      <header className="flex flex-col gap-1">
-        <h1 className="font-display text-5xl font-bold leading-none tracking-tight">Pick'Em</h1>
-        <p className="text-sm text-ink-2">
-          Make your picks as in the in-game Pick'Em and see your chance next to the model's. Saved
-          in this browser only.
-        </p>
-      </header>
+    <Page>
+      <PageHeader
+        title="Pick'Em"
+        subtitle="Make your picks as in the in-game Pick'Em and see your chance next to the model's. Saved in this browser only."
+      />
       <nav className="flex flex-wrap gap-x-5 gap-y-1 border-b border-rule pb-2">
         {stages.map((s) => (
           <a
@@ -72,7 +70,7 @@ export function PickemPage({ event, stageId }: { event: EventData; stageId?: str
       {stage?.type === 'single-elimination' && (
         <PlayoffPickem key={stage.id} event={event} stage={stage} />
       )}
-    </div>
+    </Page>
   )
 }
 
