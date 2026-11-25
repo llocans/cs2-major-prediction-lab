@@ -15,15 +15,22 @@ Hierarchy comes from type size, weight, spacing and alignment, not from boxes an
 - Numbers are tabular (`font-variant-numeric: tabular-nums`) and right-aligned in tables.
 - Light and dark themes follow the system setting until the viewer picks one with the switch in the
   nav (saved in the browser). Both use the same tokens.
-- Bracket lines and connectors are SVG using the same tokens. In the Swiss bracket, the line to where
-  a group's winners go is `win` and the line to where its losers go is `loss`, each ending in an
-  arrow: solid once the group is played, dashed while it is still predicted.
+- Bracket lines and connectors are SVG using the same tokens. In the Swiss bracket, each group is
+  followed by two short arrows in the gap: `win` pointing up-right (where its winners go) and
+  `loss` pointing down-right (where its losers go), same length and angle everywhere. Each starts
+  where its tip lands beside its target box; it points the way and does not reach the box. Solid once the group is played, dashed while it is
+  still predicted.
+- Bracket boxes are the one place where boxes and color carry structure: each Swiss record group is
+  one `paper-2` panel (a header strip with record, format and tag, then the match rows), and the
+  Advanced/Eliminated boxes are filled with `win-soft` / `loss-soft`.
 
 ## Tokens (defined in `site/src/theme.css`)
 
 - Colors: `paper`, `paper-2` (subtle fill), `ink`, `ink-2` (secondary), `ink-3` (muted), `rule` (lines),
   `accent`, `accent-ink` (text on accent), `win`, `loss` (muted, used sparingly for W/L marks, the model's pick marks, the Swiss bracket's winner/loser
-  connectors and its Advanced/Eliminated boxes, and the up/down change of a chance since round 1).
+  connectors and its Advanced/Eliminated boxes, and the up/down change of a chance since round 1),
+  `win-soft`, `loss-soft` (win/loss mixed into `paper`; only the fill of the Swiss bracket's
+  Advanced/Eliminated boxes).
 - Fonts: a condensed sans for headings and numbers, a neutral sans for text, both self-hosted or
   system fallbacks.
 - Spacing on a 4 px grid. Radius: `sm` 2 px, `md` 4 px.
@@ -41,8 +48,9 @@ Hierarchy comes from type size, weight, spacing and alignment, not from boxes an
 
 ## Team names
 
-- The event's team names in headings, the bracket and tables; short names (Liquipedia's `TeamShort`,
-  e.g. NIP, LVG) in running text and tight spots. Never a third, longer variant.
+- The event's team names in headings, the playoff bracket and tables; short names (Liquipedia's `TeamShort`,
+  e.g. NIP, LVG) in running text and tight spots, the Swiss bracket included (full name on hover and
+  in the team panel). Never a third, longer variant.
 - Team logos (from Liquipedia, light and dark versions) sit before the name in tables, brackets,
   Pick'Em and the team panel heading, in a fixed box so names line up. Never in running text, never
   instead of the name, never recoloured or dimmed.
