@@ -130,6 +130,9 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## Done
 
+- 2026-11-25: Stages that have not started (Stage 2, Stage 3) show their dates and "Soon" instead
+  of a seeding note and "Planned". The playoffs page shows "Soon" under its dates and no longer
+  has the "playoff seeds are set when…" paragraph.
 - 2026-11-25: Swiss bracket restyle (user's reference brackets): each record group is one panel
   with a header strip (record, BO1/BO3, tag) and match cards; empty groups show faint slots instead
   of dashed outlines. Every group gets the same short arrow pair (winners up-right, losers down-right)

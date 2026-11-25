@@ -1,6 +1,7 @@
 import { stageSeeds } from '../../engine/swiss/stage-seeds.ts'
 import { ThemeToggle } from './components/ThemeToggle.tsx'
 import { currentEvent } from './lib/data.ts'
+import { shortDate } from './lib/format.ts'
 import { type Route, useLocation } from './lib/router.ts'
 import { MarketOddsPage } from './pages/MarketOddsPage.tsx'
 import { MethodologyPage } from './pages/MethodologyPage.tsx'
@@ -71,7 +72,7 @@ function Page({ route, query }: { route: Route; query: URLSearchParams }) {
         return (
           <PlaceholderPage
             title={stage.name}
-            description={`Teams are known once the previous stage ends: ${seeded} of ${stage.teamCount} seeded so far.`}
+            dates={`${shortDate(stage.start)}–${shortDate(stage.end)}`}
           />
         )
       }
