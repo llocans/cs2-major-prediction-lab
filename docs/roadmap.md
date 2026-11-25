@@ -132,6 +132,8 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## Done
 
+- 2026-11-25: While a simulation runs, predicted numbers stay orange and pulse instead of turning
+  grey (grey with reduced motion); the snake border around the bracket is gone (user: too much).
 - 2026-11-25: Stage page loading indicator: while a simulation runs, an orange segment circles the
   Swiss bracket (a faint outline only with reduced motion).
 - 2026-11-25: Stage page: "Simulating changes…" moved from under the dates to the right end of the

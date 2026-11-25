@@ -1,6 +1,6 @@
 /**
- * Shown while a simulation runs. Meanwhile the page sets `data-rough` and its predicted numbers turn
- * grey (theme.css); orange numbers always mean final. Nothing shows when the result came from the
+ * Shown while a simulation runs. Meanwhile the page sets `data-rough` and its predicted numbers
+ * pulse (theme.css); steady orange numbers always mean final. Nothing shows when the result came from the
  * cache.
  */
 export function SimStatus({
@@ -11,7 +11,7 @@ export function SimStatus({
 }: {
   running: boolean
   className?: string
-  /** Says the grey numbers still work: clicks while simulating start a new run. */
+  /** Says the pulsing numbers still work: clicks while simulating start a new run. */
   hint?: string
   /** Keep its space while idle (hidden), so the page never moves when it appears. */
   reserve?: boolean
