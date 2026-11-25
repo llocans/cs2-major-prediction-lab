@@ -1,18 +1,12 @@
+import { Page, PageHeader } from '../components/Page.tsx'
 import type { EventData } from '../lib/data.ts'
 import { shortDate } from '../lib/format.ts'
 
 export function OverviewPage({ event }: { event: EventData }) {
   const { config } = event
   return (
-    <div className="flex flex-col gap-8">
-      <header>
-        <p className="font-display text-xs font-semibold uppercase tracking-wider text-ink-3">
-          {config.organizer}
-        </p>
-        <h1 className="font-display text-5xl font-bold leading-none tracking-tight">
-          {config.name}
-        </h1>
-      </header>
+    <Page>
+      <PageHeader kicker={config.organizer} title={config.name} />
       <ol className="divide-y divide-rule border-y border-rule">
         {config.stages.map((stage) => {
           const href = stage.type === 'swiss' ? `#/stage/${stage.id}` : '#/playoffs'
@@ -36,6 +30,6 @@ export function OverviewPage({ event }: { event: EventData }) {
         })}
       </ol>
       <p className="text-sm text-ink-3">Map pool: {config.mapPool.map((m) => m.name).join(', ')}</p>
-    </div>
+    </Page>
   )
 }

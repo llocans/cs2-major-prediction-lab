@@ -114,6 +114,15 @@
   }
 }
 
+/* Keep room for the scrollbar, so the centred page does not jump sideways between short pages (no
+   scrollbar) and long ones. Not on phones: their scrollbars float over the page and take no room,
+   and a reserved gutter would only narrow the 375 px layout. */
+@media (min-width: 640px) {
+  html {
+    scrollbar-gutter: stable;
+  }
+}
+
 html {
   background: var(--paper);
   color: var(--ink);

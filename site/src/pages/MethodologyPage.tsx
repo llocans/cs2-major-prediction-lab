@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { Page, PageHeader } from '../components/Page.tsx'
 import { type EventData, params } from '../lib/data.ts'
 import { pct } from '../lib/format.ts'
 
@@ -20,15 +21,17 @@ export function MethodologyPage({ event }: { event: EventData }) {
   const playoffs = event.config.stages.find((s) => s.type === 'single-elimination')
 
   return (
-    <article className="flex max-w-[72ch] flex-col gap-10">
-      <header className="flex flex-col gap-2">
-        <h1 className="font-display text-5xl font-bold leading-none tracking-tight">Methodology</h1>
-        <p className="text-sm text-ink-2">
-          How the probabilities on this site are made, where the data comes from and how it stays
-          current. Every number is model output from public data, not advice. The full
-          specification, with every formula, is <Code>docs/model.md</Code> in the repository.
-        </p>
-      </header>
+    <Page as="article" className="max-w-[72ch]">
+      <PageHeader
+        title="Methodology"
+        subtitle={
+          <>
+            How the probabilities on this site are made, where the data comes from and how it stays
+            current. Every number is model output from public data, not advice. The full
+            specification, with every formula, is <Code>docs/model.md</Code> in the repository.
+          </>
+        }
+      />
 
       <Section title="In one paragraph">
         <p>
@@ -260,7 +263,7 @@ export function MethodologyPage({ event }: { event: EventData }) {
           ]}
         />
       </Section>
-    </article>
+    </Page>
   )
 }
 
