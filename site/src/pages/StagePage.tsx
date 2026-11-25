@@ -158,12 +158,12 @@ export function StagePage({ event, stage, query }: Props) {
           <>
             {shortDate(stage.start)}–{shortDate(stage.end)}
             {currentRound !== undefined && <> · {roundStatus(currentRound, real)}</>}
-            <SimStatus running={sim.running} />
           </>
         }
       >
         <FreshnessBar sync={syncStatus} stage={stage} ratingsAsOf={ratings.asOf} />
         <Legend
+          running={sim.running}
           overrides={whatIf.overrides.length}
           onReset={() => setQuery(writeWhatIf(query, { overrides: [] }))}
         />
@@ -246,7 +246,9 @@ function roundStatus(round: number, real: ReadonlyArray<{ round: number }>): str
   return real.some((m) => m.round === round) ? `Round ${round} in progress` : `Round ${round} next`
 }
 
-function Legend({ overrides, onReset }: { overrides: number; onReset: () => void }) {
+/** The bracket's key, with the simulation status at its right end, just above the bracket. */
+function Legend(props: { running: boolean; overrides: number; onReset: () => void }) {
+  const { running, overrides, onReset } = props
   return (
     <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs leading-6 text-ink-3">
       <span className="font-semibold uppercase tracking-wider">The bracket:</span>
@@ -265,6 +267,7 @@ function Legend({ overrides, onReset }: { overrides: number; onReset: () => void
           Reset {overrides} override{overrides === 1 ? '' : 's'}
         </button>
       )}
+      <SimStatus running={running} reserve className="ml-auto" />
     </p>
   )
 }
