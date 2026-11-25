@@ -52,7 +52,8 @@ future events too: formats live in config, never in code.
   - `simulate.ts <event> <stage>` (prints odds; Swiss or playoffs) · `snapshot.ts <event> <stage>`
     (pre-round, once)
   - `log-odds.ts <event> <stage> <round> <teamA> <oddsA> <teamB> <oddsB> ... --source "<name>|<url>"`
-    → margin-free bookmaker odds in `data/events/<id>/bookmaker-odds.json` for the Market odds page
+    → margin-free bookmaker odds in `data/events/<id>/bookmaker-odds.json` for the Market odds page,
+    decimal odds in git-ignored `local/market-odds.json` (never committed)
     (CSGOEmpire, read in Claude in Chrome on request; `log-odds` skill)
   - `log-result.ts ...` (manual) · `poll-liquipedia.ts <event>` (runs in GitHub Actions; needs `LIQUIPEDIA_CONTACT`;
     Swiss stages, then the playoff bracket once Stage 3 has advanced)

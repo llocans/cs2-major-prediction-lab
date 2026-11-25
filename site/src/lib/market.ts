@@ -1,10 +1,10 @@
 /**
  * Market odds next to the model's, for display only (a benchmark, never a model input).
  *
- * Two sources, both read by hand: one bookmaker's odds read before a round (CSGOEmpire,
- * `bookmaker-odds.json`, when someone had time) and the closing line averaged over about 10
- * bookmakers (OddsPortal, `benchmarks.json`, filled after the round). The site shows one price per
- * match: the pre-round odds if logged, otherwise the closing line, and always names its source.
+ * Two kinds, both read by hand: pre-match odds read before a round (`bookmaker-odds.json`, when
+ * someone had time) and the closing line averaged over about 10 bookmakers (`benchmarks.json`,
+ * filled after the round). The site shows one price per match: the pre-match odds if logged,
+ * otherwise the closing line, and labels which kind it is.
  */
 interface Pair {
   teamA: string
@@ -45,11 +45,10 @@ export function displayOdds<T extends OddsLike>(
   return [...preferred, ...fallback.filter((o) => o.round !== undefined && !have.has(matchKey(o)))]
 }
 
-/** Short name of an odds source for labels: "CSGOEmpire", "OddsPortal avg", or the name itself. */
+/** Which kind of market price a source is, for labels: "closing avg" or "pre-match". */
 export function sourceLabel(name: string | undefined): string | undefined {
   if (!name) return undefined
-  if (name.startsWith('OddsPortal')) return 'OddsPortal avg'
-  return name.split(' ')[0]
+  return name.startsWith('OddsPortal') ? 'closing avg' : 'pre-match'
 }
 
 /** The market's chance that `team` beats `opponent` in this round and where it comes from. */
@@ -88,7 +87,7 @@ export interface TeamMatchRow {
   /** The model's chance before the round (from that round's snapshot). */
   model?: number
   market?: number
-  /** Where the market chance comes from ("CSGOEmpire", "OddsPortal avg"). */
+  /** Which kind of market price it is ("pre-match", "closing avg"). */
   marketSource?: string
   result?: 'W' | 'L'
 }

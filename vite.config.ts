@@ -35,11 +35,36 @@ function engineVersion(): Plugin {
   }
 }
 
+/**
+ * The site never names the bookmaker behind `bookmaker-odds.json` (`docs/sources.md`): each entry's
+ * source is bundled as a generic name, with no URL. The committed file keeps the full source.
+ */
+function genericBookmakerSource(): Plugin {
+  return {
+    name: 'generic-bookmaker-source',
+    // Before Vite's JSON plugin turns the file into a module.
+    enforce: 'pre',
+    transform(code, id) {
+      if (!/[\\/]data[\\/]events[\\/][^\\/]+[\\/]bookmaker-odds\.json$/.test(id)) return undefined
+      const file = JSON.parse(code) as { entries?: Array<{ source?: Record<string, unknown> }> }
+      for (const entry of file.entries ?? []) {
+        if (entry.source) {
+          entry.source = {
+            name: 'Pre-match odds, margin removed',
+            retrievedAt: entry.source.retrievedAt,
+          }
+        }
+      }
+      return { code: JSON.stringify(file), map: null }
+    },
+  }
+}
+
 export default defineConfig({
   root: 'site',
   // Relative asset paths so the static build works from any host path.
   base: './',
-  plugins: [react(), tailwindcss(), engineVersion()],
+  plugins: [genericBookmakerSource(), react(), tailwindcss(), engineVersion()],
   build: { outDir: '../dist', emptyOutDir: true },
   server: { port: 5173, fs: { allow: ['..'] } },
   worker: { format: 'es' },

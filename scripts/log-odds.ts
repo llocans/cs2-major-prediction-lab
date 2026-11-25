@@ -1,6 +1,7 @@
 /**
- * Logs one bookmaker's match-winner odds for a round, for the Market odds page. Only the margin-free
- * probability is stored, never the decimal odds (docs/sources.md). Re-logging a pair replaces it.
+ * Logs one bookmaker's match-winner odds for a round, for the Market odds page. The committed
+ * `bookmaker-odds.json` gets the margin-free probability; the decimal odds go to the git-ignored
+ * `local/market-odds.json` (never committed, docs/sources.md). Re-logging a pair replaces it.
  * Usage:
  *   node scripts/log-odds.ts <event> <stage> <round> <teamA> <oddsA> <teamB> <oddsB> [...] --source "<name>|<url>" [--date YYYY-MM-DD]
  * Example:
@@ -9,7 +10,7 @@
  * read now and get a timestamp.
  */
 import { existsSync } from 'node:fs'
-import { BookmakerOdds, EventTeams } from '../data/schemas/index.ts'
+import { BookmakerOdds, EventTeams, LocalMarketOdds } from '../data/schemas/index.ts'
 import { marginFree } from '../engine/market-picks.ts'
 import { readJson, repoPath, writeJson } from './lib/files.ts'
 
@@ -69,6 +70,35 @@ const kept = file.entries.filter(
   (e) => !replaced.has(`${e.stageId}|${e.round}|${pair(e.teamA, e.teamB)}`),
 )
 writeJson(path, BookmakerOdds, { ...file, entries: [...kept, ...logged] })
+
+// The decimal odds, kept locally for real payouts (git-ignored).
+const localPath = repoPath('data/events', eventId, 'local', 'market-odds.json')
+const localFile: LocalMarketOdds = existsSync(localPath)
+  ? readJson(localPath, LocalMarketOdds)
+  : { schemaVersion: 1, eventId, entries: [] }
+const localLogged = Array.from({ length: quads.length / 4 }, (_, i) => {
+  const [teamA = '', oddsA = '', teamB = '', oddsB = ''] = quads.slice(i * 4, i * 4 + 4)
+  const observedAt = logged[i]?.observedAt
+  return {
+    stageId,
+    round,
+    teamA,
+    teamB,
+    oddsA: Number(oddsA),
+    oddsB: Number(oddsB),
+    retrievedAt,
+    ...(observedAt ? { observedAt } : {}),
+  }
+})
+writeJson(localPath, LocalMarketOdds, {
+  ...localFile,
+  entries: [
+    ...localFile.entries.filter(
+      (e) => !replaced.has(`${e.stageId}|${e.round}|${pair(e.teamA, e.teamB)}`),
+    ),
+    ...localLogged,
+  ],
+})
 
 for (const entry of logged) {
   const pB = 1 - entry.pA

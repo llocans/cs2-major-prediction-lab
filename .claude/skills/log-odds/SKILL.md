@@ -10,7 +10,9 @@ allowed-tools: Bash(node scripts/log-odds.ts:*), Bash(npm run validate), Bash(gi
 # log-odds
 
 Logs margin-free match-winner probabilities to `data/events/<id>/bookmaker-odds.json`, shown on the
-site's Market odds page (`#/market/<stage>`). A benchmark only: the model never reads them.
+site's Market odds page (`#/market/<stage>`), and the decimal odds to the git-ignored
+`data/events/<id>/local/market-odds.json` (real payouts for bet slips, never committed). A benchmark
+only: the model never reads them.
 
 ## Steps
 
@@ -32,5 +34,7 @@ site's Market odds page (`#/market/<stage>`). A benchmark only: the model never 
 
 - Never automate this: CSGOEmpire's terms forbid bots and scripts, so no scheduled task, cloud
   routine or script reads the site (`docs/sources.md`).
-- Store only what the script writes (margin-free percentages), never the decimal odds.
+- Commit only `bookmaker-odds.json` (margin-free percentages). The decimal odds stay in the
+  git-ignored `local/` file; never copy them into a committed file, a commit message or the site.
+- The site never names the bookmaker (labels say "pre-match"); keep it that way.
 - Pre-match odds only, never live or in-play prices.

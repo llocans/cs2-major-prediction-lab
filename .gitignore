@@ -10,3 +10,5 @@ dist/
 .claude/state/
 .claude/worktrees/
 .ui-audit/
+# The bookmaker's own decimal odds: kept on this Mac only (docs/sources.md)
+data/events/*/local/
