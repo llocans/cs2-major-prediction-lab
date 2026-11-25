@@ -3,6 +3,7 @@
 One line per automatic change (scripts, scheduled tasks). Newest first.
 Format: `YYYY-MM-DD HH:MM UTC · actor · what changed`
 
+- 2026-11-25 10:47 UTC · poll-liquipedia · logged 1 result(s) in stage-1; ratings updated; snapshot not-due
 - 2026-11-25 10:02 UTC · poll-liquipedia · logged 1 result(s) in stage-1; ratings updated; snapshot not-due
 - 2026-11-25 08:56 UTC · manual (Claude) · market odds for Stage 1 round 3, first 4 matches (Eternal Fire-100 Thieves, HEROIC-M80, Wildcard-Lynn Vision, PVISION-FaZe) from OddsPortal's final listed odds; the other 4 after they finish
 - 2026-11-25 08:17 UTC · poll-liquipedia · logged 1 result(s) in stage-1; ratings updated; snapshot not-due

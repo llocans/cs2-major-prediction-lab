@@ -468,6 +468,33 @@
         "retrievedAt": "2026-11-25",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r3-flyquest-imperial",
+      "stageId": "stage-1",
+      "round": 3,
+      "teamA": "imperial",
+      "teamB": "flyquest",
+      "format": "bo3",
+      "maps": [
+        {
+          "map": "dust2",
+          "scoreA": 11,
+          "scoreB": 13
+        },
+        {
+          "map": "cache",
+          "scoreA": 9,
+          "scoreB": 13
+        }
+      ],
+      "winner": "flyquest",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3474854)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-25",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
