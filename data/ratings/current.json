@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-25T08:02:04.039Z",
-  "reason": "log-result stage-1-r3-lynn-vision-wildcard",
+  "asOf": "2026-11-25T08:17:04.353Z",
+  "reason": "log-result stage-1-r3-faze-parivision",
   "teams": {
     "nip": {
       "rating": 1549.3,
@@ -57,8 +57,8 @@
       ]
     },
     "parivision": {
-      "rating": 1533.6,
-      "rd": 58.5,
+      "rating": 1542,
+      "rd": 57.7,
       "maps": {
         "ancient": {
           "offset": 77.4,
@@ -76,9 +76,9 @@
           "n": 9
         },
         "mirage": {
-          "offset": -16.8,
-          "rd": 61.96773353931867,
-          "n": 8
+          "offset": -14.3,
+          "rd": 60.5,
+          "n": 9
         },
         "cache": {
           "offset": -7.1,
@@ -163,8 +163,8 @@
       ]
     },
     "faze": {
-      "rating": 1518.8,
-      "rd": 58.5,
+      "rating": 1510.4,
+      "rd": 57.7,
       "maps": {
         "ancient": {
           "offset": -61.9,
@@ -177,9 +177,9 @@
           "n": 8
         },
         "mirage": {
-          "offset": 49.9,
-          "rd": 60.5,
-          "n": 9
+          "offset": 47.5,
+          "rd": 59.1,
+          "n": 10
         },
         "nuke": {
           "offset": 63.9,
