@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-24T12:47:04.448Z",
-  "reason": "log-result stage-1-r2-bc-game-faze",
+  "asOf": "2026-11-25T06:47:04.366Z",
+  "reason": "log-result stage-1-r3-100-thieves-eternal-fire",
   "teams": {
     "nip": {
       "rating": 1549.3,
@@ -269,8 +269,8 @@
       ]
     },
     "eternal-fire": {
-      "rating": 1503.5,
-      "rd": 58.5,
+      "rating": 1511,
+      "rd": 57.7,
       "maps": {
         "ancient": {
           "offset": 53,
@@ -278,9 +278,9 @@
           "n": 15
         },
         "mirage": {
-          "offset": -11.2,
-          "rd": 56.568542494923804,
-          "n": 12
+          "offset": -9.3,
+          "rd": 55.4,
+          "n": 13
         },
         "cache": {
           "offset": -10.2,
@@ -322,8 +322,8 @@
       ]
     },
     "100-thieves": {
-      "rating": 1501.6,
-      "rd": 58.8,
+      "rating": 1494,
+      "rd": 58,
       "maps": {
         "dust2": {
           "offset": 120,
@@ -346,9 +346,9 @@
           "n": 5
         },
         "mirage": {
-          "offset": -61.7,
-          "rd": 69.28203230275508,
-          "n": 4
+          "offset": -64.5,
+          "rd": 67.2,
+          "n": 5
         },
         "anubis": {
           "offset": -17.9,
