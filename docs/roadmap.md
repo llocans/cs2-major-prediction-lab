@@ -130,6 +130,8 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## Done
 
+- 2026-11-25: Playoffs header shows only the dates (and the played count once seeded), not the
+  match formats.
 - 2026-11-25: One page frame for every page (`components/Page.tsx`): the same title block, gaps
   and subtitle width everywhere (Playoffs and Pick'Em had tighter headers, root gaps ranged
   24-40 px). A test fails if a page writes its own `<h1>` again. The page no longer jumps sideways

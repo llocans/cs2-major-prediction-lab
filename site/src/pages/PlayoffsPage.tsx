@@ -40,19 +40,12 @@ export function PlayoffsPage({ event, stage, query }: Props) {
 /** `status` (e.g. "2 of 7 played") follows the dates once the seeds are known. */
 function Header(props: { stage: PlayoffStage; status?: string; running: boolean }) {
   const { stage, status, running } = props
-  const formats = [
-    `${stage.format.default.toUpperCase()}`,
-    `${stage.format.final.toUpperCase()} final`,
-    ...(stage.thirdPlaceDecider
-      ? [`${(stage.format.thirdPlace ?? stage.format.default).toUpperCase()} third place`]
-      : []),
-  ]
   return (
     <PageHeader
       title={stage.name}
       subtitle={
         <>
-          {shortDate(stage.start)}–{shortDate(stage.end)} · {formats.join(', ')}
+          {shortDate(stage.start)}–{shortDate(stage.end)}
           {status && ` · ${status}`}
           <SimStatus running={running} />
         </>
