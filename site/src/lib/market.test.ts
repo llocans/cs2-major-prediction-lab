@@ -45,12 +45,12 @@ describe('market odds', () => {
           teamA: 'b',
           teamB: 'a',
           pA: 0.35,
-          source: { name: 'CSGOEmpire match-winner odds, margin removed' },
+          source: { name: 'Bookmaker match-winner odds, margin removed' },
         },
       ],
     }
-    expect(marketQuote(both, 's1', 1, 'a', 'b')).toEqual({ p: 0.65, source: 'CSGOEmpire' })
-    expect(marketQuote(both, 's1', 2, 'a', 'd')).toEqual({ p: 0.7, source: 'OddsPortal avg' })
+    expect(marketQuote(both, 's1', 1, 'a', 'b')).toEqual({ p: 0.65, source: 'pre-match' })
+    expect(marketQuote(both, 's1', 2, 'a', 'd')).toEqual({ p: 0.7, source: 'closing avg' })
     expect(marketQuote(both, 's1', 3, 'a', 'd')).toBeUndefined()
   })
 

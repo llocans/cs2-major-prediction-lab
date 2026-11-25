@@ -119,13 +119,11 @@ belong in `data/events/<id>/status.md`, not here.
     a later batch. Needs a start time per match: `log-odds` stores the kickoff CSGOEmpire lists
     (`startsAt`) and the time it was read (`observedAt`); a match whose odds were read after it
     started is never used.
-  - **Real odds.** Payouts use CSGOEmpire's own decimal odds, which the user bets at. Today only the
-    margin-free chance is stored, because CSGOEmpire's [terms](https://csgoempire.com/tos) forbid
-    publishing its content and this repo is public (`docs/sources.md`). Proposal: keep the decimal
-    odds in a git-ignored local file (e.g. `data/events/<id>/local/csgoempire-odds.json`) that the
-    local site reads for real payouts; committed files and a hosted site show payouts at margin-free
-    odds. Confirm with the user before building; then update `log-odds` (skill and script), the
-    "store only margin-free" lines in the README, `docs/sources.md` and the skill.
+  - **Real odds (decided 2026-11-25, saved from Stage 1 R5).** Payouts use the bookmaker's own
+    decimal odds, which the user bets at. `log-odds` saves them to the git-ignored
+    `local/market-odds.json` (`docs/sources.md`). The slips block reads that file only in the dev
+    server (`npm run dev` on this Mac), never in `npm run build`, so a hosted site shows payouts at
+    margin-free odds and never publishes the bookmaker's prices.
   - **Ranking (agreed).** "Highest confidence" means the model's chance to win; the High / Medium /
     Low label (how much data the model has) is a filter, not the ranking.
   - **Build.** A new pure engine module, `bet-slips.ts` (legs, slip checks, partition into slips) with tests; the
@@ -183,6 +181,9 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## Done
 
+- 2026-11-25: Market odds: the site no longer names the bookmaker (prices are labelled "pre-match"
+  or "closing avg"), and `log-odds` also saves the decimal odds to a git-ignored local file for real
+  bet slip payouts (never committed or published).
 - 2026-11-25: Market odds page: the Pick column is now "Value pick", with one plain line saying a
   value pick can be the underdog (picked for the price, not because it is expected to win), and the
   record adds Units: the profit from 1 unit on every pick at the margin-free odds. No pick changed.

@@ -84,8 +84,8 @@ the database and its history is the audit log.
 - **Real results only** in `results.json`. Snapshots are never edited after they are saved.
 - **What-if results** set in the site (forced winners) live only in the page URL, so they
   can be shared as a link and never write to the data.
-- **Bookmaker odds** on the Market odds page are stored as margin-free percentages only, never as the
-  bookmaker's own odds. The model never reads them; its value picks there follow a fixed rule (an edge of at
+- **Bookmaker odds** on the Market odds page are committed as margin-free percentages only; the
+  bookmaker's own decimal odds stay in a git-ignored local file and are never published. The model never reads them; its value picks there follow a fixed rule (an edge of at
   least 5 percentage points over the market, so a pick can be the underdog), scored in won, lost and
   units at the margin-free odds.
 - **Pick'Em picks** made on the site's Pick'Em page stay in the viewer's browser (local storage) and
@@ -117,8 +117,9 @@ are documented with sources in [`docs/rules.md`](docs/rules.md).
 
 - The Bo5 grand-final veto is assumed from earlier PGL events until PGL publishes the Singapore one.
 - Market odds for the current Major are read by hand: CSGOEmpire before a round when someone has
-  time, OddsPortal's closing line (about 10 bookmakers averaged) after it. The site shows CSGOEmpire
-  where logged, otherwise OddsPortal, and names the source; the track record uses OddsPortal.
+  time, OddsPortal's closing line (about 10 bookmakers averaged) after it. The site shows the pre-match
+  odds where logged, otherwise the closing line, and labels which kind it is; the track record uses
+  OddsPortal.
   OddsPapi does not cover this Major past its first round, and CSGOEmpire's terms forbid automated
   reading.
 - Ratings are tuned on reasoning, not yet on backtests of past Majors.

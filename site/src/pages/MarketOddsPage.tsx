@@ -41,10 +41,10 @@ const points = (value: number) => `+${Math.round(value * 100)} pp`
 const unitsText = (value: number) =>
   `${value > 0 ? '+' : value < 0 ? '−' : ''}${Math.abs(value).toFixed(1)}`
 
-/** The model's picks against one bookmaker's margin-free prices, stage by stage, round by round. */
+/** The model's picks against the market's margin-free prices, stage by stage, round by round. */
 export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?: string }) {
   const stages = event.config.stages
-  // CSGOEmpire where it was read before the round, OddsPortal's closing line for the rest.
+  // Pre-match odds where they were read before the round, the closing line for the rest.
   const odds = displayOdds(event.bookmakerOdds, event.benchmarks)
   const records = stages.map((s) =>
     stageMarketPicks(s.id, event.snapshots, odds, event.results.matches),
@@ -61,7 +61,7 @@ export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?:
 
   return (
     <Page>
-      <PageHeader title="Market odds" subtitle="The model against a bookmaker." />
+      <PageHeader title="Market odds" subtitle="The model against the betting market." />
 
       <nav className="flex flex-wrap gap-x-5 gap-y-1 border-b border-rule pb-2">
         {stages.map((s) => (
@@ -154,7 +154,7 @@ function RoundSection(props: {
               <th className="py-1 pr-2.5 text-right font-semibold sm:pr-2">Model</th>
               <th
                 className="py-1 pr-2.5 text-right font-semibold sm:pr-2"
-                title="The bookmaker's chance for each team with its margin removed (the two add up to 100%). The model never uses it."
+                title="The market's chance for each team with the margin removed (the two add up to 100%). The model never uses it."
               >
                 Market
               </th>

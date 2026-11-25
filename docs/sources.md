@@ -41,9 +41,12 @@ time of reading. Never in-play odds.
 The Market odds page compares the model with one bookmaker, CSGOEmpire. Before a round, its
 match-winner odds are read in Claude in Chrome (the built-in Browser pane cannot open the site) and
 logged with `scripts/log-odds.ts`, or from a screenshot or numbers the user sends (`--date`).
-`pA = (1/oddsA) / (1/oddsA + 1/oddsB)`; only `pA` is stored, never the odds, because the
+`pA = (1/oddsA) / (1/oddsA + 1/oddsB)` is committed. The decimal odds themselves go to
+`data/events/<id>/local/market-odds.json`, which is git-ignored: they stay on this Mac (for real
+payouts on bet slips) and are never committed or published, because the
 [terms](https://csgoempire.com/tos) forbid publishing or redistributing the site's content (read
-2026-11-24).
+2026-11-24). The site never names the bookmaker: it labels prices as "pre-match" or "closing avg", and the
+build (`vite.config.ts`) bundles each entry's source as a generic name with no URL.
 
 Not automated: the odds come from the site's sportsbook provider (Betby, `sptpub.com`) through an
 undocumented API, the site runs bot detection (SEON), and the terms forbid "bots, scripts or automated
