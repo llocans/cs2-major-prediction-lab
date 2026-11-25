@@ -101,7 +101,7 @@ export function TeamPanel(props: Props) {
           ).map(([label, value]) => {
             const open = label === 'Advance' || outcomeOpen(outlook.record, label)
             return (
-              <div key={label}>
+              <div key={label} className="text-center">
                 <dt className={LABEL}>{label}</dt>
                 <dd
                   className={`num font-display text-2xl font-semibold ${open ? 'text-accent' : 'text-ink-3'}`}
