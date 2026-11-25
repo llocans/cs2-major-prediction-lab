@@ -195,7 +195,7 @@ export function StagePage({ event, stage, query }: Props) {
         }}
       />
 
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px]">
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px] xl:gap-x-20">
         <section className="min-w-0">
           <h2 className="mb-2 font-display text-xl font-bold">Probabilities</h2>
           {prediction ? (
