@@ -36,7 +36,8 @@ export function PlayoffsPage({ event, stage, query }: Props) {
   )
 }
 
-function Header(props: { stage: PlayoffStage; status: string; running: boolean }) {
+/** `status` follows the dates; without one (seeds not known yet) a "Soon" line shows instead. */
+function Header(props: { stage: PlayoffStage; status?: string; running: boolean }) {
   const { stage, status, running } = props
   const formats = [
     `${stage.format.default.toUpperCase()}`,
@@ -49,9 +50,11 @@ function Header(props: { stage: PlayoffStage; status: string; running: boolean }
     <header className="flex flex-col gap-1">
       <h1 className="font-display text-5xl font-bold leading-none tracking-tight">{stage.name}</h1>
       <p className="num text-sm text-ink-2">
-        {shortDate(stage.start)}–{shortDate(stage.end)} · {formats.join(', ')} · {status}
+        {shortDate(stage.start)}–{shortDate(stage.end)} · {formats.join(', ')}
+        {status && ` · ${status}`}
         <SimStatus running={running} />
       </p>
+      {!status && <p className="text-xs uppercase tracking-wider text-ink-3">Soon</p>}
       <FreshnessBar sync={syncStatus} stage={stage} ratingsAsOf={ratings.asOf} />
     </header>
   )
@@ -248,7 +251,6 @@ function ProjectedPlayoffs({ event, stage }: EventProps) {
     return event.config.stages.find((s) => s.id === entry)?.name ?? ''
   }
   const note = unverifiedNote(eventOdds?.unverifiedVeto ?? [])
-  const lastSwiss = event.config.stages.find((s) => s.type === 'swiss' && s.advanceTo === stage.id)
 
   // Placeholder seeds "1".."8" for the empty bracket.
   const slots = stage.bracket.flat().map((_, i) => String(i + 1))
@@ -262,13 +264,7 @@ function ProjectedPlayoffs({ event, stage }: EventProps) {
 
   return (
     <div className="flex flex-col gap-8" data-rough={sim.running || undefined}>
-      <Header stage={stage} status="seeds not set yet" running={sim.running} />
-      <p className="max-w-2xl text-sm text-ink-2">
-        The playoff seeds are set when {lastSwiss?.name ?? 'the last Swiss stage'} ends
-        {lastSwiss ? ` (${shortDate(lastSwiss.end)})` : ''}: its top 8 in final standings order.
-        Until then, these are projected odds from simulating the rest of the event
-        {current ? ` from ${current.name}` : ''}.
-      </p>
+      <Header stage={stage} running={sim.running} />
       {(bracketError ?? sim.error) && (
         <p className="text-sm text-loss" role="alert">
           {bracketError ?? sim.error}
