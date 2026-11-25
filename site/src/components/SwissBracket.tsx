@@ -245,17 +245,17 @@ function MatchRow(props: {
   )
 }
 
-/** The model's pre-match pick on a finished match: green ✓ if it won, red and crossed out if not. */
+/**
+ * The model's pre-match pick on a finished match: muted green ✓ if it won, muted red and crossed out
+ * if not, close calls included.
+ */
 function PickMark({ pick }: { pick: Pick }) {
-  const label =
-    pick.verdict === 'coin-flip'
-      ? `Coin flip: the model gave ${pct(pick.p)} before the match`
-      : `Model's pick before the match: ${pct(pick.p)}, ${pick.verdict === 'hit' ? 'won' : 'lost'}`
+  const label = `Model's pick before the match: ${pct(pick.p)}, ${pick.verdict === 'hit' ? 'won' : 'lost'}`
   return (
     <span
       className={[
         'num shrink-0 text-xs font-semibold',
-        pick.verdict === 'hit' ? 'text-win' : pick.verdict === 'miss' ? 'text-loss' : 'text-ink-3',
+        pick.verdict === 'hit' ? 'text-win-muted' : 'text-loss-muted',
       ].join(' ')}
       title={label}
     >

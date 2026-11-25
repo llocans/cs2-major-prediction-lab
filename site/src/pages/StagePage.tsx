@@ -115,8 +115,18 @@ export function StagePage({ event, stage, query }: Props) {
   const firstSnapshot = event.snapshots.find((s) => s.stageId === stage.id && s.beforeRound === 1)
   const start = new Map((firstSnapshot?.teams ?? []).map((t) => [t.teamId, t]))
 
-  const selected = query.get('team') ?? seeds[0] ?? ''
+  // No team is selected until the viewer picks one; picking the selected team again clears it.
+  const selected = query.get('team') ?? ''
+  const clearSelection = () => {
+    const next = new URLSearchParams(query)
+    next.delete('team')
+    setQuery(next)
+  }
   const select = (teamId: string) => {
+    if (teamId === selected) {
+      clearSelection()
+      return
+    }
     const next = new URLSearchParams(query)
     next.set('team', teamId)
     setQuery(next)
@@ -202,17 +212,24 @@ export function StagePage({ event, stage, query }: Props) {
           id="team-panel"
           className="order-first scroll-mt-4 lg:order-none lg:sticky lg:top-6 lg:self-start"
         >
-          <TeamPanel
-            teamId={selected}
-            seed={seeds.indexOf(selected) + 1 || undefined}
-            outlook={outlook}
-            next={next}
-            nextMarket={nextMarket}
-            matches={teamStageMatches(event, stage.id, selected)}
-            name={name(selected)}
-            short={short}
-            shortFromVrs={(vrsName) => shortFromVrs(event, vrsName)}
-          />
+          {selected === '' ? (
+            <p className="border-t border-rule pt-3 text-sm text-ink-3">
+              Click a team in the bracket or the table to see its details.
+            </p>
+          ) : (
+            <TeamPanel
+              teamId={selected}
+              seed={seeds.indexOf(selected) + 1 || undefined}
+              outlook={outlook}
+              next={next}
+              nextMarket={nextMarket}
+              matches={teamStageMatches(event, stage.id, selected)}
+              name={name(selected)}
+              short={short}
+              shortFromVrs={(vrsName) => shortFromVrs(event, vrsName)}
+              onClose={clearSelection}
+            />
+          )}
         </div>
       </div>
     </div>
@@ -230,19 +247,10 @@ function Legend({ overrides, onReset }: { overrides: number; onReset: () => void
     <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs leading-6 text-ink-3">
       <span className="font-semibold uppercase tracking-wider">The bracket:</span>
       <span>
-        <span className="font-semibold text-accent">62%</span> model's chance to win; click it to
-        force a what-if win{' '}
-        <span className="whitespace-nowrap">
-          (<span className="rounded-sm bg-accent-soft px-1 py-0.5 text-accent">W*</span>)
-        </span>
+        <span className="font-semibold text-accent">62%</span> model's chance to win
       </span>
       <span>
-        <span className="font-semibold text-win">✓</span> /{' '}
-        <span className="font-semibold text-loss">✗</span> model's pick won / lost (grey: coin flip)
-      </span>
-      <span>
-        <span className="font-semibold text-win">→</span> winners,{' '}
-        <span className="font-semibold text-loss">→</span> losers (dashed: not played yet)
+        <span className="font-semibold text-accent">W*</span> click it to see a what-if win
       </span>
       {overrides > 0 && (
         <button

@@ -23,10 +23,12 @@ interface Props {
   short: (teamId: string) => string
   /** Short name for an opponent as written in Valve's VRS tables, if we know the team. */
   shortFromVrs: (vrsName: string) => string
+  /** Closes the panel (clears the selected team). */
+  onClose: () => void
 }
 
 export function TeamPanel(props: Props) {
-  const { teamId, seed, outlook, next, nextMarket, matches = [], name, short } = props
+  const { teamId, seed, outlook, next, nextMarket, matches = [], name, short, onClose } = props
   const played = matches.filter((m) => m.result !== undefined)
   const form = forms.get(teamId)
   const rating = ratings.teams[teamId]
@@ -39,7 +41,16 @@ export function TeamPanel(props: Props) {
 
   return (
     <aside className="flex flex-col gap-6" aria-label={`${name} details`}>
-      <header className="border-b border-ink pb-3">
+      <header className="relative border-b border-ink pb-3 pr-10">
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute top-0 right-0 flex size-9 items-center justify-center rounded-sm text-lg leading-none text-ink-3 hover:bg-paper-2 hover:text-ink"
+          aria-label={`Close ${name} details`}
+          title="Close"
+        >
+          ✕
+        </button>
         <div className="font-display text-xs font-semibold uppercase tracking-wider text-ink-3">
           Seed {seed ?? '–'}
           {form && ` · VRS #${form.vrs.rank}`}
@@ -170,7 +181,7 @@ export function TeamPanel(props: Props) {
             className="num text-sm"
             title="Series won and lost in the 90 days before this date, from Valve's ranking tables"
           >
-            <span className="font-semibold text-win">{form.summary.last90Days.won} W</span>
+            <span className="font-semibold text-win-muted">{form.summary.last90Days.won} W</span>
             <span className="text-ink-3"> – </span>
             <span className="font-semibold text-loss">{form.summary.last90Days.lost} L</span>
           </p>
@@ -220,14 +231,14 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 
 /**
  * This team's chance before a played match. Coloured like the bracket only when the model picked
- * this team: green ✓ if it won, red and crossed out if it lost; plain under the coin-flip line.
+ * this team: muted green ✓ if it won, muted red and crossed out if it lost.
  */
 function ModelChance({ p, won }: { p: number | undefined; won: boolean }) {
   if (p === undefined) return <span className="text-ink-3">–</span>
   const verdict = chanceVerdict(p, won)
   // The mark sits in a fixed slot, so the digits line up whether or not a row has one.
   const mark = (text: string) => <span className="inline-block w-4 text-right">{text}</span>
-  if (verdict === undefined || verdict === 'coin-flip')
+  if (verdict === undefined)
     return (
       <span className="text-ink-2">
         {pct(p)}
@@ -240,7 +251,7 @@ function ModelChance({ p, won }: { p: number | undefined; won: boolean }) {
       {mark('✓')}
     </span>
   ) : (
-    <span className="font-semibold text-loss">
+    <span className="font-semibold text-loss-muted">
       <span className="line-through">{pct(p)}</span>
       {mark('✗')}
     </span>

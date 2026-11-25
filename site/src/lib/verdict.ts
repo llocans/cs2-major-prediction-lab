@@ -1,10 +1,5 @@
-/**
- * Whether the model's pre-match pick came true. Under COIN_FLIP the favourite's edge is too small
- * to call it a hit or a miss.
- */
-export const COIN_FLIP = 0.55
-
-export type Verdict = 'hit' | 'miss' | 'coin-flip'
+/** Whether the model's pre-match pick came true, close calls included. */
+export type Verdict = 'hit' | 'miss'
 
 export interface Pick {
   /** The team the model favoured before the match (higher chance). */
@@ -20,8 +15,6 @@ export interface Pick {
  */
 export function chanceVerdict(p: number, won: boolean): Verdict | undefined {
   if (p < 0.5) return undefined
-  // Judged on the whole percent shown, so a "55%" on screen is never called a coin flip.
-  if (Math.round(p * 100) < Math.round(COIN_FLIP * 100)) return 'coin-flip'
   return won ? 'hit' : 'miss'
 }
 
@@ -29,7 +22,7 @@ export function chanceVerdict(p: number, won: boolean): Verdict | undefined {
 export function pickFor(teamA: string, teamB: string, pA: number, winner: string): Pick {
   const team = pA >= 0.5 ? teamA : teamB
   const p = Math.max(pA, 1 - pA)
-  return { team, p, verdict: chanceVerdict(p, winner === team) ?? 'coin-flip' }
+  return { team, p, verdict: winner === team ? 'hit' : 'miss' }
 }
 
 const pairKey = (a: string, b: string) => (a < b ? `${a}|${b}` : `${b}|${a}`)
