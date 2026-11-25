@@ -97,10 +97,6 @@ belong in `data/events/<id>/status.md`, not here.
   read at a glance. Simplify after core features are settled (user, 2026-11-23). Ideas parked until
   then: per-match market % on the Track record rows (the data is already in `benchmarks.json`).
   First and second passes done 2026-11-24 (see Done); the `ui-review` skill checks the rest.
-- **Probabilities table at 1000-1250 px.** Between the `lg` breakpoint (1024 px) and about 1250 px
-  the table is wider than its column and its Title column runs under the team panel (found
-  2026-11-25 at 1024 and 1240 px; the audit measures 1440 and 375 px only). Options: switch to two
-  columns only from `xl`, hide a column at that width, or add a 1024 px width to the audit.
 - **Visual regression screenshots.** CI could compare each page's screenshots with the last approved
   set and flag any change for a look. Needs fixed test data first (live data changes every round),
   e.g. a frozen copy of one finished event.
@@ -131,6 +127,10 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## Done
 
+- 2026-11-25: Probabilities table fits its column at every width: it switches to short names (NIP)
+  by its own width (a container query) instead of the window's, which fixes it running under the
+  team panel at 1024-1070 px and a sideways page scroll at 640-680 px. The UI audit now also
+  measures 1024 px and fails on a table wider than its box (planted-problem test added).
 - 2026-11-25: Stage page selection and marks: no team is selected when a stage opens (a short hint
   instead of the team panel); clicking the selected team again, or the ✕ on the panel, clears it.
   Shorter bracket legend (62% and W* only). Pick marks on finished matches in softer green/red, and

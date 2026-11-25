@@ -28,8 +28,9 @@ future events too: formats live in config, never in code.
 
 - `npm run check`: typecheck + lint + tests (run before committing code)
 - `npm run validate`: validate all data files
-- `npm run ui-audit`: build the site and measure every page in Chromium (desktop + 375 px, light +
-  dark): console errors, page scroll, cut-off text, overlaps, contrast. Report and screenshots in
+- `npm run ui-audit`: build the site and measure every page in Chromium (1440, 1024 and 375 px,
+  light + dark): console errors, page scroll, cut-off text, overlaps, tables wider than their box,
+  contrast. Report and screenshots in
   `.ui-audit/`. First time: `npx playwright install chromium`
 - `npm run dev` / `npm run build`: site
 - Scripts run as `node scripts/<name>.ts` (Node runs TypeScript natively; use `.ts` import extensions):

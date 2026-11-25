@@ -9,6 +9,7 @@ export interface Issue {
     | 'cut-off'
     | 'scroll-box'
     | 'sticks-out'
+    | 'too-wide'
     | 'overlap'
     | 'contrast'
     | 'tap-target'
@@ -99,6 +100,21 @@ export function measure(mobile: boolean): Measured {
         detail: `${describe(el)} ends at ${Math.round(rect.right)}px, column ends at ${Math.round(column.right)}px`,
       })
     }
+  }
+
+  // A table wider than the box it sits in: it runs under its neighbour (e.g. the Stage page's
+  // Probabilities table under the team panel at 1024 px), even when it stays inside the page column.
+  for (const table of document.querySelectorAll('main table')) {
+    const box = table.parentElement
+    if (!box || !visible(table) || table.closest('[data-scrolls]')) continue
+    // A table in a scroll or clip box is the scroll-box check's job.
+    if (getComputedStyle(box).overflowX !== 'visible') continue
+    const width = table.getBoundingClientRect().width
+    if (width > box.clientWidth + 1)
+      failures.push({
+        kind: 'too-wide',
+        detail: `${describe(table)} is ${Math.round(width)}px wide in a ${box.clientWidth}px box`,
+      })
   }
 
   // Text boxes: one per text node, with the element that colours it.

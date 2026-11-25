@@ -1,8 +1,8 @@
 /**
  * Measured UI checks on the built site, in a real browser (Playwright, Chromium).
  *
- * Opens every page linked from the nav at desktop (1440x900) and mobile (375x812) widths, in the
- * light and dark themes, waits for the simulation to finish and measures:
+ * Opens every page linked from the nav at desktop (1440x900), laptop (1024x768) and mobile (375x812)
+ * widths, in the light and dark themes, waits for the simulation to finish and measures:
  *
  * Failures (exit code 1):
  *  - console errors and uncaught page errors
@@ -10,6 +10,7 @@
  *  - cut-off text (an ellipsis is showing)
  *  - content hidden in a sideways scroll box (only boxes marked `data-scrolls`, the brackets, may scroll)
  *  - content that sticks out of the page column without a scroll box of its own
+ *  - a table wider than the box it sits in (it runs under its neighbour)
  *  - text drawn over other text
  *  - text contrast under WCAG AA (4.5:1, or 3:1 for large text)
  * Warnings (listed in the report, not failing):
@@ -34,6 +35,8 @@ const outDir = join(root, '.ui-audit')
 
 const VIEWPORTS = [
   { name: 'desktop', width: 1440, height: 900 },
+  // The narrowest two-column layout (Tailwind lg): side-by-side content is tightest here.
+  { name: 'laptop', width: 1024, height: 768 },
   { name: 'mobile', width: 375, height: 812 },
 ] as const
 const THEMES = ['light', 'dark'] as const
