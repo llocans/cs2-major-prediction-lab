@@ -54,7 +54,6 @@ export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?:
       <span className="hidden sm:inline">{teamName(event, id)}</span>
     </>
   )
-  const sources = [...new Map(odds.map((o) => [o.source.name, o.source.url] as const)).entries()]
 
   return (
     <Page>
@@ -88,27 +87,6 @@ export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?:
             ))}
           </div>
         </>
-      )}
-
-      {sources.length > 0 && (
-        <p className="max-w-prose text-xs text-ink-3">
-          Source:{' '}
-          {sources.map(([label, url], i) => (
-            <span key={label}>
-              {i > 0 && '; '}
-              {url ? (
-                <a href={url} className="underline">
-                  {label}
-                </a>
-              ) : (
-                label
-              )}
-            </span>
-          ))}
-          . Read by hand: CSGOEmpire before a round when possible, otherwise OddsPortal's closing
-          line (an average of about 10 bookmakers) after it. Only the percentages are stored. Model
-          % is from the prediction saved before the round and never changes afterwards.
-        </p>
       )}
     </Page>
   )
