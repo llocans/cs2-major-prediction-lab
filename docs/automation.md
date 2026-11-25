@@ -89,7 +89,7 @@ Each prompt keeps its guardrails (date window, "already done", stage complete).
 ## 3. Pull request checks: GitHub Actions
 
 `.github/workflows/check.yml` runs `npm run check`, `npm run validate`, `npm run build` and the UI audit
-(`npm run ui-audit`: every page in Chromium at desktop and 375 px, light and dark; report and
+(`npm run ui-audit`: every page in Chromium at 1440, 1024 and 375 px, light and dark; report and
 screenshots uploaded as the `ui-audit` artifact) on every pull request to main (free: public
 repository). The poller's data commits go straight to main and are
 validated by the poller itself.

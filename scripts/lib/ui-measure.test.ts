@@ -52,6 +52,13 @@ describe.skipIf(!hasChromium)('measure', () => {
     expect(kinds(result)).toEqual(expect.arrayContaining(['sticks-out', 'page-scroll']))
   })
 
+  it('catches a table wider than its box, even inside the page column', async () => {
+    const result = await run(
+      '<div style="width:200px"><table style="width:280px"><tr><td>wide</td></tr></table></div>',
+    )
+    expect(kinds(result)).toEqual(['too-wide'])
+  })
+
   it('catches content hidden in an unmarked scroll box', async () => {
     const result = await run(
       '<div style="overflow-x:auto"><table style="width:420px"><tr><td>wide</td></tr></table></div>',

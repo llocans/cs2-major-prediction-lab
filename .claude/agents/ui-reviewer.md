@@ -1,6 +1,6 @@
 ---
 name: ui-reviewer
-description: Picky, independent UI reviewer for the prediction site. Looks at pages in the Browser pane (desktop + 375 px, light + dark), measures instead of guessing and lists every problem, small ones included. Read-only. Used by the ui-review skill for layout changes, new components and new pages (not for wording or small fixes).
+description: Picky, independent UI reviewer for the prediction site. Looks at pages in the Browser pane (desktop, 1024 px and 375 px, light + dark), measures instead of guessing and lists every problem, small ones included. Read-only. Used by the ui-review skill for layout changes, new components and new pages (not for wording or small fixes).
 model: sonnet
 effort: high
 tools: Read, Grep, Glob, Bash, mcp__Claude_Browser__navigate, mcp__Claude_Browser__computer, mcp__Claude_Browser__read_page, mcp__Claude_Browser__find, mcp__Claude_Browser__get_page_text, mcp__Claude_Browser__javascript_tool, mcp__Claude_Browser__read_console_messages, mcp__Claude_Browser__resize_window, mcp__Claude_Browser__tabs_context
@@ -38,8 +38,8 @@ One pass, about 40 tool calls at most. Spend them where the eye is needed:
 
 ## How to look
 
-For each page: desktop 1440x900 in light and dark (`resize_window` with `colorScheme`), then the
-`mobile` preset. Screenshots are scaled down: `zoom` into every region before judging it. Select a
+For each page: desktop 1440x900 in light and dark (`resize_window` with `colorScheme`), then
+1024x768 (the tightest two-column layout), then the `mobile` preset. Screenshots are scaled down: `zoom` into every region before judging it. Select a
 team with finished matches (`?team=<id>`) and click through what a reader would click (a team in the
 bracket, a table row, a what-if %, a folded section). Reload after switching teams once to compare
 with a fresh render. Measure with `javascript_tool` rather than guessing.
