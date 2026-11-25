@@ -375,6 +375,28 @@
         "retrievedAt": "2026-11-25",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r3-heroic-m80",
+      "stageId": "stage-1",
+      "round": 3,
+      "teamA": "heroic",
+      "teamB": "m80",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "inferno",
+          "scoreA": 10,
+          "scoreB": 13
+        }
+      ],
+      "winner": "m80",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3474725)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-25",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }

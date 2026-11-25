@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-25T06:47:04.366Z",
-  "reason": "log-result stage-1-r3-100-thieves-eternal-fire",
+  "asOf": "2026-11-25T07:02:04.124Z",
+  "reason": "log-result stage-1-r3-heroic-m80",
   "teams": {
     "nip": {
       "rating": 1549.3,
@@ -110,8 +110,8 @@
       ]
     },
     "heroic": {
-      "rating": 1525.9,
-      "rd": 58.5,
+      "rating": 1516.4,
+      "rd": 57.8,
       "maps": {
         "dust2": {
           "offset": -55.1,
@@ -124,9 +124,9 @@
           "n": 11
         },
         "inferno": {
-          "offset": 41.6,
-          "rd": 59.08391567007971,
-          "n": 10
+          "offset": 39,
+          "rd": 57.8,
+          "n": 11
         },
         "cache": {
           "offset": -20.9,
@@ -428,8 +428,8 @@
       ]
     },
     "m80": {
-      "rating": 1495.7,
-      "rd": 58.4,
+      "rating": 1505.2,
+      "rd": 57.7,
       "maps": {
         "cache": {
           "offset": 23.9,
@@ -447,9 +447,9 @@
           "n": 7
         },
         "inferno": {
-          "offset": -38.2,
-          "rd": 67.21344403334447,
-          "n": 5
+          "offset": -34.8,
+          "rd": 65.3,
+          "n": 6
         },
         "anubis": {
           "offset": 6.9,

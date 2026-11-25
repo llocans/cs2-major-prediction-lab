@@ -3,6 +3,7 @@
 One line per automatic change (scripts, scheduled tasks). Newest first.
 Format: `YYYY-MM-DD HH:MM UTC · actor · what changed`
 
+- 2026-11-25 07:02 UTC · poll-liquipedia · logged 1 result(s) in stage-1; ratings updated; snapshot not-due
 - 2026-11-25 06:47 UTC · poll-liquipedia · logged 1 result(s) in stage-1; ratings updated; snapshot not-due
 - 2026-11-24 14:00 UTC · manual (Claude) · market odds for Stage 1 round 2 (8 matches) from OddsPortal's final listed odds; OddsPapi lists no round 2 fixtures for this event
 - 2026-11-24 12:47 UTC · poll-liquipedia · logged 2 result(s) in stage-1; ratings updated; snapshot saved
