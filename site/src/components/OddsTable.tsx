@@ -28,13 +28,13 @@ const columns: Array<{ key: StageKey; label: string; title: string }> = [
   { key: 'p03', label: '0-3', title: 'Eliminated without a win' },
 ]
 
-/** On wider screens the number columns share the width evenly, so the team column stays compact. */
-const numberWidth = 'sm:w-[12%]'
+/** On wider screens the number columns share the width evenly, so the team column stays compact (about 22%). */
+const numberWidth = 'sm:w-[13%]'
 
 /**
  * Full team names need about 610 px of table. The table checks its own width (a container query),
  * not the window's, so it switches to short names (NIP) whenever its column is narrower: beside the
- * team panel at 1024-1070 px, or full width at 640-680 px.
+ * team panel at 1024-1100 px, or full width at 640-680 px.
  */
 const fullNames = '@min-[620px]:inline'
 const shortNames = '@min-[620px]:hidden'

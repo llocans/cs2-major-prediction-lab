@@ -132,6 +132,10 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## Done
 
+- 2026-11-25: Stage page spacing: from 1280 px a wider gap (80 px) between the Probabilities table and the team
+  panel, with a narrower team-name column; at 768-1023 px, where the panel sits above the table, it
+  uses two columns (match history on the right), so it is about 40% shorter and its tables don't
+  stretch.
 - 2026-11-25: Team panel keeps one shape for every team: the next match is the last row of "This
   stage" (marked NEXT, with its format) instead of a separate block, and thin lines separate the
   sections.

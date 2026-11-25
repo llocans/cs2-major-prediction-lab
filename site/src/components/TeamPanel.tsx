@@ -58,8 +58,13 @@ export function TeamPanel(props: Props) {
       : undefined
 
   return (
-    <aside className="flex flex-col gap-6" aria-label={`${name} details`}>
-      <header className="relative border-b border-ink pb-3 pr-10">
+    // Beside the table it is one column. Above it (768-1023 px) match history takes a second column,
+    // so the panel uses the full width without stretching its tables.
+    <aside
+      className="flex flex-col gap-6 md:max-lg:grid md:max-lg:grid-cols-2 md:max-lg:items-start md:max-lg:gap-x-10"
+      aria-label={`${name} details`}
+    >
+      <header className="relative border-b border-ink pb-3 pr-10 md:max-lg:col-span-2">
         <button
           type="button"
           onClick={onClose}
@@ -86,7 +91,7 @@ export function TeamPanel(props: Props) {
       </header>
 
       {outlook && (
-        <dl className="grid grid-cols-3 gap-2">
+        <dl className="grid grid-cols-3 gap-2 md:max-lg:col-start-1 md:max-lg:row-start-2">
           {(
             [
               ['3-0', outlook.p30],
@@ -111,7 +116,7 @@ export function TeamPanel(props: Props) {
       )}
 
       {(played.length > 0 || upcoming) && (
-        <Section title="This stage">
+        <Section title="This stage" className="md:max-lg:col-start-1 md:max-lg:row-start-3">
           {/* Fixed columns, so switching teams never moves them. */}
           <table className="w-full table-fixed text-sm">
             <thead>
@@ -190,7 +195,11 @@ export function TeamPanel(props: Props) {
       )}
 
       {form && (
-        <Section title={`Match history · 90 days to ${shortDate(form.asOf)}`}>
+        <Section
+          title={`Match history · 90 days to ${shortDate(form.asOf)}`}
+          // In the second column it starts level with the outlook, so it needs no line above it.
+          className="md:max-lg:col-start-2 md:max-lg:row-span-2 md:max-lg:row-start-2 md:max-lg:border-t-0 md:max-lg:pt-0"
+        >
           <p
             className="num text-sm"
             title="Series won and lost in the 90 days before this date, from Valve's ranking tables"
@@ -233,9 +242,10 @@ export function TeamPanel(props: Props) {
 const LABEL = 'font-display text-xs uppercase tracking-wider text-ink-3'
 
 /** A titled part of the panel, set off from the one above by a thin line. */
-function Section({ title, children }: { title: string; children: ReactNode }) {
+function Section(props: { title: string; className?: string; children: ReactNode }) {
+  const { title, className = '', children } = props
   return (
-    <section className="border-t border-rule pt-4">
+    <section className={`border-t border-rule pt-4 ${className}`}>
       <h3 className="mb-1.5 font-display text-xs font-semibold uppercase tracking-wider text-ink-3">
         {title}
       </h3>
