@@ -12,14 +12,14 @@ describe('pickFor', () => {
       verdict: 'miss',
     })
   })
-  it('judges the percent as shown: 54.6% reads 55% and counts', () => {
-    expect(chanceVerdict(0.546, true)).toBe('hit')
-    expect(chanceVerdict(0.544, true)).toBe('coin-flip')
+  it('calls close matches too: a 54% favourite still hits or misses', () => {
+    expect(chanceVerdict(0.544, true)).toBe('hit')
+    expect(chanceVerdict(0.544, false)).toBe('miss')
+    expect(pickFor('a', 'b', 0.544, 'b').verdict).toBe('miss')
   })
 
-  it('gives no verdict under 55%', () => {
-    expect(pickFor('a', 'b', 0.544, 'b').verdict).toBe('coin-flip')
-    expect(pickFor('a', 'b', 0.55, 'b').verdict).toBe('miss')
+  it('gives no verdict for the team the model did not pick', () => {
+    expect(chanceVerdict(0.46, true)).toBeUndefined()
   })
 })
 

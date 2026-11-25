@@ -17,6 +17,9 @@
   --color-accent-soft: var(--accent-soft);
   --color-win: var(--win);
   --color-loss: var(--loss);
+  /* Pick marks on finished matches: win/loss toned down towards ink-3, so a played bracket stays calm. */
+  --color-win-muted: color-mix(in srgb, var(--win) 70%, var(--ink-3));
+  --color-loss-muted: color-mix(in srgb, var(--loss) 70%, var(--ink-3));
   --color-transparent: transparent;
 
   --font-*: initial;
