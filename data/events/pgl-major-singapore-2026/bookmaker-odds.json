@@ -289,6 +289,84 @@
         "url": "https://csgoempire.com/match-betting",
         "retrievedAt": "2026-11-24"
       }
+    },
+    {
+      "stageId": "stage-1",
+      "round": 4,
+      "teamA": "m80",
+      "teamB": "eternal-fire",
+      "pA": 0.4701,
+      "source": {
+        "name": "CSGOEmpire match-winner odds, margin removed",
+        "url": "https://csgoempire.com/match-betting",
+        "retrievedAt": "2026-11-25"
+      },
+      "observedAt": "2026-11-25T14:39:39Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 4,
+      "teamA": "lynn-vision",
+      "teamB": "parivision",
+      "pA": 0.2185,
+      "source": {
+        "name": "CSGOEmpire match-winner odds, margin removed",
+        "url": "https://csgoempire.com/match-betting",
+        "retrievedAt": "2026-11-25"
+      },
+      "observedAt": "2026-11-25T14:39:39Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 4,
+      "teamA": "imperial",
+      "teamB": "liquid",
+      "pA": 0.3459,
+      "source": {
+        "name": "CSGOEmpire match-winner odds, margin removed",
+        "url": "https://csgoempire.com/match-betting",
+        "retrievedAt": "2026-11-25"
+      },
+      "observedAt": "2026-11-25T14:39:39Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 4,
+      "teamA": "heroic",
+      "teamB": "faze",
+      "pA": 0.5182,
+      "source": {
+        "name": "CSGOEmpire match-winner odds, margin removed",
+        "url": "https://csgoempire.com/match-betting",
+        "retrievedAt": "2026-11-25"
+      },
+      "observedAt": "2026-11-25T14:39:39Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 4,
+      "teamA": "100-thieves",
+      "teamB": "9z",
+      "pA": 0.5751,
+      "source": {
+        "name": "CSGOEmpire match-winner odds, margin removed",
+        "url": "https://csgoempire.com/match-betting",
+        "retrievedAt": "2026-11-25"
+      },
+      "observedAt": "2026-11-25T14:39:39Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 4,
+      "teamA": "wildcard",
+      "teamB": "chinggis-warriors",
+      "pA": 0.7218,
+      "source": {
+        "name": "CSGOEmpire match-winner odds, margin removed",
+        "url": "https://csgoempire.com/match-betting",
+        "retrievedAt": "2026-11-25"
+      },
+      "observedAt": "2026-11-25T14:39:39Z"
     }
   ]
 }
