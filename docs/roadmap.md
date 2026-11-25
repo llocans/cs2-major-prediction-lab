@@ -83,6 +83,57 @@ belong in `data/events/<id>/status.md`, not here.
     changing it would silently rewrite Stage 1's record. Before any change, store the rule per stage
     (e.g. `marketRule` in the event config, with Stage 1 frozen at today's rule) and set a new stage's
     rule before its first odds are logged.
+- **Stage 1 test-run note (when Stage 1 ends, Nov 27).** Stage 1's value picks stay exactly as the
+  rule made them (+5 pp, skip little data); no pick changes mid-stage. Once Round 5 is played, add
+  one short note at the top of Stage 1 on the Market odds page: Stage 1 was the test run of single
+  value picks; from Stage 2 the page also builds bet slips. Freeze Stage 1's rule first (see "Keep
+  old records honest" above), so later rule changes cannot rewrite its record.
+- **Bet slips from Stage 2 (user, 2026-11-25; build Nov 27, before Stage 2's first odds on Nov 28).**
+  The model combines a round's value picks into bet slips (combined bets) the way the user bets
+  them by hand: in Stage 1 R1 the user dropped the Low pick (DENDELE) and combined Liquid, Imperial
+  and Wildcard, and the slip won. Agreed with the user:
+  - **What a pick is.** A value pick: the side whose price is too generous by the model's numbers
+    (model at least `MIN_EDGE` above the market). It can be the underdog (Wildcard and Imperial in
+    R1, both upsets) or a favourite the market underrates (Liquid in R1, 68% vs 56%). The favourite
+    is not a pick when its price is too short (Wildcard 66% vs 72% in R4).
+  - **Safer and riskier slips.** Slip 1 (safer) holds the picks the model is most sure will win:
+    ranked by the model's chance to win, High and Medium confidence only. Its payout is a result,
+    never the reason: safer usually means lower odds, but odds never decide it. Slip 2 (riskier)
+    holds picks with less chance but a better price, and may include Low confidence picks when the
+    model still sees value in them.
+  - **Limits.** At most 4 matches per slip. Usually 2 slips per round; a 3rd only when its picks pass
+    the same checks on their own. A match is in at most one slip. A round with 1 or 2 picks is fine:
+    the model says whether they go together or as single bets.
+  - **No forced slips.** A slip is shown only when the model would back it: its chance that every
+    pick wins, times the real combined odds, must be above 1 (combining bets multiplies the
+    bookmaker's margin: about 5% per match, so about 15% on 3 matches, and the model's edge must
+    still beat it). For a Low confidence pick, judge with a cautious chance halfway between model
+    and market. If nothing passes, the page says "No slip this round" and why.
+  - **Odds read in parts (the user cannot always read every match before the first one starts, and
+    a team can play twice a day).** A dynamic rule: every `log-odds` run is a batch. At each batch,
+    the pool is this round's value picks whose odds were read before their match starts, whose match
+    has not started yet, and that are not already in a slip. Slips are built from that pool at that
+    moment and then frozen (never edited later, like snapshots). Picks left out stay in the pool for
+    the next batch while their match has not started. A slip never mixes rounds: the next round's
+    pairings only exist once this round is played, so a team's second match of the day is always in
+    a later batch. Needs a start time per match: `log-odds` stores the kickoff CSGOEmpire lists
+    (`startsAt`) and the time it was read (`observedAt`); a match whose odds were read after it
+    started is never used.
+  - **Real odds.** Payouts use CSGOEmpire's own decimal odds, which the user bets at. Today only the
+    margin-free chance is stored, because CSGOEmpire's [terms](https://csgoempire.com/tos) forbid
+    publishing its content and this repo is public (`docs/sources.md`). Proposal: keep the decimal
+    odds in a git-ignored local file (e.g. `data/events/<id>/local/csgoempire-odds.json`) that the
+    local site reads for real payouts; committed files and a hosted site show payouts at margin-free
+    odds. Confirm with the user before building; then update `log-odds` (skill and script), the
+    "store only margin-free" lines in the README, `docs/sources.md` and the skill.
+  - **Ranking (agreed).** "Highest confidence" means the model's chance to win; the High / Medium /
+    Low label (how much data the model has) is a filter, not the ranking.
+  - **Build.** A new pure engine module, `bet-slips.ts` (legs, slip checks, partition into slips) with tests; the
+    slip rule's numbers per stage next to the pick rule (`marketRule` in the event config); frozen
+    slips in `data/events/<id>/slips.json`; a slips block per round on the Market odds page with each
+    slip's picks, the model's chance that all win, the combined odds and its record (won, lost,
+    units, by safer and riskier). Before Stage 2, replay Stage 1's rounds through the builder at
+    margin-free odds as a check, without changing Stage 1's record.
 - **Fix the Pick'Em page (user, 2026-11-24).** It works oddly: picks don't lock, and the flow doesn't
   make sense. Go through it with the user first to list what should lock when (e.g. after a stage
   starts) and what feels wrong, then fix.
@@ -132,6 +183,9 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## Done
 
+- 2026-11-25: Market odds page: the Pick column is now "Value pick", with one plain line saying a
+  value pick can be the underdog (picked for the price, not because it is expected to win), and the
+  record adds Units: the profit from 1 unit on every pick at the margin-free odds. No pick changed.
 - 2026-11-25: Market odds page: the source note under the rounds is gone (each round still names
   its source in its heading).
 - 2026-11-25: Team panel outlook (3-0, Advance, 0-3): each label and number is centred in its
