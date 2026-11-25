@@ -85,8 +85,9 @@ the database and its history is the audit log.
 - **What-if results** set in the site (forced winners) live only in the page URL, so they
   can be shared as a link and never write to the data.
 - **Bookmaker odds** on the Market odds page are stored as margin-free percentages only, never as the
-  bookmaker's own odds. The model never reads them; its picks there follow a fixed rule (an edge of at
-  least 5 percentage points over the market).
+  bookmaker's own odds. The model never reads them; its value picks there follow a fixed rule (an edge of at
+  least 5 percentage points over the market, so a pick can be the underdog), scored in won, lost and
+  units at the margin-free odds.
 - **Pick'Em picks** made on the site's Pick'Em page stay in the viewer's browser (local storage) and
   never write to the data.
 

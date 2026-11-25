@@ -78,6 +78,9 @@ describe('stageMarketPicks', () => {
     expect(match?.pickWon).toBe(true)
     expect(match?.result).toEqual({ winner: 'b', score: '13-6' })
     expect(stage).toMatchObject({ picks: 1, won: 1, lost: 0, pending: 0 })
+    // b at a margin-free 35%: odds 1/0.35 = 2.857, so a 1-unit win pays 1.857.
+    expect(match?.units).toBeCloseTo(1 / 0.35 - 1)
+    expect(stage.units).toBeCloseTo(1 / 0.35 - 1)
   })
 
   it('reads odds logged with the teams in the other order', () => {
@@ -91,7 +94,9 @@ describe('stageMarketPicks', () => {
     expect(match?.marketA).toBeCloseTo(0.6)
     expect(match?.pick).toBe('a')
     expect(match?.pickWon).toBeUndefined()
+    expect(match?.units).toBeUndefined()
     expect(stage.pending).toBe(1)
+    expect(stage.units).toBe(0)
   })
 
   it('skips small edges, little tier-1 data and matches without odds', () => {
@@ -135,6 +140,12 @@ describe('stageMarketPicks', () => {
     expect(match?.result).toEqual({ winner: 'a', score: '2-1' })
     expect(match?.pick).toBe('b')
     expect(match?.pickWon).toBe(false)
-    expect(stage.rounds[0]).toMatchObject({ readOn: '2026-11-24', sources: ['Book'], lost: 1 })
+    expect(match?.units).toBe(-1)
+    expect(stage.rounds[0]).toMatchObject({
+      readOn: '2026-11-24',
+      sources: ['Book'],
+      lost: 1,
+      units: -1,
+    })
   })
 })

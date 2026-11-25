@@ -44,6 +44,11 @@ export interface MarketMatch {
   result?: { winner: string; score: string }
   /** Set once a picked match is played. */
   pickWon?: boolean
+  /**
+   * Profit from 1 unit on the pick at the market's margin-free odds (1 / market chance): odds − 1
+   * when it won, −1 when it lost. Set once a picked match is played. Real odds pay a little less.
+   */
+  units?: number
 }
 
 export interface Tally {
@@ -51,6 +56,8 @@ export interface Tally {
   won: number
   lost: number
   pending: number
+  /** Sum of `units` over played picks. */
+  units: number
 }
 
 export interface MarketRound extends Tally {
@@ -89,6 +96,7 @@ function tally(matches: readonly MarketMatch[]): Tally {
     won: picked.filter((m) => m.pickWon === true).length,
     lost: picked.filter((m) => m.pickWon === false).length,
     pending: picked.filter((m) => m.pickWon === undefined).length,
+    units: picked.reduce((sum, m) => sum + (m.units ?? 0), 0),
   }
 }
 
@@ -135,10 +143,14 @@ export function stageMarketPicks(
         // A small tolerance so an edge that prints as 5.0 pp counts as 5 pp.
         if (edge.value < MIN_EDGE - 1e-9) return { ...priced, skip: 'small-edge' }
         if (littleData) return { ...priced, skip: 'little-data' }
+        if (!result) return { ...priced, pick: edge.team }
+        const pickWon = result.winner === edge.team
+        const marketPick = edge.team === prediction.teamA ? marketA : 1 - marketA
         return {
           ...priced,
           pick: edge.team,
-          ...(result ? { pickWon: result.winner === edge.team } : {}),
+          pickWon,
+          units: pickWon ? 1 / marketPick - 1 : -1,
         }
       })
       const readOn = roundOdds

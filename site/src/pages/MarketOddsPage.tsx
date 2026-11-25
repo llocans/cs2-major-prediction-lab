@@ -37,6 +37,10 @@ function byConfidence(a: MarketMatch, b: MarketMatch): number {
 /** "+8 pp": a probability difference in percentage points. */
 const points = (value: number) => `+${Math.round(value * 100)} pp`
 
+/** "+6.1" or "−1.0": profit in units, always signed. */
+const unitsText = (value: number) =>
+  `${value > 0 ? '+' : value < 0 ? '−' : ''}${Math.abs(value).toFixed(1)}`
+
 /** The model's picks against one bookmaker's margin-free prices, stage by stage, round by round. */
 export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?: string }) {
   const stages = event.config.stages
@@ -75,11 +79,18 @@ export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?:
         <p className="text-sm text-ink-3">No odds logged for this stage yet.</p>
       ) : (
         <>
+          <p className="max-w-2xl text-sm text-ink-2">
+            A value pick is the team the model gives at least {Math.round(MIN_EDGE * 100)} points
+            more than the market. It can be the underdog: it is picked for the price, not because it
+            is expected to win. Units is the profit from 1 unit on every pick at the market's
+            margin-free odds.
+          </p>
           <dl className="num flex flex-wrap gap-x-6 gap-y-1 text-sm">
             <Stat label="Picks" value={record.picks} />
             <Stat label="Won" value={record.won} />
             <Stat label="Lost" value={record.lost} />
             <Stat label="To play" value={record.pending} />
+            {record.won + record.lost > 0 && <Stat label="Units" value={unitsText(record.units)} />}
           </dl>
           <div className="flex max-w-4xl flex-col gap-3">
             {[...record.rounds].reverse().map((round, i) => (
@@ -92,7 +103,7 @@ export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?:
   )
 }
 
-function Stat({ label, value }: { label: string; value: number }) {
+function Stat({ label, value }: { label: string; value: number | string }) {
   return (
     <div className="flex items-baseline gap-1.5">
       <dt className="font-display text-xs uppercase tracking-wider text-ink-3">{label}</dt>
@@ -106,6 +117,7 @@ function tallyText(t: Tally): string {
   const parts = [`${t.picks} ${t.picks === 1 ? 'pick' : 'picks'}`]
   if (t.won + t.lost > 0) parts.push(`${t.won} won`, `${t.lost} lost`)
   if (t.pending > 0 && t.won + t.lost > 0) parts.push(`${t.pending} to play`)
+  if (t.won + t.lost > 0) parts.push(`${unitsText(t.units)} units`)
   return parts.join(' · ')
 }
 
@@ -155,9 +167,10 @@ function RoundSection(props: {
               </th>
               <th
                 className="py-1 pr-1.5 font-semibold sm:pr-2"
-                title={`The model picks a team when it gives it at least ${Math.round(MIN_EDGE * 100)} points more than the market, and skips matches with little tier-1 data on a team`}
+                title={`The team the model gives at least ${Math.round(MIN_EDGE * 100)} points more than the market, picked for the price (it can be the underdog). Matches with little tier-1 data on a team are skipped.`}
               >
-                Pick
+                <span className="sm:hidden">Pick</span>
+                <span className="hidden sm:inline">Value pick</span>
               </th>
               <th className="py-1 text-right font-semibold">Result</th>
             </tr>
