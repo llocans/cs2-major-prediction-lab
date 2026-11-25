@@ -261,6 +261,58 @@
         "retrievedAt": "2026-11-25"
       },
       "observedAt": "2026-11-25T08:56:23Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 3,
+      "teamA": "9z",
+      "teamB": "dendele",
+      "pA": 0.515,
+      "source": {
+        "name": "OddsPortal match-winner final listed odds (read after the match), mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/9z-team-counter-strike-zPuZ5pzS/dendele-counter-strike-f3plkYiO/#jHrDLH3U",
+        "retrievedAt": "2026-11-25"
+      },
+      "observedAt": "2026-11-25T15:32:08Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 3,
+      "teamA": "imperial",
+      "teamB": "flyquest",
+      "pA": 0.519,
+      "source": {
+        "name": "OddsPortal match-winner final listed odds (read after the match), mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/flyquest-counter-strike-nPdOb0vc/imperial-counter-strike-0EY6cK96/#I3p5NwZH",
+        "retrievedAt": "2026-11-25"
+      },
+      "observedAt": "2026-11-25T15:32:08Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 3,
+      "teamA": "nip",
+      "teamB": "liquid",
+      "pA": 0.469,
+      "source": {
+        "name": "OddsPortal match-winner final listed odds (read after the match), mean of 9 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/ninjas-in-pyjamas-counter-strike-2PeaAhoj/team-liquid-counter-strike-Y3rGBulc/#ttOMuLln",
+        "retrievedAt": "2026-11-25"
+      },
+      "observedAt": "2026-11-25T15:32:08Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 3,
+      "teamA": "bc-game",
+      "teamB": "chinggis-warriors",
+      "pA": 0.821,
+      "source": {
+        "name": "OddsPortal match-winner final listed odds (read after the match), mean of 10 bookmakers' margin-free probabilities",
+        "url": "https://www.oddsportal.com/esports/h2h/bc-game-counter-strike-8YminnHF/chinggis-warriors-counter-strike-KApr18YQ/#nwRUwaJb",
+        "retrievedAt": "2026-11-25"
+      },
+      "observedAt": "2026-11-25T15:32:08Z"
     }
   ]
 }
