@@ -242,6 +242,8 @@ function MatchRow(props: {
               <button
                 type="button"
                 onClick={() => onPick(match, team)}
+                // A what-if win is the viewer's own pick, not a prediction: it never pulses.
+                data-keep-accent={match.kind === 'override' || undefined}
                 className={[
                   'num -mr-1 self-stretch rounded-sm px-1 text-xs',
                   match.kind === 'override'

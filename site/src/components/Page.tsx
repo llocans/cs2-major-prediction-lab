@@ -10,7 +10,7 @@ export function Page(props: {
   as?: 'div' | 'article'
   /** Extra classes, e.g. a reading width. Never a different gap. */
   className?: string
-  /** True while a simulation runs: predicted numbers turn grey (theme.css). */
+  /** True while a simulation runs: predicted numbers pulse (theme.css). */
   rough?: boolean
 }) {
   const { children, as: Tag = 'div', className = '', rough } = props
