@@ -99,7 +99,9 @@ belong in `data/events/<id>/status.md`, not here.
   First and second passes done 2026-11-24 (see Done); the `ui-review` skill checks the rest.
 - **Playoff bracket in the new bracket style.** The Swiss bracket now uses group panels, short names
   with 20 px logos and fixed arrows; the playoff bracket's match boxes still use the older look.
-  Bring them in line when the playoffs page is next touched.
+  Bring them in line when the playoffs page is next touched. Its "Simulating changes…" text still
+  sits in the header subtitle and pushes the page down while it shows; give it a reserved spot
+  above the bracket like the stage page (`SimStatus` `reserve`).
 - **Visual regression screenshots.** CI could compare each page's screenshots with the last approved
   set and flag any change for a look. Needs fixed test data first (live data changes every round),
   e.g. a frozen copy of one finished event.
@@ -130,6 +132,8 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## Done
 
+- 2026-11-25: Stage page: "Simulating changes…" moved from under the dates to the right end of the
+  bracket legend, with its space kept while idle, so the page no longer jumps on a what-if click.
 - 2026-11-25: Playoffs header shows only the dates (and the played count once seeded), not the
   match formats.
 - 2026-11-25: One page frame for every page (`components/Page.tsx`): the same title block, gaps
