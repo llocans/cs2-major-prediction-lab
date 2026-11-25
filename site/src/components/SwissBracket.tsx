@@ -200,7 +200,9 @@ function MatchRow(props: {
               className={[
                 'min-w-0 flex-1 self-stretch truncate text-left',
                 won ? 'font-semibold text-ink' : lost ? 'text-ink-3' : 'text-ink',
-                isSelected ? 'underline decoration-accent decoration-2 underline-offset-[5px] [text-decoration-skip-ink:none]' : '',
+                isSelected
+                  ? 'underline decoration-accent decoration-2 underline-offset-[5px] [text-decoration-skip-ink:none]'
+                  : '',
               ].join(' ')}
               onClick={() => onSelect(team)}
               title={`Show ${name(team)}`}
