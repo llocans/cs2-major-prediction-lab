@@ -397,6 +397,28 @@
         "retrievedAt": "2026-11-25",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r3-lynn-vision-wildcard",
+      "stageId": "stage-1",
+      "round": 3,
+      "teamA": "wildcard",
+      "teamB": "lynn-vision",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "dust2",
+          "scoreA": 8,
+          "scoreB": 13
+        }
+      ],
+      "winner": "lynn-vision",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3474745)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-25",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }

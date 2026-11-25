@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-25T07:02:04.124Z",
-  "reason": "log-result stage-1-r3-heroic-m80",
+  "asOf": "2026-11-25T08:02:04.039Z",
+  "reason": "log-result stage-1-r3-lynn-vision-wildcard",
   "teams": {
     "nip": {
       "rating": 1549.3,
@@ -587,8 +587,8 @@
       ]
     },
     "wildcard": {
-      "rating": 1439.5,
-      "rd": 58.5,
+      "rating": 1430.9,
+      "rd": 57.7,
       "maps": {
         "cache": {
           "offset": 9.2,
@@ -611,9 +611,9 @@
           "n": 5
         },
         "dust2": {
-          "offset": -28.2,
-          "rd": 71.55417527999327,
-          "n": 3
+          "offset": -31.7,
+          "rd": 69.3,
+          "n": 4
         },
         "anubis": {
           "offset": -3.6,
@@ -764,13 +764,13 @@
       ]
     },
     "lynn-vision": {
-      "rating": 1366.2,
-      "rd": 58.6,
+      "rating": 1374.9,
+      "rd": 57.8,
       "maps": {
         "dust2": {
-          "offset": 18.3,
-          "rd": 74.0656079818041,
-          "n": 2
+          "offset": 22,
+          "rd": 71.6,
+          "n": 3
         },
         "ancient": {
           "offset": 16.4,
