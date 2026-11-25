@@ -97,6 +97,9 @@ belong in `data/events/<id>/status.md`, not here.
   read at a glance. Simplify after core features are settled (user, 2026-11-23). Ideas parked until
   then: per-match market % on the Track record rows (the data is already in `benchmarks.json`).
   First and second passes done 2026-11-24 (see Done); the `ui-review` skill checks the rest.
+- **Playoff bracket in the new bracket style.** The Swiss bracket now uses group panels, short names
+  with 20 px logos and fixed arrows; the playoff bracket's match boxes still use the older look.
+  Bring them in line when the playoffs page is next touched.
 - **Visual regression screenshots.** CI could compare each page's screenshots with the last approved
   set and flag any change for a look. Needs fixed test data first (live data changes every round),
   e.g. a frozen copy of one finished event.
@@ -127,6 +130,12 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## Done
 
+- 2026-11-25: Swiss bracket restyle (user's reference brackets): each record group is one panel
+  with a header strip (record, BO1/BO3, tag) and match cards; empty groups show faint slots instead
+  of dashed outlines. Every group gets the same short arrow pair (winners up-right, losers down-right)
+  instead of bent lines of different lengths. Advanced/Eliminated boxes get a soft green/red fill
+  (`win-soft` / `loss-soft`). Short names with 20 px logos make the bracket 1220 px wide (was 1332).
+  No new dependencies.
 - 2026-11-25: Probabilities table fits its column at every width: it switches to short names (NIP)
   by its own width (a container query) instead of the window's, which fixes it running under the
   team panel at 1024-1070 px and a sideways page scroll at 640-680 px. The UI audit now also

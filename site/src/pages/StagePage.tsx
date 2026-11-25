@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import type { SwissStage } from '../../../data/schemas/event-config.ts'
 import { buildEventChain } from '../../../engine/event-chain.ts'
 import { type KnownMatch, swissBracket } from '../../../engine/swiss/bracket.ts'
+import { swissMatchFormat } from '../../../engine/swiss/format.ts'
 import { stageSeeds } from '../../../engine/swiss/stage-seeds.ts'
 import { FreshnessBar } from '../components/FreshnessBar.tsx'
 import { OddsTable } from '../components/OddsTable.tsx'
@@ -181,6 +182,9 @@ export function StagePage({ event, stage, query }: Props) {
         selected={selected}
         name={name}
         short={short}
+        formatFor={(wins, losses) =>
+          swissMatchFormat({ wins, losses }, { wins, losses }, rules, stage.format)
+        }
         winsToAdvance={stage.winsToAdvance}
         lossesToEliminate={stage.lossesToEliminate}
         market={(round, team, opponent) => marketQuote(event, stage.id, round, team, opponent)}

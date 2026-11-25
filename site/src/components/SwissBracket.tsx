@@ -1,4 +1,5 @@
 import { type ReactNode, useId } from 'react'
+import type { MatchFormat } from '../../../data/schemas/common.ts'
 import type { BracketMatch, BracketRound } from '../../../engine/swiss/bracket.ts'
 import { pct } from '../lib/format.ts'
 import type { Pick } from '../lib/verdict.ts'
@@ -22,8 +23,10 @@ interface Props {
   picks: Map<string, Pick>
   selected?: string
   name: (teamId: string) => string
-  /** Short name (e.g. "NIP") for the result boxes. */
+  /** Short name (e.g. "NIP"): the bracket's label for a team; the full name shows on hover. */
   short: (teamId: string) => string
+  /** Match format of a record group (e.g. bo3 for 2-0), also before its pairings are known. */
+  formatFor: (wins: number, losses: number) => MatchFormat
   winsToAdvance: number
   lossesToEliminate: number
   /** The market's chance that `team` beats `opponent` in a round and its source, if logged (hover). */
@@ -73,6 +76,7 @@ export function SwissBracket(props: Props) {
               key={`${slot.round}-${slot.wins}-${slot.losses}`}
               slot={slot}
               rounds={rounds}
+              format={props.formatFor(slot.wins, slot.losses)}
               lossesToEliminate={props.lossesToEliminate}
               winsToAdvance={props.winsToAdvance}
               render={(match) => (
@@ -84,6 +88,7 @@ export function SwissBracket(props: Props) {
                   pick={picks.get(`${match.round}|${pairKey(match.teamA, match.teamB)}`)}
                   selected={selected}
                   name={name}
+                  short={short}
                   market={market}
                   onPick={onPick}
                   onSelect={onSelect}
@@ -100,11 +105,12 @@ export function SwissBracket(props: Props) {
 function Group(props: {
   slot: GroupSlot
   rounds: BracketRound[]
+  format: MatchFormat
   winsToAdvance: number
   lossesToEliminate: number
   render: (match: BracketMatch) => ReactNode
 }) {
-  const { slot, rounds, winsToAdvance, lossesToEliminate, render } = props
+  const { slot, rounds, format, winsToAdvance, lossesToEliminate, render } = props
   const record = `${slot.wins}-${slot.losses}`
   const group = rounds.find((r) => r.round === slot.round)?.groups.find((g) => g.record === record)
   const forPlayoffs = slot.wins === winsToAdvance - 1
@@ -119,26 +125,40 @@ function Group(props: {
           : ''
   return (
     <section
-      className="absolute"
+      className="absolute flex flex-col rounded-md border border-rule bg-paper-2"
       style={{ left: slot.x, top: slot.y, width: LAYOUT.columnWidth, height: slot.height }}
+      aria-label={`${record} group`}
     >
       <header
-        className="flex items-baseline justify-between font-display text-base font-semibold text-ink-2"
+        className="flex shrink-0 items-center gap-2 border-b border-rule px-2 font-display"
         style={{ height: LAYOUT.headerHeight }}
       >
-        <span className="num">{record}</span>
-        <span className="text-xs uppercase tracking-wider text-ink-3">{tag}</span>
+        <span className="num text-base font-bold text-ink">{record}</span>
+        <span className="text-xs font-semibold uppercase tracking-wider text-ink-3">{format}</span>
+        <span className="ml-auto text-xs font-semibold uppercase tracking-wider text-ink-3">
+          {tag}
+        </span>
       </header>
-      <div className="flex flex-col" style={{ gap: LAYOUT.matchGap }}>
+      <div className="flex flex-col" style={{ gap: LAYOUT.matchGap, padding: LAYOUT.panelPadding }}>
         {group
           ? group.matches.map(render)
           : Array.from({ length: slot.size / 2 }, (_, i) => (
               <div
                 // biome-ignore lint/suspicious/noArrayIndexKey: placeholders have no identity.
                 key={i}
-                className="rounded-md border border-dashed border-rule"
-                style={{ height: LAYOUT.matchHeight }}
-              />
+                className="grid rounded-sm border border-rule bg-paper"
+                style={{ height: LAYOUT.matchHeight, gridTemplateRows: '1fr 1fr' }}
+                aria-hidden="true"
+              >
+                {[0, 1].map((row) => (
+                  <div
+                    key={row}
+                    className={`flex items-center px-2 ${row === 0 ? 'border-b border-rule' : ''}`}
+                  >
+                    <span className="h-5 w-5 rounded-full border border-rule" />
+                  </div>
+                ))}
+              </div>
             ))}
       </div>
     </section>
@@ -152,6 +172,7 @@ function MatchRow(props: {
   pick: Pick | undefined
   selected: string | undefined
   name: (teamId: string) => string
+  short: (teamId: string) => string
   market?: (
     round: number,
     team: string,
@@ -160,7 +181,7 @@ function MatchRow(props: {
   onPick: (match: BracketMatch, winner: string) => void
   onSelect: (teamId: string) => void
 }) {
-  const { match, pA, score, pick, selected, name, market, onPick, onSelect } = props
+  const { match, pA, score, pick, selected, name, short, market, onPick, onSelect } = props
   const sides = [
     { team: match.teamA, p: pA },
     { team: match.teamB, p: pA === undefined ? undefined : 1 - pA },
@@ -170,7 +191,7 @@ function MatchRow(props: {
 
   return (
     <div
-      className="grid overflow-hidden rounded-md border border-rule bg-paper-2"
+      className="grid overflow-hidden rounded-sm border border-rule bg-paper"
       style={{ height: LAYOUT.matchHeight, gridTemplateRows: '1fr 1fr' }}
     >
       {sides.map(({ team, p }, index) => {
@@ -194,7 +215,7 @@ function MatchRow(props: {
               won && match.kind === 'override' ? 'bg-accent-soft' : '',
             ].join(' ')}
           >
-            <TeamLogo teamId={team} />
+            <TeamLogo teamId={team} size="md" />
             <button
               type="button"
               className={[
@@ -207,7 +228,7 @@ function MatchRow(props: {
               onClick={() => onSelect(team)}
               title={`Show ${name(team)}`}
             >
-              {name(team)}
+              {short(team)}
             </button>
             {match.kind === 'real' && pick?.team === team && <PickMark pick={pick} />}
             {match.kind === 'real' ? (
@@ -335,23 +356,25 @@ function ResultBox(props: {
 
   return (
     <section
-      className={`absolute rounded-md border border-rule border-t-2 bg-paper-2 px-2 ${advanced ? 'border-t-win' : 'border-t-loss'}`}
+      className={`absolute rounded-md border px-2 ${advanced ? 'border-win/40 bg-win-soft' : 'border-loss/40 bg-loss-soft'}`}
       style={{ left: slot.x, top: slot.y, width: LAYOUT.columnWidth, height: slot.height }}
       aria-label={advanced ? 'Advanced' : 'Eliminated'}
     >
       <div
-        className={`pt-1.5 font-display text-xs font-semibold uppercase tracking-wider ${advanced ? 'text-win' : 'text-loss'}`}
+        className={`pt-2 font-display text-xs font-bold uppercase tracking-wider ${advanced ? 'text-win' : 'text-loss'}`}
       >
         {advanced ? 'Advanced' : 'Eliminated'}
       </div>
       <div
-        className="grid gap-x-2"
+        className="grid gap-x-1"
         style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
       >
         {cells.map((cell, i) => (
           // biome-ignore lint/suspicious/noArrayIndexKey: columns are fixed by the format.
           <div key={i} className="flex min-w-0 flex-col">
-            <div className="num h-[18px] font-display text-sm font-semibold text-ink-2">
+            <div
+              className={`num h-[18px] font-display text-base font-bold ${advanced ? 'text-win' : 'text-loss'}`}
+            >
               {cell.label}
             </div>
             {cell.teams.map((f, j) =>
@@ -370,7 +393,7 @@ function ResultBox(props: {
                   ].join(' ')}
                   style={{ height: LAYOUT.resultRow }}
                 >
-                  <TeamLogo teamId={f.team} />
+                  <TeamLogo teamId={f.team} size="md" />
                   <span className="truncate">{short(f.team)}</span>
                 </button>
               ) : (
@@ -380,7 +403,9 @@ function ResultBox(props: {
                   className="flex items-center"
                   style={{ height: LAYOUT.resultRow }}
                 >
-                  <div className="h-4 w-full rounded-sm border border-dashed border-rule" />
+                  <span
+                    className={`h-5 w-5 rounded-full border ${advanced ? 'border-win/30' : 'border-loss/30'}`}
+                  />
                 </div>
               ),
             )}
@@ -404,50 +429,60 @@ function target(slots: readonly Slot[], from: GroupSlot, wins: number, losses: n
   )
 }
 
-/** A horizontal-vertical-horizontal path with rounded corners. */
-function elbow(x1: number, y1: number, x2: number, y2: number): string {
-  const dy = y2 - y1
-  if (Math.abs(dy) < 1) return `M${x1},${y1} H${x2}`
-  const mid = x1 + (x2 - x1) / 2
-  const r = Math.min(8, Math.abs(dy) / 2, (x2 - x1) / 4)
-  const s = Math.sign(dy)
-  return `M${x1},${y1} H${mid - r} Q${mid},${y1} ${mid},${y1 + s * r} V${y2 - s * r} Q${mid},${y2} ${mid + r},${y2} H${x2}`
+/** The short arrows after each group: how far they reach and how steeply they climb or drop. */
+const ARROW = { inset: 7, rise: 14, spread: 5, vertical: 18, edge: 4, margin: 12 }
+
+/**
+ * Where an arrow starts: as close to `wanted` as possible while inside its own group's range and the
+ * range that puts its tip beside the target. If the two don't overlap, the end of the group's
+ * range nearest the target.
+ */
+function slide(wanted: number, own: [number, number], aim: [number, number]): number {
+  const lo = Math.max(own[0], aim[0])
+  const hi = Math.min(own[1], aim[1])
+  if (lo <= hi) return Math.min(Math.max(wanted, lo), hi)
+  return aim[1] < own[0] ? own[0] : own[1]
 }
 
 /**
- * Lines from each group to where its winners (green, up) and losers (red, down) go. Solid once the
- * group's matches are all played, dashed while they are still predictions.
+ * The same pair of short arrows after every group: winners up-right (green), losers down-right
+ * (red). They point the way instead of reaching the target, so every pair looks the same. The 2-2
+ * group, whose 3-2 and 2-3 boxes sit above and below it in the same column, gets short vertical
+ * arrows instead. Solid once the group's matches are all played, dashed while they are predictions.
  */
 function Connectors({ slots, rounds }: { slots: Slot[]; rounds: BracketRound[] }) {
   const id = useId().replace(/[^a-zA-Z0-9_-]/g, '')
   const lines: Array<{ d: string; win: boolean; done: boolean }> = []
-  const center = (s: Slot) => s.y + s.height / 2
   for (const from of slots) {
     if (from.kind !== 'group') continue
     const group = rounds
       .find((r) => r.round === from.round)
       ?.groups.find((g) => g.record === `${from.wins}-${from.losses}`)
-    const done = group?.matches.every((m) => m.kind !== 'pending') ?? false
+    // What-if overrides are still predictions: only real results make the arrows solid.
+    const done = group?.matches.every((m) => m.kind === 'real') ?? false
+    const body = from.y + LAYOUT.headerHeight + (from.height - LAYOUT.headerHeight) / 2
     for (const win of [true, false]) {
       const to = target(slots, from, from.wins + (win ? 1 : 0), from.losses + (win ? 0 : 1))
       if (!to) continue
-      const mid = from.x + LAYOUT.columnWidth / 2
       if (to.round === from.round) {
-        // Same column (2-2 to 3-2 / 2-3): a short vertical arrow.
-        lines.push({
-          d: win
-            ? `M${mid},${from.y - 2} V${to.y + to.height + 2}`
-            : `M${mid},${from.y + from.height + 2} V${to.y - 2}`,
-          win,
-          done,
-        })
+        const mid = from.x + LAYOUT.columnWidth / 2
+        const y = win ? from.y - ARROW.edge : from.y + from.height + ARROW.edge
+        const end = win ? y - ARROW.vertical : y + ARROW.vertical
+        lines.push({ d: `M${mid},${y} V${end}`, win, done })
         continue
       }
-      const body = from.height - LAYOUT.headerHeight
-      const y1 = from.y + LAYOUT.headerHeight + body * (win ? 0.3 : 0.7)
-      const fromAbove = center(from) < center(to)
-      const y2 = to.kind === 'result' ? center(to) : to.y + to.height * (fromAbove ? 0.35 : 0.65)
-      lines.push({ d: elbow(from.x + LAYOUT.columnWidth + 2, y1, to.x - 3, y2), win, done })
+      const x1 = from.x + LAYOUT.columnWidth + ARROW.inset
+      const x2 = from.x + LAYOUT.columnWidth + LAYOUT.columnGap - ARROW.inset
+      const s = win ? -1 : 1
+      // Same length and angle everywhere; only the start slides along the group's edge, so the tip
+      // lands beside its target and never next to another box.
+      const own: [number, number] = [from.y + ARROW.margin, from.y + from.height - ARROW.margin]
+      const aim: [number, number] = [
+        to.y + ARROW.margin - s * ARROW.rise,
+        to.y + to.height - ARROW.margin - s * ARROW.rise,
+      ]
+      const y1 = slide(body + s * ARROW.spread, own, aim)
+      lines.push({ d: `M${x1},${y1} L${x2},${y1 + s * ARROW.rise}`, win, done })
     }
   }
   return (

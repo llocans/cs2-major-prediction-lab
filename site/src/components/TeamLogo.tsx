@@ -3,6 +3,8 @@ import { teamLogo } from '../lib/data.ts'
 const BOX = {
   /** Table rows, bracket slots and lists: next to 13-14 px text. */
   sm: 'h-4 w-5',
+  /** The Swiss bracket, where the logo sits next to a short name. */
+  md: 'h-5 w-6',
   /** The team panel heading. */
   lg: 'h-8 w-10',
 }

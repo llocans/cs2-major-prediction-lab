@@ -12,8 +12,8 @@ export interface SwissFormat {
  * eliminate either team. Those use `decider`; all others `default` (Valve: Bo3 and Bo1).
  */
 export function swissMatchFormat(
-  a: TeamRecord,
-  b: TeamRecord,
+  a: Pick<TeamRecord, 'wins' | 'losses'>,
+  b: Pick<TeamRecord, 'wins' | 'losses'>,
   rules: SwissRules,
   format: SwissFormat,
 ): MatchFormat {
