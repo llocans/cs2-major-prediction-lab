@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-25T10:47:04.001Z",
-  "reason": "log-result stage-1-r3-flyquest-imperial",
+  "asOf": "2026-11-25T13:32:04.650Z",
+  "reason": "log-result stage-1-r3-bc-game-chinggis-warriors",
   "teams": {
     "nip": {
-      "rating": 1549.3,
-      "rd": 58.5,
+      "rating": 1571.9,
+      "rd": 57,
       "maps": {
         "cache": {
           "offset": -13.9,
@@ -18,9 +18,9 @@
           "n": 13
         },
         "ancient": {
-          "offset": 16.2,
-          "rd": 56.6,
-          "n": 12
+          "offset": 18.2,
+          "rd": 55.4,
+          "n": 13
         },
         "dust2": {
           "offset": -70.4,
@@ -28,9 +28,9 @@
           "n": 8
         },
         "inferno": {
-          "offset": -18.3,
-          "rd": 63.5775531391221,
-          "n": 7
+          "offset": -13.7,
+          "rd": 62,
+          "n": 8
         },
         "nuke": {
           "offset": 93.6,
@@ -216,8 +216,8 @@
       ]
     },
     "liquid": {
-      "rating": 1531.7,
-      "rd": 58.5,
+      "rating": 1509.1,
+      "rd": 57,
       "maps": {
         "mirage": {
           "offset": 48.4,
@@ -225,9 +225,9 @@
           "n": 10
         },
         "inferno": {
-          "offset": 46.8,
-          "rd": 60.474315681476355,
-          "n": 9
+          "offset": 42.6,
+          "rd": 59.1,
+          "n": 10
         },
         "cache": {
           "offset": -37.9,
@@ -250,9 +250,9 @@
           "n": 4
         },
         "ancient": {
-          "offset": -24.7,
-          "rd": 71.55417527999327,
-          "n": 3
+          "offset": -27.9,
+          "rd": 69.3,
+          "n": 4
         }
       },
       "sources": [
@@ -640,18 +640,18 @@
       ]
     },
     "bc-game": {
-      "rating": 1387,
-      "rd": 58.5,
+      "rating": 1376.4,
+      "rd": 56.4,
       "maps": {
         "nuke": {
-          "offset": 30.7,
-          "rd": 65.3,
-          "n": 6
+          "offset": 27.4,
+          "rd": 63.6,
+          "n": 7
         },
         "ancient": {
-          "offset": -50.1,
-          "rd": 67.21344403334447,
-          "n": 5
+          "offset": -53.2,
+          "rd": 65.3,
+          "n": 6
         },
         "cache": {
           "offset": 11.5,
@@ -664,9 +664,9 @@
           "n": 5
         },
         "dust2": {
-          "offset": 32.5,
-          "rd": 71.55417527999327,
-          "n": 3
+          "offset": 35.7,
+          "rd": 69.3,
+          "n": 4
         },
         "inferno": {
           "offset": -44.9,
@@ -716,18 +716,18 @@
       ]
     },
     "chinggis-warriors": {
-      "rating": 1330.3,
-      "rd": 103,
+      "rating": 1361.7,
+      "rd": 92.2,
       "maps": {
         "nuke": {
-          "offset": 66.1,
-          "rd": 62,
-          "n": 8
+          "offset": 74.4,
+          "rd": 60.5,
+          "n": 9
         },
         "ancient": {
-          "offset": 35.4,
-          "rd": 67.21344403334447,
-          "n": 5
+          "offset": 45,
+          "rd": 65.3,
+          "n": 6
         },
         "inferno": {
           "offset": -79.8,
@@ -735,9 +735,9 @@
           "n": 4
         },
         "dust2": {
-          "offset": -66.9,
-          "rd": 69.3,
-          "n": 4
+          "offset": -75.6,
+          "rd": 67.2,
+          "n": 5
         },
         "cache": {
           "offset": 7.2,

@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "eventId": "pgl-major-singapore-2026",
+  "stageId": "stage-1",
+  "beforeRound": 4,
+  "createdAt": "2026-11-25T13:32:18.560Z",
+  "modelVersion": "0.1.0",
+  "seed": 20261124,
+  "runs": 12000,
+  "maxStandardError": 0.004564334106234264,
+  "unverifiedVeto": [
+    "bo5"
+  ],
+  "resultsCount": 24,
+  "ratingsAsOf": "2026-11-25T13:32:04.650Z",
+  "matches": [
+    {
+      "teamA": "m80",
+      "teamB": "eternal-fire",
+      "format": "bo3",
+      "pA": 0.4985,
+      "confidence": "low",
+      "reason": "Eternal Fire +4 rating on average; likely maps: Anubis 53%, Dust II 49%, Nuke 49% for M80"
+    },
+    {
+      "teamA": "lynn-vision",
+      "teamB": "parivision",
+      "format": "bo3",
+      "pA": 0.20566666666666666,
+      "confidence": "high",
+      "reason": "PVISION +154 rating on average; likely maps: Inferno 25%, Nuke 34%, Anubis 31% for Lynn Vision"
+    },
+    {
+      "teamA": "imperial",
+      "teamB": "liquid",
+      "format": "bo3",
+      "pA": 0.369,
+      "confidence": "medium",
+      "reason": "Liquid +67 rating on average; likely maps: Nuke 47%, Mirage 37%, Anubis 42% for Imperial"
+    },
+    {
+      "teamA": "heroic",
+      "teamB": "faze",
+      "format": "bo3",
+      "pA": 0.51025,
+      "confidence": "low",
+      "reason": "HEROIC +6 rating on average; likely maps: Inferno 61%, Anubis 44%, Dust II 46% for HEROIC"
+    },
+    {
+      "teamA": "100-thieves",
+      "teamB": "9z",
+      "format": "bo3",
+      "pA": 0.5375,
+      "confidence": "low",
+      "reason": "100 Thieves +12 rating on average; likely maps: Dust II 61%, Inferno 44%, Nuke 54% for 100 Thieves; 9z -20: Stand-in history replaces benched meyern for the Major; the 3-month map stats were played with meyern"
+    },
+    {
+      "teamA": "wildcard",
+      "teamB": "chinggis-warriors",
+      "format": "bo3",
+      "pA": 0.6644166666666667,
+      "confidence": "high",
+      "reason": "Wildcard +78 rating on average; likely maps: Mirage 65%, Nuke 55%, Anubis 63% for Wildcard"
+    }
+  ],
+  "teams": [
+    {
+      "teamId": "nip",
+      "record": "3-0",
+      "p30": 1,
+      "pAdvance": 1,
+      "p03": 0,
+      "pEliminated": 0,
+      "pPlayoffs": 0.15758333333333333,
+      "pTitle": 0.00175,
+      "confidence": "high",
+      "reason": "strength rank 1 of 16"
+    },
+    {
+      "teamId": "parivision",
+      "record": "2-1",
+      "p30": 0,
+      "pAdvance": 0.9210833333333334,
+      "p03": 0,
+      "pEliminated": 0.07891666666666666,
+      "pPlayoffs": 0.08325,
+      "pTitle": 0.0004166666666666667,
+      "confidence": "high",
+      "reason": "strength rank 2 of 16; 79% vs Lynn Vision next (BO3)"
+    },
+    {
+      "teamId": "heroic",
+      "record": "1-2",
+      "p30": 0,
+      "pAdvance": 0.3225,
+      "p03": 0,
+      "pEliminated": 0.6775,
+      "pPlayoffs": 0.019166666666666665,
+      "pTitle": 0,
+      "confidence": "medium",
+      "reason": "strength rank 4 of 16; 51% vs FaZe next (BO3)"
+    },
+    {
+      "teamId": "faze",
+      "record": "1-2",
+      "p30": 0,
+      "pAdvance": 0.31925,
+      "p03": 0,
+      "pEliminated": 0.68075,
+      "pPlayoffs": 0.015083333333333334,
+      "pTitle": 0,
+      "confidence": "medium",
+      "reason": "strength rank 6 of 16; 49% vs HEROIC next (BO3)"
+    },
+    {
+      "teamId": "liquid",
+      "record": "2-1",
+      "p30": 0,
+      "pAdvance": 0.8440833333333333,
+      "p03": 0,
+      "pEliminated": 0.15591666666666668,
+      "pPlayoffs": 0.04441666666666667,
+      "pTitle": 0.00008333333333333333,
+      "confidence": "high",
+      "reason": "strength rank 5 of 16; 63% vs Imperial next (BO3)"
+    },
+    {
+      "teamId": "eternal-fire",
+      "record": "2-1",
+      "p30": 0,
+      "pAdvance": 0.8095,
+      "p03": 0,
+      "pEliminated": 0.1905,
+      "pPlayoffs": 0.04041666666666666,
+      "pTitle": 0,
+      "confidence": "high",
+      "reason": "strength rank 7 of 16; 50% vs M80 next (BO3)"
+    },
+    {
+      "teamId": "100-thieves",
+      "record": "1-2",
+      "p30": 0,
+      "pAdvance": 0.28708333333333336,
+      "p03": 0,
+      "pEliminated": 0.7129166666666666,
+      "pPlayoffs": 0.006416666666666667,
+      "pTitle": 0,
+      "confidence": "medium",
+      "reason": "strength rank 9 of 16; 54% vs 9z next (BO3)"
+    },
+    {
+      "teamId": "9z",
+      "record": "1-2",
+      "p30": 0,
+      "pAdvance": 0.22166666666666668,
+      "p03": 0,
+      "pEliminated": 0.7783333333333333,
+      "pPlayoffs": 0.004666666666666667,
+      "pTitle": 0,
+      "confidence": "high",
+      "reason": "strength rank 10 of 16; 46% vs 100 Thieves next (BO3)"
+    },
+    {
+      "teamId": "m80",
+      "record": "2-1",
+      "p30": 0,
+      "pAdvance": 0.824,
+      "p03": 0,
+      "pEliminated": 0.176,
+      "pPlayoffs": 0.03741666666666667,
+      "pTitle": 0.00016666666666666666,
+      "confidence": "high",
+      "reason": "strength rank 8 of 16; 50% vs Eternal Fire next (BO3)"
+    },
+    {
+      "teamId": "dendele",
+      "record": "0-3",
+      "p30": 0,
+      "pAdvance": 0,
+      "p03": 1,
+      "pEliminated": 1,
+      "pPlayoffs": 0,
+      "pTitle": 0,
+      "confidence": "high",
+      "reason": "strength rank 12 of 16"
+    },
+    {
+      "teamId": "imperial",
+      "record": "2-1",
+      "p30": 0,
+      "pAdvance": 0.67975,
+      "p03": 0,
+      "pEliminated": 0.32025,
+      "pPlayoffs": 0.007333333333333333,
+      "pTitle": 0,
+      "confidence": "medium",
+      "reason": "strength rank 11 of 16; 37% vs Liquid next (BO3)"
+    },
+    {
+      "teamId": "wildcard",
+      "record": "1-2",
+      "p30": 0,
+      "pAdvance": 0.24316666666666667,
+      "p03": 0,
+      "pEliminated": 0.7568333333333334,
+      "pPlayoffs": 0.0010833333333333333,
+      "pTitle": 0,
+      "confidence": "high",
+      "reason": "strength rank 13 of 16; 66% vs Chinggis Warriors next (BO3)"
+    },
+    {
+      "teamId": "bc-game",
+      "record": "0-3",
+      "p30": 0,
+      "pAdvance": 0,
+      "p03": 1,
+      "pEliminated": 1,
+      "pPlayoffs": 0,
+      "pTitle": 0,
+      "confidence": "high",
+      "reason": "strength rank 15 of 16"
+    },
+    {
+      "teamId": "flyquest",
+      "record": "3-0",
+      "p30": 1,
+      "pAdvance": 1,
+      "p03": 0,
+      "pEliminated": 0,
+      "pPlayoffs": 0.071,
+      "pTitle": 0.00008333333333333333,
+      "confidence": "medium",
+      "reason": "strength rank 3 of 16"
+    },
+    {
+      "teamId": "chinggis-warriors",
+      "record": "1-2",
+      "p30": 0,
+      "pAdvance": 0.094,
+      "p03": 0,
+      "pEliminated": 0.906,
+      "pPlayoffs": 0,
+      "pTitle": 0,
+      "confidence": "medium",
+      "reason": "strength rank 16 of 16; 34% vs Wildcard next (BO3)"
+    },
+    {
+      "teamId": "lynn-vision",
+      "record": "2-1",
+      "p30": 0,
+      "pAdvance": 0.4339166666666667,
+      "p03": 0,
+      "pEliminated": 0.5660833333333334,
+      "pPlayoffs": 0.0003333333333333333,
+      "pTitle": 0,
+      "confidence": "medium",
+      "reason": "strength rank 14 of 16; 21% vs PVISION next (BO3)"
+    }
+  ]
+}

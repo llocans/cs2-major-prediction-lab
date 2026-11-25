@@ -495,6 +495,65 @@
         "retrievedAt": "2026-11-25",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r3-liquid-nip",
+      "stageId": "stage-1",
+      "round": 3,
+      "teamA": "nip",
+      "teamB": "liquid",
+      "format": "bo3",
+      "maps": [
+        {
+          "map": "inferno",
+          "scoreA": 13,
+          "scoreB": 3
+        },
+        {
+          "map": "ancient",
+          "scoreA": 13,
+          "scoreB": 8
+        }
+      ],
+      "winner": "nip",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3474905)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-25",
+        "license": "CC-BY-SA 3.0"
+      }
+    },
+    {
+      "id": "stage-1-r3-bc-game-chinggis-warriors",
+      "stageId": "stage-1",
+      "round": 3,
+      "teamA": "bc-game",
+      "teamB": "chinggis-warriors",
+      "format": "bo3",
+      "maps": [
+        {
+          "map": "ancient",
+          "scoreA": 11,
+          "scoreB": 13
+        },
+        {
+          "map": "dust2",
+          "scoreA": 13,
+          "scoreB": 6
+        },
+        {
+          "map": "nuke",
+          "scoreA": 10,
+          "scoreB": 13
+        }
+      ],
+      "winner": "chinggis-warriors",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3474905)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-25",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
