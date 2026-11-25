@@ -200,7 +200,7 @@ function MatchRow(props: {
               className={[
                 'min-w-0 flex-1 self-stretch truncate text-left',
                 won ? 'font-semibold text-ink' : lost ? 'text-ink-3' : 'text-ink',
-                isSelected ? 'underline decoration-accent decoration-2 underline-offset-2' : '',
+                isSelected ? 'underline decoration-accent decoration-2 underline-offset-[5px] [text-decoration-skip-ink:none]' : '',
               ].join(' ')}
               onClick={() => onSelect(team)}
               title={`Show ${name(team)}`}
@@ -363,7 +363,7 @@ function ResultBox(props: {
                     'flex min-w-0 items-center gap-1.5 text-left text-sm',
                     f.override ? 'text-accent' : 'text-ink',
                     selected === f.team
-                      ? 'underline decoration-accent decoration-2 underline-offset-2'
+                      ? 'underline decoration-accent decoration-2 underline-offset-[5px] [text-decoration-skip-ink:none]'
                       : '',
                   ].join(' ')}
                   style={{ height: LAYOUT.resultRow }}
