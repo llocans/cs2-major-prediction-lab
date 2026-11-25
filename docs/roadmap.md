@@ -133,7 +133,8 @@ belong in `data/events/<id>/status.md`, not here.
 ## Done
 
 - 2026-11-25: Below 1024 px the team panel keeps its desktop width (340 px per column) and is
-  centred above the bracket and table, so its text never stretches across the page.
+  centred above the bracket and table, so its text never stretches across the page. Its two
+  columns (768-1023 px) are 64 px apart, so match history reads as a separate section.
 - 2026-11-25: Stage page spacing: from 1280 px a wider gap (80 px) between the Probabilities table and the team
   panel, with a narrower team-name column; at 768-1023 px, where the panel sits above the table, it
   uses two columns (match history on the right), so it is about 40% shorter and its tables don't

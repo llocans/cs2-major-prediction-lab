@@ -61,7 +61,7 @@ export function TeamPanel(props: Props) {
     // Beside the table it is one 340 px column. Above it (below 1024 px) it keeps that width and is
     // centred, so its text never stretches; from 768 px match history takes a second column.
     <aside
-      className="flex flex-col gap-6 max-lg:mx-auto max-lg:w-full max-lg:max-w-[340px] md:max-lg:grid md:max-lg:max-w-[720px] md:max-lg:grid-cols-[minmax(0,340px)_minmax(0,340px)] md:max-lg:items-start md:max-lg:gap-x-10"
+      className="flex flex-col gap-6 max-lg:mx-auto max-lg:w-full max-lg:max-w-[340px] md:max-lg:grid md:max-lg:max-w-[744px] md:max-lg:grid-cols-[minmax(0,340px)_minmax(0,340px)] md:max-lg:items-start md:max-lg:gap-x-16"
       aria-label={`${name} details`}
     >
       <header className="relative border-b border-ink pb-3 pr-10 md:max-lg:col-span-2">
