@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-25T08:17:04.353Z",
-  "reason": "log-result stage-1-r3-faze-parivision",
+  "asOf": "2026-11-25T10:02:04.661Z",
+  "reason": "log-result stage-1-r3-9z-dendele",
   "teams": {
     "nip": {
       "rating": 1549.3,
@@ -375,8 +375,8 @@
       ]
     },
     "9z": {
-      "rating": 1474.8,
-      "rd": 58.5,
+      "rating": 1499.5,
+      "rd": 57,
       "maps": {
         "nuke": {
           "offset": -26.7,
@@ -384,9 +384,9 @@
           "n": 10
         },
         "mirage": {
-          "offset": 35.5,
-          "rd": 60.5,
-          "n": 9
+          "offset": 39.1,
+          "rd": 59.1,
+          "n": 10
         },
         "dust2": {
           "offset": 51.2,
@@ -399,9 +399,9 @@
           "n": 7
         },
         "cache": {
-          "offset": -77.9,
-          "rd": 67.21344403334447,
-          "n": 5
+          "offset": -73.6,
+          "rd": 65.3,
+          "n": 6
         },
         "ancient": {
           "offset": -35.4,
@@ -481,18 +481,18 @@
       ]
     },
     "dendele": {
-      "rating": 1466.6,
-      "rd": 58.5,
+      "rating": 1441.9,
+      "rd": 57,
       "maps": {
         "mirage": {
-          "offset": 39.8,
-          "rd": 61.96773353931867,
-          "n": 8
+          "offset": 36,
+          "rd": 60.5,
+          "n": 9
         },
         "cache": {
-          "offset": -22,
-          "rd": 63.5775531391221,
-          "n": 7
+          "offset": -25.8,
+          "rd": 62,
+          "n": 8
         },
         "inferno": {
           "offset": 72.6,
