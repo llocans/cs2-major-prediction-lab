@@ -16,9 +16,9 @@ Hierarchy comes from type size, weight, spacing and alignment, not from boxes an
 - Light and dark themes follow the system setting until the viewer picks one with the switch in the
   nav (saved in the browser). Both use the same tokens.
 - Bracket lines and connectors are SVG using the same tokens. In the Swiss bracket, each group is
-  followed by the same pair of short arrows in the gap: `win` pointing up-right (where its winners
-  go) and `loss` pointing down-right (where its losers go), same length and angle everywhere. They
-  point the way and do not reach the target box. Solid once the group is played, dashed while it is
+  followed by two short arrows in the gap: `win` pointing up-right (where its winners go) and
+  `loss` pointing down-right (where its losers go), same length and angle everywhere. Each starts
+  where its tip lands beside its target box; it points the way and does not reach the box. Solid once the group is played, dashed while it is
   still predicted.
 - Bracket boxes are the one place where boxes and color carry structure: each Swiss record group is
   one `paper-2` panel (a header strip with record, format and tag, then the match rows), and the
