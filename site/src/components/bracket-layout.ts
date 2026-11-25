@@ -9,19 +9,22 @@
  * over the full bracket height, which keeps the connectors between columns short.
  */
 export const LAYOUT = {
-  columnWidth: 228,
-  columnGap: 48,
-  /** Group label above the match cards. */
-  headerHeight: 26,
-  matchHeight: 58,
-  matchGap: 10,
+  columnWidth: 212,
+  /** Room for the short arrow pair after each group. */
+  columnGap: 40,
+  /** A group panel's header strip: record, format and tag. */
+  headerHeight: 28,
+  /** Space between a panel's edge and its match cards. */
+  panelPadding: 6,
+  matchHeight: 54,
+  matchGap: 6,
   /** Smallest gap between two items in a column. */
   groupGap: 28,
   /** Space for the "Round 1" labels. */
   top: 28,
   /** Result boxes: the "Advanced"/"Eliminated" label plus a record label per column. */
-  resultHeader: 44,
-  resultRow: 26,
+  resultHeader: 46,
+  resultRow: 28,
   resultPadding: 8,
 }
 
@@ -71,7 +74,12 @@ function resultHeight(records: ResultSlot['records']): number {
 
 function groupHeight(teams: number): number {
   const matches = teams / 2
-  return LAYOUT.headerHeight + matches * LAYOUT.matchHeight + (matches - 1) * LAYOUT.matchGap
+  return (
+    LAYOUT.headerHeight +
+    2 * LAYOUT.panelPadding +
+    matches * LAYOUT.matchHeight +
+    (matches - 1) * LAYOUT.matchGap
+  )
 }
 
 /** Group and result slots for a Swiss stage (e.g. 16 teams: R3 = 4/8/4, then 3-0 and 0-3 boxes). */

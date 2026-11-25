@@ -20,6 +20,8 @@
   /* Pick marks on finished matches: win/loss toned down towards ink-3, so a played bracket stays calm. */
   --color-win-muted: color-mix(in srgb, var(--win) 70%, var(--ink-3));
   --color-loss-muted: color-mix(in srgb, var(--loss) 70%, var(--ink-3));
+  --color-win-soft: var(--win-soft);
+  --color-loss-soft: var(--loss-soft);
   --color-transparent: transparent;
 
   --font-*: initial;
@@ -47,6 +49,8 @@
   --accent-soft: #f3dccf;
   --win: #2f6b4f;
   --loss: #9b3a2e;
+  --win-soft: #e1e9e0;
+  --loss-soft: #f0e0da;
 }
 
 /* Dark tokens: used when the viewer picks dark (ThemeToggle.tsx), or when the system is dark and the
@@ -64,6 +68,8 @@
   --accent-soft: #3a2419;
   --win: #6fbf94;
   --loss: #e0806f;
+  --win-soft: #18271f;
+  --loss-soft: #2c1c19;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -80,6 +86,8 @@
     --accent-soft: #3a2419;
     --win: #6fbf94;
     --loss: #e0806f;
+    --win-soft: #18271f;
+    --loss-soft: #2c1c19;
   }
 }
 
