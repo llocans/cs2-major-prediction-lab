@@ -160,3 +160,53 @@ html {
     animation: none;
   }
 }
+
+/* A short orange segment that circles the Swiss bracket while a simulation runs (StagePage.tsx),
+   over a faint orange outline. With reduced motion only the outline shows. */
+@property --sim-snake-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes sim-snake-spin {
+  to {
+    --sim-snake-angle: 360deg;
+  }
+}
+@keyframes sim-snake-in {
+  from {
+    opacity: 0;
+  }
+}
+.sim-snake {
+  border-radius: 8px;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--sim-snake-angle),
+    transparent 0deg 250deg,
+    color-mix(in srgb, var(--accent) 15%, transparent) 290deg,
+    var(--accent) 355deg,
+    transparent 360deg
+  );
+  /* Show only the 2 px ring between the padding edge and the border edge. */
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation:
+    sim-snake-spin 1.4s linear infinite,
+    sim-snake-in 0.2s ease-out;
+}
+.sim-snake::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  border-radius: 8px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sim-snake {
+    background: none;
+    animation: none;
+  }
+}

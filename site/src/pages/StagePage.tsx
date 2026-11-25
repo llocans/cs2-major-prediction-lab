@@ -174,26 +174,32 @@ export function StagePage({ event, stage, query }: Props) {
         )}
       </PageHeader>
 
-      <SwissBracket
-        rounds={bracket}
-        pending={pending}
-        scores={scores}
-        picks={picks}
-        selected={selected}
-        name={name}
-        short={short}
-        formatFor={(wins, losses) =>
-          swissMatchFormat({ wins, losses }, { wins, losses }, rules, stage.format)
-        }
-        winsToAdvance={stage.winsToAdvance}
-        lossesToEliminate={stage.lossesToEliminate}
-        market={(round, team, opponent) => marketQuote(event, stage.id, round, team, opponent)}
-        onSelect={select}
-        onPick={(match, winner) => {
-          const loser = winner === match.teamA ? match.teamB : match.teamA
-          setQuery(writeWhatIf(query, toggleOverride(whatIf, match.round, winner, loser)))
-        }}
-      />
+      {/* While a simulation runs, an orange segment circles the bracket (theme.css). */}
+      <div className="relative">
+        {sim.running && (
+          <div aria-hidden className="sim-snake pointer-events-none absolute -inset-2 z-10" />
+        )}
+        <SwissBracket
+          rounds={bracket}
+          pending={pending}
+          scores={scores}
+          picks={picks}
+          selected={selected}
+          name={name}
+          short={short}
+          formatFor={(wins, losses) =>
+            swissMatchFormat({ wins, losses }, { wins, losses }, rules, stage.format)
+          }
+          winsToAdvance={stage.winsToAdvance}
+          lossesToEliminate={stage.lossesToEliminate}
+          market={(round, team, opponent) => marketQuote(event, stage.id, round, team, opponent)}
+          onSelect={select}
+          onPick={(match, winner) => {
+            const loser = winner === match.teamA ? match.teamB : match.teamA
+            setQuery(writeWhatIf(query, toggleOverride(whatIf, match.round, winner, loser)))
+          }}
+        />
+      </div>
 
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px]">
         <section className="min-w-0">

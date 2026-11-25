@@ -132,6 +132,8 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## Done
 
+- 2026-11-25: Stage page loading indicator: while a simulation runs, an orange segment circles the
+  Swiss bracket (a faint outline only with reduced motion).
 - 2026-11-25: Stage page: "Simulating changes…" moved from under the dates to the right end of the
   bracket legend, with its space kept while idle, so the page no longer jumps on a what-if click.
 - 2026-11-25: Playoffs header shows only the dates (and the played count once seeded), not the

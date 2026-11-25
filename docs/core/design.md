@@ -58,7 +58,9 @@ Hierarchy comes from type size, weight, spacing and alignment, not from boxes an
 ## Behaviour
 
 - The simulation never blocks the UI (Web Worker). While it runs, predicted numbers on screen turn
-  grey (`ink-3`) and an orange "Simulating changes…" badge shows; orange numbers always mean final.
+  grey (`ink-3`), an orange "Simulating changes…" badge shows at the end of the bracket legend
+  (its space kept while idle, so the page never moves) and an orange segment circles the Swiss
+  bracket (only a faint outline with reduced motion); orange numbers always mean final.
   Finished results are cached in the browser, so an unchanged page shows final odds at once.
 - Works on desktop and mobile (375 px wide, no horizontal page scroll).
 - Data and results are shown in the UI; chat replies stay short.
