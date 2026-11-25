@@ -3,7 +3,7 @@ import { winsNeeded } from '../data/schemas/common.ts'
 import type { VetoProcedure } from '../data/schemas/event-config.ts'
 import type { MatchModel } from './match-model.ts'
 import type { Rng } from './rng.ts'
-import { runVeto } from './veto.ts'
+import { type Advantage, runVeto, vetoOutcomes } from './veto.ts'
 
 export type VetoRules = Partial<Record<MatchFormat, VetoProcedure>>
 
@@ -41,6 +41,16 @@ function procedureFor(format: MatchFormat, veto: VetoRules): VetoProcedure {
   return procedure
 }
 
+/** How much each veto side likes a map, with `first` as Team A. */
+function vetoAdvantage(first: string, second: string, model: MatchModel): Advantage {
+  const sides = { A: first, B: second } as const
+  return (side, map) => {
+    const me = sides[side]
+    const them = side === 'A' ? second : first
+    return model.strength(me, map) - model.strength(them, map)
+  }
+}
+
 /** The maps a veto produces, with `first` as Team A. */
 function vetoMaps(
   first: string,
@@ -50,12 +60,7 @@ function vetoMaps(
   veto: VetoRules,
   rng?: Rng,
 ): MapId[] {
-  const sides = { A: first, B: second } as const
-  const advantage = (side: 'A' | 'B', map: MapId) => {
-    const me = sides[side]
-    const them = side === 'A' ? second : first
-    return model.strength(me, map) - model.strength(them, map)
-  }
+  const advantage = vetoAdvantage(first, second, model)
   return runVeto(
     procedureFor(format, veto).steps,
     model.mapPool,
@@ -104,6 +109,37 @@ export function expectedSeries(
     format,
   )
   return { maps, pHigher }
+}
+
+/**
+ * The exact chance that the higher seed wins the series `playSeries` plays: the same veto roles,
+ * every veto the randomized veto can produce weighted by its probability, then the maps in play
+ * order. No Monte Carlo noise, and the same number whichever order matches are simulated in.
+ */
+export function seriesWinChance(
+  higherSeed: string,
+  lowerSeed: string,
+  format: MatchFormat,
+  model: MatchModel,
+  veto: VetoRules,
+): number {
+  const [a, b] = chooseVetoRoles(higherSeed, lowerSeed, format, model, veto)
+  const outcomes = vetoOutcomes(
+    procedureFor(format, veto).steps,
+    model.mapPool,
+    vetoAdvantage(a, b, model),
+    model.vetoTemperature,
+  )
+  let total = 0
+  for (const { maps, p } of outcomes) {
+    total +=
+      p *
+      seriesWinProbability(
+        maps.map((map) => model.mapWin(higherSeed, lowerSeed, map)),
+        format,
+      )
+  }
+  return total
 }
 
 /** Plays one series map by map with a randomized veto. */

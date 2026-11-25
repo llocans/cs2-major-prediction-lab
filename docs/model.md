@@ -76,10 +76,20 @@ Monte Carlo over the rest of the stage from the real results: `sim.runs` = 12,00
 gives 0.46 pp, under the 0.5 pp target. Each run pairs rounds with the Valve rules, picks the format per
 match, runs the veto, and plays map by map.
 
-Outputs per team: P(3-0), P(advance), P(0-3), P(eliminated); per known match: P(team A wins).
+Outputs per team: P(3-0), P(advance), P(0-3), P(eliminated), simulated; per known match: P(team A
+wins), **exact**, not counted from the runs. `seriesWinChance` (`engine/series.ts`) takes the same veto
+roles as a run, walks every veto the softmax veto can produce with its probability (`vetoOutcomes` in
+`engine/veto.ts`; at most 7·6·5·4·3·2 = 5,040 paths), and sums the series chance over them. So match
+odds carry no sampling noise, and a page that re-simulates (the Stage page in the browser) shows the
+same match odds as the saved snapshot. The standard error covers the team odds only. Before
+2026-11-25 match odds were counted from the runs (±0.4 pp); Stage 1's R1-R4 snapshots keep those
+numbers (snapshots are never edited).
 
 Map win probabilities are always computed in one fixed team order (alphabetical) and the other order
-is `1 − p`, so a simulation never depends on which pairing happened to be evaluated first.
+is `1 − p`, so a simulation never depends on which pairing happened to be evaluated first. The same
+goes for the order of a round's matches: announced pairings that are the Valve rules' pairings listed
+in another order (a Liquipedia page) are simulated in the rules' order, so the poller's snapshot and
+the site's own run draw the same random numbers and give the same team odds.
 
 ### Whole event (playoff and title odds)
 

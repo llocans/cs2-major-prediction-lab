@@ -55,3 +55,72 @@ function choose(scores: readonly number[], temperature: number, rng?: Rng): numb
   }
   return weights.length - 1
 }
+
+/** One possible veto result: the maps in play order and its probability. */
+export interface VetoOutcome {
+  maps: MapId[]
+  p: number
+}
+
+/**
+ * Every veto `runVeto` can produce with an rng, with its exact probability: each step takes a map
+ * with the same softmax weights `runVeto` draws from. Temperature 0 gives the greedy veto alone. Used
+ * for exact match odds, so they carry no Monte Carlo noise and do not depend on match order.
+ */
+export function vetoOutcomes(
+  steps: readonly VetoStep[],
+  pool: readonly MapId[],
+  advantage: Advantage,
+  temperature: number,
+): VetoOutcome[] {
+  const actions = steps.flatMap((step) =>
+    Array.from({ length: step.count }, () => ({ team: step.team, action: step.action })),
+  )
+  const outcomes: VetoOutcome[] = []
+  const walk = (
+    index: number,
+    remaining: readonly MapId[],
+    picked: readonly MapId[],
+    p: number,
+  ) => {
+    const step = actions[index]
+    if (!step) {
+      const decider = remaining[0]
+      if (remaining.length !== 1 || decider === undefined) {
+        throw new Error(`Veto must leave exactly one decider map, left ${remaining.length}`)
+      }
+      outcomes.push({ maps: [...picked, decider], p })
+      return
+    }
+    if (remaining.length <= 1) throw new Error('Veto removed every map; check the veto steps')
+    const sign = step.action === 'pick' ? 1 : -1
+    const scores = remaining.map((map) => sign * advantage(step.team, map))
+    for (const [choice, weight] of choiceWeights(scores, temperature)) {
+      const map = remaining[choice]
+      if (map === undefined) continue
+      walk(
+        index + 1,
+        remaining.filter((_, i) => i !== choice),
+        step.action === 'pick' ? [...picked, map] : picked,
+        p * weight,
+      )
+    }
+  }
+  walk(0, pool, [], 1)
+  return outcomes
+}
+
+/** The probability of each index `choose` can return: the greedy one, or the softmax weights. */
+function choiceWeights(scores: readonly number[], temperature: number): Array<[number, number]> {
+  if (temperature <= 0) {
+    let best = 0
+    scores.forEach((score, index) => {
+      if (score > (scores[best] ?? Number.NEGATIVE_INFINITY)) best = index
+    })
+    return [[best, 1]]
+  }
+  const max = Math.max(...scores)
+  const weights = scores.map((score) => Math.exp((score - max) / temperature))
+  const total = weights.reduce((sum, weight) => sum + weight, 0)
+  return weights.map((weight, index) => [index, weight / total])
+}

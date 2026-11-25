@@ -1,7 +1,7 @@
 import type { MatchFormat } from '../data/schemas/common.ts'
 import type { MatchModel } from './match-model.ts'
 import { createRng } from './rng.ts'
-import { type PlayMatch, seriesPlayer, type VetoRules } from './series.ts'
+import { type PlayMatch, seriesPlayer, seriesWinChance, type VetoRules } from './series.ts'
 import { type SwissFormat, swissMatchFormat } from './swiss/format.ts'
 import { pairRound } from './swiss/pairing.ts'
 import { buildRecords, isActive } from './swiss/records.ts'
@@ -28,7 +28,7 @@ export interface SwissSimInput {
 export interface UpcomingMatch extends Pairing {
   round: number
   format: MatchFormat
-  /** Probability that teamA (the higher seed) wins. */
+  /** Exact probability that teamA (the higher seed) wins (`seriesWinChance`, no sampling noise). */
   pA: number
 }
 
@@ -104,7 +104,22 @@ function currentRoundPairs(input: SwissSimInput, current: number): Pairing[] {
     teams.length === active.length &&
     new Set(teams).size === teams.length &&
     active.every((id) => teams.includes(id))
-  return complete ? merged : computed()
+  if (!complete) return computed()
+  // The same draw as the Valve rules, listed in another order (a stage page's order): use the
+  // rules' order, so every run of this round draws the same random numbers as a run without the
+  // announcement (the site's) and the odds match to the digit.
+  let rulesPairs: Pairing[]
+  try {
+    rulesPairs = computed()
+  } catch {
+    // The rules cannot pair this round (e.g. a result missing upstream): the announcement stands.
+    return merged
+  }
+  const rulesKeys = new Set(rulesPairs.map((p) => pairKey(p.teamA, p.teamB)))
+  const same =
+    rulesPairs.length === merged.length &&
+    merged.every((p) => rulesKeys.has(pairKey(p.teamA, p.teamB)))
+  return same ? rulesPairs : merged
 }
 
 /**
@@ -173,19 +188,12 @@ export function simulateSwiss(
       { p30: 0, adv: 0, p03: 0, elim: 0, records: new Map<string, number>() },
     ]),
   )
-  const upcomingWins = new Map<string, number>()
   const play = seriesPlayer(model, veto, rng)
   const pairings = (round: number, matches: readonly SwissMatch[]) =>
     round === current ? currentPairs : pairRound(round, input.seeds, matches, input.rules)
 
   for (let run = 0; run < runs; run++) {
     const matches = playSwissRounds({ ...input, fromRound: current, pairings, play })
-    for (const match of matches) {
-      if (match.round !== current || match.winner !== match.teamA) continue
-      const key = pairKey(match.teamA, match.teamB)
-      if (realByKey.has(`${current}|${key}`)) continue
-      upcomingWins.set(key, (upcomingWins.get(key) ?? 0) + 1)
-    }
     for (const record of buildRecords(seeds, matches).values()) {
       const count = counts.get(record.teamId)
       if (!count) continue
@@ -209,12 +217,13 @@ export function simulateSwiss(
       const a = startRecords.get(p.teamA)
       const b = startRecords.get(p.teamB)
       if (!a || !b) throw new Error(`Unknown team in pairing ${p.teamA} vs ${p.teamB}`)
+      const format = swissMatchFormat(a, b, rules, input.format)
       return {
         round: current,
         teamA: p.teamA,
         teamB: p.teamB,
-        format: swissMatchFormat(a, b, rules, input.format),
-        pA: (upcomingWins.get(pairKey(p.teamA, p.teamB)) ?? 0) / runs,
+        format,
+        pA: seriesWinChance(p.teamA, p.teamB, format, model, veto),
       }
     })
 
@@ -231,10 +240,8 @@ export function simulateSwiss(
     }
   })
 
-  const probabilities = [
-    ...teams.flatMap((t) => [t.p30, t.pAdvance, t.p03]),
-    ...upcoming.map((m) => m.pA),
-  ]
+  // Match odds are exact, so only the simulated team odds carry a standard error.
+  const probabilities = teams.flatMap((t) => [t.p30, t.pAdvance, t.p03])
   const maxStandardError = Math.max(0, ...probabilities.map((p) => Math.sqrt((p * (1 - p)) / runs)))
 
   return { currentRound: current, upcoming, teams, runs, maxStandardError }

@@ -181,6 +181,10 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## Done
 
+- 2026-11-25: Exact match odds. Each upcoming match's chance is now computed exactly over every
+  possible veto instead of counted from 12,000 runs, and announced pairings in another order are
+  simulated in the rules' order. The Stage page, snapshots and `status.md` now show the same numbers
+  (R4 had Wildcard 66.4% in the snapshot vs 66.7% on the Stage page; exact: 66.1%).
 - 2026-11-25: Market odds: the site no longer names the bookmaker (prices are labelled "pre-match"
   or "closing avg"), and `log-odds` also saves the decimal odds to a git-ignored local file for real
   bet slip payouts (never committed or published).
