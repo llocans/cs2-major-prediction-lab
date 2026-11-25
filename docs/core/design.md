@@ -33,9 +33,11 @@ Hierarchy comes from type size, weight, spacing and alignment, not from boxes an
 - Real result: solid ink, bold winner, score shown.
 - Predicted: accent color, the probability shown as a percentage, a dashed connector in the bracket.
 - User override: marked "override" in small caps and reflected in the URL.
-- Model's pick on a finished match: the favourite's pre-match % stays on its row, `win` with ✓ if it
-  won, `loss` crossed out with ✗ if it lost, `ink-3` with no mark under 55% (a coin flip). The colour
-  sits only on the pick, never on the whole match, so a losing team is never green.
+- Model's pick on a finished match: the favourite's pre-match % stays on its row, `win-muted` with ✓
+  if it won, `loss-muted` crossed out with ✗ if it lost, close calls included (no grey coin flips).
+  The muted tones (win/loss mixed 70% with `ink-3`) keep a played bracket calm. The colour sits only
+  on the pick, never on the whole match, so a losing team is never green.
+- Selected team: none when a page opens; clicking it again or the panel's ✕ clears it.
 
 ## Team names
 
