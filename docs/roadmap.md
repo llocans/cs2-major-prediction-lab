@@ -132,6 +132,8 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## Done
 
+- 2026-11-25: Market odds page: the source note under the rounds is gone (each round still names
+  its source in its heading).
 - 2026-11-25: Team panel outlook (3-0, Advance, 0-3): each label and number is centred in its
   third instead of left-aligned.
 - 2026-11-25: Below 1024 px the team panel keeps its desktop width (340 px per column) and is
