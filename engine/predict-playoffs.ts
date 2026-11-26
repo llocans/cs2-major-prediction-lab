@@ -8,6 +8,7 @@ import {
   simulatePlayoffs,
 } from './playoffs/simulate-playoffs.ts'
 import type { Labels } from './predict.ts'
+import { mapSlotRecords } from './series.ts'
 
 export interface PlayoffPrediction {
   sim: PlayoffSimResult
@@ -42,6 +43,7 @@ export function predictPlayoffs(input: PlayoffSimInput, labels: Labels): Playoff
       pA: m.pA,
       confidence: matchupConfidence(model, m.teamA, m.teamB, m.pA),
       reason: matchReason(m.teamA, m.teamB, m.format, model, veto, labels.team, labels.map),
+      maps: mapSlotRecords(m.teamA, m.teamB, m.format, model, veto),
     }))
 
   const eliminated = new Set(

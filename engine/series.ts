@@ -181,6 +181,23 @@ export function mapSlotChances(
   return slots
 }
 
+/** mapSlotChances as plain records, rounded to 4 decimals, most likely map first (for snapshots). */
+export function mapSlotRecords(
+  higherSeed: string,
+  lowerSeed: string,
+  format: MatchFormat,
+  model: MatchModel,
+  veto: VetoRules,
+): Array<Record<MapId, number>> {
+  return mapSlotChances(higherSeed, lowerSeed, format, model, veto).map((slot) =>
+    Object.fromEntries(
+      [...slot.entries()]
+        .sort((x, y) => y[1] - x[1])
+        .map(([map, p]) => [map, Math.round(p * 10_000) / 10_000]),
+    ),
+  )
+}
+
 /** Plays one series map by map with a randomized veto. */
 export function playSeries(
   higherSeed: string,

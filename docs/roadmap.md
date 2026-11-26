@@ -112,7 +112,8 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
   map a team never played (Cache) gets offset 0 unless the team has 15+ maps, so the simulated veto
   leaves it in and it often ends up as the guess, while real teams ban it. Options: show per-map
   chances from the simulation, score map guesses on the Track record page, treat an unplayed map as
-  a likely ban at smaller samples (changes predictions: ask first).
+  a likely ban at smaller samples (changes predictions: ask first). v0.2 (habits) fixed the cause
+  from Stage 2; from 2026-11-27 snapshots save each match's map chances for scoring.
   Related, found 2026-11-24: in Bo1 the reason "HEROIC +32 rating on average" (round 3 vs M80) sat
   next to a 49% chance. Not a bug: HEROIC's edge is on Ancient, Inferno and Nuke (62-64%), M80 bans
   those, HEROIC bans its weak maps, and the expected decider Mirage is 50/50. The average over all
@@ -241,6 +242,9 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
   the checkout's credentials).
 
 ## Done
+
+- 2026-11-27: Snapshots save each match's map chances per map slot (`maps`), for scoring map
+  guesses on the Track record page from Stage 2 on. Match and team odds unchanged.
 
 - 2026-11-26: The poller saves CT/T regulation rounds and team A's first side per map
   (`maps[].sides` in `results.json`, from Liquipedia's half scores) for later use (round markets,

@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { IsoDateTime, MatchFormat, Source, TeamId } from './common.ts'
+import { IsoDateTime, MapId, MatchFormat, Source, TeamId } from './common.ts'
 
 export const Confidence = z.enum(['low', 'medium', 'high'])
 export type Confidence = z.infer<typeof Confidence>
@@ -12,6 +12,11 @@ export const MatchPrediction = z.object({
   pA: z.number().min(0).max(1),
   confidence: Confidence,
   reason: z.string(),
+  /**
+   * The veto's chance of each map in each map slot (index 0 = first map; a Bo3's third is the
+   * decider), for scoring map guesses. Absent in snapshots saved before 2026-11-27.
+   */
+  maps: z.array(z.record(MapId, z.number().min(0).max(1))).optional(),
 })
 export type MatchPrediction = z.infer<typeof MatchPrediction>
 
