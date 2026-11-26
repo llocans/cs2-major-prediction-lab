@@ -41,6 +41,7 @@ export function saveRoundSnapshot(
   context: StageContext,
   /** A prediction already made from this exact context, to avoid simulating twice. */
   existing?: StagePrediction,
+  lateSave?: Snapshot['lateSave'],
 ): {
   status: 'saved' | 'exists' | 'done'
   path?: string
@@ -81,6 +82,7 @@ export function saveRoundSnapshot(
       ...(prediction.event?.unverifiedVeto.length
         ? { unverifiedVeto: prediction.event.unverifiedVeto }
         : {}),
+      ...(lateSave ? { lateSave } : {}),
       resultsCount: context.simInput.played.length,
       ratingsAsOf: context.ratingsAsOf,
       matches: prediction.matches,

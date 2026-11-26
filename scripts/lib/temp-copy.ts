@@ -74,4 +74,5 @@ export function resetEventProgress(eventId: string): void {
     // Recursive: alongside versions keep their snapshots in snapshots/alongside/<version>/.
     for (const file of readdirSync(snapshots)) rmSync(join(snapshots, file), { recursive: true })
   }
+  rmSync(`${dir}/draw.json`, { force: true })
 }

@@ -30,7 +30,9 @@ Each check inside a run:
 - Reset to the latest main (picks up cloud Claude pushes and merged code; reinstalls if
   `package-lock.json` changed), read the current stage page from the Liquipedia API (Swiss: Matchlists;
   playoffs: the Bracket template, once Stage 3 has advanced its 8 teams), log new results,
-  update ratings, re-simulate, save the next-round snapshot, move advancing teams on when a stage ends,
+  update ratings, re-simulate, store the current round's draw once the page lists all of it
+  (`draw.json`), save the next-round snapshot (round 2 on: once the full draw is listed, at the latest
+  just before the round's first results), move advancing teams on when a stage ends,
   validate everything, commit only `data/` and `docs/changelog.md` to main, push.
 - Market odds (benchmark only; PGL Singapore: by hand, OddsPapi has no fixtures for it, `docs/sources.md`):
   on the first check of every even UTC hour, closing lines for results

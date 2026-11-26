@@ -23,7 +23,7 @@ import { marketQuote, teamStageMatches } from '../lib/market.ts'
 import { readWhatIf, toggleOverride, writeWhatIf } from '../lib/overrides.ts'
 import { setQuery } from '../lib/router.ts'
 import { stagePicks } from '../lib/verdict.ts'
-import { modelRequest } from '../sim/requests.ts'
+import { currentDraw, modelRequest } from '../sim/requests.ts'
 import { useStageSimulation } from '../sim/useSimulation.ts'
 
 const pairKey = (a: string, b: string) => (a < b ? `${a}|${b}` : `${b}|${a}`)
@@ -77,10 +77,22 @@ export function StagePage({ event, stage, query }: Props) {
       })),
   ]
 
+  // Valve's real draw for the current round (stored by the poller), for the bracket and the odds.
+  const realPlayed = real.map(({ round, teamA, teamB, winner }) => ({
+    round,
+    teamA,
+    teamB,
+    winner,
+  }))
+  const realDraw = currentDraw(event, stage.id, seeds, realPlayed, rules)
+  const played = known.map(({ round, teamA, teamB, winner }) => ({ round, teamA, teamB, winner }))
+  // With what-ifs the current round can move on; the draw only counts for its own round.
+  const simDraw = currentDraw(event, stage.id, seeds, played, rules)
+
   let bracketError: string | undefined
   let bracket: ReturnType<typeof swissBracket> = []
   try {
-    bracket = swissBracket(seeds, known, rules, stage.format)
+    bracket = swissBracket(seeds, known, rules, stage.format, realDraw)
   } catch (error) {
     bracketError = error instanceof Error ? error.message : String(error)
   }
@@ -92,7 +104,8 @@ export function StagePage({ event, stage, query }: Props) {
     seeds,
     rules,
     format: stage.format,
-    played: known.map(({ round, teamA, teamB, winner }) => ({ round, teamA, teamB, winner })),
+    played,
+    ...(simDraw ? { announced: simDraw.pairings } : {}),
     chain,
   }
   const sim = useStageSimulation(bracketError ? undefined : request)

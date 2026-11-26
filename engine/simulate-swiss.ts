@@ -75,36 +75,51 @@ export function currentRound(
 const pairKey = (a: string, b: string) => (a < b ? `${a}|${b}` : `${b}|${a}`)
 
 /**
- * Pairings of the current round. Announced pairings override the Valve rules, but a live stage page
- * lists only the matches not played yet, so the round's real matches are added to them. They are used
- * only when together they pair every active team exactly once; otherwise (a page half edited, an
- * announcement for the wrong round) the Valve rules apply.
+ * The round's full draw from announced pairings: the round's real matches plus the announced ones
+ * (a live stage page lists only the matches not played yet), if together they pair every active
+ * team exactly once. Undefined otherwise (nothing announced, a page half edited, an announcement for
+ * another round). Pure.
  */
-function currentRoundPairs(input: SwissSimInput, current: number): Pairing[] {
-  const computed = () => pairRound(current, input.seeds, input.played, input.rules)
-  if (!input.announced || input.announced.length === 0) return computed()
-  const playedNow: Pairing[] = input.played
-    .filter((m) => m.round === current)
+export function fullDraw(
+  seeds: readonly string[],
+  played: readonly SwissMatch[],
+  rules: SwissRules,
+  round: number,
+  announced: readonly Pairing[] | undefined,
+): Pairing[] | undefined {
+  if (!announced || announced.length === 0) return undefined
+  const playedNow: Pairing[] = played
+    .filter((m) => m.round === round)
     .map(({ teamA, teamB }) => ({ teamA, teamB }))
   const playedKeys = new Set(playedNow.map((p) => pairKey(p.teamA, p.teamB)))
   const merged = [
     ...playedNow,
-    ...input.announced.filter((p) => !playedKeys.has(pairKey(p.teamA, p.teamB))),
+    ...announced.filter((p) => !playedKeys.has(pairKey(p.teamA, p.teamB))),
   ]
   const active = [
     ...buildRecords(
-      input.seeds,
-      input.played.filter((m) => m.round < current),
+      seeds,
+      played.filter((m) => m.round < round),
     ).values(),
   ]
-    .filter((r) => isActive(r, input.rules))
+    .filter((r) => isActive(r, rules))
     .map((r) => r.teamId)
   const teams = merged.flatMap((p) => [p.teamA, p.teamB])
   const complete =
     teams.length === active.length &&
     new Set(teams).size === teams.length &&
     active.every((id) => teams.includes(id))
-  if (!complete) return computed()
+  return complete ? merged : undefined
+}
+
+/**
+ * Pairings of the current round. A full announced draw (`fullDraw`) overrides the Valve rules;
+ * anything less and the Valve rules apply.
+ */
+function currentRoundPairs(input: SwissSimInput, current: number): Pairing[] {
+  const computed = () => pairRound(current, input.seeds, input.played, input.rules)
+  const merged = fullDraw(input.seeds, input.played, input.rules, current, input.announced)
+  if (!merged) return computed()
   // The same draw as the Valve rules, listed in another order (a stage page's order): use the
   // rules' order, so every run of this round draws the same random numbers as a run without the
   // announcement (the site's) and the odds match to the digit.

@@ -1,5 +1,6 @@
 import type { ZodType } from 'zod'
 import { BookmakerOdds, LocalMarketOdds } from './bookmaker-odds.ts'
+import { EventDraw } from './draw.ts'
 import { EventConfig } from './event-config.ts'
 import { EventTeams } from './event-teams.ts'
 import { ModelParams, Modifiers, Ratings } from './model.ts'
@@ -10,6 +11,7 @@ import { TeamRegistry } from './teams-registry.ts'
 
 export * from './bookmaker-odds.ts'
 export * from './common.ts'
+export * from './draw.ts'
 export * from './event-config.ts'
 export * from './event-teams.ts'
 export * from './model.ts'
@@ -23,6 +25,7 @@ const routes: Array<[RegExp, ZodType]> = [
   [/^data\/events\/[^/]+\/config\.json$/, EventConfig],
   [/^data\/events\/[^/]+\/teams\.json$/, EventTeams],
   [/^data\/events\/[^/]+\/results\.json$/, EventResults],
+  [/^data\/events\/[^/]+\/draw\.json$/, EventDraw],
   [/^data\/events\/[^/]+\/benchmarks\.json$/, Benchmarks],
   [/^data\/events\/[^/]+\/bookmaker-odds\.json$/, BookmakerOdds],
   [/^data\/events\/[^/]+\/local\/market-odds\.json$/, LocalMarketOdds],

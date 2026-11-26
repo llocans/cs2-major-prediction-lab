@@ -19,9 +19,10 @@ import { buildMatchModel, type MatchModel } from '../../engine/match-model.ts'
 import type { PlayoffSimInput } from '../../engine/playoffs/simulate-playoffs.ts'
 import type { Labels } from '../../engine/predict.ts'
 import type { EventChain } from '../../engine/simulate-event.ts'
-import type { SwissSimInput } from '../../engine/simulate-swiss.ts'
+import { currentRound, type SwissSimInput } from '../../engine/simulate-swiss.ts'
 import { stageSeeds } from '../../engine/swiss/stage-seeds.ts'
 import type { Pairing, SwissMatch } from '../../engine/swiss/types.ts'
+import { storedDraw } from './draw-store.ts'
 import { readJson, repoPath } from './files.ts'
 import { loadParams, loadStageVersions } from './model-versions.ts'
 import { loadRatings } from './ratings-store.ts'
@@ -136,7 +137,10 @@ export function loadStageContext(
     runs: params.sim.runs,
     seed: params.sim.seed,
   }
-  if (options.announced) simInput.announced = options.announced
+  // The current round's draw: given (a page read just now, a replay), else the stored one.
+  const announced =
+    options.announced ?? storedDraw(eventId, stageId, currentRound(seeds, played, simInput.rules))
+  if (announced) simInput.announced = announced
 
   const chain = laterStages(config, teams.participants, stageId, seeds)
   return {

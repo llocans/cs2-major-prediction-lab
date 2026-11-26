@@ -68,6 +68,14 @@ export const Snapshot = z.object({
   maxStandardError: z.number(),
   /** Formats whose veto procedure was assumed, not verified, for the event odds (e.g. ["bo5"]). */
   unverifiedVeto: z.array(MatchFormat).optional(),
+  /**
+   * Set when a Swiss round's snapshot was saved late: just before its first results were written,
+   * because its full draw was never listed earlier. Built on the state before those results (still a
+   * pre-round prediction); `draw` says where the pairs came from: "real" (the results' pairs and the
+   * page's announced ones made the full draw), "partly-engine" (the engine's pairing filled in teams
+   * not yet known), "engine" (the engine's pairing for the whole round).
+   */
+  lateSave: z.object({ draw: z.enum(['real', 'partly-engine', 'engine']) }).optional(),
   /** Number of real results the snapshot was built on. */
   resultsCount: z.number().int().nonnegative(),
   ratingsAsOf: IsoDateTime,

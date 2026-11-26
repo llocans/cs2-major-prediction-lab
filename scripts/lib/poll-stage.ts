@@ -3,7 +3,11 @@
  * end-to-end checks run exactly the poller's code on made-up pages.
  */
 import type { EventConfig, MatchResult, TeamRegistry } from '../../data/schemas/index.ts'
+import { currentRound, fullDraw } from '../../engine/simulate-swiss.ts'
+import type { Pairing } from '../../engine/swiss/types.ts'
 import { type AdvanceOutcome, advanceStage } from './advance.ts'
+import { saveDraw } from './draw-store.ts'
+import { loadStageContext } from './event-context.ts'
 import { type ConvertOptions, readStagePage } from './liquipedia-results.ts'
 import { ensureRoundSnapshot, type LogOutcome, logResults } from './log-results.ts'
 
@@ -50,6 +54,8 @@ export function advanceAndSnapshot(eventId: string, stageId: string): AdvanceSte
 
 export interface SwissPageOutcome extends LogOutcome {
   next: AdvanceStep
+  /** The current round's full draw, newly stored in draw.json. */
+  drawSaved?: number
 }
 
 /**
@@ -65,9 +71,34 @@ export function applySwissPage(
 ): SwissPageOutcome {
   const data = readStagePage(text, convert)
   const outcome = logResults(eventId, stageId, data.results, actor, data.announced)
+  const drawSaved = storeDraw(eventId, stageId, data.announced, convert.source)
   const snapshot =
     outcome.logged.length > 0
       ? outcome.snapshot
       : ensureRoundSnapshot(eventId, stageId, data.announced)
-  return { ...outcome, snapshot, next: advanceAndSnapshot(eventId, stageId) }
+  return {
+    ...outcome,
+    snapshot,
+    ...(drawSaved !== undefined ? { drawSaved } : {}),
+    next: advanceAndSnapshot(eventId, stageId),
+  }
+}
+
+/**
+ * Stores the current round's draw in draw.json once the page lists all of it (with the round's
+ * results), for the site and simulate.ts. Round 1 follows from the seeds. Returns the round when
+ * the stored draw changed.
+ */
+function storeDraw(
+  eventId: string,
+  stageId: string,
+  announced: ReadonlyMap<number, Pairing[]>,
+  source: ConvertOptions['source'],
+): number | undefined {
+  const { seeds, played, rules } = loadStageContext(eventId, stageId).simInput
+  const round = currentRound(seeds, played, rules)
+  if (round < 2 || round > 5) return undefined
+  const draw = fullDraw(seeds, played, rules, round, announced.get(round))
+  if (!draw) return undefined
+  return saveDraw(eventId, stageId, round, draw, source) === 'saved' ? round : undefined
 }
