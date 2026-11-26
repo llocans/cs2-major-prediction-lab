@@ -9,7 +9,6 @@ import {
   EventConfig,
   EventResults,
   type MatchResult,
-  ModelParams,
   Modifiers,
   type PlayoffStage,
 } from '../../data/schemas/index.ts'
@@ -24,6 +23,7 @@ import { stageSeeds } from '../../engine/swiss/stage-seeds.ts'
 import type { Pairing } from '../../engine/swiss/types.ts'
 import { loadEventData, loadPlayoffContext, loadStageContext } from './event-context.ts'
 import { readJson, repoPath, writeJson } from './files.ts'
+import { loadStageVersions } from './model-versions.ts'
 import { loadRatings, saveRatings } from './ratings-store.ts'
 import { savePlayoffSnapshot, saveRoundSnapshot } from './snapshot.ts'
 import { writePlayoffStatus, writeStatus } from './status.ts'
@@ -92,9 +92,11 @@ export function logResults(
   }
   if (logged.length === 0) return { logged, skipped, held, snapshot: 'not-due' }
 
+  // Resolved before anything is written, so a misconfigured `model` stops here with results intact.
+  // Alongside versions share these rating rules (engine/model-version.ts), so one update serves all.
+  const params = loadStageVersions(event.config, stageId).main
   writeJson(resultsPath, EventResults, { ...results, matches: [...results.matches, ...logged] })
 
-  const params = readJson(repoPath('data/model/params.json'), ModelParams)
   const modifiersPath = repoPath('data/model/modifiers.json')
   const modifiers = existsSync(modifiersPath) ? readJson(modifiersPath, Modifiers).modifiers : []
   let ratings = loadRatings()
@@ -220,7 +222,26 @@ export function ensureRoundSnapshot(
   writeStatus(context, prediction)
   if (round > 5) return 'done'
   if (context.simInput.played.some((m) => m.round === round)) return 'not-due'
-  return saveRoundSnapshot(context, prediction).status
+  const status = saveRoundSnapshot(context, prediction).status
+  for (const other of loadStageVersions(config, stageId).alongside) {
+    const options = { version: other.version, ...(pairings ? { announced: pairings } : {}) }
+    alongsideSnapshot(other.version, () =>
+      saveRoundSnapshot(loadStageContext(eventId, stageId, options)),
+    )
+  }
+  return status
+}
+
+/**
+ * Saves an alongside version's snapshot. A failure is reported and never stops the poller: results,
+ * ratings and the stage's own snapshot must not depend on a version that is only scored alongside.
+ */
+function alongsideSnapshot(version: string, save: () => unknown): void {
+  try {
+    save()
+  } catch (error) {
+    console.warn(`alongside model ${version}: snapshot not saved (${String(error)})`)
+  }
 }
 
 /** The playoff version: refreshes status.md and saves the pre-round snapshot when one is due. */
@@ -233,7 +254,13 @@ function ensurePlayoffSnapshot(eventId: string, stageId: string): LogOutcome['sn
     (m) => m.round === prediction.currentRound && m.winner !== undefined,
   )
   if (started) return 'not-due'
-  return savePlayoffSnapshot(context, prediction).status
+  const status = savePlayoffSnapshot(context, prediction).status
+  for (const other of loadStageVersions(context.config, stageId).alongside) {
+    alongsideSnapshot(other.version, () =>
+      savePlayoffSnapshot(loadPlayoffContext(eventId, stageId, { version: other.version })),
+    )
+  }
+  return status
 }
 
 /** Inserts a line right after the format line of docs/changelog.md (newest first). */

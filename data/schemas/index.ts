@@ -27,12 +27,13 @@ const routes: Array<[RegExp, ZodType]> = [
   [/^data\/events\/[^/]+\/bookmaker-odds\.json$/, BookmakerOdds],
   [/^data\/events\/[^/]+\/local\/market-odds\.json$/, LocalMarketOdds],
   [/^data\/events\/[^/]+\/snapshots\/[^/]+\.json$/, Snapshot],
+  [/^data\/events\/[^/]+\/snapshots\/alongside\/[^/]+\/[^/]+\.json$/, Snapshot],
   [/^data\/teams\/registry\.json$/, TeamRegistry],
   [/^data\/teams\/form\/[^/]+\.json$/, TeamForm],
   [/^data\/teams\/maps\/[^/]+\.json$/, TeamMapStats],
   [/^data\/teams\/vetoes\/[^/]+\.json$/, TeamVetoStats],
   [/^data\/ratings\/(current|history\/[^/]+)\.json$/, Ratings],
-  [/^data\/model\/params\.json$/, ModelParams],
+  [/^data\/model\/(params|archive\/[^/]+)\.json$/, ModelParams],
   [/^data\/model\/modifiers\.json$/, Modifiers],
 ]
 

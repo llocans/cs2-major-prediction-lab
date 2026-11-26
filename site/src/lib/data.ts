@@ -16,12 +16,14 @@ import {
   Modifiers,
   Ratings,
   Snapshot,
+  type Stage,
   TeamForm,
   TeamRegistry,
   teamLogoPaths,
 } from '../../../data/schemas/index.ts'
 import { SyncStatus } from '../../../data/schemas/sync.ts'
 import registryJson from '../../../data/teams/registry.json'
+import { stageVersions } from '../../../engine/model-version.ts'
 
 const configs = import.meta.glob('../../../data/events/*/config.json', {
   eager: true,
@@ -56,8 +58,23 @@ const formFiles = import.meta.glob('../../../data/teams/form/*.json', {
   eager: true,
   import: 'default',
 })
+const archivedParamsFiles = import.meta.glob('../../../data/model/archive/*.json', {
+  eager: true,
+  import: 'default',
+})
 
+/** The latest model params (data/model/params.json). */
 export const params = ModelParams.parse(paramsJson)
+/** Every model version: the latest and the archived ones a stage still runs on or scores alongside. */
+export const allParams = [
+  params,
+  ...Object.values(archivedParamsFiles).map((raw) => ModelParams.parse(raw)),
+]
+
+/** The params of the model version a stage runs on (its `model.version`, else the latest). */
+export function stageParams(stage: Stage): ModelParams {
+  return stageVersions(stage, params, allParams).main
+}
 export const modifiers = Modifiers.parse(modifiersJson).modifiers
 export const ratings = Ratings.parse(ratingsJson)
 export const registry = TeamRegistry.parse(registryJson)

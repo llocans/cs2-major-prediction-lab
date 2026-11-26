@@ -87,7 +87,7 @@ export function StagePage({ event, stage, query }: Props) {
 
   // useSimulation compares requests by value, so a new object per render is fine.
   const request = {
-    ...modelRequest(event),
+    ...modelRequest(event, stage),
     kind: 'swiss' as const,
     seeds,
     rules,

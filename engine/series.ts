@@ -142,6 +142,36 @@ export function seriesWinChance(
   return total
 }
 
+/**
+ * The chance of each map in each slot of the series (index 0 = first map played), over every veto
+ * the randomized veto can produce, with the same veto roles as `seriesWinChance`. Every slot is
+ * listed, even a decider that is only played when the series goes the distance.
+ */
+export function mapSlotChances(
+  higherSeed: string,
+  lowerSeed: string,
+  format: MatchFormat,
+  model: MatchModel,
+  veto: VetoRules,
+): Array<Map<MapId, number>> {
+  const [a, b] = chooseVetoRoles(higherSeed, lowerSeed, format, model, veto)
+  const outcomes = vetoOutcomes(
+    procedureFor(format, veto).steps,
+    model.mapPool,
+    vetoAdvantage(a, b, model),
+    model.vetoTemperature,
+  )
+  const slots: Array<Map<MapId, number>> = []
+  for (const { maps, p } of outcomes) {
+    maps.forEach((map, slot) => {
+      const chances = slots[slot] ?? new Map<MapId, number>()
+      chances.set(map, (chances.get(map) ?? 0) + p)
+      slots[slot] = chances
+    })
+  }
+  return slots
+}
+
 /** Plays one series map by map with a randomized veto. */
 export function playSeries(
   higherSeed: string,

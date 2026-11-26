@@ -71,6 +71,7 @@ export function resetEventProgress(eventId: string): void {
   writeJson(`${dir}/teams.json`, EventTeams, { ...teams, participants })
   const snapshots = `${dir}/snapshots`
   if (existsSync(snapshots)) {
-    for (const file of readdirSync(snapshots)) rmSync(join(snapshots, file))
+    // Recursive: alongside versions keep their snapshots in snapshots/alongside/<version>/.
+    for (const file of readdirSync(snapshots)) rmSync(join(snapshots, file), { recursive: true })
   }
 }

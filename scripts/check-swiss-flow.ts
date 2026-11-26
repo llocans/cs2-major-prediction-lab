@@ -8,7 +8,7 @@
  * Never touches this checkout (see lib/temp-copy.ts).
  * Usage: node scripts/check-swiss-flow.ts [event-id]   (exit code 1 if any check fails)
  */
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, globSync, readFileSync } from 'node:fs'
 import {
   EventConfig,
   EventResults,
@@ -54,7 +54,26 @@ resetEventProgress(eventId)
 const paramsPath = repoPath('data/model/params.json')
 const params = readJson(paramsPath, ModelParams)
 writeJson(paramsPath, ModelParams, { ...params, sim: { ...params.sim, runs: 300 } })
+for (const file of globSync('data/model/archive/*.json', { cwd: repoPath() })) {
+  const archived = readJson(repoPath(file), ModelParams)
+  writeJson(repoPath(file), ModelParams, { ...archived, sim: { ...archived.sim, runs: 300 } })
+}
 const dir = repoPath('data/events', eventId)
+// Stage 2 also scores a made-up older version alongside its own, as a real stage after an upgrade.
+const ALONGSIDE = 'flow-alongside'
+writeJson(repoPath('data/model/archive', `${ALONGSIDE}.json`), ModelParams, {
+  ...params,
+  version: ALONGSIDE,
+  sim: { ...params.sim, runs: 300 },
+  veto: { temperature: params.veto.temperature * 2 },
+})
+const configOnDisk = readJson(`${dir}/config.json`, EventConfig)
+writeJson(`${dir}/config.json`, EventConfig, {
+  ...configOnDisk,
+  stages: configOnDisk.stages.map((s) =>
+    s.id === 'stage-2' ? { ...s, model: { version: params.version, alongside: [ALONGSIDE] } } : s,
+  ),
+})
 const config = readJson(`${dir}/config.json`, EventConfig)
 const registry = readJson(repoPath('data/teams/registry.json'), TeamRegistry)
 const teamsNow = () => readJson(`${dir}/teams.json`, EventTeams).participants
@@ -240,6 +259,15 @@ for (const [index, stage] of swissStages.entries()) {
     `${label}: rounds and formats as drawn (Bo3 for advancement and elimination matches)`,
   )
   check(isSwissStageFinished(eventId, stage.id), `${label}: finished`)
+  if (stage.id === 'stage-2') {
+    const alongsideMissing = [1, 2, 3, 4, 5].filter(
+      (r) => !existsSync(`${dir}/snapshots/alongside/${ALONGSIDE}/${stage.id}-r${r}.json`),
+    )
+    check(
+      alongsideMissing.length === 0,
+      `${label}: alongside snapshots for rounds 1-5${alongsideMissing.length ? ` (missing ${alongsideMissing.join(', ')})` : ''}`,
+    )
+  }
   const missing = [1, 2, 3, 4, 5].filter(
     (r) => !existsSync(`${dir}/snapshots/${stage.id}-r${r}.json`),
   )
@@ -272,6 +300,13 @@ for (const [index, stage] of swissStages.entries()) {
     existsSync(`${dir}/snapshots/${nextStage.id}-r1.json`),
     `${nextStage.name}: first-round snapshot saved on advance`,
   )
+  if (nextStage.id === 'stage-2') {
+    const alongside = `${dir}/snapshots/alongside/${ALONGSIDE}/${nextStage.id}-r1.json`
+    check(
+      existsSync(alongside) && readJson(alongside, Snapshot).modelVersion === ALONGSIDE,
+      `${nextStage.name}: the alongside version's first-round snapshot saved too`,
+    )
+  }
   check(
     advanceStage(eventId, stage.id).status === 'already',
     `${label}: advancing again does nothing`,
