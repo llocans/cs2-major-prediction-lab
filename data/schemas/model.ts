@@ -62,8 +62,21 @@ export const ModelParams = z.object({
     minRd: z.number().positive(),
   }),
   veto: z.object({
-    /** Softmax temperature (rating points) for picks and bans. 0 = always greedy. */
+    /** Softmax temperature (rating points) for picks and bans. 0 = greedy on strength (habits still vary). */
     temperature: z.number().nonnegative(),
+    /**
+     * Teams' real ban and pick habits (data/teams/vetoes/, since v0.2.0). Each veto step mixes the
+     * strength-based choice with the team's HLTV share for that action, counted
+     * weight × n / (n + shrinkMaps) for a team with n maps. `window` pins the data a version uses:
+     * veto stats from another window are refused. Absent: strength alone (v0.1.0).
+     */
+    habits: z
+      .object({
+        weight: z.number().min(0).max(1),
+        shrinkMaps: z.number().positive(),
+        window: z.object({ from: z.string(), to: z.string() }),
+      })
+      .optional(),
   }),
   sim: z.object({ runs: z.number().int().positive(), seed: z.number().int() }),
   modifiers: z.object({ maxAbs: z.number().positive() }),

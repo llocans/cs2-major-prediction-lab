@@ -1,7 +1,11 @@
 import type { MapId } from '../data/schemas/common.ts'
 import type { ModelParams, Modifier, Ratings } from '../data/schemas/model.ts'
+import type { TeamVetoStats } from '../data/schemas/team-stats.ts'
 import { activeModifiers, modifierDelta } from './ratings/modifiers.ts'
 import { winProbability } from './ratings/probability.ts'
+
+/** Percentage points added to every habit share (see `vetoHabit`). */
+const HABIT_FLOOR = 1
 
 /** Everything the simulation needs to know about how strong teams are. */
 export interface MatchModel {
@@ -17,6 +21,16 @@ export interface MatchModel {
   /** Active modifiers for a team, for explanations. */
   modifiersFor(team: string): readonly Modifier[]
   vetoTemperature: number
+  /**
+   * A team's real habit for a veto action over the remaining maps (params.veto.habits), or
+   * undefined without habit data or without the setting. Shares are HLTV's percentages; a map the
+   * team never played in the window counts as a full ban share and no pick share.
+   */
+  vetoHabit(
+    team: string,
+    action: 'ban' | 'pick',
+    remaining: readonly MapId[],
+  ): { shares: number[]; weight: number } | undefined
 }
 
 /**
@@ -29,8 +43,26 @@ export function buildMatchModel(
   params: ModelParams,
   mapPool: readonly MapId[],
   today: string,
+  /** Teams' pick and ban shares (data/teams/vetoes/), used when params.veto.habits is set. */
+  vetoStats: Readonly<Record<string, TeamVetoStats>> = {},
 ): MatchModel {
   const active = activeModifiers(modifiers, today)
+  const habits = params.veto.habits
+  const unplayedMinMaps = params.maps.unplayedMinMaps
+  if (habits) {
+    const teams = Object.values(vetoStats)
+    if (teams.length === 0) {
+      throw new Error(`Model ${params.version} uses veto habits, but no veto stats were loaded`)
+    }
+    for (const stats of teams) {
+      if (stats.window.from !== habits.window.from || stats.window.to !== habits.window.to) {
+        throw new Error(
+          `Model ${params.version} uses veto stats from ${habits.window.from} to ${habits.window.to}; ` +
+            `${stats.teamId}'s run from ${stats.window.from} to ${stats.window.to} (a new window needs a new version)`,
+        )
+      }
+    }
+  }
 
   const strengthCache = new Map<string, { strength: number; variance: number }>()
   const lookup = (team: string, map: MapId) => {
@@ -63,6 +95,29 @@ export function buildMatchModel(
     },
     mapSamples: (team, map) => ratings.teams[team]?.maps[map]?.n ?? 0,
     modifiersFor: (team) => active.filter((m) => m.teamId === team),
+    vetoHabit(team, action, remaining) {
+      const stats = vetoStats[team]
+      if (!habits || !stats || stats.mapsPlayed === 0) return undefined
+      const weight = (habits.weight * stats.mapsPlayed) / (stats.mapsPlayed + habits.shrinkMaps)
+      // A map never played in a sample this size is most likely a permanent ban (the same threshold
+      // as the map strength rule); in a smaller sample its absence says nothing: average ban share.
+      const listed = Object.values(stats.maps)
+      const meanBan = listed.reduce((sum, r) => sum + r.ban, 0) / Math.max(listed.length, 1)
+      const absentBan = stats.mapsPlayed >= unplayedMinMaps ? 100 : meanBan
+      // A small floor keeps every map possible and avoids a jump when all shares are 0.
+      const shares = remaining.map((map) => {
+        const rates = stats.maps[map]
+        const share = rates
+          ? action === 'ban'
+            ? rates.ban
+            : rates.pick
+          : action === 'ban'
+            ? absentBan
+            : 0
+        return share + HABIT_FLOOR
+      })
+      return { shares, weight }
+    },
     mapWin(a, b, map) {
       const key = `${a}|${b}|${map}`
       const cached = winCache.get(key)

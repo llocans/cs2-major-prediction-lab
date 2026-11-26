@@ -22,6 +22,7 @@ scope.onmessage = (event: MessageEvent<SimRequest>) => {
       request.params,
       request.mapPool,
       request.today,
+      request.vetoStats,
     )
     const labels = {
       team: (id: string) => request.teamNames[id] ?? id,

@@ -3,7 +3,7 @@ import { winsNeeded } from '../data/schemas/common.ts'
 import type { VetoProcedure } from '../data/schemas/event-config.ts'
 import type { MatchModel } from './match-model.ts'
 import type { Rng } from './rng.ts'
-import { type Advantage, runVeto, vetoOutcomes } from './veto.ts'
+import { type Advantage, runVeto, type VetoHabit, vetoOutcomes } from './veto.ts'
 
 export type VetoRules = Partial<Record<MatchFormat, VetoProcedure>>
 
@@ -51,6 +51,12 @@ function vetoAdvantage(first: string, second: string, model: MatchModel): Advant
   }
 }
 
+/** Each veto side's real habits, with `first` as Team A (undefined: strength alone). */
+function vetoHabit(first: string, second: string, model: MatchModel): VetoHabit {
+  return (side, action, remaining) =>
+    model.vetoHabit(side === 'A' ? first : second, action, remaining)
+}
+
 /** The maps a veto produces, with `first` as Team A. */
 function vetoMaps(
   first: string,
@@ -67,6 +73,7 @@ function vetoMaps(
     advantage,
     model.vetoTemperature,
     rng,
+    vetoHabit(first, second, model),
   )
 }
 
@@ -129,6 +136,7 @@ export function seriesWinChance(
     model.mapPool,
     vetoAdvantage(a, b, model),
     model.vetoTemperature,
+    vetoHabit(a, b, model),
   )
   let total = 0
   for (const { maps, p } of outcomes) {
@@ -160,6 +168,7 @@ export function mapSlotChances(
     model.mapPool,
     vetoAdvantage(a, b, model),
     model.vetoTemperature,
+    vetoHabit(a, b, model),
   )
   const slots: Array<Map<MapId, number>> = []
   for (const { maps, p } of outcomes) {

@@ -1,5 +1,6 @@
 import type { VetoProcedure } from '../../../data/schemas/event-config.ts'
 import type { ModelParams, Modifier, Ratings } from '../../../data/schemas/model.ts'
+import type { TeamVetoStats } from '../../../data/schemas/team-stats.ts'
 import type { SwissOutcomes } from '../../../engine/pickem.ts'
 import type { PlayoffResult, PlayoffRules } from '../../../engine/playoffs/bracket.ts'
 import type { StagePrediction } from '../../../engine/predict.ts'
@@ -16,6 +17,8 @@ interface ModelRequest {
   ratings: Ratings
   modifiers: Modifier[]
   params: ModelParams
+  /** Teams' pick and ban shares, used when the params ask for veto habits. */
+  vetoStats: Record<string, TeamVetoStats>
   mapPool: string[]
   veto: { bo1?: VetoProcedure; bo3?: VetoProcedure; bo5?: VetoProcedure }
   today: string

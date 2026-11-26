@@ -159,3 +159,106 @@ describe('simulateSwiss with exact match odds', () => {
     expect(simulateSwiss({ ...base, announced })).toEqual(plain)
   })
 })
+
+describe('veto habits (params.veto.habits)', () => {
+  const stats = (teamId: string, maps: Record<string, { pick: number; ban: number }>, n = 40) => ({
+    schemaVersion: 1 as const,
+    teamId,
+    window: { from: '2026-08-21', to: '2026-11-21' },
+    filter: 'vs HLTV top 50',
+    mapsPlayed: n,
+    maps,
+    source,
+  })
+  const shares = {
+    a: stats('a', {
+      ancient: { pick: 80, ban: 0 },
+      cache: { pick: 0, ban: 60 },
+      dust2: { pick: 10, ban: 30 },
+      inferno: { pick: 10, ban: 10 },
+      mirage: { pick: 0, ban: 0 },
+      nuke: { pick: 0, ban: 0 },
+    }),
+    b: stats('b', { mirage: { pick: 90, ban: 0 }, nuke: { pick: 10, ban: 50 } }, 5),
+  }
+  const window = { from: '2026-08-21', to: '2026-11-21' }
+  const habits = {
+    ...params,
+    veto: { temperature: 25, habits: { weight: 1, shrinkMaps: 5, window } },
+  }
+  const ratings = ratingsFor({ a: 1560, b: 1500 })
+  const withHabits = buildMatchModel(ratings, [], habits, pool, '2026-11-21', shares)
+
+  it('changes nothing without the setting, with or without veto data', () => {
+    const plain = buildMatchModel(ratings, [], params, pool, '2026-11-21', shares)
+    expect(plain.vetoHabit('a', 'ban', pool)).toBeUndefined()
+    for (const format of ['bo1', 'bo3'] as const) {
+      expect(seriesWinChance('a', 'b', format, plain, veto)).toBe(
+        seriesWinChance('a', 'b', format, model, veto),
+      )
+    }
+  })
+
+  it('reads HLTV shares plus a 1-point floor; a map never played in 15+ maps is a full ban', () => {
+    const ban = withHabits.vetoHabit('a', 'ban', ['anubis', 'cache', 'mirage'])
+    expect(ban?.shares).toEqual([101, 61, 1])
+    expect(withHabits.vetoHabit('a', 'pick', ['anubis', 'ancient'])?.shares).toEqual([1, 81])
+    // Team b has 5 maps: a map it never played gets its average ban share (25), not a full ban.
+    expect(withHabits.vetoHabit('b', 'ban', ['anubis', 'nuke'])?.shares).toEqual([26, 51])
+    // weight × n / (n + shrinkMaps): 40 maps count far more than 5.
+    expect(ban?.weight).toBeCloseTo(40 / 45, 12)
+    expect(withHabits.vetoHabit('b', 'ban', pool)?.weight).toBeCloseTo(0.5, 12)
+    expect(withHabits.vetoHabit('nobody', 'ban', pool)).toBeUndefined()
+  })
+
+  it('refuses veto stats from another window, or none at all', () => {
+    const other = {
+      ...shares,
+      a: { ...shares.a, window: { from: '2026-09-01', to: '2026-11-21' } },
+    }
+    expect(() => buildMatchModel(ratings, [], habits, pool, '2026-11-21', other)).toThrow(/window/)
+    expect(() => buildMatchModel(ratings, [], habits, pool, '2026-11-21', {})).toThrow(
+      /no veto stats/,
+    )
+  })
+
+  it('runs the old veto exactly when a habit gives nothing', () => {
+    const none = () => undefined
+    for (const seed of [1, 2, 3]) {
+      expect(runVeto(bo3.steps, pool, advantage, 25, createRng(seed), none)).toEqual(
+        runVeto(bo3.steps, pool, advantage, 25, createRng(seed)),
+      )
+    }
+    expect(vetoOutcomes(bo1.steps, pool, advantage, 25, none)).toEqual(
+      vetoOutcomes(bo1.steps, pool, advantage, 25),
+    )
+  })
+
+  it('keeps exact veto probabilities adding up to 1, and the series odds match the Monte Carlo', () => {
+    const habit = (side: 'A' | 'B', action: 'ban' | 'pick', remaining: readonly string[]) =>
+      withHabits.vetoHabit(side === 'A' ? 'a' : 'b', action, remaining)
+    for (const procedure of [bo1, bo3]) {
+      const outcomes = vetoOutcomes(procedure.steps, pool, advantage, 25, habit)
+      expect(outcomes.reduce((sum, o) => sum + o.p, 0)).toBeCloseTo(1, 12)
+    }
+    const exact = seriesWinChance('a', 'b', 'bo3', withHabits, veto)
+    const play = seriesPlayer(withHabits, veto, createRng(5))
+    const runs = 40000
+    let wins = 0
+    for (let i = 0; i < runs; i++) if (play('a', 'b', 'bo3') === 'a') wins++
+    expect(Math.abs(wins / runs - exact)).toBeLessThan(0.01)
+  })
+
+  it('bans what teams usually ban, so the decider is a map both rarely ban', () => {
+    const habit = (side: 'A' | 'B', action: 'ban' | 'pick', remaining: readonly string[]) =>
+      withHabits.vetoHabit(side === 'A' ? 'a' : 'b', action, remaining)
+    const decider = (map: string, withHabit: boolean) =>
+      vetoOutcomes(bo1.steps, pool, advantage, 25, withHabit ? habit : undefined)
+        .filter((o) => o.maps[0] === map)
+        .reduce((sum, o) => sum + o.p, 0)
+    // Neither team bans Mirage; team a never played Anubis and bans Cache most.
+    expect(decider('mirage', true)).toBeGreaterThan(decider('mirage', false))
+    expect(decider('anubis', true)).toBeLessThan(decider('mirage', true))
+    expect(decider('cache', true)).toBeLessThan(decider('mirage', true))
+  })
+})

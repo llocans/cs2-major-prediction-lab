@@ -6,9 +6,20 @@ import type { Rng } from './rng.ts'
 export type Advantage = (side: 'A' | 'B', map: MapId) => number
 
 /**
+ * A side's real habit for one veto action over the remaining maps: a share per map (any scale) and
+ * how much it counts (0-1). Undefined when the side has no habit data: strength alone decides.
+ */
+export type VetoHabit = (
+  side: 'A' | 'B',
+  action: 'ban' | 'pick',
+  remaining: readonly MapId[],
+) => { shares: number[]; weight: number } | undefined
+
+/**
  * Runs a veto and returns the maps in play order: picks in pick order, then the decider.
  * Bans remove a low-advantage map and picks take a high-advantage one, by softmax with `temperature`
- * (rating points). Temperature 0, or no rng, is fully greedy and deterministic.
+ * (rating points), mixed with each side's real `habit` when given. No rng is fully greedy and
+ * deterministic (the most likely map each step); temperature 0 is greedy on strength only.
  */
 export function runVeto(
   steps: readonly VetoStep[],
@@ -16,6 +27,7 @@ export function runVeto(
   advantage: Advantage,
   temperature: number,
   rng?: Rng,
+  habit?: VetoHabit,
 ): MapId[] {
   const remaining = [...pool]
   const picked: MapId[] = []
@@ -24,7 +36,10 @@ export function runVeto(
       if (remaining.length <= 1) throw new Error('Veto removed every map; check the veto steps')
       const sign = step.action === 'pick' ? 1 : -1
       const scores = remaining.map((map) => sign * advantage(step.team, map))
-      const index = choose(scores, temperature, rng)
+      const mix = habit?.(step.team, step.action, remaining)
+      const index = mix
+        ? chooseMixed(scores, temperature, mix, rng)
+        : choose(scores, temperature, rng)
       const [map] = remaining.splice(index, 1)
       if (map !== undefined && step.action === 'pick') picked.push(map)
     }
@@ -56,6 +71,48 @@ function choose(scores: readonly number[], temperature: number, rng?: Rng): numb
   return weights.length - 1
 }
 
+/** Like `choose`, with a habit mixed in (`mixedWeights`); greedy takes the most likely map. */
+function chooseMixed(
+  scores: readonly number[],
+  temperature: number,
+  mix: { shares: number[]; weight: number },
+  rng?: Rng,
+): number {
+  const weights = mixedWeights(scores, temperature, mix)
+  if (!rng) {
+    let best = 0
+    weights.forEach(([, w], index) => {
+      if (w > (weights[best]?.[1] ?? Number.NEGATIVE_INFINITY)) best = index
+    })
+    return best
+  }
+  let draw = rng.next()
+  for (const [index, weight] of weights) {
+    draw -= weight
+    if (draw <= 0) return index
+  }
+  return scores.length - 1
+}
+
+/**
+ * The chance of each remaining map at one veto step with a habit: (1 - weight) × the strength-based
+ * chance (`choiceWeights`) + weight × the map's share of the habit. Habit shares summing to 0 give
+ * the strength-based chances alone.
+ */
+function mixedWeights(
+  scores: readonly number[],
+  temperature: number,
+  mix: { shares: number[]; weight: number },
+): Array<[number, number]> {
+  const strength = new Map(choiceWeights(scores, temperature))
+  const total = mix.shares.reduce((sum, share) => sum + share, 0)
+  const weight = total > 0 ? mix.weight : 0
+  return scores.map((_, index) => [
+    index,
+    (1 - weight) * (strength.get(index) ?? 0) + weight * ((mix.shares[index] ?? 0) / (total || 1)),
+  ])
+}
+
 /** One possible veto result: the maps in play order and its probability. */
 export interface VetoOutcome {
   maps: MapId[]
@@ -72,6 +129,7 @@ export function vetoOutcomes(
   pool: readonly MapId[],
   advantage: Advantage,
   temperature: number,
+  habit?: VetoHabit,
 ): VetoOutcome[] {
   const actions = steps.flatMap((step) =>
     Array.from({ length: step.count }, () => ({ team: step.team, action: step.action })),
@@ -95,7 +153,12 @@ export function vetoOutcomes(
     if (remaining.length <= 1) throw new Error('Veto removed every map; check the veto steps')
     const sign = step.action === 'pick' ? 1 : -1
     const scores = remaining.map((map) => sign * advantage(step.team, map))
-    for (const [choice, weight] of choiceWeights(scores, temperature)) {
+    const mix = habit?.(step.team, step.action, remaining)
+    const weights = mix
+      ? mixedWeights(scores, temperature, mix)
+      : choiceWeights(scores, temperature)
+    for (const [choice, weight] of weights) {
+      if (mix && weight <= 0) continue
       const map = remaining[choice]
       if (map === undefined) continue
       walk(

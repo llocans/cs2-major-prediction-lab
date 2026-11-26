@@ -5,8 +5,8 @@
  * the round's real draw. Writes nothing. Modifiers count from their `createdAt` day; one edited or
  * deleted since is replayed as it is now (modifiers.json keeps no history).
  *
- * Usage: node scripts/replay-stage.ts <event-id> <stage-id> [version ...]
- * (default: the stage's own version). Replaying the version a snapshot was made with gives its
+ * Usage: node scripts/replay-stage.ts <event-id> <stage-id> [version ...] [--matches]
+ * (default: the stage's own version; `--matches` lists every match with each version's odds). Replaying the version a snapshot was made with gives its
  * numbers back: match odds within about 1 pp for snapshots made before 2026-11-25 (their match
  * odds were counted from the runs), team odds within the sampling noise.
  */
@@ -26,10 +26,13 @@ import { assertSharedRatingRules } from '../engine/model-version.ts'
 import { predictStage } from '../engine/predict.ts'
 import { mapSlotChances } from '../engine/series.ts'
 import { stageSeeds } from '../engine/swiss/stage-seeds.ts'
+import { loadVetoStats } from './lib/event-context.ts'
 import { readJson, repoPath } from './lib/files.ts'
 import { loadParams, loadStageVersions } from './lib/model-versions.ts'
 
-const [eventId, stageId, ...requested] = process.argv.slice(2)
+const args = process.argv.slice(2)
+const showMatches = args.includes('--matches')
+const [eventId, stageId, ...requested] = args.filter((arg) => arg !== '--matches')
 if (!eventId || !stageId) {
   console.error('Usage: node scripts/replay-stage.ts <event-id> <stage-id> [version ...]')
   process.exit(1)
@@ -64,6 +67,15 @@ const snapshots = globSync(`data/events/${eventId}/snapshots/${stageId}-r*.json`
   .map((file) => readJson(repoPath(file), Snapshot))
   .sort((a, b) => a.beforeRound - b.beforeRound)
 const seeds = stageSeeds(teams.participants, stageId)
+// Pick and ban shares: a replay is only honest if their window ended before the stage started.
+const vetoStats = loadVetoStats()
+for (const stats of Object.values(vetoStats)) {
+  if (stats.window.to > swiss.start) {
+    console.warn(
+      `Note: ${stats.teamId}'s pick and ban shares run to ${stats.window.to}, after the stage start`,
+    )
+  }
+}
 const names = new Map(teams.participants.map((p) => [p.teamId, p.displayName]))
 const labels = {
   team: (id: string) => names.get(id) ?? id,
@@ -93,6 +105,8 @@ const empty = (): Score => ({
   maxTeamDiff: 0,
 })
 const saved = empty()
+/** Per scored match: label, winner and each version's chance for the first-listed team. */
+const rows: Array<{ label: string; won: string; p: Map<string, number> }> = []
 const replayed = new Map(versions.map((v) => [v, empty()]))
 
 for (const snapshot of snapshots) {
@@ -122,6 +136,7 @@ for (const snapshot of snapshots) {
       params,
       config.mapPool.map((m) => m.id),
       day,
+      vetoStats,
     )
     const input = {
       seeds,
@@ -156,6 +171,13 @@ for (const snapshot of snapshots) {
       )
       if (!result) continue
       add(score, match.pA, result.winner === match.teamA)
+      const label = `R${round} ${labels.team(match.teamA)} vs ${labels.team(match.teamB)} (${match.format})`
+      let row = rows.find((r) => r.label === label)
+      if (!row) {
+        row = { label, won: labels.team(result.winner), p: new Map() }
+        rows.push(row)
+      }
+      row.p.set(version, match.pA)
       const slots = mapSlotChances(match.teamA, match.teamB, match.format, model, config.veto)
       const playedMaps: MapId[] = result.maps.map((m) => m.map)
       const chances = playedMaps.map((map, slot) => slots[slot]?.get(map) ?? 0)
@@ -194,3 +216,11 @@ console.log(
   '\nBrier: lower is better (always 50% scores 0.250). Map chance: the mean chance the veto gave the' +
     ' maps actually played (random: 14%). Max diff: the largest change from the saved snapshot.',
 )
+
+if (showMatches) {
+  console.log(`\n${'Match'.padEnd(46)}${versions.map((v) => v.padStart(10)).join('')}  winner`)
+  for (const row of rows) {
+    const odds = versions.map((v) => `${((row.p.get(v) ?? 0) * 100).toFixed(0)}%`.padStart(10))
+    console.log(`${row.label.padEnd(46)}${odds.join('')}  ${row.won}`)
+  }
+}

@@ -19,6 +19,7 @@ import {
   type Stage,
   TeamForm,
   TeamRegistry,
+  TeamVetoStats,
   teamLogoPaths,
 } from '../../../data/schemas/index.ts'
 import { SyncStatus } from '../../../data/schemas/sync.ts'
@@ -58,6 +59,10 @@ const formFiles = import.meta.glob('../../../data/teams/form/*.json', {
   eager: true,
   import: 'default',
 })
+const vetoFiles = import.meta.glob('../../../data/teams/vetoes/*.json', {
+  eager: true,
+  import: 'default',
+})
 const archivedParamsFiles = import.meta.glob('../../../data/model/archive/*.json', {
   eager: true,
   import: 'default',
@@ -78,6 +83,13 @@ export function stageParams(stage: Stage): ModelParams {
 export const modifiers = Modifiers.parse(modifiersJson).modifiers
 export const ratings = Ratings.parse(ratingsJson)
 export const registry = TeamRegistry.parse(registryJson)
+/** Teams' pick and ban shares by team ID (data/teams/vetoes/). */
+export const vetoStats: Record<string, TeamVetoStats> = Object.fromEntries(
+  Object.values(vetoFiles).map((raw) => {
+    const stats = TeamVetoStats.parse(raw)
+    return [stats.teamId, stats]
+  }),
+)
 
 /** Status of the automatic result fetching on this machine, if the poller has run here. */
 export const syncStatus = (() => {

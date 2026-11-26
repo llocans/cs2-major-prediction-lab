@@ -144,7 +144,10 @@ export function MethodologyPage({ event }: { event: EventData }) {
           <strong>Veto.</strong> The model follows the event’s exact ban and pick order. Each team
           bans the maps it is weakest on relative to the opponent and picks the ones it is strongest
           on, with some randomness (a temperature of {params.veto.temperature} points) because real
-          vetoes are not perfectly predictable. Sides (CT/T) are not modeled.
+          vetoes are not perfectly predictable.
+          {params.veto.habits &&
+            ' Since Stage 2 it also uses how often each team really banned and picked each map in the last three months (HLTV): the more maps a team played, the more its real habits decide.'}{' '}
+          Sides (CT/T) are not modeled.
         </p>
         <p>
           <strong>Map.</strong> The win chance on a map comes from the rating gap including map
