@@ -618,6 +618,124 @@
         "retrievedAt": "2026-11-26",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r4-lynn-vision-parivision",
+      "stageId": "stage-1",
+      "round": 4,
+      "teamA": "lynn-vision",
+      "teamB": "parivision",
+      "format": "bo3",
+      "maps": [
+        {
+          "map": "ancient",
+          "scoreA": 7,
+          "scoreB": 13
+        },
+        {
+          "map": "dust2",
+          "scoreA": 10,
+          "scoreB": 13
+        }
+      ],
+      "winner": "parivision",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3475687)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-26",
+        "license": "CC-BY-SA 3.0"
+      }
+    },
+    {
+      "id": "stage-1-r4-100-thieves-9z",
+      "stageId": "stage-1",
+      "round": 4,
+      "teamA": "100-thieves",
+      "teamB": "9z",
+      "format": "bo3",
+      "maps": [
+        {
+          "map": "nuke",
+          "scoreA": 5,
+          "scoreB": 13
+        },
+        {
+          "map": "dust2",
+          "scoreA": 13,
+          "scoreB": 6
+        },
+        {
+          "map": "ancient",
+          "scoreA": 13,
+          "scoreB": 5
+        }
+      ],
+      "winner": "100-thieves",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3475713)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-26",
+        "license": "CC-BY-SA 3.0"
+      }
+    },
+    {
+      "id": "stage-1-r4-imperial-liquid",
+      "stageId": "stage-1",
+      "round": 4,
+      "teamA": "imperial",
+      "teamB": "liquid",
+      "format": "bo3",
+      "maps": [
+        {
+          "map": "anubis",
+          "scoreA": 7,
+          "scoreB": 13
+        },
+        {
+          "map": "cache",
+          "scoreA": 13,
+          "scoreB": 16
+        }
+      ],
+      "winner": "liquid",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3475789)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-26",
+        "license": "CC-BY-SA 3.0"
+      }
+    },
+    {
+      "id": "stage-1-r4-chinggis-warriors-wildcard",
+      "stageId": "stage-1",
+      "round": 4,
+      "teamA": "wildcard",
+      "teamB": "chinggis-warriors",
+      "format": "bo3",
+      "maps": [
+        {
+          "map": "dust2",
+          "scoreA": 13,
+          "scoreB": 7
+        },
+        {
+          "map": "cache",
+          "scoreA": 11,
+          "scoreB": 13
+        },
+        {
+          "map": "nuke",
+          "scoreA": 19,
+          "scoreB": 16
+        }
+      ],
+      "winner": "wildcard",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3475837)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-26",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }

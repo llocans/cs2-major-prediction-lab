@@ -82,6 +82,17 @@ function toResult(
       map: options.resolveMap(map.map),
       scoreA: map.score1,
       scoreB: map.score2,
+      ...(map.sides
+        ? {
+            sides: {
+              aCt: map.sides.ct1,
+              aT: map.sides.t1,
+              bCt: map.sides.ct2,
+              bT: map.sides.t2,
+              ...(map.sides.firstSide1 ? { aFirstSide: map.sides.firstSide1 } : {}),
+            },
+          }
+        : {}),
     })),
     winner: winner === 1 ? teamA : teamB,
     source: options.source,

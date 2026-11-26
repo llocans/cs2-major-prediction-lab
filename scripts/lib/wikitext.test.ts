@@ -7,8 +7,8 @@ const text = `{{Bracket|Bracket/4|id=abc
 |R1M1={{Match
 	|opponent1={{TeamOpponent|vit}}|opponent2={{TeamOpponent|navi}}
 	|finished=true
-	|map1={{Map|map=Inferno|finished=true|t1t=7|t1ct=6|t2t=5|t2ct=5}}
-	|map2={{Map|map=Nuke|finished=true|t1t=6|t1ct=7|t2t=4|t2ct=3}}
+	|map1={{Map|map=Inferno|finished=true|t1firstside=ct|t1t=7|t1ct=6|t2t=5|t2ct=5}}
+	|map2={{Map|map=Nuke|finished=true|t1t=6|t1ct=7|t2t=4|t2ct=3|o1t1t=3|o1t1ct=1|o1t2t=1|o1t2ct=1}}
 	|map3={{Map|map=Mirage|finished=skip}}
 	}}
 |R1M2={{Match
@@ -47,6 +47,13 @@ describe('parseBracketMatches', () => {
     expect(second?.finished).toBe(false)
     expect(third?.mapSlots).toBe(3)
   })
+
+  it('reads regulation rounds per side and the first side; overtime only in the totals', () => {
+    const [inferno, nuke] = matches[0]?.maps ?? []
+    expect(inferno?.sides).toEqual({ ct1: 6, t1: 7, ct2: 5, t2: 5, firstSide1: 'ct' })
+    expect(nuke).toMatchObject({ score1: 17, score2: 9, sides: { ct1: 7, t1: 6, ct2: 3, t2: 4 } })
+    expect(nuke?.sides?.firstSide1).toBeUndefined()
+  })
 })
 
 describe('readBracketPage', () => {
@@ -64,8 +71,9 @@ describe('readBracketPage', () => {
     ])
     expect(results[0]?.maps.map((m) => `${m.map} ${m.scoreA}-${m.scoreB}`)).toEqual([
       'inferno 13-10',
-      'nuke 13-7',
+      'nuke 17-9',
     ])
+    expect(results[0]?.maps[0]?.sides).toEqual({ aCt: 6, aT: 7, bCt: 5, bT: 5, aFirstSide: 'ct' })
     expect(skipped).toEqual([])
   })
 
