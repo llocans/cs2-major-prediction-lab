@@ -50,3 +50,27 @@ export const TeamMapStats = z.object({
   source: Source,
 })
 export type TeamMapStats = z.infer<typeof TeamMapStats>
+
+/** A team's pick and ban shares for one map, in percent, as HLTV shows them. */
+export const MapVetoRates = z.object({
+  pick: z.number().min(0).max(100),
+  ban: z.number().min(0).max(100),
+})
+
+/**
+ * data/teams/vetoes/<team-id>.json: how often a team picked and banned each map, from the same HLTV
+ * team map stats page and window as data/teams/maps/ (HLTV shows "Pick %" and "Ban %" per map).
+ * HLTV lists only maps the team played in the window; a map it never played is absent here.
+ */
+export const TeamVetoStats = z.object({
+  schemaVersion: z.literal(1),
+  teamId: TeamId,
+  window: z.object({ from: IsoDate, to: IsoDate }),
+  /** e.g. "vs HLTV top 50" */
+  filter: z.string(),
+  /** Maps played in the window (the same count as the map stats). */
+  mapsPlayed: z.number().int().nonnegative(),
+  maps: z.record(MapId, MapVetoRates),
+  source: Source,
+})
+export type TeamVetoStats = z.infer<typeof TeamVetoStats>

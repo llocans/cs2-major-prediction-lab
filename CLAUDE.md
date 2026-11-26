@@ -43,6 +43,8 @@ future events too: formats live in config, never in code.
     `site/public/logos/` + `logo` in `registry.json`; a team renamed for the event (GOSH) gets its
     event logo in `logos/<event>/` + `logo` in its `teams.json`. Downloads only new or changed logos
   - `research/import-map-stats.ts <file> <from> <to> Top50` → `data/teams/maps/` (HLTV counts)
+  - `research/import-veto-stats.ts <file> <from> <to> Top50` → pick and ban shares per map (HLTV,
+    the same page and window as the map stats) in a `vetoes` folder in `data/teams/`
   - `research/oddspapi-setup.ts [pattern]` → prints OddsPapi ids for `marketOdds` in event config
     (market odds are then collected by the poller; benchmark only)
   - `build-ratings.ts <event>` → `data/ratings/current.json` (VRS prior + map stats; once results exist it only adds missing teams)
