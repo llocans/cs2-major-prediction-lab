@@ -212,8 +212,12 @@ function MatchRow(props: {
             className={[
               'flex items-center gap-1.5 px-2 text-sm leading-none',
               index === 0 ? 'border-b border-rule' : '',
-              // A soft tint marks the selected team, so even a short name (CW) stands out.
-              isSelected || (won && match.kind === 'override') ? 'bg-accent-soft' : '',
+              // A soft tint marks the selected team; a dashed outline marks a what-if win (a guess,
+              // not a result). A selected what-if winner shows both.
+              isSelected ? 'bg-accent-soft' : '',
+              won && match.kind === 'override'
+                ? 'outline-[1.5px] outline-dashed outline-accent -outline-offset-2'
+                : '',
             ].join(' ')}
           >
             <TeamLogo teamId={team} size="md" />
@@ -222,9 +226,6 @@ function MatchRow(props: {
               className={[
                 'min-w-0 flex-1 self-stretch truncate text-left',
                 won ? 'font-semibold text-ink' : lost ? 'text-ink-3' : 'text-ink',
-                isSelected
-                  ? 'underline decoration-accent decoration-2 underline-offset-[5px] [text-decoration-skip-ink:none]'
-                  : '',
               ].join(' ')}
               onClick={() => onSelect(team)}
               title={`Show ${name(team)}`}
@@ -390,9 +391,7 @@ function ResultBox(props: {
                   className={[
                     'flex min-w-0 items-center gap-1.5 text-left text-sm',
                     f.override ? 'text-accent' : 'text-ink',
-                    selected === f.team
-                      ? 'bg-accent-soft underline decoration-accent decoration-2 underline-offset-[5px] [text-decoration-skip-ink:none]'
-                      : '',
+                    selected === f.team ? 'bg-accent-soft' : '',
                   ].join(' ')}
                   style={{ height: LAYOUT.resultRow }}
                 >
