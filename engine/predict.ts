@@ -6,6 +6,7 @@ import {
   matchupConfidence,
   teamConfidence,
 } from './explain.ts'
+import { mapSlotRecords } from './series.ts'
 import { type EventChain, type EventSimResult, simulateEvent } from './simulate-event.ts'
 import { type SwissSimInput, type SwissSimResult, simulateSwiss } from './simulate-swiss.ts'
 import { buildRecords } from './swiss/records.ts'
@@ -56,6 +57,7 @@ export function predictStage(
       labels.team,
       labels.map,
     ),
+    maps: mapSlotRecords(match.teamA, match.teamB, match.format, model, veto),
   }))
 
   const records = buildRecords(input.seeds, input.played)

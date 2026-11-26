@@ -107,7 +107,8 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
   map a team never played (Cache) gets offset 0 unless the team has 15+ maps, so the simulated veto
   leaves it in and it often ends up as the guess, while real teams ban it. Options: show per-map
   chances from the simulation, score map guesses on the Track record page, treat an unplayed map as
-  a likely ban at smaller samples (changes predictions: ask first).
+  a likely ban at smaller samples (changes predictions: ask first). v0.2 (habits) fixed the cause
+  from Stage 2; from 2026-11-27 snapshots save each match's map chances for scoring.
   Related, found 2026-11-24: in Bo1 the reason "HEROIC +32 rating on average" (round 3 vs M80) sat
   next to a 49% chance. Not a bug: HEROIC's edge is on Ancient, Inferno and Nuke (62-64%), M80 bans
   those, HEROIC bans its weak maps, and the expected decider Mirage is 50/50. The average over all
@@ -237,6 +238,11 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
 
 ## Done
 
+- 2026-11-27: Snapshots save each match's map chances per map slot (`maps`), for scoring map
+  guesses on the Track record page from Stage 2 on. Match and team odds unchanged.
+- 2026-11-26: Track record page names each stage's model version next to its title and, from
+  Stage 2, adds a "New model vs old" table: the official version and the one scored alongside on the
+  same matches (Brier, favourite won, Bo1 map guessed from the saved map chances).
 - 2026-11-26: Announced Swiss draws. The poller stores each round's full draw (round 2 on) in
   `draw.json` in the event folder; the Stage, Pick'Em and Playoffs pages and `simulate.ts` use it for
   the current round, so a Valve draw that differs from the engine's pairing shows the right pairs.
@@ -247,7 +253,6 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
   a209137): maps actually played got 24.8% (v0.1.0: 10.1%), Bo1 top map 10/20 (2/20), Brier 0.227
   (0.233), hits 18/30 (19/30). Same picture as the 26-match replay v0.2.0 was chosen on
   (`docs/model.md`).
-
 - 2026-11-26: The poller saves CT/T regulation rounds and team A's first side per map
   (`maps[].sides` in `results.json`, from Liquipedia's half scores) for later use (round markets,
   side strength); the model does not read them yet.

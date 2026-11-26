@@ -102,7 +102,9 @@ roles as a run, walks every veto the softmax veto can produce with its probabili
 odds carry no sampling noise, and a page that re-simulates (the Stage page in the browser) shows the
 same match odds as the saved snapshot. The standard error covers the team odds only. Before
 2026-11-25 match odds were counted from the runs (±0.4 pp); Stage 1's R1-R4 snapshots keep those
-numbers (snapshots are never edited).
+numbers (snapshots are never edited). From 2026-11-27 each match also carries the veto's chance of
+every map in every map slot (`maps`, from the same veto paths: `mapSlotChances`), so map guesses can
+be scored from the snapshots alone (Track record); Stage 1's snapshots have none.
 
 Map win probabilities are always computed in one fixed team order (alphabetical) and the other order
 is `1 − p`, so a simulation never depends on which pairing happened to be evaluated first. The same
@@ -177,9 +179,10 @@ version). Stage 1 of PGL Singapore is the test run of v0.1.0.
   differ in everything that turns ratings into a prediction: veto, simulation, confidence. A
   version with new rating rules needs its own ratings file first (not built yet), and
   `build-ratings.ts` always builds the prior with the latest `params.json`.
-- Alongside snapshots are not on the site or in `score-stage.ts` yet (the Track record step in
-  `docs/roadmap.md`). An alongside snapshot that fails is reported and skipped; it never stops
-  the poller.
+- The Track record page shows each stage's model version and, when an older version runs
+  alongside, a table scoring both on the same matches (Brier, favourite won, Bo1 map guessed;
+  `versionScores` in `engine/track-record.ts`). `score-stage.ts` scores the stage's own version
+  only. An alongside snapshot that fails is reported and skipped; it never stops the poller.
 - `node scripts/replay-stage.ts <event> <stage> [version ...]` replays a stage's saved rounds with
   each version, from the ratings, earlier results, modifiers and draw each snapshot had, and scores
   them: Brier, hits, the mean chance the veto gave the maps actually played, and the Bo1 top map.
