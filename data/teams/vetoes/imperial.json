@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "teamId": "imperial",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 24,
+  "maps": {
+    "inferno": {
+      "pick": 66.7,
+      "ban": 0
+    },
+    "cache": {
+      "pick": 50,
+      "ban": 7.7
+    },
+    "mirage": {
+      "pick": 22.2,
+      "ban": 0
+    },
+    "nuke": {
+      "pick": 11.1,
+      "ban": 28.6
+    },
+    "anubis": {
+      "pick": 0,
+      "ban": 35.7
+    },
+    "dust2": {
+      "pick": 0,
+      "ban": 44.4
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/9455/imperial?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "teamId": "mibr",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 47,
+  "maps": {
+    "mirage": {
+      "pick": 41.2,
+      "ban": 12
+    },
+    "ancient": {
+      "pick": 14.3,
+      "ban": 13.8
+    },
+    "inferno": {
+      "pick": 33.3,
+      "ban": 0
+    },
+    "nuke": {
+      "pick": 33.3,
+      "ban": 5
+    },
+    "cache": {
+      "pick": 5.9,
+      "ban": 29.4
+    },
+    "anubis": {
+      "pick": 0,
+      "ban": 7.7
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/9215/mibr?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

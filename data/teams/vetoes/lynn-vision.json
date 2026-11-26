@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "teamId": "lynn-vision",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 6,
+  "maps": {
+    "dust2": {
+      "pick": 50,
+      "ban": 0
+    },
+    "ancient": {
+      "pick": 0,
+      "ban": 0
+    },
+    "inferno": {
+      "pick": 100,
+      "ban": 0
+    },
+    "anubis": {
+      "pick": 0,
+      "ban": 33.3
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/8840/lynn-vision?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

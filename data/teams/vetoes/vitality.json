@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "teamId": "vitality",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 69,
+  "maps": {
+    "dust2": {
+      "pick": 54.5,
+      "ban": 3.2
+    },
+    "mirage": {
+      "pick": 4.2,
+      "ban": 17.8
+    },
+    "cache": {
+      "pick": 34.8,
+      "ban": 8.6
+    },
+    "anubis": {
+      "pick": 12.5,
+      "ban": 14.8
+    },
+    "inferno": {
+      "pick": 16.7,
+      "ban": 0
+    },
+    "nuke": {
+      "pick": 19.2,
+      "ban": 25
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/9565/vitality?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "teamId": "9z",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 38,
+  "maps": {
+    "nuke": {
+      "pick": 37.5,
+      "ban": 5
+    },
+    "mirage": {
+      "pick": 6.7,
+      "ban": 14.8
+    },
+    "dust2": {
+      "pick": 54.5,
+      "ban": 5.3
+    },
+    "inferno": {
+      "pick": 16.7,
+      "ban": 23.1
+    },
+    "cache": {
+      "pick": 13.3,
+      "ban": 14.8
+    },
+    "ancient": {
+      "pick": 0,
+      "ban": 12
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/9996/9z?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

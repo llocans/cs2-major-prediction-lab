@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "teamId": "legacy",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 62,
+  "maps": {
+    "dust2": {
+      "pick": 41.2,
+      "ban": 3.3
+    },
+    "mirage": {
+      "pick": 40.9,
+      "ban": 2.9
+    },
+    "ancient": {
+      "pick": 38.9,
+      "ban": 10
+    },
+    "inferno": {
+      "pick": 11.8,
+      "ban": 14.3
+    },
+    "cache": {
+      "pick": 5.6,
+      "ban": 25
+    },
+    "nuke": {
+      "pick": 0,
+      "ban": 27.6
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/12468/legacy?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

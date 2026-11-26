@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "teamId": "faze",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 42,
+  "maps": {
+    "ancient": {
+      "pick": 36.4,
+      "ban": 10
+    },
+    "dust2": {
+      "pick": 33.3,
+      "ban": 20
+    },
+    "mirage": {
+      "pick": 41.7,
+      "ban": 22.7
+    },
+    "nuke": {
+      "pick": 23.1,
+      "ban": 5
+    },
+    "cache": {
+      "pick": 0,
+      "ban": 8.3
+    },
+    "anubis": {
+      "pick": 0,
+      "ban": 14.3
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/6667/faze?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

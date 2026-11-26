@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "teamId": "parivision",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 53,
+  "maps": {
+    "ancient": {
+      "pick": 73.3,
+      "ban": 0
+    },
+    "inferno": {
+      "pick": 27.8,
+      "ban": 7.1
+    },
+    "dust2": {
+      "pick": 29.4,
+      "ban": 4
+    },
+    "mirage": {
+      "pick": 0,
+      "ban": 13.9
+    },
+    "cache": {
+      "pick": 5.3,
+      "ban": 17.6
+    },
+    "anubis": {
+      "pick": 0,
+      "ban": 22.2
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/12467/parivision?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

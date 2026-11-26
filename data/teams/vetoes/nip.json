@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "teamId": "nip",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 58,
+  "maps": {
+    "cache": {
+      "pick": 43.8,
+      "ban": 20
+    },
+    "mirage": {
+      "pick": 17.6,
+      "ban": 14.7
+    },
+    "ancient": {
+      "pick": 21.4,
+      "ban": 18.2
+    },
+    "dust2": {
+      "pick": 0,
+      "ban": 33.3
+    },
+    "inferno": {
+      "pick": 15.4,
+      "ban": 29
+    },
+    "nuke": {
+      "pick": 46.2,
+      "ban": 4.8
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/4411/ninjas-in-pyjamas?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

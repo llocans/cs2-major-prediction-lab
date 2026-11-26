@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "teamId": "spirit",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 62,
+  "maps": {
+    "mirage": {
+      "pick": 13,
+      "ban": 13.5
+    },
+    "ancient": {
+      "pick": 36.4,
+      "ban": 0
+    },
+    "dust2": {
+      "pick": 47.4,
+      "ban": 0
+    },
+    "nuke": {
+      "pick": 15.8,
+      "ban": 12.9
+    },
+    "anubis": {
+      "pick": 28.6,
+      "ban": 10.7
+    },
+    "cache": {
+      "pick": 0,
+      "ban": 28.1
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/7020/spirit?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}
