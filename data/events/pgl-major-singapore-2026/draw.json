@@ -1,4 +1,30 @@
 {
   "schemaVersion": 1,
-  "rounds": []
+  "rounds": [
+    {
+      "stageId": "stage-1",
+      "round": 5,
+      "pairings": [
+        {
+          "teamA": "lynn-vision",
+          "teamB": "heroic"
+        },
+        {
+          "teamA": "imperial",
+          "teamB": "wildcard"
+        },
+        {
+          "teamA": "m80",
+          "teamB": "100-thieves"
+        }
+      ],
+      "seenAt": "2026-11-26T21:02:02.641Z",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3475872)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-26",
+        "license": "CC-BY-SA 3.0"
+      }
+    }
+  ]
 }

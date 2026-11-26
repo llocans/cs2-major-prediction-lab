@@ -1,6 +1,6 @@
 # PGL Major Singapore 2026: status
 
-Generated 2026-11-26T15:47:11.828Z by scripts. Do not edit by hand.
+Generated 2026-11-26T21:02:16.560Z by scripts. Do not edit by hand.
 
 - Stage: Stage 1, round 5 next
 - Results logged in this stage: 30
