@@ -6,6 +6,67 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## During PGL Major Singapore 2026 (Nov 24 - Dec 13)
 
+### Model upgrades: v0.2 for Stage 2, v0.3 for Stage 3 (agreed with the user 2026-11-26)
+
+Stage 1 stays as it is: the test run of model v0.1 (snapshots are never edited). After 26 of its 33
+matches the model's Brier score was 0.250 (the same as always saying 50%), the market's 0.269, and
+the Bo1 map guess was right in 2 of 20 matches (guessing at random would get about 3). Too few
+matches to tell skill from luck, so each upgrade is small, checked and run next to the old model.
+
+**How each upgrade ships**
+- The event config names the model version per stage; Stage 1 keeps v0.1.
+- The previous version keeps running next to the new one on the same matches and is scored on the
+  same results (a fair head-to-head on the Track record page, which names the version per stage).
+- Before release, the new version replays Stage 1 from its pre-round data (a sanity check, not
+  proof: 33 matches). Replaying v0.1 must reproduce the saved snapshots exactly.
+- Model changes go in their own PRs, never mixed with UI or poller changes. Data collection is
+  never part of a code PR. Poller PRs merge only while no match is live.
+- Existing weights keep the 10% cap per stage; new inputs are allowed when the Stage 1 replay
+  shows no harm and the old version runs alongside (`docs/core/model-principles.md`, rule 7).
+
+**Hard deadlines**
+- v0.2 merged before Stage 1's last match ends (Nov 27, last match 13:00 Riga, ends about 16:00):
+  the poller saves Stage 2's round 1 snapshot the moment Stage 1 finishes. Aim for noon. Then tag
+  `stage2-start`.
+- v0.3 merged before Stage 2's last match (Dec 1), for the same reason.
+
+**Order of work**
+1. Setup (no prediction changes), Nov 26:
+   - Roadmap (this section). Principle 7 wording (`core/*` PR).
+   - Per-stage model versions, the old version scored alongside, Stage 1 replay script, version
+     per stage on the Track record page (one PR).
+   - Poller: save CT/T half scores and first side per map (in Liquipedia's `{{Map}}` fields
+     `t1t`, `t1ct`, `t2t`, `t2ct`, `t1firstside`), save the announced pairings, and wait for a full
+     draw before snapshotting (covers "Site and `simulate.ts` when the real draw differs" and
+     "Partial draw at snapshot time" below; one PR, merged after the day's matches).
+2. v0.2 (Stage 2), by Nov 27 noon:
+   - Schema and import script for ban/pick habits (a new `vetoes` folder in `data/teams/`), then the data for the
+     ~20 teams that may play Stage 2 (interactive, Claude in Chrome; first find a page that shows a
+     team's ban and pick rates, HLTV or bo3.gg).
+   - Model: the veto uses each team's real ban and pick habits; a better rule for a map a team never
+     plays ("Map guesses" below); check the confidence labels against Stage 1 (Medium called 4 of
+     11, Low 8 of 12). Regenerate `status.md` in the same PR. `reviewer` agent before merge.
+   - Fallback if ban rates need ~200 page reads instead of ~20: v0.2 ships only the "never plays"
+     rule and ban habits move to v0.3.
+3. Market track, after Stage 1 ends and before Stage 2's first odds (Nov 27-28): the pick rule
+   stored per stage with Stage 1 frozen, the pick rule review and the Stage 1 test-run note (one PR),
+   then bet slips (own PR). Cut bet slips first if the day runs out. The Stage 1 review routine runs
+   by itself on Nov 27; its capped proposals go into v0.3.
+4. v0.3 (Stage 3), Nov 28 - Dec 1:
+   - Per-match team histories (a new `matches` folder in `data/teams/`: date, opponent and rank, LAN or online,
+     lineup, vetoes, map scores, halves), collected once by hand and topped up by later research. One
+     collection feeds vetoes, recency, opponent strength, lineup period and LAN.
+   - Model: recent maps weigh more, map results weighted by opponent strength, only maps with the
+     current lineup (roster dates are already in `registry.json`), LAN filter; the cold-start
+     penalty and "Underdogs above the market" decisions (below) with all of Stage 1; the Stage 1
+     review's proposals.
+5. Before the playoffs (Dec 2-9): the Bo5 veto check, the playoffs review, the playoff stage by date
+   check (below), then the playoff bracket in the new style (UI PR).
+6. After the event: LPDB backtests (the user applies for access), real retuning, CT/T sides in the
+   model, round markets; site and chore items under "After the event".
+
+### Other open items
+
 - **Bo5 final veto.** The Bo5 final is Valve's rule for all Majors; its veto order is not published.
   `veto.bo5` copies PGL's Cluj-Napoca 2026 grand final and is marked `unverified`.
   If PGL publishes the Singapore procedure before Dec 13, replace it and drop the flag
@@ -26,10 +87,8 @@ belong in `data/events/<id>/status.md`, not here.
   [mwasoft CS2 API](https://www.producthunt.com/products/cs2-real-time-odds-api-by-mwasoft) gives its
   own model's odds, not a market. CSGOEmpire (the Market odds page) cannot be automated either:
   its terms forbid bots and scripts.
-- **Check the new research refresh (Nov 26).** Read the first run of the reworked prompt
-  (2026-11-25 21:00 UTC): it should list every team (22 after round 3: 14 left in Stage 1 plus 8
-  Stage 2 invites) with about 24 searches. If it skips teams or runs far longer, tighten the prompt.
-  On Nov 27 it also fills Stage 2 storylines; check those too.
+- **Check the Stage 2 storylines (Nov 28).** The research refresh fills them on the night of Nov 27
+  (its first storyline night with the reworked prompt); read that run.
 - **`status.md` lags after a model change.** The poller rewrites `status.md` on every poll but only
   commits it with new results, so a merged change to predictions (e.g. the little-data confidence fix
   on 2026-11-24) or a reordered draw shows up there only after the next result. Commit it on its own
@@ -181,6 +240,8 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## Done
 
+- 2026-11-26: Research refresh checked after its first run with the reworked prompt (2026-11-25):
+  all 22 teams, 24 searches, about a minute; no news after the team files' dates, nothing changed.
 - 2026-11-26: Bracket marks the selected team with a soft orange row background (no underline),
   so short names (CW) stand out too; a what-if win has a dashed orange outline instead of the tint.
 - 2026-11-26: Probabilities table marks finished teams: a team with enough wins to advance has a
