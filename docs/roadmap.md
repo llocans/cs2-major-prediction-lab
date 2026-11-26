@@ -42,7 +42,7 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
      draw before snapshotting (two PRs, merged after the day's matches; the draw one after Stage 1
      has advanced).
 
-   Status 2026-11-26: steps 1 and 2 are done except the Track record page.
+   Status 2026-11-26: steps 1 and 2 are done.
 2. v0.2 (Stage 2), by Nov 27 noon:
    - Schema and import script for ban/pick habits (a new `vetoes` folder in `data/teams/`), then
      the data for the ~20 teams that may play Stage 2 (interactive, Claude in Chrome; first find a
