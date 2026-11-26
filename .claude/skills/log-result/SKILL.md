@@ -26,9 +26,10 @@ Records finished matches through the one pipeline in `scripts/lib/log-results.ts
 5. Commit data straight to main: `git add data docs/changelog.md` and
    `git commit -m "data: <stage> round <n> results"`.
 6. Reply in one or two lines: what was logged and whether a snapshot was saved.
-   Logged by hand, a round 2+ snapshot reports `waiting` (no draw stored from the page): it is saved
-   when that round's first result is logged, from the state before it, with the engine's pairing for
-   pairs not yet known.
+   Logged by hand, a round 2+ snapshot reports `waiting` (no draw stored from the page). Either run
+   `node scripts/snapshot.ts <event> <stage> --engine-draw` before the round starts (engine's
+   pairing), or it is saved when that round's first result is logged, from the state before it, and
+   marked `lateSave` (`docs/rules.md`).
 
 ## Rules
 

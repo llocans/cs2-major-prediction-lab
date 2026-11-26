@@ -5,8 +5,9 @@
  * in progress, the same page again, the finished round → snapshots → advance into the next stage →
  * its round 1 snapshot, until the playoffs are seeded. Each stage's round 2 is drawn differently
  * from our pairing; a round's draw is listed when the previous round ends (stage 1), when the round
- * starts (stage 2), or never before its first results (stage 3, round 2). Every snapshot must still
- * use the real draw, and draw.json must hold it.
+ * starts (stage 2), or never before its first results (stage 3, rounds 2 and 4; round 4's page
+ * then shows only finished matches). Every snapshot must still use the real draw, and draw.json must
+ * hold it.
  * Never touches this checkout (see lib/temp-copy.ts).
  * Usage: node scripts/check-swiss-flow.ts [event-id]   (exit code 1 if any check fails)
  */
@@ -166,7 +167,11 @@ for (const [index, stage] of swissStages.entries()) {
   // the first stage's as soon as the previous round ends, the second stage's when the round starts,
   // the third stage's round 2 never before its first results (its other rounds when they start).
   const announceEarly = index === 0
-  const neverListed = (round: number) => index === 2 && round === 2
+  // Its round 4 is never listed either, and its part-played page shows only the finished matches:
+  // the engine's pairing fills in the rest (round 4 is not redrawn, so the pairs are still right).
+  const neverListed = (round: number) => index === 2 && (round === 2 || round === 4)
+  const lateDraw = (round: number) =>
+    neverListed(round) ? (round === 4 ? 'partly-engine' : 'real') : undefined
   const matches: SwissMatch[] = playSwissRounds({
     seeds,
     rules,
@@ -231,29 +236,36 @@ for (const [index, stage] of swissStages.entries()) {
     const half = Math.floor(now.length / 2)
     const rest = now.slice(half)
     const liveIndex = rest.findIndex((r) => r.format === 'bo3')
+    const hideRest = lateDraw(round) === 'partly-engine'
     const partRows = [
       ...done,
       ...now.slice(0, half),
-      ...rest.map((r, k) => {
-        const { winner: _, ...pairing } = r
-        return k === liveIndex ? { ...pairing, live: true } : pairing
-      }),
+      ...(hideRest
+        ? []
+        : rest.map((r, k) => {
+            const { winner: _, ...pairing } = r
+            return k === liveIndex ? { ...pairing, live: true } : pairing
+          })),
     ]
     const part = apply(`${tag} part-played`, partRows)
     check(
       part.logged.length === half && part.snapshot === 'not-due',
-      `${label} ${tag} part-played: ${part.logged.length}/${half} logged${liveIndex === -1 ? '' : ', live Bo3 not logged'}, snapshot ${part.snapshot}`,
+      `${label} ${tag} part-played: ${part.logged.length}/${half} logged${liveIndex === -1 || hideRest ? '' : ', live Bo3 not logged'}, snapshot ${part.snapshot}`,
     )
     check(
-      (part.lastChanceSnapshot === 'saved') === neverListed(round),
-      `${label} ${tag} part-played: ${neverListed(round) ? 'snapshot saved just before the first results' : 'no last-chance snapshot needed'}`,
+      part.lastChanceSnapshot?.draw === lateDraw(round),
+      `${label} ${tag} part-played: ${neverListed(round) ? `snapshot saved just before the first results (draw ${part.lastChanceSnapshot?.draw}, expected ${lateDraw(round)})` : 'no last-chance snapshot needed'}`,
     )
     const predicted = snapshotPairs(round)
     check(
       predicted.length === now.length && samePairs(predicted, now),
       `${label} ${tag}: snapshot pairs match the real draw`,
     )
-    if (round > 1) {
+    const late = existsSync(`${dir}/snapshots/${stage.id}-r${round}.json`)
+      ? readJson(`${dir}/snapshots/${stage.id}-r${round}.json`, Snapshot).lateSave?.draw
+      : undefined
+    check(late === lateDraw(round), `${label} ${tag}: snapshot lateSave ${late ?? 'not set'}`)
+    if (round > 1 && !hideRest) {
       check(
         samePairs(storedDraw(eventId, stage.id, round) ?? [], now),
         `${label} ${tag}: draw.json holds the real draw`,

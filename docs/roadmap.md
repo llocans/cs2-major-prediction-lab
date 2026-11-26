@@ -242,9 +242,11 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
   the current round, so a Valve draw that differs from the engine's pairing shows the right pairs.
   A round's snapshot waits for the full draw, and if the page never lists it before the round's first
   results, it is saved just before they are written (the results' pairs complete the draw).
-- 2026-11-26: Stage 1 replay with all of round 4 (30 matches): maps actually played got 24.8%
-  (v0.1.0: 10.1%), Bo1 top map 10/20 (2/20), Brier 0.227 (0.233), hits 18/30 (19/30). Same picture as
-  the 26-match replay v0.2.0 was chosen on (`docs/model.md`).
+- 2026-11-26: Stage 1 replay with all of round 4 (30 matches;
+  `scripts/replay-stage.ts pgl-major-singapore-2026 stage-1 0.1.0 0.2.0`, run 2026-11-26 on main
+  a209137): maps actually played got 24.8% (v0.1.0: 10.1%), Bo1 top map 10/20 (2/20), Brier 0.227
+  (0.233), hits 18/30 (19/30). Same picture as the 26-match replay v0.2.0 was chosen on
+  (`docs/model.md`).
 
 - 2026-11-26: The poller saves CT/T regulation rounds and team A's first side per map
   (`maps[].sides` in `results.json`, from Liquipedia's half scores) for later use (round markets,
