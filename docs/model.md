@@ -102,7 +102,9 @@ roles as a run, walks every veto the softmax veto can produce with its probabili
 odds carry no sampling noise, and a page that re-simulates (the Stage page in the browser) shows the
 same match odds as the saved snapshot. The standard error covers the team odds only. Before
 2026-11-25 match odds were counted from the runs (±0.4 pp); Stage 1's R1-R4 snapshots keep those
-numbers (snapshots are never edited).
+numbers (snapshots are never edited). From 2026-11-27 each match also carries the veto's chance of
+every map in every map slot (`maps`, from the same veto paths: `mapSlotChances`), so map guesses can
+be scored from the snapshots alone (Track record); Stage 1's snapshots have none.
 
 Map win probabilities are always computed in one fixed team order (alphabetical) and the other order
 is `1 − p`, so a simulation never depends on which pairing happened to be evaluated first. The same
