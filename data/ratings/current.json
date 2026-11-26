@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-26T13:47:04.478Z",
-  "reason": "log-result stage-1-r4-imperial-liquid",
+  "asOf": "2026-11-26T15:47:04.036Z",
+  "reason": "log-result stage-1-r4-chinggis-warriors-wildcard",
   "teams": {
     "nip": {
       "rating": 1571.9,
@@ -587,13 +587,13 @@
       ]
     },
     "wildcard": {
-      "rating": 1430.9,
-      "rd": 57.7,
+      "rating": 1436,
+      "rd": 55.7,
       "maps": {
         "cache": {
-          "offset": 9.2,
-          "rd": 63.5775531391221,
-          "n": 7
+          "offset": 5.7,
+          "rd": 62,
+          "n": 8
         },
         "mirage": {
           "offset": 7.4,
@@ -606,14 +606,14 @@
           "n": 5
         },
         "nuke": {
-          "offset": 41.9,
-          "rd": 67.2,
-          "n": 5
+          "offset": 44.9,
+          "rd": 65.3,
+          "n": 6
         },
         "dust2": {
-          "offset": -31.7,
-          "rd": 69.3,
-          "n": 4
+          "offset": -28.8,
+          "rd": 67.2,
+          "n": 5
         },
         "anubis": {
           "offset": -3.6,
@@ -716,13 +716,13 @@
       ]
     },
     "chinggis-warriors": {
-      "rating": 1361.7,
-      "rd": 92.2,
+      "rating": 1349.2,
+      "rd": 84.4,
       "maps": {
         "nuke": {
-          "offset": 74.4,
-          "rd": 60.5,
-          "n": 9
+          "offset": 68.6,
+          "rd": 59.1,
+          "n": 10
         },
         "ancient": {
           "offset": 45,
@@ -735,14 +735,14 @@
           "n": 4
         },
         "dust2": {
-          "offset": -75.6,
-          "rd": 67.2,
-          "n": 5
+          "offset": -82.6,
+          "rd": 65.3,
+          "n": 6
         },
         "cache": {
-          "offset": 7.2,
-          "rd": 74.0656079818041,
-          "n": 2
+          "offset": 19,
+          "rd": 71.6,
+          "n": 3
         },
         "anubis": {
           "offset": -40,

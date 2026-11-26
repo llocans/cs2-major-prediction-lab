@@ -704,6 +704,38 @@
         "retrievedAt": "2026-11-26",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r4-chinggis-warriors-wildcard",
+      "stageId": "stage-1",
+      "round": 4,
+      "teamA": "wildcard",
+      "teamB": "chinggis-warriors",
+      "format": "bo3",
+      "maps": [
+        {
+          "map": "dust2",
+          "scoreA": 13,
+          "scoreB": 7
+        },
+        {
+          "map": "cache",
+          "scoreA": 11,
+          "scoreB": 13
+        },
+        {
+          "map": "nuke",
+          "scoreA": 19,
+          "scoreB": 16
+        }
+      ],
+      "winner": "wildcard",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3475837)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-26",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
