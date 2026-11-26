@@ -43,9 +43,8 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
      "Partial draw at snapshot time" below; one PR, merged after the day's matches).
 2. v0.2 (Stage 2), by Nov 27 noon:
    - Schema and import script for ban/pick habits (a new `vetoes` folder in `data/teams/`), then
-     the data for the
-     ~20 teams that may play Stage 2 (interactive, Claude in Chrome; first find a page that shows a
-     team's ban and pick rates, HLTV or bo3.gg).
+     the data for the ~20 teams that may play Stage 2 (interactive, Claude in Chrome; first find a
+     page that shows a team's ban and pick rates, HLTV or bo3.gg).
    - Model: the veto uses each team's real ban and pick habits; a better rule for a map a team never
      plays ("Map guesses" below); check the confidence labels against Stage 1 (Medium called 4 of
      11, Low 8 of 12). Regenerate `status.md` in the same PR. `reviewer` agent before merge.
