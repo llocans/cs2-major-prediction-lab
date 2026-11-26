@@ -124,6 +124,8 @@ export interface WikiMap {
   map: string
   score1: number
   score2: number
+  /** Regulation rounds per side, when the page lists all four half scores. */
+  sides?: { ct1: number; t1: number; ct2: number; t2: number; firstSide1?: 'ct' | 't' }
 }
 
 export interface WikiMatch {
@@ -235,7 +237,23 @@ function parseMap(map: Template): WikiMap | undefined {
     }
   }
   if (score1 === score2) return undefined
-  return { map: name, score1, score2 }
+  const result: WikiMap = { map: name, score1, score2 }
+  const half = (key: string) => {
+    const value = map.named[key]?.trim()
+    return value === undefined || value === '' ? undefined : Number(value)
+  }
+  const [ct1, t1, ct2, t2] = ['t1ct', 't1t', 't2ct', 't2t'].map(half)
+  if ([ct1, t1, ct2, t2].every((v) => v !== undefined && Number.isInteger(v) && v >= 0)) {
+    const first = map.named.t1firstside?.trim().toLowerCase()
+    result.sides = {
+      ct1: ct1 as number,
+      t1: t1 as number,
+      ct2: ct2 as number,
+      t2: t2 as number,
+      ...(first === 'ct' || first === 't' ? { firstSide1: first } : {}),
+    }
+  }
+  return result
 }
 
 /** Winner by maps won: 1, 2, or undefined if not decided. */

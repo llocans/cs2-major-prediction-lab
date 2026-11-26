@@ -6,6 +6,19 @@ export const MapResult = z.object({
   scoreA: z.number().int().nonnegative(),
   scoreB: z.number().int().nonnegative(),
   pickedBy: z.enum(['A', 'B', 'decider']).optional(),
+  /**
+   * Regulation rounds won per side (Liquipedia half scores; overtime only in the totals) and the side
+   * team A started on. Saved from 2026-11-26; not used by the model yet.
+   */
+  sides: z
+    .object({
+      aCt: z.number().int().nonnegative(),
+      aT: z.number().int().nonnegative(),
+      bCt: z.number().int().nonnegative(),
+      bT: z.number().int().nonnegative(),
+      aFirstSide: z.enum(['ct', 't']).optional(),
+    })
+    .optional(),
 })
 export type MapResult = z.infer<typeof MapResult>
 
