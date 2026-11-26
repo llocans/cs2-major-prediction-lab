@@ -212,7 +212,8 @@ function MatchRow(props: {
             className={[
               'flex items-center gap-1.5 px-2 text-sm leading-none',
               index === 0 ? 'border-b border-rule' : '',
-              won && match.kind === 'override' ? 'bg-accent-soft' : '',
+              // A soft tint marks the selected team, so even a short name (CW) stands out.
+              isSelected || (won && match.kind === 'override') ? 'bg-accent-soft' : '',
             ].join(' ')}
           >
             <TeamLogo teamId={team} size="md" />
@@ -390,7 +391,7 @@ function ResultBox(props: {
                     'flex min-w-0 items-center gap-1.5 text-left text-sm',
                     f.override ? 'text-accent' : 'text-ink',
                     selected === f.team
-                      ? 'underline decoration-accent decoration-2 underline-offset-[5px] [text-decoration-skip-ink:none]'
+                      ? 'bg-accent-soft underline decoration-accent decoration-2 underline-offset-[5px] [text-decoration-skip-ink:none]'
                       : '',
                   ].join(' ')}
                   style={{ height: LAYOUT.resultRow }}
