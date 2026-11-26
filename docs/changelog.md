@@ -3,6 +3,7 @@
 One line per automatic change (scripts, scheduled tasks). Newest first.
 Format: `YYYY-MM-DD HH:MM UTC · actor · what changed`
 
+- 2026-11-26 08:47 UTC · poll-liquipedia · logged 2 result(s) in stage-1; ratings updated; snapshot not-due
 - 2026-11-25 15:32 UTC · manual (Claude, scheduled) · market odds for Stage 1 round 3, nip vs liquid, imperial vs flyquest, 9z vs dendele and gosh (bc-game) vs chinggis-warriors from OddsPortal's final listed odds
 - 2026-11-25 13:32 UTC · poll-liquipedia · logged 2 result(s) in stage-1; ratings updated; snapshot saved
 - 2026-11-25 10:47 UTC · poll-liquipedia · logged 1 result(s) in stage-1; ratings updated; snapshot not-due

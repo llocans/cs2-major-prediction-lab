@@ -554,6 +554,70 @@
         "retrievedAt": "2026-11-25",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r4-eternal-fire-m80",
+      "stageId": "stage-1",
+      "round": 4,
+      "teamA": "m80",
+      "teamB": "eternal-fire",
+      "format": "bo3",
+      "maps": [
+        {
+          "map": "dust2",
+          "scoreA": 13,
+          "scoreB": 6
+        },
+        {
+          "map": "anubis",
+          "scoreA": 3,
+          "scoreB": 13
+        },
+        {
+          "map": "cache",
+          "scoreA": 4,
+          "scoreB": 13
+        }
+      ],
+      "winner": "eternal-fire",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3475618)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-26",
+        "license": "CC-BY-SA 3.0"
+      }
+    },
+    {
+      "id": "stage-1-r4-faze-heroic",
+      "stageId": "stage-1",
+      "round": 4,
+      "teamA": "heroic",
+      "teamB": "faze",
+      "format": "bo3",
+      "maps": [
+        {
+          "map": "mirage",
+          "scoreA": 13,
+          "scoreB": 3
+        },
+        {
+          "map": "ancient",
+          "scoreA": 11,
+          "scoreB": 13
+        },
+        {
+          "map": "nuke",
+          "scoreA": 13,
+          "scoreB": 3
+        }
+      ],
+      "winner": "heroic",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3475618)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-26",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
