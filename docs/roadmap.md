@@ -242,6 +242,9 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
 
 ## Done
 
+- 2026-11-26: The poller saves CT/T regulation rounds and team A's first side per map
+  (`maps[].sides` in `results.json`, from Liquipedia's half scores) for later use (round markets,
+  side strength); the model does not read them yet.
 - 2026-11-26: Model v0.2.0 for Stage 2 on (Stage 1 stays v0.1.0, which is scored alongside from
   Stage 2): the veto uses each team's real ban and pick shares from HLTV (`data/teams/vetoes/`, 31
   teams, window ending before Stage 1). Stage 1 replay: maps actually played got 24.6% (v0.1.0:
