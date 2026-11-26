@@ -179,9 +179,10 @@ version). Stage 1 of PGL Singapore is the test run of v0.1.0.
   differ in everything that turns ratings into a prediction: veto, simulation, confidence. A
   version with new rating rules needs its own ratings file first (not built yet), and
   `build-ratings.ts` always builds the prior with the latest `params.json`.
-- Alongside snapshots are not on the site or in `score-stage.ts` yet (the Track record step in
-  `docs/roadmap.md`). An alongside snapshot that fails is reported and skipped; it never stops
-  the poller.
+- The Track record page shows each stage's model version and, when an older version runs
+  alongside, a table scoring both on the same matches (Brier, favourite won, Bo1 map guessed;
+  `versionScores` in `engine/track-record.ts`). `score-stage.ts` scores the stage's own version
+  only. An alongside snapshot that fails is reported and skipped; it never stops the poller.
 - `node scripts/replay-stage.ts <event> <stage> [version ...]` replays a stage's saved rounds with
   each version, from the ratings, earlier results, modifiers and draw each snapshot had, and scores
   them: Brier, hits, the mean chance the veto gave the maps actually played, and the Bo1 top map.

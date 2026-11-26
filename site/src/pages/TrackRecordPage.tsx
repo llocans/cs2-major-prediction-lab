@@ -8,6 +8,8 @@ import {
   stageTrackRecord,
   type TrackedMatch,
   UPSET_BELOW,
+  type VersionScore,
+  versionScores,
 } from '../../../engine/track-record.ts'
 import { Page, PageHeader } from '../components/Page.tsx'
 import { TeamLogo } from '../components/TeamLogo.tsx'
@@ -39,9 +41,16 @@ export function TrackRecordPage({ event }: { event: EventData }) {
     const advanced = complete
       ? new Set(standings.filter((s) => s.status === 'advanced').map((s) => s.teamId))
       : undefined
+    const own = event.snapshots.filter((s) => s.stageId === stage.id)
+    const alongside = event.alongsideSnapshots.filter((s) => s.stageId === stage.id)
     return [
       {
         stage,
+        version: own[0]?.modelVersion,
+        versions:
+          alongside.length > 0
+            ? versionScores(stage.id, own, alongside, event.results.matches)
+            : undefined,
         record: stageTrackRecord(
           stage.id,
           event.snapshots,
@@ -67,8 +76,15 @@ export function TrackRecordPage({ event }: { event: EventData }) {
         }
       />
       {stages.length === 0 && <p className="text-sm text-ink-3">No predictions saved yet.</p>}
-      {stages.map(({ stage, record }) => (
-        <StageSection key={stage.id} title={stage.name} record={record} name={name} />
+      {stages.map(({ stage, record, version, versions }) => (
+        <StageSection
+          key={stage.id}
+          title={stage.name}
+          record={record}
+          version={version}
+          versions={versions}
+          name={name}
+        />
       ))}
     </Page>
   )
@@ -77,16 +93,23 @@ export function TrackRecordPage({ event }: { event: EventData }) {
 function StageSection(props: {
   title: string
   record: StageTrackRecord
+  /** The model version of the stage's own snapshots. */
+  version: string | undefined
+  /** Own and alongside versions on the same matches, when an older version runs alongside. */
+  versions: VersionScore[] | undefined
   name: (id: string) => ReactNode
 }) {
-  const { title, record, name } = props
+  const { title, record, version, versions, name } = props
   const scored = record.rounds.reduce((sum, r) => sum + r.matches.length, 0)
   const hits = record.rounds.reduce((sum, r) => sum + r.hits, 0)
 
   return (
     <section className="flex flex-col gap-5">
       <div className="flex flex-col gap-1 border-b border-ink pb-2">
-        <h2 className="font-display text-3xl font-bold">{title}</h2>
+        <h2 className="flex items-baseline gap-3 font-display text-3xl font-bold">
+          {title}
+          {version && <span className="num text-sm font-normal text-ink-3">model v{version}</span>}
+        </h2>
         <dl className="num flex flex-wrap gap-x-6 gap-y-1 text-sm">
           <Stat label="Scored" value={`${scored} matches`} />
           <Stat
@@ -108,6 +131,8 @@ function StageSection(props: {
           <Stat label="Still to play" value={String(record.pending)} />
         </dl>
       </div>
+
+      {versions && <VersionTable versions={versions} />}
 
       {record.rounds.map((round) => (
         <RoundTable key={round.round} round={round} name={name} />
@@ -172,6 +197,50 @@ function StageSection(props: {
         </div>
       )}
     </section>
+  )
+}
+
+function VersionTable({ versions }: { versions: VersionScore[] }) {
+  const matches = versions[0]?.matches ?? 0
+  return (
+    <div>
+      <h3 className="mb-1 font-display text-lg font-bold">New model vs old</h3>
+      <p className="mb-2 max-w-2xl text-xs text-ink-3">
+        The old model predicted the same {matches === 1 ? 'match' : `${matches} matches`}. Official
+        odds come from the new one. Lower Brier is better.
+      </p>
+      <div className="overflow-x-auto">
+        <table className="num text-sm">
+          <thead>
+            <tr className="border-b border-ink text-left font-display text-xs uppercase tracking-wider text-ink-2">
+              <th className="py-1 pr-4 font-semibold">Model</th>
+              <th className="py-1 pr-4 text-right font-semibold">Brier</th>
+              <th className="py-1 pr-4 text-right font-semibold">Favourite won</th>
+              <th className="py-1 text-right font-semibold">Bo1 map guessed</th>
+            </tr>
+          </thead>
+          <tbody>
+            {versions.map((v) => (
+              <tr key={v.version} className="border-b border-rule">
+                <td className="py-1 pr-4">
+                  v{v.version}{' '}
+                  <span className="text-ink-3">{v.role === 'main' ? 'official' : 'old'}</span>
+                </td>
+                <td className="py-1 pr-4 text-right">
+                  {v.brier === undefined ? '–' : v.brier.toFixed(3)}
+                </td>
+                <td className="py-1 pr-4 text-right">
+                  {v.matches ? `${v.hits} of ${v.matches}` : '–'}
+                </td>
+                <td className="py-1 text-right">
+                  {v.bo1Map.of ? `${v.bo1Map.right} of ${v.bo1Map.of}` : '–'}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   )
 }
 

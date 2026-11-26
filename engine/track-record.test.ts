@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import type { MatchResult } from '../data/schemas/results.ts'
 import type { Snapshot } from '../data/schemas/snapshot.ts'
-import { stageTrackRecord } from './track-record.ts'
+import { stageTrackRecord, versionScores } from './track-record.ts'
 
 const source = { name: 'test', retrievedAt: '2026-11-24' }
 const snapshot = (round: number, matches: Array<[string, string, number]>): Snapshot => ({
@@ -105,5 +105,59 @@ describe('stageTrackRecord', () => {
     const record = stageTrackRecord('s1', snapshots, results, market)
     expect(record.rounds[0]?.matches[0]?.marketPA).toBeCloseTo(0.55)
     expect(record.market?.matches).toBe(1)
+  })
+})
+
+describe('versionScores', () => {
+  const versioned = (
+    version: string,
+    round: number,
+    rows: Array<[string, string, number, string?]>,
+  ) => {
+    const s = snapshot(
+      round,
+      rows.map(([a, b, p]) => [a, b, p]),
+    )
+    return {
+      ...s,
+      modelVersion: version,
+      matches: s.matches.map((m, i) => {
+        const top = rows[i]?.[3]
+        return top ? { ...m, maps: [{ [top]: 0.6, mirage: 0.4 }] } : m
+      }),
+    }
+  }
+  const results = [result(1, 'a', 'b', 'a'), result(1, 'c', 'd', 'd'), result(2, 'a', 'c', 'a')]
+
+  it('scores each version on the matches every version predicted', () => {
+    const main = [
+      versioned('0.2.0', 1, [
+        ['a', 'b', 0.7, 'nuke'],
+        ['c', 'd', 0.4, 'mirage'],
+      ]),
+      versioned('0.2.0', 2, [['a', 'c', 0.6, 'nuke']]),
+    ]
+    // The alongside version has no round 2 snapshot: round 2 counts for neither.
+    const alongside = [
+      versioned('0.1.0', 1, [
+        ['a', 'b', 0.55, 'mirage'],
+        ['c', 'd', 0.6],
+      ]),
+    ]
+    const [first, second] = versionScores('s1', main, alongside, results)
+    expect(first).toMatchObject({ version: '0.2.0', role: 'main', matches: 2, hits: 2 })
+    expect(first?.brier).toBeCloseTo((0.3 ** 2 + 0.4 ** 2) / 2)
+    expect(first?.bo1Map).toEqual({ right: 1, of: 2 })
+    expect(second).toMatchObject({ version: '0.1.0', role: 'alongside', matches: 2, hits: 1 })
+    expect(second?.brier).toBeCloseTo((0.45 ** 2 + 0.6 ** 2) / 2)
+    // Only snapshots that saved map chances count for map guesses.
+    expect(second?.bo1Map).toEqual({ right: 0, of: 1 })
+  })
+
+  it('gives one row and no score without results', () => {
+    const scores = versionScores('s1', [versioned('0.1.0', 1, [['a', 'b', 0.7]])], [], [])
+    expect(scores).toHaveLength(1)
+    expect(scores[0]?.matches).toBe(0)
+    expect(scores[0]?.brier).toBeUndefined()
   })
 })

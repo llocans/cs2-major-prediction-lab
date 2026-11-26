@@ -161,3 +161,88 @@ export function stageTrackRecord(
   }
   return record
 }
+
+/** One model version's score on a stage, over the matches every version predicted. */
+export interface VersionScore {
+  version: string
+  /** The stage's own version (its official odds) or one scored alongside it. */
+  role: 'main' | 'alongside'
+  matches: number
+  brier?: number
+  hits: number
+  /** Bo1 matches whose map the version gave the highest chance; only snapshots with `maps`. */
+  bo1Map: { right: number; of: number }
+}
+
+/**
+ * Scores the stage's own model version and each version run alongside it on the same matches:
+ * those with a result that every version's snapshots predicted (so a round one version missed
+ * counts for none). Pure.
+ */
+export function versionScores(
+  stageId: string,
+  main: readonly Snapshot[],
+  alongside: readonly Snapshot[],
+  results: readonly MatchResult[],
+): VersionScore[] {
+  const byVersion = new Map<string, { role: VersionScore['role']; snapshots: Snapshot[] }>()
+  const add = (snapshot: Snapshot, role: VersionScore['role']) => {
+    if (snapshot.stageId !== stageId) return
+    const entry = byVersion.get(snapshot.modelVersion) ?? { role, snapshots: [] }
+    entry.snapshots.push(snapshot)
+    byVersion.set(snapshot.modelVersion, entry)
+  }
+  for (const s of main) add(s, 'main')
+  for (const s of alongside) add(s, 'alongside')
+
+  const resultByKey = new Map(
+    results
+      .filter((m) => m.stageId === stageId)
+      .map((m) => [pairKey(m.round, m.teamA, m.teamB), m]),
+  )
+  const predictions = new Map(
+    [...byVersion].map(([version, { snapshots }]) => [
+      version,
+      new Map(
+        snapshots.flatMap((s) =>
+          s.matches.map((m) => [pairKey(s.beforeRound, m.teamA, m.teamB), m] as const),
+        ),
+      ),
+    ]),
+  )
+  const shared = [...resultByKey.keys()].filter((key) =>
+    [...predictions.values()].every((p) => p.has(key)),
+  )
+
+  return [...byVersion]
+    .map(([version, { role }]): VersionScore => {
+      const own = predictions.get(version) ?? new Map<string, MatchPrediction>()
+      const scored: Scored[] = []
+      const bo1Map = { right: 0, of: 0 }
+      for (const key of shared) {
+        const prediction = own.get(key)
+        const result = resultByKey.get(key)
+        if (!prediction || !result) continue
+        scored.push({ p: prediction.pA, outcome: result.winner === prediction.teamA ? 1 : 0 })
+        const first = prediction.maps?.[0]
+        const played = result.maps[0]?.map
+        if (prediction.format === 'bo1' && first && played) {
+          const top = Object.entries(first).sort((x, y) => y[1] - x[1])[0]?.[0]
+          bo1Map.of += 1
+          if (top === played) bo1Map.right += 1
+        }
+      }
+      const score: VersionScore = {
+        version,
+        role,
+        matches: scored.length,
+        hits: scored.filter((s) => s.p !== 0.5 && s.p > 0.5 === (s.outcome === 1)).length,
+        bo1Map,
+      }
+      if (scored.length > 0) score.brier = brierScore(scored)
+      return score
+    })
+    .sort((a, b) =>
+      a.role === b.role ? b.version.localeCompare(a.version) : a.role === 'main' ? -1 : 1,
+    )
+}
