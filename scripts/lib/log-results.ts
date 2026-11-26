@@ -92,10 +92,11 @@ export function logResults(
   }
   if (logged.length === 0) return { logged, skipped, held, snapshot: 'not-due' }
 
-  writeJson(resultsPath, EventResults, { ...results, matches: [...results.matches, ...logged] })
-
+  // Resolved before anything is written, so a misconfigured `model` stops here with results intact.
   // Alongside versions share these rating rules (engine/model-version.ts), so one update serves all.
   const params = loadStageVersions(event.config, stageId).main
+  writeJson(resultsPath, EventResults, { ...results, matches: [...results.matches, ...logged] })
+
   const modifiersPath = repoPath('data/model/modifiers.json')
   const modifiers = existsSync(modifiersPath) ? readJson(modifiersPath, Modifiers).modifiers : []
   let ratings = loadRatings()
@@ -224,9 +225,23 @@ export function ensureRoundSnapshot(
   const status = saveRoundSnapshot(context, prediction).status
   for (const other of loadStageVersions(config, stageId).alongside) {
     const options = { version: other.version, ...(pairings ? { announced: pairings } : {}) }
-    saveRoundSnapshot(loadStageContext(eventId, stageId, options))
+    alongsideSnapshot(other.version, () =>
+      saveRoundSnapshot(loadStageContext(eventId, stageId, options)),
+    )
   }
   return status
+}
+
+/**
+ * Saves an alongside version's snapshot. A failure is reported and never stops the poller: results,
+ * ratings and the stage's own snapshot must not depend on a version that is only scored alongside.
+ */
+function alongsideSnapshot(version: string, save: () => unknown): void {
+  try {
+    save()
+  } catch (error) {
+    console.warn(`alongside model ${version}: snapshot not saved (${String(error)})`)
+  }
 }
 
 /** The playoff version: refreshes status.md and saves the pre-round snapshot when one is due. */
@@ -241,7 +256,9 @@ function ensurePlayoffSnapshot(eventId: string, stageId: string): LogOutcome['sn
   if (started) return 'not-due'
   const status = savePlayoffSnapshot(context, prediction).status
   for (const other of loadStageVersions(context.config, stageId).alongside) {
-    savePlayoffSnapshot(loadPlayoffContext(eventId, stageId, { version: other.version }))
+    alongsideSnapshot(other.version, () =>
+      savePlayoffSnapshot(loadPlayoffContext(eventId, stageId, { version: other.version })),
+    )
   }
   return status
 }

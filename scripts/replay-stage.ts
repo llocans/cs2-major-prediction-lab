@@ -2,7 +2,8 @@
  * Replays a stage's saved rounds with one or more model versions and scores them on the real
  * results. Each round starts from what the model knew before it: the ratings of the saved snapshot
  * (data/ratings/history/), the results of earlier rounds, the modifiers that existed that day and
- * the round's real draw. Writes nothing.
+ * the round's real draw. Writes nothing. Modifiers count from their `createdAt` day; one edited or
+ * deleted since is replayed as it is now (modifiers.json keeps no history).
  *
  * Usage: node scripts/replay-stage.ts <event-id> <stage-id> [version ...]
  * (default: the stage's own version). Replaying the version a snapshot was made with gives its
@@ -21,6 +22,7 @@ import {
   type SwissStage,
 } from '../data/schemas/index.ts'
 import { buildMatchModel } from '../engine/match-model.ts'
+import { assertSharedRatingRules } from '../engine/model-version.ts'
 import { predictStage } from '../engine/predict.ts'
 import { mapSlotChances } from '../engine/series.ts'
 import { stageSeeds } from '../engine/swiss/stage-seeds.ts'
@@ -44,8 +46,18 @@ const results = readJson(`${dir}/results.json`, EventResults).matches.filter(
 )
 const modifiersPath = repoPath('data/model/modifiers.json')
 const modifiers = existsSync(modifiersPath) ? readJson(modifiersPath, Modifiers).modifiers : []
-const versions =
-  requested.length > 0 ? requested : [loadStageVersions(config, stageId).main.version]
+const stageMain = loadStageVersions(config, stageId).main
+const versions = requested.length > 0 ? requested : [stageMain.version]
+for (const version of versions) {
+  try {
+    assertSharedRatingRules(stageMain, loadParams(version))
+  } catch {
+    console.warn(
+      `Note: ${version} rates teams differently from ${stageMain.version}; the replay still uses the` +
+        ' ratings history built with the old rules, so it only tests the prediction side.',
+    )
+  }
+}
 const snapshots = globSync(`data/events/${eventId}/snapshots/${stageId}-r*.json`, {
   cwd: repoPath(),
 })

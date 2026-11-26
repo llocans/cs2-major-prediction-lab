@@ -142,7 +142,8 @@ The Bo5 grand-final veto is unverified for PGL Singapore (`veto.bo5.unverified`;
 ## Model versions
 
 Each stage runs on one model version and may score older versions next to it on the same matches
-(`docs/core/model-principles.md`, rule 7). Stage 1 of PGL Singapore is the test run of v0.1.0.
+(`docs/core/model-principles.md`, rule 7: a new input starts with a new stage, next to the old
+version). Stage 1 of PGL Singapore is the test run of v0.1.0.
 
 - `data/model/params.json` is the latest version; `data/model/archive/<version>.json` keeps every
   older version a stage still runs on or scores alongside. The event config names them per stage:
@@ -155,7 +156,11 @@ Each stage runs on one model version and may score older versions next to it on 
 - Versions that run together share `data/ratings/current.json`, so they must rate teams the same
   way (scale, prior, maps and update rules; `engine/model-version.ts` refuses otherwise). They may
   differ in everything that turns ratings into a prediction: veto, simulation, confidence. A
-  version with new rating rules needs its own ratings file first (not built yet).
+  version with new rating rules needs its own ratings file first (not built yet), and
+  `build-ratings.ts` always builds the prior with the latest `params.json`.
+- Alongside snapshots are not on the site or in `score-stage.ts` yet (the Track record step in
+  `docs/roadmap.md`). An alongside snapshot that fails is reported and skipped; it never stops
+  the poller.
 - `node scripts/replay-stage.ts <event> <stage> [version ...]` replays a stage's saved rounds with
   each version, from the ratings, earlier results, modifiers and draw each snapshot had, and scores
   them: Brier, hits, the mean chance the veto gave the maps actually played, and the Bo1 top map.
