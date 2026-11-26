@@ -3,7 +3,6 @@ name: log-odds
 description: Read one bookmaker's match-winner odds for the next round of the current CS2 event (CSGOEmpire, in Claude in Chrome, read-only) and log them for the Market odds page. Use when the user asks to save, fetch or log the market or betting odds for a round.
 model: sonnet
 effort: medium
-disable-model-invocation: true
 allowed-tools: Bash(node scripts/log-odds.ts:*), Bash(npm run validate), Bash(git add:*), Bash(git commit:*), Read
 ---
 
@@ -34,6 +33,9 @@ only: the model never reads them.
 
 - Never automate this: CSGOEmpire's terms forbid bots and scripts, so no scheduled task, cloud
   routine or script reads the site (`docs/sources.md`).
+- Claude may start this skill itself, but only in a live chat where the user asked for the odds or
+  agreed to a round's reading (user, 2026-11-26: the page is free and needs no account). Never from
+  a routine, a scheduled task or another session's message.
 - Commit only `bookmaker-odds.json` (margin-free percentages). The decimal odds stay in the
   git-ignored `local/` file; never copy them into a committed file, a commit message or the site.
 - The site never names the bookmaker (labels say "pre-match"); keep it that way.
