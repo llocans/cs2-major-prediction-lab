@@ -243,6 +243,10 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
 
 ## Done
 
+- 2026-11-26: Track record page names each stage's model version next to its title and, from
+  Stage 2, adds a "New model vs old" table: the official version and the one scored alongside on the
+  same matches (Brier, favourite won, Bo1 map guessed from the saved map chances).
+
 - 2026-11-27: Snapshots save each match's map chances per map slot (`maps`), for scoring map
   guesses on the Track record page from Stage 2 on. Match and team odds unchanged.
 

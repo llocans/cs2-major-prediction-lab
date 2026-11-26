@@ -42,6 +42,10 @@ const snapshotFiles = import.meta.glob('../../../data/events/*/snapshots/*.json'
   eager: true,
   import: 'default',
 })
+const alongsideFiles = import.meta.glob('../../../data/events/*/snapshots/alongside/*/*.json', {
+  eager: true,
+  import: 'default',
+})
 const benchmarkFiles = import.meta.glob('../../../data/events/*/benchmarks.json', {
   eager: true,
   import: 'default',
@@ -112,6 +116,8 @@ export interface EventData {
   results: EventResults
   /** Predictions saved before each round (never edited). */
   snapshots: Snapshot[]
+  /** The same, from older model versions scored alongside a stage's own (never edited). */
+  alongsideSnapshots: Snapshot[]
   /** Market implied probabilities, if any were logged. */
   benchmarks: Benchmarks['entries']
   /** One bookmaker's margin-free prices per round, for the Market odds page. */
@@ -132,6 +138,9 @@ export const events: EventData[] = Object.entries(configs).map(([path, raw]) => 
     results: EventResults.parse(find(resultsFiles)),
     snapshots: Object.entries(snapshotFiles)
       .filter(([p]) => p.split('/').at(-3) === id)
+      .map(([, value]) => Snapshot.parse(value)),
+    alongsideSnapshots: Object.entries(alongsideFiles)
+      .filter(([p]) => p.split('/').at(-5) === id)
       .map(([, value]) => Snapshot.parse(value)),
     benchmarks: benchmarks ? Benchmarks.parse(benchmarks).entries : [],
     bookmakerOdds: bookmakerOdds ? BookmakerOdds.parse(bookmakerOdds).entries : [],
