@@ -207,6 +207,8 @@ export function StagePage({ event, stage, query }: Props) {
               start={start}
               onSelect={select}
               unverifiedVeto={prediction.event?.unverifiedVeto}
+              winsToAdvance={stage.winsToAdvance}
+              lossesToEliminate={stage.lossesToEliminate}
             />
           ) : (
             <p className="text-sm text-ink-3">Simulating…</p>

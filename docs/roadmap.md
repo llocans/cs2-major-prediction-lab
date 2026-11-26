@@ -181,6 +181,9 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## Done
 
+- 2026-11-26: Probabilities table marks finished teams: a team with enough wins to advance has a
+  bold name and Advance chance, an eliminated team's row is grey. Other Advance chances are no
+  longer bold.
 - 2026-11-25: Exact match odds. Each upcoming match's chance is now computed exactly over every
   possible veto instead of counted from 12,000 runs, and announced pairings in another order are
   simulated in the rules' order. The Stage page, snapshots and `status.md` now show the same numbers
