@@ -24,6 +24,9 @@ Every fact gets a date and a source. Never invent stats; if a source is unreacha
    `hltv.org/stats/teams/maps/<id>/<slug>?startDate=<3 months ago>&endDate=<today>&rankingFilter=Top50`
    (the built-in Browser pane loops on Cloudflare). Write `<team-id> <id/slug> map:W/L ...` lines to a
    scratch file and import with `node scripts/research/import-map-stats.ts <file> <from> <to> Top50`.
+   The same page shows "Pick %" and "Ban %" under each map: write
+   `<team-id> <id/slug> <maps played> map:<pick>/<ban> ...` lines and import with
+   `node scripts/research/import-veto-stats.ts <file> <from> <to> Top50` (same window).
 3. **News**: search for roster changes, stand-ins, visa or travel problems, illness. Prefer HLTV news,
    Dust2.us, Liquipedia, the team's own posts. Two independent sources for anything that moves the model.
 4. **Team file** `data/teams/<id>.md`: update the sections in place, keep the template

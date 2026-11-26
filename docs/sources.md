@@ -82,3 +82,12 @@ reads it.
 In the user's Chrome (Claude in Chrome), the HLTV team map-stats pages with `rankingFilter=Top50` and a
 3-month window were read for each team (one request every 1.5 s), reduced to map W-L counts and imported
 with `scripts/research/import-map-stats.ts`. Only the derived counts are stored, each with its URL.
+
+## How pick and ban shares were collected (2026-11-26)
+The same HLTV team map-stats pages and window as the map stats (Top50, 2026-08-21 to 2026-11-21)
+show "Pick %" and "Ban %" under each map. In the user's Chrome (Claude in Chrome), one page per team
+(31 teams; FlyQuest has none) was read with a small script that returns only those numbers, one
+request every 1.5 s or slower, and imported with `scripts/research/import-veto-stats.ts`. Every
+team's map records matched its map stats file exactly. The window ends before Stage 1, so a Stage 1
+replay does not see Stage 1's own vetoes. HLTV lists only maps a team played; a map it never played
+has no shares (most likely a permanent ban).
