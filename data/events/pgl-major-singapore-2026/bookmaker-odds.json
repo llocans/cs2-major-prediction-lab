@@ -367,6 +367,45 @@
         "retrievedAt": "2026-11-25"
       },
       "observedAt": "2026-11-25T14:39:39Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 5,
+      "teamA": "lynn-vision",
+      "teamB": "heroic",
+      "pA": 0.2336,
+      "source": {
+        "name": "CSGOEmpire match-winner odds, margin removed",
+        "url": "https://csgoempire.com/match-betting",
+        "retrievedAt": "2026-11-26"
+      },
+      "observedAt": "2026-11-26T20:58:39Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 5,
+      "teamA": "imperial",
+      "teamB": "wildcard",
+      "pA": 0.6225,
+      "source": {
+        "name": "CSGOEmpire match-winner odds, margin removed",
+        "url": "https://csgoempire.com/match-betting",
+        "retrievedAt": "2026-11-26"
+      },
+      "observedAt": "2026-11-26T20:58:39Z"
+    },
+    {
+      "stageId": "stage-1",
+      "round": 5,
+      "teamA": "m80",
+      "teamB": "100-thieves",
+      "pA": 0.3842,
+      "source": {
+        "name": "CSGOEmpire match-winner odds, margin removed",
+        "url": "https://csgoempire.com/match-betting",
+        "retrievedAt": "2026-11-26"
+      },
+      "observedAt": "2026-11-26T20:58:39Z"
     }
   ]
 }
