@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-26T11:47:04.158Z",
-  "reason": "log-result stage-1-r4-lynn-vision-parivision",
+  "asOf": "2026-11-26T12:02:04.361Z",
+  "reason": "log-result stage-1-r4-100-thieves-9z",
   "teams": {
     "nip": {
       "rating": 1571.9,
@@ -322,13 +322,13 @@
       ]
     },
     "100-thieves": {
-      "rating": 1494,
-      "rd": 58,
+      "rating": 1502.5,
+      "rd": 55.8,
       "maps": {
         "dust2": {
           "offset": 120,
-          "rd": 55.4,
-          "n": 13
+          "rd": 54.3,
+          "n": 14
         },
         "inferno": {
           "offset": -44.8,
@@ -336,9 +336,9 @@
           "n": 7
         },
         "ancient": {
-          "offset": -62.7,
-          "rd": 65.31972647421809,
-          "n": 6
+          "offset": -58.8,
+          "rd": 63.6,
+          "n": 7
         },
         "cache": {
           "offset": 0,
@@ -356,9 +356,9 @@
           "n": 4
         },
         "nuke": {
-          "offset": -13.7,
-          "rd": 71.6,
-          "n": 3
+          "offset": -18.8,
+          "rd": 69.3,
+          "n": 4
         }
       },
       "sources": [
@@ -375,13 +375,13 @@
       ]
     },
     "9z": {
-      "rating": 1499.5,
-      "rd": 57,
+      "rating": 1491.3,
+      "rd": 54.9,
       "maps": {
         "nuke": {
-          "offset": -26.7,
-          "rd": 59.08391567007971,
-          "n": 10
+          "offset": -23.3,
+          "rd": 57.8,
+          "n": 11
         },
         "mirage": {
           "offset": 39.1,
@@ -389,9 +389,9 @@
           "n": 10
         },
         "dust2": {
-          "offset": 51.2,
-          "rd": 63.5775531391221,
-          "n": 7
+          "offset": 48.3,
+          "rd": 62,
+          "n": 8
         },
         "inferno": {
           "offset": 17,
@@ -404,9 +404,9 @@
           "n": 6
         },
         "ancient": {
-          "offset": -35.4,
-          "rd": 74.0656079818041,
-          "n": 2
+          "offset": -40.3,
+          "rd": 71.6,
+          "n": 3
         },
         "anubis": {
           "offset": -40,

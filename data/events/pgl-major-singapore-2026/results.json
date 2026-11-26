@@ -645,6 +645,38 @@
         "retrievedAt": "2026-11-26",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r4-100-thieves-9z",
+      "stageId": "stage-1",
+      "round": 4,
+      "teamA": "100-thieves",
+      "teamB": "9z",
+      "format": "bo3",
+      "maps": [
+        {
+          "map": "nuke",
+          "scoreA": 5,
+          "scoreB": 13
+        },
+        {
+          "map": "dust2",
+          "scoreA": 13,
+          "scoreB": 6
+        },
+        {
+          "map": "ancient",
+          "scoreA": 13,
+          "scoreB": 5
+        }
+      ],
+      "winner": "100-thieves",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3475713)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-26",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
