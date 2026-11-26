@@ -16,6 +16,7 @@ Protected file. Change it only on a `core/*` branch with a PR.
 | `data/events/<id>/config.json`      | `EventConfig`  | Stages, formats, map pool, veto procedures                    |
 | `data/events/<id>/teams.json`       | `EventTeams`   | Participants, seeds, event display names, VRS points          |
 | `data/events/<id>/results.json`     | `EventResults` | Real results only. Single source of truth                     |
+| `data/events/<id>/draw.json`        | `EventDraw`    | Swiss draws as announced on the stage page (round 2 on)       |
 | `data/events/<id>/benchmarks.json`  | `Benchmarks`   | Market implied probabilities (benchmark only)                 |
 | `data/events/<id>/bookmaker-odds.json` | `BookmakerOdds` | One bookmaker's margin-free odds per round (Market odds page) |
 | `data/events/<id>/snapshots/*.json` | `Snapshot`     | Predictions saved before each round. Never edited             |
