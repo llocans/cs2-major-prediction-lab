@@ -18,7 +18,8 @@ export type VetoHabit = (
 /**
  * Runs a veto and returns the maps in play order: picks in pick order, then the decider.
  * Bans remove a low-advantage map and picks take a high-advantage one, by softmax with `temperature`
- * (rating points). Temperature 0, or no rng, is fully greedy and deterministic.
+ * (rating points), mixed with each side's real `habit` when given. No rng is fully greedy and
+ * deterministic (the most likely map each step); temperature 0 is greedy on strength only.
  */
 export function runVeto(
   steps: readonly VetoStep[],

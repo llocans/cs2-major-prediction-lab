@@ -62,12 +62,20 @@ modeled. The remaining map is the decider.
 real habit: its HLTV "Ban %" or "Pick %" per map (`data/teams/vetoes/`, the same page and window as
 the map stats). The chance of map `m` is `(1 − w)·softmax_m + w·share_m / Σ share` over the
 remaining maps, with `w = habits.weight × n / (n + habits.shrinkMaps)` for a team with `n` maps in the
-window. A map the team never played counts as a full ban share (100) and no pick share; a team
-without veto data (FlyQuest) uses strength alone. v0.2.0: `weight` 1, `shrinkMaps` 5 (58 maps →
-w = 0.92, 6 maps → 0.55). Chosen on the Stage 1 replay (rounds 1-4, 26 matches; the habit window ends
-before Stage 1): the chance given to the maps actually played rose from 10.0% (v0.1.0) to 25.4%
-(random: 14%), the Bo1 top map from 2/20 to 10/20, Brier from 0.249 to 0.242. Every stronger setting
-tried improved both steadily (weights 0.3-1, shrink 1-20), so this is a trend, not a lucky value.
+window. Every share gets a 1-point floor, so no map is ruled out and a step whose shares are all 0
+does not jump to strength alone. A map the team never played counts as a full ban share (100) and no
+pick share when the team has at least `maps.unplayedMinMaps` (15) maps, the same rule as the map
+strength penalty; in a smaller sample its absence says little, so it gets the team's average ban
+share. A team without veto data (FlyQuest) uses strength alone.
+
+v0.2.0: `weight` 1, `shrinkMaps` 5 (58 maps → w = 0.92, 6 maps → 0.55), data window 2026-08-21 to
+2026-11-21 (`habits.window`; veto stats from another window are refused, so re-importing never
+changes what a version means: a new window needs a new version). Chosen on the Stage 1 replay
+(rounds 1-4, 26 matches; the window ends before Stage 1): the chance given to the maps actually
+played rose from 10.0% (v0.1.0) to 24.6% (random: 14%), the Bo1 top map from 2/20 to 10/20, Brier
+from 0.249 to 0.242 (hits 15 → 14 of 26: the Brier gain is within noise; the map gain is the real
+evidence). Weaker weights gave less (0.8: 18.9%, 8/20; 0.7: 16.9%, 4/20), so the weight sits at its
+upper bound and is untested out of sample; v0.1.0 runs alongside to check it on Stages 2 and 3.
 
 ## Rating updates (after each real match)
 

@@ -181,7 +181,11 @@ describe('veto habits (params.veto.habits)', () => {
     }),
     b: stats('b', { mirage: { pick: 90, ban: 0 }, nuke: { pick: 10, ban: 50 } }, 5),
   }
-  const habits = { ...params, veto: { temperature: 25, habits: { weight: 1, shrinkMaps: 5 } } }
+  const window = { from: '2026-08-21', to: '2026-11-21' }
+  const habits = {
+    ...params,
+    veto: { temperature: 25, habits: { weight: 1, shrinkMaps: 5, window } },
+  }
   const ratings = ratingsFor({ a: 1560, b: 1500 })
   const withHabits = buildMatchModel(ratings, [], habits, pool, '2026-11-21', shares)
 
@@ -195,14 +199,39 @@ describe('veto habits (params.veto.habits)', () => {
     }
   })
 
-  it('reads HLTV shares; a map never played is a full ban share and no pick share', () => {
+  it('reads HLTV shares plus a 1-point floor; a map never played in 15+ maps is a full ban', () => {
     const ban = withHabits.vetoHabit('a', 'ban', ['anubis', 'cache', 'mirage'])
-    expect(ban?.shares).toEqual([100, 60, 0])
-    expect(withHabits.vetoHabit('a', 'pick', ['anubis', 'ancient'])?.shares).toEqual([0, 80])
+    expect(ban?.shares).toEqual([101, 61, 1])
+    expect(withHabits.vetoHabit('a', 'pick', ['anubis', 'ancient'])?.shares).toEqual([1, 81])
+    // Team b has 5 maps: a map it never played gets its average ban share (25), not a full ban.
+    expect(withHabits.vetoHabit('b', 'ban', ['anubis', 'nuke'])?.shares).toEqual([26, 51])
     // weight × n / (n + shrinkMaps): 40 maps count far more than 5.
     expect(ban?.weight).toBeCloseTo(40 / 45, 12)
     expect(withHabits.vetoHabit('b', 'ban', pool)?.weight).toBeCloseTo(0.5, 12)
     expect(withHabits.vetoHabit('nobody', 'ban', pool)).toBeUndefined()
+  })
+
+  it('refuses veto stats from another window, or none at all', () => {
+    const other = {
+      ...shares,
+      a: { ...shares.a, window: { from: '2026-09-01', to: '2026-11-21' } },
+    }
+    expect(() => buildMatchModel(ratings, [], habits, pool, '2026-11-21', other)).toThrow(/window/)
+    expect(() => buildMatchModel(ratings, [], habits, pool, '2026-11-21', {})).toThrow(
+      /no veto stats/,
+    )
+  })
+
+  it('runs the old veto exactly when a habit gives nothing', () => {
+    const none = () => undefined
+    for (const seed of [1, 2, 3]) {
+      expect(runVeto(bo3.steps, pool, advantage, 25, createRng(seed), none)).toEqual(
+        runVeto(bo3.steps, pool, advantage, 25, createRng(seed)),
+      )
+    }
+    expect(vetoOutcomes(bo1.steps, pool, advantage, 25, none)).toEqual(
+      vetoOutcomes(bo1.steps, pool, advantage, 25),
+    )
   })
 
   it('keeps exact veto probabilities adding up to 1, and the series odds match the Monte Carlo', () => {
