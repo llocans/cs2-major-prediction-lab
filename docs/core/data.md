@@ -8,6 +8,7 @@ Protected file. Change it only on a `core/*` branch with a PR.
 | ----------------------------------- | -------------- | ------------------------------------------------------------- |
 | `data/teams/registry.json`          | `TeamRegistry` | Stable IDs, names, aliases, dated rosters, external names     |
 | `data/teams/<team-id>.md`           | template below | Research notes, every fact dated and sourced                  |
+| `data/teams/vetoes/<team-id>.json` | `TeamVetoStats` | HLTV pick and ban shares per map (same window as map stats) |
 | `data/model/params.json`            | `ModelParams`  | Model weights and settings, latest version (changes via PR)   |
 | `data/model/archive/<version>.json` | `ModelParams`  | Older model versions a stage still runs on or scores alongside |
 | `data/model/modifiers.json`         | `Modifiers`    | Logged, capped, expiring judgment calls                       |
