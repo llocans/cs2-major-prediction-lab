@@ -181,6 +181,8 @@ belong in `data/events/<id>/status.md`, not here.
 
 ## Done
 
+- 2026-11-26: Bracket marks the selected team with a soft orange row background as well as the
+  underline, so short names (CW) stand out too.
 - 2026-11-26: Probabilities table marks finished teams: a team with enough wins to advance has a
   bold name and Advance chance, an eliminated team's row is grey. Other Advance chances are no
   longer bold.
