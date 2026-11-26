@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-26T12:02:04.361Z",
-  "reason": "log-result stage-1-r4-100-thieves-9z",
+  "asOf": "2026-11-26T13:47:04.478Z",
+  "reason": "log-result stage-1-r4-imperial-liquid",
   "teams": {
     "nip": {
       "rating": 1571.9,
@@ -216,8 +216,8 @@
       ]
     },
     "liquid": {
-      "rating": 1509.1,
-      "rd": 57,
+      "rating": 1526.2,
+      "rd": 55.6,
       "maps": {
         "mirage": {
           "offset": 48.4,
@@ -230,14 +230,14 @@
           "n": 10
         },
         "cache": {
-          "offset": -37.9,
-          "rd": 61.96773353931867,
-          "n": 8
+          "offset": -35.4,
+          "rd": 60.5,
+          "n": 9
         },
         "anubis": {
-          "offset": 15.5,
-          "rd": 63.5775531391221,
-          "n": 7
+          "offset": 18.3,
+          "rd": 62,
+          "n": 8
         },
         "nuke": {
           "offset": -19.4,
@@ -534,8 +534,8 @@
       ]
     },
     "imperial": {
-      "rating": 1443.1,
-      "rd": 57,
+      "rating": 1426,
+      "rd": 55.6,
       "maps": {
         "inferno": {
           "offset": -48.3,
@@ -543,9 +543,9 @@
           "n": 6
         },
         "cache": {
-          "offset": 8.6,
-          "rd": 65.3,
-          "n": 6
+          "offset": 5.9,
+          "rd": 63.6,
+          "n": 7
         },
         "mirage": {
           "offset": 15.5,
@@ -558,9 +558,9 @@
           "n": 4
         },
         "anubis": {
-          "offset": 17.6,
-          "rd": 71.55417527999327,
-          "n": 3
+          "offset": 14.1,
+          "rd": 69.3,
+          "n": 4
         },
         "dust2": {
           "offset": -7.9,
