@@ -5,7 +5,7 @@ import { EventTeams } from './event-teams.ts'
 import { ModelParams, Modifiers, Ratings } from './model.ts'
 import { EventResults } from './results.ts'
 import { Benchmarks, Snapshot } from './snapshot.ts'
-import { TeamForm, TeamMapStats } from './team-stats.ts'
+import { TeamForm, TeamMapStats, TeamVetoStats } from './team-stats.ts'
 import { TeamRegistry } from './teams-registry.ts'
 
 export * from './bookmaker-odds.ts'
@@ -31,6 +31,7 @@ const routes: Array<[RegExp, ZodType]> = [
   [/^data\/teams\/registry\.json$/, TeamRegistry],
   [/^data\/teams\/form\/[^/]+\.json$/, TeamForm],
   [/^data\/teams\/maps\/[^/]+\.json$/, TeamMapStats],
+  [/^data\/teams\/vetoes\/[^/]+\.json$/, TeamVetoStats],
   [/^data\/ratings\/(current|history\/[^/]+)\.json$/, Ratings],
   [/^data\/model\/(params|archive\/[^/]+)\.json$/, ModelParams],
   [/^data\/model\/modifiers\.json$/, Modifiers],
