@@ -242,6 +242,12 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
 
 ## Done
 
+- 2026-11-26: Model v0.2.0 for Stage 2 on (Stage 1 stays v0.1.0, which is scored alongside from
+  Stage 2): the veto uses each team's real ban and pick shares from HLTV (`data/teams/vetoes/`, 31
+  teams, window ending before Stage 1). Stage 1 replay: maps actually played got 25.4% (v0.1.0:
+  10.0%, random 14%), Bo1 top map 10/20 (2/20), Brier 0.242 (0.249). Model versions per stage, the
+  alongside snapshots and `replay-stage.ts` came with it. Confidence labels unchanged: 26 matches are
+  too few to retune them (Medium 4/11 hits, Low 8/12).
 - 2026-11-26: Research refresh checked after its first run with the reworked prompt (2026-11-25):
   all 22 teams, 24 searches, about a minute; no news after the team files' dates, nothing changed.
 - 2026-11-26: Bracket marks the selected team with a soft orange row background (no underline),

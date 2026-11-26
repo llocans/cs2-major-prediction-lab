@@ -60,6 +60,7 @@ function fakeModel(strength: Record<string, number>): MatchModel {
     mapSamples: () => 0,
     modifiersFor: () => [],
     vetoTemperature: 25,
+    vetoHabit: () => undefined,
   }
 }
 const equal = fakeModel({})

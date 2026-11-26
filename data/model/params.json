@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scale": 400,
   "prior": {
     "base": 1500,
@@ -19,12 +19,27 @@
   },
   "update": {
     "k": 24,
-    "formatWeight": { "bo1": 0.75, "bo3": 1, "bo5": 1 },
+    "formatWeight": {
+      "bo1": 0.75,
+      "bo3": 1,
+      "bo5": 1
+    },
     "roundDiffWeight": 0.5,
     "minRd": 45
   },
-  "veto": { "temperature": 25 },
-  "sim": { "runs": 12000, "seed": 20261124 },
-  "modifiers": { "maxAbs": 40 },
+  "veto": {
+    "temperature": 25,
+    "habits": {
+      "weight": 1,
+      "shrinkMaps": 5
+    }
+  },
+  "sim": {
+    "runs": 12000,
+    "seed": 20261124
+  },
+  "modifiers": {
+    "maxAbs": 40
+  },
   "retuneCapPerStage": 0.1
 }

@@ -2,7 +2,7 @@
  * Loads and validates everything needed to simulate one Swiss stage of an event.
  * The single place where scripts turn data files into engine inputs.
  */
-import { existsSync } from 'node:fs'
+import { existsSync, readdirSync } from 'node:fs'
 import {
   EventConfig,
   EventResults,
@@ -12,6 +12,7 @@ import {
   type PlayoffStage,
   type SwissStage,
   TeamRegistry,
+  TeamVetoStats,
 } from '../../data/schemas/index.ts'
 import { buildEventChain } from '../../engine/event-chain.ts'
 import { buildMatchModel, type MatchModel } from '../../engine/match-model.ts'
@@ -24,6 +25,19 @@ import type { Pairing, SwissMatch } from '../../engine/swiss/types.ts'
 import { readJson, repoPath } from './files.ts'
 import { loadParams, loadStageVersions } from './model-versions.ts'
 import { loadRatings } from './ratings-store.ts'
+
+/** Every team's pick and ban shares (data/teams/vetoes/), by team ID. */
+export function loadVetoStats(): Record<string, TeamVetoStats> {
+  const dir = repoPath('data/teams/vetoes')
+  if (!existsSync(dir)) return {}
+  const files = readdirSync(dir).filter((file) => file.endsWith('.json'))
+  return Object.fromEntries(
+    files.map((file) => {
+      const stats = readJson(`${dir}/${file}`, TeamVetoStats)
+      return [stats.teamId, stats]
+    }),
+  )
+}
 
 /** "main": the stage's own model version; "alongside": an older version scored next to it. */
 export type ModelRole = 'main' | 'alongside'
@@ -76,6 +90,7 @@ export function loadEventData(eventId: string, today?: string, version?: string)
     params,
     config.mapPool.map((map) => map.id),
     today ?? new Date().toISOString().slice(0, 10),
+    loadVetoStats(),
   )
   const displayNames = new Map(teams.participants.map((p) => [p.teamId, p.displayName]))
   const mapNames = new Map(config.mapPool.map((map) => [map.id, map.name]))
