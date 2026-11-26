@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-26T08:47:04.669Z",
-  "reason": "log-result stage-1-r4-faze-heroic",
+  "asOf": "2026-11-26T11:47:04.158Z",
+  "reason": "log-result stage-1-r4-lynn-vision-parivision",
   "teams": {
     "nip": {
       "rating": 1571.9,
@@ -57,13 +57,13 @@
       ]
     },
     "parivision": {
-      "rating": 1542,
-      "rd": 57.7,
+      "rating": 1554.9,
+      "rd": 56.5,
       "maps": {
         "ancient": {
-          "offset": 77.4,
-          "rd": 51.5,
-          "n": 17
+          "offset": 78.4,
+          "rd": 50.6,
+          "n": 18
         },
         "inferno": {
           "offset": 23.2,
@@ -71,9 +71,9 @@
           "n": 12
         },
         "dust2": {
-          "offset": -94.9,
-          "rd": 60.5,
-          "n": 9
+          "offset": -92.6,
+          "rd": 59.1,
+          "n": 10
         },
         "mirage": {
           "offset": -14.3,
@@ -769,18 +769,18 @@
       ]
     },
     "lynn-vision": {
-      "rating": 1374.9,
-      "rd": 57.8,
+      "rating": 1362,
+      "rd": 56.5,
       "maps": {
         "dust2": {
-          "offset": 22,
-          "rd": 71.6,
-          "n": 3
+          "offset": 18.8,
+          "rd": 69.3,
+          "n": 4
         },
         "ancient": {
-          "offset": 16.4,
-          "rd": 71.6,
-          "n": 3
+          "offset": 14.4,
+          "rd": 69.3,
+          "n": 4
         },
         "inferno": {
           "offset": -15.7,

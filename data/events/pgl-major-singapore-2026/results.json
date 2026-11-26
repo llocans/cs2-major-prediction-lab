@@ -618,6 +618,33 @@
         "retrievedAt": "2026-11-26",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r4-lynn-vision-parivision",
+      "stageId": "stage-1",
+      "round": 4,
+      "teamA": "lynn-vision",
+      "teamB": "parivision",
+      "format": "bo3",
+      "maps": [
+        {
+          "map": "ancient",
+          "scoreA": 7,
+          "scoreB": 13
+        },
+        {
+          "map": "dust2",
+          "scoreA": 10,
+          "scoreB": 13
+        }
+      ],
+      "winner": "parivision",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3475687)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-26",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }

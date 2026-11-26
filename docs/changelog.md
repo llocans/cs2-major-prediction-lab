@@ -3,6 +3,7 @@
 One line per automatic change (scripts, scheduled tasks). Newest first.
 Format: `YYYY-MM-DD HH:MM UTC · actor · what changed`
 
+- 2026-11-26 11:47 UTC · poll-liquipedia · logged 1 result(s) in stage-1; ratings updated; snapshot not-due
 - 2026-11-26 11:33 UTC · manual (Claude) · pick and ban shares for 31 teams from HLTV team map stats (Top50, 2026-08-21 to 2026-11-21, the map stats window) into data/teams/vetoes/; input for model v0.2.0
 - 2026-11-26 08:47 UTC · poll-liquipedia · logged 2 result(s) in stage-1; ratings updated; snapshot not-due
 - 2026-11-25 15:32 UTC · manual (Claude, scheduled) · market odds for Stage 1 round 3, nip vs liquid, imperial vs flyquest, 9z vs dendele and gosh (bc-game) vs chinggis-warriors from OddsPortal's final listed odds
