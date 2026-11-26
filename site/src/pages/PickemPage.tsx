@@ -151,7 +151,7 @@ function SwissBoard(props: {
   const records = buildRecords(seeds, played)
 
   const sim = useSwissOutcomeSimulation({
-    ...modelRequest(event),
+    ...modelRequest(event, stage),
     kind: 'swiss',
     seeds,
     rules,
@@ -489,7 +489,9 @@ function PlayoffBoard(props: { event: EventData; stage: PlayoffStage; seeds: str
     m.teamA && m.teamB && m.winner ? [{ teamA: m.teamA, teamB: m.teamB, winner: m.winner }] : [],
   )
   const sim = usePlayoffSimulation(
-    error ? undefined : { ...modelRequest(event), kind: 'playoffs', seeds, rules: stage, played },
+    error
+      ? undefined
+      : { ...modelRequest(event, stage), kind: 'playoffs', seeds, rules: stage, played },
   )
   const odds = new Map((sim.prediction?.teams ?? []).map((t) => [t.teamId, t]))
   const chance = (team: string, round: number) => {

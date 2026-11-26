@@ -7,7 +7,7 @@ import {
   EventConfig,
   EventResults,
   EventTeams,
-  ModelParams,
+  type ModelParams,
   Modifiers,
   type PlayoffStage,
   type SwissStage,
@@ -22,7 +22,11 @@ import type { SwissSimInput } from '../../engine/simulate-swiss.ts'
 import { stageSeeds } from '../../engine/swiss/stage-seeds.ts'
 import type { Pairing, SwissMatch } from '../../engine/swiss/types.ts'
 import { readJson, repoPath } from './files.ts'
+import { loadParams, loadStageVersions } from './model-versions.ts'
 import { loadRatings } from './ratings-store.ts'
+
+/** "main": the stage's own model version; "alongside": an older version scored next to it. */
+export type ModelRole = 'main' | 'alongside'
 
 export interface StageContext {
   eventId: string
@@ -30,6 +34,7 @@ export interface StageContext {
   stage: SwissStage
   results: EventResults
   params: ModelParams
+  modelRole: ModelRole
   simInput: SwissSimInput
   /**
    * The rest of the event after this stage, for playoff and title odds. Undefined (with a warning)
@@ -51,14 +56,17 @@ export interface EventData {
   ratingsAsOf: string
 }
 
-/** Loads and validates the event's config, teams, results, model parameters and ratings. */
-export function loadEventData(eventId: string, today?: string): EventData {
+/**
+ * Loads and validates the event's config, teams, results, model parameters and ratings. `version`
+ * picks the model params (default: the latest, data/model/params.json).
+ */
+export function loadEventData(eventId: string, today?: string, version?: string): EventData {
   const dir = repoPath('data/events', eventId)
   const config = readJson(`${dir}/config.json`, EventConfig)
   const teams = readJson(`${dir}/teams.json`, EventTeams)
   const registry = readJson(repoPath('data/teams/registry.json'), TeamRegistry)
   const results = readJson(`${dir}/results.json`, EventResults)
-  const params = readJson(repoPath('data/model/params.json'), ModelParams)
+  const params = loadParams(version)
   const modifiersPath = repoPath('data/model/modifiers.json')
   const modifiers = existsSync(modifiersPath) ? readJson(modifiersPath, Modifiers).modifiers : []
   const ratings = loadRatings()
@@ -81,9 +89,11 @@ export function loadEventData(eventId: string, today?: string): EventData {
 export function loadStageContext(
   eventId: string,
   stageId: string,
-  options: { announced?: Pairing[]; today?: string } = {},
+  /** `version`: a model version other than the stage's own (an alongside version, a replay). */
+  options: { announced?: Pairing[]; today?: string; version?: string } = {},
 ): StageContext {
-  const event = loadEventData(eventId, options.today)
+  const { version, modelRole } = resolveVersion(eventId, stageId, options.version)
+  const event = loadEventData(eventId, options.today, version)
   const { config, teams, results, params, model, labels } = event
   const stage = config.stages.find((s) => s.id === stageId)
   if (stage?.type !== 'swiss') throw new Error(`${eventId}: no Swiss stage "${stageId}"`)
@@ -120,6 +130,7 @@ export function loadStageContext(
     stage,
     results,
     params,
+    modelRole,
     simInput,
     ...(chain ? { chain } : {}),
     labels,
@@ -152,6 +163,7 @@ export interface PlayoffContext {
   stage: PlayoffStage
   results: EventResults
   params: ModelParams
+  modelRole: ModelRole
   simInput: PlayoffSimInput
   labels: Labels
   ratingsAsOf: string
@@ -166,9 +178,10 @@ export function isPlayoffStageSeeded(event: EventData, stage: PlayoffStage): boo
 export function loadPlayoffContext(
   eventId: string,
   stageId: string,
-  options: { today?: string } = {},
+  options: { today?: string; version?: string } = {},
 ): PlayoffContext {
-  const event = loadEventData(eventId, options.today)
+  const { version, modelRole } = resolveVersion(eventId, stageId, options.version)
+  const event = loadEventData(eventId, options.today, version)
   const { config, teams, results, params, model, labels } = event
   const stage = config.stages.find((s) => s.id === stageId)
   if (stage?.type !== 'single-elimination') {
@@ -187,6 +200,7 @@ export function loadPlayoffContext(
     stage,
     results,
     params,
+    modelRole,
     simInput: {
       seeds,
       rules: stage,
@@ -199,4 +213,21 @@ export function loadPlayoffContext(
     labels,
     ratingsAsOf: event.ratingsAsOf,
   }
+}
+
+/**
+ * The model version to load for a stage: its own (main) version by default; another version must be
+ * one of the stage's alongside versions, or be asked for explicitly as a replay (role "alongside").
+ */
+function resolveVersion(
+  eventId: string,
+  stageId: string,
+  requested: string | undefined,
+): { version: string; modelRole: ModelRole } {
+  const config = readJson(repoPath('data/events', eventId, 'config.json'), EventConfig)
+  const { main } = loadStageVersions(config, stageId)
+  if (requested === undefined || requested === main.version) {
+    return { version: main.version, modelRole: 'main' }
+  }
+  return { version: requested, modelRole: 'alongside' }
 }

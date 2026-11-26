@@ -105,7 +105,7 @@ function SeededPlayoffs(props: EventProps & { seeds: string[]; query: URLSearchP
   const sim = usePlayoffSimulation(
     bracketError
       ? undefined
-      : { ...modelRequest(event), kind: 'playoffs', seeds, rules: stage, played },
+      : { ...modelRequest(event, stage), kind: 'playoffs', seeds, rules: stage, played },
   )
   const prediction = sim.prediction
   const pending = new Map(
@@ -225,7 +225,7 @@ function ProjectedPlayoffs({ event, stage }: EventProps) {
   const sim = useStageSimulation(
     current && chain
       ? {
-          ...modelRequest(event),
+          ...modelRequest(event, current),
           kind: 'swiss',
           seeds: stageSeeds(event.teams.participants, current.id),
           rules: {

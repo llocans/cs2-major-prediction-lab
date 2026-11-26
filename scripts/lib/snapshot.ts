@@ -12,8 +12,25 @@ import { currentRound } from '../../engine/simulate-swiss.ts'
 import type { PlayoffContext, StageContext } from './event-context.ts'
 import { repoPath, writeJson } from './files.ts'
 
-export function snapshotPath(eventId: string, stageId: string, round: number): string {
-  return repoPath('data/events', eventId, 'snapshots', `${stageId}-r${round}.json`)
+/**
+ * snapshots/<stage>-r<round>.json for the stage's own model version; an alongside version's
+ * snapshot of the same round goes to snapshots/alongside/<version>/.
+ */
+export function snapshotPath(
+  eventId: string,
+  stageId: string,
+  round: number,
+  alongsideVersion?: string,
+): string {
+  const file = `${stageId}-r${round}.json`
+  return alongsideVersion === undefined
+    ? repoPath('data/events', eventId, 'snapshots', file)
+    : repoPath('data/events', eventId, 'snapshots', 'alongside', alongsideVersion, file)
+}
+
+function contextSnapshotPath(context: StageContext | PlayoffContext, round: number): string {
+  const version = context.modelRole === 'alongside' ? context.params.version : undefined
+  return snapshotPath(context.eventId, context.stage.id, round, version)
 }
 
 /**
@@ -31,7 +48,7 @@ export function saveRoundSnapshot(
   const { seeds, played, rules } = context.simInput
   const round = currentRound(seeds, played, rules)
   if (round > 5) return { status: 'done' }
-  const path = snapshotPath(context.eventId, context.stage.id, round)
+  const path = contextSnapshotPath(context, round)
   // Checked before simulating: the whole-event simulation takes seconds and the poller asks often.
   if (existsSync(path)) return { status: 'exists', path }
 
@@ -88,7 +105,7 @@ export function savePlayoffSnapshot(
   const rounds = roundCount(rules)
   const round = currentPlayoffRound(bracket, rounds)
   if (round > rounds) return { status: 'done' }
-  const path = snapshotPath(context.eventId, context.stage.id, round)
+  const path = contextSnapshotPath(context, round)
   if (existsSync(path)) return { status: 'exists', path }
 
   const roundMatches = bracket.filter((m) => m.round === round)

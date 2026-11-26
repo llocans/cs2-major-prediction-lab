@@ -1,7 +1,8 @@
 /**
  * Simulates the rest of a stage and prints the odds. Writes nothing. A Swiss stage also plays out the
  * rest of the event (playoff and title odds); the playoff stage prints its bracket odds once seeded.
- * Usage: node scripts/simulate.ts <event-id> <stage-id>
+ * Usage: node scripts/simulate.ts <event-id> <stage-id> [--model <version>]
+ * (`--model`: another model version than the stage's own, e.g. one scored alongside it)
  */
 import type { MatchPrediction } from '../data/schemas/snapshot.ts'
 import { predictStage } from '../engine/predict.ts'
@@ -13,11 +14,17 @@ import {
   loadStageContext,
 } from './lib/event-context.ts'
 
-const [eventId, stageId] = process.argv.slice(2)
-if (!eventId || !stageId) {
-  console.error('Usage: node scripts/simulate.ts <event-id> <stage-id>')
+const args = process.argv.slice(2)
+const modelFlag = args.indexOf('--model')
+const version = modelFlag >= 0 ? args[modelFlag + 1] : undefined
+const [eventId, stageId] = args.filter(
+  (_, i) => modelFlag < 0 || (i !== modelFlag && i !== modelFlag + 1),
+)
+if (!eventId || !stageId || (modelFlag >= 0 && !version)) {
+  console.error('Usage: node scripts/simulate.ts <event-id> <stage-id> [--model <version>]')
   process.exit(1)
 }
+const versionOption = version === undefined ? {} : { version }
 
 const started = performance.now()
 const pct = (p: number) => `${(p * 100).toFixed(1).padStart(5)}%`
@@ -53,10 +60,12 @@ function printPlayoffs() {
     )
     return
   }
-  const context = loadPlayoffContext(eventId as string, stageId as string)
+  const context = loadPlayoffContext(eventId as string, stageId as string, versionOption)
   const prediction = predictPlayoffs(context.simInput, context.labels)
   const { sim } = prediction
-  console.log(`${context.config.name} · ${context.stage.name} · round ${prediction.currentRound}`)
+  console.log(
+    `${context.config.name} · ${context.stage.name} · round ${prediction.currentRound} · model ${context.params.version}`,
+  )
   console.log(
     `${sim.runs} runs, max SE ${(sim.maxStandardError * 100).toFixed(2)} pp, ${Math.round(performance.now() - started)} ms\n`,
   )
@@ -73,11 +82,11 @@ function printPlayoffs() {
 }
 
 function printSwiss() {
-  const context = loadStageContext(eventId as string, stageId as string)
+  const context = loadStageContext(eventId as string, stageId as string, versionOption)
   const prediction = predictStage(context.simInput, context.labels, context.chain)
 
   console.log(
-    `${context.config.name} · ${context.stage.name} · round ${prediction.sim.currentRound}`,
+    `${context.config.name} · ${context.stage.name} · round ${prediction.sim.currentRound} · model ${context.params.version}`,
   )
   console.log(
     `${prediction.sim.runs} runs, max SE ${(prediction.sim.maxStandardError * 100).toFixed(2)} pp, ${Math.round(performance.now() - started)} ms\n`,

@@ -1,8 +1,13 @@
+import type { Stage } from '../../../data/schemas/index.ts'
 import type { EventData } from '../lib/data.ts'
-import { modifiers, params, ratings } from '../lib/data.ts'
+import { modifiers, ratings, stageParams } from '../lib/data.ts'
 
-/** The model part of every simulation request for an event (see protocol.ts). */
-export function modelRequest(event: EventData) {
+/**
+ * The model part of every simulation request for an event (see protocol.ts), with the params of the
+ * model version `stage` runs on, so the site shows the same odds as that stage's snapshots.
+ */
+export function modelRequest(event: EventData, stage: Stage) {
+  const params = stageParams(stage)
   return {
     runs: params.sim.runs,
     seed: params.sim.seed,

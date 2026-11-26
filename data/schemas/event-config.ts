@@ -18,6 +18,16 @@ export const VetoProcedure = z.object({
 })
 export type VetoProcedure = z.infer<typeof VetoProcedure>
 
+/**
+ * The model version a stage runs on (`data/model/params.json` or `data/model/archive/<version>.json`)
+ * and older versions scored next to it on the same matches. Without it, the latest params.
+ */
+export const StageModel = z.object({
+  version: z.string(),
+  alongside: z.array(z.string()).optional(),
+})
+export type StageModel = z.infer<typeof StageModel>
+
 /** Which Bo a Swiss match uses. "decider" = an elimination or advancement match. */
 export const SwissFormatRule = z.object({
   default: MatchFormat,
@@ -45,6 +55,7 @@ export const SwissStage = z.object({
   liquipediaPage: z.string().optional(),
   /** Seeds 1..8 for invited teams come from pre-event seeding; advancing teams fill the rest. */
   advanceTo: z.string().optional(),
+  model: StageModel.optional(),
   source: z.array(Source).min(1),
 })
 export type SwissStage = z.infer<typeof SwissStage>
@@ -65,6 +76,7 @@ export const PlayoffStage = z.object({
   thirdPlaceDecider: z.boolean(),
   /** Liquipedia page holding the bracket (MediaWiki API title). */
   liquipediaPage: z.string().optional(),
+  model: StageModel.optional(),
   source: z.array(Source).min(1),
 })
 export type PlayoffStage = z.infer<typeof PlayoffStage>

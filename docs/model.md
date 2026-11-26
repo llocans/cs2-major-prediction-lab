@@ -138,3 +138,31 @@ The Bo5 grand-final veto is unverified for PGL Singapore (`veto.bo5.unverified`;
 - Retune cap: after one stage, no weight in `params.json` may change by more than
   `retuneCapPerStage` (10%) of its value. Larger changes need backtests on past Majors. All parameter
   changes go through a PR.
+
+## Model versions
+
+Each stage runs on one model version and may score older versions next to it on the same matches
+(`docs/core/model-principles.md`, rule 7). Stage 1 of PGL Singapore is the test run of v0.1.0.
+
+- `data/model/params.json` is the latest version; `data/model/archive/<version>.json` keeps every
+  older version a stage still runs on or scores alongside. The event config names them per stage:
+  `"model": { "version": "0.2.0", "alongside": ["0.1.0"] }` (no `model`: the latest).
+- The poller, `simulate.ts` and the site's in-browser simulation all use the stage's own version.
+  An alongside version gets its own pre-round snapshots in
+  `data/events/<id>/snapshots/alongside/<version>/` (same schema, saved at the same moment, never
+  edited), so both are scored on the same results. `simulate.ts <event> <stage> --model <version>`
+  prints an alongside version's odds.
+- Versions that run together share `data/ratings/current.json`, so they must rate teams the same
+  way (scale, prior, maps and update rules; `engine/model-version.ts` refuses otherwise). They may
+  differ in everything that turns ratings into a prediction: veto, simulation, confidence. A
+  version with new rating rules needs its own ratings file first (not built yet).
+- `node scripts/replay-stage.ts <event> <stage> [version ...]` replays a stage's saved rounds with
+  each version, from the ratings, earlier results, modifiers and draw each snapshot had, and scores
+  them: Brier, hits, the mean chance the veto gave the maps actually played, and the Bo1 top map.
+  Replaying the version a snapshot was made with gives its numbers back (Stage 1, v0.1.0: same
+  Brier and hits, match odds within 1.2 pp because rounds 1-4 counted match odds from the runs).
+
+Releasing a version: copy `params.json` to `archive/<old version>.json`, change `params.json` and
+bump its `version`, set the next stage's `model` to the new version with the old one alongside, run
+the replay on the finished stages, and merge before the previous stage's last match ends (the
+next stage's round 1 snapshot is saved the moment it finishes).

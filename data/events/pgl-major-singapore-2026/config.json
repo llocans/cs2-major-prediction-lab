@@ -225,6 +225,9 @@
       ],
       "liquipediaPage": "PGL/2026/Singapore/Stage 1",
       "advanceTo": "stage-2",
+      "model": {
+        "version": "0.1.0"
+      },
       "source": [
         {
           "name": "Valve Major Supplemental Rulebook: Swiss Bracket",
@@ -311,6 +314,9 @@
       ],
       "liquipediaPage": "PGL/2026/Singapore/Stage 2",
       "advanceTo": "stage-3",
+      "model": {
+        "version": "0.1.0"
+      },
       "source": [
         {
           "name": "Liquipedia: PGL/2026/Singapore (Format)",
@@ -398,6 +404,9 @@
       ],
       "liquipediaPage": "PGL/2026/Singapore/Stage 3",
       "advanceTo": "playoffs",
+      "model": {
+        "version": "0.1.0"
+      },
       "source": [
         {
           "name": "Liquipedia: PGL/2026/Singapore (Format: Stage 3 all Bo3)",
@@ -449,6 +458,9 @@
       },
       "thirdPlaceDecider": true,
       "liquipediaPage": "PGL/2026/Singapore/Playoffs",
+      "model": {
+        "version": "0.1.0"
+      },
       "source": [
         {
           "name": "Valve Major Supplemental Rulebook: Single Elimination Bracket",

@@ -51,7 +51,8 @@ Other commands:
 | `npm run validate`                         | Validate every data file against its schema        |
 | `npm run build`                            | Build the static site into `dist/`                 |
 | `npm run ui-audit`                         | Measure every page in Chromium (desktop + mobile, light + dark); needs `npx playwright install chromium` once |
-| `node scripts/simulate.ts <event> <stage>` | Print the current odds for a stage or the playoffs |
+| `node scripts/simulate.ts <event> <stage>` | Print the current odds for a stage or the playoffs (`--model <version>` for another model version) |
+| `node scripts/replay-stage.ts <event> <stage> [version ...]` | Replay a stage's saved rounds with each model version and score them |
 | `node scripts/log-odds.ts <event> <stage> <round> ...` | Log a round's bookmaker odds (margin removed) for the Market odds page |
 
 Scripts that fetch from Liquipedia need a contact address for the API User-Agent. Copy `.env.example`

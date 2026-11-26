@@ -17,7 +17,7 @@ future events too: formats live in config, never in code.
 | `docs/roadmap.md`    | What is done, what is open, and ideas for later                                                   |
 | `data/schemas/`      | Zod schemas; `index.ts` maps file paths to schemas                                                |
 | `data/teams/`        | `registry.json` (IDs, aliases, dated rosters) + `<team-id>.md` research notes                     |
-| `data/model/`        | `params.json` (weights), `modifiers.json` (logged judgment calls)                                 |
+| `data/model/`        | `params.json` (latest weights), `archive/` (older versions in use), `modifiers.json` (judgment)   |
 | `data/ratings/`      | `current.json` + `history/`                                                                       |
 | `data/events/<id>/`  | config, teams, results (real only), benchmarks, snapshots (never edited), accuracy, status        |
 | `engine/`            | Pure TS: Swiss pairing, playoffs, veto, ratings, simulation, scoring. No I/O                      |
@@ -49,8 +49,10 @@ future events too: formats live in config, never in code.
   - `advance` happens automatically: when a Swiss stage finishes, the poller seeds its 8 advancing teams
     into the next stage (seeds 9-16; playoffs: seeds 1-8) and saves that stage's round 1 snapshot
   - `score-stage.ts <event> <stage>` → score block in `data/events/<id>/accuracy.md`
-  - `simulate.ts <event> <stage>` (prints odds; Swiss or playoffs) · `snapshot.ts <event> <stage>`
+  - `simulate.ts <event> <stage> [--model <version>]` (prints odds; Swiss or playoffs) · `snapshot.ts <event> <stage>`
     (pre-round, once)
+  - `replay-stage.ts <event> <stage> [version ...]` → replays a stage's saved rounds with each model
+    version and scores them (Brier, hits, map guesses); used before releasing a version (`docs/model.md`)
   - `log-odds.ts <event> <stage> <round> <teamA> <oddsA> <teamB> <oddsB> ... --source "<name>|<url>"`
     → margin-free bookmaker odds in `data/events/<id>/bookmaker-odds.json` for the Market odds page,
     decimal odds in git-ignored `local/market-odds.json` (never committed)

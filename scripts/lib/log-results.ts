@@ -9,7 +9,6 @@ import {
   EventConfig,
   EventResults,
   type MatchResult,
-  ModelParams,
   Modifiers,
   type PlayoffStage,
 } from '../../data/schemas/index.ts'
@@ -24,6 +23,7 @@ import { stageSeeds } from '../../engine/swiss/stage-seeds.ts'
 import type { Pairing } from '../../engine/swiss/types.ts'
 import { loadEventData, loadPlayoffContext, loadStageContext } from './event-context.ts'
 import { readJson, repoPath, writeJson } from './files.ts'
+import { loadStageVersions } from './model-versions.ts'
 import { loadRatings, saveRatings } from './ratings-store.ts'
 import { savePlayoffSnapshot, saveRoundSnapshot } from './snapshot.ts'
 import { writePlayoffStatus, writeStatus } from './status.ts'
@@ -94,7 +94,8 @@ export function logResults(
 
   writeJson(resultsPath, EventResults, { ...results, matches: [...results.matches, ...logged] })
 
-  const params = readJson(repoPath('data/model/params.json'), ModelParams)
+  // Alongside versions share these rating rules (engine/model-version.ts), so one update serves all.
+  const params = loadStageVersions(event.config, stageId).main
   const modifiersPath = repoPath('data/model/modifiers.json')
   const modifiers = existsSync(modifiersPath) ? readJson(modifiersPath, Modifiers).modifiers : []
   let ratings = loadRatings()
@@ -220,7 +221,12 @@ export function ensureRoundSnapshot(
   writeStatus(context, prediction)
   if (round > 5) return 'done'
   if (context.simInput.played.some((m) => m.round === round)) return 'not-due'
-  return saveRoundSnapshot(context, prediction).status
+  const status = saveRoundSnapshot(context, prediction).status
+  for (const other of loadStageVersions(config, stageId).alongside) {
+    const options = { version: other.version, ...(pairings ? { announced: pairings } : {}) }
+    saveRoundSnapshot(loadStageContext(eventId, stageId, options))
+  }
+  return status
 }
 
 /** The playoff version: refreshes status.md and saves the pre-round snapshot when one is due. */
@@ -233,7 +239,11 @@ function ensurePlayoffSnapshot(eventId: string, stageId: string): LogOutcome['sn
     (m) => m.round === prediction.currentRound && m.winner !== undefined,
   )
   if (started) return 'not-due'
-  return savePlayoffSnapshot(context, prediction).status
+  const status = savePlayoffSnapshot(context, prediction).status
+  for (const other of loadStageVersions(context.config, stageId).alongside) {
+    savePlayoffSnapshot(loadPlayoffContext(eventId, stageId, { version: other.version }))
+  }
+  return status
 }
 
 /** Inserts a line right after the format line of docs/changelog.md (newest first). */
