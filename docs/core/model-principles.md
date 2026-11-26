@@ -15,5 +15,8 @@ Protected file. Change it only on a `core/*` branch with a PR. The current model
    the Brier score and calibration, against simple baselines and the market benchmark.
 7. **Slow, evidence-based tuning.** One Swiss stage (33 matches) is too small to retune on. Per-stage
    weight changes are capped (`params.retuneCapPerStage`); real retuning uses backtests on past Majors.
-   Parameter changes go through a PR.
+   Parameter changes go through a PR. A new input (a new kind of data or a new step in the model)
+   may start with a new stage, under a new model version, when replaying the finished stages shows
+   no harm and the previous version keeps running on the same matches, scored on the same results.
+   A new model version only ever starts with a stage, never in the middle of one.
 8. **Never invent data.** Missing data means wider uncertainty, not a guess.
