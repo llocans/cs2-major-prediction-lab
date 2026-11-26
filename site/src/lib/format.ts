@@ -17,3 +17,15 @@ export function outcomeOpen(record: string, outcome: '3-0' | '0-3'): boolean {
   const [wins = 0, losses = 0] = record.split('-').map(Number)
   return outcome === '3-0' ? losses === 0 : wins === 0
 }
+
+/** Where a W-L record leaves a team in a Swiss stage: through, out, or still playing. */
+export function recordStatus(
+  record: string,
+  winsToAdvance: number,
+  lossesToEliminate: number,
+): 'advanced' | 'eliminated' | 'playing' {
+  const [wins = 0, losses = 0] = record.split('-').map(Number)
+  if (wins >= winsToAdvance) return 'advanced'
+  if (losses >= lossesToEliminate) return 'eliminated'
+  return 'playing'
+}
