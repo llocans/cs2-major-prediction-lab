@@ -18,7 +18,8 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
 - The previous version keeps running next to the new one on the same matches and is scored on the
   same results (a fair head-to-head on the Track record page, which names the version per stage).
 - Before release, the new version replays Stage 1 from its pre-round data (a sanity check, not
-  proof: 33 matches). Replaying v0.1 must reproduce the saved snapshots exactly.
+  proof: 33 matches). Replaying v0.1 must give the saved numbers back (match odds within about
+  1 pp: rounds 1-4 counted match odds from the runs before 2026-11-25).
 - Model changes go in their own PRs, never mixed with UI or poller changes. Data collection is
   never part of a code PR. Poller PRs merge only while no match is live.
 - Existing weights keep the 10% cap per stage; new inputs are allowed when the Stage 1 replay
@@ -33,14 +34,16 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
 **Order of work**
 1. Setup (no prediction changes), Nov 26:
    - Roadmap (this section). Principle 7 wording (`core/*` PR).
-   - Per-stage model versions, the old version scored alongside, Stage 1 replay script, version
-     per stage on the Track record page (one PR).
+   - Per-stage model versions, the old version scored alongside, Stage 1 replay script (one PR).
+   - Track record page: the model version per stage and the alongside version's score on the same
+     matches (UI PR, before Stage 2's first results on Nov 28).
    - Poller: save CT/T half scores and first side per map (in Liquipedia's `{{Map}}` fields
      `t1t`, `t1ct`, `t2t`, `t2ct`, `t1firstside`), save the announced pairings, and wait for a full
      draw before snapshotting (covers "Site and `simulate.ts` when the real draw differs" and
      "Partial draw at snapshot time" below; one PR, merged after the day's matches).
 2. v0.2 (Stage 2), by Nov 27 noon:
-   - Schema and import script for ban/pick habits (a new `vetoes` folder in `data/teams/`), then the data for the
+   - Schema and import script for ban/pick habits (a new `vetoes` folder in `data/teams/`), then
+     the data for the
      ~20 teams that may play Stage 2 (interactive, Claude in Chrome; first find a page that shows a
      team's ban and pick rates, HLTV or bo3.gg).
    - Model: the veto uses each team's real ban and pick habits; a better rule for a map a team never
