@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "teamId": "m80",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 38,
+  "maps": {
+    "cache": {
+      "pick": 61.5,
+      "ban": 0
+    },
+    "mirage": {
+      "pick": 16.7,
+      "ban": 4
+    },
+    "dust2": {
+      "pick": 0,
+      "ban": 21.7
+    },
+    "inferno": {
+      "pick": 25,
+      "ban": 12.5
+    },
+    "anubis": {
+      "pick": 11.1,
+      "ban": 16.7
+    },
+    "ancient": {
+      "pick": 0,
+      "ban": 38.5
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/12376/m80?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

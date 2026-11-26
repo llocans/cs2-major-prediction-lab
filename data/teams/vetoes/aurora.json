@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "teamId": "aurora",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 67,
+  "maps": {
+    "mirage": {
+      "pick": 20.8,
+      "ban": 12.2
+    },
+    "inferno": {
+      "pick": 0,
+      "ban": 21.2
+    },
+    "anubis": {
+      "pick": 61.1,
+      "ban": 0
+    },
+    "cache": {
+      "pick": 17.4,
+      "ban": 21.4
+    },
+    "dust2": {
+      "pick": 21.1,
+      "ban": 18.4
+    },
+    "nuke": {
+      "pick": 20,
+      "ban": 4.9
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/11861/aurora?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

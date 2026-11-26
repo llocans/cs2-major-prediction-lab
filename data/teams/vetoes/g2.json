@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "teamId": "g2",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 58,
+  "maps": {
+    "ancient": {
+      "pick": 45.5,
+      "ban": 0
+    },
+    "inferno": {
+      "pick": 44.4,
+      "ban": 7.1
+    },
+    "dust2": {
+      "pick": 7.7,
+      "ban": 16
+    },
+    "mirage": {
+      "pick": 27.3,
+      "ban": 6.1
+    },
+    "anubis": {
+      "pick": 12.5,
+      "ban": 30
+    },
+    "nuke": {
+      "pick": 0,
+      "ban": 66.7
+    },
+    "cache": {
+      "pick": 8.3,
+      "ban": 42.9
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/5995/g2?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

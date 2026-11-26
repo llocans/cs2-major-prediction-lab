@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "teamId": "mouz",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 76,
+  "maps": {
+    "mirage": {
+      "pick": 62.1,
+      "ban": 0
+    },
+    "nuke": {
+      "pick": 33.3,
+      "ban": 7.5
+    },
+    "cache": {
+      "pick": 0,
+      "ban": 10.3
+    },
+    "dust2": {
+      "pick": 4.3,
+      "ban": 26.5
+    },
+    "inferno": {
+      "pick": 27.8,
+      "ban": 3.6
+    },
+    "ancient": {
+      "pick": 4.3,
+      "ban": 17.9
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/4494/mouz?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

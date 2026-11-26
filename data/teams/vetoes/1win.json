@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "teamId": "1win",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 38,
+  "maps": {
+    "dust2": {
+      "pick": 93.3,
+      "ban": 0
+    },
+    "mirage": {
+      "pick": 6.2,
+      "ban": 3.6
+    },
+    "ancient": {
+      "pick": 0,
+      "ban": 11.1
+    },
+    "anubis": {
+      "pick": 14.3,
+      "ban": 5.6
+    },
+    "cache": {
+      "pick": 6.7,
+      "ban": 8
+    },
+    "inferno": {
+      "pick": 0,
+      "ban": 40
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/10621/1win?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "teamId": "eternal-fire",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 62,
+  "maps": {
+    "ancient": {
+      "pick": 47.6,
+      "ban": 6.5
+    },
+    "mirage": {
+      "pick": 5.3,
+      "ban": 22.2
+    },
+    "cache": {
+      "pick": 27.8,
+      "ban": 0
+    },
+    "dust2": {
+      "pick": 33.3,
+      "ban": 12.5
+    },
+    "inferno": {
+      "pick": 0,
+      "ban": 29
+    },
+    "anubis": {
+      "pick": 7.1,
+      "ban": 12.5
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/11251/eternal-fire?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

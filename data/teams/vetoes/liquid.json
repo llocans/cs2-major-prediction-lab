@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "teamId": "liquid",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 45,
+  "maps": {
+    "mirage": {
+      "pick": 18.8,
+      "ban": 3.1
+    },
+    "inferno": {
+      "pick": 53.3,
+      "ban": 18.5
+    },
+    "cache": {
+      "pick": 11.8,
+      "ban": 9.7
+    },
+    "anubis": {
+      "pick": 45.5,
+      "ban": 0
+    },
+    "nuke": {
+      "pick": 0,
+      "ban": 30.8
+    },
+    "dust2": {
+      "pick": 0,
+      "ban": 63.6
+    },
+    "ancient": {
+      "pick": 0,
+      "ban": 66.7
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/5973/liquid?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

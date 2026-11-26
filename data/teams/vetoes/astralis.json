@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "teamId": "astralis",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 48,
+  "maps": {
+    "ancient": {
+      "pick": 75,
+      "ban": 0
+    },
+    "cache": {
+      "pick": 40,
+      "ban": 4.2
+    },
+    "nuke": {
+      "pick": 0,
+      "ban": 5.6
+    },
+    "dust2": {
+      "pick": 0,
+      "ban": 52.6
+    },
+    "mirage": {
+      "pick": 0,
+      "ban": 11.5
+    },
+    "inferno": {
+      "pick": 0,
+      "ban": 20
+    },
+    "anubis": {
+      "pick": 0,
+      "ban": 70
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/6665/astralis?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

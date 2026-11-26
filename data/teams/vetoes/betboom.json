@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "teamId": "betboom",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 60,
+  "maps": {
+    "mirage": {
+      "pick": 30.4,
+      "ban": 2.9
+    },
+    "ancient": {
+      "pick": 30,
+      "ban": 6.1
+    },
+    "anubis": {
+      "pick": 70,
+      "ban": 4.8
+    },
+    "dust2": {
+      "pick": 0,
+      "ban": 18.2
+    },
+    "nuke": {
+      "pick": 21.1,
+      "ban": 0
+    },
+    "cache": {
+      "pick": 4.8,
+      "ban": 37.8
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/12394/betboom?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

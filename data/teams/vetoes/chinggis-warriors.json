@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "teamId": "chinggis-warriors",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 21,
+  "maps": {
+    "nuke": {
+      "pick": 42.9,
+      "ban": 0
+    },
+    "ancient": {
+      "pick": 50,
+      "ban": 11.1
+    },
+    "inferno": {
+      "pick": 0,
+      "ban": 20
+    },
+    "dust2": {
+      "pick": 0,
+      "ban": 0
+    },
+    "cache": {
+      "pick": 12.5,
+      "ban": 27.3
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/12646/chinggis-warriors?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

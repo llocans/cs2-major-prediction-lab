@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "teamId": "fut",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 33,
+  "maps": {
+    "dust2": {
+      "pick": 28.6,
+      "ban": 21.4
+    },
+    "nuke": {
+      "pick": 0,
+      "ban": 21.1
+    },
+    "ancient": {
+      "pick": 50,
+      "ban": 6.2
+    },
+    "cache": {
+      "pick": 25,
+      "ban": 25
+    },
+    "anubis": {
+      "pick": 25,
+      "ban": 12.5
+    },
+    "mirage": {
+      "pick": 15.4,
+      "ban": 0
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/13286/fut?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}

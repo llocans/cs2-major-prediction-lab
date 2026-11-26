@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "teamId": "wildcard",
+  "window": {
+    "from": "2026-08-21",
+    "to": "2026-11-21"
+  },
+  "filter": "vs HLTV top 50",
+  "mapsPlayed": 28,
+  "maps": {
+    "cache": {
+      "pick": 10,
+      "ban": 18.8
+    },
+    "mirage": {
+      "pick": 45.5,
+      "ban": 5.9
+    },
+    "inferno": {
+      "pick": 36.4,
+      "ban": 0
+    },
+    "nuke": {
+      "pick": 20,
+      "ban": 16.7
+    },
+    "dust2": {
+      "pick": 0,
+      "ban": 6.7
+    },
+    "anubis": {
+      "pick": 0,
+      "ban": 25
+    }
+  },
+  "source": {
+    "name": "HLTV team map stats, pick and ban shares (Top50, 2026-08-21 to 2026-11-21)",
+    "url": "https://www.hltv.org/stats/teams/maps/12257/wildcard?startDate=2026-08-21&endDate=2026-11-21&rankingFilter=Top50",
+    "retrievedAt": "2026-11-26"
+  }
+}
