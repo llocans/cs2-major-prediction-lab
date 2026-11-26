@@ -3,8 +3,10 @@
  * reset to before its first match, then every Swiss stage fed round by round as Liquipedia Matchlist
  * pages through the poller's own code (applySwissPage): round start, a part-played round with a Bo3
  * in progress, the same page again, the finished round → snapshots → advance into the next stage →
- * its round 1 snapshot, until the playoffs are seeded. Stage pairings that differ from ours (once
- * announced early, once not) must not stop it.
+ * its round 1 snapshot, until the playoffs are seeded. Each stage's round 2 is drawn differently
+ * from our pairing; a round's draw is listed when the previous round ends (stage 1), when the round
+ * starts (stage 2), or never before its first results (stage 3, round 2). Every snapshot must still
+ * use the real draw, and draw.json must hold it.
  * Never touches this checkout (see lib/temp-copy.ts).
  * Usage: node scripts/check-swiss-flow.ts [event-id]   (exit code 1 if any check fails)
  */
@@ -25,6 +27,7 @@ import { buildRecords } from '../engine/swiss/records.ts'
 import { stageSeeds } from '../engine/swiss/stage-seeds.ts'
 import type { Pairing, SwissMatch } from '../engine/swiss/types.ts'
 import { advanceStage, isSwissStageFinished, isSwissStageSeeded } from './lib/advance.ts'
+import { storedDraw } from './lib/draw-store.ts'
 import { readJson, repoPath, writeJson } from './lib/files.ts'
 import { applySwissPage, convertOptions } from './lib/poll-stage.ts'
 import { enterTempCopy, resetEventProgress } from './lib/temp-copy.ts'
@@ -159,10 +162,11 @@ for (const [index, stage] of swissStages.entries()) {
     lossesToEliminate: stage.lossesToEliminate,
     initialPairing: stage.initialPairing,
   }
-  // The first stage's round 2 is drawn differently from our pairing and announced on the page as
-  // soon as round 1 ends; the second stage's too, but only announced when round 2 starts.
-  const swapRound2 = index <= 1
+  // Round 2 is drawn differently from our pairing in every stage. When the page lists a draw:
+  // the first stage's as soon as the previous round ends, the second stage's when the round starts,
+  // the third stage's round 2 never before its first results (its other rounds when they start).
   const announceEarly = index === 0
+  const neverListed = (round: number) => index === 2 && round === 2
   const matches: SwissMatch[] = playSwissRounds({
     seeds,
     rules,
@@ -171,7 +175,7 @@ for (const [index, stage] of swissStages.entries()) {
     fromRound: 1,
     pairings: (round, so) => {
       const pairs = pairRound(round, seeds, so, rules)
-      return round === 2 && swapRound2 ? swapOpponents(pairs, buildRecords(seeds, so)) : pairs
+      return round === 2 ? swapOpponents(pairs, buildRecords(seeds, so)) : pairs
     },
     play: (a, b) => (upset(a, b) ? b : a),
   })
@@ -203,18 +207,24 @@ for (const [index, stage] of swissStages.entries()) {
     const next = rows.filter((r) => r.round === round + 1)
     const tag = `round ${round}`
 
-    // Round start: the page lists the round's pairings, no results yet.
-    const start = apply(`${tag} start`, [...done, ...announcedOnly(now)])
-    const expectStart = round === 1 && index === 0 ? 'saved' : 'exists'
+    // Round start: the page lists the round's pairings (unless never listed), no results yet.
+    const start = apply(`${tag} start`, [
+      ...done,
+      ...(neverListed(round) ? [] : announcedOnly(now)),
+    ])
+    const expectStart =
+      round === 1
+        ? index === 0
+          ? 'saved'
+          : 'exists'
+        : neverListed(round)
+          ? 'waiting'
+          : announceEarly
+            ? 'exists'
+            : 'saved'
     check(
       start.logged.length === 0 && start.snapshot === expectStart,
       `${label} ${tag} start: nothing new, snapshot ${start.snapshot} (expected ${expectStart})`,
-    )
-    const predicted = snapshotPairs(round)
-    const wrongDraw = round === 2 && swapRound2 && !announceEarly
-    check(
-      predicted.length === now.length && samePairs(predicted, now) !== wrongDraw,
-      `${label} ${tag}: snapshot pairs ${wrongDraw ? 'differ from the real draw (not announced in time)' : 'match the real draw'}`,
     )
 
     // Part-played: half the matches finished, one Bo3 live at 1-0 (if any), the rest announced.
@@ -234,6 +244,21 @@ for (const [index, stage] of swissStages.entries()) {
       part.logged.length === half && part.snapshot === 'not-due',
       `${label} ${tag} part-played: ${part.logged.length}/${half} logged${liveIndex === -1 ? '' : ', live Bo3 not logged'}, snapshot ${part.snapshot}`,
     )
+    check(
+      (part.lastChanceSnapshot === 'saved') === neverListed(round),
+      `${label} ${tag} part-played: ${neverListed(round) ? 'snapshot saved just before the first results' : 'no last-chance snapshot needed'}`,
+    )
+    const predicted = snapshotPairs(round)
+    check(
+      predicted.length === now.length && samePairs(predicted, now),
+      `${label} ${tag}: snapshot pairs match the real draw`,
+    )
+    if (round > 1) {
+      check(
+        samePairs(storedDraw(eventId, stage.id, round) ?? [], now),
+        `${label} ${tag}: draw.json holds the real draw`,
+      )
+    }
     const again = apply(`${tag} same page again`, partRows)
     check(
       again.logged.length === 0 && again.skipped.length === done.length + half,
@@ -241,9 +266,9 @@ for (const [index, stage] of swissStages.entries()) {
     )
 
     // Round finished (the first stage's page also shows the next round's draw already).
-    const early = round === 1 && announceEarly ? announcedOnly(next) : []
+    const early = announceEarly ? announcedOnly(next) : []
     const end = apply(`${tag} finished`, [...done, ...now, ...early])
-    const expectEnd = round < 5 ? 'saved' : 'done'
+    const expectEnd = round === 5 ? 'done' : announceEarly ? 'saved' : 'waiting'
     check(
       end.logged.length === now.length - half && end.snapshot === expectEnd,
       `${label} ${tag} finished: ${end.logged.length} logged, snapshot ${end.snapshot} (expected ${expectEnd})`,

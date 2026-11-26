@@ -76,9 +76,14 @@ has faced in this stage. Example from [V]: opponents at 2-0 and 1-1 give 3 − 1
   and Cologne 2026: all 30 rounds reproduce the real pairings).
 - The real draw wins over the engine's. When the Liquipedia stage page lists the current round's
   pairings, the simulation uses them together with that round's matches already played (a live page
-  lists only the unplayed ones), as long as together they pair every active team once. Otherwise (no
-  draw published yet, a page half edited) the engine's pairing is used, and a pre-round snapshot saved
-  then keeps it (snapshots are never edited).
+  lists only the unplayed ones), as long as together they pair every active team once (a full draw).
+  The poller stores each full draw (round 2 on) in `data/events/<id>/draw.json`, which the site and
+  `simulate.ts` read for the current round. Until a round's full draw is listed, everything else uses
+  the engine's pairing.
+- A round's snapshot (round 2 on) waits for its full draw. If the page never lists it before the
+  round's first results, the snapshot is saved from the state just before those results are written:
+  nothing the model reads has changed yet, and the results' own pairs complete the draw (with the
+  engine's pairing only for pairs still unknown). Round 1 follows from the seeds and never waits.
 
 ## Stage seeding [V]
 

@@ -7,7 +7,7 @@ import type { StagePrediction } from '../../../engine/predict.ts'
 import type { PlayoffPrediction } from '../../../engine/predict-playoffs.ts'
 import type { EventChain } from '../../../engine/simulate-event.ts'
 import type { SwissFormat } from '../../../engine/swiss/format.ts'
-import type { SwissMatch, SwissRules } from '../../../engine/swiss/types.ts'
+import type { Pairing, SwissMatch, SwissRules } from '../../../engine/swiss/types.ts'
 
 /** What every simulation needs to rebuild the model inside the worker. Plain data only. */
 interface ModelRequest {
@@ -32,6 +32,8 @@ export interface SwissSimRequest extends ModelRequest {
   rules: SwissRules
   format: SwissFormat
   played: SwissMatch[]
+  /** The current round's announced draw (overrides the engine's pairing when complete). */
+  announced?: Pairing[]
   /** The rest of the event, for playoff and title odds (whole-event simulation). */
   chain?: EventChain
   /** Also return every run's Pick'Em outcomes (for the chance that picks pass). */

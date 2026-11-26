@@ -72,7 +72,7 @@ nothing.
 | `data/teams/`       | Team registry (IDs, aliases, dated rosters) and one research note per team     |
 | `data/ratings/`     | Current ratings and their history                                              |
 | `data/model/`       | Model parameters and judgment modifiers                                        |
-| `data/events/<id>/` | Event config, teams, real results, round snapshots, market and bookmaker odds, accuracy, generated status |
+| `data/events/<id>/` | Event config, teams, real results, announced Swiss draws, round snapshots, market and bookmaker odds, accuracy, generated status |
 | `docs/`             | Rules, model spec, sources, automation, changelog, roadmap                     |
 
 The engine never touches files, the network or the UI; scripts and the site are the only places with

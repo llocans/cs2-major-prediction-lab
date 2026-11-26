@@ -18,14 +18,14 @@ import { predictStage } from '../../engine/predict.ts'
 import { predictPlayoffs } from '../../engine/predict-playoffs.ts'
 import { activeModifiers } from '../../engine/ratings/modifiers.ts'
 import { updateRatings } from '../../engine/ratings/update.ts'
-import { currentRound } from '../../engine/simulate-swiss.ts'
+import { currentRound, fullDraw } from '../../engine/simulate-swiss.ts'
 import { stageSeeds } from '../../engine/swiss/stage-seeds.ts'
 import type { Pairing } from '../../engine/swiss/types.ts'
 import { loadEventData, loadPlayoffContext, loadStageContext } from './event-context.ts'
 import { readJson, repoPath, writeJson } from './files.ts'
 import { loadStageVersions } from './model-versions.ts'
 import { loadRatings, saveRatings } from './ratings-store.ts'
-import { savePlayoffSnapshot, saveRoundSnapshot } from './snapshot.ts'
+import { savePlayoffSnapshot, saveRoundSnapshot, snapshotPath } from './snapshot.ts'
 import { writePlayoffStatus, writeStatus } from './status.ts'
 
 export interface LogOutcome {
@@ -33,7 +33,13 @@ export interface LogOutcome {
   skipped: string[]
   /** Results held back because they do not fit (yet), e.g. a bracket match whose maps don't match its format. */
   held: string[]
-  snapshot: 'saved' | 'exists' | 'done' | 'not-due'
+  /** "waiting": the round can start but its full draw is not on the page yet (Swiss, round 2+). */
+  snapshot: 'saved' | 'exists' | 'done' | 'not-due' | 'waiting'
+  /**
+   * A Swiss round whose first results arrived before its full draw was ever listed: its snapshot,
+   * saved from the state before those results, with the draw they reveal ("saved"), or not needed.
+   */
+  lastChanceSnapshot?: 'saved'
 }
 
 const pair = (m: MatchResult) => [m.teamA, m.teamB].sort().join()
@@ -95,37 +101,53 @@ export function logResults(
   // Resolved before anything is written, so a misconfigured `model` stops here with results intact.
   // Alongside versions share these rating rules (engine/model-version.ts), so one update serves all.
   const params = loadStageVersions(event.config, stageId).main
-  writeJson(resultsPath, EventResults, { ...results, matches: [...results.matches, ...logged] })
-
   const modifiersPath = repoPath('data/model/modifiers.json')
   const modifiers = existsSync(modifiersPath) ? readJson(modifiersPath, Modifiers).modifiers : []
-  let ratings = loadRatings()
-  for (const match of logged) {
-    // Judge the result against the prediction: use the modifiers active on the match day.
-    const matchDay = (match.playedAt ?? new Date().toISOString()).slice(0, 10)
-    ratings = updateRatings(
-      ratings,
-      {
-        teamA: match.teamA,
-        teamB: match.teamB,
-        format: match.format,
-        maps: match.maps.map((m) => ({ map: m.map, scoreA: m.scoreA, scoreB: m.scoreB })),
-      },
-      params,
-      new Date().toISOString(),
-      `log-result ${match.id}`,
-      activeModifiers(modifiers, matchDay),
-    )
+  const record = (group: readonly MatchResult[]) => {
+    const stored = readJson(resultsPath, EventResults)
+    writeJson(resultsPath, EventResults, { ...stored, matches: [...stored.matches, ...group] })
+    let ratings = loadRatings()
+    for (const match of group) {
+      // Judge the result against the prediction: use the modifiers active on the match day.
+      const matchDay = (match.playedAt ?? new Date().toISOString()).slice(0, 10)
+      ratings = updateRatings(
+        ratings,
+        {
+          teamA: match.teamA,
+          teamB: match.teamB,
+          format: match.format,
+          maps: match.maps.map((m) => ({ map: m.map, scoreA: m.scoreA, scoreB: m.scoreB })),
+        },
+        params,
+        new Date().toISOString(),
+        `log-result ${match.id}`,
+        activeModifiers(modifiers, matchDay),
+      )
+    }
+    saveRatings(ratings)
   }
-  saveRatings(ratings)
+
+  let lastChanceSnapshot: LogOutcome['lastChanceSnapshot']
+  if (stage.type === 'swiss') {
+    // Round by round: before a round's first results go in, its snapshot gets a last chance.
+    for (const round of [...new Set(logged.map((m) => m.round))].sort((a, b) => a - b)) {
+      const group = logged.filter((m) => m.round === round)
+      if (lastChance(eventId, stageId, round, group, announced) === 'saved') {
+        lastChanceSnapshot = 'saved'
+      }
+      record(group)
+    }
+  } else {
+    record(logged)
+  }
 
   const snapshot = ensureRoundSnapshot(eventId, stageId, announced)
 
   const stamp = new Date().toISOString().slice(0, 16).replace('T', ' ')
   appendChangelog(
-    `- ${stamp} UTC · ${actor} · logged ${logged.length} result(s) in ${stageId}; ratings updated; snapshot ${snapshot}`,
+    `- ${stamp} UTC · ${actor} · logged ${logged.length} result(s) in ${stageId}; ratings updated; snapshot ${snapshot}${lastChanceSnapshot ? '; a round whose draw was never listed got its snapshot from the state before its first results' : ''}`,
   )
-  return { logged, skipped, held, snapshot }
+  return { logged, skipped, held, snapshot, ...(lastChanceSnapshot ? { lastChanceSnapshot } : {}) }
 }
 
 /**
@@ -202,34 +224,69 @@ function placeInBracket(
 
 /**
  * Re-simulates the stage and saves the pre-round snapshot if the current round has not started.
- * Uses announced pairings for that round when Liquipedia already lists them. Also refreshes status.md.
+ * Uses the round's full draw: the one Liquipedia lists now (`announced`), else the one stored in
+ * draw.json. From round 2 the snapshot waits for a full draw ("waiting"): the poller asks again on
+ * its next run, and `lastChance` saves it before the round's first results at the latest. Round 1
+ * follows from the seeds. Also refreshes status.md.
  */
 export function ensureRoundSnapshot(
   eventId: string,
   stageId: string,
   announced?: ReadonlyMap<number, Pairing[]>,
+  options: { lastChance?: boolean } = {},
 ): LogOutcome['snapshot'] {
   const config = readJson(repoPath('data/events', eventId, 'config.json'), EventConfig)
   if (config.stages.find((s) => s.id === stageId)?.type === 'single-elimination') {
     return ensurePlayoffSnapshot(eventId, stageId)
   }
   const plain = loadStageContext(eventId, stageId)
-  const round = currentRound(plain.simInput.seeds, plain.simInput.played, plain.simInput.rules)
-  const pairings = announced?.get(round)
-  const context = pairings ? loadStageContext(eventId, stageId, { announced: pairings }) : plain
+  const { seeds, played, rules } = plain.simInput
+  const round = currentRound(seeds, played, rules)
+  const pageDraw = fullDraw(seeds, played, rules, round, announced?.get(round))
+  const context = pageDraw ? loadStageContext(eventId, stageId, { announced: pageDraw }) : plain
   // One simulation for both the status file and, when due, the snapshot (the chain takes seconds).
   const prediction = predictStage(context.simInput, context.labels, context.chain)
   writeStatus(context, prediction)
   if (round > 5) return 'done'
-  if (context.simInput.played.some((m) => m.round === round)) return 'not-due'
+  if (played.some((m) => m.round === round)) return 'not-due'
+  const drawKnown =
+    round === 1 || fullDraw(seeds, played, rules, round, context.simInput.announced) !== undefined
+  if (!drawKnown && !options.lastChance) {
+    return existsSync(snapshotPath(eventId, stageId, round)) ? 'exists' : 'waiting'
+  }
   const status = saveRoundSnapshot(context, prediction).status
   for (const other of loadStageVersions(config, stageId).alongside) {
-    const options = { version: other.version, ...(pairings ? { announced: pairings } : {}) }
+    const versionOptions = { version: other.version, ...(pageDraw ? { announced: pageDraw } : {}) }
     alongsideSnapshot(other.version, () =>
-      saveRoundSnapshot(loadStageContext(eventId, stageId, options)),
+      saveRoundSnapshot(loadStageContext(eventId, stageId, versionOptions)),
     )
   }
   return status
+}
+
+/**
+ * The last moment for a Swiss round's snapshot: its first results are about to be written and no
+ * snapshot was saved (the full draw was never listed in time). Nothing the model reads has changed
+ * yet (results and ratings are still those before the round), so the snapshot is still a pre-round
+ * prediction; the results' own pairings plus the page's announced ones usually give the full draw.
+ */
+function lastChance(
+  eventId: string,
+  stageId: string,
+  round: number,
+  group: readonly MatchResult[],
+  announced?: ReadonlyMap<number, Pairing[]>,
+): LogOutcome['snapshot'] {
+  const plain = loadStageContext(eventId, stageId)
+  const { seeds, played, rules } = plain.simInput
+  if (currentRound(seeds, played, rules) !== round) return 'not-due'
+  if (played.some((m) => m.round === round)) return 'not-due'
+  if (existsSync(snapshotPath(eventId, stageId, round))) return 'exists'
+  const pairs = [
+    ...group.map(({ teamA, teamB }) => ({ teamA, teamB })),
+    ...(announced?.get(round) ?? []),
+  ]
+  return ensureRoundSnapshot(eventId, stageId, new Map([[round, pairs]]), { lastChance: true })
 }
 
 /**

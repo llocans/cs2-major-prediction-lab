@@ -39,8 +39,10 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
      matches (UI PR, before Stage 2's first results on Nov 28).
    - Poller: save CT/T half scores and first side per map (in Liquipedia's `{{Map}}` fields
      `t1t`, `t1ct`, `t2t`, `t2ct`, `t1firstside`), save the announced pairings, and wait for a full
-     draw before snapshotting (covers "Site and `simulate.ts` when the real draw differs" and
-     "Partial draw at snapshot time" below; one PR, merged after the day's matches).
+     draw before snapshotting (two PRs, merged after the day's matches; the draw one after Stage 1
+     has advanced).
+
+   Status 2026-11-26: steps 1 and 2 are done except the Track record page.
 2. v0.2 (Stage 2), by Nov 27 noon:
    - Schema and import script for ban/pick habits (a new `vetoes` folder in `data/teams/`), then
      the data for the ~20 teams that may play Stage 2 (interactive, Claude in Chrome; first find a
@@ -96,13 +98,6 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
   on 2026-11-24) or a reordered draw shows up there only after the next result. Commit it on its own
   when the match lines or confidence change (not on simulation noise), or regenerate it in the PR.
 
-- **Site and `simulate.ts` when the real draw differs.** The stage page's bracket (`swissBracket`),
-  its in-browser simulation (`sim.worker.ts`) and `simulate.ts` use the engine's pairing for the
-  current round. If Valve's draw ever differs, the bracket shows the wrong pairs and the live odds show
-  an error until the round is finished; the poller, snapshots and `status.md` already use the real draw.
-  Fix: the poller saves the announced pairings in the event data and the others read them.
-- **Partial draw at snapshot time.** If a round finishes while the page lists only part of the next
-  draw, that round's snapshot is saved with the engine's pairing (no warning). Rare; could wait a poll.
 - **Poller stage choice by date.** `pickStage` (which stage to poll today, Swiss → Swiss → playoffs) is
   only covered by the live poller; the flow checks call the stage handling directly.
 
@@ -241,6 +236,15 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
   the checkout's credentials).
 
 ## Done
+
+- 2026-11-26: Announced Swiss draws. The poller stores each round's full draw (round 2 on) in
+  `draw.json` in the event folder; the Stage, Pick'Em and Playoffs pages and `simulate.ts` use it for
+  the current round, so a Valve draw that differs from the engine's pairing shows the right pairs.
+  A round's snapshot waits for the full draw, and if the page never lists it before the round's first
+  results, it is saved just before they are written (the results' pairs complete the draw).
+- 2026-11-26: Stage 1 replay with all of round 4 (30 matches): maps actually played got 24.8%
+  (v0.1.0: 10.1%), Bo1 top map 10/20 (2/20), Brier 0.227 (0.233), hits 18/30 (19/30). Same picture as
+  the 26-match replay v0.2.0 was chosen on (`docs/model.md`).
 
 - 2026-11-26: The poller saves CT/T regulation rounds and team A's first side per map
   (`maps[].sides` in `results.json`, from Liquipedia's half scores) for later use (round markets,

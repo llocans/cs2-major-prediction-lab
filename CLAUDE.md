@@ -19,7 +19,7 @@ future events too: formats live in config, never in code.
 | `data/teams/`        | `registry.json` (IDs, aliases, dated rosters) + `<team-id>.md` research notes                     |
 | `data/model/`        | `params.json` (latest weights), `archive/` (older versions in use), `modifiers.json` (judgment)   |
 | `data/ratings/`      | `current.json` + `history/`                                                                       |
-| `data/events/<id>/`  | config, teams, results (real only), benchmarks, snapshots (never edited), accuracy, status        |
+| `data/events/<id>/`  | config, teams, results (real only), draw, benchmarks, snapshots (never edited), accuracy, status  |
 | `engine/`            | Pure TS: Swiss pairing, playoffs, veto, ratings, simulation, scoring. No I/O                      |
 | `scripts/`           | I/O: validate, fetch, log results, snapshot, simulate                                             |
 | `site/`              | React + Vite + Tailwind v4 static site                                                            |

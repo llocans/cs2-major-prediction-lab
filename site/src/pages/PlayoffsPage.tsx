@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import type { PlayoffStage, SwissStage } from '../../../data/schemas/event-config.ts'
 import { buildEventChain } from '../../../engine/event-chain.ts'
 import { type BracketMatch, resolveBracket, roundCount } from '../../../engine/playoffs/bracket.ts'
+import type { EventChain } from '../../../engine/simulate-event.ts'
 import { currentRound } from '../../../engine/simulate-swiss.ts'
 import { stageSeeds } from '../../../engine/swiss/stage-seeds.ts'
 import { FreshnessBar } from '../components/FreshnessBar.tsx'
@@ -13,7 +14,7 @@ import { type EventData, ratings, syncStatus, teamName } from '../lib/data.ts'
 import { shortDate } from '../lib/format.ts'
 import { readWhatIf, toggleOverride, writeWhatIf } from '../lib/overrides.ts'
 import { setQuery } from '../lib/router.ts'
-import { modelRequest } from '../sim/requests.ts'
+import { currentDraw, modelRequest } from '../sim/requests.ts'
 import { usePlayoffSimulation, useStageSimulation } from '../sim/useSimulation.ts'
 
 interface Props {
@@ -222,25 +223,30 @@ function ProjectedPlayoffs({ event, stage }: EventProps) {
       current ? buildEventChain(event.config, event.teams.participants, current.id) : undefined,
     [event, current],
   )
-  const sim = useStageSimulation(
-    current && chain
-      ? {
-          ...modelRequest(event, current),
-          kind: 'swiss',
-          seeds: stageSeeds(event.teams.participants, current.id),
-          rules: {
-            winsToAdvance: current.winsToAdvance,
-            lossesToEliminate: current.lossesToEliminate,
-            initialPairing: current.initialPairing,
-          },
-          format: current.format,
-          played: event.results.matches
-            .filter((m) => m.stageId === current.id)
-            .map(({ round, teamA, teamB, winner }) => ({ round, teamA, teamB, winner })),
-          chain,
-        }
-      : undefined,
-  )
+  const swissRequest = (stage: SwissStage, stageChain: EventChain) => {
+    const seeds = stageSeeds(event.teams.participants, stage.id)
+    const rules = {
+      winsToAdvance: stage.winsToAdvance,
+      lossesToEliminate: stage.lossesToEliminate,
+      initialPairing: stage.initialPairing,
+    }
+    const played = event.results.matches
+      .filter((m) => m.stageId === stage.id)
+      .map(({ round, teamA, teamB, winner }) => ({ round, teamA, teamB, winner }))
+    const draw = currentDraw(event, stage.id, seeds, played, rules)
+    return {
+      ...modelRequest(event, stage),
+      kind: 'swiss' as const,
+      seeds,
+      rules,
+      format: stage.format,
+      played,
+      ...(draw ? { announced: draw.pairings } : {}),
+      chain: stageChain,
+    }
+  }
+  const swiss = current && chain ? swissRequest(current, chain) : undefined
+  const sim = useStageSimulation(swiss)
   const eventOdds = sim.prediction?.event
   const stageOf = (teamId: string) => {
     const entry = event.teams.participants.find((p) => p.teamId === teamId)?.entryStage

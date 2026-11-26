@@ -157,6 +157,10 @@ async function poll(current: SwissStage | PlayoffStage, pageTitle: string): Prom
 
   const outcome = applySwissPage(eventId as string, stageId, page.text, convert, 'poll-liquipedia')
   report(current, page.revid, outcome, outcome.snapshot)
+  if (outcome.drawSaved !== undefined) {
+    log(`${stageId}: round ${outcome.drawSaved} draw stored`)
+    changes.push(`${current.name} round ${outcome.drawSaved} draw`)
+  }
   reportAdvance(stageId, outcome.next)
   return page.revid
 }
@@ -175,6 +179,9 @@ function report(
   const n = outcome.logged.length
   if (n > 0) changes.push(`${n} new result${n === 1 ? '' : 's'} in ${current.name}`)
   if (snapshot === 'saved') changes.push(`next-round prediction saved for ${current.name}`)
+  if (outcome.lastChanceSnapshot === 'saved') {
+    changes.push(`${current.name} prediction saved just before its round's first results`)
+  }
 }
 
 function statusMessage(): { message?: string } {

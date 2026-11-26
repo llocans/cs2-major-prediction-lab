@@ -30,7 +30,7 @@ import { TeamLogo } from '../components/TeamLogo.tsx'
 import { type EventData, teamName } from '../lib/data.ts'
 import { pct, shortDate } from '../lib/format.ts'
 import { type StoredPicks, useStoredPicks } from '../lib/pickem-store.ts'
-import { modelRequest } from '../sim/requests.ts'
+import { currentDraw, modelRequest } from '../sim/requests.ts'
 import { usePlayoffSimulation, useSwissOutcomeSimulation } from '../sim/useSimulation.ts'
 
 const pairKey = (a: string, b: string) => (a < b ? `${a}|${b}` : `${b}|${a}`)
@@ -149,6 +149,7 @@ function SwissBoard(props: {
     .filter((m) => m.stageId === stage.id)
     .map(({ round, teamA, teamB, winner }) => ({ round, teamA, teamB, winner }))
   const records = buildRecords(seeds, played)
+  const draw = currentDraw(event, stage.id, seeds, played, rules)
 
   const sim = useSwissOutcomeSimulation({
     ...modelRequest(event, stage),
@@ -157,6 +158,7 @@ function SwissBoard(props: {
     rules,
     format: stage.format,
     played,
+    ...(draw ? { announced: draw.pairings } : {}),
     collectOutcomes: true,
   })
   const odds = new Map((sim.prediction?.value.teams ?? []).map((t) => [t.teamId, t]))

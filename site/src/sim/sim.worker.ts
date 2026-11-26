@@ -45,6 +45,7 @@ scope.onmessage = (event: MessageEvent<SimRequest>) => {
         rules: request.rules,
         format: request.format,
         played: request.played,
+        ...(request.announced ? { announced: request.announced } : {}),
       }
       if (!request.collectOutcomes) {
         return { kind: 'swiss', value: predictStage(input, labels, request.chain) }
