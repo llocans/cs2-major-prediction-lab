@@ -20,7 +20,7 @@ import {
   teamShortName,
 } from '../lib/data.ts'
 import { shortDate } from '../lib/format.ts'
-import { lockedEventSnapshot, withLockedEventOdds } from '../lib/locked.ts'
+import { finalOutlook, lockedEventSnapshot, withLockedEventOdds } from '../lib/locked.ts'
 import { marketQuote, teamStageMatches } from '../lib/market.ts'
 import { readWhatIf, toggleOverride, writeWhatIf } from '../lib/overrides.ts'
 import { setQuery } from '../lib/router.ts'
@@ -110,7 +110,14 @@ export function StagePage({ event, stage, query }: Props) {
     ...(simDraw ? { announced: simDraw.pairings } : {}),
     chain,
   }
-  const sim = useStageSimulation(bracketError ? undefined : request)
+  // A finished stage with locked odds needs no simulation: its table comes from the real results
+  // and the snapshot saved when it ended.
+  const locked = lockedEventSnapshot(stage, stageParams(stage).version, [
+    ...event.snapshots,
+    ...event.alongsideSnapshots,
+  ])
+  const final = locked ? finalOutlook(seeds, realPlayed, rules) : undefined
+  const sim = useStageSimulation(bracketError || final ? undefined : request)
   const prediction = sim.prediction
 
   const pending = new Map((prediction?.matches ?? []).map((m) => [pairKey(m.teamA, m.teamB), m.pA]))
@@ -158,19 +165,13 @@ export function StagePage({ event, stage, query }: Props) {
   }
   // A finished stage shows Playoffs and Title as they stood when it ended (a frozen snapshot), so
   // it stays a record instead of repeating the current stage's live odds.
-  const locked = lockedEventSnapshot(stage, stageParams(stage).version, [
-    ...event.snapshots,
-    ...event.alongsideSnapshots,
-  ])
   const lockedNext = locked && event.config.stages.find((s) => s.id === locked.stageId)
-  const teams = prediction
-    ? locked
-      ? withLockedEventOdds(prediction.teams, locked)
-      : prediction.teams
-    : undefined
+  const live = final ?? prediction?.teams
+  const teams = live && locked ? withLockedEventOdds(live, locked) : live
   const outlook = teams?.find((t) => t.teamId === selected)
   const next = prediction?.matches.find((m) => m.teamA === selected || m.teamB === selected)
-  const currentRound = prediction?.sim.currentRound
+  // Past the last round once the stage is finished.
+  const currentRound = final ? Math.max(stage.rounds.length, 5) + 1 : prediction?.sim.currentRound
   const nextOpponent = next ? (next.teamA === selected ? next.teamB : next.teamA) : undefined
   const nextMarket =
     nextOpponent && currentRound !== undefined
@@ -188,9 +189,15 @@ export function StagePage({ event, stage, query }: Props) {
           </>
         }
       >
-        <FreshnessBar sync={syncStatus} stage={stage} ratingsAsOf={ratings.asOf} />
+        <FreshnessBar
+          sync={syncStatus}
+          stage={stage}
+          ratingsAsOf={ratings.asOf}
+          {...(final && locked ? { lockedAt: locked.createdAt } : {})}
+        />
         <Legend
           running={sim.running}
+          finished={final !== undefined}
           overrides={whatIf.overrides.length}
           onReset={() => setQuery(writeWhatIf(query, { overrides: [] }))}
         />
@@ -292,17 +299,25 @@ function roundStatus(round: number, real: ReadonlyArray<{ round: number }>): str
 }
 
 /** The bracket's key, with the simulation status at its right end, just above the bracket. */
-function Legend(props: { running: boolean; overrides: number; onReset: () => void }) {
-  const { running, overrides, onReset } = props
+function Legend(props: {
+  running: boolean
+  finished: boolean
+  overrides: number
+  onReset: () => void
+}) {
+  const { running, finished, overrides, onReset } = props
   return (
     <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs leading-6 text-ink-3">
       <span className="font-semibold uppercase tracking-wider">The bracket:</span>
       <span>
         <span className="font-semibold text-accent">62%</span> model's chance to win
       </span>
-      <span>
-        <span className="font-semibold text-accent">W*</span> click it to see a what-if win
-      </span>
+      {/* A finished stage has no match left to play, so no what-ifs. */}
+      {!finished && (
+        <span>
+          <span className="font-semibold text-accent">W*</span> click it to see a what-if win
+        </span>
+      )}
       {overrides > 0 && (
         <button
           type="button"

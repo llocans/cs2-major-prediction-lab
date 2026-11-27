@@ -7,21 +7,24 @@ interface Props {
   stage: { start: string; end: string }
   /** When ratings last changed (a logged result or a rebuild). */
   ratingsAsOf: string
+  /** Set on a finished stage: when its odds were locked. */
+  lockedAt?: string
 }
 
 const STYLE = {
   live: { box: 'border-rule', mark: 'bg-win', word: 'text-win' },
   waiting: { box: 'border-rule', mark: 'bg-ink-3', word: 'text-ink-2' },
   problem: { box: 'border-loss', mark: 'bg-loss', word: 'text-loss' },
+  final: { box: 'border-rule', mark: 'bg-ink', word: 'text-ink' },
 } as const
 
 /**
  * Are these numbers current? One word you can read at a glance (Live, Waiting, Problem), one sentence
  * of detail, and a quieter second line with the last new result and the ratings time.
  */
-export function FreshnessBar({ sync, stage, ratingsAsOf }: Props) {
+export function FreshnessBar({ sync, stage, ratingsAsOf, lockedAt }: Props) {
   const now = useNow(30_000)
-  const status = freshness(now, sync, stage)
+  const status = freshness(now, sync, stage, lockedAt !== undefined)
   const style = STYLE[status.state]
   const when = (iso: string) =>
     new Date(iso).toLocaleString('en-GB', {
@@ -47,10 +50,16 @@ export function FreshnessBar({ sync, stage, ratingsAsOf }: Props) {
         <span className="text-ink-2">{status.detail}</span>
       </p>
       <p className="pl-4 text-xs text-ink-3">
-        {sync?.lastChangeAt
-          ? `Last new data ${formatAgo(minutesAgo(now, sync.lastChangeAt))}${sync.lastChange ? ` (${sync.lastChange})` : ''} · `
-          : ''}
-        Team ratings last updated {when(ratingsAsOf)} · they update after each match
+        {lockedAt ? (
+          `Odds locked ${when(lockedAt)}, after the last match`
+        ) : (
+          <>
+            {sync?.lastChangeAt
+              ? `Last new data ${formatAgo(minutesAgo(now, sync.lastChangeAt))}${sync.lastChange ? ` (${sync.lastChange})` : ''} · `
+              : ''}
+            Team ratings last updated {when(ratingsAsOf)} · they update after each match
+          </>
+        )}
       </p>
     </div>
   )
