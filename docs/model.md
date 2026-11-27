@@ -193,3 +193,44 @@ Releasing a version: copy `params.json` to `archive/<old version>.json`, change 
 bump its `version`, set the next stage's `model` to the new version with the old one alongside, run
 the replay on the finished stages, and merge before the previous stage's last match ends (the
 next stage's round 1 snapshot is saved the moment it finishes).
+
+## During a stage
+
+What stays fixed while a stage runs, what moves, and what happens when it ends. A change to anything
+in the first list starts with the next stage, never mid-stage, so a stage's record comes from one
+set of rules.
+
+**Fixed for the whole stage**
+
+- **Model version:** the stage's `model` in the event config (Stage 2: v0.2, with v0.1 scored
+  alongside). A new version needs its own stage ("Model versions" above).
+- **Pick rule and slip rule:** the stage's `marketRule` (minimum edge, little-data skip, `slips`).
+  `npm run validate` refuses a stage with market odds but no rule.
+- **Saved predictions:** one snapshot per round (and one per alongside version), saved before the
+  round once its full draw is listed, or at the latest just before its first results. Never edited
+  (the `guard-edits` hook blocks it, `docs/automation.md`).
+- **Bet slips:** each odds reading adds one batch to `slips.json`; earlier batches are never changed,
+  and `log-odds` refuses to re-log a pair that is already in a slip.
+
+**Moves during the stage**
+
+- **Ratings:** updated after every real result by the poller (about every 15 minutes while matches
+  run), so each round's prediction starts from all earlier results.
+- **Modifiers:** the nightly research may add or remove one for real news (two independent sources,
+  delta within ±`modifiers.maxAbs`, an expiry). It affects only rounds not yet saved.
+- **Market odds:** read by hand the evening before each round, with kickoff times; the round's slips
+  are built from them at that moment.
+- **Live page:** the bracket odds, Advance, Playoffs and Title are simulated in the browser from the
+  current ratings and results (cached until either changes).
+
+**When the stage ends** (all its matches played)
+
+1. The poller seeds its 8 advancing teams into the next stage and saves that stage's round 1
+   snapshot with the next stage's own `model` (and its alongside versions). A new version must be
+   merged before the previous stage's last match.
+2. The finished stage's page locks: its status says Final, the table shows Playoffs and Title from
+   that round 1 snapshot in the finished stage's own version, and the team panel shows the odds from
+   before the stage with the outcome. So the next stage must keep the finished stage's version in
+   `alongside` (or as its main version), or the lock has nothing to read and the page stays live.
+3. The stage review routine scores the stage and may propose capped changes for the next stage
+   (`docs/automation.md`).
