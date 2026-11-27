@@ -56,7 +56,20 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
    stored per stage with Stage 1 frozen, the pick rule review and the Stage 1 test-run note (one PR),
    then bet slips (own PR). Cut bet slips first if the day runs out. The Stage 1 review routine runs
    by itself on Nov 27; its capped proposals go into v0.3.
-4. v0.3 (Stage 3), Nov 28 - Dec 1:
+   Status 2026-11-27: the pick rule is stored per stage, reviewed (kept for Stage 2) and the Stage 1
+   note is up (Done below). Bet slips are still open.
+4. v0.3 (Stage 3), Nov 28 - Dec 1. Decided with the user 2026-11-27: v0.2 stays unchanged for
+   Stage 2; v0.3 fixes the known flaws in the data we already use (age, opponent strength, lineup)
+   instead of adding new kinds of data, because 33 matches per stage cannot show whether a new input
+   helps. Player data enters only through lineup changes (the lineup filter, capped modifiers for
+   stand-ins); player ratings, opponent-specific vetoes and head-to-head wait for backtests (step 6).
+   - **First: a ratings file per model version.** Recency, opponent strength and the lineup filter
+     change how ratings are built, so v0.3 cannot share `data/ratings/current.json` with v0.1/v0.2
+     (`engine/model-version.ts` refuses it; `docs/model.md`, "Model versions"). Each version needs
+     its own ratings, built from the same results, before v0.3 can run with v0.2 alongside.
+   - **Backtest set.** The match histories below let each past match be predicted from only the
+     data before it: hundreds of test matches instead of 33, used to judge each v0.3 input before
+     release.
    - Per-match team histories (a new `matches` folder in `data/teams/`: date, opponent and rank, LAN or online,
      lineup, vetoes, map scores, halves), collected once by hand and topped up by later research. One
      collection feeds vetoes, recency, opponent strength, lineup period and LAN.
@@ -118,33 +131,21 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
   bookmaker in most matches (Market odds page). Either the market is wrong or the model pulls toward
   50% too much (rating uncertainty, the flat VRS prior). Check after Stage 1 on the Track record
   calibration table and the Market odds record; any change goes through `review-stage` (capped).
-- **Cold-start penalty (Stage 1 review, before Stage 2).** Little tier-1 data only widens a team's
+- **Cold-start penalty (Stage 1 review, decided for v0.3).** Little tier-1 data only widens a team's
   uncertainty; it never lowers its rating. In practice such teams are usually weaker than their VRS
   points say (points won against weak regional teams, no wins against top teams, first Major), and
   the market prices that in: GOSH vs Chinggis Warriors (R3) was 62% model vs 82% market. Evidence so
   far points both ways (Chinggis 0-2, FlyQuest 2-0). After Stage 1 compare the little-data teams'
   predicted and actual results (Chinggis, FlyQuest; DENDELE and Lynn Vision as a check). If they
-  clearly underperformed, add a capped rating penalty for cold-start teams via a PR before Stage 2,
-  where new invited teams arrive. Don't change it mid-stage (it would mix two models in the record).
-- **Market pick rule review (Stage 1 review, before Stage 2; user, 2026-11-24).** Stage 1 is the test
-  run of the rule in `engine/market-picks.ts` (pick at +5 pp or more, skip little data). Check:
-  - **Picks on coin-flip matches.** Confidence isn't part of the rule, so a Low match where the model
-    says ~50% still gets a pick when the market leans one way. These are bets on the model's flatness
-    (R3: 5 of 6 picks were Low, e.g. HEROIC-M80 49% vs 43%). Compare the record of High/Medium picks
-    with Low ones; if Low picks clearly do worse, skip matches the model calls within 5 points of 50%.
-  - **The +5 pp threshold (user idea).** Replay Stage 1 at 3, 5, 8 and 10 pp (picks, won, lost) and
-    see where the record holds up. Also consider a larger gap for Bo1 than for Bo3 (one map is more
-    random). Stage 1 has ~40 matches, so prefer a simple rule over the best-fitting number.
+  clearly underperformed, add a capped rating penalty for cold-start teams in v0.3 (Stage 3). It
+  cannot go into Stage 2: its round 1 prediction is saved the moment Stage 1 ends, and changing it
+  mid-stage would mix two models in the record.
+- **Market pick rule: review again after Stage 2.** Stage 2 keeps the Stage 1 rule (+5 pp, skip
+  little data; decided with the user 2026-11-27). Stage 1 had only 16 picks, so check again with
+  Stage 2 added (about 30 more): the thresholds (3/5/8/10 pp), Bo1 against Bo3 (Stage 1: Bo1 7-4,
+  Bo3 1-4), and Low or coin-flip picks against the rest (Stage 1: 4-5 against 4-3). A new rule
+  starts with a new stage; set it in that stage's `marketRule` before its first odds.
   - **Per-confidence split on the Market odds page**, so the record shows which kinds of picks work.
-  - **Keep old records honest.** The rule is applied to every saved round when the page is built, so
-    changing it would silently rewrite Stage 1's record. Before any change, store the rule per stage
-    (e.g. `marketRule` in the event config, with Stage 1 frozen at today's rule) and set a new stage's
-    rule before its first odds are logged.
-- **Stage 1 test-run note (when Stage 1 ends, Nov 27).** Stage 1's value picks stay exactly as the
-  rule made them (+5 pp, skip little data); no pick changes mid-stage. Once Round 5 is played, add
-  one short note at the top of Stage 1 on the Market odds page: Stage 1 was the test run of single
-  value picks; from Stage 2 the page also builds bet slips. Freeze Stage 1's rule first (see "Keep
-  old records honest" above), so later rule changes cannot rewrite its record.
 - **Bet slips from Stage 2 (user, 2026-11-25; build Nov 27, before Stage 2's first odds on Nov 28).**
   The model combines a round's value picks into bet slips (combined bets) the way the user bets
   them by hand: in Stage 1 R1 the user dropped the Low pick (DENDELE) and combined Liquid, Imperial
@@ -238,6 +239,12 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
 
 ## Done
 
+- 2026-11-27: Value-pick rule stored per stage (`marketRule` in the event config, with an optional
+  note shown above the stage's record); Stage 1 frozen at +5 pp, skip little data, and labelled
+  "Stage 1 used Model v0.1 (value-pick rule)". `npm run validate` refuses a stage with odds but no
+  rule. Stage 1 pick review (16 picks, 8-8, +3.06 units at margin-free odds; model and market Brier
+  level at 0.247 and 0.249 over 33 matches): 3 pp 9-9 +2.56, 8 pp 4-5 −0.35, 10 pp 1-3 −2.22; no
+  variant clearly better on 16 picks, so Stage 2 keeps the same rule.
 - 2026-11-27: Snapshots save each match's map chances per map slot (`maps`), for scoring map
   guesses on the Track record page from Stage 2 on. Match and team odds unchanged.
 - 2026-11-26: Track record page names each stage's model version next to its title and, from

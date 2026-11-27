@@ -1,5 +1,9 @@
 import { existsSync, globSync } from 'node:fs'
+import { dirname } from 'node:path'
 import {
+  Benchmarks,
+  BookmakerOdds,
+  EventConfig,
   EventTeams,
   LOGO_DIR,
   schemaForPath,
@@ -44,7 +48,37 @@ export function validateAllData(): { checked: number; problems: string[] } {
     problems.push(error.message)
   }
 
+  for (const configFile of globSync('data/events/*/config.json', { cwd: repoRoot })) {
+    try {
+      problems.push(...checkMarketRules(configFile))
+    } catch (error) {
+      if (!(error instanceof DataError)) throw error
+      problems.push(error.message)
+    }
+  }
+
   return { checked, problems }
+}
+
+/**
+ * Every stage with logged market odds has its own `marketRule`, so its value-pick record never
+ * falls back to a rule that could change later (engine/market-picks.ts).
+ */
+function checkMarketRules(configFile: string): string[] {
+  const config = readJson(repoPath(configFile), EventConfig)
+  const dir = dirname(configFile)
+  const stagesWithOdds = new Set<string>()
+  const oddsFile = repoPath(dir, 'bookmaker-odds.json')
+  if (existsSync(oddsFile)) {
+    for (const e of readJson(oddsFile, BookmakerOdds).entries) stagesWithOdds.add(e.stageId)
+  }
+  const benchmarksFile = repoPath(dir, 'benchmarks.json')
+  if (existsSync(benchmarksFile)) {
+    for (const e of readJson(benchmarksFile, Benchmarks).entries) stagesWithOdds.add(e.stageId)
+  }
+  return config.stages
+    .filter((stage) => stagesWithOdds.has(stage.id) && !stage.marketRule)
+    .map((stage) => `${configFile}: ${stage.id} has market odds but no marketRule`)
 }
 
 /**

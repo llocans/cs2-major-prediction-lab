@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react'
+import type { MarketRule } from '../../../data/schemas/event-config.ts'
 import {
   type MarketMatch,
   type MarketRound,
-  MIN_EDGE,
   type SkipReason,
   stageMarketPicks,
   type Tally,
@@ -46,8 +46,13 @@ export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?:
   const stages = event.config.stages
   // Pre-match odds where they were read before the round, the closing line for the rest.
   const odds = displayOdds(event.bookmakerOdds, event.benchmarks)
-  const records = stages.map((s) =>
-    stageMarketPicks(s.id, event.snapshots, odds, event.results.matches),
+  // Each stage keeps its own rule (event config `marketRule`), so a later change never rewrites
+  // an earlier stage's record. A stage without a rule has no picks (validate requires one once it
+  // has odds).
+  const records = stages.flatMap((s) =>
+    s.marketRule
+      ? [stageMarketPicks(s.id, s.marketRule, event.snapshots, odds, event.results.matches)]
+      : [],
   )
   const latestWithOdds = [...records].reverse().find((r) => r.rounds.length > 0)
   const record = records.find((r) => r.stageId === stageId) ?? latestWithOdds ?? records[0]
@@ -79,11 +84,14 @@ export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?:
         <p className="text-sm text-ink-3">No odds logged for this stage yet.</p>
       ) : (
         <>
+          {record.rule.note && (
+            <p className="max-w-2xl text-sm font-semibold text-ink">{record.rule.note}</p>
+          )}
           <p className="max-w-2xl text-sm text-ink-2">
-            A value pick is the team the model gives at least {Math.round(MIN_EDGE * 100)} points
-            more than the market. It can be the underdog: it is picked for the price, not because it
-            is expected to win. Units is the profit from 1 unit on every pick at the market's
-            margin-free odds.
+            A value pick is the team the model gives at least{' '}
+            {Math.round(record.rule.minEdge * 100)} points more than the market. It can be the
+            underdog: it is picked for the price, not because it is expected to win. Units is the
+            profit from 1 unit on every pick at the market's margin-free odds.
           </p>
           <dl className="num flex flex-wrap gap-x-6 gap-y-1 text-sm">
             <Stat label="Picks" value={record.picks} />
@@ -94,7 +102,13 @@ export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?:
           </dl>
           <div className="flex max-w-4xl flex-col gap-3">
             {[...record.rounds].reverse().map((round, i) => (
-              <RoundSection key={round.round} round={round} open={i === 0} name={name} />
+              <RoundSection
+                key={round.round}
+                round={round}
+                rule={record.rule}
+                open={i === 0}
+                name={name}
+              />
             ))}
           </div>
         </>
@@ -123,10 +137,11 @@ function tallyText(t: Tally): string {
 
 function RoundSection(props: {
   round: MarketRound
+  rule: MarketRule
   open: boolean
   name: (id: string) => ReactNode
 }) {
-  const { round, open, name } = props
+  const { round, rule, open, name } = props
   return (
     <details open={open} className="border-b border-rule pb-2">
       <summary className="cursor-pointer py-1">
@@ -167,7 +182,7 @@ function RoundSection(props: {
               </th>
               <th
                 className="py-1 pr-1.5 font-semibold sm:pr-2"
-                title={`The team the model gives at least ${Math.round(MIN_EDGE * 100)} points more than the market, picked for the price (it can be the underdog). Matches with little tier-1 data on a team are skipped.`}
+                title={`The team the model gives at least ${Math.round(rule.minEdge * 100)} points more than the market, picked for the price (it can be the underdog).${rule.skipLittleData ? ' Matches with little tier-1 data on a team are skipped.' : ''}`}
               >
                 <span className="sm:hidden">Pick</span>
                 <span className="hidden sm:inline">Value pick</span>
