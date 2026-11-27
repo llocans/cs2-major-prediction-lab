@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-26T15:47:04.036Z",
-  "reason": "log-result stage-1-r4-chinggis-warriors-wildcard",
+  "asOf": "2026-11-27T08:02:04.662Z",
+  "reason": "log-result stage-1-r5-heroic-lynn-vision",
   "teams": {
     "nip": {
       "rating": 1571.9,
@@ -110,13 +110,13 @@
       ]
     },
     "heroic": {
-      "rating": 1532.3,
-      "rd": 55.7,
+      "rating": 1507.3,
+      "rd": 54.5,
       "maps": {
         "dust2": {
-          "offset": -55.1,
-          "rd": 56.568542494923804,
-          "n": 12
+          "offset": -58.2,
+          "rd": 55.4,
+          "n": 13
         },
         "ancient": {
           "offset": 50.4,
@@ -139,9 +139,9 @@
           "n": 9
         },
         "nuke": {
-          "offset": 28.7,
-          "rd": 62,
-          "n": 8
+          "offset": 24.9,
+          "rd": 60.5,
+          "n": 9
         },
         "anubis": {
           "offset": -40,
@@ -769,13 +769,13 @@
       ]
     },
     "lynn-vision": {
-      "rating": 1362,
-      "rd": 56.5,
+      "rating": 1387.7,
+      "rd": 55.3,
       "maps": {
         "dust2": {
-          "offset": 18.8,
-          "rd": 69.3,
-          "n": 4
+          "offset": 23.5,
+          "rd": 67.2,
+          "n": 5
         },
         "ancient": {
           "offset": 14.4,
@@ -790,6 +790,11 @@
         "anubis": {
           "offset": -20.5,
           "rd": 76.86151382644182,
+          "n": 1
+        },
+        "nuke": {
+          "offset": 6.5,
+          "rd": 76.9,
           "n": 1
         }
       },

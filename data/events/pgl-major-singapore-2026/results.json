@@ -736,6 +736,47 @@
         "retrievedAt": "2026-11-26",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r5-heroic-lynn-vision",
+      "stageId": "stage-1",
+      "round": 5,
+      "teamA": "lynn-vision",
+      "teamB": "heroic",
+      "format": "bo3",
+      "maps": [
+        {
+          "map": "nuke",
+          "scoreA": 13,
+          "scoreB": 11,
+          "sides": {
+            "aCt": 10,
+            "aT": 3,
+            "bCt": 9,
+            "bT": 2,
+            "aFirstSide": "ct"
+          }
+        },
+        {
+          "map": "dust2",
+          "scoreA": 13,
+          "scoreB": 6,
+          "sides": {
+            "aCt": 3,
+            "aT": 10,
+            "bCt": 2,
+            "bT": 4,
+            "aFirstSide": "t"
+          }
+        }
+      ],
+      "winner": "lynn-vision",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3475976)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-27",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
