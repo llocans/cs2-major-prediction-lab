@@ -228,6 +228,10 @@
       "model": {
         "version": "0.1.0"
       },
+      "marketRule": {
+        "minEdge": 0.05,
+        "skipLittleData": true
+      },
       "source": [
         {
           "name": "Valve Major Supplemental Rulebook: Swiss Bracket",
@@ -319,6 +323,10 @@
         "alongside": [
           "0.1.0"
         ]
+      },
+      "marketRule": {
+        "minEdge": 0.05,
+        "skipLittleData": true
       },
       "source": [
         {
@@ -413,6 +421,10 @@
           "0.1.0"
         ]
       },
+      "marketRule": {
+        "minEdge": 0.05,
+        "skipLittleData": true
+      },
       "source": [
         {
           "name": "Liquipedia: PGL/2026/Singapore (Format: Stage 3 all Bo3)",
@@ -469,6 +481,10 @@
         "alongside": [
           "0.1.0"
         ]
+      },
+      "marketRule": {
+        "minEdge": 0.05,
+        "skipLittleData": true
       },
       "source": [
         {

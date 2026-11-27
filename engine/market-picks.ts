@@ -1,15 +1,16 @@
 import type { BookmakerOdds } from '../data/schemas/bookmaker-odds.ts'
 import type { MatchFormat } from '../data/schemas/common.ts'
+import type { MarketRule } from '../data/schemas/event-config.ts'
 import type { MatchResult } from '../data/schemas/results.ts'
 import type { Confidence, Snapshot } from '../data/schemas/snapshot.ts'
 import { LITTLE_DATA_NOTE } from './explain.ts'
 
 /**
  * The model's picks against one bookmaker's prices: back a side when the model gives it at least
- * MIN_EDGE more than the margin-free market does. A fixed rule, so the record is not hand-picked.
+ * the stage's `minEdge` more than the margin-free market does. A fixed rule per stage (event
+ * config `marketRule`), so the record is not hand-picked and a later change cannot rewrite it.
  * Benchmark only: the model never reads market odds.
  */
-export const MIN_EDGE = 0.05
 
 /** Margin-free chance that A wins from two decimal odds (each implied probability scaled to sum 1). */
 export function marginFree(oddsA: number, oddsB: number): number {
@@ -21,8 +22,9 @@ export function marginFree(oddsA: number, oddsB: number): number {
 }
 
 /**
- * Why a match has no pick: no odds logged, the edge is under MIN_EDGE, or the model flags little
- * tier-1 data for a team (it then pulls toward 50%, its known blind spot).
+ * Why a match has no pick: no odds logged, the edge is under the rule's `minEdge`, or (when the rule
+ * says so) the model flags little tier-1 data for a team (it then pulls toward 50%, its known blind
+ * spot).
  */
 export type SkipReason = 'no-odds' | 'small-edge' | 'little-data'
 
@@ -70,6 +72,7 @@ export interface MarketRound extends Tally {
 
 export interface MarketStage extends Tally {
   stageId: string
+  rule: MarketRule
   rounds: MarketRound[]
 }
 
@@ -103,6 +106,7 @@ function tally(matches: readonly MarketMatch[]): Tally {
 /** Every round of a stage that has logged odds, oldest first, with the stage totals. */
 export function stageMarketPicks(
   stageId: string,
+  rule: MarketRule,
   snapshots: readonly Snapshot[],
   odds: readonly OddsEntry[],
   results: readonly MatchResult[],
@@ -141,8 +145,8 @@ export function stageMarketPicks(
         }
         const priced = { ...match, marketA, edge }
         // A small tolerance so an edge that prints as 5.0 pp counts as 5 pp.
-        if (edge.value < MIN_EDGE - 1e-9) return { ...priced, skip: 'small-edge' }
-        if (littleData) return { ...priced, skip: 'little-data' }
+        if (edge.value < rule.minEdge - 1e-9) return { ...priced, skip: 'small-edge' }
+        if (littleData && rule.skipLittleData) return { ...priced, skip: 'little-data' }
         if (!result) return { ...priced, pick: edge.team }
         const pickWon = result.winner === edge.team
         const marketPick = edge.team === prediction.teamA ? marketA : 1 - marketA
@@ -165,5 +169,5 @@ export function stageMarketPicks(
         ...tally(matches),
       }
     })
-  return { stageId, rounds, ...tally(rounds.flatMap((r) => r.matches)) }
+  return { stageId, rule, rounds, ...tally(rounds.flatMap((r) => r.matches)) }
 }

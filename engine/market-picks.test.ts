@@ -4,6 +4,8 @@ import type { MatchResult } from '../data/schemas/results.ts'
 import type { Snapshot } from '../data/schemas/snapshot.ts'
 import { marginFree, stageMarketPicks } from './market-picks.ts'
 
+const RULE = { minEdge: 0.05, skipLittleData: true }
+
 const source = { name: 'Book', retrievedAt: '2026-11-24' }
 
 const snapshot = (round: number, matches: Array<[string, string, number, string?]>): Snapshot => ({
@@ -30,7 +32,14 @@ const snapshot = (round: number, matches: Array<[string, string, number, string?
 })
 
 const odds = (round: number, teamA: string, teamB: string, pA: number) =>
-  ({ stageId: 's1', round, teamA, teamB, pA, source }) satisfies BookmakerOdds['entries'][number]
+  ({
+    stageId: 's1',
+    round,
+    teamA,
+    teamB,
+    pA,
+    source,
+  }) satisfies BookmakerOdds['entries'][number]
 
 const result = (
   round: number,
@@ -68,6 +77,7 @@ describe('stageMarketPicks', () => {
   it('picks the side the model rates at least 5 points above the market', () => {
     const stage = stageMarketPicks(
       's1',
+      RULE,
       [snapshot(1, [['a', 'b', 0.57]])],
       [odds(1, 'a', 'b', 0.65)],
       [result(1, 'a', 'b', [[6, 13]])],
@@ -86,6 +96,7 @@ describe('stageMarketPicks', () => {
   it('reads odds logged with the teams in the other order', () => {
     const stage = stageMarketPicks(
       's1',
+      RULE,
       [snapshot(1, [['a', 'b', 0.7]])],
       [odds(1, 'b', 'a', 0.4)],
       [],
@@ -102,6 +113,7 @@ describe('stageMarketPicks', () => {
   it('skips small edges, little tier-1 data and matches without odds', () => {
     const stage = stageMarketPicks(
       's1',
+      RULE,
       [
         snapshot(2, [
           ['a', 'b', 0.52],
@@ -125,6 +137,7 @@ describe('stageMarketPicks', () => {
   it('scores a series by maps from the winner side and leaves rounds without odds out', () => {
     const stage = stageMarketPicks(
       's1',
+      RULE,
       [snapshot(1, [['a', 'b', 0.5]]), snapshot(3, [['a', 'b', 0.3]])],
       [odds(3, 'a', 'b', 0.5)],
       [
@@ -147,5 +160,23 @@ describe('stageMarketPicks', () => {
       lost: 1,
       units: -1,
     })
+  })
+
+  it("uses the stage's own rule: a higher minEdge or keeping little-data matches", () => {
+    const args = [
+      [
+        snapshot(1, [
+          ['a', 'b', 0.57],
+          ['c', 'd', 0.3, 'c +10 rating; little tier-1 data for d'],
+        ]),
+      ],
+      [odds(1, 'a', 'b', 0.65), odds(1, 'c', 'd', 0.15)],
+      [],
+    ] as const
+    const strict = stageMarketPicks('s1', { minEdge: 0.1, skipLittleData: true }, ...args)
+    expect(strict.rounds[0]?.matches.map((m) => m.skip)).toEqual(['small-edge', 'little-data'])
+    const loose = stageMarketPicks('s1', { minEdge: 0.05, skipLittleData: false }, ...args)
+    expect(loose.rounds[0]?.matches.map((m) => m.pick)).toEqual(['b', 'c'])
+    expect(loose.rule).toEqual({ minEdge: 0.05, skipLittleData: false })
   })
 })

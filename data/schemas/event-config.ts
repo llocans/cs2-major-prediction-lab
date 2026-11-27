@@ -28,6 +28,19 @@ export const StageModel = z.object({
 })
 export type StageModel = z.infer<typeof StageModel>
 
+/**
+ * The value-pick rule for a stage's Market odds record (`engine/market-picks.ts`): back the side
+ * the model gives at least `minEdge` more than the margin-free market. Stored per stage so a later
+ * rule change can never rewrite a finished stage's record; a stage needs one before its first odds
+ * are logged (`npm run validate`).
+ */
+export const MarketRule = z.object({
+  minEdge: z.number().min(0).max(0.5),
+  /** Skip a match when the model flags little tier-1 data for a team. */
+  skipLittleData: z.boolean(),
+})
+export type MarketRule = z.infer<typeof MarketRule>
+
 /** Which Bo a Swiss match uses. "decider" = an elimination or advancement match. */
 export const SwissFormatRule = z.object({
   default: MatchFormat,
@@ -56,6 +69,7 @@ export const SwissStage = z.object({
   /** Seeds 1..8 for invited teams come from pre-event seeding; advancing teams fill the rest. */
   advanceTo: z.string().optional(),
   model: StageModel.optional(),
+  marketRule: MarketRule.optional(),
   source: z.array(Source).min(1),
 })
 export type SwissStage = z.infer<typeof SwissStage>
@@ -77,6 +91,7 @@ export const PlayoffStage = z.object({
   /** Liquipedia page holding the bracket (MediaWiki API title). */
   liquipediaPage: z.string().optional(),
   model: StageModel.optional(),
+  marketRule: MarketRule.optional(),
   source: z.array(Source).min(1),
 })
 export type PlayoffStage = z.infer<typeof PlayoffStage>
