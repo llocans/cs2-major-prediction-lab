@@ -8,11 +8,11 @@ export const POLL_MINUTES = 15
  */
 export const STALE_MINUTES = 45
 
-export type FreshnessState = 'live' | 'waiting' | 'problem'
+export type FreshnessState = 'live' | 'waiting' | 'problem' | 'final'
 
 export interface Freshness {
   state: FreshnessState
-  /** One word for the eye: Live, Waiting or Problem. */
+  /** One word for the eye: Live, Waiting, Problem or Final. */
   label: string
   /** One short sentence with the detail. */
   detail: string
@@ -40,12 +40,23 @@ export function formatAgo(minutes: number): string {
 const dayMonth = (ms: number) =>
   new Date(ms).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' })
 
-/** Plain-language status of the automatic result fetching for one stage. */
+/**
+ * Plain-language status of the automatic result fetching for one stage. A finished stage is Final
+ * whatever the poller does next: its results are in and its odds are locked.
+ */
 export function freshness(
   now: number,
   sync: SyncStatus | undefined,
   stage: { start: string; end: string },
+  finished = false,
 ): Freshness {
+  if (finished) {
+    return {
+      state: 'final',
+      label: 'Final',
+      detail: 'Stage finished. Results are final and the odds below are locked.',
+    }
+  }
   const live = inStageWindow(now, stage.start, stage.end)
   const before = now < Date.parse(stage.start) - DAY
 

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import type { Stage } from '../../../data/schemas/event-config.ts'
 import type { Snapshot, TeamOutlook } from '../../../data/schemas/snapshot.ts'
-import { lockedEventSnapshot, withLockedEventOdds } from './locked.ts'
+import { finalOutlook, lockedEventSnapshot, withLockedEventOdds } from './locked.ts'
 
 const stage = { id: 's1', type: 'swiss', advanceTo: 's2' } as Stage
 const snap = (stageId: string, beforeRound: number, modelVersion: string, extra = {}) =>
@@ -45,6 +45,26 @@ describe('withLockedEventOdds', () => {
       [1, 0.25],
       [0, 0],
       [0, 0],
+    ])
+  })
+})
+
+describe('finalOutlook', () => {
+  const rules = { winsToAdvance: 1, lossesToEliminate: 1, initialPairing: [[1, 2]] as const }
+
+  it('is undefined while a team still plays', () => {
+    expect(finalOutlook(['a', 'b'], [], rules)).toBeUndefined()
+  })
+
+  it('gives each team its final record once everyone is through or out', () => {
+    const final = finalOutlook(
+      ['a', 'b'],
+      [{ round: 1, teamA: 'a', teamB: 'b', winner: 'b' }],
+      rules,
+    )
+    expect(final?.map((t) => [t.teamId, t.record, t.p30, t.pAdvance, t.p03])).toEqual([
+      ['b', '1-0', 1, 1, 0],
+      ['a', '0-1', 0, 0, 1],
     ])
   })
 })

@@ -201,6 +201,9 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
 
 ## Done
 
+- 2026-11-27: A finished stage with locked odds no longer simulates: its table comes from the real
+  results and the locked snapshot. Its status bar says "Final" with the lock time (it said "Live"
+  for two days after the stage), the bracket key drops the what-if hint, and the team panel labels the rating "now" (the only live number there).
 - 2026-11-27: A finished Swiss stage's page locks its odds table: Playoffs and Title show the
   values from the moment the stage ended (the next stage's round 1 snapshot, in the finished
   stage's own model version; Stage 1: v0.1), under "Odds when Stage 1 ended (locked)" with a link to

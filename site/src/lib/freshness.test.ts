@@ -45,3 +45,11 @@ describe('freshness', () => {
     expect(formatAgo(125)).toBe('2 h 5 min ago')
   })
 })
+
+describe('freshness on a finished stage', () => {
+  it('is Final even while the poller still runs', () => {
+    const stage = { start: '2026-11-24', end: '2026-11-27' }
+    const now = Date.parse('2026-11-27T18:00:00Z')
+    expect(freshness(now, undefined, stage, true)).toMatchObject({ state: 'final', label: 'Final' })
+  })
+})
