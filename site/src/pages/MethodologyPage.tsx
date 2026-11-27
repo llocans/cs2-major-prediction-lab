@@ -41,7 +41,8 @@ export function MethodologyPage({ event }: { event: EventData }) {
           {sim.runs.toLocaleString('en-US')} times, following the official Swiss pairing rules and
           the playoff bracket, and counts how often each team advances, goes 3-0 or 0-3, reaches the
           playoffs or wins the title. Real results replace simulated ones as soon as they are known,
-          and every result also updates the ratings.
+          and every result also updates the ratings. Once a stage is over, its page keeps the odds
+          as they stood when it ended, as a record; the live odds move on to the next stage.
         </p>
       </Section>
 

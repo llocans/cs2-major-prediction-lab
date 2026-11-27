@@ -14,11 +14,13 @@ import {
   type EventData,
   ratings,
   registry,
+  stageParams,
   syncStatus,
   teamName,
   teamShortName,
 } from '../lib/data.ts'
 import { shortDate } from '../lib/format.ts'
+import { lockedEventSnapshot, withLockedEventOdds } from '../lib/locked.ts'
 import { marketQuote, teamStageMatches } from '../lib/market.ts'
 import { readWhatIf, toggleOverride, writeWhatIf } from '../lib/overrides.ts'
 import { setQuery } from '../lib/router.ts'
@@ -154,7 +156,19 @@ export function StagePage({ event, stage, query }: Props) {
           ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }, 50)
   }
-  const outlook = prediction?.teams.find((t) => t.teamId === selected)
+  // A finished stage shows Playoffs and Title as they stood when it ended (a frozen snapshot), so
+  // it stays a record instead of repeating the current stage's live odds.
+  const locked = lockedEventSnapshot(stage, stageParams(stage).version, [
+    ...event.snapshots,
+    ...event.alongsideSnapshots,
+  ])
+  const lockedNext = locked && event.config.stages.find((s) => s.id === locked.stageId)
+  const teams = prediction
+    ? locked
+      ? withLockedEventOdds(prediction.teams, locked)
+      : prediction.teams
+    : undefined
+  const outlook = teams?.find((t) => t.teamId === selected)
   const next = prediction?.matches.find((m) => m.teamA === selected || m.teamB === selected)
   const currentRound = prediction?.sim.currentRound
   const nextOpponent = next ? (next.teamA === selected ? next.teamB : next.teamA) : undefined
@@ -210,16 +224,31 @@ export function StagePage({ event, stage, query }: Props) {
 
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px] xl:gap-x-20">
         <section className="min-w-0">
-          <h2 className="mb-2 font-display text-xl font-bold">Probabilities</h2>
-          {prediction ? (
+          <h2 className="mb-2 font-display text-xl font-bold">
+            {locked ? `Odds when ${stage.name} ended (locked)` : 'Probabilities'}
+          </h2>
+          {locked && lockedNext && (
+            <p className="-mt-1 mb-2 text-xs text-ink-3">
+              Saved {shortDate(locked.createdAt.slice(0, 10))} after the last {stage.name} match.
+              Live odds are on the{' '}
+              <a
+                className="underline decoration-rule underline-offset-2 hover:text-ink"
+                href={lockedNext.type === 'swiss' ? `#/stage/${lockedNext.id}` : '#/playoffs'}
+              >
+                {lockedNext.name}
+              </a>{' '}
+              page.
+            </p>
+          )}
+          {teams ? (
             <OddsTable
-              teams={prediction.teams}
+              teams={teams}
               selected={selected}
               name={name}
               short={short}
               start={start}
               onSelect={select}
-              unverifiedVeto={prediction.event?.unverifiedVeto}
+              unverifiedVeto={locked ? locked.unverifiedVeto : prediction?.event?.unverifiedVeto}
               winsToAdvance={stage.winsToAdvance}
               lossesToEliminate={stage.lossesToEliminate}
             />

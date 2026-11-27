@@ -67,6 +67,9 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
      change how ratings are built, so v0.3 cannot share `data/ratings/current.json` with v0.1/v0.2
      (`engine/model-version.ts` refuses it; `docs/model.md`, "Model versions"). Each version needs
      its own ratings, built from the same results, before v0.3 can run with v0.2 alongside.
+   - **Keep v0.2 alongside in Stage 3.** A finished stage's page locks its Playoffs and Title
+     columns from the next stage's round 1 snapshot in its own model version, so Stage 3 must list
+     `0.2.0` in `alongside` (with `0.1.0`), or Stage 2's locked table has nothing to read.
    - **Backtest set.** The match histories below let each past match be predicted from only the
      data before it: hundreds of test matches instead of 33, used to judge each v0.3 input before
      release.
@@ -198,6 +201,10 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
 
 ## Done
 
+- 2026-11-27: A finished Swiss stage's page locks its odds table: Playoffs and Title show the
+  values from the moment the stage ended (the next stage's round 1 snapshot, in the finished
+  stage's own model version; Stage 1: v0.1), under "Odds when Stage 1 ended (locked)" with a link to
+  the live stage (user's idea). Without that snapshot the page stays live.
 - 2026-11-27: Bet slips from Stage 2 (`engine/bet-slips.ts`, `scripts/build-slips.ts`, frozen
   batches in `slips.json`, a slips block per round on the Market odds page). Safer slip: High/Medium
   value picks the model expects to win (chance 50% or more, user's choice 2026-11-27); riskier slip:
