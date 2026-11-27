@@ -204,7 +204,7 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
 - 2026-11-27: Finished stage polish (user): the status bar reads "Final · Results are final and the
   odds are locked" with the lock time to the nearest quarter hour; the page title drops
   "Finished"; the team panel says "Live rating" and, instead of 100% and dashes, shows the team's
-  3-0 / Advance / 0-3 odds from before round 1 with the outcome that happened marked.
+  3-0 / Advance / 0-3 odds from before round 1, coloured by what it meant for the team (3-0 and Advance green ✓ or red ✗; 0-3 red ✗ when it happened, grey when avoided).
 - 2026-11-27: A finished stage with locked odds no longer simulates: its table comes from the real
   results and the locked snapshot. Its status bar says "Final" with the lock time (it said "Live"
   for two days after the stage), the bracket key drops the what-if hint, and the team panel labels the rating "now" (the only live number there).

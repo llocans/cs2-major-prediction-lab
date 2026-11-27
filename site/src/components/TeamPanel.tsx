@@ -293,32 +293,49 @@ function ModelChance({ p, won }: { p: number | undefined; won: boolean }) {
 }
 
 /**
- * A finished stage: the team's odds before round 1 for each outcome, with the one that happened
- * marked, so the panel looks back instead of showing 100% and dashes.
+ * A finished stage: the team's odds before round 1 for each outcome, coloured by what it meant for
+ * the team: 3-0 and Advance green ✓ when they happened, red ✗ when not; 0-3 red ✗ when it happened,
+ * plain grey when avoided (the expected case).
  */
 function BeforeStage(props: {
   outlook: TeamOutlook
   before: Pick<TeamOutlook, 'p30' | 'pAdvance' | 'p03'>
 }) {
   const { outlook, before } = props
-  const rows = [
-    ['3-0', before.p30, outlook.p30 === 1],
-    ['Advance', before.pAdvance, outlook.pAdvance === 1],
-    ['0-3', before.p03, outlook.p03 === 1],
-  ] as const
+  type Mark = 'good' | 'bad' | 'none'
+  const rows: Array<[string, number, Mark, string]> = [
+    [
+      '3-0',
+      before.p30,
+      outlook.p30 === 1 ? 'good' : 'bad',
+      outlook.p30 === 1 ? 'Went 3-0' : 'Did not go 3-0',
+    ],
+    [
+      'Advance',
+      before.pAdvance,
+      outlook.pAdvance === 1 ? 'good' : 'bad',
+      outlook.pAdvance === 1 ? 'Advanced' : 'Did not advance',
+    ],
+    [
+      '0-3',
+      before.p03,
+      outlook.p03 === 1 ? 'bad' : 'none',
+      outlook.p03 === 1 ? 'Went 0-3' : 'Avoided 0-3',
+    ],
+  ]
+  const style: Record<Mark, string> = { good: 'text-win', bad: 'text-loss', none: 'text-ink-3' }
   return (
     <div className="md:max-lg:col-start-1 md:max-lg:row-start-2">
       <div className={`${LABEL} mb-1`}>Before the stage</div>
       <dl className="grid grid-cols-3 gap-2">
-        {rows.map(([label, value, happened]) => (
+        {rows.map(([label, value, mark, title]) => (
           <div key={label} className="text-center">
             <dt className={LABEL}>{label}</dt>
-            <dd
-              className={`num font-display text-2xl font-semibold ${happened ? 'text-win' : 'text-ink-3'}`}
-              title={happened ? 'This happened' : 'This did not happen'}
-            >
+            <dd className={`num font-display text-2xl font-semibold ${style[mark]}`} title={title}>
               {pct(value)}
-              {happened && <span className="ml-0.5 text-base">✓</span>}
+              {mark !== 'none' && (
+                <span className="ml-0.5 text-base">{mark === 'good' ? '✓' : '✗'}</span>
+              )}
             </dd>
           </div>
         ))}
