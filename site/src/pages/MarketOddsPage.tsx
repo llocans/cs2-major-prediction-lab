@@ -84,6 +84,9 @@ export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?:
         <p className="text-sm text-ink-3">No odds logged for this stage yet.</p>
       ) : (
         <>
+          {record.rule.note && (
+            <p className="max-w-2xl text-sm font-semibold text-ink">{record.rule.note}</p>
+          )}
           <p className="max-w-2xl text-sm text-ink-2">
             A value pick is the team the model gives at least{' '}
             {Math.round(record.rule.minEdge * 100)} points more than the market. It can be the

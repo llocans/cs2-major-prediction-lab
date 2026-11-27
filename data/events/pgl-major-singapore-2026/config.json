@@ -230,7 +230,8 @@
       },
       "marketRule": {
         "minEdge": 0.05,
-        "skipLittleData": true
+        "skipLittleData": true,
+        "note": "Stage 1 used Model v0.1 (value-pick rule)"
       },
       "source": [
         {

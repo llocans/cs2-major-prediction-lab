@@ -38,6 +38,8 @@ export const MarketRule = z.object({
   minEdge: z.number().min(0).max(0.5),
   /** Skip a match when the model flags little tier-1 data for a team. */
   skipLittleData: z.boolean(),
+  /** A short note shown above the stage's record on the Market odds page. */
+  note: z.string().min(1).optional(),
 })
 export type MarketRule = z.infer<typeof MarketRule>
 
