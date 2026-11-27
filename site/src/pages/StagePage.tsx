@@ -284,6 +284,7 @@ export function StagePage({ event, stage, query }: Props) {
               short={short}
               shortFromVrs={(vrsName) => shortFromVrs(event, vrsName)}
               onClose={clearSelection}
+              finished={final !== undefined}
             />
           )}
         </div>

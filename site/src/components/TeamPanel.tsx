@@ -27,6 +27,8 @@ interface Props {
   shortFromVrs: (vrsName: string) => string
   /** Closes the panel (clears the selected team). */
   onClose: () => void
+  /** A finished stage: the rest of the panel is final, the rating is today's (labelled "now"). */
+  finished?: boolean
 }
 
 export function TeamPanel(props: Props) {
@@ -41,6 +43,7 @@ export function TeamPanel(props: Props) {
     name,
     short,
     onClose,
+    finished = false,
   } = props
   const played = matches.filter((m) => m.result !== undefined)
   const form = forms.get(teamId)
@@ -84,7 +87,8 @@ export function TeamPanel(props: Props) {
         </h2>
         {rating && (
           <div className="num text-sm text-ink-2">
-            Rating {Math.round(rating.rating)} ± {Math.round(rating.rd)}
+            Rating {finished && 'now '}
+            {Math.round(rating.rating)} ± {Math.round(rating.rd)}
             {rating.rd >= LITTLE_DATA_RD && <span className="text-ink-3"> · little data</span>}
           </div>
         )}
