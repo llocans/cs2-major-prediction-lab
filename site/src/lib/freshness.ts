@@ -54,7 +54,7 @@ export function freshness(
     return {
       state: 'final',
       label: 'Final',
-      detail: 'Stage finished. Results are final and the odds below are locked.',
+      detail: 'Results are final and the odds are locked.',
     }
   }
   const live = inStageWindow(now, stage.start, stage.end)
@@ -97,4 +97,10 @@ export function freshness(
     label: 'Live',
     detail: `Results checked ${formatAgo(ago)}, next check ${next === 0 ? 'any moment' : `in about ${next} min`}.`,
   }
+}
+
+/** The time rounded to the nearest quarter hour (17:02 → 17:00), for a calm label. */
+export function nearestQuarterHour(iso: string): string {
+  const quarter = 15 * 60_000
+  return new Date(Math.round(Date.parse(iso) / quarter) * quarter).toISOString()
 }
