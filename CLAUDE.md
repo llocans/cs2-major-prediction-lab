@@ -111,7 +111,7 @@ future events too: formats live in config, never in code.
 | Skill           | When                                                                                        |
 | --------------- | ------------------------------------------------------------------------------------------- |
 | `log-result`    | Record a real result, update ratings, re-simulate, snapshot (manual fallback to the poller) |
-| `log-odds`      | Read a round's bookmaker odds (CSGOEmpire, Chrome) and log them for the Market odds page    |
+| `log-odds`      | Read a round's odds and kickoffs (CSGOEmpire, Chrome), log them and build its bet slips     |
 | `research-team` | Research one team (or a stage) and update its data, notes and modifiers                     |
 | `simulate`      | Re-run the simulation and report the odds (read-only)                                       |
 | `review-stage`  | Score a finished stage, write lessons, propose capped changes via PR                        |

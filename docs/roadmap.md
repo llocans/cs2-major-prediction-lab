@@ -78,8 +78,10 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
      collection feeds vetoes, recency, opponent strength, lineup period and LAN.
    - Model: recent maps weigh more, map results weighted by opponent strength, only maps with the
      current lineup (roster dates are already in `registry.json`), LAN filter; the cold-start
-     penalty and "Underdogs above the market" decisions (below) with all of Stage 1; the Stage 1
-     review's proposals.
+     penalty and "Underdogs above the market" decisions (below) with all of Stage 1. The Stage 1
+     review (2026-11-27, `accuracy.md`) proposed no parameter change; its lessons to check in
+     Stage 2: 60-70% favourites won only 5 of 10, and little-data teams (FlyQuest, Lynn Vision,
+     Wildcard) caused the upsets.
 5. Before the playoffs (Dec 2-9): the Bo5 veto check, the playoffs review, the playoff stage by date
    check (below), then the playoff bracket in the new style (UI PR).
 6. After the event: LPDB backtests (the user applies for access), real retuning, CT/T sides in the
@@ -154,7 +156,8 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
   slips of 2-4 underdogs rarely land); per-slip notes on why a pick was left out.
 - **Fix the Pick'Em page (user, 2026-11-24).** It works oddly: picks don't lock, and the flow doesn't
   make sense. Go through it with the user first to list what should lock when (e.g. after a stage
-  starts) and what feels wrong, then fix.
+  starts) and what feels wrong, then fix. Postponed by the user on 2026-11-27 (a bigger job; no date
+  set).
 - **Pick'Em history of experts (user, 2026-11-23; start Nov 24).** A tab with past Major Pick'Em
   picks by content creators, casters and players, scored against the real results and against random
   picks, to test the hunch that "by the book" picks do no better than chance. Needs dated, sourced
