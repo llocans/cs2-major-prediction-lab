@@ -777,6 +777,59 @@
         "retrievedAt": "2026-11-27",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r5-imperial-wildcard",
+      "stageId": "stage-1",
+      "round": 5,
+      "teamA": "imperial",
+      "teamB": "wildcard",
+      "format": "bo3",
+      "maps": [
+        {
+          "map": "dust2",
+          "scoreA": 13,
+          "scoreB": 11,
+          "sides": {
+            "aCt": 6,
+            "aT": 7,
+            "bCt": 5,
+            "bT": 6,
+            "aFirstSide": "ct"
+          }
+        },
+        {
+          "map": "mirage",
+          "scoreA": 11,
+          "scoreB": 13,
+          "sides": {
+            "aCt": 10,
+            "aT": 1,
+            "bCt": 11,
+            "bT": 2,
+            "aFirstSide": "t"
+          }
+        },
+        {
+          "map": "cache",
+          "scoreA": 13,
+          "scoreB": 8,
+          "sides": {
+            "aCt": 7,
+            "aT": 6,
+            "bCt": 3,
+            "bT": 5,
+            "aFirstSide": "ct"
+          }
+        }
+      ],
+      "winner": "imperial",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3475996)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-27",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
