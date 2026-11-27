@@ -191,9 +191,6 @@ export function TeamPanel(props: Props) {
               )}
             </tbody>
           </table>
-          <p className="mt-1.5 text-xs text-ink-3">
-            Odds before match start{upcoming ? '; NEXT is not played yet' : ''}.
-          </p>
           {unsure.length > 0 && (
             <p className="mt-1 text-xs text-ink-3">
               Little data on {unsure.map(short).join(' and ')} (few tier-1 matches), so the next
@@ -205,7 +202,8 @@ export function TeamPanel(props: Props) {
 
       {form && (
         <Section
-          title={`Match history · 90 days to ${shortDate(form.asOf)}`}
+          title="Match history · 90 days before the event"
+          tooltip={`Series in the 90 days to ${shortDate(form.asOf)}, from Valve's ranking tables`}
           // In the second column it starts level with the outlook, so it needs no line above it.
           className="md:max-lg:col-start-2 md:max-lg:row-span-2 md:max-lg:row-start-2 md:max-lg:border-t-0 md:max-lg:pt-0"
         >
@@ -251,11 +249,20 @@ export function TeamPanel(props: Props) {
 const LABEL = 'font-display text-xs uppercase tracking-wider text-ink-3'
 
 /** A titled part of the panel, set off from the one above by a thin line. */
-function Section(props: { title: string; className?: string; children: ReactNode }) {
-  const { title, className = '', children } = props
+function Section(props: {
+  title: string
+  /** Hover text on the heading. */
+  tooltip?: string
+  className?: string
+  children: ReactNode
+}) {
+  const { title, tooltip, className = '', children } = props
   return (
     <section className={`border-t border-rule pt-4 ${className}`}>
-      <h3 className="mb-1.5 font-display text-xs font-semibold uppercase tracking-wider text-ink-3">
+      <h3
+        className="mb-1.5 font-display text-xs font-semibold uppercase tracking-wider text-ink-3"
+        title={tooltip}
+      >
         {title}
       </h3>
       {children}
