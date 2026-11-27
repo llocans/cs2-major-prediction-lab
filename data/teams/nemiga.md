@@ -1,7 +1,7 @@
 # Nemiga Gaming  (id: nemiga)
 
 Event name: Nemiga · aliases: Nemiga
-VRS #10, 1650 points (2026-11-02) · Stage 2, seed 2 · Last updated 2026-11-21
+VRS #10, 1650 points (2026-11-02) · Stage 2, seed 2 · Last updated 2026-11-27
 
 ## Lineup
 - Players in the latest VRS match (2026-10-31): KaiR0N-, khaN, robo, syph0, Xant3r [VRS]
@@ -58,7 +58,7 @@ VRS #10, 1650 points (2026-11-02) · Stage 2, seed 2 · Last updated 2026-11-21
 ## Strengths / weaknesses / storylines
 - Best map by model offset: Ancient (+61); weakest: Nuke (-58) [HLTV-M]
 - Series form: 40-15 in 90 days, 11-9 vs VRS top 30 [VRS]
-- Storylines: to be added from Stage 2 previews (nightly research task)
+- Storylines: 2026-11-27: Strafe expects 3-1 or 3-2 and a Stage 3 spot, citing the PGL Masters Bucharest runner-up finish; round 1 vs NIP is seen as tough [SF]
 
 ## Modifiers
 - none
@@ -70,3 +70,4 @@ VRS #10, 1650 points (2026-11-02) · Stage 2, seed 2 · Last updated 2026-11-21
 - [LP] Liquipedia: Nemiga Gaming (rev 3452779), https://liquipedia.net/counterstrike/Nemiga_Gaming (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [FX] Liquipedia Swiss stage pages of BLAST Austin Major 2025 and IEM Cologne Major 2026 (engine/swiss/fixtures, CC-BY-SA 3.0)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0010--nemiga--kair0n--khan-robo-syph0-xant3r.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0010--nemiga--kair0n--khan-robo-syph0-xant3r.md (retrieved 2026-11-21)
+- [SF] Strafe, "PGL Major Singapore 2026: Stage 2 Pick'Em guide", https://www.strafe.com/news/read/pgl-major-singapore-2026-stage-2-pick-em-guide/ (published 2026-11-27, retrieved 2026-11-27)

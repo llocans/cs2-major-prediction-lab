@@ -1,7 +1,7 @@
 # Astralis  (id: astralis)
 
 Event name: Astralis
-VRS #14, 1572 points (2026-11-02) · Stage 2, seed 6 · Last updated 2026-11-21
+VRS #14, 1572 points (2026-11-02) · Stage 2, seed 6 · Last updated 2026-11-27
 
 ## Lineup
 - Players in the latest VRS match (2026-10-29): jabbi, phzy, ryu, siuhy, Staehr [VRS]
@@ -64,7 +64,7 @@ VRS #14, 1572 points (2026-11-02) · Stage 2, seed 6 · Last updated 2026-11-21
 ## Strengths / weaknesses / storylines
 - Best map by model offset: Dust II (+51); weakest: Anubis (-56) [HLTV-M]
 - Series form: 15-9 in 90 days, 10-12 vs VRS top 30 [VRS]
-- Storylines: to be added from Stage 2 previews (nightly research task)
+- Storylines: 2026-11-27: Opinion: Strafe lists them only as an underdog [SF]
 
 ## Modifiers
 - `astralis-loan-anlelele-2026-11`: −15 until 2026-12-13 (loan player with no maps for the team)
@@ -77,3 +77,4 @@ VRS #14, 1572 points (2026-11-02) · Stage 2, seed 6 · Last updated 2026-11-21
 - [FX] Liquipedia Swiss stage pages of BLAST Austin Major 2025 and IEM Cologne Major 2026 (engine/swiss/fixtures, CC-BY-SA 3.0)
 - [PLEY] pley.gg event guide, https://pley.gg/cs2/pgl-major-singapore-2026/ (retrieved 2026-11-21)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0014--astralis--jabbi-phzy-ryu-siuhy-staehr.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0014--astralis--jabbi-phzy-ryu-siuhy-staehr.md (retrieved 2026-11-21)
+- [SF] Strafe, "PGL Major Singapore 2026: Stage 2 Pick'Em guide", https://www.strafe.com/news/read/pgl-major-singapore-2026-stage-2-pick-em-guide/ (published 2026-11-27, retrieved 2026-11-27)

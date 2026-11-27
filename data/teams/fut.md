@@ -1,7 +1,7 @@
 # FUT Esports  (id: fut)
 
 Event name: FUT · aliases: FUT
-VRS #8, 1721 points (2026-11-02) · Stage 2, seed 1 · Last updated 2026-11-21
+VRS #8, 1721 points (2026-11-02) · Stage 2, seed 1 · Last updated 2026-11-27
 
 ## Lineup
 - Players in the latest VRS match (2026-10-29): dem0n, dziugss, Krabeni, SunPayus, xfl0ud [VRS]
@@ -59,7 +59,7 @@ VRS #8, 1721 points (2026-11-02) · Stage 2, seed 1 · Last updated 2026-11-21
 ## Strengths / weaknesses / storylines
 - Best map by model offset: Cache (+41); weakest: Mirage (-25) [HLTV-M]
 - Series form: 10-4 in 90 days, 10-8 vs VRS top 30 [VRS]
-- Storylines: to be added from Stage 2 previews (nightly research task)
+- Storylines: 2026-11-27: Strafe picks them to go 3-0, citing the PGL Bucharest title and a second place at the Esports World Cup; they open against FlyQuest [SF]
 
 ## Modifiers
 - none
@@ -72,3 +72,4 @@ VRS #8, 1721 points (2026-11-02) · Stage 2, seed 1 · Last updated 2026-11-21
 - [FX] Liquipedia Swiss stage pages of BLAST Austin Major 2025 and IEM Cologne Major 2026 (engine/swiss/fixtures, CC-BY-SA 3.0)
 - [PLEY] pley.gg event guide, https://pley.gg/cs2/pgl-major-singapore-2026/ (retrieved 2026-11-21)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0008--fut--cmtry-dem0n-dziugss-krabeni-xfl0ud.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0008--fut--cmtry-dem0n-dziugss-krabeni-xfl0ud.md (retrieved 2026-11-21)
+- [SF] Strafe, "PGL Major Singapore 2026: Stage 2 Pick'Em guide", https://www.strafe.com/news/read/pgl-major-singapore-2026-stage-2-pick-em-guide/ (published 2026-11-27, retrieved 2026-11-27)

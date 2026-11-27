@@ -1,7 +1,7 @@
 # 1win  (id: 1win)
 
 Event name: THE ONE · aliases: THE ONE (pgl-major-singapore-2026)
-VRS #12, 1598 points (2026-11-02) · Stage 2, seed 4 · Last updated 2026-11-21
+VRS #12, 1598 points (2026-11-02) · Stage 2, seed 4 · Last updated 2026-11-27
 
 ## Lineup
 - Players in the latest VRS match (2026-11-01): ArtFr0st, Ax1Le, BELCHONOKK, fame, nafany [VRS]
@@ -67,7 +67,7 @@ VRS #12, 1598 points (2026-11-02) · Stage 2, seed 4 · Last updated 2026-11-21
 ## Strengths / weaknesses / storylines
 - Best map by model offset: Mirage (+55); weakest: Ancient (-78) [HLTV-M]
 - Series form: 24-12 in 90 days, 13-8 vs VRS top 30 [VRS]
-- Storylines: to be added from Stage 2 previews (nightly research task)
+- Storylines: 2026-11-27: Strafe expects 3-1 or 3-2, citing a top-eight finish at ESL Pro League Season 24 and recent wins over Spirit and Legacy [SF]
 
 ## Modifiers
 - none
@@ -79,3 +79,4 @@ VRS #12, 1598 points (2026-11-02) · Stage 2, seed 4 · Last updated 2026-11-21
 - [LP] Liquipedia: 1w Team (rev 3469762), https://liquipedia.net/counterstrike/1w_Team (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [FX] Liquipedia Swiss stage pages of BLAST Austin Major 2025 and IEM Cologne Major 2026 (engine/swiss/fixtures, CC-BY-SA 3.0)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0012--1win--artfr0st-ax1le-belchonokk-fame-nafany.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0012--1win--artfr0st-ax1le-belchonokk-fame-nafany.md (retrieved 2026-11-21)
+- [SF] Strafe, "PGL Major Singapore 2026: Stage 2 Pick'Em guide", https://www.strafe.com/news/read/pgl-major-singapore-2026-stage-2-pick-em-guide/ (published 2026-11-27, retrieved 2026-11-27)

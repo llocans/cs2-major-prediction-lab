@@ -3,6 +3,7 @@
 One line per automatic change (scripts, scheduled tasks). Newest first.
 Format: `YYYY-MM-DD HH:MM UTC · actor · what changed`
 
+- 2026-11-27 21:30 UTC · research refresh · Stage 2 storylines added (FUT, Nemiga, G2, THE ONE, NAVI, Astralis, The MongolZ); no roster news
 - 2026-11-27 18:01 UTC · stage 1 review · lessons written in accuracy.md (Brier 0.247, no parameter change)
 - 2026-11-27 15:02 UTC · poll-liquipedia · logged 1 result(s) in stage-1; ratings updated; snapshot done
 - 2026-11-27 11:47 UTC · poll-liquipedia · logged 1 result(s) in stage-1; ratings updated; snapshot not-due

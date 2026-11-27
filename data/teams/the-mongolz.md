@@ -1,7 +1,7 @@
 # The MongolZ  (id: the-mongolz)
 
 Event name: The MongolZ · aliases: MongolZ
-VRS #17, 1554 points (2026-11-02) · Stage 2, seed 7 · Last updated 2026-11-21
+VRS #17, 1554 points (2026-11-02) · Stage 2, seed 7 · Last updated 2026-11-27
 
 ## Lineup
 - Players in the latest VRS match (2026-10-28): 910, bLitz, cobrazera, nin9, Techno [VRS]
@@ -61,7 +61,7 @@ VRS #17, 1554 points (2026-11-02) · Stage 2, seed 7 · Last updated 2026-11-21
 ## Strengths / weaknesses / storylines
 - Best map by model offset: Ancient (+81); weakest: Cache (-54) [HLTV-M]
 - Series form: 9-8 in 90 days, 8-15 vs VRS top 30 [VRS]
-- Storylines: to be added from Stage 2 previews (nightly research task)
+- Storylines: 2026-11-27: Strafe picks them to go 3-0, calling them Asia's top roster despite a weaker 2026 and a roster change; IEM Beijing runner-up [SF]
 
 ## Modifiers
 - none
@@ -73,3 +73,4 @@ VRS #17, 1554 points (2026-11-02) · Stage 2, seed 7 · Last updated 2026-11-21
 - [LP] Liquipedia: The MongolZ (rev 3456045), https://liquipedia.net/counterstrike/The_MongolZ (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [FX] Liquipedia Swiss stage pages of BLAST Austin Major 2025 and IEM Cologne Major 2026 (engine/swiss/fixtures, CC-BY-SA 3.0)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0017--the_mongolz--910-blitz-cobrazera-nin9-techno.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0017--the_mongolz--910-blitz-cobrazera-nin9-techno.md (retrieved 2026-11-21)
+- [SF] Strafe, "PGL Major Singapore 2026: Stage 2 Pick'Em guide", https://www.strafe.com/news/read/pgl-major-singapore-2026-stage-2-pick-em-guide/ (published 2026-11-27, retrieved 2026-11-27)

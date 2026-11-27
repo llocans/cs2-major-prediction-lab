@@ -1,7 +1,7 @@
 # Natus Vincere  (id: navi)
 
 Event name: NAVI · aliases: NAVI
-VRS #13, 1589 points (2026-11-02) · Stage 2, seed 5 · Last updated 2026-11-21
+VRS #13, 1589 points (2026-11-02) · Stage 2, seed 5 · Last updated 2026-11-27
 
 ## Lineup
 - Players in the latest VRS match (2026-10-30): Aleksib, b1t, iM, makazze, w0nderful [VRS]
@@ -58,7 +58,7 @@ VRS #13, 1589 points (2026-11-02) · Stage 2, seed 5 · Last updated 2026-11-21
 ## Strengths / weaknesses / storylines
 - Best map by model offset: Ancient (+66); weakest: Mirage (-64) [HLTV-M]
 - Series form: 9-12 in 90 days, 10-15 vs VRS top 30 [VRS]
-- Storylines: to be added from Stage 2 previews (nightly research task)
+- Storylines: 2026-11-27: Strafe calls them the highest-ranked Stage 2 team; Opinion: a 3-0 is possible but 3-1 or 3-2 more likely given recent form; round 1 vs PVISION [SF]
 
 ## Modifiers
 - none
@@ -70,3 +70,4 @@ VRS #13, 1589 points (2026-11-02) · Stage 2, seed 5 · Last updated 2026-11-21
 - [LP] Liquipedia: Natus Vincere (rev 3453160), https://liquipedia.net/counterstrike/Natus_Vincere (retrieved 2026-11-21, CC-BY-SA 3.0)
 - [FX] Liquipedia Swiss stage pages of BLAST Austin Major 2025 and IEM Cologne Major 2026 (engine/swiss/fixtures, CC-BY-SA 3.0)
 - [VRS] Valve VRS 2026-11-02: details/2026_11_02/0013--natus_vincere--aleksib-b1t-im-makazze-w0nderful.md, https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_11_02/0013--natus_vincere--aleksib-b1t-im-makazze-w0nderful.md (retrieved 2026-11-21)
+- [SF] Strafe, "PGL Major Singapore 2026: Stage 2 Pick'Em guide", https://www.strafe.com/news/read/pgl-major-singapore-2026-stage-2-pick-em-guide/ (published 2026-11-27, retrieved 2026-11-27)
