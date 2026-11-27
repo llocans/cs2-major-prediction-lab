@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "eventId": "pgl-major-singapore-2026",
+  "batches": [
+    {
+      "stageId": "stage-2",
+      "round": 1,
+      "builtAt": "2026-11-27T16:22:59Z",
+      "odds": "real",
+      "slips": [
+        {
+          "kind": "safer",
+          "legs": [
+            {
+              "teamA": "astralis",
+              "teamB": "imperial",
+              "pick": "astralis",
+              "chance": 0.6126
+            },
+            {
+              "teamA": "mibr",
+              "teamB": "100-thieves",
+              "pick": "mibr",
+              "chance": 0.5811
+            }
+          ]
+        },
+        {
+          "kind": "riskier",
+          "legs": [
+            {
+              "teamA": "navi",
+              "teamB": "parivision",
+              "pick": "parivision",
+              "chance": 0.444
+            },
+            {
+              "teamA": "fut",
+              "teamB": "flyquest",
+              "pick": "flyquest",
+              "chance": 0.373
+            }
+          ]
+        }
+      ],
+      "left": []
+    }
+  ]
+}
