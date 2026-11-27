@@ -406,6 +406,110 @@
         "retrievedAt": "2026-11-26"
       },
       "observedAt": "2026-11-26T20:58:39Z"
+    },
+    {
+      "stageId": "stage-2",
+      "round": 1,
+      "teamA": "fut",
+      "teamB": "flyquest",
+      "pA": 0.6803,
+      "source": {
+        "name": "CSGOEmpire match-winner odds, margin removed",
+        "url": "https://csgoempire.com/match-betting",
+        "retrievedAt": "2026-11-27"
+      },
+      "observedAt": "2026-11-27T16:01:47Z"
+    },
+    {
+      "stageId": "stage-2",
+      "round": 1,
+      "teamA": "the-mongolz",
+      "teamB": "lynn-vision",
+      "pA": 0.6854,
+      "source": {
+        "name": "CSGOEmpire match-winner odds, margin removed",
+        "url": "https://csgoempire.com/match-betting",
+        "retrievedAt": "2026-11-27"
+      },
+      "observedAt": "2026-11-27T16:01:47Z"
+    },
+    {
+      "stageId": "stage-2",
+      "round": 1,
+      "teamA": "g2",
+      "teamB": "liquid",
+      "pA": 0.5337,
+      "source": {
+        "name": "CSGOEmpire match-winner odds, margin removed",
+        "url": "https://csgoempire.com/match-betting",
+        "retrievedAt": "2026-11-27"
+      },
+      "observedAt": "2026-11-27T16:01:47Z"
+    },
+    {
+      "stageId": "stage-2",
+      "round": 1,
+      "teamA": "astralis",
+      "teamB": "imperial",
+      "pA": 0.559,
+      "source": {
+        "name": "CSGOEmpire match-winner odds, margin removed",
+        "url": "https://csgoempire.com/match-betting",
+        "retrievedAt": "2026-11-27"
+      },
+      "observedAt": "2026-11-27T16:01:47Z"
+    },
+    {
+      "stageId": "stage-2",
+      "round": 1,
+      "teamA": "mibr",
+      "teamB": "100-thieves",
+      "pA": 0.4663,
+      "source": {
+        "name": "CSGOEmpire match-winner odds, margin removed",
+        "url": "https://csgoempire.com/match-betting",
+        "retrievedAt": "2026-11-27"
+      },
+      "observedAt": "2026-11-27T16:01:47Z"
+    },
+    {
+      "stageId": "stage-2",
+      "round": 1,
+      "teamA": "navi",
+      "teamB": "parivision",
+      "pA": 0.6311,
+      "source": {
+        "name": "CSGOEmpire match-winner odds, margin removed",
+        "url": "https://csgoempire.com/match-betting",
+        "retrievedAt": "2026-11-27"
+      },
+      "observedAt": "2026-11-27T16:01:47Z"
+    },
+    {
+      "stageId": "stage-2",
+      "round": 1,
+      "teamA": "nemiga",
+      "teamB": "nip",
+      "pA": 0.5247,
+      "source": {
+        "name": "CSGOEmpire match-winner odds, margin removed",
+        "url": "https://csgoempire.com/match-betting",
+        "retrievedAt": "2026-11-27"
+      },
+      "observedAt": "2026-11-27T16:01:47Z"
+    },
+    {
+      "stageId": "stage-2",
+      "round": 1,
+      "teamA": "1win",
+      "teamB": "eternal-fire",
+      "pA": 0.5426,
+      "source": {
+        "name": "CSGOEmpire match-winner odds, margin removed",
+        "url": "https://csgoempire.com/match-betting",
+        "retrievedAt": "2026-11-27"
+      },
+      "observedAt": "2026-11-27T16:01:47Z"
     }
   ]
 }
