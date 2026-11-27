@@ -94,8 +94,8 @@ export interface PoolOdds {
 /**
  * The pool for one batch (one odds reading): the round's value picks whose odds were read before
  * their match starts, whose match has not started or been played at `now`, and that are not already
- * in an earlier batch's slip. A match without a known kickoff counts as not started until it has a
- * result.
+ * in an earlier batch's slip. A match without a known kickoff never goes in (its odds could be
+ * in-play). Picks left out of an earlier batch (no value, over the limit) are pooled again.
  */
 export function slipPool(
   matches: readonly MarketMatch[],
@@ -110,8 +110,8 @@ export function slipPool(
     const key = pairKey(m.teamA, m.teamB)
     if (slipped.has(key)) continue
     const entry = odds.find((o) => pairKey(o.teamA, o.teamB) === key)
-    if (!entry?.observedAt) continue
-    if (entry.startsAt && (entry.observedAt >= entry.startsAt || now >= entry.startsAt)) continue
+    if (!entry?.observedAt || !entry.startsAt) continue
+    if (entry.observedAt >= entry.startsAt || now >= entry.startsAt) continue
     const pickIsA = m.pick === m.teamA
     const pickIsEntryA = m.pick === entry.teamA
     pool.push({

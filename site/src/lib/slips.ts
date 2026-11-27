@@ -31,15 +31,22 @@ export function roundSlips(
   const batches = event.slips.filter((b) => b.stageId === stageId && b.round === round)
   if (batches.length === 0) return undefined
   const winners = winnersByPair(event.results.matches, stageId, round)
-  const useReal = batches.every((b) => b.odds === 'real') && event.realOdds.length > 0
+  const realFor = (leg: SlipLeg) =>
+    event.realOdds.find(
+      (o) =>
+        o.stageId === stageId &&
+        o.round === round &&
+        pairKey(o.teamA, o.teamB) === pairKey(leg.teamA, leg.teamB),
+    )
+  // Real odds only when every batch used them and every leg has them, so a round never mixes the two.
+  const useReal =
+    event.realOdds.length > 0 &&
+    batches.every((b) => b.odds === 'real') &&
+    batches.every((b) => b.slips.every((s) => s.legs.every((l) => realFor(l) !== undefined)))
   const oddsFor = (leg: SlipLeg): number | undefined => {
     const key = pairKey(leg.teamA, leg.teamB)
-    if (useReal) {
-      const real = event.realOdds.find(
-        (o) => o.stageId === stageId && o.round === round && pairKey(o.teamA, o.teamB) === key,
-      )
-      if (real) return leg.pick === real.teamA ? real.oddsA : real.oddsB
-    }
+    const real = useReal ? realFor(leg) : undefined
+    if (real) return leg.pick === real.teamA ? real.oddsA : real.oddsB
     const entry = event.bookmakerOdds.find(
       (o) => o.stageId === stageId && o.round === round && pairKey(o.teamA, o.teamB) === key,
     )
@@ -58,7 +65,7 @@ export function roundSlips(
     slips.length > 0
       ? undefined
       : left.length > 0
-        ? 'no value pick still has value at the bookmaker’s real odds'
+        ? 'no pick has enough edge at the real odds'
         : 'no value picks'
   return { slips, odds: useReal ? 'real' : 'margin-free', ...(noSlip ? { noSlip } : {}) }
 }

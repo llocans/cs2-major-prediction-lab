@@ -82,7 +82,8 @@ function poolOdds(round: number, useReal: boolean): PoolOdds[] {
         oddsB,
         // A replay looks at the round as it stood before it was played.
         observedAt: o.observedAt ?? `${o.source.retrievedAt}T00:00:00Z`,
-        ...(o.startsAt && !replay ? { startsAt: o.startsAt } : {}),
+        // A replay has no kickoffs before Stage 2; the round's start stands in for them.
+        startsAt: replay ? '9999-12-31T00:00:00Z' : o.startsAt,
       }
     })
 }
@@ -139,7 +140,7 @@ const hasReal = (c: { teamA: string; teamB: string }) =>
   )
 const useReal = marginFreePool.length > 0 && marginFreePool.every(hasReal)
 const pool = useReal ? realPool : marginFreePool
-if (pool.length === 0) {
+if (pool.length === 0 && earlier.length > 0) {
   console.log(`${stageId} round ${round}: no value picks left for a slip`)
   process.exit(0)
 }

@@ -26,14 +26,16 @@ only: the model never reads them.
 4. Log the round in one call, team IDs from `teams.json` (GOSH is `bc-game`):
    `node scripts/log-odds.ts <event> <stage> <round> <teamA> <oddsA> <teamB> <oddsB> ... --source "CSGOEmpire match-winner odds, margin removed|https://csgoempire.com/match-betting"`
    Add `--starts <ISO>,<ISO>,...`: each pair's kickoff in UTC, in the same order as the pairs (Riga
-   is UTC+2 in winter; check against the Liquipedia stage page when unsure). Read only matches that
+   is UTC+2 in winter; check against the Liquipedia stage page when unsure). A stage with bet slips
+   requires it (except with `--date`). Read only matches that
    have not started. For odds the user sent earlier (screenshot or typed), add `--date <YYYY-MM-DD>`
    of that day.
    The script then builds the round's bet slips for this reading (`scripts/build-slips.ts`, when the
    stage's `marketRule` has `slips`): one frozen batch in `slips.json` from the value picks not in a
-   slip yet. A later reading of the same round adds only the picks left over.
+   slip yet. A later reading of the same round pools every pick not in a slip yet again, including
+   ones left out before (no value, over the limit). A pair already in a slip cannot be re-logged.
 5. Run `npm run validate`, then commit data straight to main:
-   `git add data/events/<id>/bookmaker-odds.json data/events/<id>/slips.json` and
+   `git add data/events/<id>/bookmaker-odds.json`, plus `data/events/<id>/slips.json` if it exists, and
    `git commit -m "data: <stage> round <n> bookmaker odds"`.
 6. Reply in two or three lines (the round's value picks and slips) and point to `#/market/<stage>`.
 

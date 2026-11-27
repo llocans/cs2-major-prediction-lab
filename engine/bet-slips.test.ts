@@ -121,7 +121,13 @@ describe('slipPool', () => {
   ]
 
   it('takes value picks read before kickoff, with the odds on the picked side', () => {
-    const pool = slipPool(matches, odds, [], '2026-11-27T18:05:00Z')
+    // A pick without a known kickoff never goes in: its odds could be in-play.
+    const noKickoff = [...matches, match('i', 'j', 0.6, 0.4, 'i')]
+    const withNoKickoff = [
+      ...odds,
+      { teamA: 'i', teamB: 'j', oddsA: 2.4, oddsB: 1.6, observedAt: '2026-11-27T18:00:00Z' },
+    ]
+    const pool = slipPool(noKickoff, withNoKickoff, [], '2026-11-27T18:05:00Z')
     expect(pool.map((c) => [c.pick, c.model, c.market, c.odds])).toEqual([
       ['a', 0.6, 0.5, 1.9],
       ['d', 0.7, 0.6, 1.6],

@@ -349,7 +349,11 @@ function SlipRecord({
         const decided = t.won + t.lost
         return (
           <span key={kind}>
-            <span className="font-semibold text-ink">{SLIP_LABEL[kind]}s</span> {t.slips}
+            <span className="font-semibold text-ink">
+              {SLIP_LABEL[kind]}
+              {t.slips === 1 ? '' : 's'}
+            </span>{' '}
+            {t.slips}
             {decided > 0 && ` · ${t.won} won · ${t.lost} lost · ${unitsText(t.units)} units`}
           </span>
         )
@@ -361,23 +365,23 @@ function SlipRecord({
 /** A round's bet slips: picks, the model's chance that all win, combined odds and the result. */
 function SlipsBlock({ slips, name }: { slips: RoundSlips; name: (id: string) => ReactNode }) {
   return (
-    <div className="mt-3">
+    <div className="mt-4">
       <h4 className="font-display text-xs font-semibold uppercase tracking-wider text-ink-2">
         Bet slips
       </h4>
       {slips.noSlip ? (
         <p className="mt-1 text-sm text-ink-3">No slip this round: {slips.noSlip}.</p>
       ) : (
-        <ul className="mt-1 max-w-3xl">
+        <ul className="mt-1">
           {slips.slips.map((slip) => (
             <li
               key={`${slip.kind}-${slip.legs.map((l) => l.pick).join('-')}`}
-              className="flex flex-wrap items-baseline gap-x-4 gap-y-0.5 border-b border-rule py-1.5 text-sm"
+              className="flex flex-wrap items-baseline gap-x-4 gap-y-0.5 border-b border-rule py-2 text-sm"
             >
               <span className="w-full shrink-0 font-semibold sm:w-28" title={SLIP_TITLE[slip.kind]}>
                 {SLIP_LABEL[slip.kind]}
                 {slip.legs.length === 1 && (
-                  <span className="ml-1 text-xs font-normal text-ink-3">single</span>
+                  <span className="ml-1 text-xs font-normal text-ink-3">one pick</span>
                 )}
               </span>
               <span className="min-w-0 flex-1">
@@ -397,29 +401,30 @@ function SlipsBlock({ slips, name }: { slips: RoundSlips; name: (id: string) => 
                   )
                 })}
               </span>
-              <span
-                className="num whitespace-nowrap text-ink-2"
-                title="The model's chance that every pick wins"
-              >
-                all win {pct(slip.outcome.chanceAll)}
-              </span>
-              {slip.outcome.odds !== undefined && (
+              {/* One group, so the numbers wrap together and line up from slip to slip. */}
+              <span className="num ml-auto flex gap-x-4 whitespace-nowrap">
                 <span
-                  className="num whitespace-nowrap text-ink-2"
+                  className="w-24 text-right text-ink-2"
+                  title="The model's chance that every pick wins"
+                >
+                  all win {pct(slip.outcome.chanceAll)}
+                </span>
+                <span
+                  className="w-24 text-right text-ink-2"
                   title="Combined odds: the picks' odds multiplied"
                 >
-                  odds {slip.outcome.odds.toFixed(2)}
+                  {slip.outcome.odds !== undefined && `odds ${slip.outcome.odds.toFixed(2)}`}
                 </span>
-              )}
-              <span className="num ml-auto whitespace-nowrap">
-                {slip.outcome.status === 'pending' ? (
-                  <span className="text-ink-3">to play</span>
-                ) : (
-                  <span className={slip.outcome.status === 'won' ? 'text-win' : 'text-loss'}>
-                    {slip.outcome.status === 'won' ? 'won' : 'lost'}
-                    {slip.outcome.units !== undefined && ` ${unitsText(slip.outcome.units)}`}
-                  </span>
-                )}
+                <span className="w-24 text-right">
+                  {slip.outcome.status === 'pending' ? (
+                    <span className="text-ink-3">to play</span>
+                  ) : (
+                    <span className={slip.outcome.status === 'won' ? 'text-win' : 'text-loss'}>
+                      {slip.outcome.status === 'won' ? 'won' : 'lost'}
+                      {slip.outcome.units !== undefined && ` ${unitsText(slip.outcome.units)}`}
+                    </span>
+                  )}
+                </span>
               </span>
             </li>
           ))}
@@ -428,7 +433,7 @@ function SlipsBlock({ slips, name }: { slips: RoundSlips; name: (id: string) => 
       <p className="mt-1 text-xs text-ink-3">
         {slips.odds === 'real'
           ? 'Odds as the bookmaker listed them (shown on this computer only).'
-          : 'Odds with the margin removed; real payouts are a little lower.'}
+          : 'Margin-free odds; real payouts are a little lower.'}
       </p>
     </div>
   )

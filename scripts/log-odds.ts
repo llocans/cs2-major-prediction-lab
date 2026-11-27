@@ -14,7 +14,13 @@
  */
 import { execFileSync } from 'node:child_process'
 import { existsSync } from 'node:fs'
-import { BookmakerOdds, EventTeams, LocalMarketOdds } from '../data/schemas/index.ts'
+import {
+  BookmakerOdds,
+  EventConfig,
+  EventSlips,
+  EventTeams,
+  LocalMarketOdds,
+} from '../data/schemas/index.ts'
 import { marginFree } from '../engine/market-picks.ts'
 import { readJson, repoPath, writeJson } from './lib/files.ts'
 
@@ -49,6 +55,14 @@ const kickoffs = starts.value?.split(',').map((t) => {
   if (Number.isNaN(iso.getTime())) throw new Error(`--starts: "${t}" is not a date and time`)
   return iso.toISOString().replace(/\.\d+Z$/, 'Z')
 })
+// Slips need each kickoff, so odds read after a match starts never go into one.
+const slipsRule = readJson(
+  repoPath('data/events', eventId, 'config.json'),
+  EventConfig,
+).stages.find((s) => s.id === stageId)?.marketRule?.slips
+if (slipsRule && !kickoffs && !date.value) {
+  throw new Error(`${stageId} builds bet slips: give each pair's kickoff with --starts`)
+}
 if (kickoffs && kickoffs.length !== quads.length / 4) {
   throw new Error(`--starts has ${kickoffs.length} times for ${quads.length / 4} pairs`)
 }
@@ -79,11 +93,34 @@ const file: BookmakerOdds = existsSync(path)
   ? readJson(path, BookmakerOdds)
   : { schemaVersion: 1, eventId, entries: [] }
 const pair = (a: string, b: string) => [a, b].sort().join('|')
-const replaced = new Set(logged.map((e) => `${e.stageId}|${e.round}|${pair(e.teamA, e.teamB)}`))
-const kept = file.entries.filter(
-  (e) => !replaced.has(`${e.stageId}|${e.round}|${pair(e.teamA, e.teamB)}`),
-)
-writeJson(path, BookmakerOdds, { ...file, entries: [...kept, ...logged] })
+const keyOf = (e: { stageId: string; round: number; teamA: string; teamB: string }) =>
+  `${e.stageId}|${e.round}|${pair(e.teamA, e.teamB)}`
+
+// A pair already in a frozen bet slip keeps the odds it was slipped at.
+const slipsPath = repoPath('data/events', eventId, 'slips.json')
+if (existsSync(slipsPath)) {
+  const slipped = new Set(
+    readJson(slipsPath, EventSlips).batches.flatMap((b) =>
+      b.slips.flatMap((s) => s.legs.map((l) => keyOf({ ...b, ...l }))),
+    ),
+  )
+  const clash = logged.filter((e) => slipped.has(keyOf(e)))
+  if (clash.length > 0) {
+    throw new Error(
+      `Already in a bet slip, not re-logged: ${clash.map((e) => `${e.teamA}-${e.teamB}`).join(', ')}`,
+    )
+  }
+}
+
+const replaced = new Set(logged.map(keyOf))
+const previous = new Map(file.entries.map((e) => [keyOf(e), e]))
+const kept = file.entries.filter((e) => !replaced.has(keyOf(e)))
+// Re-logging without --starts keeps a pair's known kickoff.
+const withKickoff = logged.map((e) => {
+  const startsAt = previous.get(keyOf(e))?.startsAt
+  return 'startsAt' in e || !startsAt ? e : { ...e, startsAt }
+})
+writeJson(path, BookmakerOdds, { ...file, entries: [...kept, ...withKickoff] })
 
 // The decimal odds, kept locally for real payouts (git-ignored).
 const localPath = repoPath('data/events', eventId, 'local', 'market-odds.json')
