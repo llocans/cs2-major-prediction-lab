@@ -17,17 +17,27 @@ only: the model never reads them.
 
 1. Find the current event, stage and next round in `data/events/*/status.md`.
 2. Open `https://csgoempire.com/match-betting` in Claude in Chrome (a new tab; no sign-in needed)
-   and read the "Winner" odds of every match of that round from the Counter-Strike section. The odds
-   sit in an embedded widget, so read them from a screenshot. Read only: never click a price, the
+   and read the "Winner" odds of every match of that round from the Counter-Strike section, and each
+   match's kickoff ("Tomorrow, 06:00": the browser's local time, Riga). The odds sit in an embedded
+   widget, so read them from a screenshot. Read only: never click a price, the
    betslip or anything that places a bet. Close the tab when done.
 3. Check every pair against the round's snapshot (`snapshots/<stage>-r<n>.json`); a pair that is not
    in it is a different round, so leave it out.
 4. Log the round in one call, team IDs from `teams.json` (GOSH is `bc-game`):
    `node scripts/log-odds.ts <event> <stage> <round> <teamA> <oddsA> <teamB> <oddsB> ... --source "CSGOEmpire match-winner odds, margin removed|https://csgoempire.com/match-betting"`
-   For odds the user sent earlier (screenshot or typed), add `--date <YYYY-MM-DD>` of that day.
+   Add `--starts <ISO>,<ISO>,...`: each pair's kickoff in UTC, in the same order as the pairs (Riga
+   is UTC+2 in winter; check against the Liquipedia stage page when unsure). A stage with bet slips
+   requires it (except with `--date`). Read only matches that
+   have not started. For odds the user sent earlier (screenshot or typed), add `--date <YYYY-MM-DD>`
+   of that day.
+   The script then builds the round's bet slips for this reading (`scripts/build-slips.ts`, when the
+   stage's `marketRule` has `slips`): one frozen batch in `slips.json` from the value picks not in a
+   slip yet. A later reading of the same round pools every pick not in a slip yet again, including
+   ones left out before (no value, over the limit). A pair already in a slip cannot be re-logged.
 5. Run `npm run validate`, then commit data straight to main:
-   `git add data/events/<id>/bookmaker-odds.json` and `git commit -m "data: <stage> round <n> bookmaker odds"`.
-6. Reply in one or two lines and point to `#/market/<stage>`.
+   `git add data/events/<id>/bookmaker-odds.json`, plus `data/events/<id>/slips.json` if it exists, and
+   `git commit -m "data: <stage> round <n> bookmaker odds"`.
+6. Reply in two or three lines (the round's value picks and slips) and point to `#/market/<stage>`.
 
 ## Rules
 
@@ -36,7 +46,8 @@ only: the model never reads them.
 - Claude may start this skill itself, but only in a live chat where the user asked for the odds or
   agreed to a round's reading (user, 2026-11-26: the page is free and needs no account). Never from
   a routine, a scheduled task or another session's message.
-- Commit only `bookmaker-odds.json` (margin-free percentages). The decimal odds stay in the
+- Commit only `bookmaker-odds.json` (margin-free percentages) and `slips.json` (picks and chances,
+  no odds). The decimal odds stay in the
   git-ignored `local/` file; never copy them into a committed file, a commit message or the site.
 - The site never names the bookmaker (labels say "pre-match"); keep it that way.
 - Pre-match odds only, never live or in-play prices.

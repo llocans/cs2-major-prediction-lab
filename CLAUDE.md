@@ -19,7 +19,7 @@ future events too: formats live in config, never in code.
 | `data/teams/`        | `registry.json` (IDs, aliases, dated rosters) + `<team-id>.md` research notes                     |
 | `data/model/`        | `params.json` (latest weights), `archive/` (older versions in use), `modifiers.json` (judgment)   |
 | `data/ratings/`      | `current.json` + `history/`                                                                       |
-| `data/events/<id>/`  | config, teams, results (real only), draw, benchmarks, snapshots (never edited), accuracy, status  |
+| `data/events/<id>/`  | config, teams, results (real only), draw, benchmarks, slips + snapshots (never edited), accuracy, status |
 | `engine/`            | Pure TS: Swiss pairing, playoffs, veto, ratings, simulation, scoring. No I/O                      |
 | `scripts/`           | I/O: validate, fetch, log results, snapshot, simulate                                             |
 | `site/`              | React + Vite + Tailwind v4 static site                                                            |
@@ -58,7 +58,11 @@ future events too: formats live in config, never in code.
   - `log-odds.ts <event> <stage> <round> <teamA> <oddsA> <teamB> <oddsB> ... --source "<name>|<url>"`
     → margin-free bookmaker odds in `data/events/<id>/bookmaker-odds.json` for the Market odds page,
     decimal odds in git-ignored `local/market-odds.json` (never committed)
-    (CSGOEmpire, read in Claude in Chrome on request; `log-odds` skill)
+    (CSGOEmpire, read in Claude in Chrome on request; `log-odds` skill). `--starts <ISO>,...` stores
+    each pair's kickoff; afterwards it runs `build-slips.ts` for the round
+  - `build-slips.ts <event> <stage> <round>` → one frozen batch of bet slips in
+    `data/events/<id>/slips.json` from the round's value picks (`engine/bet-slips.ts`; real odds when
+    saved locally) · `build-slips.ts <event> <stage> --replay` prints every round's slips (a check)
   - `log-result.ts ...` (manual) · `poll-liquipedia.ts <event>` (runs in GitHub Actions; needs `LIQUIPEDIA_CONTACT`;
     Swiss stages, then the playoff bracket once Stage 3 has advanced)
   - `check-swiss-flow.ts` / `check-playoff-flow.ts` → end-to-end Swiss (Stage 1 → playoffs seeded,

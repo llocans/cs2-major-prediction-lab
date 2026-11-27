@@ -40,6 +40,15 @@ export const MarketRule = z.object({
   skipLittleData: z.boolean(),
   /** A short note shown above the stage's record on the Market odds page. */
   note: z.string().min(1).optional(),
+  /** Bet slips from the stage's value picks (`engine/bet-slips.ts`); none without it. */
+  slips: z
+    .object({
+      /** At most this many matches per slip. */
+      maxLegs: z.number().int().min(1),
+      /** The safer slip takes High/Medium picks the model gives at least this chance. */
+      safeMinChance: z.number().min(0).max(1),
+    })
+    .optional(),
 })
 export type MarketRule = z.infer<typeof MarketRule>
 

@@ -12,6 +12,7 @@ import { TeamLogo } from '../components/TeamLogo.tsx'
 import { type EventData, teamName, teamShortName } from '../lib/data.ts'
 import { pct, shortDate } from '../lib/format.ts'
 import { displayOdds, sourceLabel } from '../lib/market.ts'
+import { type RoundSlips, roundSlips, type SlipView, stageSlipRecord } from '../lib/slips.ts'
 
 const SKIP_LABEL: Record<SkipReason, string> = {
   'no-odds': 'no odds',
@@ -100,12 +101,20 @@ export function MarketOddsPage({ event, stageId }: { event: EventData; stageId?:
             <Stat label="To play" value={record.pending} />
             {record.won + record.lost > 0 && <Stat label="Units" value={unitsText(record.units)} />}
           </dl>
+          <SlipRecord
+            record={stageSlipRecord(
+              event,
+              record.stageId,
+              record.rounds.map((r) => r.round),
+            )}
+          />
           <div className="flex max-w-4xl flex-col gap-3">
             {[...record.rounds].reverse().map((round, i) => (
               <RoundSection
                 key={round.round}
                 round={round}
                 rule={record.rule}
+                slips={roundSlips(event, record.stageId, round.round)}
                 open={i === 0}
                 name={name}
               />
@@ -138,10 +147,11 @@ function tallyText(t: Tally): string {
 function RoundSection(props: {
   round: MarketRound
   rule: MarketRule
+  slips: RoundSlips | undefined
   open: boolean
   name: (id: string) => ReactNode
 }) {
-  const { round, rule, open, name } = props
+  const { round, rule, slips, open, name } = props
   return (
     <details open={open} className="border-b border-rule pb-2">
       <summary className="cursor-pointer py-1">
@@ -195,6 +205,7 @@ function RoundSection(props: {
           ))}
         </table>
       </div>
+      {slips && <SlipsBlock slips={slips} name={name} />}
     </details>
   )
 }
@@ -308,5 +319,122 @@ function ConfidenceCell({ confidence }: { confidence: MarketMatch['confidence'] 
       <span className="sm:hidden">{CONFIDENCE_LABEL[confidence].slice(0, 3)}</span>
       <span className="hidden sm:inline">{CONFIDENCE_LABEL[confidence]}</span>
     </span>
+  )
+}
+
+const SLIP_LABEL: Record<SlipView['kind'], string> = {
+  safer: 'Safer slip',
+  riskier: 'Riskier slip',
+  extra: 'Extra slip',
+}
+
+const SLIP_TITLE: Record<SlipView['kind'], string> = {
+  safer: 'Value picks the model expects to win (High or Medium confidence), combined',
+  riskier: 'Value picks with less chance but a better price: underdogs and Low confidence picks',
+  extra: 'Value picks left over after the first two slips',
+}
+
+/** The stage's slip record by kind, when it has slips. */
+function SlipRecord({
+  record,
+}: {
+  record: Map<SlipView['kind'], { slips: number; won: number; lost: number; units: number }>
+}) {
+  if (record.size === 0) return null
+  return (
+    <p className="num flex flex-wrap gap-x-6 gap-y-1 text-sm text-ink-2">
+      {(['safer', 'riskier', 'extra'] as const).map((kind) => {
+        const t = record.get(kind)
+        if (!t) return null
+        const decided = t.won + t.lost
+        return (
+          <span key={kind}>
+            <span className="font-semibold text-ink">
+              {SLIP_LABEL[kind]}
+              {t.slips === 1 ? '' : 's'}
+            </span>{' '}
+            {t.slips}
+            {decided > 0 && ` · ${t.won} won · ${t.lost} lost · ${unitsText(t.units)} units`}
+          </span>
+        )
+      })}
+    </p>
+  )
+}
+
+/** A round's bet slips: picks, the model's chance that all win, combined odds and the result. */
+function SlipsBlock({ slips, name }: { slips: RoundSlips; name: (id: string) => ReactNode }) {
+  return (
+    <div className="mt-4">
+      <h4 className="font-display text-xs font-semibold uppercase tracking-wider text-ink-2">
+        Bet slips
+      </h4>
+      {slips.noSlip ? (
+        <p className="mt-1 text-sm text-ink-3">No slip this round: {slips.noSlip}.</p>
+      ) : (
+        <ul className="mt-1">
+          {slips.slips.map((slip) => (
+            <li
+              key={`${slip.kind}-${slip.legs.map((l) => l.pick).join('-')}`}
+              className="flex flex-wrap items-baseline gap-x-4 gap-y-0.5 border-b border-rule py-2 text-sm"
+            >
+              <span className="w-full shrink-0 font-semibold sm:w-28" title={SLIP_TITLE[slip.kind]}>
+                {SLIP_LABEL[slip.kind]}
+                {slip.legs.length === 1 && (
+                  <span className="ml-1 text-xs font-normal text-ink-3">one pick</span>
+                )}
+              </span>
+              <span className="min-w-0 flex-1">
+                {slip.legs.map((leg, i) => {
+                  const winner = slip.winners[i]
+                  const style =
+                    winner === undefined
+                      ? 'text-accent'
+                      : winner === leg.pick
+                        ? 'text-win'
+                        : 'text-loss line-through'
+                  return (
+                    <span key={leg.pick}>
+                      {i > 0 && <span className="text-ink-3"> + </span>}
+                      <span className={style}>{name(leg.pick)}</span>
+                    </span>
+                  )
+                })}
+              </span>
+              {/* One group, so the numbers wrap together and line up from slip to slip. */}
+              <span className="num ml-auto flex gap-x-4 whitespace-nowrap">
+                <span
+                  className="w-24 text-right text-ink-2"
+                  title="The model's chance that every pick wins"
+                >
+                  all win {pct(slip.outcome.chanceAll)}
+                </span>
+                <span
+                  className="w-24 text-right text-ink-2"
+                  title="Combined odds: the picks' odds multiplied"
+                >
+                  {slip.outcome.odds !== undefined && `odds ${slip.outcome.odds.toFixed(2)}`}
+                </span>
+                <span className="w-24 text-right">
+                  {slip.outcome.status === 'pending' ? (
+                    <span className="text-ink-3">to play</span>
+                  ) : (
+                    <span className={slip.outcome.status === 'won' ? 'text-win' : 'text-loss'}>
+                      {slip.outcome.status === 'won' ? 'won' : 'lost'}
+                      {slip.outcome.units !== undefined && ` ${unitsText(slip.outcome.units)}`}
+                    </span>
+                  )}
+                </span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+      <p className="mt-1 text-xs text-ink-3">
+        {slips.odds === 'real'
+          ? 'Odds as the bookmaker listed them (shown on this computer only).'
+          : 'Margin-free odds; real payouts are a little lower.'}
+      </p>
+    </div>
   )
 }
