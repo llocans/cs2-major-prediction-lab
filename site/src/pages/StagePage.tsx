@@ -185,7 +185,8 @@ export function StagePage({ event, stage, query }: Props) {
         subtitle={
           <>
             {shortDate(stage.start)}–{shortDate(stage.end)}
-            {currentRound !== undefined && <> · {roundStatus(currentRound, real)}</>}
+            {/* A finished stage says so in its status bar. */}
+            {currentRound !== undefined && !final && <> · {roundStatus(currentRound, real)}</>}
           </>
         }
       >
@@ -285,6 +286,7 @@ export function StagePage({ event, stage, query }: Props) {
               shortFromVrs={(vrsName) => shortFromVrs(event, vrsName)}
               onClose={clearSelection}
               finished={final !== undefined}
+              {...(final && start.get(selected) ? { before: start.get(selected) } : {})}
             />
           )}
         </div>

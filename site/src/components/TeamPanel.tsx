@@ -27,8 +27,10 @@ interface Props {
   shortFromVrs: (vrsName: string) => string
   /** Closes the panel (clears the selected team). */
   onClose: () => void
-  /** A finished stage: the rest of the panel is final, the rating is today's (labelled "now"). */
+  /** A finished stage: the rest of the panel is final, the rating is today's (labelled live). */
   finished?: boolean
+  /** On a finished stage: the team's odds before round 1 (frozen snapshot), shown with the outcome. */
+  before?: Pick<TeamOutlook, 'p30' | 'pAdvance' | 'p03'>
 }
 
 export function TeamPanel(props: Props) {
@@ -44,6 +46,7 @@ export function TeamPanel(props: Props) {
     short,
     onClose,
     finished = false,
+    before,
   } = props
   const played = matches.filter((m) => m.result !== undefined)
   const form = forms.get(teamId)
@@ -87,14 +90,16 @@ export function TeamPanel(props: Props) {
         </h2>
         {rating && (
           <div className="num text-sm text-ink-2">
-            Rating {finished && 'now '}
-            {Math.round(rating.rating)} ± {Math.round(rating.rd)}
+            {finished ? 'Live rating' : 'Rating'} {Math.round(rating.rating)} ±{' '}
+            {Math.round(rating.rd)}
             {rating.rd >= LITTLE_DATA_RD && <span className="text-ink-3"> · little data</span>}
           </div>
         )}
       </header>
 
-      {outlook && (
+      {outlook && finished && before && <BeforeStage outlook={outlook} before={before} />}
+
+      {outlook && !(finished && before) && (
         <dl className="grid grid-cols-3 gap-2 md:max-lg:col-start-1 md:max-lg:row-start-2">
           {(
             [
@@ -284,5 +289,40 @@ function ModelChance({ p, won }: { p: number | undefined; won: boolean }) {
       <span className="line-through">{pct(p)}</span>
       {mark('✗')}
     </span>
+  )
+}
+
+/**
+ * A finished stage: the team's odds before round 1 for each outcome, with the one that happened
+ * marked, so the panel looks back instead of showing 100% and dashes.
+ */
+function BeforeStage(props: {
+  outlook: TeamOutlook
+  before: Pick<TeamOutlook, 'p30' | 'pAdvance' | 'p03'>
+}) {
+  const { outlook, before } = props
+  const rows = [
+    ['3-0', before.p30, outlook.p30 === 1],
+    ['Advance', before.pAdvance, outlook.pAdvance === 1],
+    ['0-3', before.p03, outlook.p03 === 1],
+  ] as const
+  return (
+    <div className="md:max-lg:col-start-1 md:max-lg:row-start-2">
+      <div className={`${LABEL} mb-1`}>Before the stage</div>
+      <dl className="grid grid-cols-3 gap-2">
+        {rows.map(([label, value, happened]) => (
+          <div key={label} className="text-center">
+            <dt className={LABEL}>{label}</dt>
+            <dd
+              className={`num font-display text-2xl font-semibold ${happened ? 'text-win' : 'text-ink-3'}`}
+              title={happened ? 'This happened' : 'This did not happen'}
+            >
+              {pct(value)}
+              {happened && <span className="ml-0.5 text-base">✓</span>}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
   )
 }

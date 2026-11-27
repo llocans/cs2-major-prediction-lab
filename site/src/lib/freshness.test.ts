@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { SyncStatus } from '../../../data/schemas/sync.ts'
-import { formatAgo, freshness } from './freshness.ts'
+import { formatAgo, freshness, nearestQuarterHour } from './freshness.ts'
 
 const stage = { start: '2026-11-24', end: '2026-11-27' }
 const at = (iso: string) => Date.parse(iso)
@@ -51,5 +51,12 @@ describe('freshness on a finished stage', () => {
     const stage = { start: '2026-11-24', end: '2026-11-27' }
     const now = Date.parse('2026-11-27T18:00:00Z')
     expect(freshness(now, undefined, stage, true)).toMatchObject({ state: 'final', label: 'Final' })
+  })
+})
+
+describe('nearestQuarterHour', () => {
+  it('rounds to the nearest 15 minutes', () => {
+    expect(nearestQuarterHour('2026-11-27T15:02:30Z')).toBe('2026-11-27T15:00:00.000Z')
+    expect(nearestQuarterHour('2026-11-27T15:08:00Z')).toBe('2026-11-27T15:15:00.000Z')
   })
 })

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { SyncStatus } from '../../../data/schemas/sync.ts'
-import { formatAgo, freshness, minutesAgo } from '../lib/freshness.ts'
+import { formatAgo, freshness, minutesAgo, nearestQuarterHour } from '../lib/freshness.ts'
 
 interface Props {
   sync: SyncStatus | undefined
@@ -51,7 +51,7 @@ export function FreshnessBar({ sync, stage, ratingsAsOf, lockedAt }: Props) {
       </p>
       <p className="pl-4 text-xs text-ink-3">
         {lockedAt ? (
-          `Odds locked ${when(lockedAt)}, after the last match`
+          `Odds locked ${when(nearestQuarterHour(lockedAt))}`
         ) : (
           <>
             {sync?.lastChangeAt
