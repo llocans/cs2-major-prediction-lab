@@ -5,6 +5,7 @@ import { EventConfig } from './event-config.ts'
 import { EventTeams } from './event-teams.ts'
 import { ModelParams, Modifiers, Ratings } from './model.ts'
 import { EventResults } from './results.ts'
+import { EventSlips } from './slips.ts'
 import { Benchmarks, Snapshot } from './snapshot.ts'
 import { TeamForm, TeamMapStats, TeamVetoStats } from './team-stats.ts'
 import { TeamRegistry } from './teams-registry.ts'
@@ -16,6 +17,7 @@ export * from './event-config.ts'
 export * from './event-teams.ts'
 export * from './model.ts'
 export * from './results.ts'
+export * from './slips.ts'
 export * from './snapshot.ts'
 export * from './team-stats.ts'
 export * from './teams-registry.ts'
@@ -29,6 +31,7 @@ const routes: Array<[RegExp, ZodType]> = [
   [/^data\/events\/[^/]+\/benchmarks\.json$/, Benchmarks],
   [/^data\/events\/[^/]+\/bookmaker-odds\.json$/, BookmakerOdds],
   [/^data\/events\/[^/]+\/local\/market-odds\.json$/, LocalMarketOdds],
+  [/^data\/events\/[^/]+\/slips\.json$/, EventSlips],
   [/^data\/events\/[^/]+\/snapshots\/[^/]+\.json$/, Snapshot],
   [/^data\/events\/[^/]+\/snapshots\/alongside\/[^/]+\/[^/]+\.json$/, Snapshot],
   [/^data\/teams\/registry\.json$/, TeamRegistry],

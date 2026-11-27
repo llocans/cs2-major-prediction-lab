@@ -21,6 +21,8 @@ export const BookmakerOdds = z.object({
       source: Source,
       /** When the odds were read, if known to the minute. */
       observedAt: IsoDateTime.optional(),
+      /** The match's kickoff as the bookmaker listed it; odds read after it are never used for slips. */
+      startsAt: IsoDateTime.optional(),
     }),
   ),
 })

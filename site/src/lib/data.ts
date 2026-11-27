@@ -3,6 +3,7 @@
  * scripts use. The site never writes data.
  */
 
+import localOddsByEvent from 'virtual:local-market-odds'
 import modifiersJson from '../../../data/model/modifiers.json'
 import paramsJson from '../../../data/model/params.json'
 import ratingsJson from '../../../data/ratings/current.json'
@@ -13,7 +14,9 @@ import {
   EventConfig,
   EventDraw,
   EventResults,
+  EventSlips,
   EventTeams,
+  LocalMarketOdds,
   ModelParams,
   Modifiers,
   Ratings,
@@ -53,6 +56,10 @@ const benchmarkFiles = import.meta.glob('../../../data/events/*/benchmarks.json'
   import: 'default',
 })
 const bookmakerFiles = import.meta.glob('../../../data/events/*/bookmaker-odds.json', {
+  eager: true,
+  import: 'default',
+})
+const slipsFiles = import.meta.glob('../../../data/events/*/slips.json', {
   eager: true,
   import: 'default',
 })
@@ -130,6 +137,10 @@ export interface EventData {
   bookmakerOdds: BookmakerOdds['entries']
   /** Swiss draws as announced on the stage page (round 2 on), from the poller. */
   draw: DrawRound[]
+  /** Bet slips built from each round's value picks (frozen batches). */
+  slips: EventSlips['batches']
+  /** The bookmaker's own decimal odds: the dev server on this Mac only, empty in a built site. */
+  realOdds: LocalMarketOdds['entries']
 }
 
 const eventDir = (path: string) => path.split('/').at(-2) ?? ''
@@ -141,6 +152,8 @@ export const events: EventData[] = Object.entries(configs).map(([path, raw]) => 
   const benchmarks = find(benchmarkFiles)
   const bookmakerOdds = find(bookmakerFiles)
   const draw = find(drawFiles)
+  const slips = find(slipsFiles)
+  const realOdds = localOddsByEvent[id]
   return {
     config: EventConfig.parse(raw),
     teams: EventTeams.parse(find(teamsFiles)),
@@ -154,6 +167,8 @@ export const events: EventData[] = Object.entries(configs).map(([path, raw]) => 
     benchmarks: benchmarks ? Benchmarks.parse(benchmarks).entries : [],
     bookmakerOdds: bookmakerOdds ? BookmakerOdds.parse(bookmakerOdds).entries : [],
     draw: draw ? EventDraw.parse(draw).rounds : [],
+    slips: slips ? EventSlips.parse(slips).batches : [],
+    realOdds: realOdds ? LocalMarketOdds.parse(realOdds).entries : [],
   }
 })
 

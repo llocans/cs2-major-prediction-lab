@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto'
-import { readdirSync, readFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import tailwindcss from '@tailwindcss/vite'
@@ -60,11 +60,43 @@ function genericBookmakerSource(): Plugin {
   }
 }
 
+/**
+ * `virtual:local-market-odds`: the bookmaker's own decimal odds (git-ignored
+ * `data/events/<id>/local/market-odds.json`), for real bet slip payouts on this Mac. Only the dev
+ * server serves them; `npm run build` gets an empty object, so a built site never contains them
+ * (`docs/sources.md`).
+ */
+function localMarketOdds(): Plugin {
+  const id = 'virtual:local-market-odds'
+  const resolved = `\0${id}`
+  let serve = false
+  return {
+    name: 'local-market-odds',
+    configResolved(config) {
+      serve = config.command === 'serve'
+    },
+    resolveId: (source) => (source === id ? resolved : undefined),
+    load(moduleId) {
+      if (moduleId !== resolved) return undefined
+      if (!serve) return 'export default {}'
+      const root = fileURLToPath(new URL('./data/events', import.meta.url))
+      const byEvent: Record<string, unknown> = {}
+      for (const event of readdirSync(root)) {
+        const file = join(root, event, 'local', 'market-odds.json')
+        if (!existsSync(file)) continue
+        this.addWatchFile(file)
+        byEvent[event] = JSON.parse(readFileSync(file, 'utf8'))
+      }
+      return `export default ${JSON.stringify(byEvent)}`
+    },
+  }
+}
+
 export default defineConfig({
   root: 'site',
   // Relative asset paths so the static build works from any host path.
   base: './',
-  plugins: [genericBookmakerSource(), react(), tailwindcss(), engineVersion()],
+  plugins: [genericBookmakerSource(), react(), tailwindcss(), engineVersion(), localMarketOdds()],
   build: { outDir: '../dist', emptyOutDir: true },
   server: { port: 5173, fs: { allow: ['..'] } },
   worker: { format: 'es' },

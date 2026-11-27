@@ -43,7 +43,8 @@ match-winner odds are read in Claude in Chrome (the built-in Browser pane cannot
 logged with `scripts/log-odds.ts`, or from a screenshot or numbers the user sends (`--date`).
 `pA = (1/oddsA) / (1/oddsA + 1/oddsB)` is committed. The decimal odds themselves go to
 `data/events/<id>/local/market-odds.json`, which is git-ignored: they stay on this Mac (for real
-payouts on bet slips) and are never committed or published, because the
+payouts on bet slips: only the dev server serves them, through `virtual:local-market-odds` in
+`vite.config.ts`, and `npm run build` gets none) and are never committed or published, because the
 [terms](https://csgoempire.com/tos) forbid publishing or redistributing the site's content (read
 2026-11-24). The site never names the bookmaker: it labels prices as "pre-match" or "closing avg", and the
 build (`vite.config.ts`) bundles each entry's source as a generic name with no URL.

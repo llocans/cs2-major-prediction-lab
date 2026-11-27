@@ -57,7 +57,7 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
    then bet slips (own PR). Cut bet slips first if the day runs out. The Stage 1 review routine runs
    by itself on Nov 27; its capped proposals go into v0.3.
    Status 2026-11-27: the pick rule is stored per stage, reviewed (kept for Stage 2) and the Stage 1
-   note is up (Done below). Bet slips are still open.
+   note is up, and bet slips are built (Done below).
 4. v0.3 (Stage 3), Nov 28 - Dec 1. Decided with the user 2026-11-27: v0.2 stays unchanged for
    Stage 2; v0.3 fixes the known flaws in the data we already use (age, opponent strength, lineup)
    instead of adding new kinds of data, because 33 matches per stage cannot show whether a new input
@@ -146,50 +146,9 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
   Bo3 1-4), and Low or coin-flip picks against the rest (Stage 1: 4-5 against 4-3). A new rule
   starts with a new stage; set it in that stage's `marketRule` before its first odds.
   - **Per-confidence split on the Market odds page**, so the record shows which kinds of picks work.
-- **Bet slips from Stage 2 (user, 2026-11-25; build Nov 27, before Stage 2's first odds on Nov 28).**
-  The model combines a round's value picks into bet slips (combined bets) the way the user bets
-  them by hand: in Stage 1 R1 the user dropped the Low pick (DENDELE) and combined Liquid, Imperial
-  and Wildcard, and the slip won. Agreed with the user:
-  - **What a pick is.** A value pick: the side whose price is too generous by the model's numbers
-    (model at least `MIN_EDGE` above the market). It can be the underdog (Wildcard and Imperial in
-    R1, both upsets) or a favourite the market underrates (Liquid in R1, 68% vs 56%). The favourite
-    is not a pick when its price is too short (Wildcard 66% vs 72% in R4).
-  - **Safer and riskier slips.** Slip 1 (safer) holds the picks the model is most sure will win:
-    ranked by the model's chance to win, High and Medium confidence only. Its payout is a result,
-    never the reason: safer usually means lower odds, but odds never decide it. Slip 2 (riskier)
-    holds picks with less chance but a better price, and may include Low confidence picks when the
-    model still sees value in them.
-  - **Limits.** At most 4 matches per slip. Usually 2 slips per round; a 3rd only when its picks pass
-    the same checks on their own. A match is in at most one slip. A round with 1 or 2 picks is fine:
-    the model says whether they go together or as single bets.
-  - **No forced slips.** A slip is shown only when the model would back it: its chance that every
-    pick wins, times the real combined odds, must be above 1 (combining bets multiplies the
-    bookmaker's margin: about 5% per match, so about 15% on 3 matches, and the model's edge must
-    still beat it). For a Low confidence pick, judge with a cautious chance halfway between model
-    and market. If nothing passes, the page says "No slip this round" and why.
-  - **Odds read in parts (the user cannot always read every match before the first one starts, and
-    a team can play twice a day).** A dynamic rule: every `log-odds` run is a batch. At each batch,
-    the pool is this round's value picks whose odds were read before their match starts, whose match
-    has not started yet, and that are not already in a slip. Slips are built from that pool at that
-    moment and then frozen (never edited later, like snapshots). Picks left out stay in the pool for
-    the next batch while their match has not started. A slip never mixes rounds: the next round's
-    pairings only exist once this round is played, so a team's second match of the day is always in
-    a later batch. Needs a start time per match: `log-odds` stores the kickoff CSGOEmpire lists
-    (`startsAt`) and the time it was read (`observedAt`); a match whose odds were read after it
-    started is never used.
-  - **Real odds (decided 2026-11-25, saved from Stage 1 R5).** Payouts use the bookmaker's own
-    decimal odds, which the user bets at. `log-odds` saves them to the git-ignored
-    `local/market-odds.json` (`docs/sources.md`). The slips block reads that file only in the dev
-    server (`npm run dev` on this Mac), never in `npm run build`, so a hosted site shows payouts at
-    margin-free odds and never publishes the bookmaker's prices.
-  - **Ranking (agreed).** "Highest confidence" means the model's chance to win; the High / Medium /
-    Low label (how much data the model has) is a filter, not the ranking.
-  - **Build.** A new pure engine module, `bet-slips.ts` (legs, slip checks, partition into slips) with tests; the
-    slip rule's numbers per stage next to the pick rule (`marketRule` in the event config); frozen
-    slips in `data/events/<id>/slips.json`; a slips block per round on the Market odds page with each
-    slip's picks, the model's chance that all win, the combined odds and its record (won, lost,
-    units, by safer and riskier). Before Stage 2, replay Stage 1's rounds through the builder at
-    margin-free odds as a check, without changing Stage 1's record.
+- **Bet slips: later steps.** Built 2026-11-27 (Done below). Open: review the safer/riskier split
+  after Stage 2 (Stage 1 replay at margin-free odds: safer 2-1, riskier 0-5, extra 1-0, so riskier
+  slips of 2-4 underdogs rarely land); per-slip notes on why a pick was left out.
 - **Fix the Pick'Em page (user, 2026-11-24).** It works oddly: picks don't lock, and the flow doesn't
   make sense. Go through it with the user first to list what should lock when (e.g. after a stage
   starts) and what feels wrong, then fix.
@@ -239,6 +198,14 @@ matches to tell skill from luck, so each upgrade is small, checked and run next 
 
 ## Done
 
+- 2026-11-27: Bet slips from Stage 2 (`engine/bet-slips.ts`, `scripts/build-slips.ts`, frozen
+  batches in `slips.json`, a slips block per round on the Market odds page). Safer slip: High/Medium
+  value picks the model expects to win (chance 50% or more, user's choice 2026-11-27); riskier slip:
+  the rest (value underdogs, Low picks at a cautious chance halfway to the market); extra slip for
+  overflow; at most 4 picks each; a pick only goes in while it has value at the odds used.
+  `log-odds --starts` stores each kickoff, and each reading is a batch of the picks read before
+  their match starts. Real payouts come from the local odds through the dev server only; a built
+  site shows margin-free odds. Slip rule per stage in `marketRule.slips` (none for Stage 1).
 - 2026-11-27: Value-pick rule stored per stage (`marketRule` in the event config, with an optional
   note shown above the stage's record); Stage 1 frozen at +5 pp, skip little data, and labelled
   "Stage 1 used Model v0.1 (value-pick rule)". `npm run validate` refuses a stage with odds but no

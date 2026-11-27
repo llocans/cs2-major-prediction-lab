@@ -327,7 +327,11 @@
       },
       "marketRule": {
         "minEdge": 0.05,
-        "skipLittleData": true
+        "skipLittleData": true,
+        "slips": {
+          "maxLegs": 4,
+          "safeMinChance": 0.5
+        }
       },
       "source": [
         {
@@ -424,7 +428,11 @@
       },
       "marketRule": {
         "minEdge": 0.05,
-        "skipLittleData": true
+        "skipLittleData": true,
+        "slips": {
+          "maxLegs": 4,
+          "safeMinChance": 0.5
+        }
       },
       "source": [
         {
@@ -485,7 +493,11 @@
       },
       "marketRule": {
         "minEdge": 0.05,
-        "skipLittleData": true
+        "skipLittleData": true,
+        "slips": {
+          "maxLegs": 4,
+          "safeMinChance": 0.5
+        }
       },
       "source": [
         {

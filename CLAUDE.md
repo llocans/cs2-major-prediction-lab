@@ -58,7 +58,11 @@ future events too: formats live in config, never in code.
   - `log-odds.ts <event> <stage> <round> <teamA> <oddsA> <teamB> <oddsB> ... --source "<name>|<url>"`
     → margin-free bookmaker odds in `data/events/<id>/bookmaker-odds.json` for the Market odds page,
     decimal odds in git-ignored `local/market-odds.json` (never committed)
-    (CSGOEmpire, read in Claude in Chrome on request; `log-odds` skill)
+    (CSGOEmpire, read in Claude in Chrome on request; `log-odds` skill). `--starts <ISO>,...` stores
+    each pair's kickoff; afterwards it runs `build-slips.ts` for the round
+  - `build-slips.ts <event> <stage> <round>` → one frozen batch of bet slips in
+    `data/events/<id>/slips.json` from the round's value picks (`engine/bet-slips.ts`; real odds when
+    saved locally) · `build-slips.ts <event> <stage> --replay` prints every round's slips (a check)
   - `log-result.ts ...` (manual) · `poll-liquipedia.ts <event>` (runs in GitHub Actions; needs `LIQUIPEDIA_CONTACT`;
     Swiss stages, then the playoff bracket once Stage 3 has advanced)
   - `check-swiss-flow.ts` / `check-playoff-flow.ts` → end-to-end Swiss (Stage 1 → playoffs seeded,
