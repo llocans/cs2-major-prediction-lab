@@ -1,0 +1,364 @@
+{
+  "schemaVersion": 1,
+  "eventId": "pgl-major-singapore-2026",
+  "stageId": "stage-2",
+  "beforeRound": 1,
+  "createdAt": "2026-11-27T15:02:40.958Z",
+  "modelVersion": "0.1.0",
+  "seed": 20261124,
+  "runs": 12000,
+  "maxStandardError": 0.004563978768473192,
+  "unverifiedVeto": [
+    "bo5"
+  ],
+  "resultsCount": 0,
+  "ratingsAsOf": "2026-11-27T15:02:04.680Z",
+  "matches": [
+    {
+      "teamA": "fut",
+      "teamB": "flyquest",
+      "format": "bo1",
+      "pA": 0.6332859960564219,
+      "confidence": "medium",
+      "reason": "FUT +110 rating on average; likely map: Nuke 63% for FUT",
+      "maps": [
+        {
+          "nuke": 0.2378,
+          "mirage": 0.221,
+          "anubis": 0.2,
+          "inferno": 0.1237,
+          "ancient": 0.0944,
+          "dust2": 0.0839,
+          "cache": 0.0391
+        }
+      ]
+    },
+    {
+      "teamA": "nemiga",
+      "teamB": "nip",
+      "format": "bo1",
+      "pA": 0.5477345072882809,
+      "confidence": "low",
+      "reason": "Nemiga +20 rating on average; likely map: Mirage 55% for Nemiga",
+      "maps": [
+        {
+          "mirage": 0.3413,
+          "inferno": 0.2279,
+          "cache": 0.179,
+          "ancient": 0.1503,
+          "anubis": 0.0992,
+          "dust2": 0.0023,
+          "nuke": 0
+        }
+      ]
+    },
+    {
+      "teamA": "g2",
+      "teamB": "liquid",
+      "format": "bo1",
+      "pA": 0.5420270873222176,
+      "confidence": "low",
+      "reason": "G2 +37 rating on average; likely map: Inferno 54% for G2",
+      "maps": [
+        {
+          "inferno": 0.2778,
+          "mirage": 0.224,
+          "anubis": 0.213,
+          "dust2": 0.1745,
+          "cache": 0.1001,
+          "nuke": 0.0106,
+          "ancient": 0
+        }
+      ]
+    },
+    {
+      "teamA": "1win",
+      "teamB": "eternal-fire",
+      "format": "bo1",
+      "pA": 0.5453369465353121,
+      "confidence": "low",
+      "reason": "THE ONE +35 rating on average; likely map: Nuke 54% for THE ONE",
+      "maps": [
+        {
+          "nuke": 0.3315,
+          "anubis": 0.2625,
+          "dust2": 0.1945,
+          "cache": 0.1857,
+          "mirage": 0.0241,
+          "inferno": 0.0018,
+          "ancient": 0
+        }
+      ]
+    },
+    {
+      "teamA": "navi",
+      "teamB": "parivision",
+      "format": "bo1",
+      "pA": 0.551450859682536,
+      "confidence": "medium",
+      "reason": "NAVI +14 rating on average; likely map: Cache 55% for NAVI",
+      "maps": [
+        {
+          "cache": 0.4698,
+          "nuke": 0.241,
+          "ancient": 0.1041,
+          "dust2": 0.0962,
+          "anubis": 0.0727,
+          "mirage": 0.0113,
+          "inferno": 0.0049
+        }
+      ]
+    },
+    {
+      "teamA": "astralis",
+      "teamB": "imperial",
+      "format": "bo1",
+      "pA": 0.6393395607642528,
+      "confidence": "medium",
+      "reason": "Astralis +94 rating on average; likely map: Inferno 64% for Astralis; Astralis -15: Anlelele plays the Major on loan in place of jabbi; the 3-month map stats were played without him",
+      "maps": [
+        {
+          "inferno": 0.4602,
+          "cache": 0.2782,
+          "nuke": 0.0979,
+          "dust2": 0.059,
+          "mirage": 0.0537,
+          "ancient": 0.0423,
+          "anubis": 0.0087
+        }
+      ]
+    },
+    {
+      "teamA": "the-mongolz",
+      "teamB": "lynn-vision",
+      "format": "bo1",
+      "pA": 0.6839142537022943,
+      "confidence": "high",
+      "reason": "The MongolZ +141 rating on average; likely map: Nuke 69% for The MongolZ",
+      "maps": [
+        {
+          "nuke": 0.2661,
+          "inferno": 0.2562,
+          "anubis": 0.2033,
+          "dust2": 0.2008,
+          "mirage": 0.0351,
+          "cache": 0.0329,
+          "ancient": 0.0054
+        }
+      ]
+    },
+    {
+      "teamA": "mibr",
+      "teamB": "100-thieves",
+      "format": "bo1",
+      "pA": 0.5646673323309651,
+      "confidence": "medium",
+      "reason": "MIBR +23 rating on average; likely map: Ancient 57% for MIBR",
+      "maps": [
+        {
+          "anubis": 0.2305,
+          "ancient": 0.2258,
+          "mirage": 0.2212,
+          "cache": 0.2188,
+          "nuke": 0.0742,
+          "inferno": 0.0294,
+          "dust2": 0
+        }
+      ]
+    }
+  ],
+  "teams": [
+    {
+      "teamId": "fut",
+      "record": "0-0",
+      "p30": 0.28558333333333336,
+      "pAdvance": 0.79725,
+      "p03": 0.030333333333333334,
+      "pEliminated": 0.20275,
+      "pPlayoffs": 0.384,
+      "pTitle": 0.014083333333333333,
+      "confidence": "high",
+      "reason": "strength rank 1 of 16; 63% vs FlyQuest next (BO1)"
+    },
+    {
+      "teamId": "nemiga",
+      "record": "0-0",
+      "p30": 0.20325,
+      "pAdvance": 0.6835,
+      "p03": 0.0575,
+      "pEliminated": 0.3165,
+      "pPlayoffs": 0.23033333333333333,
+      "pTitle": 0.004916666666666666,
+      "confidence": "medium",
+      "reason": "strength rank 2 of 16; 55% vs Ninjas in Pyjamas next (BO1)"
+    },
+    {
+      "teamId": "g2",
+      "record": "0-0",
+      "p30": 0.177,
+      "pAdvance": 0.6413333333333333,
+      "p03": 0.058916666666666666,
+      "pEliminated": 0.3586666666666667,
+      "pPlayoffs": 0.16575,
+      "pTitle": 0.0016666666666666668,
+      "confidence": "medium",
+      "reason": "strength rank 4 of 16; 54% vs Liquid next (BO1)"
+    },
+    {
+      "teamId": "1win",
+      "record": "0-0",
+      "p30": 0.15516666666666667,
+      "pAdvance": 0.6014166666666667,
+      "p03": 0.06633333333333333,
+      "pEliminated": 0.39858333333333335,
+      "pPlayoffs": 0.14875,
+      "pTitle": 0.0011666666666666668,
+      "confidence": "medium",
+      "reason": "strength rank 6 of 16; 55% vs Eternal Fire next (BO1)"
+    },
+    {
+      "teamId": "navi",
+      "record": "0-0",
+      "p30": 0.16533333333333333,
+      "pAdvance": 0.6186666666666667,
+      "p03": 0.07125,
+      "pEliminated": 0.38133333333333336,
+      "pPlayoffs": 0.15658333333333332,
+      "pTitle": 0.00125,
+      "confidence": "medium",
+      "reason": "strength rank 5 of 16; 55% vs PVISION next (BO1)"
+    },
+    {
+      "teamId": "astralis",
+      "record": "0-0",
+      "p30": 0.12941666666666668,
+      "pAdvance": 0.5083333333333333,
+      "p03": 0.08866666666666667,
+      "pEliminated": 0.49166666666666664,
+      "pPlayoffs": 0.0825,
+      "pTitle": 0.0006666666666666666,
+      "confidence": "medium",
+      "reason": "strength rank 9 of 16; 64% vs Imperial next (BO1)"
+    },
+    {
+      "teamId": "the-mongolz",
+      "record": "0-0",
+      "p30": 0.1445,
+      "pAdvance": 0.541,
+      "p03": 0.08075,
+      "pEliminated": 0.459,
+      "pPlayoffs": 0.09275,
+      "pTitle": 0.0006666666666666666,
+      "confidence": "medium",
+      "reason": "strength rank 8 of 16; 68% vs Lynn Vision next (BO1)"
+    },
+    {
+      "teamId": "mibr",
+      "record": "0-0",
+      "p30": 0.12058333333333333,
+      "pAdvance": 0.5064166666666666,
+      "p03": 0.09875,
+      "pEliminated": 0.4935833333333333,
+      "pPlayoffs": 0.0825,
+      "pTitle": 0,
+      "confidence": "medium",
+      "reason": "strength rank 11 of 16; 56% vs 100 Thieves next (BO1)"
+    },
+    {
+      "teamId": "flyquest",
+      "record": "0-0",
+      "p30": 0.0815,
+      "pAdvance": 0.42783333333333334,
+      "p03": 0.14966666666666667,
+      "pEliminated": 0.5721666666666667,
+      "pPlayoffs": 0.06966666666666667,
+      "pTitle": 0.0004166666666666667,
+      "confidence": "medium",
+      "reason": "strength rank 13 of 16; 37% vs FUT next (BO1)"
+    },
+    {
+      "teamId": "nip",
+      "record": "0-0",
+      "p30": 0.13008333333333333,
+      "pAdvance": 0.5813333333333334,
+      "p03": 0.088,
+      "pEliminated": 0.4186666666666667,
+      "pPlayoffs": 0.15441666666666667,
+      "pTitle": 0.0015833333333333333,
+      "confidence": "medium",
+      "reason": "strength rank 3 of 16; 45% vs Nemiga next (BO1)"
+    },
+    {
+      "teamId": "liquid",
+      "record": "0-0",
+      "p30": 0.10016666666666667,
+      "pAdvance": 0.4701666666666667,
+      "p03": 0.12475,
+      "pEliminated": 0.5298333333333334,
+      "pPlayoffs": 0.07883333333333334,
+      "pTitle": 0.00025,
+      "confidence": "medium",
+      "reason": "strength rank 10 of 16; 46% vs G2 next (BO1)"
+    },
+    {
+      "teamId": "eternal-fire",
+      "record": "0-0",
+      "p30": 0.08941666666666667,
+      "pAdvance": 0.4379166666666667,
+      "p03": 0.13833333333333334,
+      "pEliminated": 0.5620833333333334,
+      "pPlayoffs": 0.0625,
+      "pTitle": 0,
+      "confidence": "medium",
+      "reason": "strength rank 12 of 16; 45% vs THE ONE next (BO1)"
+    },
+    {
+      "teamId": "parivision",
+      "record": "0-0",
+      "p30": 0.10816666666666666,
+      "pAdvance": 0.51575,
+      "p03": 0.11158333333333334,
+      "pEliminated": 0.48425,
+      "pPlayoffs": 0.11008333333333334,
+      "pTitle": 0.0008333333333333334,
+      "confidence": "medium",
+      "reason": "strength rank 7 of 16; 45% vs NAVI next (BO1)"
+    },
+    {
+      "teamId": "imperial",
+      "record": "0-0",
+      "p30": 0.03158333333333333,
+      "pAdvance": 0.19958333333333333,
+      "p03": 0.275,
+      "pEliminated": 0.8004166666666667,
+      "pPlayoffs": 0.007,
+      "pTitle": 0,
+      "confidence": "high",
+      "reason": "strength rank 15 of 16; 36% vs Astralis next (BO1)"
+    },
+    {
+      "teamId": "lynn-vision",
+      "record": "0-0",
+      "p30": 0.017333333333333333,
+      "pAdvance": 0.11966666666666667,
+      "p03": 0.36825,
+      "pEliminated": 0.8803333333333333,
+      "pPlayoffs": 0.002416666666666667,
+      "pTitle": 0,
+      "confidence": "high",
+      "reason": "strength rank 16 of 16; 32% vs The MongolZ next (BO1)"
+    },
+    {
+      "teamId": "100-thieves",
+      "record": "0-0",
+      "p30": 0.06091666666666667,
+      "pAdvance": 0.34983333333333333,
+      "p03": 0.19191666666666668,
+      "pEliminated": 0.6501666666666667,
+      "pPlayoffs": 0.03475,
+      "pTitle": 0,
+      "confidence": "medium",
+      "reason": "strength rank 14 of 16; 44% vs MIBR next (BO1)"
+    }
+  ]
+}

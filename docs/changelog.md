@@ -3,6 +3,7 @@
 One line per automatic change (scripts, scheduled tasks). Newest first.
 Format: `YYYY-MM-DD HH:MM UTC · actor · what changed`
 
+- 2026-11-27 15:02 UTC · poll-liquipedia · logged 1 result(s) in stage-1; ratings updated; snapshot done
 - 2026-11-27 11:47 UTC · poll-liquipedia · logged 1 result(s) in stage-1; ratings updated; snapshot not-due
 - 2026-11-27 08:02 UTC · poll-liquipedia · logged 1 result(s) in stage-1; ratings updated; snapshot not-due
 - 2026-11-26 15:47 UTC · poll-liquipedia · logged 1 result(s) in stage-1; ratings updated; snapshot saved

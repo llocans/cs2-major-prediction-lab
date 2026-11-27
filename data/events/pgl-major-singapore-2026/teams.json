@@ -7,6 +7,9 @@
       "displayName": "Ninjas in Pyjamas",
       "entryStage": "stage-1",
       "stageSeed": 1,
+      "advancedSeeds": {
+        "stage-2": 10
+      },
       "vrsPoints": 1564
     },
     {
@@ -14,6 +17,9 @@
       "displayName": "PVISION",
       "entryStage": "stage-1",
       "stageSeed": 2,
+      "advancedSeeds": {
+        "stage-2": 13
+      },
       "vrsPoints": 1560
     },
     {
@@ -35,6 +41,9 @@
       "displayName": "Liquid",
       "entryStage": "stage-1",
       "stageSeed": 5,
+      "advancedSeeds": {
+        "stage-2": 11
+      },
       "vrsPoints": 1528
     },
     {
@@ -42,6 +51,9 @@
       "displayName": "Eternal Fire",
       "entryStage": "stage-1",
       "stageSeed": 6,
+      "advancedSeeds": {
+        "stage-2": 12
+      },
       "vrsPoints": 1513
     },
     {
@@ -49,6 +61,9 @@
       "displayName": "100 Thieves",
       "entryStage": "stage-1",
       "stageSeed": 7,
+      "advancedSeeds": {
+        "stage-2": 16
+      },
       "vrsPoints": 1511
     },
     {
@@ -77,6 +92,9 @@
       "displayName": "Imperial",
       "entryStage": "stage-1",
       "stageSeed": 11,
+      "advancedSeeds": {
+        "stage-2": 14
+      },
       "vrsPoints": 1406
     },
     {
@@ -108,6 +126,9 @@
       "displayName": "FlyQuest",
       "entryStage": "stage-1",
       "stageSeed": 14,
+      "advancedSeeds": {
+        "stage-2": 9
+      },
       "vrsPoints": 1318
     },
     {
@@ -122,6 +143,9 @@
       "displayName": "Lynn Vision",
       "entryStage": "stage-1",
       "stageSeed": 16,
+      "advancedSeeds": {
+        "stage-2": 15
+      },
       "vrsPoints": 1267
     },
     {

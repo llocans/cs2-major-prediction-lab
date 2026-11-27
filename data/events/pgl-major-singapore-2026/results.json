@@ -830,6 +830,59 @@
         "retrievedAt": "2026-11-27",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-1-r5-100-thieves-m80",
+      "stageId": "stage-1",
+      "round": 5,
+      "teamA": "m80",
+      "teamB": "100-thieves",
+      "format": "bo3",
+      "maps": [
+        {
+          "map": "dust2",
+          "scoreA": 6,
+          "scoreB": 13,
+          "sides": {
+            "aCt": 4,
+            "aT": 2,
+            "bCt": 5,
+            "bT": 8,
+            "aFirstSide": "ct"
+          }
+        },
+        {
+          "map": "inferno",
+          "scoreA": 13,
+          "scoreB": 10,
+          "sides": {
+            "aCt": 6,
+            "aT": 7,
+            "bCt": 5,
+            "bT": 5,
+            "aFirstSide": "t"
+          }
+        },
+        {
+          "map": "mirage",
+          "scoreA": 5,
+          "scoreB": 13,
+          "sides": {
+            "aCt": 5,
+            "aT": 0,
+            "bCt": 6,
+            "bT": 7,
+            "aFirstSide": "ct"
+          }
+        }
+      ],
+      "winner": "100-thieves",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 1 (rev 3476038)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_1",
+        "retrievedAt": "2026-11-27",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
