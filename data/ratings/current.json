@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-28T11:47:04.366Z",
-  "reason": "log-result stage-2-r2-eternal-fire-liquid",
+  "asOf": "2026-11-28T12:32:04.306Z",
+  "reason": "log-result stage-2-r2-100-thieves-fut",
   "teams": {
     "nip": {
       "rating": 1574.7,
@@ -322,8 +322,8 @@
       ]
     },
     "100-thieves": {
-      "rating": 1519.3,
-      "rd": 53.3,
+      "rating": 1515.3,
+      "rd": 52.8,
       "maps": {
         "dust2": {
           "offset": 120,
@@ -341,9 +341,9 @@
           "n": 7
         },
         "cache": {
-          "offset": 2.4,
-          "rd": 65.3,
-          "n": 6
+          "offset": 1.1,
+          "rd": 63.6,
+          "n": 7
         },
         "mirage": {
           "offset": -60.4,
@@ -812,8 +812,8 @@
       ]
     },
     "fut": {
-      "rating": 1637.5,
-      "rd": 59.3,
+      "rating": 1642.5,
+      "rd": 58.6,
       "maps": {
         "dust2": {
           "offset": -4.2,
@@ -831,9 +831,9 @@
           "n": 7
         },
         "cache": {
-          "offset": 43,
-          "rd": 67.2,
-          "n": 5
+          "offset": 44.7,
+          "rd": 65.3,
+          "n": 6
         },
         "anubis": {
           "offset": -2.6,

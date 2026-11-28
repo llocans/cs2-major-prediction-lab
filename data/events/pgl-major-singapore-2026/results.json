@@ -1231,6 +1231,35 @@
         "retrievedAt": "2026-11-28",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-2-r2-100-thieves-fut",
+      "stageId": "stage-2",
+      "round": 2,
+      "teamA": "fut",
+      "teamB": "100-thieves",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "cache",
+          "scoreA": 13,
+          "scoreB": 8,
+          "sides": {
+            "aCt": 5,
+            "aT": 8,
+            "bCt": 1,
+            "bT": 7,
+            "aFirstSide": "ct"
+          }
+        }
+      ],
+      "winner": "fut",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 2 (rev 3476352)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_2",
+        "retrievedAt": "2026-11-28",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
