@@ -999,6 +999,64 @@
         "retrievedAt": "2026-11-28",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-2-r1-g2-liquid",
+      "stageId": "stage-2",
+      "round": 1,
+      "teamA": "g2",
+      "teamB": "liquid",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "mirage",
+          "scoreA": 13,
+          "scoreB": 8,
+          "sides": {
+            "aCt": 9,
+            "aT": 4,
+            "bCt": 5,
+            "bT": 3,
+            "aFirstSide": "ct"
+          }
+        }
+      ],
+      "winner": "g2",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 2 (rev 3476259)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_2",
+        "retrievedAt": "2026-11-28",
+        "license": "CC-BY-SA 3.0"
+      }
+    },
+    {
+      "id": "stage-2-r1-1win-eternal-fire",
+      "stageId": "stage-2",
+      "round": 1,
+      "teamA": "1win",
+      "teamB": "eternal-fire",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "cache",
+          "scoreA": 13,
+          "scoreB": 10,
+          "sides": {
+            "aCt": 6,
+            "aT": 7,
+            "bCt": 5,
+            "bT": 5,
+            "aFirstSide": "t"
+          }
+        }
+      ],
+      "winner": "1win",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 2 (rev 3476259)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_2",
+        "retrievedAt": "2026-11-28",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }

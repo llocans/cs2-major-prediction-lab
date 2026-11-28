@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-28T06:02:04.318Z",
-  "reason": "log-result stage-2-r1-astralis-imperial",
+  "asOf": "2026-11-28T07:17:04.573Z",
+  "reason": "log-result stage-2-r1-1win-eternal-fire",
   "teams": {
     "nip": {
       "rating": 1580.6,
@@ -216,13 +216,13 @@
       ]
     },
     "liquid": {
-      "rating": 1526.2,
-      "rd": 55.6,
+      "rating": 1519.3,
+      "rd": 54.9,
       "maps": {
         "mirage": {
-          "offset": 48.4,
-          "rd": 59.1,
-          "n": 10
+          "offset": 46.5,
+          "rd": 57.8,
+          "n": 11
         },
         "inferno": {
           "offset": 42.6,
@@ -269,8 +269,8 @@
       ]
     },
     "eternal-fire": {
-      "rating": 1525.6,
-      "rd": 55.5,
+      "rating": 1519.2,
+      "rd": 54.8,
       "maps": {
         "ancient": {
           "offset": 53,
@@ -283,9 +283,9 @@
           "n": 13
         },
         "cache": {
-          "offset": -6.8,
-          "rd": 57.8,
-          "n": 11
+          "offset": -8.5,
+          "rd": 56.6,
+          "n": 12
         },
         "dust2": {
           "offset": 15.4,
@@ -918,8 +918,8 @@
       ]
     },
     "g2": {
-      "rating": 1569.6,
-      "rd": 60,
+      "rating": 1577.6,
+      "rd": 59.2,
       "maps": {
         "ancient": {
           "offset": 73.5,
@@ -937,9 +937,9 @@
           "n": 10
         },
         "mirage": {
-          "offset": 24.4,
-          "rd": 61.96773353931867,
-          "n": 8
+          "offset": 26.8,
+          "rd": 60.5,
+          "n": 9
         },
         "anubis": {
           "offset": 20.4,
@@ -971,8 +971,8 @@
       ]
     },
     "1win": {
-      "rating": 1558.8,
-      "rd": 60,
+      "rating": 1566.2,
+      "rd": 59.2,
       "maps": {
         "dust2": {
           "offset": 0,
@@ -995,9 +995,9 @@
           "n": 6
         },
         "cache": {
-          "offset": -23.2,
-          "rd": 71.55417527999327,
-          "n": 3
+          "offset": -20.2,
+          "rd": 69.3,
+          "n": 4
         },
         "inferno": {
           "offset": 50,
