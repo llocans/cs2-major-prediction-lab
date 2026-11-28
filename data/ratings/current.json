@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-28T12:32:04.306Z",
-  "reason": "log-result stage-2-r2-100-thieves-fut",
+  "asOf": "2026-11-28T13:17:04.320Z",
+  "reason": "log-result stage-2-r2-imperial-mibr",
   "teams": {
     "nip": {
       "rating": 1574.7,
@@ -534,8 +534,8 @@
       ]
     },
     "imperial": {
-      "rating": 1430.4,
-      "rd": 53,
+      "rating": 1425.4,
+      "rd": 52.4,
       "maps": {
         "inferno": {
           "offset": -49.9,
@@ -548,9 +548,9 @@
           "n": 8
         },
         "mirage": {
-          "offset": 12.6,
-          "rd": 63.6,
-          "n": 7
+          "offset": 11,
+          "rd": 62,
+          "n": 8
         },
         "nuke": {
           "offset": 20.7,
@@ -1183,13 +1183,13 @@
       ]
     },
     "mibr": {
-      "rating": 1519.1,
-      "rd": 59.2,
+      "rating": 1525.3,
+      "rd": 58.4,
       "maps": {
         "mirage": {
-          "offset": -23.8,
-          "rd": 59.08391567007971,
-          "n": 10
+          "offset": -22.1,
+          "rd": 57.8,
+          "n": 11
         },
         "ancient": {
           "offset": -23.8,

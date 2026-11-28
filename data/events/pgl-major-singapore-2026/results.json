@@ -1260,6 +1260,35 @@
         "retrievedAt": "2026-11-28",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-2-r2-imperial-mibr",
+      "stageId": "stage-2",
+      "round": 2,
+      "teamA": "mibr",
+      "teamB": "imperial",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "mirage",
+          "scoreA": 16,
+          "scoreB": 14,
+          "sides": {
+            "aCt": 5,
+            "aT": 7,
+            "bCt": 5,
+            "bT": 7,
+            "aFirstSide": "ct"
+          }
+        }
+      ],
+      "winner": "mibr",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 2 (rev 3476356)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_2",
+        "retrievedAt": "2026-11-28",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
