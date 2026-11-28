@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-28T05:02:04.574Z",
-  "reason": "log-result stage-2-r1-lynn-vision-the-mongolz",
+  "asOf": "2026-11-28T06:02:04.318Z",
+  "reason": "log-result stage-2-r1-astralis-imperial",
   "teams": {
     "nip": {
-      "rating": 1571.9,
-      "rd": 57,
+      "rating": 1580.6,
+      "rd": 56.3,
       "maps": {
         "cache": {
           "offset": -13.9,
@@ -13,9 +13,9 @@
           "n": 13
         },
         "mirage": {
-          "offset": 1.7,
-          "rd": 55.4,
-          "n": 13
+          "offset": 3.8,
+          "rd": 54.3,
+          "n": 14
         },
         "ancient": {
           "offset": 18.2,
@@ -534,13 +534,13 @@
       ]
     },
     "imperial": {
-      "rating": 1435.1,
-      "rd": 53.6,
+      "rating": 1430.4,
+      "rd": 53,
       "maps": {
         "inferno": {
-          "offset": -48.3,
-          "rd": 65.31972647421809,
-          "n": 6
+          "offset": -49.9,
+          "rd": 63.6,
+          "n": 7
         },
         "cache": {
           "offset": 8.9,
@@ -865,8 +865,8 @@
       ]
     },
     "nemiga": {
-      "rating": 1590,
-      "rd": 60,
+      "rating": 1580.3,
+      "rd": 59.2,
       "maps": {
         "ancient": {
           "offset": 61.2,
@@ -874,9 +874,9 @@
           "n": 16
         },
         "mirage": {
-          "offset": 19.9,
-          "rd": 53.33333333333333,
-          "n": 15
+          "offset": 17.7,
+          "rd": 52.4,
+          "n": 16
         },
         "dust2": {
           "offset": 25,
@@ -1077,8 +1077,8 @@
       ]
     },
     "astralis": {
-      "rating": 1543.2,
-      "rd": 60,
+      "rating": 1549,
+      "rd": 59.2,
       "maps": {
         "ancient": {
           "offset": 19.6,
@@ -1106,9 +1106,9 @@
           "n": 5
         },
         "inferno": {
-          "offset": -33.4,
-          "rd": 67.21344403334447,
-          "n": 5
+          "offset": -31.3,
+          "rd": 65.3,
+          "n": 6
         },
         "anubis": {
           "offset": -56.1,

@@ -941,6 +941,64 @@
         "retrievedAt": "2026-11-28",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-2-r1-nemiga-nip",
+      "stageId": "stage-2",
+      "round": 1,
+      "teamA": "nemiga",
+      "teamB": "nip",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "mirage",
+          "scoreA": 7,
+          "scoreB": 13,
+          "sides": {
+            "aCt": 4,
+            "aT": 3,
+            "bCt": 5,
+            "bT": 8,
+            "aFirstSide": "ct"
+          }
+        }
+      ],
+      "winner": "nip",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 2 (rev 3476235)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_2",
+        "retrievedAt": "2026-11-28",
+        "license": "CC-BY-SA 3.0"
+      }
+    },
+    {
+      "id": "stage-2-r1-astralis-imperial",
+      "stageId": "stage-2",
+      "round": 1,
+      "teamA": "astralis",
+      "teamB": "imperial",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "inferno",
+          "scoreA": 13,
+          "scoreB": 9,
+          "sides": {
+            "aCt": 9,
+            "aT": 4,
+            "bCt": 6,
+            "bT": 3,
+            "aFirstSide": "ct"
+          }
+        }
+      ],
+      "winner": "astralis",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 2 (rev 3476235)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_2",
+        "retrievedAt": "2026-11-28",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
