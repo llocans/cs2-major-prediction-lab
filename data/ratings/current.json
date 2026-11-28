@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-28T08:32:03.845Z",
-  "reason": "log-result stage-2-r1-100-thieves-mibr",
+  "asOf": "2026-11-28T10:02:04.454Z",
+  "reason": "log-result stage-2-r2-lynn-vision-nemiga",
   "teams": {
     "nip": {
       "rating": 1580.6,
@@ -769,8 +769,8 @@
       ]
     },
     "lynn-vision": {
-      "rating": 1383.5,
-      "rd": 54.7,
+      "rating": 1379.7,
+      "rd": 54.3,
       "maps": {
         "dust2": {
           "offset": 23.5,
@@ -778,9 +778,9 @@
           "n": 5
         },
         "ancient": {
-          "offset": 14.4,
-          "rd": 69.3,
-          "n": 4
+          "offset": 13,
+          "rd": 67.2,
+          "n": 5
         },
         "inferno": {
           "offset": -17.5,
@@ -865,13 +865,13 @@
       ]
     },
     "nemiga": {
-      "rating": 1580.3,
-      "rd": 59.2,
+      "rating": 1584.8,
+      "rd": 58.7,
       "maps": {
         "ancient": {
-          "offset": 61.2,
-          "rd": 52.37229365663816,
-          "n": 16
+          "offset": 62.2,
+          "rd": 51.5,
+          "n": 17
         },
         "mirage": {
           "offset": 17.7,
