@@ -1202,6 +1202,35 @@
         "retrievedAt": "2026-11-28",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-2-r2-eternal-fire-liquid",
+      "stageId": "stage-2",
+      "round": 2,
+      "teamA": "liquid",
+      "teamB": "eternal-fire",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "anubis",
+          "scoreA": 19,
+          "scoreB": 17,
+          "sides": {
+            "aCt": 7,
+            "aT": 5,
+            "bCt": 7,
+            "bT": 5,
+            "aFirstSide": "t"
+          }
+        }
+      ],
+      "winner": "liquid",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 2 (rev 3476325)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_2",
+        "retrievedAt": "2026-11-28",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }

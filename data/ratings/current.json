@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-28T11:32:04.066Z",
-  "reason": "log-result stage-2-r2-1win-the-mongolz",
+  "asOf": "2026-11-28T11:47:04.366Z",
+  "reason": "log-result stage-2-r2-eternal-fire-liquid",
   "teams": {
     "nip": {
       "rating": 1574.7,
@@ -216,8 +216,8 @@
       ]
     },
     "liquid": {
-      "rating": 1519.3,
-      "rd": 54.9,
+      "rating": 1524.9,
+      "rd": 54.3,
       "maps": {
         "mirage": {
           "offset": 46.5,
@@ -235,9 +235,9 @@
           "n": 9
         },
         "anubis": {
-          "offset": 18.3,
-          "rd": 62,
-          "n": 8
+          "offset": 20,
+          "rd": 60.5,
+          "n": 9
         },
         "nuke": {
           "offset": -19.4,
@@ -269,8 +269,8 @@
       ]
     },
     "eternal-fire": {
-      "rating": 1519.2,
-      "rd": 54.8,
+      "rating": 1513.6,
+      "rd": 54.2,
       "maps": {
         "ancient": {
           "offset": 53,
@@ -298,9 +298,9 @@
           "n": 8
         },
         "anubis": {
-          "offset": -20,
-          "rd": 60.5,
-          "n": 9
+          "offset": -21.6,
+          "rd": 59.1,
+          "n": 10
         },
         "nuke": {
           "offset": -40,
