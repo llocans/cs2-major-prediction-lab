@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-28T10:17:04.098Z",
-  "reason": "log-result stage-2-r2-g2-nip",
+  "asOf": "2026-11-28T11:32:04.066Z",
+  "reason": "log-result stage-2-r2-1win-the-mongolz",
   "teams": {
     "nip": {
       "rating": 1574.7,
@@ -971,8 +971,8 @@
       ]
     },
     "1win": {
-      "rating": 1566.2,
-      "rd": 59.2,
+      "rating": 1571.1,
+      "rd": 58.5,
       "maps": {
         "dust2": {
           "offset": 0,
@@ -980,9 +980,9 @@
           "n": 14
         },
         "mirage": {
-          "offset": 55.3,
-          "rd": 63.5775531391221,
-          "n": 7
+          "offset": 56.9,
+          "rd": 62,
+          "n": 8
         },
         "ancient": {
           "offset": -78.5,
@@ -1130,8 +1130,8 @@
       ]
     },
     "the-mongolz": {
-      "rating": 1537.4,
-      "rd": 59.3,
+      "rating": 1532.5,
+      "rd": 58.6,
       "maps": {
         "inferno": {
           "offset": -5,
@@ -1139,9 +1139,9 @@
           "n": 12
         },
         "mirage": {
-          "offset": -52.8,
-          "rd": 61.96773353931867,
-          "n": 8
+          "offset": -54.3,
+          "rd": 60.5,
+          "n": 9
         },
         "dust2": {
           "offset": 39.8,
