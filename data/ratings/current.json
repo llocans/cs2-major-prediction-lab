@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-28T13:17:04.320Z",
-  "reason": "log-result stage-2-r2-imperial-mibr",
+  "asOf": "2026-11-28T13:47:04.499Z",
+  "reason": "log-result stage-2-r2-astralis-navi",
   "teams": {
     "nip": {
       "rating": 1574.7,
@@ -1024,8 +1024,8 @@
       ]
     },
     "navi": {
-      "rating": 1561.5,
-      "rd": 59.2,
+      "rating": 1552.8,
+      "rd": 58.4,
       "maps": {
         "mirage": {
           "offset": -64.5,
@@ -1043,9 +1043,9 @@
           "n": 8
         },
         "ancient": {
-          "offset": 68.2,
-          "rd": 60.5,
-          "n": 9
+          "offset": 65.7,
+          "rd": 59.1,
+          "n": 10
         },
         "dust2": {
           "offset": -22.9,
@@ -1077,13 +1077,13 @@
       ]
     },
     "astralis": {
-      "rating": 1549,
-      "rd": 59.2,
+      "rating": 1557.7,
+      "rd": 58.4,
       "maps": {
         "ancient": {
-          "offset": 19.6,
-          "rd": 55.42562584220407,
-          "n": 13
+          "offset": 21.7,
+          "rd": 54.3,
+          "n": 14
         },
         "cache": {
           "offset": 37.4,

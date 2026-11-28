@@ -1289,6 +1289,35 @@
         "retrievedAt": "2026-11-28",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-2-r2-astralis-navi",
+      "stageId": "stage-2",
+      "round": 2,
+      "teamA": "navi",
+      "teamB": "astralis",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "ancient",
+          "scoreA": 11,
+          "scoreB": 13,
+          "sides": {
+            "aCt": 2,
+            "aT": 9,
+            "bCt": 3,
+            "bT": 10,
+            "aFirstSide": "ct"
+          }
+        }
+      ],
+      "winner": "astralis",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 2 (rev 3476365)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_2",
+        "retrievedAt": "2026-11-28",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
