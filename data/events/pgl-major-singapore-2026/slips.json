@@ -44,6 +44,38 @@
         }
       ],
       "left": []
+    },
+    {
+      "stageId": "stage-2",
+      "round": 2,
+      "builtAt": "2026-11-28T08:35:36Z",
+      "odds": "real",
+      "slips": [
+        {
+          "kind": "riskier",
+          "legs": [
+            {
+              "teamA": "1win",
+              "teamB": "the-mongolz",
+              "pick": "1win",
+              "chance": 0.4877
+            },
+            {
+              "teamA": "flyquest",
+              "teamB": "parivision",
+              "pick": "flyquest",
+              "chance": 0.4552
+            },
+            {
+              "teamA": "navi",
+              "teamB": "astralis",
+              "pick": "astralis",
+              "chance": 0.3608
+            }
+          ]
+        }
+      ],
+      "left": []
     }
   ]
 }
