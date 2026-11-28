@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-28T07:17:04.573Z",
-  "reason": "log-result stage-2-r1-1win-eternal-fire",
+  "asOf": "2026-11-28T08:17:04.279Z",
+  "reason": "log-result stage-2-r1-navi-parivision",
   "teams": {
     "nip": {
       "rating": 1580.6,
@@ -57,13 +57,13 @@
       ]
     },
     "parivision": {
-      "rating": 1554.9,
-      "rd": 56.5,
+      "rating": 1547.7,
+      "rd": 55.8,
       "maps": {
         "ancient": {
-          "offset": 78.4,
-          "rd": 50.6,
-          "n": 18
+          "offset": 77,
+          "rd": 49.8,
+          "n": 19
         },
         "inferno": {
           "offset": 23.2,
@@ -1024,8 +1024,8 @@
       ]
     },
     "navi": {
-      "rating": 1553.4,
-      "rd": 60,
+      "rating": 1561.5,
+      "rd": 59.2,
       "maps": {
         "mirage": {
           "offset": -64.5,
@@ -1043,9 +1043,9 @@
           "n": 8
         },
         "ancient": {
-          "offset": 65.8,
-          "rd": 61.96773353931867,
-          "n": 8
+          "offset": 68.2,
+          "rd": 60.5,
+          "n": 9
         },
         "dust2": {
           "offset": -22.9,

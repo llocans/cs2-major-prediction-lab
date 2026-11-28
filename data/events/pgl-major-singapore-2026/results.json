@@ -1057,6 +1057,35 @@
         "retrievedAt": "2026-11-28",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-2-r1-navi-parivision",
+      "stageId": "stage-2",
+      "round": 1,
+      "teamA": "navi",
+      "teamB": "parivision",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "ancient",
+          "scoreA": 13,
+          "scoreB": 10,
+          "sides": {
+            "aCt": 9,
+            "aT": 4,
+            "bCt": 7,
+            "bT": 3,
+            "aFirstSide": "ct"
+          }
+        }
+      ],
+      "winner": "navi",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 2 (rev 3476266)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_2",
+        "retrievedAt": "2026-11-28",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
