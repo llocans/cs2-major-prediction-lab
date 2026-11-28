@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-27T15:02:04.680Z",
-  "reason": "log-result stage-1-r5-100-thieves-m80",
+  "asOf": "2026-11-28T05:02:04.574Z",
+  "reason": "log-result stage-2-r1-lynn-vision-the-mongolz",
   "teams": {
     "nip": {
       "rating": 1571.9,
@@ -693,8 +693,8 @@
       ]
     },
     "flyquest": {
-      "rating": 1509,
-      "rd": 93.8,
+      "rating": 1497.1,
+      "rd": 91.1,
       "maps": {
         "dust2": {
           "offset": 42.7,
@@ -702,9 +702,9 @@
           "n": 3
         },
         "cache": {
-          "offset": 13.6,
-          "rd": 76.9,
-          "n": 1
+          "offset": 8.1,
+          "rd": 74.1,
+          "n": 2
         }
       },
       "sources": [
@@ -769,8 +769,8 @@
       ]
     },
     "lynn-vision": {
-      "rating": 1387.7,
-      "rd": 55.3,
+      "rating": 1383.5,
+      "rd": 54.7,
       "maps": {
         "dust2": {
           "offset": 23.5,
@@ -783,9 +783,9 @@
           "n": 4
         },
         "inferno": {
-          "offset": -15.7,
-          "rd": 74.1,
-          "n": 2
+          "offset": -17.5,
+          "rd": 71.6,
+          "n": 3
         },
         "anubis": {
           "offset": -20.5,
@@ -812,8 +812,8 @@
       ]
     },
     "fut": {
-      "rating": 1632.6,
-      "rd": 60,
+      "rating": 1637.5,
+      "rd": 59.3,
       "maps": {
         "dust2": {
           "offset": -4.2,
@@ -831,9 +831,9 @@
           "n": 7
         },
         "cache": {
-          "offset": 41.2,
-          "rd": 69.28203230275508,
-          "n": 4
+          "offset": 43,
+          "rd": 67.2,
+          "n": 5
         },
         "anubis": {
           "offset": -2.6,
@@ -1130,13 +1130,13 @@
       ]
     },
     "the-mongolz": {
-      "rating": 1532.4,
-      "rd": 60,
+      "rating": 1537.4,
+      "rd": 59.3,
       "maps": {
         "inferno": {
-          "offset": -6.3,
-          "rd": 57.78520948116921,
-          "n": 11
+          "offset": -5,
+          "rd": 56.6,
+          "n": 12
         },
         "mirage": {
           "offset": -52.8,

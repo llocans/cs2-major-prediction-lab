@@ -883,6 +883,64 @@
         "retrievedAt": "2026-11-27",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-2-r1-flyquest-fut",
+      "stageId": "stage-2",
+      "round": 1,
+      "teamA": "fut",
+      "teamB": "flyquest",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "cache",
+          "scoreA": 13,
+          "scoreB": 10,
+          "sides": {
+            "aCt": 5,
+            "aT": 8,
+            "bCt": 3,
+            "bT": 7,
+            "aFirstSide": "ct"
+          }
+        }
+      ],
+      "winner": "fut",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 2 (rev 3476226)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_2",
+        "retrievedAt": "2026-11-28",
+        "license": "CC-BY-SA 3.0"
+      }
+    },
+    {
+      "id": "stage-2-r1-lynn-vision-the-mongolz",
+      "stageId": "stage-2",
+      "round": 1,
+      "teamA": "the-mongolz",
+      "teamB": "lynn-vision",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "inferno",
+          "scoreA": 13,
+          "scoreB": 9,
+          "sides": {
+            "aCt": 7,
+            "aT": 6,
+            "bCt": 4,
+            "bT": 5,
+            "aFirstSide": "ct"
+          }
+        }
+      ],
+      "winner": "the-mongolz",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 2 (rev 3476226)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_2",
+        "retrievedAt": "2026-11-28",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
