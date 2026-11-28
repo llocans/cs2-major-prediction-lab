@@ -25,6 +25,51 @@
         "retrievedAt": "2026-11-26",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "stageId": "stage-2",
+      "round": 2,
+      "pairings": [
+        {
+          "teamA": "g2",
+          "teamB": "nip"
+        },
+        {
+          "teamA": "1win",
+          "teamB": "the-mongolz"
+        },
+        {
+          "teamA": "fut",
+          "teamB": "100-thieves"
+        },
+        {
+          "teamA": "navi",
+          "teamB": "astralis"
+        },
+        {
+          "teamA": "nemiga",
+          "teamB": "lynn-vision"
+        },
+        {
+          "teamA": "liquid",
+          "teamB": "eternal-fire"
+        },
+        {
+          "teamA": "mibr",
+          "teamB": "imperial"
+        },
+        {
+          "teamA": "flyquest",
+          "teamB": "parivision"
+        }
+      ],
+      "seenAt": "2026-11-28T08:32:27.371Z",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 2 (rev 3476270)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_2",
+        "retrievedAt": "2026-11-28",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }

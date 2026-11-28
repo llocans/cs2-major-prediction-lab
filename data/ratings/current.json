@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-28T08:17:04.279Z",
-  "reason": "log-result stage-2-r1-navi-parivision",
+  "asOf": "2026-11-28T08:32:03.845Z",
+  "reason": "log-result stage-2-r1-100-thieves-mibr",
   "teams": {
     "nip": {
       "rating": 1580.6,
@@ -322,8 +322,8 @@
       ]
     },
     "100-thieves": {
-      "rating": 1512.5,
-      "rd": 53.9,
+      "rating": 1519.3,
+      "rd": 53.3,
       "maps": {
         "dust2": {
           "offset": 120,
@@ -341,9 +341,9 @@
           "n": 7
         },
         "cache": {
-          "offset": 0,
-          "rd": 67.21344403334447,
-          "n": 5
+          "offset": 2.4,
+          "rd": 65.3,
+          "n": 6
         },
         "mirage": {
           "offset": -60.4,
@@ -1183,8 +1183,8 @@
       ]
     },
     "mibr": {
-      "rating": 1527.6,
-      "rd": 60,
+      "rating": 1519.1,
+      "rd": 59.2,
       "maps": {
         "mirage": {
           "offset": -23.8,
@@ -1207,9 +1207,9 @@
           "n": 8
         },
         "cache": {
-          "offset": 37.3,
-          "rd": 63.5775531391221,
-          "n": 7
+          "offset": 34.6,
+          "rd": 62,
+          "n": 8
         },
         "anubis": {
           "offset": 13.2,

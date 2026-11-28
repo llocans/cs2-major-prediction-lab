@@ -1086,6 +1086,35 @@
         "retrievedAt": "2026-11-28",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-2-r1-100-thieves-mibr",
+      "stageId": "stage-2",
+      "round": 1,
+      "teamA": "mibr",
+      "teamB": "100-thieves",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "cache",
+          "scoreA": 11,
+          "scoreB": 13,
+          "sides": {
+            "aCt": 4,
+            "aT": 7,
+            "bCt": 5,
+            "bT": 8,
+            "aFirstSide": "ct"
+          }
+        }
+      ],
+      "winner": "100-thieves",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 2 (rev 3476270)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_2",
+        "retrievedAt": "2026-11-28",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }
