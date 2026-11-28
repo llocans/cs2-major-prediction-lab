@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "eventId": "pgl-major-singapore-2026",
+  "checkedAt": "2026-11-28T14:02:16.338Z",
+  "outcome": "checked",
+  "stageId": "stage-2",
+  "liquipediaRevid": 3476368,
+  "message": "market odds failed: Error: OddsPapi fixtures: HTTP 404 {\"error\":{\"message\":\"No fixtures found for the specified criteria.\",\"code\":\"FIXTURE_N",
+  "lastChangeAt": "2026-11-28T13:47:18.154Z",
+  "lastChange": "1 new result in Stage 2"
+}
