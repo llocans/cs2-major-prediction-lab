@@ -1144,6 +1144,35 @@
         "retrievedAt": "2026-11-28",
         "license": "CC-BY-SA 3.0"
       }
+    },
+    {
+      "id": "stage-2-r2-g2-nip",
+      "stageId": "stage-2",
+      "round": 2,
+      "teamA": "g2",
+      "teamB": "nip",
+      "format": "bo1",
+      "maps": [
+        {
+          "map": "ancient",
+          "scoreA": 13,
+          "scoreB": 10,
+          "sides": {
+            "aCt": 8,
+            "aT": 5,
+            "bCt": 6,
+            "bT": 4,
+            "aFirstSide": "ct"
+          }
+        }
+      ],
+      "winner": "g2",
+      "source": {
+        "name": "Liquipedia: PGL/2026/Singapore/Stage 2 (rev 3476310)",
+        "url": "https://liquipedia.net/counterstrike/PGL/2026/Singapore/Stage_2",
+        "retrievedAt": "2026-11-28",
+        "license": "CC-BY-SA 3.0"
+      }
     }
   ]
 }

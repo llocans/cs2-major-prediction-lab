@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-11-28T10:02:04.454Z",
-  "reason": "log-result stage-2-r2-lynn-vision-nemiga",
+  "asOf": "2026-11-28T10:17:04.098Z",
+  "reason": "log-result stage-2-r2-g2-nip",
   "teams": {
     "nip": {
-      "rating": 1580.6,
-      "rd": 56.3,
+      "rating": 1574.7,
+      "rd": 55.6,
       "maps": {
         "cache": {
           "offset": -13.9,
@@ -18,9 +18,9 @@
           "n": 14
         },
         "ancient": {
-          "offset": 18.2,
-          "rd": 55.4,
-          "n": 13
+          "offset": 16.8,
+          "rd": 54.3,
+          "n": 14
         },
         "dust2": {
           "offset": -70.4,
@@ -918,13 +918,13 @@
       ]
     },
     "g2": {
-      "rating": 1577.6,
-      "rd": 59.2,
+      "rating": 1584.1,
+      "rd": 58.4,
       "maps": {
         "ancient": {
-          "offset": 73.5,
-          "rd": 55.42562584220407,
-          "n": 13
+          "offset": 75.1,
+          "rd": 54.3,
+          "n": 14
         },
         "inferno": {
           "offset": 30.5,
